@@ -1,4 +1,4 @@
-import { META_THEME_COLORS, SITE } from "@/constants/site";
+import { SITE } from "@/constants/site";
 import { absoluteUrl } from "@/constants/url";
 
 // Static 1200×630 share image (public/og.png).
@@ -62,16 +62,6 @@ export const baseMetadata = {
     { charSet: "utf-8" },
     { content: "width=device-width, initial-scale=1", name: "viewport" },
     { content: "light dark", name: "color-scheme" },
-    {
-      content: META_THEME_COLORS.light,
-      media: "(prefers-color-scheme: light)",
-      name: "theme-color",
-    },
-    {
-      content: META_THEME_COLORS.dark,
-      media: "(prefers-color-scheme: dark)",
-      name: "theme-color",
-    },
     { content: SITE.NAME, name: "application-name" },
     { content: SITE.AUTHOR.NAME, name: "author" },
     { content: SITE.KEYWORDS.join(", "), name: "keywords" },

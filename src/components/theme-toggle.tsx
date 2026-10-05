@@ -1,64 +1,57 @@
-import { cn } from "cn";
-import { MonitorIcon, MoonIcon, SunIcon } from "lucide-react";
-import { useSyncExternalStore } from "react";
+import { buttonVariants } from "@/components/ui/button";
+import { Kbd } from "@/components/ui/kbd";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
+import { useHotkey } from "@/hooks/use-hotkey";
+import { THEME_KEY, setThemeColor } from "@/lib/theme";
 
-import { THEME_KEY, applyTheme, storedTheme } from "@/lib/theme";
-import type { Theme } from "@/lib/theme";
+const HOTKEY = "d";
 
-const options = [
-  { icon: SunIcon, label: "Light", value: "light" },
-  { icon: MoonIcon, label: "Dark", value: "dark" },
-  { icon: MonitorIcon, label: "System", value: "system" },
-] as const;
-
-// Same-tab changes don't fire "storage", so the toggle announces its own.
-const THEME_EVENT = "themechange";
-
-const subscribe = (onChange: () => void) => {
-  const onStorage = (event: StorageEvent) => {
-    if (event.key === THEME_KEY) {
-      onChange();
-    }
-  };
-  window.addEventListener(THEME_EVENT, onChange);
-  window.addEventListener("storage", onStorage);
-  return () => {
-    window.removeEventListener(THEME_EVENT, onChange);
-    window.removeEventListener("storage", onStorage);
-  };
+const toggleTheme = () => {
+  const dark = !document.documentElement.classList.contains("dark");
+  document.documentElement.classList.toggle("dark", dark);
+  setThemeColor(dark);
+  localStorage.setItem(THEME_KEY, dark ? "dark" : "light");
 };
 
-export const ThemeToggle = () => {
-  // The server has no localStorage, so it renders "system" and the client
-  // switches to the stored choice after hydration.
-  const theme = useSyncExternalStore<Theme>(
-    subscribe,
-    storedTheme,
-    () => "system"
-  );
+export const ThemeToggle = ({ hotkey = false }: { hotkey?: boolean }) => {
+  useHotkey(HOTKEY, toggleTheme, { enabled: hotkey });
 
   return (
-    <fieldset className="bg-muted inline-flex w-fit gap-0.5 rounded-full border-0 p-0.5">
-      <legend className="sr-only">Theme</legend>
-      {options.map(({ icon: Icon, label, value }) => (
-        <button
-          key={value}
-          type="button"
-          aria-pressed={theme === value}
-          aria-label={label}
-          title={label}
-          onClick={() => {
-            applyTheme(value);
-            window.dispatchEvent(new Event(THEME_EVENT));
-          }}
-          className={cn(
-            "text-muted-foreground hover:text-foreground flex size-7 items-center justify-center rounded-full transition-colors",
-            theme === value && "bg-background text-foreground shadow-xs"
-          )}
+    <TooltipProvider>
+      <Tooltip>
+        <TooltipTrigger
+          render={
+            <button
+              type="button"
+              aria-label="Toggle theme"
+              aria-keyshortcuts={HOTKEY.toUpperCase()}
+              className={buttonVariants({ size: "icon", variant: "ghost" })}
+            />
+          }
+          onClick={toggleTheme}
         >
-          <Icon aria-hidden className="size-3.5" />
-        </button>
-      ))}
-    </fieldset>
+          {/* Half-filled circle; turns 180° in dark mode. */}
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2.25"
+            aria-hidden="true"
+            className="size-[18px] transition-transform duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] motion-reduce:transition-none dark:rotate-180"
+          >
+            <circle cx="12" cy="12" r="9" />
+            <path d="M12 3a9 9 0 0 1 0 18Z" fill="currentColor" stroke="none" />
+          </svg>
+        </TooltipTrigger>
+        <TooltipContent side="top">
+          Toggle theme <Kbd>{HOTKEY.toUpperCase()}</Kbd>
+        </TooltipContent>
+      </Tooltip>
+    </TooltipProvider>
   );
 };

@@ -13,10 +13,21 @@ import {
   DropdownMenuGroup,
   DropdownMenuLabel,
   DropdownMenuLinkItem,
+  DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
 import { LINK } from "@/constants/links";
-import { OTHER_PRODUCTS, SHADCN_LABS_PROJECTS } from "@/constants/products";
+import {
+  MORE_PRODUCTS,
+  OTHER_PRODUCTS,
+  SHADCN_LABS_PROJECTS,
+} from "@/constants/products";
 import { SITE } from "@/constants/site";
 import { withUtm } from "@/lib/utm";
 
@@ -71,22 +82,49 @@ export const SiteFooter = () => (
         <p className="text-muted-foreground max-w-xs text-sm">
           Motion design, written in code.
         </p>
-        <div className="flex items-center gap-3">
-          <a
-            href={LINK.X}
-            aria-label={`${SITE.NAME} on X (${SITE.AUTHOR.TWITTER})`}
-            className={linkClass}
-          >
-            <XIcon className="size-4" />
-          </a>
-          <a
-            href={LINK.GITHUB}
-            aria-label={`${SITE.NAME} on GitHub`}
-            className={linkClass}
-          >
-            <GitHubIcon className="size-4" />
-          </a>
-        </div>
+        {/* -ml-2 lines the icons up with the text above the ghost padding. */}
+        <TooltipProvider>
+          <div className="-ml-2 flex items-center gap-1">
+            <Tooltip>
+              <TooltipTrigger
+                render={
+                  <a
+                    href={LINK.GITHUB_REPO}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="GitHub repository"
+                    className={buttonVariants({
+                      size: "icon",
+                      variant: "ghost",
+                    })}
+                  />
+                }
+              >
+                <GitHubIcon className="size-4" />
+              </TooltipTrigger>
+              <TooltipContent side="top">Star on GitHub</TooltipContent>
+            </Tooltip>
+            <Tooltip>
+              <TooltipTrigger
+                render={
+                  <a
+                    href={LINK.X}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={`Follow ${SITE.AUTHOR.TWITTER} on X`}
+                    className={buttonVariants({
+                      size: "icon",
+                      variant: "ghost",
+                    })}
+                  />
+                }
+              >
+                <XIcon className="size-3.5" />
+              </TooltipTrigger>
+              <TooltipContent side="top">Follow on X</TooltipContent>
+            </Tooltip>
+          </div>
+        </TooltipProvider>
       </div>
 
       <nav
@@ -130,11 +168,6 @@ export const SiteFooter = () => (
             <Link to="/contact" className={linkClass}>
               Contact
             </Link>
-          </li>
-          <li>
-            <a href={LINK.GITHUB_REPO} className={linkClass}>
-              Source code
-            </a>
           </li>
         </FooterColumn>
         <FooterColumn title="Legal">
@@ -182,6 +215,17 @@ export const SiteFooter = () => (
               </DropdownMenuTrigger>
               <DropdownMenuContent side="top" className="w-48">
                 <DropdownMenuGroup>
+                  {MORE_PRODUCTS.map((product) => (
+                    <DropdownMenuLinkItem
+                      key={product.name}
+                      href={withUtm(product.url, "footer")}
+                    >
+                      {product.name}
+                    </DropdownMenuLinkItem>
+                  ))}
+                </DropdownMenuGroup>
+                <DropdownMenuSeparator />
+                <DropdownMenuGroup>
                   <DropdownMenuLabel>Shadcn Labs projects</DropdownMenuLabel>
                   {SHADCN_LABS_PROJECTS.map((project) => (
                     <DropdownMenuLinkItem
@@ -199,7 +243,7 @@ export const SiteFooter = () => (
       </nav>
     </div>
 
-    <div className="text-muted-foreground mt-16 flex flex-col gap-4 text-sm sm:flex-row sm:items-center sm:justify-between">
+    <div className="text-muted-foreground mt-16 flex items-center justify-between gap-4 text-sm">
       <p>
         © {new Date().getFullYear()} {SITE.NAME} · Built by{" "}
         <a
@@ -209,7 +253,7 @@ export const SiteFooter = () => (
           {SITE.AUTHOR.FIRST_NAME}
         </a>
       </p>
-      <ThemeToggle />
+      <ThemeToggle hotkey />
     </div>
   </footer>
 );
