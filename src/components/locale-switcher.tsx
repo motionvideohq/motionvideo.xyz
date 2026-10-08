@@ -21,7 +21,7 @@ export const LocaleSwitcher = () => {
     <DropdownMenu>
       <DropdownMenuTrigger
         aria-label={`${content.language.value}: ${locale.toUpperCase()}`}
-        className={buttonVariants({ size: "sm", variant: "ghost" })}
+        className={buttonVariants({ variant: "ghost" })}
       >
         <LanguagesIcon aria-hidden className="size-4" />
         <span className="uppercase">{locale}</span>
