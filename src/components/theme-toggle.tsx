@@ -1,3 +1,5 @@
+import { useIntlayer } from "react-intlayer";
+
 import { buttonVariants } from "@/components/ui/button";
 import { Kbd } from "@/components/ui/kbd";
 import {
@@ -19,6 +21,7 @@ const toggleTheme = () => {
 };
 
 export const ThemeToggle = ({ hotkey = false }: { hotkey?: boolean }) => {
+  const content = useIntlayer("chrome");
   useHotkey(HOTKEY, toggleTheme, { enabled: hotkey });
 
   return (
@@ -28,7 +31,7 @@ export const ThemeToggle = ({ hotkey = false }: { hotkey?: boolean }) => {
           render={
             <button
               type="button"
-              aria-label="Toggle theme"
+              aria-label={content.toggleTheme.value}
               aria-keyshortcuts={HOTKEY.toUpperCase()}
               className={buttonVariants({ size: "icon", variant: "ghost" })}
             />
@@ -49,7 +52,7 @@ export const ThemeToggle = ({ hotkey = false }: { hotkey?: boolean }) => {
           </svg>
         </TooltipTrigger>
         <TooltipContent side="top">
-          Toggle theme <Kbd>{HOTKEY.toUpperCase()}</Kbd>
+          {content.toggleTheme} <Kbd>{HOTKEY.toUpperCase()}</Kbd>
         </TooltipContent>
       </Tooltip>
     </TooltipProvider>

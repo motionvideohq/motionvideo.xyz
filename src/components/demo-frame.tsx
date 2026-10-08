@@ -2,6 +2,7 @@ import { cn } from "cn";
 import { MousePointer2Icon, PlayIcon } from "lucide-react";
 import MediaThemeSutro from "player.style/sutro/react";
 import { useEffect, useRef } from "react";
+import { useIntlayer } from "react-intlayer";
 
 interface DemoFrameProps {
   /** Rendered video URL. Empty shows the animated placeholder. */
@@ -158,7 +159,9 @@ export const DemoFrame = ({
   variant,
   caption,
   autoplay = "visible",
-}: DemoFrameProps) => (
+}: DemoFrameProps) => {
+  const content = useIntlayer("chrome");
+  return (
   <figure className="flex flex-col gap-3">
     <div className="bg-muted/40 relative aspect-video overflow-hidden rounded-xl border shadow-sm">
       {src ? (
@@ -191,8 +194,9 @@ export const DemoFrame = ({
         <span className="text-foreground shrink-0 font-medium">
           {caption.label}
         </span>
-        <span className="sm:text-right">Prompt: “{caption.prompt}”</span>
+        <span className="sm:text-right">{content.prompt} “{caption.prompt}”</span>
       </figcaption>
     )}
   </figure>
-);
+  );
+};

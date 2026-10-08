@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { CheckIcon, CornerDownLeftIcon, SendIcon } from "lucide-react";
 import { useRef, useState } from "react";
 import type { FormEvent, KeyboardEvent } from "react";
+import { useIntlayer } from "react-intlayer";
 
 import { PageHeader } from "@/components/page";
 import { Button } from "@/components/ui/button";
@@ -28,9 +29,10 @@ import { sendContactMessage } from "@/server/functions";
 const inlineLink = "text-foreground underline underline-offset-4";
 
 const Contact = () => {
+  const content = useIntlayer("contact");
   const formRef = useRef<HTMLFormElement>(null);
   const [status, setStatus] = useState<"idle" | "sending" | "sent">("idle");
-  const [error, setError] = useState<string | null>(null);
+  const [error, setError] = useState<"validation" | "send" | null>(null);
   const [inquiry, setInquiry] = useState<ContactInput["inquiry"]>(
     INQUIRY_TYPES[0]
   );
@@ -47,9 +49,7 @@ const Contact = () => {
       website: form.get("website") ?? "",
     });
     if (!input.success) {
-      setError(
-        "Add your name, a valid email, a subject, and a message of at least 10 characters."
-      );
+      setError("validation");
       return;
     }
     setStatus("sending");
@@ -58,15 +58,13 @@ const Contact = () => {
       const result = await sendContactMessage({ data: input.data });
       if (!result.ok) {
         setStatus("idle");
-        setError(result.error);
+        setError("send");
         return;
       }
       setStatus("sent");
     } catch {
       setStatus("idle");
-      setError(
-        `Your message couldn’t be sent. Please email ${LINK.EMAIL} instead.`
-      );
+      setError("send");
     }
   };
 
@@ -81,46 +79,46 @@ const Contact = () => {
   return (
     <>
       <PageHeader
-        title="Contact"
-        intro="Questions about the pack, a purchase, or a partnership? Send a message and we’ll reply by email."
+        title={content.title.value}
+        intro={content.intro.value}
       />
       {status === "sent" ? (
         <div className="bg-muted/50 flex items-start gap-3 rounded-xl p-5">
           <CheckIcon aria-hidden className="text-primary mt-0.5 size-5" />
           <div className="flex flex-col gap-1">
-            <p className="font-medium">Message sent</p>
+            <p className="font-medium">{content.sent}</p>
             <p className="text-muted-foreground text-sm">
-              Thanks for writing. We usually reply within two working days.
+              {content.thanks}
             </p>
           </div>
         </div>
       ) : (
         <form ref={formRef} onSubmit={onSubmit} className="flex flex-col gap-5">
           <div className="flex flex-col gap-2">
-            <Label htmlFor="name">Name</Label>
+            <Label htmlFor="name">{content.name}</Label>
             <Input
               id="name"
               name="name"
               autoComplete="name"
-              placeholder="John Doe"
+              placeholder={content.namePlaceholder.value}
               required
               maxLength={100}
             />
           </div>
           <div className="flex flex-col gap-2">
-            <Label htmlFor="email">Email</Label>
+            <Label htmlFor="email">{content.email}</Label>
             <Input
               id="email"
               name="email"
               type="email"
               autoComplete="email"
-              placeholder="john@doe.com"
+              placeholder={content.emailPlaceholder.value}
               required
               maxLength={254}
             />
           </div>
           <div className="flex flex-col gap-2">
-            <Label htmlFor="inquiry">Inquiry type</Label>
+            <Label htmlFor="inquiry">{content.inquiry}</Label>
             <Select
               value={inquiry}
               onValueChange={(value) => value && setInquiry(value)}
@@ -132,7 +130,7 @@ const Contact = () => {
                 <SelectGroup>
                   {INQUIRY_TYPES.map((type) => (
                     <SelectItem key={type} value={type}>
-                      {type}
+                      {content.inquiryLabels[type]}
                     </SelectItem>
                   ))}
                 </SelectGroup>
@@ -140,21 +138,21 @@ const Contact = () => {
             </Select>
           </div>
           <div className="flex flex-col gap-2">
-            <Label htmlFor="subject">Subject</Label>
+            <Label htmlFor="subject">{content.subject}</Label>
             <Input
               id="subject"
               name="subject"
-              placeholder={`${inquiry}: Brief description of your inquiry`}
+              placeholder={`${content.inquiryLabels[inquiry].value}: ${content.subjectPlaceholder.value}`}
               required
               maxLength={150}
             />
           </div>
           <div className="flex flex-col gap-2">
-            <Label htmlFor="message">Message</Label>
+            <Label htmlFor="message">{content.message}</Label>
             <Textarea
               id="message"
               name="message"
-              placeholder="Hi, this is my message"
+              placeholder={content.messagePlaceholder.value}
               required
               minLength={10}
               maxLength={5000}
@@ -174,33 +172,33 @@ const Contact = () => {
           />
           {error && (
             <p role="alert" className="text-destructive text-sm">
-              {error}
+              {error === "validation" ? content.validationError : content.sendError}
             </p>
           )}
           <div className="flex flex-wrap items-center justify-between gap-4">
             <Button type="submit" size="lg" disabled={status === "sending"}>
               <SendIcon data-icon="inline-start" aria-hidden />
-              {status === "sending" ? "Sending…" : "Send message"}
+              {status === "sending" ? content.sending : content.send}
             </Button>
             <span className="text-muted-foreground flex items-center gap-1.5 text-sm">
-              or
+              {content.or}
               <kbd className="bg-muted text-muted-foreground inline-flex h-5 items-center gap-1 rounded px-1.5 font-sans text-xs">
                 ⌘
                 <CornerDownLeftIcon aria-hidden className="size-3" />
-                Enter
+                {content.enter}
               </kbd>
-              to send
+              {content.toSend}
             </span>
           </div>
         </form>
       )}
 
       <p className="text-muted-foreground">
-        Prefer something else? Email{" "}
+        {content.prefer}
         <a href={`mailto:${LINK.EMAIL}`} className={inlineLink}>
           {LINK.EMAIL}
         </a>{" "}
-        or send a DM on X to{" "}
+        {content.dm}
         <a href={LINK.X} className={inlineLink}>
           {SITE.AUTHOR.TWITTER}
         </a>

@@ -1,5 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import { cn } from "cn";
+import { useIntlayer } from "react-intlayer";
 
 import { SiteFooter, SiteHeader } from "@/components/site-chrome";
 import { buttonVariants } from "@/components/ui/button";
@@ -9,7 +10,9 @@ const TICKS = 25;
 
 // "404" as three frames of a clip: the middle frame never rendered. A playhead
 // scrubs the timeline underneath. Motion is off for reduced-motion visitors.
-const MissingFrame = () => (
+const MissingFrame = () => {
+  const content = useIntlayer("chrome");
+  return (
   <div
     className="bg-muted/50 flex w-full max-w-sm flex-col gap-5 rounded-2xl p-5 sm:p-6"
     aria-hidden
@@ -49,13 +52,16 @@ const MissingFrame = () => (
       </div>
       <div className="text-muted-foreground flex justify-between font-mono text-xs">
         <span>00:00:04:04</span>
-        <span>Frame missing</span>
+        <span>{content.frameMissing}</span>
       </div>
     </div>
   </div>
-);
+  );
+};
 
-export const NotFound = () => (
+export const NotFound = () => {
+  const content = useIntlayer("chrome");
+  return (
   <>
     <SiteHeader signedIn={false} />
     <main
@@ -65,25 +71,25 @@ export const NotFound = () => (
       <MissingFrame />
       <div className="flex flex-col items-center gap-3">
         <h1 className="text-4xl font-semibold tracking-tight text-balance">
-          This frame didn’t render.
+          {content.notFoundTitle}
         </h1>
         <p className="text-muted-foreground max-w-md text-pretty">
-          The page you’re looking for isn’t in the cut. It may have moved, or
-          the link is wrong.
+          {content.notFoundBody}
         </p>
       </div>
       <div className="flex flex-wrap items-center justify-center gap-3">
         <Link to="/" className={buttonVariants({ size: "lg" })}>
-          Back to home
+          {content.backHome}
         </Link>
         <a
           href={ROUTES.CONTACT}
           className={buttonVariants({ size: "lg", variant: "ghost" })}
         >
-          Report a broken link
+          {content.reportLink}
         </a>
       </div>
     </main>
     <SiteFooter />
   </>
-);
+  );
+};

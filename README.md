@@ -18,13 +18,13 @@ Agent skills that teach your coding agent motion design: timing, easing, and cho
 
 ---
 
-This repository is the marketing and checkout site for MotionVideo. The site is open source; the skill pack itself is sold separately and delivered at launch as access to a private GitHub repository through [Polar](https://polar.sh).
+This repository is the marketing and checkout site for MotionVideo. The site is open source; the skill pack itself is sold separately and delivered immediately as access to a private GitHub repository through [Polar](https://polar.sh).
 
 ## How it works
 
 - **Checkout**: buy buttons go straight to a Polar checkout, no account needed. After paying, `/welcome` emails the buyer a sign-in link.
 - **Access**: passwordless magic links are available to emails with a paid order. The Polar product carries a GitHub repository access benefit; each buyer links a GitHub account in Polar's customer portal to claim the invite.
-- **Pricing**: a single $99 one-time price. An earlier $79 product is archived in Polar and kept only so its existing buyers keep their access and can sign in. No localized or purchasing-power pricing on the site.
+- **Pricing**: $29 for the first 100 launch purchases, then $49, paid once. Both include instant private GitHub repository access and future updates. Polar applies a product-restricted $20 discount with a native, atomic 100-redemption cap; new checkouts automatically use $49 after the cap. Historic buyers retain access through the current product and the archived legacy product. No localized or purchasing-power pricing on the site.
 - **Content**: landing page, about, brand assets, contact form, and legal pages (terms, privacy, refunds, DPA), with Open Graph tags and JSON-LD on every page.
 
 ## Tech stack
@@ -50,6 +50,24 @@ pnpm dev
 ```
 
 Email templates are React Email components in `src/emails`. Preview them with `pnpm email:dev` (port 3001).
+
+### Polar launch pricing
+
+Set `POLAR_PRODUCT_ID` to the regular **$49 USD one-time** product, preserving its GitHub repository access benefit. Keep `POLAR_LEGACY_PRODUCT_ID` for archived-product buyers. Set `POLAR_LAUNCH_DISCOUNT_ID` to a **fixed $20 USD, once-only** discount restricted to that current product, with **maximum redemptions 100** and no public code. The site locks checkout to this product and disables customer-entered discount codes. Reuse this discount throughout the campaign; replacing it would reset the cap.
+
+The landing page and structured pricing metadata read Polar's live `redemptions_count`. Polar atomically reserves redemptions while confirming payment and releases failed payments, so the remaining count can temporarily include payments still being confirmed. Merely opening a checkout does not reserve a spot. A previously opened discounted checkout can be rejected if the final spot is taken before payment; restart checkout to see the regular $49 price. No payment is silently increased.
+
+The launch pricing card restores the layout before commit `132a4c5`: crossed-out regular price, live remaining-spots count, and a 100-segment meter. It is a launch discount, not a preorder; there is no calendar deadline or delayed delivery.
+
+Local development reads these values from `.env`; production also needs `pnpm wrangler secret put POLAR_LAUNCH_DISCOUNT_ID` before deployment, along with the existing Polar secrets. Use a sandbox product and equivalent capped discount when testing actual payments. Polar's [discount documentation](https://polar.sh/docs/features/discounts) describes the cap; its [discount redemption service](https://github.com/polarsource/polar/blob/main/server/polar/discount/service.py) locks the capped discount during redemption, and its [checkout confirmation service](https://github.com/polarsource/polar/blob/main/server/polar/checkout/service.py) enforces the limit before confirming payment.
+
+## Internationalization
+
+The interface uses [Intlayer](https://intlayer.org/doc/environment/tanstack-start) with English (`en`, the default), Spanish (`es`), and French (`fr`). Dictionaries live beside their components and routes in `*.content.ts` files and declare every supported translation with `t({ en, es, fr })`. Components read them with `useIntlayer("dictionary-key")`; use a field's `.value` for string-only props such as accessible labels. The setup follows the dictionary/hooks approach in [pdfcn PR #8](https://github.com/shadcn-labs/pdfcn/pull/8), adapted to TanStack Start rather than Next.js.
+
+`intlayer.config.ts` configures locales, and the `vite-intlayer` plugin generates dictionaries during development and production builds. TanStack ignores `.content.` files as routes. Generated `.intlayer/` resources are ignored by Git.
+
+The language picker appears in the site header and authentication cards. Selection persists in browser local storage under `motionvideo-locale`; no locale cookie, automatic browser-language detection, or localized URL redirects are used. Server rendering and initial hydration always use English, including prerendered static pages. After hydration, the provider restores a supported saved locale and updates the visible interface and document `lang`. Without storage access, switching still works for the current visit. Existing URLs, canonical metadata, structured data, transactional emails, and third-party video-player controls retain their original language.
 
 ## License
 

@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { useIntlayer } from "react-intlayer";
 
 import { PageHeader, PageSection } from "@/components/page";
 import { LINK } from "@/constants/links";
@@ -10,58 +11,49 @@ import { createMetadata } from "@/seo/metadata";
 
 const inlineLink = "text-foreground underline underline-offset-4";
 
-const About = () => (
+const About = () => {
+  const content = useIntlayer("about");
+  return (
   <>
     <PageHeader
-      title={`About ${SITE.NAME}`}
-      intro="A small, independent product for developers who would rather write motion than keyframe it."
+      title={content.title.value}
+      intro={content.intro.value}
     />
-    <PageSection title="Why it exists">
+    <PageSection title={content.why.value}>
       <p>
-        Motion design makes a portfolio, a launch, or a small update feel
-        crafted, but it usually means keyframe tools, a lot of practice, or a
-        motion designer’s calendar. Most developers skip it, or settle for a
-        screen recording.
+        {content.reason}
       </p>
       <p>
-        Coding agents can already write animation code. What they lack is taste:
-        how long to hold, what overlaps, which easing feels right. {SITE.NAME}{" "}
-        writes that knowledge down so your agent can storyboard and animate
-        showreels, intros, and launch films on its own, and redo them whenever
-        something changes.
+        {content.knowledge}
       </p>
     </PageSection>
 
-    <PageSection title="What it is">
+    <PageSection title={content.what.value}>
       <p>
-        {SITE.NAME} is a pack of agent skills: instruction files, scene
-        starters, and motion tokens that live in your repository. Your own agent
-        reads them, writes the scenes in code, and renders them on your machine
-        with an open-source renderer such as Remotion, HyperFrames, Editframe,
-        or fframes. There is no hosted service, no credits, and no subscription.
+        {content.product}
       </p>
     </PageSection>
 
-    <PageSection title="Who makes it">
+    <PageSection title={content.who.value}>
       <p>
-        {SITE.NAME} is built by{" "}
+        {content.built}
         <a href={withUtm(LINK.AUTHOR_WEBSITE, "about")} className={inlineLink}>
           {SITE.LEGAL.OPERATOR}
         </a>
-        , a frontend engineer in {SITE.LEGAL.JURISDICTION} who cares about
-        visual craft and runs{" "}
+        {content.author}
         <a href={withUtm(LINK.SHADCN_LABS, "about")} className={inlineLink}>
           Shadcn Labs
         </a>
-        . This website is{" "}
+        {content.website}
         <a href={LINK.GITHUB_REPO} className={inlineLink}>
-          open source
+          {content.openSource}
         </a>
-        ; the skill pack is sold separately.
+        {content.separately}
       </p>
     </PageSection>
   </>
-);
+  );
+};
 
 export const Route = createFileRoute("/_pages/about")({
   component: About,

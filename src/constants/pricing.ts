@@ -1,4 +1,12 @@
-export const PRICE_CENTS = 9900;
+export const BASE_PRICE_CENTS = 4900;
+export const LAUNCH_PRICE_CENTS = 2900;
+export const LAUNCH_LIMIT = 100;
+
+export interface Offer {
+  active: boolean;
+  sold: number;
+  limit: number;
+}
 export const PRODUCT_NAME = "MotionVideo Skill Bundle";
 
 export const formatUsd = (cents: number): string =>

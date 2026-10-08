@@ -1,6 +1,7 @@
 import { createFileRoute, getRouteApi } from "@tanstack/react-router";
 import { useState } from "react";
 import type { FormEvent } from "react";
+import { useIntlayer } from "react-intlayer";
 import { z } from "zod";
 
 import { LoginForm } from "@/components/login-form";
@@ -22,13 +23,12 @@ const safeRedirect = z
   .refine((path) => !path.startsWith("//"));
 
 const SignIn = () => {
+  const content = useIntlayer("account");
   const search = routeApi.useSearch();
   const [email, setEmail] = useState("");
   const [status, setStatus] = useState<"idle" | "sending" | "sent">("idle");
-  const [error, setError] = useState<string | null>(
-    search.error
-      ? "That sign-in link is invalid or expired. Request a new one."
-      : null
+  const [error, setError] = useState<"invalid" | "sending" | null>(
+    search.error ? "invalid" : null
   );
 
   const onSubmit = async (event: FormEvent<HTMLFormElement>) => {
@@ -43,19 +43,24 @@ const SignIn = () => {
     });
     if (sendError) {
       setStatus("idle");
-      setError(
-        sendError.message ?? "Could not send the sign-in link. Try again."
-      );
+      setError("sending");
       return;
     }
     setStatus("sent");
   };
 
+  let errorMessage: string | null = null;
+  if (error === "invalid") {
+    errorMessage = content.invalidLink.value;
+  } else if (error === "sending") {
+    errorMessage = content.sendError.value;
+  }
+
   return (
     <main className="flex min-h-svh items-center justify-center p-6">
       <LoginForm
         email={email}
-        error={error}
+        error={errorMessage}
         onEmailChange={setEmail}
         onSubmit={onSubmit}
         status={status}

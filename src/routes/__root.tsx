@@ -4,6 +4,7 @@ import { HeadContent, Scripts, createRootRoute } from "@tanstack/react-router";
 import { TanStackRouterDevtoolsPanel } from "@tanstack/react-router-devtools";
 
 import { NotFound } from "@/components/not-found";
+import { LocaleProvider } from "@/components/locale-provider";
 import { themeScript } from "@/lib/theme";
 import { organizationJsonLd, websiteJsonLd } from "@/seo/json-ld";
 import { baseMetadata } from "@/seo/metadata";
@@ -16,7 +17,7 @@ const RootDocument = ({ children }: { children: React.ReactNode }) => (
       <HeadContent />
     </head>
     <body className="flex min-h-svh flex-col antialiased">
-      {children}
+      <LocaleProvider>{children}</LocaleProvider>
       <TanStackDevtools
         config={{
           position: "bottom-right",

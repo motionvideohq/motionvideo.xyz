@@ -9,7 +9,12 @@ import { contactSchema } from "@/lib/contact";
 
 import { auth } from "./auth";
 import { sendEmail } from "./email";
-import { completedCheckout, customerPortalUrl, purchaseStatus } from "./polar";
+import {
+  completedCheckout,
+  customerPortalUrl,
+  launchOffer,
+  purchaseStatus,
+} from "./polar";
 
 const currentSession = () => {
   const request = getRequest();
@@ -21,6 +26,10 @@ export const getLandingData = createServerFn({ method: "GET" }).handler(
     const session = await currentSession();
     return { signedIn: session !== null };
   }
+);
+
+export const getOffer = createServerFn({ method: "GET" }).handler(
+  () => launchOffer()
 );
 
 export const getAccount = createServerFn({ method: "GET" }).handler(

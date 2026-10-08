@@ -6,6 +6,8 @@ import {
 } from "@tanstack/react-router";
 import { CircleCheckIcon } from "lucide-react";
 import { useState } from "react";
+import type { ReactNode } from "react";
+import { useIntlayer } from "react-intlayer";
 
 import { BuyButton } from "@/components/pricing";
 import { SiteFooter, SiteHeader } from "@/components/site-chrome";
@@ -28,19 +30,20 @@ import {
 import { SITE } from "@/constants/site";
 import { authClient } from "@/lib/auth-client";
 import { createMetadata } from "@/seo/metadata";
-import { getAccount, getPortalUrl } from "@/server/functions";
+import { getAccount, getOffer, getPortalUrl } from "@/server/functions";
 
 const routeApi = getRouteApi("/dashboard");
 
 const PurchaseCard = () => {
+  const content = useIntlayer("account");
   const account = routeApi.useLoaderData();
   const { preview: previewSearch } = routeApi.useSearch();
   const preview = import.meta.env.DEV && previewSearch === "purchased";
   const [busy, setBusy] = useState(false);
 
-  let portalLabel = busy ? "Opening…" : "Open customer portal";
+  let portalLabel: ReactNode = busy ? content.opening : content.portal;
   if (preview) {
-    portalLabel = "Customer portal (preview)";
+    portalLabel = content.portalPreview;
   }
   const openPortal = async () => {
     setBusy(true);
@@ -58,11 +61,9 @@ const PurchaseCard = () => {
           <EmptyMedia className="text-primary">
             <CircleCheckIcon aria-hidden className="size-8" />
           </EmptyMedia>
-          <EmptyTitle className="text-base">You own {SITE.NAME}</EmptyTitle>
+          <EmptyTitle className="text-base">{content.own} {SITE.NAME}</EmptyTitle>
           <EmptyDescription>
-            Open the customer portal to connect your GitHub account and get
-            access to the private skill pack repository. Receipts and invoices
-            live there too.
+            {content.portalDescription}
           </EmptyDescription>
         </EmptyHeader>
         <EmptyContent>
@@ -77,20 +78,20 @@ const PurchaseCard = () => {
   return (
     <Card size="lg">
       <CardHeader>
-        <CardTitle>Get {SITE.NAME}</CardTitle>
+        <CardTitle>{content.get} {SITE.NAME}</CardTitle>
         <CardDescription>
-          One-time purchase. You’ll get access to the private skill pack
-          repository and every future update.
+          {content.purchaseDescription}
         </CardDescription>
       </CardHeader>
       <CardContent>
-        <BuyButton />
+        <BuyButton offer={account.offer} />
       </CardContent>
     </Card>
   );
 };
 
 const Dashboard = () => {
+  const content = useIntlayer("account");
   const { email } = routeApi.useLoaderData();
   const { preview: previewSearch } = routeApi.useSearch();
   const preview = import.meta.env.DEV && previewSearch === "purchased";
@@ -107,16 +108,16 @@ const Dashboard = () => {
       <main className="mx-auto flex w-full max-w-3xl flex-1 flex-col gap-6 px-6 py-16">
         <div className="flex items-center justify-between gap-4">
           <div>
-            <h1 className="text-2xl font-semibold tracking-tight">Dashboard</h1>
+            <h1 className="text-2xl font-semibold tracking-tight">{content.dashboard}</h1>
             <p className="text-muted-foreground text-sm">{email}</p>
           </div>
           {preview ? (
             <span className="text-muted-foreground text-sm">
-              Local UI preview
+              {content.localPreview}
             </span>
           ) : (
             <Button variant="outline" onClick={signOut}>
-              Sign out
+              {content.signOut}
             </Button>
           )}
         </div>
@@ -141,12 +142,13 @@ export const Route = createFileRoute("/dashboard")({
         email: "preview@example.com",
         purchased: true,
         name: null,
+        offer: await getOffer(),
       };
     }
     const account = await getAccount();
     if (!account) {
       throw redirect({ search: { redirect: "/dashboard" }, to: "/sign-in" });
     }
-    return account;
+    return { ...account, offer: await getOffer() };
   },
 });

@@ -2,9 +2,11 @@ import { Link } from "@tanstack/react-router";
 import { cn } from "cn";
 import { ChevronDownIcon } from "lucide-react";
 import type { ReactNode } from "react";
+import { useIntlayer } from "react-intlayer";
 
 import { GitHubIcon, XIcon } from "@/components/brand-icons";
 import { Logomark } from "@/components/logomark";
+import { LocaleSwitcher } from "@/components/locale-switcher";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { buttonVariants } from "@/components/ui/button";
 import {
@@ -38,19 +40,25 @@ export const Brand = () => (
   </Link>
 );
 
-export const SiteHeader = ({ signedIn }: { signedIn: boolean }) => (
+export const SiteHeader = ({ signedIn }: { signedIn: boolean }) => {
+  const content = useIntlayer("chrome");
+  return (
   <header>
     <div className="mx-auto flex h-16 max-w-5xl items-center justify-between px-6">
       <Brand />
-      <Link
+      <div className="flex items-center gap-3">
+        <LocaleSwitcher />
+        <Link
         to={signedIn ? "/dashboard" : "/sign-in"}
         className={buttonVariants({ size: "sm", variant: "ghost" })}
       >
-        {signedIn ? "Dashboard" : "Access"}
+        {signedIn ? content.dashboard : content.access}
       </Link>
+      </div>
     </div>
   </header>
-);
+  );
+};
 
 const linkClass =
   "text-muted-foreground hover:text-foreground transition-colors";
@@ -68,7 +76,9 @@ const FooterColumn = ({
   </div>
 );
 
-export const SiteFooter = () => (
+export const SiteFooter = () => {
+  const content = useIntlayer("chrome");
+  return (
   <footer className="mx-auto w-full max-w-5xl px-6 pt-24 pb-10">
     <div className="grid gap-12 lg:grid-cols-[minmax(0,1fr)_minmax(0,2fr)]">
       <div className="flex flex-col gap-4">
@@ -80,7 +90,7 @@ export const SiteFooter = () => (
           {SITE.NAME}
         </Link>
         <p className="text-muted-foreground max-w-xs text-sm">
-          Motion design, written in code.
+          {content.tagline}
         </p>
         {/* -ml-2 lines the icons up with the text above the ghost padding. */}
         <TooltipProvider>
@@ -92,7 +102,7 @@ export const SiteFooter = () => (
                     href={LINK.GITHUB_REPO}
                     target="_blank"
                     rel="noopener noreferrer"
-                    aria-label="GitHub repository"
+                    aria-label={content.githubRepository.value}
                     className={buttonVariants({
                       size: "icon",
                       variant: "ghost",
@@ -102,7 +112,7 @@ export const SiteFooter = () => (
               >
                 <GitHubIcon className="size-4" />
               </TooltipTrigger>
-              <TooltipContent side="top">Star on GitHub</TooltipContent>
+              <TooltipContent side="top">{content.starGithub}</TooltipContent>
             </Tooltip>
             <Tooltip>
               <TooltipTrigger
@@ -111,7 +121,7 @@ export const SiteFooter = () => (
                     href={LINK.X}
                     target="_blank"
                     rel="noopener noreferrer"
-                    aria-label={`Follow ${SITE.AUTHOR.TWITTER} on X`}
+                    aria-label={`${content.followX.value}: ${SITE.AUTHOR.TWITTER}`}
                     className={buttonVariants({
                       size: "icon",
                       variant: "ghost",
@@ -121,78 +131,78 @@ export const SiteFooter = () => (
               >
                 <XIcon className="size-3.5" />
               </TooltipTrigger>
-              <TooltipContent side="top">Follow on X</TooltipContent>
+              <TooltipContent side="top">{content.followX}</TooltipContent>
             </Tooltip>
           </div>
         </TooltipProvider>
       </div>
 
       <nav
-        aria-label="Footer"
+        aria-label={content.footer.value}
         className="grid grid-cols-2 gap-8 sm:grid-cols-4"
       >
-        <FooterColumn title="Product">
+        <FooterColumn title={content.product.value}>
           <li>
             <a href="/#features" className={linkClass}>
-              Features
+              {content.features}
             </a>
           </li>
           <li>
             <a href="/#how-it-works" className={linkClass}>
-              How it works
+              {content.howItWorks}
             </a>
           </li>
           <li>
             <a href="/#pricing" className={linkClass}>
-              Pricing
+              {content.pricing}
             </a>
           </li>
           <li>
             <a href="/#faq" className={linkClass}>
-              FAQ
+              {content.faq}
             </a>
           </li>
         </FooterColumn>
-        <FooterColumn title="Company">
+        <FooterColumn title={content.company.value}>
           <li>
             <Link to="/about" className={linkClass}>
-              About
+              {content.about}
             </Link>
           </li>
           <li>
             <Link to="/brand" className={linkClass}>
-              Brand
+              {content.brand}
             </Link>
           </li>
           <li>
             <Link to="/contact" className={linkClass}>
-              Contact
+              {content.contact}
             </Link>
           </li>
         </FooterColumn>
-        <FooterColumn title="Legal">
+        <FooterColumn title={content.legal.value}>
           <li>
             <Link to="/terms" className={linkClass}>
-              Terms of service
+              {content.terms}
             </Link>
           </li>
           <li>
             <Link to="/privacy" className={linkClass}>
-              Privacy policy
+              {content.privacy}
             </Link>
           </li>
           <li>
             <Link to="/refunds" className={linkClass}>
-              Refund policy
+              {content.refunds}
             </Link>
           </li>
           <li>
             <Link to="/dpa" className={linkClass}>
-              DPA
+              {content.dpa}
             </Link>
           </li>
         </FooterColumn>
-        <FooterColumn title="Other products">
+        <FooterColumn title={content.otherProducts.value}>
           {OTHER_PRODUCTS.map((product) => (
             <li key={product.name}>
               <a href={withUtm(product.url, "footer")} className={linkClass}>
@@ -206,7 +216,7 @@ export const SiteFooter = () => (
                 <span
                   className={cn(linkClass, "inline-flex items-center gap-1")}
                 >
-                  and more
+                  {content.andMore}
                   <ChevronDownIcon
                     aria-hidden
                     className="size-3.5 transition-transform in-data-popup-open:rotate-180"
@@ -226,7 +236,7 @@ export const SiteFooter = () => (
                 </DropdownMenuGroup>
                 <DropdownMenuSeparator />
                 <DropdownMenuGroup>
-                  <DropdownMenuLabel>Shadcn Labs projects</DropdownMenuLabel>
+                  <DropdownMenuLabel>{content.labsProjects}</DropdownMenuLabel>
                   {SHADCN_LABS_PROJECTS.map((project) => (
                     <DropdownMenuLinkItem
                       key={project.name}
@@ -245,7 +255,7 @@ export const SiteFooter = () => (
 
     <div className="text-muted-foreground mt-16 flex items-center justify-between gap-4 text-sm">
       <p>
-        © {new Date().getFullYear()} {SITE.NAME} · Built by{" "}
+        © {new Date().getFullYear()} {SITE.NAME} · {content.builtBy}{" "}
         <a
           href={withUtm(LINK.AUTHOR_WEBSITE, "footer")}
           className="hover:text-foreground transition-colors"
@@ -256,4 +266,5 @@ export const SiteFooter = () => (
       <ThemeToggle hotkey />
     </div>
   </footer>
-);
+  );
+};

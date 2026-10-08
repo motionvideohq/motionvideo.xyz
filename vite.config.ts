@@ -4,6 +4,7 @@ import { devtools } from "@tanstack/devtools-vite";
 import { tanstackStart } from "@tanstack/react-start/plugin/vite";
 import viteReact from "@vitejs/plugin-react";
 import { defineConfig } from "vite";
+import { intlayer } from "vite-intlayer";
 
 import { STATIC_PAGES } from "./src/constants/routes.ts";
 
@@ -11,9 +12,13 @@ const config = defineConfig({
   resolve: { tsconfigPaths: true },
   plugins: [
     devtools(),
+    intlayer(),
     cloudflare({ viteEnvironment: { name: "ssr" } }),
     tailwindcss(),
     tanstackStart({
+      router: {
+        routeFileIgnorePattern: "\\.content\\.",
+      },
       pages: STATIC_PAGES.map((path) => ({ path })),
       prerender: {
         autoStaticPathsDiscovery: false,

@@ -1,4 +1,5 @@
 import { Link, createFileRoute } from "@tanstack/react-router";
+import { useIntlayer } from "react-intlayer";
 
 import {
   LegalPageHeader,
@@ -13,88 +14,51 @@ import { createMetadata } from "@/seo/metadata";
 
 const linkClass = "text-foreground underline underline-offset-4";
 
-const Refunds = () => (
+const Refunds = () => {
+  const copy = useIntlayer("legal-refunds");
+
+  return (
   <>
-    <LegalPageHeader title="Refund policy" />
-    <p className="text-muted-foreground leading-7">
-      This policy covers one-time purchases of {SITE.NAME}, sold by{" "}
-      {SITE.LEGAL.OPERATOR}. It sits alongside our{" "}
-      <Link to="/terms" className={linkClass}>
-        terms of service
-      </Link>
+    <LegalPageHeader title={copy.heading0.value} />
+    <p className="text-muted-foreground leading-7">{copy.text1}{" "}{SITE.NAME}{copy.text2}{" "}
+      {SITE.LEGAL.OPERATOR}{copy.text3}{" "}
+      <Link to="/terms" className={linkClass}>{copy.text4}</Link>
       .
     </p>
 
-    <PageSection title="1. What you are buying">
+    <PageSection title={copy.heading5.value}>
       <p>
-        {SITE.NAME} is a digital pack delivered as read-only access to a private
-        GitHub repository. There is no physical shipment and no subscription. It
-        costs $99, paid once. After checkout you claim repository access with
-        your GitHub account in Polar’s customer portal. Access includes future
-        updates to the same repository at no extra cost.
-      </p>
+        {SITE.NAME}{" "}{copy.text6}</p>
     </PageSection>
 
-    <PageSection title="2. Before delivery">
-      <p>
-        Until you have claimed repository access, you can cancel your order for
-        a full refund. Write to <SupportEmail />; you do not need to give a
-        reason.
-      </p>
+    <PageSection title={copy.heading7.value}>
+      <p>{copy.text8}{" "}<SupportEmail />{copy.text9}</p>
     </PageSection>
 
-    <PageSection title="3. Right of withdrawal for consumers in the EU and UK">
-      <p>
-        Consumers normally have 14 days to withdraw from a purchase of digital
-        content. Because the pack is digital content, that right ends once
-        delivery starts.
-      </p>
-      <p>
-        By claiming repository access, you ask us to begin delivery and
-        acknowledge that you lose the right of withdrawal once access has been
-        granted to you. If you would prefer to keep the 14-day period, do not
-        claim access and write to us instead.
-      </p>
+    <PageSection title={copy.heading10.value}>
+      <p>{copy.text11}</p>
+      <p>{copy.text12}</p>
     </PageSection>
 
-    <PageSection title="4. Refunds we do give after delivery">
+    <PageSection title={copy.heading13.value}>
       <PageList>
-        <li>
-          You were charged twice, or charged for something you did not buy.
-        </li>
-        <li>
-          Repository access never reached you, and we could not fix it for you.
-        </li>
-        <li>
-          The pack does not do what this site says it does, and we cannot
-          resolve it with you.
-        </li>
+        <li>{copy.text14}</li>
+        <li>{copy.text15}</li>
+        <li>{copy.text16}</li>
       </PageList>
-      <p>
-        Where a refund applies, Polar, as merchant of record, returns the full
-        amount to the original payment method. Repository access, if already
-        granted, ends when the refund is issued. This does not limit any rights
-        you have under the law where you live.
-      </p>
+      <p>{copy.text17}</p>
     </PageSection>
 
-    <PageSection title="5. How to ask">
-      <p>
-        Write to <SupportEmail /> from the email address you used at checkout
-        and tell us what went wrong. We answer every request, usually within two
-        working days.
-      </p>
+    <PageSection title={copy.heading18.value}>
+      <p>{copy.text19}{" "}<SupportEmail />{" "}{copy.text20}</p>
     </PageSection>
 
-    <PageSection title="6. Chargebacks">
-      <p>
-        If something is wrong, contact us first. A chargeback opened without
-        contacting us suspends access to the pack while the bank reviews it,
-        which is slower for everyone than a refund we issue directly.
-      </p>
+    <PageSection title={copy.heading21.value}>
+      <p>{copy.text22}</p>
     </PageSection>
   </>
 );
+};
 
 export const Route = createFileRoute("/_pages/refunds")({
   component: Refunds,

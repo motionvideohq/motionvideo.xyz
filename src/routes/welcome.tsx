@@ -7,6 +7,7 @@ import {
 import { LoaderIcon, MailCheckIcon } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import type { ReactNode } from "react";
+import { useIntlayer } from "react-intlayer";
 import { z } from "zod";
 
 import { ConfettiSideCannons } from "@/components/confetti";
@@ -44,15 +45,18 @@ const ThanksView = ({
   children: ReactNode;
   icon: ReactNode;
   action?: ReactNode;
-}) => (
+}) => {
+  const content = useIntlayer("account");
+  return (
   <StatusPanel
     action={action}
     icon={icon}
-    title={`Thanks for buying ${SITE.NAME}!`}
+    title={`${content.thanks.value} ${SITE.NAME}!`}
   >
     {children}
   </StatusPanel>
-);
+  );
+};
 
 const SignInLink = ({
   email,
@@ -61,6 +65,7 @@ const SignInLink = ({
   email: string;
   preview: boolean;
 }) => {
+  const content = useIntlayer("account");
   const started = useRef(false);
   const [status, setStatus] = useState<"sending" | "sent" | "failed">(
     preview ? "sent" : "sending"
@@ -108,7 +113,7 @@ const SignInLink = ({
           <LoaderIcon aria-hidden className="size-8 animate-spin text-black" />
         }
       >
-        Sending your sign-in link to <strong>{email}</strong>.
+        {content.sendingLink} <strong>{email}</strong>.
       </ThanksView>
     );
   }
@@ -119,12 +124,11 @@ const SignInLink = ({
         icon={<MailCheckIcon aria-hidden className="size-8 text-black" />}
         action={
           <Button size="lg" onClick={send}>
-            Send the link again
+            {content.sendAgain}
           </Button>
         }
       >
-        Your payment went through, but it hasn’t reached us yet. Try again in a
-        moment, or sign in later with <strong>{email}</strong>.
+        {content.paymentDelayed} <strong>{email}</strong>.
       </ThanksView>
     );
   }
@@ -139,6 +143,7 @@ const SignInLink = ({
 };
 
 const Welcome = () => {
+  const content = useIntlayer("account");
   const checkout = routeApi.useLoaderData();
   const { preview: previewSearch } = routeApi.useSearch();
   const preview = import.meta.env.DEV && previewSearch === "sent";
@@ -168,18 +173,18 @@ const Welcome = () => {
                 className="size-8 animate-spin text-black"
               />
             }
-            title="Confirming your payment"
+            title={content.confirming}
             action={
               <Button
                 variant="outline"
                 size="lg"
                 onClick={() => router.invalidate()}
               >
-                Check again
+                {content.checkAgain}
               </Button>
             }
           >
-            This usually takes a few seconds.
+            {content.seconds}
           </StatusPanel>
         )}
       </AuthCard>

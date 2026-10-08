@@ -1,4 +1,6 @@
+import { useMemo } from "react";
 import type { ReactNode } from "react";
+import { useIntlayer, useLocale } from "react-intlayer";
 
 import { LINK } from "@/constants/links";
 import { SITE } from "@/constants/site";
@@ -18,9 +20,18 @@ export const PageHeader = ({
   </header>
 );
 
-export const LegalPageHeader = ({ title }: { title: string }) => (
-  <PageHeader title={title} intro={`Last updated: ${SITE.LEGAL.UPDATED_AT}`} />
-);
+export const LegalPageHeader = ({ title }: { title: string }) => {
+  const content = useIntlayer("chrome");
+  const { locale } = useLocale();
+  const updatedAt = useMemo(
+    () => new Intl.DateTimeFormat(locale, {
+      dateStyle: "long",
+      timeZone: "UTC",
+    }).format(new Date(`${SITE.LEGAL.UPDATED_AT}T00:00:00Z`)),
+    [locale]
+  );
+  return <PageHeader title={title} intro={`${content.updated.value} ${updatedAt}`} />;
+};
 
 export const PageSection = ({
   title,

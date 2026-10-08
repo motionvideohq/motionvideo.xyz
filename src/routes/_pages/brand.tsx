@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { cn } from "cn";
 import { DownloadIcon } from "lucide-react";
+import { useIntlayer } from "react-intlayer";
 
 import { Logomark } from "@/components/logomark";
 import {
@@ -20,7 +21,6 @@ const assets = [
       { href: "/brand/motionvideo-logomark-black.svg", label: "SVG" },
       { href: "/brand/motionvideo-logomark-black.png", label: "PNG" },
     ],
-    name: "Logomark, black",
     preview: "bg-white text-black ring-1 ring-border",
   },
   {
@@ -28,7 +28,6 @@ const assets = [
       { href: "/brand/motionvideo-logomark-white.svg", label: "SVG" },
       { href: "/brand/motionvideo-logomark-white.png", label: "PNG" },
     ],
-    name: "Logomark, white",
     preview: "bg-black text-white",
   },
   {
@@ -36,27 +35,28 @@ const assets = [
       { href: "/brand/motionvideo-app-icon.svg", label: "SVG" },
       { href: "/brand/motionvideo-app-icon-512.png", label: "PNG" },
     ],
-    name: "App icon",
     preview: "bg-cta-to text-black",
   },
 ] as const;
 
 const colors = [
-  { hex: "#FFBE25", name: "Yellow", swatch: "bg-cta-to" },
-  { hex: "#FFDD73", name: "Light yellow", swatch: "bg-cta-from" },
-  { hex: "#000000", name: "Black", swatch: "bg-black" },
+  { hex: "#FFBE25", swatch: "bg-cta-to" },
+  { hex: "#FFDD73", swatch: "bg-cta-from" },
+  { hex: "#000000", swatch: "bg-black" },
 ] as const;
 
-const Brand = () => (
+const Brand = () => {
+  const content = useIntlayer("brand");
+  return (
   <>
     <PageHeader
-      title="Brand"
-      intro={`Logos and colors for writing about ${SITE.NAME}. There is a logomark only; set the name in plain text next to it.`}
+      title={content.title.value}
+      intro={content.intro.value}
     />
-    <PageSection title="Logomark">
+    <PageSection title={content.logomark.value}>
       <div className="grid gap-4 sm:grid-cols-3">
-        {assets.map((asset) => (
-          <div key={asset.name} className="flex flex-col gap-3">
+        {assets.map((asset, index) => (
+          <div key={asset.files[0].href} className="flex flex-col gap-3">
             <div
               className={cn(
                 "flex aspect-video items-center justify-center rounded-xl",
@@ -66,7 +66,7 @@ const Brand = () => (
               <Logomark className="h-8 w-auto" />
             </div>
             <div className="flex items-center justify-between gap-2 text-sm">
-              <span className="text-foreground">{asset.name}</span>
+              <span className="text-foreground">{content.assetNames[index]}</span>
               <span className="flex gap-3">
                 {asset.files.map((file) => (
                   <a
@@ -86,9 +86,9 @@ const Brand = () => (
       </div>
     </PageSection>
 
-    <PageSection title="Colors">
+    <PageSection title={content.colors.value}>
       <div className="grid gap-4 sm:grid-cols-3">
-        {colors.map((color) => (
+        {colors.map((color, index) => (
           <div key={color.hex} className="flex items-center gap-3">
             <span
               aria-hidden
@@ -98,7 +98,7 @@ const Brand = () => (
               )}
             />
             <span className="flex flex-col text-sm">
-              <span className="text-foreground">{color.name}</span>
+              <span className="text-foreground">{content.colorNames[index]}</span>
               <span className="font-mono">{color.hex}</span>
             </span>
           </div>
@@ -106,25 +106,26 @@ const Brand = () => (
       </div>
     </PageSection>
 
-    <PageSection title="Usage">
+    <PageSection title={content.usage.value}>
       <PageList>
-        <li>Write the name as {SITE.NAME}: one word, capital M and V.</li>
+        <li>{content.nameRule}</li>
         <li>
-          Keep clear space around the logomark of at least half its height.
+          {content.spacing}
         </li>
         <li>
-          Don’t stretch, rotate, recolor outside the palette, or add effects.
+          {content.effects}
         </li>
         <li>
-          Don’t use the mark in a way that suggests we endorse your product.
+          {content.endorsement}
         </li>
       </PageList>
       <p>
-        Questions or a press request? <SupportEmail />
+        {content.questions}<SupportEmail />
       </p>
     </PageSection>
   </>
-);
+  );
+};
 
 export const Route = createFileRoute("/_pages/brand")({
   component: Brand,
