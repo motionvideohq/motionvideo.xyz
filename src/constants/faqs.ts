@@ -22,7 +22,7 @@ export const FAQS = [
   {
     question: "How do I get the files after paying?",
     answer:
-      "Checkout needs no account. Right after paying, sign in with the email you paid with, open the Polar customer portal from your dashboard, and link a GitHub account to claim repository access.",
+      "Checkout needs no account. Right after paying, sign in with the email you paid with, open the Dodo Payments customer portal from your dashboard, and connect your GitHub account. Dodo Payments then invites you to the private repository.",
   },
   {
     question: "Can I use it for client projects?",

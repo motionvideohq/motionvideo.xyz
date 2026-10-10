@@ -5,11 +5,11 @@ export const GITHUB = {
 
 export const LINK = {
   AUTHOR_WEBSITE: "https://www.aniketpawar.com",
+  DODO_PAYMENTS: "https://dodopayments.com",
+  DODO_PAYMENTS_PRIVACY: "https://dodopayments.com/legal/privacy-policy",
   EMAIL: "hello@motionvideo.xyz",
   GITHUB: `https://github.com/${GITHUB.org}`,
   GITHUB_REPO: `https://github.com/${GITHUB.org}/${GITHUB.repo}`,
-  POLAR: "https://polar.sh",
-  POLAR_PRIVACY: "https://polar.sh/legal/privacy",
   SHADCN_LABS: "https://www.shadcn-labs.com",
   // Personal account: MotionVideo has no X account of its own yet.
   X: "https://x.com/alaymanguy",

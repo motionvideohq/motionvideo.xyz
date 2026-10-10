@@ -1,0 +1,1 @@
+ALTER TABLE `community_submission` ADD `category` text;

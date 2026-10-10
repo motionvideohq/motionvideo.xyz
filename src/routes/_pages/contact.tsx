@@ -1,13 +1,17 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { CheckIcon, CornerDownLeftIcon, SendIcon } from "lucide-react";
 import { useRef, useState } from "react";
 import type { FormEvent, KeyboardEvent } from "react";
 import { useIntlayer } from "react-intlayer";
+import { Check } from "reicon-react/icons/Check";
+import { Keyboard } from "reicon-react/icons/Keyboard";
+import { Send } from "reicon-react/icons/Send";
 
 import { PageHeader } from "@/components/page";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { Kbd } from "@/components/ui/kbd";
 import { Label } from "@/components/ui/label";
+import { ReiconDuotone } from "@/components/ui/reicon-duotone";
 import {
   Select,
   SelectContent,
@@ -78,18 +82,17 @@ const Contact = () => {
 
   return (
     <>
-      <PageHeader
-        title={content.title.value}
-        intro={content.intro.value}
-      />
+      <PageHeader title={content.title.value} intro={content.intro.value} />
       {status === "sent" ? (
         <div className="bg-muted/50 flex items-start gap-3 rounded-xl p-5">
-          <CheckIcon aria-hidden className="text-primary mt-0.5 size-5" />
+          <ReiconDuotone
+            icon={Check}
+            aria-hidden
+            className="text-primary mt-0.5 size-5"
+          />
           <div className="flex flex-col gap-1">
             <p className="font-medium">{content.sent}</p>
-            <p className="text-muted-foreground text-sm">
-              {content.thanks}
-            </p>
+            <p className="text-muted-foreground text-sm">{content.thanks}</p>
           </div>
         </div>
       ) : (
@@ -172,21 +175,22 @@ const Contact = () => {
           />
           {error && (
             <p role="alert" className="text-destructive text-sm">
-              {error === "validation" ? content.validationError : content.sendError}
+              {error === "validation"
+                ? content.validationError
+                : content.sendError}
             </p>
           )}
           <div className="flex flex-wrap items-center justify-between gap-4">
             <Button type="submit" size="lg" disabled={status === "sending"}>
-              <SendIcon data-icon="inline-start" aria-hidden />
+              <ReiconDuotone icon={Send} data-icon="inline-start" aria-hidden />
               {status === "sending" ? content.sending : content.send}
             </Button>
             <span className="text-muted-foreground flex items-center gap-1.5 text-sm">
               {content.or}
-              <kbd className="bg-muted text-muted-foreground inline-flex h-5 items-center gap-1 rounded px-1.5 font-sans text-xs">
-                ⌘
-                <CornerDownLeftIcon aria-hidden className="size-3" />
+              <Kbd>
+                <ReiconDuotone icon={Keyboard} aria-hidden />
                 {content.enter}
-              </kbd>
+              </Kbd>
               {content.toSend}
             </span>
           </div>

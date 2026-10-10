@@ -29,12 +29,19 @@
     { "pattern": "motionvideo.xyz", "custom_domain": true },
     { "pattern": "www.motionvideo.xyz", "custom_domain": true },
   ],
-  // Non-secret production config. `.env` overrides these locally.
-  // Secrets (BETTER_AUTH_SECRET, RESEND_API_KEY, POLAR_*) are set with `wrangler secret put`.
+  // Non-secret production config. `.env` overrides these locally with test-mode
+  // values. `pnpm dodo:setup --live` writes the live Dodo IDs below.
+  // Secrets (BETTER_AUTH_SECRET, RESEND_API_KEY, DODO_PAYMENTS_API_KEY,
+  // DODO_PAYMENTS_WEBHOOK_KEY) are set with `wrangler secret put`.
   "vars": {
     "BETTER_AUTH_URL": "https://motionvideo.xyz",
     "EMAIL_FROM": "\"Aniket @ MotionVideo\" <hello@motionvideo.xyz>",
-    "POLAR_SERVER": "production",
+    "DODO_PAYMENTS_ENVIRONMENT": "live_mode",
+    "DODO_PRODUCT_SKILL": "pdt_0NpNXaPWFYUJrFMSsud2d",
+    "DODO_PRODUCT_SPONSOR_DIAMOND": "pdt_0NpNXaRMKrltVcSg5Fp4u",
+    "DODO_PRODUCT_SPONSOR_GOLD": "pdt_0NpNXaSJzUiH9v10l0QNb",
+    "DODO_PRODUCT_SPONSOR_SILVER": "pdt_0NpNXaTf7ZtRfRYuqmg9v",
+    "DODO_LAUNCH_DISCOUNT_ID": "dsc_0NpNXaUrA1aatsq1xXVwH",
   },
   // Contact form: 3 messages per minute per IP.
   "ratelimits": [

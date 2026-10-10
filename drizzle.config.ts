@@ -4,6 +4,10 @@ import { defineConfig } from "drizzle-kit";
 // `wrangler d1 migrations apply` (see package.json scripts).
 export default defineConfig({
   dialect: "sqlite",
-  schema: "./src/server/db/schema.ts",
+  schema: [
+    "./src/server/db/schema.ts",
+    "./src/server/db/community-schema.ts",
+    "./src/server/db/bookmark-schema.ts",
+  ],
   out: "./drizzle",
 });

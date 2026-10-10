@@ -1,8 +1,11 @@
 import { cn } from "cn";
-import { MousePointer2Icon, PlayIcon } from "lucide-react";
 import MediaThemeSutro from "player.style/sutro/react";
 import { useEffect, useRef } from "react";
 import { useIntlayer } from "react-intlayer";
+import { Cursor } from "reicon-react/icons/Cursor";
+import { Play } from "reicon-react/icons/Play";
+
+import { ReiconDuotone } from "@/components/ui/reicon-duotone";
 
 interface DemoFrameProps {
   /** Rendered video URL. Empty shows the animated placeholder. */
@@ -160,43 +163,46 @@ export const DemoFrame = ({
   caption,
   autoplay = "visible",
 }: DemoFrameProps) => {
-  const content = useIntlayer("chrome");
+  const content = useIntlayer("demo-frame");
   return (
-  <figure className="flex flex-col gap-3">
-    <div className="bg-muted/40 relative aspect-video overflow-hidden rounded-xl border shadow-sm">
-      {src ? (
-        <MediaThemeSutro className="block size-full">
-          <AutoplayVideo src={src} autoplay={autoplay} />
-        </MediaThemeSutro>
-      ) : (
-        <>
-          <div className="animate-mv-zoom absolute inset-0 p-4 motion-reduce:animate-none sm:p-8">
-            {variant === "dashboard" ? <DashboardScene /> : <PaletteScene />}
-          </div>
-          <MousePointer2Icon
-            aria-hidden
-            className="animate-mv-cursor fill-foreground text-background absolute top-0 left-0 size-[6%] drop-shadow motion-reduce:animate-none"
-          />
-          <div className="from-background/90 absolute inset-x-0 bottom-0 flex items-center gap-2 bg-gradient-to-t to-transparent px-3 pt-6 pb-2">
-            <PlayIcon aria-hidden className="fill-foreground size-3" />
-            <div className="bg-foreground/15 h-0.5 flex-1 overflow-hidden rounded-full">
-              <div className="animate-mv-progress bg-foreground/70 h-full motion-reduce:animate-none" />
+    <figure className="flex flex-col gap-3">
+      <div className="bg-muted/40 relative aspect-video overflow-hidden rounded-xl border shadow-sm">
+        {src ? (
+          <MediaThemeSutro className="block size-full">
+            <AutoplayVideo src={src} autoplay={autoplay} />
+          </MediaThemeSutro>
+        ) : (
+          <>
+            <div className="animate-mv-zoom absolute inset-0 p-4 motion-reduce:animate-none sm:p-8">
+              {variant === "dashboard" ? <DashboardScene /> : <PaletteScene />}
             </div>
-            <span className="text-muted-foreground font-mono text-xs">
-              0:08
-            </span>
-          </div>
-        </>
+            <ReiconDuotone
+              icon={Cursor}
+              aria-hidden
+              className="animate-mv-cursor text-foreground absolute top-0 left-0 size-[6%] drop-shadow motion-reduce:animate-none"
+            />
+            <div className="from-background/90 absolute inset-x-0 bottom-0 flex items-center gap-2 bg-gradient-to-t to-transparent px-3 pt-6 pb-2">
+              <ReiconDuotone icon={Play} aria-hidden className="size-3" />
+              <div className="bg-foreground/15 h-0.5 flex-1 overflow-hidden rounded-full">
+                <div className="animate-mv-progress bg-foreground/70 h-full motion-reduce:animate-none" />
+              </div>
+              <span className="text-muted-foreground font-mono text-xs">
+                0:08
+              </span>
+            </div>
+          </>
+        )}
+      </div>
+      {caption && (
+        <figcaption className="text-muted-foreground flex flex-col gap-1 text-sm sm:flex-row sm:justify-between sm:gap-6">
+          <span className="text-foreground shrink-0 font-medium">
+            {caption.label}
+          </span>
+          <span className="sm:text-right">
+            {content.prompt} “{caption.prompt}”
+          </span>
+        </figcaption>
       )}
-    </div>
-    {caption && (
-      <figcaption className="text-muted-foreground flex flex-col gap-1 text-sm sm:flex-row sm:justify-between sm:gap-6">
-        <span className="text-foreground shrink-0 font-medium">
-          {caption.label}
-        </span>
-        <span className="sm:text-right">{content.prompt} “{caption.prompt}”</span>
-      </figcaption>
-    )}
-  </figure>
+    </figure>
   );
 };

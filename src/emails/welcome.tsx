@@ -3,7 +3,7 @@ import { EmailLayout, Paragraph } from "./_layout";
 
 export interface WelcomeEmailProps {
   url: string;
-  /** From the Polar order; null when the buyer left it blank. */
+  /** From the Dodo Payments customer; null when the buyer left it blank. */
   firstName: string | null;
 }
 
@@ -25,8 +25,8 @@ const WelcomeEmail = ({ url, firstName }: WelcomeEmailProps) => (
       Thanks for buying {SITE.NAME}. Your order is confirmed.
     </Paragraph>
     <Paragraph>
-      Sign in, open the Polar customer portal from your dashboard, link your
-      GitHub account, and accept the private repository invite.
+      Sign in, open the Dodo Payments customer portal from your dashboard,
+      connect your GitHub account, and accept the private repository invite.
     </Paragraph>
     <Paragraph>
       The button below signs you in and expires in 15 minutes. Questions or

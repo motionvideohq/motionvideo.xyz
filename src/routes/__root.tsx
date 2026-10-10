@@ -1,10 +1,12 @@
-import interLatin from "@fontsource-variable/inter/files/inter-latin-wght-normal.woff2?url";
 import { TanStackDevtools } from "@tanstack/react-devtools";
 import { HeadContent, Scripts, createRootRoute } from "@tanstack/react-router";
 import { TanStackRouterDevtoolsPanel } from "@tanstack/react-router-devtools";
 
-import { NotFound } from "@/components/not-found";
+import timelessSans from "@/assets/fonts/timeless/TimelessSansVF.woff2?url";
 import { LocaleProvider } from "@/components/locale-provider";
+import { NotFound } from "@/components/not-found";
+import { ProgressiveBlur } from "@/components/progressive-blur";
+import { SignInDialogProvider } from "@/components/sign-in-dialog";
 import { themeScript } from "@/lib/theme";
 import { organizationJsonLd, websiteJsonLd } from "@/seo/json-ld";
 import { baseMetadata } from "@/seo/metadata";
@@ -17,7 +19,10 @@ const RootDocument = ({ children }: { children: React.ReactNode }) => (
       <HeadContent />
     </head>
     <body className="flex min-h-svh flex-col antialiased">
-      <LocaleProvider>{children}</LocaleProvider>
+      <LocaleProvider>
+        <SignInDialogProvider>{children}</SignInDialogProvider>
+      </LocaleProvider>
+      <ProgressiveBlur />
       <TanStackDevtools
         config={{
           position: "bottom-right",
@@ -38,12 +43,11 @@ export const Route = createRootRoute({
   head: () => ({
     links: [
       { href: appCss, rel: "stylesheet" },
-      // Fetch the font alongside the CSS instead of after it, so first paint
-      // already uses Inter.
+      // Preload the same self-hosted variable font referenced by the stylesheet.
       {
         as: "font",
         crossOrigin: "anonymous",
-        href: interLatin,
+        href: timelessSans,
         rel: "preload",
         type: "font/woff2",
       },

@@ -1,32 +1,131 @@
-import { t } from 'intlayer';
-import type { Dictionary } from 'intlayer';
+import { t } from "intlayer";
+import type { Dictionary } from "intlayer";
 
 const refundsContent = {
   key: "legal-refunds",
   content: {
-    heading0: t({"en":"Refund policy","es":"Política de reembolsos","fr":"Politique de remboursement"}),
-    text1: t({"en":"This policy covers one-time purchases of","es":"Esta política cubre las compras únicas de","fr":"Cette politique couvre les achats uniques de"}),
-    text2: t({"en":", sold by","es":", vendido por","fr":", vendu par"}),
-    text3: t({"en":". It sits alongside our","es":". Complementa nuestras","fr":". Elle complète nos"}),
-    text4: t({"en":"terms of service","es":"condiciones de servicio","fr":"conditions d’utilisation"}),
-    heading5: t({"en":"1. What you are buying","es":"1. Qué compras","fr":"1. Ce que vous achetez"}),
-    text6: t({"en":"is a digital pack delivered as read-only access to a private GitHub repository. There is no physical shipment and no subscription. The price is $29 for the first 100 paid purchases, then $49, paid once. Instant private GitHub access and future repository updates included. After checkout you claim repository access with your GitHub account in Polar’s customer portal. Access includes future updates to the same repository at no extra cost.","es":"es un paquete digital entregado mediante acceso de solo lectura a un repositorio privado de GitHub. No hay envío físico ni suscripción. El precio es de $29 para las primeras 100 compras pagadas y después $49, en un solo pago. Incluye acceso instantáneo a GitHub privado y futuras actualizaciones del repositorio. Tras pagar, solicitas acceso al repositorio con tu cuenta de GitHub en el portal de clientes de Polar. El acceso incluye futuras actualizaciones del mismo repositorio sin coste adicional.","fr":"est un pack numérique livré sous forme d’accès en lecture seule à un dépôt GitHub privé. Il n’y a ni livraison physique ni abonnement. Le prix est de 29 $ pour les 100 premiers achats payés, puis de 49 $, en un seul paiement. L’accès instantané au dépôt GitHub privé et les futures mises à jour du dépôt sont inclus. Après le paiement, vous demandez l’accès au dépôt avec votre compte GitHub dans le portail client de Polar. L’accès comprend les futures mises à jour du même dépôt sans coût supplémentaire."}),
-    heading7: t({"en":"2. Before delivery","es":"2. Antes de la entrega","fr":"2. Avant la livraison"}),
-    text8: t({"en":"Until you have claimed repository access, you can cancel your order for a full refund. Write to","es":"Hasta que hayas solicitado acceso al repositorio, puedes cancelar tu pedido y obtener un reembolso completo. Escribe a","fr":"Tant que vous n’avez pas demandé l’accès au dépôt, vous pouvez annuler votre commande pour obtenir un remboursement intégral. Écrivez à"}),
-    text9: t({"en":"; you do not need to give a reason.","es":"; no necesitas dar ningún motivo.","fr":"; vous n’avez pas à donner de motif."}),
-    heading10: t({"en":"3. Right of withdrawal for consumers in the EU and UK","es":"3. Derecho de desistimiento para consumidores de la UE y el Reino Unido","fr":"3. Droit de rétractation pour les consommateurs de l’UE et du Royaume-Uni"}),
-    text11: t({"en":"Consumers normally have 14 days to withdraw from a purchase of digital content. Because the pack is digital content, that right ends once delivery starts.","es":"Los consumidores normalmente tienen 14 días para desistir de una compra de contenido digital. Como el paquete es contenido digital, ese derecho termina cuando comienza la entrega.","fr":"Les consommateurs disposent normalement de 14 jours pour se rétracter après un achat de contenu numérique. Le pack étant un contenu numérique, ce droit prend fin dès le début de la livraison."}),
-    text12: t({"en":"By claiming repository access, you ask us to begin delivery and acknowledge that you lose the right of withdrawal once access has been granted to you. If you would prefer to keep the 14-day period, do not claim access and write to us instead.","es":"Al solicitar acceso al repositorio, nos pides que iniciemos la entrega y reconoces que pierdes el derecho de desistimiento una vez que se te haya concedido acceso. Si prefieres conservar el plazo de 14 días, no solicites acceso y escríbenos en su lugar.","fr":"En demandant l’accès au dépôt, vous nous demandez de commencer la livraison et reconnaissez perdre votre droit de rétractation une fois l’accès accordé. Si vous préférez conserver le délai de 14 jours, ne demandez pas l’accès et écrivez-nous à la place."}),
-    heading13: t({"en":"4. Refunds we do give after delivery","es":"4. Reembolsos que sí concedemos después de la entrega","fr":"4. Remboursements accordés après la livraison"}),
-    text14: t({"en":"You were charged twice, or charged for something you did not buy.","es":"Se te ha cobrado dos veces o por algo que no compraste.","fr":"Vous avez été facturé deux fois ou pour quelque chose que vous n’avez pas acheté."}),
-    text15: t({"en":"Repository access never reached you, and we could not fix it for you.","es":"Nunca recibiste acceso al repositorio y no pudimos solucionarlo.","fr":"Vous n’avez jamais reçu l’accès au dépôt et nous n’avons pas pu résoudre le problème."}),
-    text16: t({"en":"The pack does not do what this site says it does, and we cannot resolve it with you.","es":"El paquete no hace lo que este sitio afirma y no podemos resolverlo contigo.","fr":"Le pack ne fait pas ce que ce site annonce et nous ne pouvons pas résoudre le problème avec vous."}),
-    text17: t({"en":"Where a refund applies, Polar, as merchant of record, returns the full amount to the original payment method. Repository access, if already granted, ends when the refund is issued. This does not limit any rights you have under the law where you live.","es":"Cuando corresponde un reembolso, Polar, como comerciante registrado, devuelve el importe completo al método de pago original. El acceso al repositorio, si ya se ha concedido, termina al emitirse el reembolso. Esto no limita ningún derecho que te corresponda conforme a la legislación del lugar donde vives.","fr":"Lorsqu’un remboursement s’applique, Polar, en tant que vendeur officiel, restitue l’intégralité du montant sur le moyen de paiement initial. L’accès au dépôt, s’il a déjà été accordé, prend fin lors du remboursement. Cela ne limite aucun droit prévu par la législation de votre lieu de résidence."}),
-    heading18: t({"en":"5. How to ask","es":"5. Cómo solicitarlo","fr":"5. Comment faire une demande"}),
-    text19: t({"en":"Write to","es":"Escribe a","fr":"Écrivez à"}),
-    text20: t({"en":"from the email address you used at checkout and tell us what went wrong. We answer every request, usually within two working days.","es":"desde la dirección de correo que usaste al pagar y cuéntanos qué ocurrió. Respondemos a todas las solicitudes, normalmente en dos días laborables.","fr":"depuis l’adresse utilisée lors du paiement et expliquez ce qui s’est passé. Nous répondons à chaque demande, généralement sous deux jours ouvrés."}),
-    heading21: t({"en":"6. Chargebacks","es":"6. Contracargos","fr":"6. Contestations de paiement"}),
-    text22: t({"en":"If something is wrong, contact us first. A chargeback opened without contacting us suspends access to the pack while the bank reviews it, which is slower for everyone than a refund we issue directly.","es":"Si hay algún problema, contáctanos primero. Un contracargo iniciado sin contactarnos suspende el acceso al paquete mientras el banco lo revisa, lo cual es más lento para todos que un reembolso emitido directamente por nosotros.","fr":"En cas de problème, contactez-nous d’abord. Une contestation de paiement ouverte sans nous contacter suspend l’accès au pack pendant l’examen par la banque, ce qui est plus lent pour tout le monde qu’un remboursement que nous effectuons directement."}),
+    heading0: t({
+      en: "Refund policy",
+      es: "Política de reembolsos",
+      fr: "Politique de remboursement",
+    }),
+    text1: t({
+      en: "This policy covers one-time purchases of",
+      es: "Esta política cubre las compras únicas de",
+      fr: "Cette politique couvre les achats uniques de",
+    }),
+    text2: t({ en: ", sold by", es: ", vendido por", fr: ", vendu par" }),
+    text3: t({
+      en: ", and monthly sponsorship subscriptions. Dodo Payments, our merchant of record, processes every payment and refund. It sits alongside our",
+      es: ", y las suscripciones mensuales de patrocinio. Dodo Payments, nuestro comerciante registrado, procesa todos los pagos y reembolsos. Complementa nuestras",
+      fr: ", ainsi que les abonnements mensuels de parrainage. Dodo Payments, notre vendeur officiel, traite tous les paiements et remboursements. Elle complète nos",
+    }),
+    text4: t({
+      en: "terms of service",
+      es: "condiciones de servicio",
+      fr: "conditions d’utilisation",
+    }),
+    heading5: t({
+      en: "1. What you are buying",
+      es: "1. Qué compras",
+      fr: "1. Ce que vous achetez",
+    }),
+    text6: t({
+      en: "is a digital pack delivered as read-only access to a private GitHub repository. There is no physical shipment and no subscription. The price is $29 for the first 100 paid purchases, then $49, paid once. Instant private GitHub access and future repository updates included. After checkout you claim repository access by connecting your GitHub account in the Dodo Payments customer portal. Access includes future updates to the same repository at no extra cost.",
+      es: "es un paquete digital entregado mediante acceso de solo lectura a un repositorio privado de GitHub. No hay envío físico ni suscripción. El precio es de $29 para las primeras 100 compras pagadas y después $49, en un solo pago. Incluye acceso instantáneo a GitHub privado y futuras actualizaciones del repositorio. Tras pagar, solicitas acceso al repositorio conectando tu cuenta de GitHub en el portal de clientes de Dodo Payments. El acceso incluye futuras actualizaciones del mismo repositorio sin coste adicional.",
+      fr: "est un pack numérique livré sous forme d’accès en lecture seule à un dépôt GitHub privé. Il n’y a ni livraison physique ni abonnement. Le prix est de 29 $ pour les 100 premiers achats payés, puis de 49 $, en un seul paiement. L’accès instantané au dépôt GitHub privé et les futures mises à jour du dépôt sont inclus. Après le paiement, vous demandez l’accès au dépôt en connectant votre compte GitHub dans le portail client de Dodo Payments. L’accès comprend les futures mises à jour du même dépôt sans coût supplémentaire.",
+    }),
+    heading7: t({
+      en: "2. Before delivery",
+      es: "2. Antes de la entrega",
+      fr: "2. Avant la livraison",
+    }),
+    text8: t({
+      en: "Until you have claimed repository access, you can cancel your order for a full refund. Write to",
+      es: "Hasta que hayas solicitado acceso al repositorio, puedes cancelar tu pedido y obtener un reembolso completo. Escribe a",
+      fr: "Tant que vous n’avez pas demandé l’accès au dépôt, vous pouvez annuler votre commande pour obtenir un remboursement intégral. Écrivez à",
+    }),
+    text9: t({
+      en: "; you do not need to give a reason.",
+      es: "; no necesitas dar ningún motivo.",
+      fr: "; vous n’avez pas à donner de motif.",
+    }),
+    heading10: t({
+      en: "3. Right of withdrawal for consumers in the EU and UK",
+      es: "3. Derecho de desistimiento para consumidores de la UE y el Reino Unido",
+      fr: "3. Droit de rétractation pour les consommateurs de l’UE et du Royaume-Uni",
+    }),
+    text11: t({
+      en: "Consumers normally have 14 days to withdraw from a purchase of digital content. Because the pack is digital content, that right ends once delivery starts.",
+      es: "Los consumidores normalmente tienen 14 días para desistir de una compra de contenido digital. Como el paquete es contenido digital, ese derecho termina cuando comienza la entrega.",
+      fr: "Les consommateurs disposent normalement de 14 jours pour se rétracter après un achat de contenu numérique. Le pack étant un contenu numérique, ce droit prend fin dès le début de la livraison.",
+    }),
+    text12: t({
+      en: "By claiming repository access, you ask us to begin delivery and acknowledge that you lose the right of withdrawal once access has been granted to you. If you would prefer to keep the 14-day period, do not claim access and write to us instead.",
+      es: "Al solicitar acceso al repositorio, nos pides que iniciemos la entrega y reconoces que pierdes el derecho de desistimiento una vez que se te haya concedido acceso. Si prefieres conservar el plazo de 14 días, no solicites acceso y escríbenos en su lugar.",
+      fr: "En demandant l’accès au dépôt, vous nous demandez de commencer la livraison et reconnaissez perdre votre droit de rétractation une fois l’accès accordé. Si vous préférez conserver le délai de 14 jours, ne demandez pas l’accès et écrivez-nous à la place.",
+    }),
+    heading13: t({
+      en: "4. Refunds we do give after delivery",
+      es: "4. Reembolsos que sí concedemos después de la entrega",
+      fr: "4. Remboursements accordés après la livraison",
+    }),
+    text14: t({
+      en: "You were charged twice, or charged for something you did not buy.",
+      es: "Se te ha cobrado dos veces o por algo que no compraste.",
+      fr: "Vous avez été facturé deux fois ou pour quelque chose que vous n’avez pas acheté.",
+    }),
+    text15: t({
+      en: "Repository access never reached you, and we could not fix it for you.",
+      es: "Nunca recibiste acceso al repositorio y no pudimos solucionarlo.",
+      fr: "Vous n’avez jamais reçu l’accès au dépôt et nous n’avons pas pu résoudre le problème.",
+    }),
+    text16: t({
+      en: "The pack does not do what this site says it does, and we cannot resolve it with you.",
+      es: "El paquete no hace lo que este sitio afirma y no podemos resolverlo contigo.",
+      fr: "Le pack ne fait pas ce que ce site annonce et nous ne pouvons pas résoudre le problème avec vous.",
+    }),
+    text17: t({
+      en: "Where a refund applies, Dodo Payments, as merchant of record, returns the full amount to the original payment method. Repository access, if already granted, ends when the refund is issued. This does not limit any rights you have under the law where you live.",
+      es: "Cuando corresponde un reembolso, Dodo Payments, como comerciante registrado, devuelve el importe completo al método de pago original. El acceso al repositorio, si ya se ha concedido, termina al emitirse el reembolso. Esto no limita ningún derecho que te corresponda conforme a la legislación del lugar donde vives.",
+      fr: "Lorsqu’un remboursement s’applique, Dodo Payments, en tant que vendeur officiel, restitue l’intégralité du montant sur le moyen de paiement initial. L’accès au dépôt, s’il a déjà été accordé, prend fin lors du remboursement. Cela ne limite aucun droit prévu par la législation de votre lieu de résidence.",
+    }),
+    heading18: t({
+      en: "5. How to ask",
+      es: "5. Cómo solicitarlo",
+      fr: "5. Comment faire une demande",
+    }),
+    text19: t({ en: "Write to", es: "Escribe a", fr: "Écrivez à" }),
+    text20: t({
+      en: "from the email address you used at checkout and tell us what went wrong. We answer every request, usually within two working days.",
+      es: "desde la dirección de correo que usaste al pagar y cuéntanos qué ocurrió. Respondemos a todas las solicitudes, normalmente en dos días laborables.",
+      fr: "depuis l’adresse utilisée lors du paiement et expliquez ce qui s’est passé. Nous répondons à chaque demande, généralement sous deux jours ouvrés.",
+    }),
+    heading21: t({
+      en: "6. Chargebacks",
+      es: "6. Contracargos",
+      fr: "6. Contestations de paiement",
+    }),
+    text22: t({
+      en: "If something is wrong, contact us first. A chargeback opened without contacting us suspends access to the pack while the bank reviews it, which is slower for everyone than a refund we issue directly.",
+      es: "Si hay algún problema, contáctanos primero. Un contracargo iniciado sin contactarnos suspende el acceso al paquete mientras el banco lo revisa, lo cual es más lento para todos que un reembolso emitido directamente por nosotros.",
+      fr: "En cas de problème, contactez-nous d’abord. Une contestation de paiement ouverte sans nous contacter suspend l’accès au pack pendant l’examen par la banque, ce qui est plus lent pour tout le monde qu’un remboursement que nous effectuons directement.",
+    }),
+    sponsorHeading: t({
+      en: "7. Sponsorships",
+      es: "7. Patrocinios",
+      fr: "7. Parrainages",
+    }),
+    sponsorText1: t({
+      en: "Sponsorships are monthly subscriptions (Diamond $500, Gold $250, Silver $150 per month). You can cancel anytime from the Dodo Payments customer portal, linked in your billing emails, or by writing to us. Your placement stays up until the end of the month you paid for, and you are not charged again.",
+      es: "Los patrocinios son suscripciones mensuales (Diamond $500, Gold $250, Silver $150 al mes). Puedes cancelar en cualquier momento desde el portal de clientes de Dodo Payments, enlazado en tus correos de facturación, o escribiéndonos. Tu espacio se mantiene hasta el final del mes pagado y no se te vuelve a cobrar.",
+      fr: "Les parrainages sont des abonnements mensuels (Diamond 500 $, Gold 250 $, Silver 150 $ par mois). Vous pouvez résilier à tout moment depuis le portail client de Dodo Payments, accessible via vos e-mails de facturation, ou en nous écrivant. Votre emplacement reste en ligne jusqu’à la fin du mois payé et vous n’êtes plus facturé.",
+    }),
+    sponsorText2: t({
+      en: "A month that has started is not refunded, except where you were charged twice or for something you did not buy, or where the law where you live requires it. Where a refund applies, Dodo Payments returns it to the original payment method.",
+      es: "Un mes ya iniciado no se reembolsa, salvo que se te haya cobrado dos veces o por algo que no compraste, o que la legislación del lugar donde vives lo exija. Cuando corresponde un reembolso, Dodo Payments lo devuelve al método de pago original.",
+      fr: "Un mois commencé n’est pas remboursé, sauf si vous avez été facturé deux fois ou pour quelque chose que vous n’avez pas acheté, ou si la législation de votre lieu de résidence l’exige. Lorsqu’un remboursement s’applique, Dodo Payments le restitue sur le moyen de paiement initial.",
+    }),
   },
 } satisfies Dictionary;
 

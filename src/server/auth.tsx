@@ -1,4 +1,4 @@
-import { APIError } from "better-auth/api";
+import { getRequest } from "@tanstack/react-start/server";
 import { env } from "cloudflare:workers";
 import { drizzle } from "drizzle-orm/d1";
 
@@ -7,27 +7,21 @@ import SignInEmail, { signInSubject } from "../emails/sign-in";
 import WelcomeEmail, { welcomeSubject } from "../emails/welcome";
 import { createAuth } from "./auth-config";
 import * as schema from "./db/schema";
+import { purchaseStatus } from "./dodo";
 import { sendEmail } from "./email";
-import { purchaseStatus } from "./polar";
 
 // `env` from `cloudflare:workers` is readable at module scope; the D1 binding
 // is only queried inside requests.
 export const auth = createAuth(drizzle(env.DB, { schema }), {
   baseURL: env.BETTER_AUTH_URL,
   secret: env.BETTER_AUTH_SECRET,
-  // There are no open sign-ups: a link is only sent to an email that has a
-  // paid Polar order, which is how buyers reach their purchase.
-  // The welcome flag comes from the client and only picks the template; the
-  // purchase check below still gates every send.
+  // Open sign-up: any email gets a link, and the account is created the first
+  // time the link is used. Purchases are matched by email on the dashboard.
+  // The welcome flag comes from the client, so the thank-you template is only
+  // used when the email really has a paid order.
   sendMagicLink: async (email, url, { welcome }) => {
-    const purchase = await purchaseStatus(email);
-    if (!purchase.purchased) {
-      throw new APIError("FORBIDDEN", {
-        message:
-          "We couldn’t find a purchase for this email. Use the email you paid with.",
-      });
-    }
-    if (welcome) {
+    const purchase = welcome ? await purchaseStatus(email) : null;
+    if (purchase?.purchased) {
       const firstName = purchase.name?.trim().split(/\s+/u)[0] || null;
       const props = { firstName, url };
       await sendEmail({
@@ -44,3 +38,7 @@ export const auth = createAuth(drizzle(env.DB, { schema }), {
     });
   },
 });
+
+/** The signed-in session for the current request, or `null`. */
+export const getCurrentSession = () =>
+  auth.api.getSession({ headers: getRequest().headers });

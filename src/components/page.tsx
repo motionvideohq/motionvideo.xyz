@@ -21,16 +21,19 @@ export const PageHeader = ({
 );
 
 export const LegalPageHeader = ({ title }: { title: string }) => {
-  const content = useIntlayer("chrome");
+  const content = useIntlayer("page");
   const { locale } = useLocale();
   const updatedAt = useMemo(
-    () => new Intl.DateTimeFormat(locale, {
-      dateStyle: "long",
-      timeZone: "UTC",
-    }).format(new Date(`${SITE.LEGAL.UPDATED_AT}T00:00:00Z`)),
+    () =>
+      new Intl.DateTimeFormat(locale, {
+        dateStyle: "long",
+        timeZone: "UTC",
+      }).format(new Date(`${SITE.LEGAL.UPDATED_AT}T00:00:00Z`)),
     [locale]
   );
-  return <PageHeader title={title} intro={`${content.updated.value} ${updatedAt}`} />;
+  return (
+    <PageHeader title={title} intro={`${content.updated.value} ${updatedAt}`} />
+  );
 };
 
 export const PageSection = ({

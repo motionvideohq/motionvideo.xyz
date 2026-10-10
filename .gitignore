@@ -19,3 +19,6 @@ todos.json
 worker-configuration.d.ts
 
 !.env.example
+
+# Timeless permits website embedding, not font distribution in public repositories.
+/src/assets/fonts/timeless/
