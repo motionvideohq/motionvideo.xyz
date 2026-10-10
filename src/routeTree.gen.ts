@@ -9,12 +9,22 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as IndexRouteImport } from './routes/index'
+import { Route as GalleryRouteImport } from './routes/_gallery'
 import { Route as PagesRouteImport } from './routes/_pages'
+import { Route as BookmarksRouteImport } from './routes/bookmarks'
 import { Route as CheckoutRouteImport } from './routes/checkout'
+import { Route as CreativesRouteImport } from './routes/creatives'
 import { Route as DashboardRouteImport } from './routes/dashboard'
+import { Route as ExtrasRouteImport } from './routes/extras'
+import { Route as MotionvideoSkillRouteImport } from './routes/motionvideo-skill'
 import { Route as SignInRouteImport } from './routes/sign-in'
+import { Route as SkillsRouteImport } from './routes/skills'
+import { Route as SponsorRouteImport } from './routes/sponsor'
+import { Route as StudiosRouteImport } from './routes/studios'
+import { Route as SubmitRouteImport } from './routes/submit'
+import { Route as ToolsRouteImport } from './routes/tools'
 import { Route as WelcomeRouteImport } from './routes/welcome'
+import { Route as GalleryIndexRouteImport } from './routes/_gallery/index'
 import { Route as PagesAboutRouteImport } from './routes/_pages/about'
 import { Route as PagesBrandRouteImport } from './routes/_pages/brand'
 import { Route as PagesContactRouteImport } from './routes/_pages/contact'
@@ -22,16 +32,32 @@ import { Route as PagesDpaRouteImport } from './routes/_pages/dpa'
 import { Route as PagesPrivacyRouteImport } from './routes/_pages/privacy'
 import { Route as PagesRefundsRouteImport } from './routes/_pages/refunds'
 import { Route as PagesTermsRouteImport } from './routes/_pages/terms'
+import { Route as CreativesIndexRouteImport } from './routes/creatives/index'
+import { Route as CreativesCategoryRouteImport } from './routes/creatives/$category'
+import { Route as ExtrasIndexRouteImport } from './routes/extras/index'
+import { Route as ExtrasCategoryRouteImport } from './routes/extras/$category'
+import { Route as SkillsIndexRouteImport } from './routes/skills/index'
+import { Route as SkillsCategoryRouteImport } from './routes/skills/$category'
+import { Route as ToolsIndexRouteImport } from './routes/tools/index'
+import { Route as ToolsCategoryRouteImport } from './routes/tools/$category'
+import { Route as GalleryCategoryCategoryRouteImport } from './routes/_gallery/category.$category'
+import { Route as GalleryVideosSlugRouteImport } from './routes/_gallery/videos.$slug'
 import { Route as ApiAuthSplatRouteImport } from './routes/api/auth/$'
-import { Route as ApiWebhookPolarRouteImport } from './routes/api/webhook/polar'
+import { Route as ApiWebhookDodoRouteImport } from './routes/api/webhook/dodo'
+import { Route as GalleryCategoryCategoryIndexRouteImport } from './routes/_gallery/category.$category.index'
+import { Route as GalleryCategoryCategoryVideosSlugRouteImport } from './routes/_gallery/category.$category.videos.$slug'
 
-const IndexRoute = IndexRouteImport.update({
-  id: '/',
-  path: '/',
+const GalleryRoute = GalleryRouteImport.update({
+  id: '/_gallery',
   getParentRoute: () => rootRouteImport,
 } as any)
 const PagesRoute = PagesRouteImport.update({
   id: '/_pages',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BookmarksRoute = BookmarksRouteImport.update({
+  id: '/bookmarks',
+  path: '/bookmarks',
   getParentRoute: () => rootRouteImport,
 } as any)
 const CheckoutRoute = CheckoutRouteImport.update({
@@ -39,9 +65,24 @@ const CheckoutRoute = CheckoutRouteImport.update({
   path: '/checkout',
   getParentRoute: () => rootRouteImport,
 } as any)
+const CreativesRoute = CreativesRouteImport.update({
+  id: '/creatives',
+  path: '/creatives',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const DashboardRoute = DashboardRouteImport.update({
   id: '/dashboard',
   path: '/dashboard',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ExtrasRoute = ExtrasRouteImport.update({
+  id: '/extras',
+  path: '/extras',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MotionvideoSkillRoute = MotionvideoSkillRouteImport.update({
+  id: '/motionvideo-skill',
+  path: '/motionvideo-skill',
   getParentRoute: () => rootRouteImport,
 } as any)
 const SignInRoute = SignInRouteImport.update({
@@ -49,10 +90,40 @@ const SignInRoute = SignInRouteImport.update({
   path: '/sign-in',
   getParentRoute: () => rootRouteImport,
 } as any)
+const SkillsRoute = SkillsRouteImport.update({
+  id: '/skills',
+  path: '/skills',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SponsorRoute = SponsorRouteImport.update({
+  id: '/sponsor',
+  path: '/sponsor',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const StudiosRoute = StudiosRouteImport.update({
+  id: '/studios',
+  path: '/studios',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SubmitRoute = SubmitRouteImport.update({
+  id: '/submit',
+  path: '/submit',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ToolsRoute = ToolsRouteImport.update({
+  id: '/tools',
+  path: '/tools',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const WelcomeRoute = WelcomeRouteImport.update({
   id: '/welcome',
   path: '/welcome',
   getParentRoute: () => rootRouteImport,
+} as any)
+const GalleryIndexRoute = GalleryIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => GalleryRoute,
 } as any)
 const PagesAboutRoute = PagesAboutRouteImport.update({
   id: '/about',
@@ -89,22 +160,93 @@ const PagesTermsRoute = PagesTermsRouteImport.update({
   path: '/terms',
   getParentRoute: () => PagesRoute,
 } as any)
+const CreativesIndexRoute = CreativesIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => CreativesRoute,
+} as any)
+const CreativesCategoryRoute = CreativesCategoryRouteImport.update({
+  id: '/$category',
+  path: '/$category',
+  getParentRoute: () => CreativesRoute,
+} as any)
+const ExtrasIndexRoute = ExtrasIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => ExtrasRoute,
+} as any)
+const ExtrasCategoryRoute = ExtrasCategoryRouteImport.update({
+  id: '/$category',
+  path: '/$category',
+  getParentRoute: () => ExtrasRoute,
+} as any)
+const SkillsIndexRoute = SkillsIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => SkillsRoute,
+} as any)
+const SkillsCategoryRoute = SkillsCategoryRouteImport.update({
+  id: '/$category',
+  path: '/$category',
+  getParentRoute: () => SkillsRoute,
+} as any)
+const ToolsIndexRoute = ToolsIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => ToolsRoute,
+} as any)
+const ToolsCategoryRoute = ToolsCategoryRouteImport.update({
+  id: '/$category',
+  path: '/$category',
+  getParentRoute: () => ToolsRoute,
+} as any)
+const GalleryCategoryCategoryRoute = GalleryCategoryCategoryRouteImport.update({
+  id: '/category/$category',
+  path: '/category/$category',
+  getParentRoute: () => GalleryRoute,
+} as any)
+const GalleryVideosSlugRoute = GalleryVideosSlugRouteImport.update({
+  id: '/videos/$slug',
+  path: '/videos/$slug',
+  getParentRoute: () => GalleryRoute,
+} as any)
 const ApiAuthSplatRoute = ApiAuthSplatRouteImport.update({
   id: '/api/auth/$',
   path: '/api/auth/$',
   getParentRoute: () => rootRouteImport,
 } as any)
-const ApiWebhookPolarRoute = ApiWebhookPolarRouteImport.update({
-  id: '/api/webhook/polar',
-  path: '/api/webhook/polar',
+const ApiWebhookDodoRoute = ApiWebhookDodoRouteImport.update({
+  id: '/api/webhook/dodo',
+  path: '/api/webhook/dodo',
   getParentRoute: () => rootRouteImport,
 } as any)
+const GalleryCategoryCategoryIndexRoute =
+  GalleryCategoryCategoryIndexRouteImport.update({
+    id: '/',
+    path: '/',
+    getParentRoute: () => GalleryCategoryCategoryRoute,
+  } as any)
+const GalleryCategoryCategoryVideosSlugRoute =
+  GalleryCategoryCategoryVideosSlugRouteImport.update({
+    id: '/videos/$slug',
+    path: '/videos/$slug',
+    getParentRoute: () => GalleryCategoryCategoryRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
-  '/': typeof IndexRoute
+  '/': typeof GalleryIndexRoute
+  '/bookmarks': typeof BookmarksRoute
   '/checkout': typeof CheckoutRoute
+  '/creatives': typeof CreativesRouteWithChildren
   '/dashboard': typeof DashboardRoute
+  '/extras': typeof ExtrasRouteWithChildren
+  '/motionvideo-skill': typeof MotionvideoSkillRoute
   '/sign-in': typeof SignInRoute
+  '/skills': typeof SkillsRouteWithChildren
+  '/sponsor': typeof SponsorRoute
+  '/studios': typeof StudiosRoute
+  '/submit': typeof SubmitRoute
+  '/tools': typeof ToolsRouteWithChildren
   '/welcome': typeof WelcomeRoute
   '/about': typeof PagesAboutRoute
   '/brand': typeof PagesBrandRoute
@@ -113,14 +255,31 @@ export interface FileRoutesByFullPath {
   '/privacy': typeof PagesPrivacyRoute
   '/refunds': typeof PagesRefundsRoute
   '/terms': typeof PagesTermsRoute
+  '/creatives/$category': typeof CreativesCategoryRoute
+  '/extras/$category': typeof ExtrasCategoryRoute
+  '/skills/$category': typeof SkillsCategoryRoute
+  '/tools/$category': typeof ToolsCategoryRoute
+  '/creatives/': typeof CreativesIndexRoute
+  '/extras/': typeof ExtrasIndexRoute
+  '/skills/': typeof SkillsIndexRoute
+  '/tools/': typeof ToolsIndexRoute
+  '/category/$category': typeof GalleryCategoryCategoryRouteWithChildren
+  '/videos/$slug': typeof GalleryVideosSlugRoute
   '/api/auth/$': typeof ApiAuthSplatRoute
-  '/api/webhook/polar': typeof ApiWebhookPolarRoute
+  '/api/webhook/dodo': typeof ApiWebhookDodoRoute
+  '/category/$category/': typeof GalleryCategoryCategoryIndexRoute
+  '/category/$category/videos/$slug': typeof GalleryCategoryCategoryVideosSlugRoute
 }
 export interface FileRoutesByTo {
-  '/': typeof IndexRoute
+  '/': typeof GalleryIndexRoute
+  '/bookmarks': typeof BookmarksRoute
   '/checkout': typeof CheckoutRoute
   '/dashboard': typeof DashboardRoute
+  '/motionvideo-skill': typeof MotionvideoSkillRoute
   '/sign-in': typeof SignInRoute
+  '/sponsor': typeof SponsorRoute
+  '/studios': typeof StudiosRoute
+  '/submit': typeof SubmitRoute
   '/welcome': typeof WelcomeRoute
   '/about': typeof PagesAboutRoute
   '/brand': typeof PagesBrandRoute
@@ -129,16 +288,36 @@ export interface FileRoutesByTo {
   '/privacy': typeof PagesPrivacyRoute
   '/refunds': typeof PagesRefundsRoute
   '/terms': typeof PagesTermsRoute
+  '/creatives/$category': typeof CreativesCategoryRoute
+  '/extras/$category': typeof ExtrasCategoryRoute
+  '/skills/$category': typeof SkillsCategoryRoute
+  '/tools/$category': typeof ToolsCategoryRoute
+  '/creatives': typeof CreativesIndexRoute
+  '/extras': typeof ExtrasIndexRoute
+  '/skills': typeof SkillsIndexRoute
+  '/tools': typeof ToolsIndexRoute
+  '/videos/$slug': typeof GalleryVideosSlugRoute
   '/api/auth/$': typeof ApiAuthSplatRoute
-  '/api/webhook/polar': typeof ApiWebhookPolarRoute
+  '/api/webhook/dodo': typeof ApiWebhookDodoRoute
+  '/category/$category': typeof GalleryCategoryCategoryIndexRoute
+  '/category/$category/videos/$slug': typeof GalleryCategoryCategoryVideosSlugRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
-  '/': typeof IndexRoute
+  '/_gallery': typeof GalleryRouteWithChildren
   '/_pages': typeof PagesRouteWithChildren
+  '/bookmarks': typeof BookmarksRoute
   '/checkout': typeof CheckoutRoute
+  '/creatives': typeof CreativesRouteWithChildren
   '/dashboard': typeof DashboardRoute
+  '/extras': typeof ExtrasRouteWithChildren
+  '/motionvideo-skill': typeof MotionvideoSkillRoute
   '/sign-in': typeof SignInRoute
+  '/skills': typeof SkillsRouteWithChildren
+  '/sponsor': typeof SponsorRoute
+  '/studios': typeof StudiosRoute
+  '/submit': typeof SubmitRoute
+  '/tools': typeof ToolsRouteWithChildren
   '/welcome': typeof WelcomeRoute
   '/_pages/about': typeof PagesAboutRoute
   '/_pages/brand': typeof PagesBrandRoute
@@ -147,16 +326,38 @@ export interface FileRoutesById {
   '/_pages/privacy': typeof PagesPrivacyRoute
   '/_pages/refunds': typeof PagesRefundsRoute
   '/_pages/terms': typeof PagesTermsRoute
+  '/creatives/$category': typeof CreativesCategoryRoute
+  '/extras/$category': typeof ExtrasCategoryRoute
+  '/skills/$category': typeof SkillsCategoryRoute
+  '/tools/$category': typeof ToolsCategoryRoute
+  '/_gallery/': typeof GalleryIndexRoute
+  '/creatives/': typeof CreativesIndexRoute
+  '/extras/': typeof ExtrasIndexRoute
+  '/skills/': typeof SkillsIndexRoute
+  '/tools/': typeof ToolsIndexRoute
+  '/_gallery/category/$category': typeof GalleryCategoryCategoryRouteWithChildren
+  '/_gallery/videos/$slug': typeof GalleryVideosSlugRoute
   '/api/auth/$': typeof ApiAuthSplatRoute
-  '/api/webhook/polar': typeof ApiWebhookPolarRoute
+  '/api/webhook/dodo': typeof ApiWebhookDodoRoute
+  '/_gallery/category/$category/': typeof GalleryCategoryCategoryIndexRoute
+  '/_gallery/category/$category/videos/$slug': typeof GalleryCategoryCategoryVideosSlugRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/bookmarks'
     | '/checkout'
+    | '/creatives'
     | '/dashboard'
+    | '/extras'
+    | '/motionvideo-skill'
     | '/sign-in'
+    | '/skills'
+    | '/sponsor'
+    | '/studios'
+    | '/submit'
+    | '/tools'
     | '/welcome'
     | '/about'
     | '/brand'
@@ -165,14 +366,31 @@ export interface FileRouteTypes {
     | '/privacy'
     | '/refunds'
     | '/terms'
+    | '/creatives/$category'
+    | '/extras/$category'
+    | '/skills/$category'
+    | '/tools/$category'
+    | '/creatives/'
+    | '/extras/'
+    | '/skills/'
+    | '/tools/'
+    | '/category/$category'
+    | '/videos/$slug'
     | '/api/auth/$'
-    | '/api/webhook/polar'
+    | '/api/webhook/dodo'
+    | '/category/$category/'
+    | '/category/$category/videos/$slug'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/bookmarks'
     | '/checkout'
     | '/dashboard'
+    | '/motionvideo-skill'
     | '/sign-in'
+    | '/sponsor'
+    | '/studios'
+    | '/submit'
     | '/welcome'
     | '/about'
     | '/brand'
@@ -181,15 +399,35 @@ export interface FileRouteTypes {
     | '/privacy'
     | '/refunds'
     | '/terms'
+    | '/creatives/$category'
+    | '/extras/$category'
+    | '/skills/$category'
+    | '/tools/$category'
+    | '/creatives'
+    | '/extras'
+    | '/skills'
+    | '/tools'
+    | '/videos/$slug'
     | '/api/auth/$'
-    | '/api/webhook/polar'
+    | '/api/webhook/dodo'
+    | '/category/$category'
+    | '/category/$category/videos/$slug'
   id:
     | '__root__'
-    | '/'
+    | '/_gallery'
     | '/_pages'
+    | '/bookmarks'
     | '/checkout'
+    | '/creatives'
     | '/dashboard'
+    | '/extras'
+    | '/motionvideo-skill'
     | '/sign-in'
+    | '/skills'
+    | '/sponsor'
+    | '/studios'
+    | '/submit'
+    | '/tools'
     | '/welcome'
     | '/_pages/about'
     | '/_pages/brand'
@@ -198,28 +436,50 @@ export interface FileRouteTypes {
     | '/_pages/privacy'
     | '/_pages/refunds'
     | '/_pages/terms'
+    | '/creatives/$category'
+    | '/extras/$category'
+    | '/skills/$category'
+    | '/tools/$category'
+    | '/_gallery/'
+    | '/creatives/'
+    | '/extras/'
+    | '/skills/'
+    | '/tools/'
+    | '/_gallery/category/$category'
+    | '/_gallery/videos/$slug'
     | '/api/auth/$'
-    | '/api/webhook/polar'
+    | '/api/webhook/dodo'
+    | '/_gallery/category/$category/'
+    | '/_gallery/category/$category/videos/$slug'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
-  IndexRoute: typeof IndexRoute
+  GalleryRoute: typeof GalleryRouteWithChildren
   PagesRoute: typeof PagesRouteWithChildren
+  BookmarksRoute: typeof BookmarksRoute
   CheckoutRoute: typeof CheckoutRoute
+  CreativesRoute: typeof CreativesRouteWithChildren
   DashboardRoute: typeof DashboardRoute
+  ExtrasRoute: typeof ExtrasRouteWithChildren
+  MotionvideoSkillRoute: typeof MotionvideoSkillRoute
   SignInRoute: typeof SignInRoute
+  SkillsRoute: typeof SkillsRouteWithChildren
+  SponsorRoute: typeof SponsorRoute
+  StudiosRoute: typeof StudiosRoute
+  SubmitRoute: typeof SubmitRoute
+  ToolsRoute: typeof ToolsRouteWithChildren
   WelcomeRoute: typeof WelcomeRoute
   ApiAuthSplatRoute: typeof ApiAuthSplatRoute
-  ApiWebhookPolarRoute: typeof ApiWebhookPolarRoute
+  ApiWebhookDodoRoute: typeof ApiWebhookDodoRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/': {
-      id: '/'
-      path: '/'
+    '/_gallery': {
+      id: '/_gallery'
+      path: ''
       fullPath: '/'
-      preLoaderRoute: typeof IndexRouteImport
+      preLoaderRoute: typeof GalleryRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/_pages': {
@@ -229,11 +489,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PagesRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/bookmarks': {
+      id: '/bookmarks'
+      path: '/bookmarks'
+      fullPath: '/bookmarks'
+      preLoaderRoute: typeof BookmarksRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/checkout': {
       id: '/checkout'
       path: '/checkout'
       fullPath: '/checkout'
       preLoaderRoute: typeof CheckoutRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/creatives': {
+      id: '/creatives'
+      path: '/creatives'
+      fullPath: '/creatives'
+      preLoaderRoute: typeof CreativesRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/dashboard': {
@@ -243,11 +517,60 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DashboardRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/extras': {
+      id: '/extras'
+      path: '/extras'
+      fullPath: '/extras'
+      preLoaderRoute: typeof ExtrasRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/motionvideo-skill': {
+      id: '/motionvideo-skill'
+      path: '/motionvideo-skill'
+      fullPath: '/motionvideo-skill'
+      preLoaderRoute: typeof MotionvideoSkillRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/sign-in': {
       id: '/sign-in'
       path: '/sign-in'
       fullPath: '/sign-in'
       preLoaderRoute: typeof SignInRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/skills': {
+      id: '/skills'
+      path: '/skills'
+      fullPath: '/skills'
+      preLoaderRoute: typeof SkillsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/sponsor': {
+      id: '/sponsor'
+      path: '/sponsor'
+      fullPath: '/sponsor'
+      preLoaderRoute: typeof SponsorRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/studios': {
+      id: '/studios'
+      path: '/studios'
+      fullPath: '/studios'
+      preLoaderRoute: typeof StudiosRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/submit': {
+      id: '/submit'
+      path: '/submit'
+      fullPath: '/submit'
+      preLoaderRoute: typeof SubmitRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/tools': {
+      id: '/tools'
+      path: '/tools'
+      fullPath: '/tools'
+      preLoaderRoute: typeof ToolsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/welcome': {
@@ -256,6 +579,13 @@ declare module '@tanstack/react-router' {
       fullPath: '/welcome'
       preLoaderRoute: typeof WelcomeRouteImport
       parentRoute: typeof rootRouteImport
+    }
+    '/_gallery/': {
+      id: '/_gallery/'
+      path: '/'
+      fullPath: '/'
+      preLoaderRoute: typeof GalleryIndexRouteImport
+      parentRoute: typeof GalleryRoute
     }
     '/_pages/about': {
       id: '/_pages/about'
@@ -306,6 +636,76 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PagesTermsRouteImport
       parentRoute: typeof PagesRoute
     }
+    '/creatives/': {
+      id: '/creatives/'
+      path: '/'
+      fullPath: '/creatives/'
+      preLoaderRoute: typeof CreativesIndexRouteImport
+      parentRoute: typeof CreativesRoute
+    }
+    '/creatives/$category': {
+      id: '/creatives/$category'
+      path: '/$category'
+      fullPath: '/creatives/$category'
+      preLoaderRoute: typeof CreativesCategoryRouteImport
+      parentRoute: typeof CreativesRoute
+    }
+    '/extras/': {
+      id: '/extras/'
+      path: '/'
+      fullPath: '/extras/'
+      preLoaderRoute: typeof ExtrasIndexRouteImport
+      parentRoute: typeof ExtrasRoute
+    }
+    '/extras/$category': {
+      id: '/extras/$category'
+      path: '/$category'
+      fullPath: '/extras/$category'
+      preLoaderRoute: typeof ExtrasCategoryRouteImport
+      parentRoute: typeof ExtrasRoute
+    }
+    '/skills/': {
+      id: '/skills/'
+      path: '/'
+      fullPath: '/skills/'
+      preLoaderRoute: typeof SkillsIndexRouteImport
+      parentRoute: typeof SkillsRoute
+    }
+    '/skills/$category': {
+      id: '/skills/$category'
+      path: '/$category'
+      fullPath: '/skills/$category'
+      preLoaderRoute: typeof SkillsCategoryRouteImport
+      parentRoute: typeof SkillsRoute
+    }
+    '/tools/': {
+      id: '/tools/'
+      path: '/'
+      fullPath: '/tools/'
+      preLoaderRoute: typeof ToolsIndexRouteImport
+      parentRoute: typeof ToolsRoute
+    }
+    '/tools/$category': {
+      id: '/tools/$category'
+      path: '/$category'
+      fullPath: '/tools/$category'
+      preLoaderRoute: typeof ToolsCategoryRouteImport
+      parentRoute: typeof ToolsRoute
+    }
+    '/_gallery/category/$category': {
+      id: '/_gallery/category/$category'
+      path: '/category/$category'
+      fullPath: '/category/$category'
+      preLoaderRoute: typeof GalleryCategoryCategoryRouteImport
+      parentRoute: typeof GalleryRoute
+    }
+    '/_gallery/videos/$slug': {
+      id: '/_gallery/videos/$slug'
+      path: '/videos/$slug'
+      fullPath: '/videos/$slug'
+      preLoaderRoute: typeof GalleryVideosSlugRouteImport
+      parentRoute: typeof GalleryRoute
+    }
     '/api/auth/$': {
       id: '/api/auth/$'
       path: '/api/auth/$'
@@ -313,15 +713,61 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ApiAuthSplatRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/api/webhook/polar': {
-      id: '/api/webhook/polar'
-      path: '/api/webhook/polar'
-      fullPath: '/api/webhook/polar'
-      preLoaderRoute: typeof ApiWebhookPolarRouteImport
+    '/api/webhook/dodo': {
+      id: '/api/webhook/dodo'
+      path: '/api/webhook/dodo'
+      fullPath: '/api/webhook/dodo'
+      preLoaderRoute: typeof ApiWebhookDodoRouteImport
       parentRoute: typeof rootRouteImport
+    }
+    '/_gallery/category/$category/': {
+      id: '/_gallery/category/$category/'
+      path: '/'
+      fullPath: '/category/$category/'
+      preLoaderRoute: typeof GalleryCategoryCategoryIndexRouteImport
+      parentRoute: typeof GalleryCategoryCategoryRoute
+    }
+    '/_gallery/category/$category/videos/$slug': {
+      id: '/_gallery/category/$category/videos/$slug'
+      path: '/videos/$slug'
+      fullPath: '/category/$category/videos/$slug'
+      preLoaderRoute: typeof GalleryCategoryCategoryVideosSlugRouteImport
+      parentRoute: typeof GalleryCategoryCategoryRoute
     }
   }
 }
+
+interface GalleryCategoryCategoryRouteChildren {
+  GalleryCategoryCategoryIndexRoute: typeof GalleryCategoryCategoryIndexRoute
+  GalleryCategoryCategoryVideosSlugRoute: typeof GalleryCategoryCategoryVideosSlugRoute
+}
+
+const GalleryCategoryCategoryRouteChildren: GalleryCategoryCategoryRouteChildren =
+  {
+    GalleryCategoryCategoryIndexRoute: GalleryCategoryCategoryIndexRoute,
+    GalleryCategoryCategoryVideosSlugRoute:
+      GalleryCategoryCategoryVideosSlugRoute,
+  }
+
+const GalleryCategoryCategoryRouteWithChildren =
+  GalleryCategoryCategoryRoute._addFileChildren(
+    GalleryCategoryCategoryRouteChildren,
+  )
+
+interface GalleryRouteChildren {
+  GalleryIndexRoute: typeof GalleryIndexRoute
+  GalleryCategoryCategoryRoute: typeof GalleryCategoryCategoryRouteWithChildren
+  GalleryVideosSlugRoute: typeof GalleryVideosSlugRoute
+}
+
+const GalleryRouteChildren: GalleryRouteChildren = {
+  GalleryIndexRoute: GalleryIndexRoute,
+  GalleryCategoryCategoryRoute: GalleryCategoryCategoryRouteWithChildren,
+  GalleryVideosSlugRoute: GalleryVideosSlugRoute,
+}
+
+const GalleryRouteWithChildren =
+  GalleryRoute._addFileChildren(GalleryRouteChildren)
 
 interface PagesRouteChildren {
   PagesAboutRoute: typeof PagesAboutRoute
@@ -345,15 +791,76 @@ const PagesRouteChildren: PagesRouteChildren = {
 
 const PagesRouteWithChildren = PagesRoute._addFileChildren(PagesRouteChildren)
 
+interface CreativesRouteChildren {
+  CreativesCategoryRoute: typeof CreativesCategoryRoute
+  CreativesIndexRoute: typeof CreativesIndexRoute
+}
+
+const CreativesRouteChildren: CreativesRouteChildren = {
+  CreativesCategoryRoute: CreativesCategoryRoute,
+  CreativesIndexRoute: CreativesIndexRoute,
+}
+
+const CreativesRouteWithChildren = CreativesRoute._addFileChildren(
+  CreativesRouteChildren,
+)
+
+interface ExtrasRouteChildren {
+  ExtrasCategoryRoute: typeof ExtrasCategoryRoute
+  ExtrasIndexRoute: typeof ExtrasIndexRoute
+}
+
+const ExtrasRouteChildren: ExtrasRouteChildren = {
+  ExtrasCategoryRoute: ExtrasCategoryRoute,
+  ExtrasIndexRoute: ExtrasIndexRoute,
+}
+
+const ExtrasRouteWithChildren =
+  ExtrasRoute._addFileChildren(ExtrasRouteChildren)
+
+interface SkillsRouteChildren {
+  SkillsCategoryRoute: typeof SkillsCategoryRoute
+  SkillsIndexRoute: typeof SkillsIndexRoute
+}
+
+const SkillsRouteChildren: SkillsRouteChildren = {
+  SkillsCategoryRoute: SkillsCategoryRoute,
+  SkillsIndexRoute: SkillsIndexRoute,
+}
+
+const SkillsRouteWithChildren =
+  SkillsRoute._addFileChildren(SkillsRouteChildren)
+
+interface ToolsRouteChildren {
+  ToolsCategoryRoute: typeof ToolsCategoryRoute
+  ToolsIndexRoute: typeof ToolsIndexRoute
+}
+
+const ToolsRouteChildren: ToolsRouteChildren = {
+  ToolsCategoryRoute: ToolsCategoryRoute,
+  ToolsIndexRoute: ToolsIndexRoute,
+}
+
+const ToolsRouteWithChildren = ToolsRoute._addFileChildren(ToolsRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
-  IndexRoute: IndexRoute,
+  GalleryRoute: GalleryRouteWithChildren,
   PagesRoute: PagesRouteWithChildren,
+  BookmarksRoute: BookmarksRoute,
   CheckoutRoute: CheckoutRoute,
+  CreativesRoute: CreativesRouteWithChildren,
   DashboardRoute: DashboardRoute,
+  ExtrasRoute: ExtrasRouteWithChildren,
+  MotionvideoSkillRoute: MotionvideoSkillRoute,
   SignInRoute: SignInRoute,
+  SkillsRoute: SkillsRouteWithChildren,
+  SponsorRoute: SponsorRoute,
+  StudiosRoute: StudiosRoute,
+  SubmitRoute: SubmitRoute,
+  ToolsRoute: ToolsRouteWithChildren,
   WelcomeRoute: WelcomeRoute,
   ApiAuthSplatRoute: ApiAuthSplatRoute,
-  ApiWebhookPolarRoute: ApiWebhookPolarRoute,
+  ApiWebhookDodoRoute: ApiWebhookDodoRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

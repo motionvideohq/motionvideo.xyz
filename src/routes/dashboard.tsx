@@ -4,13 +4,14 @@ import {
   redirect,
   useNavigate,
 } from "@tanstack/react-router";
-import { CircleCheckIcon } from "lucide-react";
 import { useState } from "react";
 import type { ReactNode } from "react";
 import { useIntlayer } from "react-intlayer";
+import { CheckCircle } from "reicon-react/icons/CheckCircle";
 
 import { BuyButton } from "@/components/pricing";
-import { SiteFooter, SiteHeader } from "@/components/site-chrome";
+import { SiteFooter } from "@/components/site-footer";
+import { SiteHeader } from "@/components/site-header";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -27,10 +28,16 @@ import {
   EmptyMedia,
   EmptyTitle,
 } from "@/components/ui/empty";
+import { ReiconDuotone } from "@/components/ui/reicon-duotone";
 import { SITE } from "@/constants/site";
 import { authClient } from "@/lib/auth-client";
 import { createMetadata } from "@/seo/metadata";
 import { getAccount, getOffer, getPortalUrl } from "@/server/functions";
+
+interface DashboardSearch {
+  /** Dev-only preview of the owner state. */
+  preview?: "purchased";
+}
 
 const routeApi = getRouteApi("/dashboard");
 
@@ -59,12 +66,12 @@ const PurchaseCard = () => {
       <Empty className="bg-card border border-solid">
         <EmptyHeader>
           <EmptyMedia className="text-primary">
-            <CircleCheckIcon aria-hidden className="size-8" />
+            <ReiconDuotone icon={CheckCircle} aria-hidden className="size-8" />
           </EmptyMedia>
-          <EmptyTitle className="text-base">{content.own} {SITE.NAME}</EmptyTitle>
-          <EmptyDescription>
-            {content.portalDescription}
-          </EmptyDescription>
+          <EmptyTitle className="text-base">
+            {content.own} {SITE.NAME}
+          </EmptyTitle>
+          <EmptyDescription>{content.portalDescription}</EmptyDescription>
         </EmptyHeader>
         <EmptyContent>
           <Button size="lg" onClick={openPortal} disabled={busy || preview}>
@@ -78,10 +85,10 @@ const PurchaseCard = () => {
   return (
     <Card size="lg">
       <CardHeader>
-        <CardTitle>{content.get} {SITE.NAME}</CardTitle>
-        <CardDescription>
-          {content.purchaseDescription}
-        </CardDescription>
+        <CardTitle>
+          {content.get} {SITE.NAME}
+        </CardTitle>
+        <CardDescription>{content.purchaseDescription}</CardDescription>
       </CardHeader>
       <CardContent>
         <BuyButton offer={account.offer} />
@@ -108,7 +115,9 @@ const Dashboard = () => {
       <main className="mx-auto flex w-full max-w-3xl flex-1 flex-col gap-6 px-6 py-16">
         <div className="flex items-center justify-between gap-4">
           <div>
-            <h1 className="text-2xl font-semibold tracking-tight">{content.dashboard}</h1>
+            <h1 className="text-2xl font-semibold tracking-tight">
+              {content.dashboard}
+            </h1>
             <p className="text-muted-foreground text-sm">{email}</p>
           </div>
           {preview ? (
@@ -131,9 +140,8 @@ const Dashboard = () => {
 export const Route = createFileRoute("/dashboard")({
   component: Dashboard,
   head: () => createMetadata({ noIndex: true, title: "Dashboard" }),
-  validateSearch: (search) => ({
-    preview:
-      search.preview === "purchased" ? ("purchased" as const) : undefined,
+  validateSearch: (search): DashboardSearch => ({
+    preview: search.preview === "purchased" ? "purchased" : undefined,
   }),
   loaderDeps: ({ search }) => ({ preview: search.preview }),
   loader: async ({ deps }) => {

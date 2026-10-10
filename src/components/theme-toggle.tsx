@@ -1,7 +1,10 @@
 import { useIntlayer } from "react-intlayer";
+import { Moon } from "reicon-react/icons/Moon";
+import { Sun } from "reicon-react/icons/Sun";
 
 import { buttonVariants } from "@/components/ui/button";
 import { Kbd } from "@/components/ui/kbd";
+import { ReiconDuotone } from "@/components/ui/reicon-duotone";
 import {
   Tooltip,
   TooltipContent,
@@ -21,7 +24,7 @@ const toggleTheme = () => {
 };
 
 export const ThemeToggle = ({ hotkey = false }: { hotkey?: boolean }) => {
-  const content = useIntlayer("chrome");
+  const content = useIntlayer("theme-toggle");
   useHotkey(HOTKEY, toggleTheme, { enabled: hotkey });
 
   return (
@@ -33,23 +36,21 @@ export const ThemeToggle = ({ hotkey = false }: { hotkey?: boolean }) => {
               type="button"
               aria-label={content.toggleTheme.value}
               aria-keyshortcuts={HOTKEY.toUpperCase()}
-              className={buttonVariants({ size: "icon", variant: "ghost" })}
+              className={buttonVariants({ size: "icon", variant: "subtle" })}
             />
           }
           onClick={toggleTheme}
         >
-          {/* Half-filled circle; turns 180° in dark mode. */}
-          <svg
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2.25"
+          <ReiconDuotone
+            icon={Sun}
             aria-hidden="true"
-            className="size-[18px] transition-transform duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] motion-reduce:transition-none dark:rotate-180"
-          >
-            <circle cx="12" cy="12" r="9" />
-            <path d="M12 3a9 9 0 0 1 0 18Z" fill="currentColor" stroke="none" />
-          </svg>
+            className="size-[18px] transition-transform duration-500 motion-reduce:transition-none dark:hidden"
+          />
+          <ReiconDuotone
+            icon={Moon}
+            aria-hidden="true"
+            className="hidden size-[18px] transition-transform duration-500 motion-reduce:transition-none dark:block"
+          />
         </TooltipTrigger>
         <TooltipContent side="top">
           {content.toggleTheme} <Kbd>{HOTKEY.toUpperCase()}</Kbd>

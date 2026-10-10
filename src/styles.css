@@ -1,23 +1,36 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 @import "shadcn/tailwind.css";
-@import "@fontsource-variable/inter";
-
-/* Arial scaled to Inter's metrics, so swapping in Inter moves no text. */
 @font-face {
-  font-family: "Inter Fallback";
-  src: local("Arial");
-  size-adjust: 107.27%;
-  ascent-override: 90.31%;
-  descent-override: 22.49%;
-  line-gap-override: 0%;
+  font-family: "Timeless Sans";
+  src: url("https://assets.motionvideo.xyz/fonts/timeless/TimelessSansVF-1.094.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 300 900;
+  font-display: swap;
+  font-variation-settings: "STYL" 0;
+}
+
+@font-face {
+  font-family: "Timeless Sans";
+  src: url("https://assets.motionvideo.xyz/fonts/timeless/TimelessSansVF-1.094.woff2") format("woff2");
+  font-style: italic;
+  font-weight: 300 900;
+  font-display: swap;
+  font-variation-settings:
+    "STYL" 0,
+    "ital" 1;
 }
 
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
+  /* Hairline edges drawn as shadows (no border box): outline buttons, cards,
+     menus and popovers. Dark mode swaps in a 1px light ring, which reads as
+     the border the soft shadow can't draw on a dark ground. */
+  --shadow-outline: var(--surface-outline);
+  --shadow-popover: var(--surface-outline), var(--surface-lift);
   --font-heading: var(--font-sans);
-  --font-sans: "Inter Variable", "Inter Fallback", sans-serif;
+  --font-sans: "Timeless Sans", Arial, sans-serif;
   --color-sidebar-ring: var(--sidebar-ring);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
@@ -76,7 +89,11 @@
   --destructive: oklch(0.577 0.245 27.325);
   --border: oklch(0.922 0 0);
   --input: oklch(0.922 0 0);
-  --ring: oklch(0.708 0 0);
+  --ring: oklch(0.852 0.199 91.936);
+  --surface-outline:
+    oklch(0 0 0 / 0.08) 0 0 0 0.5px, oklch(0 0 0 / 0.2) 0 1px 1px -1px,
+    oklch(0 0 0 / 0.08) 0 1px 2px;
+  --surface-lift: 0 12px 32px -8px oklch(0 0 0 / 0.18);
   --chart-1: oklch(0.87 0 0);
   --chart-2: oklch(0.556 0 0);
   --chart-3: oklch(0.439 0 0);
@@ -111,7 +128,10 @@
   --destructive: oklch(0.704 0.191 22.216);
   --border: oklch(1 0 0 / 10%);
   --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.556 0 0);
+  --ring: oklch(0.795 0.184 86.047);
+  --surface-outline:
+    oklch(1 0 0 / 0.12) 0 0 0 1px, oklch(0 0 0 / 0.4) 0 1px 2px;
+  --surface-lift: 0 12px 32px -8px oklch(0 0 0 / 0.6);
   --chart-1: oklch(0.87 0 0);
   --chart-2: oklch(0.556 0 0);
   --chart-3: oklch(0.439 0 0);
@@ -127,6 +147,32 @@
   --sidebar-ring: oklch(0.556 0 0);
 }
 
+/* Site cursor: the kibo-ui pointer arrow (black, white keyline so it reads on
+   light and dark), hotspot at the tip. Mouse/trackpad only; touch and coarse
+   pointers keep native behavior because the variables stay undefined. */
+@media (pointer: fine) {
+  :root {
+    --cursor-arrow: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='22' height='22' viewBox='-2 -2 24 24'%3E%3Cpath d='M19.438 6.716 1.115.05A.832.832 0 0 0 .05 1.116L6.712 19.45a.834.834 0 0 0 1.557.025l3.198-8 7.995-3.2a.833.833 0 0 0 0-1.559h-.024Z' fill='black' stroke='white' stroke-width='3' stroke-linejoin='round' paint-order='stroke'/%3E%3C/svg%3E")
+      2 2;
+    --cursor-default: var(--cursor-arrow), default;
+    --cursor-pointer: var(--cursor-arrow), pointer;
+  }
+  /* Crisp on HiDPI where cursor image-set() is supported. */
+  @supports (cursor:
+    image-set(url("data:,") 1x) 0 0,
+    auto) {
+    :root {
+      --cursor-arrow: image-set(
+          url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='22' height='22' viewBox='-2 -2 24 24'%3E%3Cpath d='M19.438 6.716 1.115.05A.832.832 0 0 0 .05 1.116L6.712 19.45a.834.834 0 0 0 1.557.025l3.198-8 7.995-3.2a.833.833 0 0 0 0-1.559h-.024Z' fill='black' stroke='white' stroke-width='3' stroke-linejoin='round' paint-order='stroke'/%3E%3C/svg%3E")
+            1x,
+          url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='44' height='44' viewBox='-2 -2 24 24'%3E%3Cpath d='M19.438 6.716 1.115.05A.832.832 0 0 0 .05 1.116L6.712 19.45a.834.834 0 0 0 1.557.025l3.198-8 7.995-3.2a.833.833 0 0 0 0-1.559h-.024Z' fill='black' stroke='white' stroke-width='3' stroke-linejoin='round' paint-order='stroke'/%3E%3C/svg%3E")
+            2x
+        )
+        2 2;
+    }
+  }
+}
+
 @layer base {
   * {
     @apply border-border outline-ring/50;
@@ -134,20 +180,64 @@
   body {
     @apply bg-background text-foreground;
   }
-  button:not(:disabled),
-  [role="button"]:not(:disabled) {
-    cursor: pointer;
+  a:any-link,
+  button,
+  [role="button"],
+  summary,
+  select,
+  input:is(
+    [type="button"],
+    [type="checkbox"],
+    [type="color"],
+    [type="file"],
+    [type="image"],
+    [type="radio"],
+    [type="range"],
+    [type="reset"],
+    [type="submit"]
+  ) {
+    cursor: var(--cursor-pointer, pointer);
+  }
+  /* `cursor` inherits, so text entry restores the native I-beam explicitly. */
+  input:not(
+    [type="button"],
+    [type="checkbox"],
+    [type="color"],
+    [type="file"],
+    [type="image"],
+    [type="radio"],
+    [type="range"],
+    [type="reset"],
+    [type="submit"]
+  ),
+  textarea,
+  [contenteditable]:not([contenteditable="false"]) {
+    cursor: text;
+  }
+  :is(button, input, select, textarea):disabled {
+    cursor: var(--cursor-default, default);
   }
   html {
     @apply font-sans;
+    cursor: var(--cursor-default, auto);
     /* No rubber-band bounce past the page edges. */
     overscroll-behavior: none;
     scroll-behavior: smooth;
   }
 }
+/* Same layer as Tailwind's cursor-default/cursor-pointer, declared later, so the
+   keywords map to the site cursor while variants (disabled:…) still win. */
+@layer utilities {
+  .cursor-default {
+    cursor: var(--cursor-default, default);
+  }
+  .cursor-pointer {
+    cursor: var(--cursor-pointer, pointer);
+  }
+}
 /* Demo frame and feature art animations */
 @theme {
-  /* Default button fill (`<Button>`); `size="cta"` makes it the large CTA. */
+  /* `variant="gradient"` button fill, reserved for special CTAs. */
   --color-cta-from: #ffdd73;
   --color-cta-to: #ffbe25;
   --color-cta-foreground: oklch(0.145 0 0);
@@ -163,9 +253,8 @@
   --animate-mv-strip: mv-strip 4s linear infinite;
   --animate-mv-follow-path: mv-follow-path 2.4s linear infinite;
   --animate-mv-cycle: mv-cycle 6s ease-in-out infinite both;
-  --animate-mv-drop: mv-drop 700ms cubic-bezier(0.34, 1.56, 0.64, 1) both;
-  --animate-mv-scrub: mv-scrub 3.2s cubic-bezier(0.65, 0, 0.35, 1) infinite
-    alternate;
+  /* A short no-go shake (the overlay's end-of-list step button). */
+  --animate-mv-shake: mv-shake 420ms cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
 }
 
 /* `mv-delay-<ms>`: staggers the looping demo animations. */
@@ -251,22 +340,6 @@
   }
 }
 
-@keyframes mv-drop {
-  from {
-    opacity: 0;
-    transform: translateY(16px) scale(0.94);
-  }
-}
-
-@keyframes mv-scrub {
-  from {
-    left: 0%;
-  }
-  to {
-    left: 100%;
-  }
-}
-
 @keyframes mv-cursor {
   0%,
   20% {
@@ -313,4 +386,53 @@ media-theme-sutro {
   --media-primary-color: #ffffff;
   --media-secondary-color: rgb(0 0 0 / 0.55);
   --media-accent-color: #ffbe25;
+}
+
+/* Route view transitions (`viewTransition` on gallery ↔ /videos/$slug links):
+   the root crossfades while the named card media morphs into the player. */
+::view-transition-group(*) {
+  animation-duration: 380ms;
+  animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* Card hover preview (motion-video.tsx): the expanded preview fades in above
+   the card media's `video-*` group, and the action buttons glide on top. */
+::view-transition-group(.card-preview) {
+  z-index: 1;
+}
+
+::view-transition-group(.card-action) {
+  z-index: 2;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-group(*),
+  ::view-transition-old(*),
+  ::view-transition-new(*) {
+    animation: none !important;
+  }
+}
+
+/* Fade widths for `FadeScroller`; registered so they can transition. */
+@property --fade-start {
+  syntax: "<length>";
+  inherits: false;
+  initial-value: 0px;
+}
+
+@property --fade-end {
+  syntax: "<length>";
+  inherits: false;
+  initial-value: 0px;
+}
+
+@keyframes mv-shake {
+  20%,
+  60% {
+    transform: translateX(-5px);
+  }
+  40%,
+  80% {
+    transform: translateX(5px);
+  }
 }

@@ -1,12 +1,14 @@
+import type { LocalesValues } from "intlayer";
 import { useEffect, useSyncExternalStore } from "react";
 import type { ReactNode } from "react";
 import { IntlayerProvider, useLocale } from "react-intlayer";
-import type { LocalesValues } from "intlayer";
 
 export const LOCALE_STORAGE_KEY = "motionvideo-locale";
 export const SUPPORTED_LOCALES = ["en", "es", "fr"] as const;
 
-const isSupportedLocale = (value: string | null): value is (typeof SUPPORTED_LOCALES)[number] =>
+const isSupportedLocale = (
+  value: string | null
+): value is (typeof SUPPORTED_LOCALES)[number] =>
   SUPPORTED_LOCALES.some((locale) => locale === value);
 
 let sessionLocale: LocalesValues = "en";
@@ -70,7 +72,11 @@ export const LocaleProvider = ({ children }: { children: ReactNode }) => {
   );
 
   return (
-    <IntlayerProvider locale={locale} setLocale={setLocale} isCookieEnabled={false}>
+    <IntlayerProvider
+      locale={locale}
+      setLocale={setLocale}
+      isCookieEnabled={false}
+    >
       <DocumentLanguage />
       {children}
     </IntlayerProvider>

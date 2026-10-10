@@ -7,34 +7,29 @@ import { LINK } from "@/constants/links";
 import { SITE } from "@/constants/site";
 import { contactSchema } from "@/lib/contact";
 
-import { auth } from "./auth";
-import { sendEmail } from "./email";
+import { getCurrentSession } from "./auth";
 import {
   completedCheckout,
   customerPortalUrl,
   launchOffer,
   purchaseStatus,
-} from "./polar";
-
-const currentSession = () => {
-  const request = getRequest();
-  return auth.api.getSession({ headers: request.headers });
-};
+} from "./dodo";
+import { sendEmail } from "./email";
 
 export const getLandingData = createServerFn({ method: "GET" }).handler(
   async () => {
-    const session = await currentSession();
+    const session = await getCurrentSession();
     return { signedIn: session !== null };
   }
 );
 
-export const getOffer = createServerFn({ method: "GET" }).handler(
-  () => launchOffer()
+export const getOffer = createServerFn({ method: "GET" }).handler(() =>
+  launchOffer()
 );
 
 export const getAccount = createServerFn({ method: "GET" }).handler(
   async () => {
-    const session = await currentSession();
+    const session = await getCurrentSession();
     if (!session) {
       return null;
     }
@@ -45,7 +40,7 @@ export const getAccount = createServerFn({ method: "GET" }).handler(
 
 export const getPortalUrl = createServerFn({ method: "POST" }).handler(
   async () => {
-    const session = await currentSession();
+    const session = await getCurrentSession();
     if (!session) {
       throw new Error("Unauthorized");
     }
@@ -53,11 +48,11 @@ export const getPortalUrl = createServerFn({ method: "POST" }).handler(
   }
 );
 
-// Polar's success redirect lands on /welcome with the checkout id; the email
-// on that checkout is where the buyer's sign-in link goes.
+// Dodo's return redirect lands on /welcome with the payment id; the email on
+// that payment is where the buyer's sign-in link goes.
 export const getCheckoutResult = createServerFn({ method: "GET" })
-  .validator(z.object({ checkoutId: z.string().min(1) }))
-  .handler(({ data }) => completedCheckout(data.checkoutId));
+  .validator(z.object({ paymentId: z.string().min(1) }))
+  .handler(({ data }) => completedCheckout(data.paymentId));
 
 export type ContactResult = { ok: true } | { ok: false; error: string };
 

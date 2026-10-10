@@ -14,44 +14,38 @@ const inlineLink = "text-foreground underline underline-offset-4";
 const About = () => {
   const content = useIntlayer("about");
   return (
-  <>
-    <PageHeader
-      title={content.title.value}
-      intro={content.intro.value}
-    />
-    <PageSection title={content.why.value}>
-      <p>
-        {content.reason}
-      </p>
-      <p>
-        {content.knowledge}
-      </p>
-    </PageSection>
+    <>
+      <PageHeader title={content.title.value} intro={content.intro.value} />
+      <PageSection title={content.why.value}>
+        <p>{content.reason}</p>
+        <p>{content.knowledge}</p>
+      </PageSection>
 
-    <PageSection title={content.what.value}>
-      <p>
-        {content.product}
-      </p>
-    </PageSection>
+      <PageSection title={content.what.value}>
+        <p>{content.product}</p>
+      </PageSection>
 
-    <PageSection title={content.who.value}>
-      <p>
-        {content.built}
-        <a href={withUtm(LINK.AUTHOR_WEBSITE, "about")} className={inlineLink}>
-          {SITE.LEGAL.OPERATOR}
-        </a>
-        {content.author}
-        <a href={withUtm(LINK.SHADCN_LABS, "about")} className={inlineLink}>
-          Shadcn Labs
-        </a>
-        {content.website}
-        <a href={LINK.GITHUB_REPO} className={inlineLink}>
-          {content.openSource}
-        </a>
-        {content.separately}
-      </p>
-    </PageSection>
-  </>
+      <PageSection title={content.who.value}>
+        <p>
+          {content.built}
+          <a
+            href={withUtm(LINK.AUTHOR_WEBSITE, "about")}
+            className={inlineLink}
+          >
+            {SITE.LEGAL.OPERATOR}
+          </a>
+          {content.author}
+          <a href={withUtm(LINK.SHADCN_LABS, "about")} className={inlineLink}>
+            Shadcn Labs
+          </a>
+          {content.website}
+          <a href={LINK.GITHUB_REPO} className={inlineLink}>
+            {content.openSource}
+          </a>
+          {content.separately}
+        </p>
+      </PageSection>
+    </>
   );
 };
 

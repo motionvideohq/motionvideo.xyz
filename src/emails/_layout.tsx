@@ -18,7 +18,7 @@ import { SITE } from "../constants/site";
 import { SITE_ORIGIN } from "../constants/url";
 
 const FONT =
-  "-apple-system,BlinkMacSystemFont,'Segoe UI',Inter,Helvetica,Arial,sans-serif";
+  "-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif";
 const INK = "#111111";
 const MUTED = "#6b6b6b";
 const DOMAIN = new URL(SITE_ORIGIN).host;

@@ -1,6 +1,9 @@
 import { Accordion as AccordionPrimitive } from "@base-ui/react/accordion";
 import { cn } from "cn";
-import { ChevronDownIcon, ChevronUpIcon } from "lucide-react";
+import { ChevronDown } from "reicon-react/icons/ChevronDown";
+import { ChevronUp } from "reicon-react/icons/ChevronUp";
+
+import { ReiconDuotone } from "@/components/ui/reicon-duotone";
 
 const Accordion = ({ className, ...props }: AccordionPrimitive.Root.Props) => (
   <AccordionPrimitive.Root
@@ -36,11 +39,13 @@ const AccordionTrigger = ({
       {...props}
     >
       {children}
-      <ChevronDownIcon
+      <ReiconDuotone
+        icon={ChevronDown}
         data-slot="accordion-trigger-icon"
         className="pointer-events-none shrink-0 group-aria-expanded/accordion-trigger:hidden"
       />
-      <ChevronUpIcon
+      <ReiconDuotone
+        icon={ChevronUp}
         data-slot="accordion-trigger-icon"
         className="pointer-events-none hidden shrink-0 group-aria-expanded/accordion-trigger:inline"
       />

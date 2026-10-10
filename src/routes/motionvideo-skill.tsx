@@ -6,7 +6,8 @@ import { DemoFrame } from "@/components/demo-frame";
 import { FeatureArt } from "@/components/feature-art";
 import { LogoGroup } from "@/components/logo-group";
 import { PriceCard } from "@/components/pricing";
-import { SiteFooter, SiteHeader } from "@/components/site-chrome";
+import { SiteFooter } from "@/components/site-footer";
+import { SiteHeader } from "@/components/site-header";
 import {
   Accordion,
   AccordionContent,
@@ -22,7 +23,7 @@ import { faqJsonLd, productJsonLd } from "@/seo/json-ld";
 import { createMetadata } from "@/seo/metadata";
 import { getLandingData, getOffer } from "@/server/functions";
 
-const routeApi = getRouteApi("/");
+const routeApi = getRouteApi("/motionvideo-skill");
 
 const sectionTitle = "text-2xl font-semibold tracking-tight";
 
@@ -60,7 +61,10 @@ const Landing = () => {
               <div className="flex flex-wrap items-center gap-4">
                 <a
                   href="#pricing"
-                  className={cn(buttonVariants({ size: "cta" }))}
+                  className={buttonVariants({
+                    size: "cta",
+                    variant: "gradient",
+                  })}
                 >
                   {content.pricing}
                 </a>
@@ -76,15 +80,9 @@ const Landing = () => {
         <div className="mx-auto flex w-full max-w-3xl flex-col gap-24 px-6">
           <section className="flex flex-col gap-8">
             <div className="flex flex-col gap-4">
-              <h2 className={sectionTitle}>
-                {content.timeline}
-              </h2>
-              <p className="text-muted-foreground">
-                {content.judgment}
-              </p>
-              <p className="text-muted-foreground">
-                {content.code}
-              </p>
+              <h2 className={sectionTitle}>{content.timeline}</h2>
+              <p className="text-muted-foreground">{content.judgment}</p>
+              <p className="text-muted-foreground">{content.code}</p>
             </div>
             <DemoFrame
               src={VIDEOS.showreel}
@@ -99,12 +97,8 @@ const Landing = () => {
           <section className="flex flex-col gap-8">
             <div className="flex flex-col gap-4">
               <h2 className={sectionTitle}>{content.launchTitle}</h2>
-              <p className="text-muted-foreground">
-                {content.launchBody}
-              </p>
-              <p className="text-muted-foreground">
-                {content.control}
-              </p>
+              <p className="text-muted-foreground">{content.launchBody}</p>
+              <p className="text-muted-foreground">{content.control}</p>
             </div>
             <DemoFrame
               src={VIDEOS.launch}
@@ -136,9 +130,7 @@ const Landing = () => {
           <section id="features" className="flex scroll-mt-8 flex-col gap-6">
             <div className="flex flex-col gap-4">
               <h2 className={sectionTitle}>{content.pack}</h2>
-              <p className="text-muted-foreground">
-                {content.packIntro}
-              </p>
+              <p className="text-muted-foreground">{content.packIntro}</p>
             </div>
             <div className="grid gap-4 sm:grid-cols-2">
               {features.map((item) => (
@@ -160,7 +152,10 @@ const Landing = () => {
             <h2 className={sectionTitle}>{content.faq}</h2>
             <Accordion>
               {faqs.map((faq) => (
-                <AccordionItem key={faq.question.value} value={faq.question.value}>
+                <AccordionItem
+                  key={faq.question.value}
+                  value={faq.question.value}
+                >
                   {/* Roomier rows here only; the shared trigger keeps its default padding. */}
                   {/* oxlint-disable-next-line shadcn/no-restyle */}
                   <AccordionTrigger className="py-4">
@@ -187,11 +182,11 @@ const Landing = () => {
   );
 };
 
-export const Route = createFileRoute("/")({
+export const Route = createFileRoute("/motionvideo-skill")({
   component: Landing,
   head: ({ loaderData }) => ({
     ...createMetadata({
-      canonical: ROUTES.HOME,
+      canonical: ROUTES.MOTIONVIDEO_SKILL,
       description: SITE.DESCRIPTION.LONG,
     }),
     scripts: [productJsonLd(loaderData?.offer), faqJsonLd()],

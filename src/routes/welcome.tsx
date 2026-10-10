@@ -4,10 +4,11 @@ import {
   redirect,
   useRouter,
 } from "@tanstack/react-router";
-import { LoaderIcon, MailCheckIcon } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import type { ReactNode } from "react";
 import { useIntlayer } from "react-intlayer";
+import { EnvelopeCheck } from "reicon-react/icons/EnvelopeCheck";
+import { Loader } from "reicon-react/icons/Loader";
 import { z } from "zod";
 
 import { ConfettiSideCannons } from "@/components/confetti";
@@ -18,20 +19,16 @@ import {
   StatusPanel,
 } from "@/components/login-form";
 import { Button } from "@/components/ui/button";
+import { ReiconDuotone } from "@/components/ui/reicon-duotone";
 import { SITE } from "@/constants/site";
 import { authClient } from "@/lib/auth-client";
 import { createMetadata } from "@/seo/metadata";
 import { getCheckoutResult } from "@/server/functions";
 
 interface WelcomeSearch {
-  checkout_id?: string;
+  payment_id?: string;
   preview?: "sent";
 }
-
-// Polar confirms the order a moment after it redirects here, so the first
-// sign-in attempts can be refused until the order shows as paid.
-const SEND_ATTEMPTS = 4;
-const RETRY_DELAY_MS = 3000;
 
 const routeApi = getRouteApi("/welcome");
 
@@ -48,13 +45,13 @@ const ThanksView = ({
 }) => {
   const content = useIntlayer("account");
   return (
-  <StatusPanel
-    action={action}
-    icon={icon}
-    title={`${content.thanks.value} ${SITE.NAME}!`}
-  >
-    {children}
-  </StatusPanel>
+    <StatusPanel
+      action={action}
+      icon={icon}
+      title={`${content.thanks.value} ${SITE.NAME}!`}
+    >
+      {children}
+    </StatusPanel>
   );
 };
 
@@ -76,26 +73,12 @@ const SignInLink = ({
       return;
     }
     setStatus("sending");
-    for (let attempt = 1; attempt <= SEND_ATTEMPTS; attempt += 1) {
-      // Retries are sequential on purpose: each waits for Polar to catch up.
-      // oxlint-disable-next-line no-await-in-loop
-      const { error } = await authClient.signIn.magicLink({
-        callbackURL: "/dashboard",
-        email,
-        metadata: { welcome: true },
-      });
-      if (!error) {
-        setStatus("sent");
-        return;
-      }
-      if (attempt < SEND_ATTEMPTS) {
-        const { promise, resolve } = Promise.withResolvers<undefined>();
-        setTimeout(resolve, RETRY_DELAY_MS);
-        // oxlint-disable-next-line no-await-in-loop
-        await promise;
-      }
-    }
-    setStatus("failed");
+    const { error } = await authClient.signIn.magicLink({
+      callbackURL: "/dashboard",
+      email,
+      metadata: { welcome: true },
+    });
+    setStatus(error ? "failed" : "sent");
   };
 
   useEffect(() => {
@@ -110,7 +93,11 @@ const SignInLink = ({
     return (
       <ThanksView
         icon={
-          <LoaderIcon aria-hidden className="size-8 animate-spin text-black" />
+          <ReiconDuotone
+            icon={Loader}
+            aria-hidden
+            className="size-8 animate-spin text-black"
+          />
         }
       >
         {content.sendingLink} <strong>{email}</strong>.
@@ -121,21 +108,33 @@ const SignInLink = ({
   if (status === "failed") {
     return (
       <ThanksView
-        icon={<MailCheckIcon aria-hidden className="size-8 text-black" />}
+        icon={
+          <ReiconDuotone
+            icon={EnvelopeCheck}
+            aria-hidden
+            className="size-8 text-black"
+          />
+        }
         action={
           <Button size="lg" onClick={send}>
             {content.sendAgain}
           </Button>
         }
       >
-        {content.paymentDelayed} <strong>{email}</strong>.
+        {content.sendError}
       </ThanksView>
     );
   }
 
   return (
     <ThanksView
-      icon={<MailCheckIcon aria-hidden className="size-8 text-black" />}
+      icon={
+        <ReiconDuotone
+          icon={EnvelopeCheck}
+          aria-hidden
+          className="size-8 text-black"
+        />
+      }
     >
       <LinkSentMessage email={email} />
     </ThanksView>
@@ -168,7 +167,8 @@ const Welcome = () => {
         ) : (
           <StatusPanel
             icon={
-              <LoaderIcon
+              <ReiconDuotone
+                icon={Loader}
                 aria-hidden
                 className="size-8 animate-spin text-black"
               />
@@ -194,13 +194,14 @@ const Welcome = () => {
 
 export const Route = createFileRoute("/welcome")({
   // Search and deps come before `loader` so their types flow into it.
-  // Polar replaces `{CHECKOUT_ID}` in the success URL.
+  // Dodo appends `payment_id` (and an unverified `status`) to the return URL;
+  // the loader looks the payment up instead of trusting the query.
   validateSearch: (search): WelcomeSearch => ({
-    checkout_id: z.string().safeParse(search.checkout_id).data,
+    payment_id: z.string().safeParse(search.payment_id).data,
     preview: search.preview === "sent" ? "sent" : undefined,
   }),
   loaderDeps: ({ search }) => ({
-    checkoutId: search.checkout_id,
+    paymentId: search.payment_id,
     preview: search.preview,
   }),
   loader: async ({ deps }) => {
@@ -210,8 +211,8 @@ export const Route = createFileRoute("/welcome")({
         email: "preview@example.com",
       };
     }
-    const checkout = deps.checkoutId
-      ? await getCheckoutResult({ data: { checkoutId: deps.checkoutId } })
+    const checkout = deps.paymentId
+      ? await getCheckoutResult({ data: { paymentId: deps.paymentId } })
       : null;
     // No or unknown checkout: buyers can still sign in with their email.
     if (!checkout) {
