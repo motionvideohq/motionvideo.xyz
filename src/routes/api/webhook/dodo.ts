@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 
-import { dodo } from "@/server/dodo";
+import { getDodo } from "@/server/dodo";
 
 // Registered in Dodo as `https://motionvideo.xyz/api/webhook/dodo` by
 // `pnpm dodo:setup --live`. Endpoints are business-wide, so deliveries for the
@@ -16,7 +16,7 @@ export const Route = createFileRoute("/api/webhook/dodo")({
         try {
           // Passing `headers` is what makes `unwrap` verify the signature
           // (Standard Webhooks: id, timestamp, HMAC) before parsing.
-          dodo.webhooks.unwrap(body, {
+          getDodo().webhooks.unwrap(body, {
             headers: {
               "webhook-id": request.headers.get("webhook-id") ?? "",
               "webhook-signature":

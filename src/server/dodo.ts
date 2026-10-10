@@ -10,14 +10,20 @@ import {
 import type { Offer } from "@/constants/pricing";
 import { ROUTES } from "@/constants/routes";
 
-// Anything but an explicit `live_mode` stays in test mode, so a missing or
-// misspelled variable never charges real cards.
-export const dodo = new DodoPayments({
-  bearerToken: env.DODO_PAYMENTS_API_KEY,
-  environment:
-    env.DODO_PAYMENTS_ENVIRONMENT === "live_mode" ? "live_mode" : "test_mode",
-  webhookKey: env.DODO_PAYMENTS_WEBHOOK_KEY,
-});
+let client: DodoPayments | undefined;
+
+// Public pages can be prerendered without payment secrets. Initialize only
+// when a payment operation needs the client, retaining SDK credential checks.
+export const getDodo = (): DodoPayments => {
+  client ??= new DodoPayments({
+    bearerToken: env.DODO_PAYMENTS_API_KEY,
+    // Anything but an explicit live_mode stays in test mode.
+    environment:
+      env.DODO_PAYMENTS_ENVIRONMENT === "live_mode" ? "live_mode" : "test_mode",
+    webhookKey: env.DODO_PAYMENTS_WEBHOOK_KEY,
+  });
+  return client;
+};
 
 /** Public `?product=` values for /checkout, mapped to Dodo product IDs. */
 const PRODUCT_IDS = {
@@ -36,7 +42,7 @@ export const isCheckoutProduct = (value: string): value is CheckoutProduct =>
 // paid with is the only link between them and their payments.
 const customersFor = async (email: string) => {
   const normalized = email.toLowerCase();
-  const { items } = await dodo.customers.list({
+  const { items } = await getDodo().customers.list({
     email: normalized,
     page_size: 100,
   });
@@ -46,7 +52,7 @@ const customersFor = async (email: string) => {
 };
 
 const hasPaidSkill = async (customerId: string): Promise<boolean> => {
-  const { items } = await dodo.payments.list({
+  const { items } = await getDodo().payments.list({
     customer_id: customerId,
     page_size: 100,
     product_id: env.DODO_PRODUCT_SKILL,
@@ -77,7 +83,7 @@ export const hasPurchased = async (email: string): Promise<boolean> => {
 };
 
 const launchDiscount = async (): Promise<{ code: string; offer: Offer }> => {
-  const discount = await dodo.discounts.retrieve(env.DODO_LAUNCH_DISCOUNT_ID);
+  const discount = await getDodo().discounts.retrieve(env.DODO_LAUNCH_DISCOUNT_ID);
   const usd = discount.currency_options?.find(
     (option) => option.currency === "USD"
   );
@@ -114,7 +120,7 @@ export const launchOffer = async (): Promise<Offer> => {
 const checkoutUrl = async (
   params: CheckoutSessionCreateParams
 ): Promise<string> => {
-  const session = await dodo.checkoutSessions.create(params);
+  const session = await getDodo().checkoutSessions.create(params);
   if (!session.checkout_url) {
     throw new Error("Dodo returned no checkout URL");
   }
@@ -187,7 +193,7 @@ export const completedCheckout = async (
 ): Promise<CompletedCheckout | null> => {
   let payment;
   try {
-    payment = await dodo.payments.retrieve(paymentId);
+    payment = await getDodo().payments.retrieve(paymentId);
   } catch (error) {
     if (error instanceof NotFoundError) {
       return null;
@@ -212,7 +218,7 @@ export const customerPortalUrl = async (email: string): Promise<string> => {
   if (!customer) {
     throw new Error("No Dodo customer with a purchase for this email");
   }
-  const session = await dodo.customers.customerPortal.create(
+  const session = await getDodo().customers.customerPortal.create(
     customer.customer_id,
     { return_url: `${env.BETTER_AUTH_URL}${ROUTES.DASHBOARD}` }
   );

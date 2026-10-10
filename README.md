@@ -36,15 +36,15 @@ A searchable collection of AI-made motion videos and their public prompts and sk
 ```bash
 pnpm install
 cp .env.example .env
-TIMELESS_DIR="$HOME/Downloads/Timeless-Type-Family-1.094"
-mkdir -p src/assets/fonts/timeless
-cp "$TIMELESS_DIR/Sans-Grotesk/TimelessSansVF.woff2" src/assets/fonts/timeless/
-cp "$TIMELESS_DIR/LICENSE.pdf" src/assets/fonts/timeless/
 pnpm db:migrate:local
 pnpm dev
 ```
 
-Download the Timeless family from [Timeless](https://timeless.co) and adjust `TIMELESS_DIR` if it is stored elsewhere. Its license permits website embedding but prohibits publishing the fonts in a public repository, so `src/assets/fonts/timeless/` is Git-ignored. CI and deployment build environments must provision these licensed assets before building.
+The Timeless website font is served from `https://assets.motionvideo.xyz/fonts/timeless/TimelessSansVF-1.094.woff2` in the `motionvideo-assets` R2 bucket. Builds and local development do not require local font files. The licensed font remains outside the public repository and is used only for website embedding.
+
+To replace the website font, obtain the family from [Timeless](https://timeless.co), retain its license locally, and upload the WOFF2 file with `pnpm exec wrangler r2 object put motionvideo-assets/fonts/timeless/TimelessSansVF-<version>.woff2 --file <path-to-woff2> --content-type font/woff2 --cache-control 'public, max-age=31536000, immutable' --remote`. Update both `@font-face` URLs in `src/styles.css` and the preload URL in `src/routes/__root.tsx` to the same versioned asset. The asset bucket must allow cross-origin `GET` requests for browser font loading.
+
+`pnpm build` bundles the client and Worker and prerenders the seven static content pages without payment secrets. The Dodo client initializes on the first payment operation; runtime payment credentials are still required.
 
 Email templates are React Email components in `src/emails`. Preview them with `pnpm email:dev` (port 3001).
 
