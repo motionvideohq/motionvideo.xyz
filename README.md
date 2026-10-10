@@ -48,6 +48,17 @@ To replace the website font, obtain the family from [Timeless](https://timeless.
 
 Email templates are React Email components in `src/emails`. Preview them with `pnpm email:dev` (port 3001).
 
+### Cloudflare PR Previews
+
+Workers Builds uses `pnpm run build` followed by `npx wrangler preview` for non-production branches. The `previews` block in `wrangler.jsonc` supplies test-mode Dodo product IDs, the separate `motionvideo-preview` D1 database, and a separate rate-limit namespace. `preview_urls` enables workers.dev Preview hostnames while `workers_dev: false` keeps the production Worker on its custom domains.
+
+The v2 branch Preview is [feat-motionvideo-v2-motionvideo.pawaraniket508.workers.dev](https://feat-motionvideo-v2-motionvideo.pawaraniket508.workers.dev). For another branch, set `previews.vars.BETTER_AUTH_URL` to its Preview origin (`https://<normalized-branch>-motionvideo.pawaraniket508.workers.dev`) before deploying so sign-in links and checkout returns stay on that Preview.
+
+Apply staging schema changes with `pnpm db:migrate:preview` before deploying a Preview. The `env.preview` block exists only for D1 migration commands; use `wrangler preview`, not `wrangler deploy --env preview`, to publish the app. Preview branches share this staging database, but never the production database.
+
+Preview credentials are stored in Cloudflare's Previews Base configuration, separately from production secrets: `BETTER_AUTH_SECRET`, a test-mode `DODO_PAYMENTS_API_KEY`, and `DODO_PAYMENTS_WEBHOOK_KEY`. Manage them with `pnpm exec wrangler preview base-config secret put <NAME>`. Base secrets apply to new Previews; update existing ones with `pnpm exec wrangler preview secret put <NAME> --name <branch>`. No production Resend key is configured for Previews, so emails use the existing console-only development behavior.
+
+
 ## Discover, directories, and skill access
 
 - The header lists Discover and Tools, then a More menu with Creatives, Skills, and Extras (the trigger reads as current on any of them); the mobile menu lists all five sections. Search (⌘K) lists the same pages.

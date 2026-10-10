@@ -22,9 +22,9 @@
       "/terms",
     ],
   },
-  // Served only on the custom domains; auth is bound to BETTER_AUTH_URL.
+  // Production stays on the custom domains; PR Previews use workers.dev.
   "workers_dev": false,
-  "preview_urls": false,
+  "preview_urls": true,
   "routes": [
     { "pattern": "motionvideo.xyz", "custom_domain": true },
     { "pattern": "www.motionvideo.xyz", "custom_domain": true },
@@ -59,4 +59,46 @@
       "migrations_dir": "drizzle",
     },
   ],
+  // Shared staging resources, never production bindings or live payments.
+  "previews": {
+    "vars": {
+      "BETTER_AUTH_URL": "https://feat-motionvideo-v2-motionvideo.pawaraniket508.workers.dev",
+      "EMAIL_FROM": "\"MotionVideo Preview\" <hello@motionvideo.xyz>",
+      "DODO_PAYMENTS_ENVIRONMENT": "test_mode",
+      "DODO_PRODUCT_SKILL": "pdt_0NpNXXE9rdItzg65RmPaw",
+      "DODO_PRODUCT_SPONSOR_DIAMOND": "pdt_0NpNXXG0iRvbK4qeG5UeR",
+      "DODO_PRODUCT_SPONSOR_GOLD": "pdt_0NpNXXHq1i7yhGCTgtVnW",
+      "DODO_PRODUCT_SPONSOR_SILVER": "pdt_0NpNXXIhhKRcIWkr9Fc9U",
+      "DODO_LAUNCH_DISCOUNT_ID": "dsc_0NpNXXKp7dDOvjem1ATIH",
+    },
+    "ratelimits": [
+      {
+        "name": "CONTACT_LIMITER",
+        "namespace_id": "1002",
+        "simple": { "limit": 3, "period": 60 },
+      },
+    ],
+    "d1_databases": [
+      {
+        "binding": "DB",
+        "database_name": "motionvideo-preview",
+        "database_id": "f29e4238-a5d6-43ae-8f5d-63dcc9694bea",
+        "migrations_dir": "drizzle",
+      },
+    ],
+  },
+  // D1 migration commands select named environments, not the previews block.
+  "env": {
+    "preview": {
+      "routes": [],
+      "d1_databases": [
+        {
+          "binding": "DB",
+          "database_name": "motionvideo-preview",
+          "database_id": "f29e4238-a5d6-43ae-8f5d-63dcc9694bea",
+          "migrations_dir": "drizzle",
+        },
+      ],
+    },
+  },
 }
