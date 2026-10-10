@@ -1,5 +1,16 @@
-import { useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
+import {
+  useEffect,
+  useId,
+  useLayoutEffect,
+  useMemo,
+  useRef,
+  useState,
+} from "react";
 import type { ReactNode } from "react";
+
+// oxlint-disable-next-line import/no-duplicates -- ?raw is source text, not the executable module.
+import layoutMasonry from "@/lib/masonry-layout.js";
+import layoutSource from "@/lib/masonry-layout.js?raw";
 
 export interface MasonryItem {
   key: string;
@@ -8,22 +19,59 @@ export interface MasonryItem {
   node: ReactNode;
 }
 
-interface Placement {
-  item: MasonryItem;
-  lane: number;
-  top: number;
-  height: number;
-}
-
 const GAP = 12;
-const FALLBACK_HEIGHT = 380;
 // Extra pixels mounted above and below the viewport.
 const OVERSCAN = 900;
-// Columns are added at these container widths (px): 1 → 5 lanes.
-const LANE_BREAKPOINTS = [560, 900, 1200, 1600];
-// Server render and first client render agree on a typical desktop layout.
+// The fallback is only used to choose the server's initial mounted window.
 const INITIAL_WIDTH = 1280;
 const INITIAL_VIEWPORT = { scrollY: 0, height: 1000 };
+
+interface InitialLayout {
+  width: number;
+  top: number;
+  heights: Record<string, number>;
+}
+
+const readInitialLayout = (id: string): InitialLayout | undefined => {
+  if (typeof document === "undefined") {
+    return undefined;
+  }
+  const serialized = document.querySelector<HTMLElement>(
+    `#${CSS.escape(id)}`
+  )?.dataset.masonryLayout;
+  return serialized ? JSON.parse(serialized) : undefined;
+};
+
+// Run synchronously while parsing SSR HTML, before cards can paint at guessed
+// widths. Use the same layout function as React; hydration adopts its snapshot.
+const initialLayoutScript = (items: MasonryItem[]) => `
+(() => {
+  ${layoutSource.replace("export default ", "")}
+  const grid = document.currentScript.previousElementSibling;
+  const items = ${JSON.stringify(items.map(({ key, aspectRatio }) => ({ key, aspectRatio }))).replaceAll("<", "\\u003c")};
+  const width = grid.clientWidth;
+  const heights = {};
+  const cards = [...grid.children];
+  const { laneWidth } = layoutMasonry(items, width, heights);
+  for (const card of cards) card.style.width = laneWidth + "px";
+  for (const card of cards) {
+    const item = items.find(item => item.key === card.dataset.key);
+    if (!item.aspectRatio) heights[item.key] = card.getBoundingClientRect().height;
+  }
+  const { placements, totalHeight } = layoutMasonry(items, width, heights);
+  const byKey = new Map(placements.map(placement => [placement.item.key, placement]));
+  for (const card of cards) {
+    const { lane, top } = byKey.get(card.dataset.key);
+    card.style.transform = "translate(" + lane * (laneWidth + ${GAP}) + "px, " + top + "px)";
+  }
+  grid.style.height = totalHeight + "px";
+  grid.dataset.masonryLayout = JSON.stringify({
+    width,
+    top: grid.getBoundingClientRect().top + window.scrollY,
+    heights,
+  });
+})();
+`;
 
 const boxHeight = (entry: ResizeObserverEntry) =>
   entry.borderBoxSize?.[0]?.blockSize ??
@@ -35,11 +83,20 @@ const boxHeight = (entry: ResizeObserverEntry) =>
  * ratio; the rest are measured once rendered.
  */
 export const VirtualMasonry = ({ items }: { items: MasonryItem[] }) => {
+  const id = useId();
+  const initialLayout = useMemo(() => readInitialLayout(id), [id]);
+  const [initializing, setInitializing] = useState(true);
   const ref = useRef<HTMLDivElement>(null);
   const observerRef = useRef<ResizeObserver | null>(null);
-  const [layout, setLayout] = useState({ width: INITIAL_WIDTH, top: 0 });
+  const [layout, setLayout] = useState(
+    initialLayout
+      ? { width: initialLayout.width, top: initialLayout.top }
+      : { width: INITIAL_WIDTH, top: 0 }
+  );
   const [viewport, setViewport] = useState(INITIAL_VIEWPORT);
-  const [heights, setHeights] = useState<Record<string, number>>({});
+  const [heights, setHeights] = useState<Record<string, number>>(
+    initialLayout?.heights ?? {}
+  );
 
   useLayoutEffect(() => {
     const element = ref.current;
@@ -56,6 +113,8 @@ export const VirtualMasonry = ({ items }: { items: MasonryItem[] }) => {
       );
     };
     update();
+    setViewport({ scrollY: window.scrollY, height: window.innerHeight });
+    setInitializing(false);
     // Body resizes cover content above the grid moving it (header wrapping).
     const observer = new ResizeObserver(update);
     observer.observe(element);
@@ -116,58 +175,61 @@ export const VirtualMasonry = ({ items }: { items: MasonryItem[] }) => {
     return () => observer.unobserve(element);
   };
 
-  const lanes =
-    1 +
-    LANE_BREAKPOINTS.filter((breakpoint) => layout.width >= breakpoint).length;
-  const laneWidth = (layout.width - GAP * (lanes - 1)) / lanes;
-
-  const { placements, totalHeight } = useMemo(() => {
-    const ends: number[] = Array.from({ length: lanes }, () => 0);
-    const placed: Placement[] = [];
-    const place = (item: MasonryItem, lane: number) => {
-      const height = item.aspectRatio
-        ? laneWidth / item.aspectRatio
-        : (heights[item.key] ?? FALLBACK_HEIGHT);
-      placed.push({ item, lane, top: ends[lane] ?? 0, height });
-      ends[lane] = (ends[lane] ?? 0) + height + GAP;
-    };
-    for (const item of items) {
-      // Shortest lane; ties go left so the first row fills left to right.
-      let lane = 0;
-      for (let candidate = 1; candidate < lanes; candidate += 1) {
-        if ((ends[candidate] ?? 0) < (ends[lane] ?? 0)) {
-          lane = candidate;
-        }
-      }
-      place(item, lane);
-    }
-    return {
-      placements: placed,
-      totalHeight: Math.max(0, ...ends) - (placed.length > 0 ? GAP : 0),
-    };
-  }, [items, lanes, laneWidth, heights]);
+  const { placements, totalHeight, laneWidth } = useMemo(
+    () => layoutMasonry(items, layout.width, heights),
+    [items, layout.width, heights]
+  );
+  // Hydrate exactly the cards emitted by the server. The parser-time script
+  // has already placed them; switch to the real scroll window before paint.
+  const initialKeys = useMemo(
+    () =>
+      initializing
+        ? new Set(
+            layoutMasonry(items, INITIAL_WIDTH, {})
+              .placements.filter(
+                ({ top }) => top < INITIAL_VIEWPORT.height + OVERSCAN
+              )
+              .map(({ item }) => item.key)
+          )
+        : undefined,
+    [items, initializing]
+  );
+  const script = useMemo(() => initialLayoutScript(items), [items]);
 
   const start = viewport.scrollY - layout.top - OVERSCAN;
   const end = viewport.scrollY - layout.top + viewport.height + OVERSCAN;
 
   return (
-    <div ref={ref} className="relative w-full" style={{ height: totalHeight }}>
-      {placements
-        .filter(({ top, height }) => top < end && top + height > start)
-        .map(({ item, lane, top }) => (
-          <div
-            key={item.key}
-            ref={item.aspectRatio ? undefined : observe}
-            data-key={item.key}
-            className="absolute top-0 left-0"
-            style={{
-              width: laneWidth,
-              transform: `translate(${lane * (laneWidth + GAP)}px, ${top}px)`,
-            }}
-          >
-            {item.node}
-          </div>
-        ))}
-    </div>
+    <>
+      <div
+        id={id}
+        ref={ref}
+        data-masonry-layout={initialLayout && JSON.stringify(initialLayout)}
+        className="relative w-full"
+        style={{ height: totalHeight }}
+      >
+        {placements
+          .filter(({ item, top, height }) =>
+            initialKeys
+              ? initialKeys.has(item.key)
+              : top < end && top + height > start
+          )
+          .map(({ item, lane, top }) => (
+            <div
+              key={item.key}
+              ref={item.aspectRatio ? undefined : observe}
+              data-key={item.key}
+              className="absolute top-0 left-0"
+              style={{
+                width: laneWidth,
+                transform: `translate(${lane * (laneWidth + GAP)}px, ${top}px)`,
+              }}
+            >
+              {item.node}
+            </div>
+          ))}
+      </div>
+      <script>{script}</script>
+    </>
   );
 };
