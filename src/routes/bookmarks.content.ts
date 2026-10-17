@@ -12,6 +12,7 @@ export default {
       ko: "북마크",
       ja: "ブックマーク",
       de: "Merkliste",
+      pt: "Guardados",
     }),
     intro: t({
       en: "Videos, tools, creatives, skills, and extras you saved, newest first.",
@@ -21,6 +22,7 @@ export default {
       ko: "저장한 동영상, 도구, 크리에이티브, 스킬, 기타 자료를 최신순으로 보여 줍니다.",
       ja: "保存した動画、ツール、クリエイティブ、スキル、エクストラ（新しい順）。",
       de: "Videos, Tools, Creatives, Skills und Extras, die du gemerkt hast, neueste zuerst.",
+      pt: "Vídeos, ferramentas, criativos, skills e extras que guardaste, os mais recentes primeiro.",
     }),
     filterKind: t({
       en: "Filter by type",
@@ -30,6 +32,7 @@ export default {
       ko: "유형으로 필터",
       ja: "種類で絞り込む",
       de: "Nach Typ filtern",
+      pt: "Filtrar por tipo",
     }),
     all: t({
       en: "All",
@@ -39,6 +42,7 @@ export default {
       ko: "전체",
       ja: "すべて",
       de: "Alle",
+      pt: "Tudo",
     }),
     // Chip labels, keyed by bookmark kind.
     kinds: {
@@ -50,6 +54,7 @@ export default {
         ko: "동영상",
         ja: "動画",
         de: "Videos",
+        pt: "Vídeos",
       }),
       tool: t({
         en: "Tools",
@@ -59,6 +64,7 @@ export default {
         ko: "도구",
         ja: "ツール",
         de: "Tools",
+        pt: "Ferramentas",
       }),
       studio: t({
         en: "Creatives",
@@ -68,6 +74,7 @@ export default {
         ko: "크리에이티브",
         ja: "クリエイティブ",
         de: "Creatives",
+        pt: "Criativos",
       }),
       skill: t({
         en: "Skills",
@@ -77,6 +84,7 @@ export default {
         ko: "스킬",
         ja: "スキル",
         de: "Skills",
+        pt: "Skills",
       }),
       extra: t({
         en: "Extras",
@@ -86,6 +94,7 @@ export default {
         ko: "기타 자료",
         ja: "エクストラ",
         de: "Extras",
+        pt: "Extras",
       }),
     },
     emptyTitle: t({
@@ -96,6 +105,7 @@ export default {
       ko: "아직 북마크가 없습니다",
       ja: "ブックマークはまだありません",
       de: "Noch nichts gemerkt",
+      pt: "Ainda não tens guardados",
     }),
     emptyDescription: t({
       en: "Use the bookmark button on any video, tool, creative, skill, or extra to save it here.",
@@ -105,6 +115,7 @@ export default {
       ko: "동영상, 도구, 크리에이티브, 스킬, 기타 자료의 북마크 버튼을 눌러 여기에 저장하세요.",
       ja: "動画、ツール、クリエイティブ、スキル、エクストラのブックマークボタンを押すと、ここに保存されます。",
       de: "Nutze den Merken-Button bei einem Video, Tool, Creative, Skill oder Extra, um es hier zu speichern.",
+      pt: "Usa o botão de guardar em qualquer vídeo, ferramenta, criativo, skill ou extra para o guardares aqui.",
     }),
     discover: t({
       en: "Discover videos",
@@ -114,6 +125,7 @@ export default {
       ko: "동영상 둘러보기",
       ja: "動画を見つける",
       de: "Videos entdecken",
+      pt: "Descobrir vídeos",
     }),
   },
 } satisfies Dictionary;

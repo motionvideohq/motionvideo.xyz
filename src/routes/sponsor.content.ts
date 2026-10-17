@@ -12,6 +12,7 @@ export default {
       ko: "플랜 보기",
       ja: "プランを見る",
       de: "Tarife ansehen",
+      pt: "Ver planos",
     }),
     limited: t({
       en: "Limited availability",
@@ -21,6 +22,7 @@ export default {
       ko: "한정 수량",
       ja: "数量限定",
       de: "Begrenzt verfügbar",
+      pt: "Disponibilidade limitada",
     }),
     pitch: t({
       en: "Reach the people who make product films and motion design with AI and code.",
@@ -30,6 +32,7 @@ export default {
       ko: "AI와 코드로 제품 영상과 모션 디자인을 만드는 사람들에게 다가가세요.",
       ja: "AIとコードでプロダクトフィルムやモーションデザインを作る人々に届けましょう。",
       de: "Erreiche die Leute, die Produktfilme und Motion Design mit KI und Code machen.",
+      pt: "Chega a quem faz filmes de produto e motion design com IA e código.",
     }),
     note: t({
       en: "MotionVideo stays free and independent through a few labelled placements. Pick a plan below to book one.",
@@ -39,6 +42,7 @@ export default {
       ko: "MotionVideo는 표시가 붙은 몇 개의 노출 영역으로 무료이자 독립적으로 운영됩니다. 아래에서 플랜을 골라 예약하세요.",
       ja: "MotionVideoは、いくつかのラベル付き掲載枠によって無料かつ独立を保っています。下のプランを選んで予約してください。",
       de: "MotionVideo bleibt dank einiger gekennzeichneter Platzierungen kostenlos und unabhängig. Wähle unten einen Tarif, um eine zu buchen.",
+      pt: "O MotionVideo mantém-se gratuito e independente graças a alguns espaços identificados como patrocinados. Escolhe um plano abaixo para reservar um.",
     }),
     soldOut: t({
       en: "Sold out",
@@ -48,6 +52,7 @@ export default {
       ko: "매진",
       ja: "完売",
       de: "Ausverkauft",
+      pt: "Esgotado",
     }),
     sponsors: t({
       en: "Sponsors",
@@ -57,6 +62,7 @@ export default {
       ko: "스폰서",
       ja: "スポンサー",
       de: "Sponsoren",
+      pt: "Patrocinadores",
     }),
     founding: t({
       en: "Founding",
@@ -66,6 +72,7 @@ export default {
       ko: "창립",
       ja: "創設",
       de: "Gründungsmitglied",
+      pt: "Fundadores",
     }),
     takeSlot: t({
       en: "Take this slot",
@@ -75,6 +82,7 @@ export default {
       ko: "이 자리 차지하기",
       ja: "この枠を確保",
       de: "Diesen Platz sichern",
+      pt: "Ocupa este espaço",
     }),
     sponsorsSeats: t({
       en: "All seats are taken",
@@ -84,6 +92,7 @@ export default {
       ko: "모든 자리가 찼습니다",
       ja: "すべての枠が埋まっています",
       de: "Alle Plätze sind vergeben",
+      pt: "Todos os lugares estão ocupados",
     }),
     plans: t({
       en: "Plans",
@@ -93,6 +102,7 @@ export default {
       ko: "플랜",
       ja: "プラン",
       de: "Tarife",
+      pt: "Planos",
     }),
     perMonth: t({
       en: "/ month",
@@ -102,6 +112,7 @@ export default {
       ko: "/ 월",
       ja: "/ 月",
       de: "/ Monat",
+      pt: "/ mês",
     }),
     tiers: {
       diamond: {
@@ -113,6 +124,7 @@ export default {
           ko: "Diamond",
           ja: "ダイヤモンド",
           de: "Diamond",
+          pt: "Diamante",
         }),
         firstSponsor: t({
           en: "Be the first Diamond sponsor",
@@ -122,6 +134,7 @@ export default {
           ko: "첫 Diamond 스폰서가 되어 보세요",
           ja: "最初のダイヤモンドスポンサーになる",
           de: "Werde der erste Diamond-Sponsor",
+          pt: "Sê o primeiro patrocinador Diamante",
         }),
         join: t({
           en: "Become a Diamond sponsor",
@@ -131,6 +144,7 @@ export default {
           ko: "Diamond 스폰서 되기",
           ja: "ダイヤモンドスポンサーになる",
           de: "Werde Diamond-Sponsor",
+          pt: "Torna-te patrocinador Diamante",
         }),
         choose: t({
           en: "Choose Diamond",
@@ -140,6 +154,7 @@ export default {
           ko: "Diamond 선택",
           ja: "ダイヤモンドを選択",
           de: "Diamond wählen",
+          pt: "Escolher Diamante",
         }),
         perks: [
           t({
@@ -150,6 +165,7 @@ export default {
             ko: "스폰서 페이지에 로고 표시",
             ja: "スポンサーページにロゴを掲載",
             de: "Dein Logo auf der Sponsorenseite",
+            pt: "O teu logótipo na página de patrocinadores",
           }),
           t({
             en: "The sponsored card on every page, shown first",
@@ -159,6 +175,7 @@ export default {
             ko: "모든 페이지에 스폰서 카드를 맨 먼저 표시",
             ja: "全ページでスポンサーカードを最初に表示",
             de: "Die gesponserte Karte auf jeder Seite, an erster Stelle",
+            pt: "O cartão patrocinado em todas as páginas, em primeiro lugar",
           }),
           t({
             en: "Your logo in the sponsor slots on every page",
@@ -168,6 +185,7 @@ export default {
             ko: "모든 페이지의 스폰서 영역에 로고 표시",
             ja: "全ページのスポンサー枠にロゴを掲載",
             de: "Dein Logo in den Sponsorplätzen auf jeder Seite",
+            pt: "O teu logótipo nos espaços de patrocínio de todas as páginas",
           }),
           t({
             en: "A shoutout on X",
@@ -177,6 +195,7 @@ export default {
             ko: "X에서 소개",
             ja: "Xで紹介",
             de: "Ein Shoutout auf X",
+            pt: "Uma menção no X",
           }),
         ],
       },
@@ -189,6 +208,7 @@ export default {
           ko: "Gold",
           ja: "ゴールド",
           de: "Gold",
+          pt: "Ouro",
         }),
         firstSponsor: t({
           en: "Be the first Gold sponsor",
@@ -198,6 +218,7 @@ export default {
           ko: "첫 Gold 스폰서가 되어 보세요",
           ja: "最初のゴールドスポンサーになる",
           de: "Werde der erste Gold-Sponsor",
+          pt: "Sê o primeiro patrocinador Ouro",
         }),
         join: t({
           en: "Become a Gold sponsor",
@@ -207,6 +228,7 @@ export default {
           ko: "Gold 스폰서 되기",
           ja: "ゴールドスポンサーになる",
           de: "Werde Gold-Sponsor",
+          pt: "Torna-te patrocinador Ouro",
         }),
         choose: t({
           en: "Choose Gold",
@@ -216,6 +238,7 @@ export default {
           ko: "Gold 선택",
           ja: "ゴールドを選択",
           de: "Gold wählen",
+          pt: "Escolher Ouro",
         }),
         perks: [
           t({
@@ -226,6 +249,7 @@ export default {
             ko: "스폰서 페이지에 로고 표시",
             ja: "スポンサーページにロゴを掲載",
             de: "Dein Logo auf der Sponsorenseite",
+            pt: "O teu logótipo na página de patrocinadores",
           }),
           t({
             en: "The sponsored card on your category’s page, after Diamond",
@@ -235,6 +259,7 @@ export default {
             ko: "카테고리 페이지에 Diamond 다음으로 스폰서 카드 표시",
             ja: "カテゴリページでダイヤモンドの次にスポンサーカードを表示",
             de: "Die gesponserte Karte auf der Seite deiner Kategorie, nach Diamond",
+            pt: "O cartão patrocinado na página da tua categoria, depois do Diamante",
           }),
           t({
             en: "Your logo in that page’s sponsor slots",
@@ -244,6 +269,7 @@ export default {
             ko: "해당 페이지의 스폰서 영역에 로고 표시",
             ja: "そのページのスポンサー枠にロゴを掲載",
             de: "Dein Logo in den Sponsorplätzen dieser Seite",
+            pt: "O teu logótipo nos espaços de patrocínio dessa página",
           }),
           t({
             en: "A shoutout on X",
@@ -253,6 +279,7 @@ export default {
             ko: "X에서 소개",
             ja: "Xで紹介",
             de: "Ein Shoutout auf X",
+            pt: "Uma menção no X",
           }),
         ],
       },
@@ -265,6 +292,7 @@ export default {
           ko: "Silver",
           ja: "シルバー",
           de: "Silver",
+          pt: "Prata",
         }),
         firstSponsor: t({
           en: "Be the first Silver sponsor",
@@ -274,6 +302,7 @@ export default {
           ko: "첫 Silver 스폰서가 되어 보세요",
           ja: "最初のシルバースポンサーになる",
           de: "Werde der erste Silver-Sponsor",
+          pt: "Sê o primeiro patrocinador Prata",
         }),
         join: t({
           en: "Become a Silver sponsor",
@@ -283,6 +312,7 @@ export default {
           ko: "Silver 스폰서 되기",
           ja: "シルバースポンサーになる",
           de: "Werde Silver-Sponsor",
+          pt: "Torna-te patrocinador Prata",
         }),
         choose: t({
           en: "Choose Silver",
@@ -292,6 +322,7 @@ export default {
           ko: "Silver 선택",
           ja: "シルバーを選択",
           de: "Silver wählen",
+          pt: "Escolher Prata",
         }),
         perks: [
           t({
@@ -302,6 +333,7 @@ export default {
             ko: "스폰서 페이지에 로고 표시",
             ja: "スポンサーページにロゴを掲載",
             de: "Dein Logo auf der Sponsorenseite",
+            pt: "O teu logótipo na página de patrocinadores",
           }),
           t({
             en: "The sponsored card on your category’s page, after Diamond and Gold",
@@ -311,6 +343,7 @@ export default {
             ko: "카테고리 페이지에 Diamond와 Gold 다음으로 스폰서 카드 표시",
             ja: "カテゴリページでダイヤモンドとゴールドの次にスポンサーカードを表示",
             de: "Die gesponserte Karte auf der Seite deiner Kategorie, nach Diamond und Gold",
+            pt: "O cartão patrocinado na página da tua categoria, depois do Diamante e do Ouro",
           }),
         ],
       },
@@ -323,6 +356,7 @@ export default {
       ko: "최대 효과",
       ja: "最も効果的",
       de: "Größte Wirkung",
+      pt: "Maior impacto",
     }),
     customTitle: t({
       en: "Questions, or need a custom package?",
@@ -332,6 +366,7 @@ export default {
       ko: "문의 사항이나 맞춤 패키지가 필요하신가요?",
       ja: "ご質問、またはカスタムパッケージをご希望ですか？",
       de: "Fragen oder Bedarf an einem individuellen Paket?",
+      pt: "Dúvidas ou precisas de um pacote personalizado?",
     }),
     customBody: t({
       en: "Happy to put something together that fits what you have in mind. Reach out directly.",
@@ -341,6 +376,7 @@ export default {
       ko: "원하시는 방향에 맞춰 기꺼이 구성해 드립니다. 직접 연락 주세요.",
       ja: "ご希望に合わせたプランを喜んでご用意します。直接ご連絡ください。",
       de: "Gern stelle ich etwas zusammen, das zu deinen Vorstellungen passt. Melde dich direkt.",
+      pt: "Terei todo o gosto em preparar algo que se ajuste ao que tens em mente. Contacta-me diretamente.",
     }),
     email: t({
       en: "Email me",
@@ -350,6 +386,7 @@ export default {
       ko: "이메일 보내기",
       ja: "メールする",
       de: "Schreib mir",
+      pt: "Envia-me um e-mail",
     }),
     dmX: t({
       en: "DM on X",
@@ -359,6 +396,7 @@ export default {
       ko: "X로 DM",
       ja: "XでDM",
       de: "DM auf X",
+      pt: "DM no X",
     }),
     faq: t({
       en: "Frequently asked questions",
@@ -368,6 +406,7 @@ export default {
       ko: "자주 묻는 질문",
       ja: "よくある質問",
       de: "Häufige Fragen",
+      pt: "Perguntas frequentes",
     }),
     faqs: [
       {
@@ -379,6 +418,7 @@ export default {
           ko: "스폰서가 되면 작업물이 카탈로그에 실리나요?",
           ja: "スポンサーになると作品がカタログに掲載されますか？",
           de: "Bringt mich ein Sponsoring in den Katalog?",
+          pt: "Patrocinar faz com que o meu trabalho entre no catálogo?",
         }),
         answer: t({
           en: "No. Videos, tools, and creatives are picked on merit and none was paid for. Sponsoring buys the placements above, nothing else.",
@@ -388,6 +428,7 @@ export default {
           ko: "아니요. 동영상, 도구, 크리에이티브는 품질로 선정되며 돈을 받고 실은 것은 없습니다. 스폰서십으로 구매하는 것은 위의 노출 영역뿐입니다.",
           ja: "いいえ。動画、ツール、クリエイティブは内容で選ばれており、有料で掲載されたものはありません。スポンサーで買えるのは上記の掲載枠だけです。",
           de: "Nein. Videos, Tools und Creatives werden nach Qualität ausgewählt, und für keines wurde bezahlt. Ein Sponsoring kauft die oben genannten Platzierungen, sonst nichts.",
+          pt: "Não. Os vídeos, ferramentas e criativos são escolhidos por mérito e nenhum foi pago. Patrocinar compra os espaços acima, nada mais.",
         }),
       },
       {
@@ -399,6 +440,7 @@ export default {
           ko: "스폰서 표시가 붙나요?",
           ja: "スポンサーであることは表示されますか？",
           de: "Ist es als gesponsert gekennzeichnet?",
+          pt: "Está identificado como patrocinado?",
         }),
         answer: t({
           en: 'Yes, on the page and as rel="sponsored" in the markup.',
@@ -408,6 +450,7 @@ export default {
           ko: '네, 페이지에 표시되고 마크업에도 rel="sponsored"로 지정됩니다.',
           ja: 'はい。ページ上で表示され、マークアップにはrel="sponsored"が付与されます。',
           de: 'Ja, auf der Seite und als rel="sponsored" im Markup.',
+          pt: 'Sim, na página e como rel="sponsored" no código.',
         }),
       },
       {
@@ -419,6 +462,7 @@ export default {
           ko: "무엇을 준비해야 하나요?",
           ja: "何を用意すればよいですか？",
           de: "Was brauchst du von mir?",
+          pt: "De que precisas da minha parte?",
         }),
         answer: t({
           en: "A square mark, a name, a link, one line of copy, a cover image, and a category for Gold and Silver. You add them before checkout and can change them anytime on your Sponsorships page; the placement goes live once we have reviewed it.",
@@ -428,6 +472,7 @@ export default {
           ko: "정사각형 마크, 이름, 링크, 한 줄 문구, 커버 이미지, 그리고 Gold와 Silver는 카테고리. 결제 전에 입력하며 스폰서십 페이지에서 언제든 변경할 수 있습니다. 노출은 검토 후 게시됩니다.",
           ja: "正方形のマーク、名前、リンク、1行のコピー、カバー画像、そしてゴールドとシルバーの場合はカテゴリです。購入前に追加し、スポンサーシップページでいつでも変更できます。掲載は審査後に公開されます。",
           de: "Ein quadratisches Logo, einen Namen, einen Link, eine Textzeile, ein Coverbild und bei Gold und Silver eine Kategorie. Du fügst sie vor dem Checkout hinzu und kannst sie jederzeit auf deiner Sponsoring-Seite ändern; die Platzierung geht live, sobald wir sie geprüft haben.",
+          pt: "Um símbolo quadrado, um nome, uma ligação, uma linha de texto, uma imagem de capa e uma categoria para Ouro e Prata. Adiciona-os antes de pagar e podes alterá-los a qualquer momento na tua página de Patrocínios; o espaço fica visível assim que o tivermos revisto.",
         }),
       },
       {
@@ -439,6 +484,7 @@ export default {
           ko: "중단할 수 있나요?",
           ja: "やめることはできますか？",
           de: "Kann ich aufhören?",
+          pt: "Posso parar?",
         }),
         answer: t({
           en: "Whenever you want. Monthly plans cancel anytime, and a one-off run simply ends after its 30 days. Billing runs through Dodo Payments, our merchant of record.",
@@ -448,6 +494,7 @@ export default {
           ko: "언제든 가능합니다. 월 플랜은 언제든 취소할 수 있고, 1회 기간은 30일 후 자동으로 끝납니다. 결제는 판매 대행자인 Dodo Payments를 통해 처리됩니다.",
           ja: "いつでも可能です。月額プランはいつでもキャンセルでき、1回限りの掲載は30日後に自動的に終了します。請求は販売事業者であるDodo Paymentsを通じて行われます。",
           de: "Wann immer du willst. Monatliche Tarife sind jederzeit kündbar, und eine einmalige Laufzeit endet einfach nach 30 Tagen. Die Abrechnung läuft über Dodo Payments, unseren Merchant of Record.",
+          pt: "Quando quiseres. Os planos mensais podem ser cancelados a qualquer momento e um período único termina simplesmente ao fim de 30 dias. A faturação é processada pela Dodo Payments, o nosso comerciante registado (merchant of record).",
         }),
       },
     ],

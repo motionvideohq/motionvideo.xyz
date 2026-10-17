@@ -12,6 +12,7 @@ export default {
       ko: "모션 라이브러리",
       ja: "モーションライブラリ",
       de: "Die Motion-Bibliothek",
+      pt: "A biblioteca de motion",
     }),
     title: t({
       en: "Motion worth making.",
@@ -21,6 +22,7 @@ export default {
       ko: "만들 가치가 있는 모션.",
       ja: "作る価値のあるモーション。",
       de: "Motion, die sich lohnt.",
+      pt: "Motion que vale a pena fazer.",
     }),
     intro: t({
       en: "AI-made motion videos with the prompts and skills behind them. Find one and make it your own.",
@@ -30,6 +32,7 @@ export default {
       ko: "AI로 만든 모션 동영상과 그 뒤의 프롬프트와 스킬. 마음에 드는 것을 찾아 내 것으로 만들어 보세요.",
       ja: "AIで作られたモーション動画と、その裏にあるプロンプトとスキル。気に入ったものを見つけて、自分のものにしましょう。",
       de: "KI-generierte Motion-Videos mit den Prompts und Skills dahinter. Such dir eins aus und mach es zu deinem.",
+      pt: "Vídeos de motion feitos com IA, com os prompts e as skills por trás deles. Encontra um e torna-o teu.",
     }),
     submitVideo: t({
       en: "Submit a video",
@@ -39,6 +42,7 @@ export default {
       ko: "동영상 제출",
       ja: "動画を投稿",
       de: "Video einreichen",
+      pt: "Submeter um vídeo",
     }),
     surprise: t({
       en: "Surprise me",
@@ -48,6 +52,7 @@ export default {
       ko: "랜덤 보기",
       ja: "おまかせ",
       de: "Überrasch mich",
+      pt: "Surpreende-me",
     }),
     browse: t({
       en: "Explore the collection",
@@ -57,6 +62,7 @@ export default {
       ko: "컬렉션 둘러보기",
       ja: "コレクションを見る",
       de: "Sammlung erkunden",
+      pt: "Explorar a coleção",
     }),
     all: t({
       en: "All",
@@ -66,6 +72,7 @@ export default {
       ko: "전체",
       ja: "すべて",
       de: "Alle",
+      pt: "Todos",
     }),
     prompt: t({
       en: "Prompt",
@@ -75,6 +82,7 @@ export default {
       ko: "프롬프트",
       ja: "プロンプト",
       de: "Prompt",
+      pt: "Prompt",
     }),
     skill: t({
       en: "Skill",
@@ -84,6 +92,7 @@ export default {
       ko: "스킬",
       ja: "スキル",
       de: "Skill",
+      pt: "Skill",
     }),
     filterType: t({
       en: "Filter by resource",
@@ -93,6 +102,7 @@ export default {
       ko: "리소스로 필터",
       ja: "リソースで絞り込む",
       de: "Nach Ressource filtern",
+      pt: "Filtrar por recurso",
     }),
     filterCategory: t({
       en: "Filter by category",
@@ -102,6 +112,7 @@ export default {
       ko: "카테고리로 필터",
       ja: "カテゴリで絞り込む",
       de: "Nach Kategorie filtern",
+      pt: "Filtrar por categoria",
     }),
     sort: t({
       en: "Sort videos",
@@ -111,6 +122,7 @@ export default {
       ko: "동영상 정렬",
       ja: "動画を並べ替え",
       de: "Videos sortieren",
+      pt: "Ordenar vídeos",
     }),
     popular: t({
       en: "Popular",
@@ -120,6 +132,7 @@ export default {
       ko: "인기순",
       ja: "人気順",
       de: "Beliebt",
+      pt: "Populares",
     }),
     newest: t({
       en: "Newest first",
@@ -129,6 +142,7 @@ export default {
       ko: "최신순",
       ja: "新しい順",
       de: "Neueste zuerst",
+      pt: "Mais recentes primeiro",
     }),
     oldest: t({
       en: "Oldest first",
@@ -138,6 +152,7 @@ export default {
       ko: "오래된순",
       ja: "古い順",
       de: "Älteste zuerst",
+      pt: "Mais antigos primeiro",
     }),
     pause: t({
       en: "Pause previews",
@@ -147,6 +162,7 @@ export default {
       ko: "미리보기 일시정지",
       ja: "プレビューを一時停止",
       de: "Vorschauen pausieren",
+      pt: "Pausar pré-visualizações",
     }),
     play: t({
       en: "Play previews",
@@ -156,6 +172,7 @@ export default {
       ko: "미리보기 재생",
       ja: "プレビューを再生",
       de: "Vorschauen abspielen",
+      pt: "Reproduzir pré-visualizações",
     }),
     noResults: t({
       en: "No videos found.",
@@ -165,6 +182,7 @@ export default {
       ko: "동영상이 없습니다.",
       ja: "動画が見つかりません。",
       de: "Keine Videos gefunden.",
+      pt: "Nenhum vídeo encontrado.",
     }),
     tryAgain: t({
       en: "Try another category or resource type.",
@@ -174,6 +192,7 @@ export default {
       ko: "다른 카테고리나 리소스 유형을 선택해 보세요.",
       ja: "別のカテゴリやリソースの種類をお試しください。",
       de: "Probier eine andere Kategorie oder einen anderen Ressourcentyp.",
+      pt: "Experimenta outra categoria ou tipo de recurso.",
     }),
     watch: t({
       en: "Watch video",
@@ -183,6 +202,7 @@ export default {
       ko: "동영상 보기",
       ja: "動画を見る",
       de: "Video ansehen",
+      pt: "Ver vídeo",
     }),
     open: t({
       en: "Open",
@@ -192,6 +212,7 @@ export default {
       ko: "열기",
       ja: "開く",
       de: "Öffnen",
+      pt: "Abrir",
     }),
     previous: t({
       en: "Previous video",
@@ -201,6 +222,7 @@ export default {
       ko: "이전 동영상",
       ja: "前の動画",
       de: "Vorheriges Video",
+      pt: "Vídeo anterior",
     }),
     next: t({
       en: "Next video",
@@ -210,6 +232,7 @@ export default {
       ko: "다음 동영상",
       ja: "次の動画",
       de: "Nächstes Video",
+      pt: "Vídeo seguinte",
     }),
     noPrevious: t({
       en: "This is the first video",
@@ -219,6 +242,7 @@ export default {
       ko: "첫 번째 동영상입니다",
       ja: "最初の動画です",
       de: "Das ist das erste Video",
+      pt: "Este é o primeiro vídeo",
     }),
     noNext: t({
       en: "This is the last video",
@@ -228,6 +252,7 @@ export default {
       ko: "마지막 동영상입니다",
       ja: "最後の動画です",
       de: "Das ist das letzte Video",
+      pt: "Este é o último vídeo",
     }),
     creator: t({
       en: "Creator",
@@ -237,6 +262,7 @@ export default {
       ko: "크리에이터",
       ja: "クリエイター",
       de: "Creator",
+      pt: "Criador",
     }),
     close: t({
       en: "Close video",
@@ -246,6 +272,7 @@ export default {
       ko: "동영상 닫기",
       ja: "動画を閉じる",
       de: "Video schließen",
+      pt: "Fechar vídeo",
     }),
     copy: t({
       en: "Copy prompt",
@@ -255,6 +282,7 @@ export default {
       ko: "프롬프트 복사",
       ja: "プロンプトをコピー",
       de: "Prompt kopieren",
+      pt: "Copiar prompt",
     }),
     // Beside the "Prompt" heading in the detail view, where "prompt" is implied.
     copyShort: t({
@@ -265,6 +293,7 @@ export default {
       ko: "복사",
       ja: "コピー",
       de: "Kopieren",
+      pt: "Copiar",
     }),
     copied: t({
       en: "Copied",
@@ -274,6 +303,7 @@ export default {
       ko: "복사됨",
       ja: "コピーしました",
       de: "Kopiert",
+      pt: "Copiado",
     }),
     copyError: t({
       en: "Clipboard unavailable. Select and copy the prompt below.",
@@ -283,6 +313,7 @@ export default {
       ko: "클립보드를 사용할 수 없습니다. 아래 프롬프트를 선택해 복사하세요.",
       ja: "クリップボードを使用できません。下のプロンプトを選択してコピーしてください。",
       de: "Zwischenablage nicht verfügbar. Markiere den Prompt unten und kopiere ihn.",
+      pt: "Área de transferência indisponível. Seleciona e copia o prompt abaixo.",
     }),
     questions: t({
       en: "Questions, credit, or want this removed?",
@@ -292,6 +323,7 @@ export default {
       ko: "문의, 출처 표기, 삭제 요청이 있으신가요?",
       ja: "ご質問、クレジット、削除のご希望はありますか？",
       de: "Fragen, Nennung oder Entfernung gewünscht?",
+      pt: "Dúvidas, créditos ou queres que seja removido?",
     }),
     contactUs: t({
       en: "Contact us",
@@ -301,6 +333,7 @@ export default {
       ko: "문의하기",
       ja: "お問い合わせ",
       de: "Kontaktiere uns",
+      pt: "Contacta-nos",
     }),
     unavailablePrompt: t({
       en: "The prompt is not published in this collection. Check the creator’s original post for more context.",
@@ -310,6 +343,7 @@ export default {
       ko: "이 컬렉션에는 프롬프트가 공개되어 있지 않습니다. 자세한 내용은 크리에이터의 원본 게시물을 확인하세요.",
       ja: "このコレクションではプロンプトを公開していません。詳しくはクリエイターの元の投稿をご確認ください。",
       de: "Der Prompt ist in dieser Sammlung nicht veröffentlicht. Mehr Kontext findest du im Originalbeitrag des Creators.",
+      pt: "O prompt não está publicado nesta coleção. Consulta a publicação original do criador para mais contexto.",
     }),
     viewSkill: t({
       en: "View creator’s skill",
@@ -319,6 +353,7 @@ export default {
       ko: "크리에이터의 스킬 보기",
       ja: "クリエイターのスキルを見る",
       de: "Skill des Creators ansehen",
+      pt: "Ver skill do criador",
     }),
     viewSource: t({
       en: "View source",
@@ -328,6 +363,7 @@ export default {
       ko: "출처 보기",
       ja: "ソースを見る",
       de: "Quelle ansehen",
+      pt: "Ver fonte",
     }),
     openOnX: t({
       en: "Open on X",
@@ -337,6 +373,7 @@ export default {
       ko: "X에서 열기",
       ja: "Xで開く",
       de: "Auf X öffnen",
+      pt: "Abrir no X",
     }),
     watchOnYouTube: t({
       en: "Watch on YouTube",
@@ -346,6 +383,7 @@ export default {
       ko: "YouTube에서 보기",
       ja: "YouTubeで見る",
       de: "Auf YouTube ansehen",
+      pt: "Ver no YouTube",
     }),
     viewOnGitHub: t({
       en: "View on GitHub",
@@ -355,6 +393,7 @@ export default {
       ko: "GitHub에서 보기",
       ja: "GitHubで見る",
       de: "Auf GitHub ansehen",
+      pt: "Ver no GitHub",
     }),
     visitWebsite: t({
       en: "Visit website",
@@ -364,6 +403,7 @@ export default {
       ko: "웹사이트 방문",
       ja: "ウェブサイトを見る",
       de: "Website besuchen",
+      pt: "Visitar site",
     }),
     sponsored: t({
       en: "Sponsored",
@@ -373,6 +413,7 @@ export default {
       ko: "스폰서",
       ja: "スポンサー",
       de: "Gesponsert",
+      pt: "Patrocinado",
     }),
     category: t({
       en: "Category",
@@ -382,6 +423,7 @@ export default {
       ko: "카테고리",
       ja: "カテゴリ",
       de: "Kategorie",
+      pt: "Categoria",
     }),
     type: t({
       en: "Type",
@@ -391,6 +433,7 @@ export default {
       ko: "유형",
       ja: "種類",
       de: "Typ",
+      pt: "Tipo",
     }),
     previewError: t({
       en: "Preview unavailable",
@@ -400,6 +443,7 @@ export default {
       ko: "미리보기 없음",
       ja: "プレビューを利用できません",
       de: "Vorschau nicht verfügbar",
+      pt: "Pré-visualização indisponível",
     }),
     videoError: t({
       en: "This hosted video could not load. You can still watch it in the original post.",
@@ -409,6 +453,7 @@ export default {
       ko: "호스팅된 동영상을 불러오지 못했습니다. 원본 게시물에서 볼 수 있습니다.",
       ja: "この動画を読み込めませんでした。元の投稿で視聴できます。",
       de: "Dieses gehostete Video konnte nicht geladen werden. Du kannst es weiterhin im Originalbeitrag ansehen.",
+      pt: "Não foi possível carregar este vídeo alojado. Podes vê-lo na publicação original.",
     }),
     // The detail view's prompt fold and how the video was made.
     showAll: t({
@@ -419,6 +464,7 @@ export default {
       ko: "모두 보기",
       ja: "すべて表示",
       de: "Alle anzeigen",
+      pt: "Mostrar tudo",
     }),
     showLess: t({
       en: "Show less",
@@ -428,6 +474,7 @@ export default {
       ko: "간단히 보기",
       ja: "表示を減らす",
       de: "Weniger anzeigen",
+      pt: "Mostrar menos",
     }),
     model: t({
       en: "Model",
@@ -437,6 +484,7 @@ export default {
       ko: "모델",
       ja: "モデル",
       de: "Modell",
+      pt: "Modelo",
     }),
     stack: t({
       en: "Stack",
@@ -446,6 +494,7 @@ export default {
       ko: "스택",
       ja: "スタック",
       de: "Stack",
+      pt: "Stack",
     }),
     effort: t({
       en: "Effort",
@@ -455,6 +504,7 @@ export default {
       ko: "노력 수준",
       ja: "エフォート",
       de: "Aufwand",
+      pt: "Esforço",
     }),
     efforts: {
       medium: t({
@@ -465,6 +515,7 @@ export default {
         ko: "중간",
         ja: "中",
         de: "Mittel",
+        pt: "Médio",
       }),
       high: t({
         en: "High",
@@ -474,6 +525,7 @@ export default {
         ko: "높음",
         ja: "高",
         de: "Hoch",
+        pt: "Alto",
       }),
       max: t({
         en: "Max",
@@ -483,6 +535,7 @@ export default {
         ko: "최대",
         ja: "最大",
         de: "Max.",
+        pt: "Máximo",
       }),
     },
     iterations: t({
@@ -493,6 +546,7 @@ export default {
       ko: "반복",
       ja: "反復",
       de: "Iterationen",
+      pt: "Iterações",
     }),
     iterationCounts: {
       "one-shot": t({
@@ -503,6 +557,7 @@ export default {
         ko: "한 번에",
         ja: "一発",
         de: "One-Shot",
+        pt: "À primeira",
       }),
       "few-rounds": t({
         en: "A few rounds",
@@ -512,6 +567,7 @@ export default {
         ko: "몇 차례",
         ja: "数回",
         de: "Ein paar Runden",
+        pt: "Algumas rondas",
       }),
       "many-rounds": t({
         en: "Many rounds",
@@ -521,6 +577,7 @@ export default {
         ko: "여러 차례",
         ja: "多数回",
         de: "Viele Runden",
+        pt: "Muitas rondas",
       }),
     },
     categories: {
@@ -532,6 +589,7 @@ export default {
         ko: "제품 UI",
         ja: "プロダクトUI",
         de: "Produkt-UI",
+        pt: "Interface de produto",
       }),
       phone: t({
         en: "Phone",
@@ -541,6 +599,7 @@ export default {
         ko: "휴대폰",
         ja: "スマホ",
         de: "Smartphone",
+        pt: "Telemóvel",
       }),
       charts: t({
         en: "Charts",
@@ -550,6 +609,7 @@ export default {
         ko: "차트",
         ja: "チャート",
         de: "Diagramme",
+        pt: "Gráficos",
       }),
       diagrams: t({
         en: "Diagrams",
@@ -559,6 +619,7 @@ export default {
         ko: "다이어그램",
         ja: "図解",
         de: "Schaubilder",
+        pt: "Diagramas",
       }),
       "kinetic-type": t({
         en: "Kinetic type",
@@ -568,6 +629,7 @@ export default {
         ko: "키네틱 타입",
         ja: "キネティックタイポ",
         de: "Kinetische Typo",
+        pt: "Tipografia cinética",
       }),
       // Source catalog category, not an implementation-structure name.
       // oxlint-disable-next-line anti-slop/no-shape-in-symbol-names
@@ -579,6 +641,7 @@ export default {
         ko: "도형",
         ja: "シェイプ",
         de: "Formen",
+        pt: "Formas",
       }),
       particles: t({
         en: "Particles",
@@ -588,6 +651,7 @@ export default {
         ko: "파티클",
         ja: "パーティクル",
         de: "Partikel",
+        pt: "Partículas",
       }),
       characters: t({
         en: "Characters",
@@ -597,6 +661,7 @@ export default {
         ko: "캐릭터",
         ja: "キャラクター",
         de: "Figuren",
+        pt: "Personagens",
       }),
       photos: t({
         en: "Photos",
@@ -606,6 +671,7 @@ export default {
         ko: "사진",
         ja: "写真",
         de: "Fotos",
+        pt: "Fotos",
       }),
       music: t({
         en: "Music",
@@ -615,6 +681,7 @@ export default {
         ko: "음악",
         ja: "音楽",
         de: "Musik",
+        pt: "Música",
       }),
       code: t({
         en: "Code",
@@ -624,6 +691,7 @@ export default {
         ko: "코드",
         ja: "コード",
         de: "Code",
+        pt: "Código",
       }),
     },
     // Intro heading and copy on each category page, e.g. /category/product-ui.
@@ -636,6 +704,7 @@ export default {
         ko: "제품 UI 모션.",
         ja: "プロダクトUIのモーション。",
         de: "Produkt-UI in Bewegung.",
+        pt: "Motion de interfaces de produto.",
       }),
       phone: t({
         en: "Phone and app motion.",
@@ -645,6 +714,7 @@ export default {
         ko: "휴대폰 및 앱 모션.",
         ja: "スマホとアプリのモーション。",
         de: "Smartphone und Apps in Bewegung.",
+        pt: "Motion de telemóveis e apps.",
       }),
       charts: t({
         en: "Animated charts.",
@@ -654,6 +724,7 @@ export default {
         ko: "애니메이션 차트.",
         ja: "アニメーションチャート。",
         de: "Animierte Diagramme.",
+        pt: "Gráficos animados.",
       }),
       diagrams: t({
         en: "Animated diagrams.",
@@ -663,6 +734,7 @@ export default {
         ko: "애니메이션 다이어그램.",
         ja: "アニメーション図解。",
         de: "Animierte Schaubilder.",
+        pt: "Diagramas animados.",
       }),
       "kinetic-type": t({
         en: "Kinetic typography.",
@@ -672,6 +744,7 @@ export default {
         ko: "키네틱 타이포그래피.",
         ja: "キネティックタイポグラフィ。",
         de: "Kinetische Typografie.",
+        pt: "Tipografia cinética.",
       }),
       // oxlint-disable-next-line anti-slop/no-shape-in-symbol-names
       shapes: t({
@@ -682,6 +755,7 @@ export default {
         ko: "움직이는 도형.",
         ja: "動くシェイプ。",
         de: "Formen in Bewegung.",
+        pt: "Formas em movimento.",
       }),
       particles: t({
         en: "Particle animation.",
@@ -691,6 +765,7 @@ export default {
         ko: "파티클 애니메이션.",
         ja: "パーティクルアニメーション。",
         de: "Partikelanimation.",
+        pt: "Animação de partículas.",
       }),
       characters: t({
         en: "Character animation.",
@@ -700,6 +775,7 @@ export default {
         ko: "캐릭터 애니메이션.",
         ja: "キャラクターアニメーション。",
         de: "Figurenanimation.",
+        pt: "Animação de personagens.",
       }),
       photos: t({
         en: "Photos in motion.",
@@ -709,6 +785,7 @@ export default {
         ko: "움직이는 사진.",
         ja: "動く写真。",
         de: "Fotos in Bewegung.",
+        pt: "Fotos em movimento.",
       }),
       music: t({
         en: "Motion set to music.",
@@ -718,6 +795,7 @@ export default {
         ko: "음악에 맞춘 모션.",
         ja: "音楽に合わせたモーション。",
         de: "Motion zu Musik.",
+        pt: "Motion ao som de música.",
       }),
       code: t({
         en: "Code in motion.",
@@ -727,6 +805,7 @@ export default {
         ko: "움직이는 코드.",
         ja: "動くコード。",
         de: "Code in Bewegung.",
+        pt: "Código em movimento.",
       }),
     },
     categoryIntros: {
@@ -738,6 +817,7 @@ export default {
         ko: "대시보드, 앱 둘러보기, 출시 영상과 그 뒤의 프롬프트와 스킬.",
         ja: "ダッシュボード、アプリのウォークスルー、ローンチフィルムと、その裏にあるプロンプトとスキル。",
         de: "Dashboards, App-Walkthroughs und Launch-Filme – mit den Prompts und Skills dahinter.",
+        pt: "Dashboards, demonstrações de apps e filmes de lançamento, com os prompts e as skills por trás deles.",
       }),
       phone: t({
         en: "Animated app screens, device mockups and launches, with the prompts and skills behind them.",
@@ -747,6 +827,7 @@ export default {
         ko: "앱 화면 애니메이션, 기기 목업, 출시 영상과 그 뒤의 프롬프트와 스킬.",
         ja: "アニメーションするアプリ画面、デバイスモックアップ、ローンチと、その裏にあるプロンプトとスキル。",
         de: "Animierte App-Screens, Geräte-Mockups und Launches – mit den Prompts und Skills dahinter.",
+        pt: "Ecrãs de apps animados, mockups de dispositivos e lançamentos, com os prompts e as skills por trás deles.",
       }),
       charts: t({
         en: "Animated graphs, metrics and number reveals, with the prompts and skills behind them.",
@@ -756,6 +837,7 @@ export default {
         ko: "그래프, 지표, 숫자 등장 애니메이션과 그 뒤의 프롬프트와 스킬.",
         ja: "アニメーションするグラフ、指標、数字の演出と、その裏にあるプロンプトとスキル。",
         de: "Animierte Graphen, Kennzahlen und Zahlen-Reveals – mit den Prompts und Skills dahinter.",
+        pt: "Gráficos, métricas e números animados, com os prompts e as skills por trás deles.",
       }),
       diagrams: t({
         en: "Animated flows, architectures and explainers, with the prompts and skills behind them.",
@@ -765,6 +847,7 @@ export default {
         ko: "플로, 아키텍처, 설명 애니메이션과 그 뒤의 프롬프트와 스킬.",
         ja: "アニメーションするフロー、アーキテクチャ、解説と、その裏にあるプロンプトとスキル。",
         de: "Animierte Abläufe, Architekturen und Erklärvideos – mit den Prompts und Skills dahinter.",
+        pt: "Fluxos, arquiteturas e explicações animadas, com os prompts e as skills por trás deles.",
       }),
       "kinetic-type": t({
         en: "Animated text, titles and type-led videos, with the prompts and skills behind them.",
@@ -774,6 +857,7 @@ export default {
         ko: "텍스트, 타이틀, 타이포 중심 동영상과 그 뒤의 프롬프트와 스킬.",
         ja: "アニメーションするテキスト、タイトル、文字主体の動画と、その裏にあるプロンプトとスキル。",
         de: "Animierter Text, Titel und typografische Videos – mit den Prompts und Skills dahinter.",
+        pt: "Texto, títulos e vídeos tipográficos animados, com os prompts e as skills por trás deles.",
       }),
       // oxlint-disable-next-line anti-slop/no-shape-in-symbol-names
       shapes: t({
@@ -784,6 +868,7 @@ export default {
         ko: "추상 루프, 모핑 형태, 그래픽 애니메이션과 그 뒤의 프롬프트와 스킬.",
         ja: "抽象的なループ、変形するフォルム、グラフィックアニメーションと、その裏にあるプロンプトとスキル。",
         de: "Abstrakte Loops, Morphing-Formen und Grafikanimation – mit den Prompts und Skills dahinter.",
+        pt: "Loops abstratos, formas que se transformam e animação gráfica, com os prompts e as skills por trás deles.",
       }),
       particles: t({
         en: "Swarms, dots and generative motion, with the prompts and skills behind them.",
@@ -793,6 +878,7 @@ export default {
         ko: "군집, 점, 제너러티브 모션과 그 뒤의 프롬프트와 스킬.",
         ja: "群れ、ドット、ジェネラティブなモーションと、その裏にあるプロンプトとスキル。",
         de: "Schwärme, Punkte und generative Motion – mit den Prompts und Skills dahinter.",
+        pt: "Enxames, pontos e motion generativo, com os prompts e as skills por trás deles.",
       }),
       characters: t({
         en: "Mascots, avatars and illustrated motion, with the prompts and skills behind them.",
@@ -802,6 +888,7 @@ export default {
         ko: "마스코트, 아바타, 일러스트 모션과 그 뒤의 프롬프트와 스킬.",
         ja: "マスコット、アバター、イラストのモーションと、その裏にあるプロンプトとスキル。",
         de: "Maskottchen, Avatare und illustrierte Motion – mit den Prompts und Skills dahinter.",
+        pt: "Mascotes, avatares e motion ilustrado, com os prompts e as skills por trás deles.",
       }),
       photos: t({
         en: "Slideshows, collages and photo animation, with the prompts and skills behind them.",
@@ -811,6 +898,7 @@ export default {
         ko: "슬라이드쇼, 콜라주, 사진 애니메이션과 그 뒤의 프롬프트와 스킬.",
         ja: "スライドショー、コラージュ、写真アニメーションと、その裏にあるプロンプトとスキル。",
         de: "Slideshows, Collagen und Fotoanimation – mit den Prompts und Skills dahinter.",
+        pt: "Apresentações, colagens e animação de fotos, com os prompts e as skills por trás deles.",
       }),
       music: t({
         en: "Beat-synced edits, visualizers and audio-reactive motion, with the prompts and skills behind them.",
@@ -820,6 +908,7 @@ export default {
         ko: "비트 싱크 편집, 비주얼라이저, 오디오 반응형 모션과 그 뒤의 프롬프트와 스킬.",
         ja: "ビートに合わせた編集、ビジュアライザー、音に反応するモーションと、その裏にあるプロンプトとスキル。",
         de: "Beat-synchrone Edits, Visualizer und audioreaktive Motion – mit den Prompts und Skills dahinter.",
+        pt: "Edições sincronizadas com a batida, visualizadores e motion reativo ao áudio, com os prompts e as skills por trás deles.",
       }),
       code: t({
         en: "Animated editors, terminals and dev tool launches, with the prompts and skills behind them.",
@@ -829,6 +918,7 @@ export default {
         ko: "에디터, 터미널, 개발 도구 출시 애니메이션과 그 뒤의 프롬프트와 스킬.",
         ja: "アニメーションするエディター、ターミナル、開発ツールのローンチと、その裏にあるプロンプトとスキル。",
         de: "Animierte Editoren, Terminals und Dev-Tool-Launches – mit den Prompts und Skills dahinter.",
+        pt: "Editores, terminais e lançamentos de ferramentas de programação animados, com os prompts e as skills por trás deles.",
       }),
     },
   },

@@ -14,6 +14,7 @@ export default {
       ko: "브랜드",
       ja: "ブランド",
       de: "Marke",
+      pt: "Marca",
     }),
     intro: t({
       en: `Logos and colors for writing about ${SITE.NAME}. There is a logomark only; set the name in plain text next to it.`,
@@ -23,6 +24,7 @@ export default {
       ko: `${SITE.NAME}에 대해 글을 쓸 때 사용할 로고와 색상입니다. 로고마크만 있으니, 이름은 옆에 일반 텍스트로 적어 주세요.`,
       ja: `${SITE.NAME}について書く際のロゴと色です。ロゴマークのみ用意しています。名前はその横にプレーンテキストで記載してください。`,
       de: `Logos und Farben für Beiträge über ${SITE.NAME}. Es gibt nur eine Bildmarke; setze den Namen in normalem Text daneben.`,
+      pt: `Logótipos e cores para escrever sobre o ${SITE.NAME}. Existe apenas um símbolo; escreve o nome em texto simples ao lado dele.`,
     }),
     logomark: t({
       en: "Logomark",
@@ -32,6 +34,7 @@ export default {
       ko: "로고마크",
       ja: "ロゴマーク",
       de: "Bildmarke",
+      pt: "Símbolo",
     }),
     assetNames: [
       t({
@@ -42,6 +45,7 @@ export default {
         ko: "로고마크, 검정",
         ja: "ロゴマーク（黒）",
         de: "Bildmarke, schwarz",
+        pt: "Símbolo, preto",
       }),
       t({
         en: "Logomark, white",
@@ -51,6 +55,7 @@ export default {
         ko: "로고마크, 흰색",
         ja: "ロゴマーク（白）",
         de: "Bildmarke, weiß",
+        pt: "Símbolo, branco",
       }),
       t({
         en: "App icon",
@@ -60,6 +65,7 @@ export default {
         ko: "앱 아이콘",
         ja: "アプリアイコン",
         de: "App-Icon",
+        pt: "Ícone da app",
       }),
     ],
     colors: t({
@@ -70,6 +76,7 @@ export default {
       ko: "색상",
       ja: "カラー",
       de: "Farben",
+      pt: "Cores",
     }),
     colorNames: [
       t({
@@ -80,6 +87,7 @@ export default {
         ko: "노랑",
         ja: "イエロー",
         de: "Gelb",
+        pt: "Amarelo",
       }),
       t({
         en: "Light yellow",
@@ -89,6 +97,7 @@ export default {
         ko: "연노랑",
         ja: "ライトイエロー",
         de: "Hellgelb",
+        pt: "Amarelo claro",
       }),
       t({
         en: "Black",
@@ -98,6 +107,7 @@ export default {
         ko: "검정",
         ja: "ブラック",
         de: "Schwarz",
+        pt: "Preto",
       }),
     ],
     usage: t({
@@ -108,6 +118,7 @@ export default {
       ko: "사용법",
       ja: "使用方法",
       de: "Verwendung",
+      pt: "Utilização",
     }),
     nameRule: t({
       en: `Write the name as ${SITE.NAME}: one word, capital M and V.`,
@@ -117,6 +128,7 @@ export default {
       ko: `이름은 ${SITE.NAME}로 적어 주세요: 한 단어, 대문자 M과 V.`,
       ja: `名前は${SITE.NAME}と表記してください：1語で、MとVは大文字です。`,
       de: `Schreibe den Namen als ${SITE.NAME}: ein Wort, großes M und V.`,
+      pt: `Escreve o nome como ${SITE.NAME}: uma só palavra, com M e V maiúsculos.`,
     }),
     spacing: t({
       en: "Keep clear space around the logomark of at least half its height.",
@@ -126,6 +138,7 @@ export default {
       ko: "로고마크 주위에 높이의 절반 이상 여백을 두세요.",
       ja: "ロゴマークの周囲には、高さの半分以上の余白を確保してください。",
       de: "Halte um die Bildmarke einen Freiraum von mindestens der halben Höhe ein.",
+      pt: "Mantém à volta do símbolo um espaço livre de pelo menos metade da sua altura.",
     }),
     effects: t({
       en: "Don’t stretch, rotate, recolor outside the palette, or add effects.",
@@ -135,6 +148,7 @@ export default {
       ko: "늘리거나, 회전하거나, 팔레트 밖의 색으로 바꾸거나, 효과를 넣지 마세요.",
       ja: "引き伸ばし、回転、パレット外の色への変更、エフェクトの追加はしないでください。",
       de: "Nicht verzerren, drehen, außerhalb der Palette umfärben oder mit Effekten versehen.",
+      pt: "Não estiques, não rodes, não uses cores fora da paleta nem acrescentes efeitos.",
     }),
     endorsement: t({
       en: "Don’t use the mark in a way that suggests we endorse your product.",
@@ -144,6 +158,7 @@ export default {
       ko: "저희가 귀하의 제품을 보증하는 것처럼 보이게 마크를 사용하지 마세요.",
       ja: "当サービスがあなたのプロダクトを推奨しているかのような使い方はしないでください。",
       de: "Verwende die Marke nicht so, dass der Eindruck entsteht, wir würden dein Produkt empfehlen.",
+      pt: "Não uses a marca de forma a sugerir que apoiamos o teu produto.",
     }),
     questions: t({
       en: "Questions or a press request? ",
@@ -153,6 +168,7 @@ export default {
       ko: "문의나 언론 요청이 있으신가요? ",
       ja: "ご質問や取材のご依頼は",
       de: "Fragen oder eine Presseanfrage? ",
+      pt: "Dúvidas ou um pedido de imprensa? ",
     }),
   },
 } satisfies Dictionary;

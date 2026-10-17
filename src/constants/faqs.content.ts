@@ -14,6 +14,7 @@ export default {
           ko: "모션 디자인 경험이 필요한가요?",
           ja: "モーションデザインの経験は必要ですか？",
           de: "Brauche ich Erfahrung in Motion Design?",
+          pt: "Preciso de experiência em motion design?",
         }),
         answer: t({
           en: "No. The skills carry the motion knowledge: easing, overlap, holds, and pacing. You describe the result in plain words and review a storyboard before anything is rendered.",
@@ -23,6 +24,7 @@ export default {
           ko: "아니요. 이징, 오버랩, 홀드, 페이싱 같은 모션 지식은 스킬에 담겨 있습니다. 원하는 결과를 평범한 말로 설명하고, 렌더링 전에 스토리보드를 검토하면 됩니다.",
           ja: "いいえ。イージング、オーバーラップ、ホールド、テンポといったモーションの知識はスキルに含まれています。結果を普段の言葉で伝え、レンダリング前にストーリーボードを確認するだけです。",
           de: "Nein. Die Skills bringen das Motion-Wissen mit: Easing, Überlappung, Pausen und Timing. Du beschreibst das Ergebnis in einfachen Worten und prüfst ein Storyboard, bevor irgendetwas gerendert wird.",
+          pt: "Não. As skills contêm o conhecimento de motion: easing, sobreposição, pausas e ritmo. Descreves o resultado em palavras simples e revês um storyboard antes de qualquer coisa ser renderizada.",
         }),
       },
       {
@@ -34,6 +36,7 @@ export default {
           ko: "어떤 동영상을 만들 수 있나요?",
           ja: "どんな動画を作れますか？",
           de: "Welche Art von Videos kann ich machen?",
+          pt: "Que tipo de vídeos posso criar?",
         }),
         answer: t({
           en: "Anything built from motion and type: portfolio showreels, intros, title sequences, launch films, and feature updates.",
@@ -43,6 +46,7 @@ export default {
           ko: "모션과 타이포그래피로 만드는 모든 것: 포트폴리오 쇼릴, 인트로, 타이틀 시퀀스, 출시 영상, 기능 업데이트.",
           ja: "モーションとタイポグラフィで構成されるものなら何でも：ポートフォリオのショーリール、イントロ、タイトルシーケンス、ローンチフィルム、機能アップデートなど。",
           de: "Alles, was aus Bewegung und Typografie besteht: Portfolio-Showreels, Intros, Titelsequenzen, Launch-Filme und Feature-Updates.",
+          pt: "Tudo o que seja feito de movimento e tipografia: showreels de portefólio, intros, sequências de títulos, filmes de lançamento e novidades de funcionalidades.",
         }),
       },
       {
@@ -54,6 +58,7 @@ export default {
           ko: "어떤 코딩 에이전트를 지원하나요?",
           ja: "どのコーディングエージェントに対応していますか？",
           de: "Welche Coding-Agents werden unterstützt?",
+          pt: "Que agentes de programação são suportados?",
         }),
         answer: t({
           en: "Any agent that can read instruction files from your repository, including Claude Code, Codex, Cursor, Antigravity, and GitHub Copilot.",
@@ -63,6 +68,7 @@ export default {
           ko: "Claude Code, Codex, Cursor, Antigravity, GitHub Copilot 등 저장소의 지침 파일을 읽을 수 있는 모든 에이전트.",
           ja: "Claude Code、Codex、Cursor、Antigravity、GitHub Copilotなど、リポジトリ内の指示ファイルを読み込めるあらゆるエージェントに対応しています。",
           de: "Jeder Agent, der Anweisungsdateien aus deinem Repository lesen kann, darunter Claude Code, Codex, Cursor, Antigravity und GitHub Copilot.",
+          pt: "Qualquer agente que consiga ler ficheiros de instruções do teu repositório, incluindo Claude Code, Codex, Cursor, Antigravity e GitHub Copilot.",
         }),
       },
       {
@@ -74,6 +80,7 @@ export default {
           ko: "어떤 렌더러를 골라야 하나요?",
           ja: "どのレンダラーを選べばよいですか？",
           de: "Welchen Renderer soll ich wählen?",
+          pt: "Que renderizador devo escolher?",
         }),
         answer: t({
           en: "Use whichever fits your project. Remotion suits React codebases, HyperFrames and Editframe work from HTML, and fframes renders on the GPU. Check each renderer’s own license for commercial use.",
@@ -83,6 +90,7 @@ export default {
           ko: "프로젝트에 맞는 것을 쓰세요. Remotion은 React 코드베이스에, HyperFrames와 Editframe은 HTML 기반 작업에 맞고, fframes는 GPU로 렌더링합니다. 상업적 사용은 각 렌더러의 라이선스를 확인하세요.",
           ja: "プロジェクトに合うものをお使いください。ReactのコードベースにはRemotion、HTMLベースならHyperFramesやEditframe、GPUでレンダリングするならfframesが適しています。商用利用については各レンダラーのライセンスをご確認ください。",
           de: "Nimm den, der zu deinem Projekt passt. Remotion eignet sich für React-Codebases, HyperFrames und Editframe arbeiten mit HTML, und fframes rendert auf der GPU. Prüfe für kommerzielle Nutzung die Lizenz des jeweiligen Renderers.",
+          pt: "Usa o que melhor se adaptar ao teu projeto. O Remotion é ideal para bases de código React, o HyperFrames e o Editframe trabalham a partir de HTML e o fframes renderiza na GPU. Consulta a licença de cada renderizador para uso comercial.",
         }),
       },
       {
@@ -94,6 +102,7 @@ export default {
           ko: "결제 후 파일은 어떻게 받나요?",
           ja: "支払い後、ファイルはどうやって受け取りますか？",
           de: "Wie bekomme ich die Dateien nach dem Bezahlen?",
+          pt: "Como obtenho os ficheiros depois de pagar?",
         }),
         answer: t({
           en: "Checkout needs no account. Right after paying, sign in with the email you paid with, open the Dodo Payments customer portal from your dashboard, and connect your GitHub account. Dodo Payments then invites you to the private repository.",
@@ -103,6 +112,7 @@ export default {
           ko: "결제에는 계정이 필요 없습니다. 결제 직후 결제한 이메일로 로그인하고, 대시보드에서 Dodo Payments 고객 포털을 열어 GitHub 계정을 연결하세요. 그러면 Dodo Payments가 비공개 저장소로 초대합니다.",
           ja: "購入にアカウントは不要です。支払い後すぐに、支払いに使ったメールアドレスでログインし、ダッシュボードからDodo Paymentsのカスタマーポータルを開いてGitHubアカウントを連携してください。その後、Dodo Paymentsから非公開リポジトリへの招待が届きます。",
           de: "Für den Checkout brauchst du kein Konto. Melde dich direkt nach dem Bezahlen mit der E-Mail-Adresse an, mit der du bezahlt hast, öffne in deinem Dashboard das Kundenportal von Dodo Payments und verbinde dein GitHub-Konto. Dodo Payments lädt dich dann ins private Repository ein.",
+          pt: "O pagamento não exige conta. Logo depois de pagares, inicia sessão com o e-mail com que pagaste, abre o portal de cliente da Dodo Payments a partir do teu painel e liga a tua conta do GitHub. A Dodo Payments convida-te depois para o repositório privado.",
         }),
       },
       {
@@ -114,6 +124,7 @@ export default {
           ko: "클라이언트 프로젝트에도 쓸 수 있나요?",
           ja: "クライアントのプロジェクトにも使えますか？",
           de: "Kann ich es für Kundenprojekte nutzen?",
+          pt: "Posso usá-lo em projetos de clientes?",
         }),
         answer: t({
           en: "Yes. The license is per person and covers every project you work on, including work for clients.",
@@ -123,6 +134,7 @@ export default {
           ko: "네. 라이선스는 1인 기준이며 클라이언트 작업을 포함해 참여하는 모든 프로젝트에 적용됩니다.",
           ja: "はい。ライセンスは個人単位で、クライアントワークを含め、あなたが携わるすべてのプロジェクトが対象です。",
           de: "Ja. Die Lizenz gilt pro Person und deckt jedes Projekt ab, an dem du arbeitest – auch Arbeiten für Kunden.",
+          pt: "Sim. A licença é por pessoa e abrange todos os projetos em que trabalhas, incluindo trabalho para clientes.",
         }),
       },
       {
@@ -134,6 +146,7 @@ export default {
           ko: "환불받을 수 있나요?",
           ja: "返金はできますか？",
           de: "Kann ich eine Rückerstattung bekommen?",
+          pt: "Posso obter um reembolso?",
         }),
         answer: t({
           en: "Yes. Email us before you claim repository access for a full refund. After that, see our refund policy if you have a problem with your order or access.",
@@ -143,6 +156,7 @@ export default {
           ko: "네. 저장소 접근 권한을 받기 전에 이메일을 보내 주시면 전액 환불해 드립니다. 그 이후 주문이나 접근에 문제가 있다면 환불 정책을 확인하세요.",
           ja: "はい。リポジトリへのアクセスを取得する前にメールでご連絡いただければ全額返金します。それ以降、注文やアクセスに問題がある場合は返金ポリシーをご覧ください。",
           de: "Ja. Schreib uns, bevor du den Repository-Zugriff einlöst, und du bekommst den vollen Betrag zurück. Danach gilt unsere Rückerstattungsrichtlinie, falls es ein Problem mit deiner Bestellung oder deinem Zugriff gibt.",
+          pt: "Sim. Envia-nos um e-mail antes de pedires acesso ao repositório para receberes um reembolso total. Depois disso, consulta a nossa política de reembolso se tiveres algum problema com a tua encomenda ou com o acesso.",
         }),
       },
     ],

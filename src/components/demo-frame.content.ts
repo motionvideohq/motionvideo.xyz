@@ -12,6 +12,7 @@ const demoFrame = {
       ko: "프롬프트:",
       ja: "プロンプト：",
       de: "Prompt:",
+      pt: "Prompt:",
     }),
   },
 } satisfies Dictionary;

@@ -12,6 +12,7 @@ export const SUPPORTED_LOCALES = [
   "ko",
   "ja",
   "de",
+  "pt",
 ] as const;
 
 const isSupportedLocale = (

@@ -14,6 +14,7 @@ export default {
       ko: `${SITE.NAME} 소개`,
       ja: `${SITE.NAME}について`,
       de: `Über ${SITE.NAME}`,
+      pt: `Sobre o ${SITE.NAME}`,
     }),
     intro: t({
       en: "A small, independent product for developers who would rather write motion than keyframe it.",
@@ -23,6 +24,7 @@ export default {
       ko: "키프레임 대신 코드로 모션을 쓰고 싶은 개발자를 위한 작은 독립 제품입니다.",
       ja: "キーフレームを打つよりモーションをコードで書きたい開発者のための、小さな独立系プロダクトです。",
       de: "Ein kleines, unabhängiges Produkt für Entwickler, die Motion lieber schreiben als keyframen.",
+      pt: "Um produto pequeno e independente para programadores que preferem escrever animação a fazê-la com keyframes.",
     }),
     why: t({
       en: "Why it exists",
@@ -32,6 +34,7 @@ export default {
       ko: "만든 이유",
       ja: "作った理由",
       de: "Warum es das gibt",
+      pt: "Porque existe",
     }),
     reason: t({
       en: "Motion design makes a portfolio, a launch, or a small update feel crafted, but it usually means keyframe tools, a lot of practice, or a motion designer’s calendar. Most developers skip it, or settle for a screen recording.",
@@ -41,6 +44,7 @@ export default {
       ko: "모션 디자인은 포트폴리오, 출시, 작은 업데이트까지 공들인 느낌을 주지만, 보통 키프레임 도구와 많은 연습, 또는 모션 디자이너의 일정이 필요합니다. 그래서 대부분의 개발자는 건너뛰거나 화면 녹화로 만족합니다.",
       ja: "モーションデザインは、ポートフォリオやローンチ、ちょっとしたアップデートを丁寧な仕上がりに見せてくれます。しかし通常は、キーフレームツール、多くの練習、あるいはモーションデザイナーの予定が必要です。多くの開発者は諦めるか、画面録画で済ませています。",
       de: "Motion Design lässt ein Portfolio, einen Launch oder ein kleines Update durchdacht wirken – bedeutet aber meist Keyframe-Tools, viel Übung oder den Terminkalender eines Motion Designers. Die meisten Entwickler lassen es weg oder begnügen sich mit einer Bildschirmaufnahme.",
+      pt: "O motion design dá um ar cuidado a um portefólio, a um lançamento ou a uma pequena atualização, mas normalmente implica ferramentas de keyframes, muita prática ou a agenda de um motion designer. A maioria dos programadores salta este passo ou contenta-se com uma gravação de ecrã.",
     }),
     knowledge: t({
       en: `Coding agents can already write animation code. What they lack is taste: how long to hold, what overlaps, which easing feels right. ${SITE.NAME} writes that knowledge down so your agent can storyboard and animate showreels, intros, and launch films on its own, and redo them whenever something changes.`,
@@ -50,6 +54,7 @@ export default {
       ko: `코딩 에이전트는 이미 애니메이션 코드를 쓸 수 있습니다. 부족한 것은 감각입니다: 얼마나 오래 멈출지, 무엇을 겹칠지, 어떤 이징이 자연스러운지. ${SITE.NAME}은 그 지식을 글로 정리해, 에이전트가 쇼릴, 인트로, 출시 영상을 스스로 스토리보드하고 애니메이션으로 만들며, 무언가 바뀔 때마다 다시 만들 수 있게 합니다.`,
       ja: `コーディングエージェントはすでにアニメーションのコードを書けます。足りないのはセンスです：どれだけ止めるか、何を重ねるか、どのイージングが自然か。${SITE.NAME}はその知識を書き起こし、エージェントがショーリール、イントロ、ローンチフィルムを自らストーリーボード化・アニメーション化し、変更があればいつでも作り直せるようにします。`,
       de: `Coding-Agents können schon Animationscode schreiben. Was ihnen fehlt, ist Gespür: wie lange etwas stehen bleibt, was sich überlappt, welches Easing sich richtig anfühlt. ${SITE.NAME} hält dieses Wissen fest, damit dein Agent Showreels, Intros und Launch-Filme selbst storyboarden und animieren kann – und sie neu macht, wann immer sich etwas ändert.`,
+      pt: `Os agentes de programação já conseguem escrever código de animação. O que lhes falta é gosto: quanto tempo manter, o que se sobrepõe, que easing parece certo. O ${SITE.NAME} põe esse conhecimento por escrito para que o teu agente consiga fazer o storyboard e animar showreels, intros e filmes de lançamento sozinho, e refazê-los sempre que algo muda.`,
     }),
     what: t({
       en: "What it is",
@@ -59,6 +64,7 @@ export default {
       ko: "무엇인가요",
       ja: "これは何か",
       de: "Was es ist",
+      pt: "O que é",
     }),
     product: t({
       en: `${SITE.NAME} is a pack of agent skills: instruction files, scene starters, and motion tokens that live in your repository. Your own agent reads them, writes the scenes in code, and renders them on your machine with an open-source renderer such as Remotion, HyperFrames, Editframe, or fframes. There is no hosted service, no credits, and no subscription.`,
@@ -68,6 +74,7 @@ export default {
       ko: `${SITE.NAME}은 에이전트 스킬 팩입니다: 저장소 안에 두는 지침 파일, 장면 스타터, 모션 토큰. 여러분의 에이전트가 이를 읽고 코드로 장면을 작성한 뒤, Remotion, HyperFrames, Editframe, fframes 같은 오픈소스 렌더러로 내 컴퓨터에서 렌더링합니다. 호스팅 서비스도, 크레딧도, 구독도 없습니다.`,
       ja: `${SITE.NAME}はエージェントスキルのパックです。リポジトリに置く指示ファイル、シーンのスターター、モーショントークンで構成されます。あなたのエージェントがそれを読み、シーンをコードで書き、Remotion、HyperFrames、Editframe、fframesなどのオープンソースレンダラーで手元のマシン上にレンダリングします。ホスティングサービスも、クレジットも、サブスクリプションもありません。`,
       de: `${SITE.NAME} ist ein Paket aus Agent-Skills: Anweisungsdateien, Szenen-Starter und Motion-Tokens, die in deinem Repository liegen. Dein eigener Agent liest sie, schreibt die Szenen in Code und rendert sie auf deinem Rechner mit einem Open-Source-Renderer wie Remotion, HyperFrames, Editframe oder fframes. Es gibt keinen gehosteten Dienst, keine Credits und kein Abo.`,
+      pt: `O ${SITE.NAME} é um pacote de skills de agente: ficheiros de instruções, cenas iniciais e tokens de movimento que vivem no teu repositório. O teu próprio agente lê-os, escreve as cenas em código e renderiza-as na tua máquina com um renderizador open source como Remotion, HyperFrames, Editframe ou fframes. Não há serviço alojado, nem créditos, nem subscrição.`,
     }),
     who: t({
       en: "Who makes it",
@@ -77,6 +84,7 @@ export default {
       ko: "만든 사람",
       ja: "作っている人",
       de: "Wer es macht",
+      pt: "Quem o faz",
     }),
     built: t({
       en: `${SITE.NAME} is built by `,
@@ -86,6 +94,7 @@ export default {
       ko: `${SITE.NAME}은 `,
       ja: `${SITE.NAME}を作っているのは`,
       de: `${SITE.NAME} wird gebaut von `,
+      pt: `O ${SITE.NAME} é feito por `,
     }),
     author: t({
       en: `, a frontend engineer in ${SITE.LEGAL.JURISDICTION} who cares about visual craft and runs `,
@@ -95,6 +104,7 @@ export default {
       ko: `이(가) 만들었습니다. ${SITE.LEGAL.JURISDICTION}의 프런트엔드 엔지니어로, 시각적 완성도를 중시하며 다음을 운영합니다: `,
       ja: `です。${SITE.LEGAL.JURISDICTION}在住のフロントエンドエンジニアで、ビジュアルのクラフトを大切にし、次を運営しています：`,
       de: `, einem Frontend-Engineer aus ${SITE.LEGAL.JURISDICTION}, dem visuelles Handwerk wichtig ist. Außerdem betreibt er `,
+      pt: `, um engenheiro frontend em ${SITE.LEGAL.JURISDICTION} que se preocupa com o detalhe visual e gere `,
     }),
     website: t({
       en: ". This website is ",
@@ -104,6 +114,7 @@ export default {
       ko: ". 이 웹사이트는 ",
       ja: "。このウェブサイトは",
       de: ". Diese Website ist ",
+      pt: ". Este site é ",
     }),
     openSource: t({
       en: "open source",
@@ -113,6 +124,7 @@ export default {
       ko: "오픈소스",
       ja: "オープンソース",
       de: "Open Source",
+      pt: "open source",
     }),
     separately: t({
       en: "; the skill pack is sold separately.",
@@ -122,6 +134,7 @@ export default {
       ko: "이며, 스킬 팩은 별도로 판매됩니다.",
       ja: "です。スキルパックは別売りです。",
       de: "; das Skill-Pack wird separat verkauft.",
+      pt: "; o pacote de skills é vendido à parte.",
     }),
   },
 } satisfies Dictionary;

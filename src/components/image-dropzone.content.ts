@@ -12,6 +12,7 @@ export default {
       ko: "찾아보기",
       ja: "参照",
       de: "Durchsuchen",
+      pt: "Procurar",
     }),
     replace: t({
       en: "Replace",
@@ -21,6 +22,7 @@ export default {
       ko: "교체",
       ja: "置き換え",
       de: "Ersetzen",
+      pt: "Substituir",
     }),
     remove: t({
       en: "Remove",
@@ -30,6 +32,7 @@ export default {
       ko: "삭제",
       ja: "削除",
       de: "Entfernen",
+      pt: "Remover",
     }),
     uploading: t({
       en: "Uploading…",
@@ -39,6 +42,7 @@ export default {
       ko: "업로드 중…",
       ja: "アップロード中…",
       de: "Wird hochgeladen …",
+      pt: "A carregar…",
     }),
     types: t({
       en: "JPG, PNG or WebP",
@@ -48,6 +52,7 @@ export default {
       ko: "JPG, PNG 또는 WebP",
       ja: "JPG、PNG、WebP",
       de: "JPG, PNG oder WebP",
+      pt: "JPG, PNG ou WebP",
     }),
     max: t({
       en: "max",
@@ -57,6 +62,7 @@ export default {
       ko: "최대",
       ja: "最大",
       de: "max.",
+      pt: "máx.",
     }),
     errorType: t({
       en: "Use a JPG, PNG or WebP image.",
@@ -66,6 +72,7 @@ export default {
       ko: "JPG, PNG 또는 WebP 이미지를 사용하세요.",
       ja: "JPG、PNG、WebP画像を使用してください。",
       de: "Verwende ein JPG-, PNG- oder WebP-Bild.",
+      pt: "Usa uma imagem JPG, PNG ou WebP.",
     }),
     errorSize: t({
       en: "That file is too large.",
@@ -75,6 +82,7 @@ export default {
       ko: "파일이 너무 큽니다.",
       ja: "ファイルが大きすぎます。",
       de: "Die Datei ist zu groß.",
+      pt: "Esse ficheiro é demasiado grande.",
     }),
     errorUpload: t({
       en: "Upload failed. Try again.",
@@ -84,6 +92,7 @@ export default {
       ko: "업로드에 실패했습니다. 다시 시도하세요.",
       ja: "アップロードに失敗しました。もう一度お試しください。",
       de: "Upload fehlgeschlagen. Versuch es noch mal.",
+      pt: "O carregamento falhou. Tenta novamente.",
     }),
   },
 } satisfies Dictionary;

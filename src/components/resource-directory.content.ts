@@ -14,6 +14,7 @@ export default {
         ko: "모션을 위한 도구.",
         ja: "モーションのためのツール。",
         de: "Tools für Motion.",
+        pt: "Ferramentas de motion.",
       }),
       studio: t({
         en: "Creative partners.",
@@ -23,6 +24,7 @@ export default {
         ko: "크리에이티브 파트너.",
         ja: "クリエイティブパートナー。",
         de: "Kreative Partner.",
+        pt: "Parceiros criativos.",
       }),
       skill: t({
         en: "Agent skills.",
@@ -32,6 +34,7 @@ export default {
         ko: "에이전트 스킬.",
         ja: "エージェントスキル。",
         de: "Agent-Skills.",
+        pt: "Skills de agentes.",
       }),
       extra: t({
         en: "Extras for makers.",
@@ -41,6 +44,7 @@ export default {
         ko: "메이커를 위한 기타 자료.",
         ja: "作り手のためのエクストラ。",
         de: "Extras für Macher.",
+        pt: "Extras para criadores.",
       }),
     },
     intros: {
@@ -52,6 +56,7 @@ export default {
         ko: "다음 제품 영상을 위한 편집기, 모션 도구, AI 동영상 생성기, 목업 키트.",
         ja: "次のプロダクトフィルムのためのエディター、モーションツール、AI動画生成ツール、モックアップキット。",
         de: "Editoren, Motion-Tools, KI-Videogeneratoren und Mockup-Kits für deinen nächsten Produktfilm.",
+        pt: "Editores, ferramentas de motion, geradores de vídeo com IA e kits de mockups para o teu próximo filme de produto.",
       }),
       studio: t({
         en: "Motion studios and independent designers who make memorable product films. Reach out directly.",
@@ -61,6 +66,7 @@ export default {
         ko: "기억에 남는 제품 영상을 만드는 모션 스튜디오와 독립 디자이너. 직접 연락해 보세요.",
         ja: "印象に残るプロダクトフィルムを手がけるモーションスタジオと個人デザイナー。直接ご連絡ください。",
         de: "Motion-Studios und unabhängige Designer, die einprägsame Produktfilme machen. Kontaktiere sie direkt.",
+        pt: "Estúdios de motion e designers independentes que criam filmes de produto memoráveis. Contacta-os diretamente.",
       }),
       skill: t({
         en: "Open-source skills that let your coding agent write, animate and render motion videos.",
@@ -70,6 +76,7 @@ export default {
         ko: "코딩 에이전트가 모션 동영상을 작성하고, 애니메이션을 만들고, 렌더링하게 해 주는 오픈소스 스킬.",
         ja: "コーディングエージェントがモーション動画を書き、アニメーションさせ、レンダリングできるオープンソースのスキル。",
         de: "Open-Source-Skills, mit denen dein Coding-Agent Motion-Videos schreibt, animiert und rendert.",
+        pt: "Skills open source que permitem ao teu agente de programação escrever, animar e renderizar vídeos de motion.",
       }),
       extra: t({
         en: "Articles, guides and references for making motion videos and product films.",
@@ -79,6 +86,7 @@ export default {
         ko: "모션 동영상과 제품 영상 제작을 위한 아티클, 가이드, 레퍼런스.",
         ja: "モーション動画やプロダクトフィルム制作のための記事、ガイド、リファレンス。",
         de: "Artikel, Guides und Referenzen zum Erstellen von Motion-Videos und Produktfilmen.",
+        pt: "Artigos, guias e referências para criar vídeos de motion e filmes de produto.",
       }),
     },
     submit: {
@@ -90,6 +98,7 @@ export default {
         ko: "도구 제출",
         ja: "ツールを投稿",
         de: "Tool einreichen",
+        pt: "Submeter uma ferramenta",
       }),
       studio: t({
         en: "Submit a creative",
@@ -99,6 +108,7 @@ export default {
         ko: "크리에이티브 제출",
         ja: "クリエイティブを投稿",
         de: "Creative einreichen",
+        pt: "Submeter um criativo",
       }),
       skill: t({
         en: "Submit a skill",
@@ -108,6 +118,7 @@ export default {
         ko: "스킬 제출",
         ja: "スキルを投稿",
         de: "Skill einreichen",
+        pt: "Submeter uma skill",
       }),
       extra: t({
         en: "Submit a resource",
@@ -117,6 +128,7 @@ export default {
         ko: "자료 제출",
         ja: "リソースを投稿",
         de: "Ressource einreichen",
+        pt: "Submeter um recurso",
       }),
     },
     categories: t({
@@ -127,6 +139,7 @@ export default {
       ko: "카테고리로 필터",
       ja: "カテゴリで絞り込む",
       de: "Nach Kategorie filtern",
+      pt: "Filtrar por categoria",
     }),
     all: t({
       en: "All",
@@ -136,6 +149,7 @@ export default {
       ko: "전체",
       ja: "すべて",
       de: "Alle",
+      pt: "Tudo",
     }),
     // Chip and card labels, keyed by section and URL slug.
     labels: {
@@ -148,6 +162,7 @@ export default {
           ko: "AI",
           ja: "AI",
           de: "KI",
+          pt: "IA",
         }),
         editors: t({
           en: "Editors",
@@ -157,6 +172,7 @@ export default {
           ko: "편집기",
           ja: "エディター",
           de: "Editoren",
+          pt: "Editores",
         }),
         mockups: t({
           en: "Mockups",
@@ -166,6 +182,7 @@ export default {
           ko: "목업",
           ja: "モックアップ",
           de: "Mockups",
+          pt: "Mockups",
         }),
         motion: t({
           en: "Motion",
@@ -175,6 +192,7 @@ export default {
           ko: "모션",
           ja: "モーション",
           de: "Motion",
+          pt: "Motion",
         }),
       },
       studio: {
@@ -186,6 +204,7 @@ export default {
           ko: "스튜디오",
           ja: "スタジオ",
           de: "Studios",
+          pt: "Estúdios",
         }),
         designers: t({
           en: "Designers",
@@ -195,6 +214,7 @@ export default {
           ko: "디자이너",
           ja: "デザイナー",
           de: "Designer",
+          pt: "Designers",
         }),
       },
       skill: {
@@ -206,6 +226,7 @@ export default {
           ko: "모션 그래픽",
           ja: "モーショングラフィックス",
           de: "Motion Graphics",
+          pt: "Motion graphics",
         }),
         "product-films": t({
           en: "Product films",
@@ -215,6 +236,7 @@ export default {
           ko: "제품 영상",
           ja: "プロダクトフィルム",
           de: "Produktfilme",
+          pt: "Filmes de produto",
         }),
         "ai-video": t({
           en: "AI video",
@@ -224,6 +246,7 @@ export default {
           ko: "AI 동영상",
           ja: "AI動画",
           de: "KI-Video",
+          pt: "Vídeo com IA",
         }),
       },
       extra: {
@@ -235,6 +258,7 @@ export default {
           ko: "아티클",
           ja: "記事",
           de: "Artikel",
+          pt: "Artigos",
         }),
         resources: t({
           en: "Resources",
@@ -244,6 +268,7 @@ export default {
           ko: "자료",
           ja: "リソース",
           de: "Ressourcen",
+          pt: "Recursos",
         }),
       },
     },
@@ -258,6 +283,7 @@ export default {
           ko: "AI 동영상 도구.",
           ja: "AI動画ツール。",
           de: "KI-Video-Tools.",
+          pt: "Ferramentas de vídeo com IA.",
         }),
         editors: t({
           en: "Video editors.",
@@ -267,6 +293,7 @@ export default {
           ko: "동영상 편집기.",
           ja: "動画エディター。",
           de: "Video-Editoren.",
+          pt: "Editores de vídeo.",
         }),
         mockups: t({
           en: "Mockup tools.",
@@ -276,6 +303,7 @@ export default {
           ko: "목업 도구.",
           ja: "モックアップツール。",
           de: "Mockup-Tools.",
+          pt: "Ferramentas de mockups.",
         }),
         motion: t({
           en: "Motion design tools.",
@@ -285,6 +313,7 @@ export default {
           ko: "모션 디자인 도구.",
           ja: "モーションデザインツール。",
           de: "Motion-Design-Tools.",
+          pt: "Ferramentas de motion design.",
         }),
       },
       studio: {
@@ -296,6 +325,7 @@ export default {
           ko: "모션 스튜디오.",
           ja: "モーションスタジオ。",
           de: "Motion-Studios.",
+          pt: "Estúdios de motion.",
         }),
         designers: t({
           en: "Motion designers.",
@@ -305,6 +335,7 @@ export default {
           ko: "모션 디자이너.",
           ja: "モーションデザイナー。",
           de: "Motion-Designer.",
+          pt: "Motion designers.",
         }),
       },
       skill: {
@@ -316,6 +347,7 @@ export default {
           ko: "모션 그래픽.",
           ja: "モーショングラフィックス。",
           de: "Motion Graphics.",
+          pt: "Motion graphics.",
         }),
         "product-films": t({
           en: "Product film skills.",
@@ -325,6 +357,7 @@ export default {
           ko: "제품 영상 스킬.",
           ja: "プロダクトフィルムのスキル。",
           de: "Produktfilm-Skills.",
+          pt: "Skills para filmes de produto.",
         }),
         "ai-video": t({
           en: "AI video skills.",
@@ -334,6 +367,7 @@ export default {
           ko: "AI 동영상 스킬.",
           ja: "AI動画のスキル。",
           de: "KI-Video-Skills.",
+          pt: "Skills de vídeo com IA.",
         }),
       },
       extra: {
@@ -345,6 +379,7 @@ export default {
           ko: "X 아티클.",
           ja: "Xの記事。",
           de: "X-Artikel.",
+          pt: "Artigos do X.",
         }),
         resources: t({
           en: "Resources.",
@@ -354,6 +389,7 @@ export default {
           ko: "자료.",
           ja: "リソース。",
           de: "Ressourcen.",
+          pt: "Recursos.",
         }),
       },
     },
@@ -367,6 +403,7 @@ export default {
           ko: "제품 영상을 위한 AI 동영상 생성기, 아바타, 보이스오버, AI 보조 편집.",
           ja: "プロダクトフィルム向けのAI動画生成、アバター、ナレーション、AIアシスト編集。",
           de: "KI-Videogeneratoren, Avatare, Voiceovers und KI-gestützter Schnitt für Produktfilme.",
+          pt: "Geradores de vídeo com IA, avatares, locuções e edição assistida por IA para filmes de produto.",
         }),
         editors: t({
           en: "Video editors for product films, from browser and text-based to AI-assisted cutting.",
@@ -376,6 +413,7 @@ export default {
           ko: "브라우저 기반, 텍스트 기반부터 AI 보조 컷 편집까지, 제품 영상용 동영상 편집기.",
           ja: "ブラウザ型やテキストベースからAIアシストのカットまで、プロダクトフィルム向けの動画エディター。",
           de: "Video-Editoren für Produktfilme – vom Browser über textbasierten bis zum KI-gestützten Schnitt.",
+          pt: "Editores de vídeo para filmes de produto, do navegador e edição por texto ao corte assistido por IA.",
         }),
         mockups: t({
           en: "Device and UI mockups for product videos: cinematic screens and product shots.",
@@ -385,6 +423,7 @@ export default {
           ko: "제품 동영상을 위한 기기 및 UI 목업: 시네마틱 화면과 제품 샷.",
           ja: "プロダクト動画向けのデバイス・UIモックアップ：映画的な画面とプロダクトショット。",
           de: "Geräte- und UI-Mockups für Produktvideos: cineastische Screens und Produktaufnahmen.",
+          pt: "Mockups de dispositivos e interfaces para vídeos de produto: ecrãs cinematográficos e imagens de produto.",
         }),
         motion: t({
           en: "Motion design tools and templates for launch videos, animated UI and product films.",
@@ -394,6 +433,7 @@ export default {
           ko: "출시 영상, UI 애니메이션, 제품 영상을 위한 모션 디자인 도구와 템플릿.",
           ja: "ローンチ動画、アニメーションUI、プロダクトフィルム向けのモーションデザインツールとテンプレート。",
           de: "Motion-Design-Tools und Vorlagen für Launch-Videos, animierte UIs und Produktfilme.",
+          pt: "Ferramentas e modelos de motion design para vídeos de lançamento, interfaces animadas e filmes de produto.",
         }),
       },
       studio: {
@@ -405,6 +445,7 @@ export default {
           ko: "출시 영상과 브랜드 영상을 만드는 스튜디오. 작업물을 보고 직접 연락해 보세요.",
           ja: "ローンチフィルムやブランド動画を制作するスタジオ。作品を見て直接ご連絡ください。",
           de: "Studios, die Launch-Filme und Markenvideos machen. Sieh dir ihre Arbeiten an und kontaktiere sie direkt.",
+          pt: "Estúdios que criam filmes de lançamento e vídeos de marca. Vê o trabalho deles e contacta-os diretamente.",
         }),
         designers: t({
           en: "Independent designers who make memorable product films. Browse their work and reach out.",
@@ -414,6 +455,7 @@ export default {
           ko: "기억에 남는 제품 영상을 만드는 독립 디자이너. 작업물을 보고 연락해 보세요.",
           ja: "印象に残るプロダクトフィルムを手がける個人デザイナー。作品を見てご連絡ください。",
           de: "Unabhängige Designer, die einprägsame Produktfilme machen. Sieh dir ihre Arbeiten an und melde dich.",
+          pt: "Designers independentes que criam filmes de produto memoráveis. Vê o trabalho deles e contacta-os.",
         }),
       },
       skill: {
@@ -425,6 +467,7 @@ export default {
           ko: "코드로 렌더링하는 모션: 에이전트가 렌더링하는 HTML 애니메이션, Remotion, 화이트보드 영상.",
           ja: "コードでレンダリングするモーション：エージェントがレンダリングするアニメーションHTML、Remotion、ホワイトボード動画。",
           de: "Motion aus Code: animiertes HTML, Remotion- und Whiteboard-Videos, die dein Agent rendert.",
+          pt: "Motion renderizado em código: HTML animado, Remotion e vídeos de quadro branco que o teu agente renderiza.",
         }),
         "product-films": t({
           en: "Skills that turn your real product into demos and launch films, made by your agent.",
@@ -434,6 +477,7 @@ export default {
           ko: "실제 제품을 데모와 출시 영상으로 바꿔 주는 스킬, 에이전트가 만듭니다.",
           ja: "実際のプロダクトをデモやローンチフィルムに変える、エージェント向けのスキル。",
           de: "Skills, die dein echtes Produkt in Demos und Launch-Filme verwandeln – gemacht von deinem Agent.",
+          pt: "Skills que transformam o teu produto real em demos e filmes de lançamento, feitos pelo teu agente.",
         }),
         "ai-video": t({
           en: "Skills for AI video production, from script and generated footage to voiceover and final cut.",
@@ -443,6 +487,7 @@ export default {
           ko: "대본과 생성 영상부터 보이스오버와 최종 편집까지, AI 동영상 제작을 위한 스킬.",
           ja: "台本や生成映像からナレーション、最終編集まで、AI動画制作のためのスキル。",
           de: "Skills für KI-Videoproduktion, vom Skript über generiertes Material bis zu Voiceover und finalem Schnitt.",
+          pt: "Skills para produção de vídeo com IA, do guião e imagens geradas à locução e montagem final.",
         }),
       },
       extra: {
@@ -454,6 +499,7 @@ export default {
           ko: "Claude Opus로 모션 동영상을 만드는 법을 다룬 X 장문 아티클: 워크플로, 프롬프트, 분석.",
           ja: "Claude Opusでモーション動画を作るためのXの長文記事：ワークフロー、プロンプト、解説。",
           de: "Ausführliche X-Artikel übers Erstellen von Motion-Videos mit Claude Opus: Workflows, Prompts, Analysen.",
+          pt: "Artigos longos do X sobre como criar vídeos de motion com o Claude Opus: fluxos de trabalho, prompts, análises.",
         }),
         resources: t({
           en: "References and archives for making motion videos and product films.",
@@ -463,6 +509,7 @@ export default {
           ko: "모션 동영상과 제품 영상 제작을 위한 레퍼런스와 아카이브.",
           ja: "モーション動画やプロダクトフィルム制作のためのリファレンスとアーカイブ。",
           de: "Referenzen und Archive zum Erstellen von Motion-Videos und Produktfilmen.",
+          pt: "Referências e arquivos para criar vídeos de motion e filmes de produto.",
         }),
       },
     },
@@ -474,6 +521,7 @@ export default {
       ko: "웹사이트 방문",
       ja: "ウェブサイトを見る",
       de: "Website besuchen",
+      pt: "Visitar site",
     }),
     newTab: t({
       en: "opens in a new tab",
@@ -483,6 +531,7 @@ export default {
       ko: "새 탭에서 열림",
       ja: "新しいタブで開きます",
       de: "öffnet in neuem Tab",
+      pt: "abre num novo separador",
     }),
     surprise: t({
       en: "Surprise me",
@@ -492,6 +541,7 @@ export default {
       ko: "랜덤 보기",
       ja: "おまかせ",
       de: "Überrasch mich",
+      pt: "Surpreende-me",
     }),
   },
 } satisfies Dictionary;

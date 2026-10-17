@@ -12,6 +12,7 @@ export default {
       ko: "북마크",
       ja: "ブックマーク",
       de: "Merken",
+      pt: "Guardar",
     }),
     remove: t({
       en: "Remove bookmark",
@@ -21,6 +22,7 @@ export default {
       ko: "북마크 해제",
       ja: "ブックマークを解除",
       de: "Merkzeichen entfernen",
+      pt: "Remover dos guardados",
     }),
     signInReason: t({
       en: "Sign in or create a free account to save bookmarks.",
@@ -30,6 +32,7 @@ export default {
       ko: "북마크를 저장하려면 로그인하거나 무료 계정을 만드세요.",
       ja: "ブックマークを保存するには、ログインするか無料アカウントを作成してください。",
       de: "Melde dich an oder erstelle ein kostenloses Konto, um Videos zu merken.",
+      pt: "Inicia sessão ou cria uma conta gratuita para guardar favoritos.",
     }),
   },
 } satisfies Dictionary;

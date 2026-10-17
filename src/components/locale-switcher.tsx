@@ -21,6 +21,7 @@ export const LOCALE_NAMES = {
   ko: "한국어",
   ja: "日本語",
   de: "Deutsch",
+  pt: "Português",
 } as const;
 
 export const LocaleSwitcher = () => {

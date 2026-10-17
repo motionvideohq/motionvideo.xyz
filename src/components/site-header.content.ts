@@ -12,6 +12,7 @@ export default {
       ko: "주 메뉴",
       ja: "メインナビゲーション",
       de: "Hauptnavigation",
+      pt: "Navegação principal",
     }),
     discover: t({
       en: "Discover",
@@ -21,6 +22,7 @@ export default {
       ko: "둘러보기",
       ja: "見つける",
       de: "Entdecken",
+      pt: "Descobrir",
     }),
     tools: t({
       en: "Tools",
@@ -30,6 +32,7 @@ export default {
       ko: "도구",
       ja: "ツール",
       de: "Tools",
+      pt: "Ferramentas",
     }),
     creatives: t({
       en: "Creatives",
@@ -39,6 +42,7 @@ export default {
       ko: "크리에이티브",
       ja: "クリエイティブ",
       de: "Creatives",
+      pt: "Criativos",
     }),
     skills: t({
       en: "Skills",
@@ -48,6 +52,7 @@ export default {
       ko: "스킬",
       ja: "スキル",
       de: "Skills",
+      pt: "Skills",
     }),
     extras: t({
       en: "Extras",
@@ -57,6 +62,7 @@ export default {
       ko: "기타 자료",
       ja: "エクストラ",
       de: "Extras",
+      pt: "Extras",
     }),
     more: t({
       en: "More",
@@ -66,6 +72,7 @@ export default {
       ko: "더 보기",
       ja: "もっと見る",
       de: "Mehr",
+      pt: "Mais",
     }),
     sponsorSlot: t({
       en: "Your logo here: sponsor MotionVideo",
@@ -75,6 +82,7 @@ export default {
       ko: "여기에 로고를: MotionVideo 스폰서 되기",
       ja: "ここにあなたのロゴを：MotionVideoのスポンサーになる",
       de: "Dein Logo hier: MotionVideo sponsern",
+      pt: "O teu logótipo aqui: patrocina o MotionVideo",
     }),
     sponsored: t({
       en: "Sponsored",
@@ -84,6 +92,7 @@ export default {
       ko: "스폰서",
       ja: "スポンサー",
       de: "Gesponsert",
+      pt: "Patrocinado",
     }),
     openMenu: t({
       en: "Open menu",
@@ -93,6 +102,7 @@ export default {
       ko: "메뉴 열기",
       ja: "メニューを開く",
       de: "Menü öffnen",
+      pt: "Abrir menu",
     }),
     closeMenu: t({
       en: "Close menu",
@@ -102,6 +112,7 @@ export default {
       ko: "메뉴 닫기",
       ja: "メニューを閉じる",
       de: "Menü schließen",
+      pt: "Fechar menu",
     }),
     skill: t({
       en: "SKILL.md",
@@ -111,6 +122,7 @@ export default {
       ko: "SKILL.md",
       ja: "SKILL.md",
       de: "SKILL.md",
+      pt: "SKILL.md",
     }),
     skillLabel: t({
       en: "Get the MotionVideo agent skill (SKILL.md)",
@@ -120,6 +132,7 @@ export default {
       ko: "MotionVideo 에이전트 스킬(SKILL.md) 받기",
       ja: "MotionVideoエージェントスキル（SKILL.md）を入手",
       de: "Hol dir den MotionVideo Agent-Skill (SKILL.md)",
+      pt: "Obtém a skill de agente MotionVideo (SKILL.md)",
     }),
     accountMenu: t({
       en: "Account menu",
@@ -129,6 +142,7 @@ export default {
       ko: "계정 메뉴",
       ja: "アカウントメニュー",
       de: "Kontomenü",
+      pt: "Menu da conta",
     }),
     bookmarks: t({
       en: "Bookmarks",
@@ -138,6 +152,7 @@ export default {
       ko: "북마크",
       ja: "ブックマーク",
       de: "Merkliste",
+      pt: "Guardados",
     }),
     featured: t({
       en: "Featured",
@@ -147,6 +162,7 @@ export default {
       ko: "추천",
       ja: "注目",
       de: "Empfohlen",
+      pt: "Destaques",
     }),
     dashboard: t({
       en: "Dashboard",
@@ -156,6 +172,7 @@ export default {
       ko: "대시보드",
       ja: "ダッシュボード",
       de: "Dashboard",
+      pt: "Painel",
     }),
     submit: t({
       en: "Submit a video",
@@ -165,6 +182,7 @@ export default {
       ko: "동영상 제출",
       ja: "動画を投稿",
       de: "Video einreichen",
+      pt: "Submeter um vídeo",
     }),
     sponsorships: t({
       en: "Sponsorships",
@@ -174,6 +192,7 @@ export default {
       ko: "스폰서십",
       ja: "スポンサーシップ",
       de: "Sponsorings",
+      pt: "Patrocínios",
     }),
     settings: t({
       en: "Settings",
@@ -183,6 +202,7 @@ export default {
       ko: "설정",
       ja: "設定",
       de: "Einstellungen",
+      pt: "Definições",
     }),
     general: t({
       en: "General",
@@ -192,6 +212,7 @@ export default {
       ko: "일반",
       ja: "一般",
       de: "Allgemein",
+      pt: "Geral",
     }),
     emails: t({
       en: "Emails",
@@ -201,6 +222,7 @@ export default {
       ko: "이메일",
       ja: "メール",
       de: "E-Mails",
+      pt: "E-mails",
     }),
     emailUpdates: t({
       en: "MotionVideo updates",
@@ -210,6 +232,7 @@ export default {
       ko: "MotionVideo 소식",
       ja: "MotionVideoの最新情報",
       de: "MotionVideo-Updates",
+      pt: "Novidades do MotionVideo",
     }),
     deleteAccount: t({
       en: "Delete account",
@@ -219,6 +242,7 @@ export default {
       ko: "계정 삭제",
       ja: "アカウントを削除",
       de: "Konto löschen",
+      pt: "Eliminar conta",
     }),
     deleteTitle: t({
       en: "Delete your account?",
@@ -228,6 +252,7 @@ export default {
       ko: "계정을 삭제할까요?",
       ja: "アカウントを削除しますか？",
       de: "Dein Konto löschen?",
+      pt: "Eliminar a tua conta?",
     }),
     deleteDescription: t({
       en: "Account deletion isn't automated yet. Write to us from your account email and we'll delete your account, submissions, and bookmarks.",
@@ -237,6 +262,7 @@ export default {
       ko: "계정 삭제는 아직 자동화되어 있지 않습니다. 계정 이메일로 연락 주시면 계정, 제출물, 북마크를 삭제해 드립니다.",
       ja: "アカウントの削除はまだ自動化されていません。アカウントのメールアドレスからご連絡いただければ、アカウント、投稿、ブックマークを削除します。",
       de: "Das Löschen von Konten ist noch nicht automatisiert. Schreib uns von der E-Mail-Adresse deines Kontos, und wir löschen dein Konto, deine Einreichungen und Merkliste.",
+      pt: "A eliminação de contas ainda não é automática. Escreve-nos a partir do e-mail da tua conta e eliminaremos a tua conta, submissões e guardados.",
     }),
     deleteContact: t({
       en: "Email us to delete",
@@ -246,6 +272,7 @@ export default {
       ko: "이메일로 삭제 요청",
       ja: "メールで削除を依頼",
       de: "Schreib uns zum Löschen",
+      pt: "Envia-nos um e-mail para eliminar",
     }),
     cancel: t({
       en: "Cancel",
@@ -255,6 +282,7 @@ export default {
       ko: "취소",
       ja: "キャンセル",
       de: "Abbrechen",
+      pt: "Cancelar",
     }),
     socials: t({
       en: "Socials",
@@ -264,6 +292,7 @@ export default {
       ko: "소셜",
       ja: "ソーシャル",
       de: "Social Media",
+      pt: "Redes sociais",
     }),
     theme: t({
       en: "Theme",
@@ -273,6 +302,7 @@ export default {
       ko: "테마",
       ja: "テーマ",
       de: "Design",
+      pt: "Tema",
     }),
     sounds: t({
       en: "Sounds",
@@ -282,6 +312,7 @@ export default {
       ko: "소리",
       ja: "サウンド",
       de: "Sounds",
+      pt: "Sons",
     }),
     online: t({
       en: "online",
@@ -291,6 +322,7 @@ export default {
       ko: "온라인",
       ja: "オンライン",
       de: "online",
+      pt: "online",
     }),
     jobs: t({
       en: "Jobs",
@@ -300,6 +332,7 @@ export default {
       ko: "채용",
       ja: "求人",
       de: "Jobs",
+      pt: "Empregos",
     }),
     listings: t({
       en: "Listings",
@@ -309,6 +342,7 @@ export default {
       ko: "공고",
       ja: "掲載",
       de: "Einträge",
+      pt: "Anúncios",
     }),
     keyboard: t({
       en: "Keyboard",
@@ -318,6 +352,7 @@ export default {
       ko: "키보드",
       ja: "キーボード",
       de: "Tastatur",
+      pt: "Teclado",
     }),
     light: t({
       en: "Light",
@@ -327,6 +362,7 @@ export default {
       ko: "라이트",
       ja: "ライト",
       de: "Hell",
+      pt: "Claro",
     }),
     dark: t({
       en: "Dark",
@@ -336,6 +372,7 @@ export default {
       ko: "다크",
       ja: "ダーク",
       de: "Dunkel",
+      pt: "Escuro",
     }),
     system: t({
       en: "System",
@@ -345,6 +382,7 @@ export default {
       ko: "시스템",
       ja: "システム",
       de: "System",
+      pt: "Sistema",
     }),
     signOut: t({
       en: "Log out",
@@ -354,6 +392,7 @@ export default {
       ko: "로그아웃",
       ja: "ログアウト",
       de: "Abmelden",
+      pt: "Terminar sessão",
     }),
     signIn: t({
       en: "Sign in",
@@ -363,6 +402,7 @@ export default {
       ko: "로그인",
       ja: "ログイン",
       de: "Anmelden",
+      pt: "Iniciar sessão",
     }),
   },
 } satisfies Dictionary;

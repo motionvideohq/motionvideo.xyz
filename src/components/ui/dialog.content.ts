@@ -12,6 +12,7 @@ export default {
       ko: "닫기",
       ja: "閉じる",
       de: "Schließen",
+      pt: "Fechar",
     }),
   },
 } satisfies Dictionary;

@@ -12,6 +12,7 @@ export default {
       ko: "설정",
       ja: "設定",
       de: "Einstellungen",
+      pt: "Definições",
     }),
     intro: t({
       en: "Your account preferences.",
@@ -21,6 +22,7 @@ export default {
       ko: "계정 환경설정.",
       ja: "アカウントの設定。",
       de: "Deine Kontoeinstellungen.",
+      pt: "As preferências da tua conta.",
     }),
     account: t({
       en: "Account",
@@ -30,6 +32,7 @@ export default {
       ko: "계정",
       ja: "アカウント",
       de: "Konto",
+      pt: "Conta",
     }),
     accountBody: t({
       en: "How you appear and the email you sign in with.",
@@ -39,6 +42,7 @@ export default {
       ko: "표시되는 정보와 로그인 이메일.",
       ja: "表示名とログインに使うメールアドレス。",
       de: "Wie du angezeigt wirst und mit welcher E-Mail du dich anmeldest.",
+      pt: "Como apareces e o e-mail com que inicias sessão.",
     }),
     email: t({
       en: "Email",
@@ -48,6 +52,7 @@ export default {
       ko: "이메일",
       ja: "メールアドレス",
       de: "E-Mail",
+      pt: "E-mail",
     }),
     avatar: t({
       en: "Avatar",
@@ -57,6 +62,7 @@ export default {
       ko: "아바타",
       ja: "アバター",
       de: "Avatar",
+      pt: "Avatar",
     }),
     name: t({
       en: "Name",
@@ -66,6 +72,7 @@ export default {
       ko: "이름",
       ja: "名前",
       de: "Name",
+      pt: "Nome",
     }),
     noName: t({
       en: "Not set",
@@ -75,6 +82,7 @@ export default {
       ko: "설정 안 됨",
       ja: "未設定",
       de: "Nicht festgelegt",
+      pt: "Não definido",
     }),
     edit: t({
       en: "Edit",
@@ -84,6 +92,7 @@ export default {
       ko: "편집",
       ja: "編集",
       de: "Bearbeiten",
+      pt: "Editar",
     }),
     save: t({
       en: "Save",
@@ -93,6 +102,7 @@ export default {
       ko: "저장",
       ja: "保存",
       de: "Speichern",
+      pt: "Guardar",
     }),
     saving: t({
       en: "Saving…",
@@ -102,6 +112,7 @@ export default {
       ko: "저장 중…",
       ja: "保存中…",
       de: "Wird gespeichert …",
+      pt: "A guardar…",
     }),
     cancel: t({
       en: "Cancel",
@@ -111,6 +122,7 @@ export default {
       ko: "취소",
       ja: "キャンセル",
       de: "Abbrechen",
+      pt: "Cancelar",
     }),
     saveError: t({
       en: "Could not save. Try again.",
@@ -120,6 +132,7 @@ export default {
       ko: "저장하지 못했습니다. 다시 시도하세요.",
       ja: "保存できませんでした。もう一度お試しください。",
       de: "Speichern fehlgeschlagen. Versuch es noch mal.",
+      pt: "Não foi possível guardar. Tenta novamente.",
     }),
     connections: t({
       en: "Connections",
@@ -129,6 +142,7 @@ export default {
       ko: "연결",
       ja: "連携",
       de: "Verbindungen",
+      pt: "Ligações",
     }),
     connectionsBody: t({
       en: "Other ways to sign in to this account.",
@@ -138,6 +152,7 @@ export default {
       ko: "이 계정에 로그인하는 다른 방법.",
       ja: "このアカウントへのその他のログイン方法。",
       de: "Weitere Möglichkeiten, dich bei diesem Konto anzumelden.",
+      pt: "Outras formas de iniciar sessão nesta conta.",
     }),
     connected: t({
       en: "Connected",
@@ -147,6 +162,7 @@ export default {
       ko: "연결됨",
       ja: "連携済み",
       de: "Verbunden",
+      pt: "Ligado",
     }),
     connect: t({
       en: "Connect",
@@ -156,6 +172,7 @@ export default {
       ko: "연결",
       ja: "連携する",
       de: "Verbinden",
+      pt: "Ligar",
     }),
     preferences: t({
       en: "Preferences",
@@ -165,6 +182,7 @@ export default {
       ko: "환경설정",
       ja: "環境設定",
       de: "Präferenzen",
+      pt: "Preferências",
     }),
     preferencesBody: t({
       en: "How the site behaves for you.",
@@ -174,6 +192,7 @@ export default {
       ko: "사이트 동작 방식.",
       ja: "サイトの動作設定。",
       de: "Wie sich die Website für dich verhält.",
+      pt: "Como o site se comporta para ti.",
     }),
     language: t({
       en: "Language",
@@ -183,6 +202,7 @@ export default {
       ko: "언어",
       ja: "言語",
       de: "Sprache",
+      pt: "Idioma",
     }),
     cursors: t({
       en: "Cursors",
@@ -192,6 +212,7 @@ export default {
       ko: "커서",
       ja: "カーソル",
       de: "Cursor",
+      pt: "Cursores",
     }),
     cursorsHelp: t({
       en: "See and share live cursors with other visitors.",
@@ -201,6 +222,7 @@ export default {
       ko: "다른 방문자와 실시간 커서를 보고 공유합니다.",
       ja: "他の訪問者とライブカーソルを表示・共有します。",
       de: "Live-Cursor anderer Besucher sehen und deinen teilen.",
+      pt: "Ver e partilhar cursores em direto com outros visitantes.",
     }),
     delete: t({
       en: "Delete",
@@ -210,6 +232,7 @@ export default {
       ko: "삭제",
       ja: "削除",
       de: "Löschen",
+      pt: "Eliminar",
     }),
     emailsBody: t({
       en: "What we send you, besides sign-in codes and receipts.",
@@ -219,6 +242,7 @@ export default {
       ko: "로그인 코드와 영수증 외에 보내 드리는 이메일.",
       ja: "ログインコードと領収書以外にお送りするもの。",
       de: "Was wir dir außer Anmeldecodes und Belegen schicken.",
+      pt: "O que te enviamos, além dos códigos de início de sessão e dos recibos.",
     }),
     danger: t({
       en: "Danger zone",
@@ -228,6 +252,7 @@ export default {
       ko: "위험 구역",
       ja: "危険な操作",
       de: "Gefahrenzone",
+      pt: "Zona de perigo",
     }),
     dangerBody: t({
       en: "Permanent and can’t be undone.",
@@ -237,6 +262,7 @@ export default {
       ko: "영구적이며 되돌릴 수 없습니다.",
       ja: "取り消すことはできません。",
       de: "Endgültig und nicht rückgängig zu machen.",
+      pt: "Permanente e irreversível.",
     }),
     deleteAccount: t({
       en: "Delete account",
@@ -246,6 +272,7 @@ export default {
       ko: "계정 삭제",
       ja: "アカウントを削除",
       de: "Konto löschen",
+      pt: "Eliminar conta",
     }),
     deleteNote: t({
       en: "Removes your account, submissions, and bookmarks.",
@@ -255,6 +282,7 @@ export default {
       ko: "계정, 제출물, 북마크를 삭제합니다.",
       ja: "アカウント、投稿、ブックマークを削除します。",
       de: "Entfernt dein Konto, deine Einreichungen und deine Merkliste.",
+      pt: "Remove a tua conta, submissões e guardados.",
     }),
     emails: t({
       en: "Emails",
@@ -264,6 +292,7 @@ export default {
       ko: "이메일",
       ja: "メール",
       de: "E-Mails",
+      pt: "E-mails",
     }),
     updates: t({
       en: "MotionVideo updates",
@@ -273,6 +302,7 @@ export default {
       ko: "MotionVideo 소식",
       ja: "MotionVideoの最新情報",
       de: "MotionVideo-Updates",
+      pt: "Novidades do MotionVideo",
     }),
     updatesDescription: t({
       en: "New features and featured work, occasionally.",
@@ -282,6 +312,7 @@ export default {
       ko: "새 기능과 추천 작업물을 가끔 보내 드립니다.",
       ja: "新機能や注目作品を時々お届けします。",
       de: "Gelegentlich neue Features und vorgestellte Arbeiten.",
+      pt: "Novas funcionalidades e trabalhos em destaque, de vez em quando.",
     }),
   },
 } satisfies Dictionary;

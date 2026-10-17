@@ -15,6 +15,7 @@ export default {
           ko: "에이전트 스킬",
           ja: "エージェントスキル",
           de: "Agent-Skills",
+          pt: "Skills de agente",
         }),
         body: t({
           en: "Instruction files that cover storyboarding, choreography, pacing, and typography in motion, loaded by your agent only when it needs them.",
@@ -24,6 +25,7 @@ export default {
           ko: "스토리보드, 안무, 페이싱, 모션 타이포그래피를 다루는 지침 파일로, 에이전트가 필요할 때만 불러옵니다.",
           ja: "ストーリーボード、振り付け、テンポ、モーションタイポグラフィを扱う指示ファイル。エージェントが必要なときだけ読み込みます。",
           de: "Anweisungsdateien zu Storyboarding, Choreografie, Timing und Typografie in Bewegung, die dein Agent nur lädt, wenn er sie braucht.",
+          pt: "Ficheiros de instruções sobre storyboard, coreografia, ritmo e tipografia em movimento, carregados pelo teu agente apenas quando precisa deles.",
         }),
       },
       {
@@ -36,6 +38,7 @@ export default {
           ko: "장면 스타터",
           ja: "シーンのスターター",
           de: "Szenen-Starter",
+          pt: "Cenas iniciais",
         }),
         body: t({
           en: "Ready-to-fork compositions for showreels, title sequences, launch films, and changelog clips, so your agent never starts from an empty file.",
@@ -45,6 +48,7 @@ export default {
           ko: "쇼릴, 타이틀 시퀀스, 출시 영상, 변경 내역 클립용으로 바로 포크할 수 있는 컴포지션. 에이전트가 빈 파일에서 시작할 일이 없습니다.",
           ja: "ショーリール、タイトルシーケンス、ローンチフィルム、変更履歴クリップ用のすぐにフォークできるコンポジション。エージェントが空のファイルから始めることはありません。",
           de: "Fertige Kompositionen zum Forken für Showreels, Titelsequenzen, Launch-Filme und Changelog-Clips, damit dein Agent nie mit einer leeren Datei startet.",
+          pt: "Composições prontas a adaptar para showreels, sequências de títulos, filmes de lançamento e clips de changelog, para que o teu agente nunca comece de um ficheiro vazio.",
         }),
       },
       {
@@ -57,6 +61,7 @@ export default {
           ko: "모션 토큰",
           ja: "モーショントークン",
           de: "Motion-Tokens",
+          pt: "Tokens de movimento",
         }),
         body: t({
           en: "Spring, easing, and timing values tuned for motion design, kept in one place so every scene moves with the same rhythm.",
@@ -66,6 +71,7 @@ export default {
           ko: "모션 디자인에 맞춘 스프링, 이징, 타이밍 값을 한곳에 모아 모든 장면이 같은 리듬으로 움직입니다.",
           ja: "モーションデザイン向けに調整したスプリング、イージング、タイミングの値を一箇所にまとめ、すべてのシーンを同じリズムで動かします。",
           de: "Spring-, Easing- und Timing-Werte, abgestimmt auf Motion Design und an einem Ort gebündelt, damit sich jede Szene im selben Rhythmus bewegt.",
+          pt: "Valores de spring, easing e timing afinados para motion design, guardados num só sítio para que todas as cenas se movam com o mesmo ritmo.",
         }),
       },
       {
@@ -78,6 +84,7 @@ export default {
           ko: "렌더러 가이드",
           ja: "レンダラーガイド",
           de: "Renderer-Guides",
+          pt: "Guias de renderizadores",
         }),
         body: t({
           en: "Setup notes for Remotion, HyperFrames, Editframe, and fframes, so the same scene plan works with your stack.",
@@ -87,6 +94,7 @@ export default {
           ko: "Remotion, HyperFrames, Editframe, fframes 설정 노트. 같은 장면 계획이 여러분의 스택에서 그대로 동작합니다.",
           ja: "Remotion、HyperFrames、Editframe、fframesのセットアップ手順。同じシーン構成をあなたのスタックで使えます。",
           de: "Setup-Hinweise für Remotion, HyperFrames, Editframe und fframes, damit derselbe Szenenplan mit deinem Stack funktioniert.",
+          pt: "Notas de configuração para Remotion, HyperFrames, Editframe e fframes, para que o mesmo plano de cenas funcione com a tua stack.",
         }),
       },
     ],

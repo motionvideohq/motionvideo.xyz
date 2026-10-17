@@ -12,6 +12,7 @@ export default {
       ko: "MotionVideo 검색",
       ja: "MotionVideoを検索",
       de: "MotionVideo durchsuchen",
+      pt: "Pesquisar no MotionVideo",
     }),
     placeholder: t({
       en: "Search videos, creators, tools, creatives…",
@@ -21,6 +22,7 @@ export default {
       ko: "동영상, 크리에이터, 도구, 크리에이티브 검색…",
       ja: "動画、クリエイター、ツール、クリエイティブを検索…",
       de: "Videos, Creator, Tools, Creatives suchen …",
+      pt: "Pesquisar vídeos, criadores, ferramentas, criativos…",
     }),
     close: t({
       en: "Close search",
@@ -30,6 +32,7 @@ export default {
       ko: "검색 닫기",
       ja: "検索を閉じる",
       de: "Suche schließen",
+      pt: "Fechar pesquisa",
     }),
     empty: t({
       en: "Nothing matches that search.",
@@ -39,6 +42,7 @@ export default {
       ko: "검색 결과가 없습니다.",
       ja: "該当する結果はありません。",
       de: "Keine Treffer für diese Suche.",
+      pt: "Nada corresponde a essa pesquisa.",
     }),
     pages: t({
       en: "Pages",
@@ -48,6 +52,7 @@ export default {
       ko: "페이지",
       ja: "ページ",
       de: "Seiten",
+      pt: "Páginas",
     }),
     popular: t({
       en: "Popular videos",
@@ -57,6 +62,7 @@ export default {
       ko: "인기 동영상",
       ja: "人気の動画",
       de: "Beliebte Videos",
+      pt: "Vídeos populares",
     }),
     videos: t({
       en: "Videos",
@@ -66,6 +72,7 @@ export default {
       ko: "동영상",
       ja: "動画",
       de: "Videos",
+      pt: "Vídeos",
     }),
     categories: t({
       en: "Categories",
@@ -75,6 +82,7 @@ export default {
       ko: "카테고리",
       ja: "カテゴリ",
       de: "Kategorien",
+      pt: "Categorias",
     }),
     discover: t({
       en: "Discover",
@@ -84,6 +92,7 @@ export default {
       ko: "둘러보기",
       ja: "見つける",
       de: "Entdecken",
+      pt: "Descobrir",
     }),
     tools: t({
       en: "Tools",
@@ -93,6 +102,7 @@ export default {
       ko: "도구",
       ja: "ツール",
       de: "Tools",
+      pt: "Ferramentas",
     }),
     creatives: t({
       en: "Creatives",
@@ -102,6 +112,7 @@ export default {
       ko: "크리에이티브",
       ja: "クリエイティブ",
       de: "Creatives",
+      pt: "Criativos",
     }),
     skills: t({
       en: "Skills",
@@ -111,6 +122,7 @@ export default {
       ko: "스킬",
       ja: "スキル",
       de: "Skills",
+      pt: "Skills",
     }),
     extras: t({
       en: "Extras",
@@ -120,6 +132,7 @@ export default {
       ko: "기타 자료",
       ja: "エクストラ",
       de: "Extras",
+      pt: "Extras",
     }),
     submit: t({
       en: "Submit",
@@ -129,6 +142,7 @@ export default {
       ko: "제출",
       ja: "投稿",
       de: "Einreichen",
+      pt: "Submeter",
     }),
     bookmarks: t({
       en: "Bookmarks",
@@ -138,6 +152,7 @@ export default {
       ko: "북마크",
       ja: "ブックマーク",
       de: "Merkliste",
+      pt: "Guardados",
     }),
     sponsor: t({
       en: "Sponsor",
@@ -147,6 +162,7 @@ export default {
       ko: "스폰서",
       ja: "スポンサー",
       de: "Sponsern",
+      pt: "Patrocinar",
     }),
     jobs: t({
       en: "Jobs",
@@ -156,6 +172,7 @@ export default {
       ko: "채용",
       ja: "求人",
       de: "Jobs",
+      pt: "Empregos",
     }),
     skill: t({
       en: "MotionVideo agent skill",
@@ -165,6 +182,7 @@ export default {
       ko: "MotionVideo 에이전트 스킬",
       ja: "MotionVideoエージェントスキル",
       de: "MotionVideo Agent-Skill",
+      pt: "Skill de agente MotionVideo",
     }),
     about: t({
       en: "About",
@@ -174,6 +192,7 @@ export default {
       ko: "소개",
       ja: "概要",
       de: "Über uns",
+      pt: "Sobre",
     }),
     contact: t({
       en: "Contact",
@@ -183,6 +202,7 @@ export default {
       ko: "문의",
       ja: "お問い合わせ",
       de: "Kontakt",
+      pt: "Contacto",
     }),
     brand: t({
       en: "Brand",
@@ -192,6 +212,7 @@ export default {
       ko: "브랜드",
       ja: "ブランド",
       de: "Marke",
+      pt: "Marca",
     }),
     privacy: t({
       en: "Privacy policy",
@@ -201,6 +222,7 @@ export default {
       ko: "개인정보 처리방침",
       ja: "プライバシーポリシー",
       de: "Datenschutzerklärung",
+      pt: "Política de privacidade",
     }),
     terms: t({
       en: "Terms of service",
@@ -210,6 +232,7 @@ export default {
       ko: "서비스 약관",
       ja: "利用規約",
       de: "Nutzungsbedingungen",
+      pt: "Termos de serviço",
     }),
     refunds: t({
       en: "Refund policy",
@@ -219,6 +242,7 @@ export default {
       ko: "환불 정책",
       ja: "返金ポリシー",
       de: "Rückerstattungsrichtlinie",
+      pt: "Política de reembolso",
     }),
     dashboard: t({
       en: "Dashboard",
@@ -228,6 +252,7 @@ export default {
       ko: "대시보드",
       ja: "ダッシュボード",
       de: "Dashboard",
+      pt: "Painel",
     }),
     search: t({
       en: "Search",
@@ -237,6 +262,7 @@ export default {
       ko: "검색",
       ja: "検索",
       de: "Suche",
+      pt: "Pesquisar",
     }),
     legal: t({
       en: "Legal",
@@ -246,6 +272,7 @@ export default {
       ko: "법적 고지",
       ja: "法的情報",
       de: "Rechtliches",
+      pt: "Legal",
     }),
     company: t({
       en: "Company",
@@ -255,6 +282,7 @@ export default {
       ko: "회사",
       ja: "会社",
       de: "Unternehmen",
+      pt: "Empresa",
     }),
     otherProducts: t({
       en: "Other products",
@@ -264,6 +292,7 @@ export default {
       ko: "다른 제품",
       ja: "その他のプロダクト",
       de: "Weitere Produkte",
+      pt: "Outros produtos",
     }),
     misc: t({
       en: "Misc.",
@@ -273,6 +302,7 @@ export default {
       ko: "기타",
       ja: "その他",
       de: "Sonstiges",
+      pt: "Diversos",
     }),
     labsProjects: t({
       en: "Shadcn Labs projects",
@@ -282,6 +312,7 @@ export default {
       ko: "Shadcn Labs 프로젝트",
       ja: "Shadcn Labsのプロジェクト",
       de: "Shadcn-Labs-Projekte",
+      pt: "Projetos da Shadcn Labs",
     }),
     language: t({
       en: "Language",
@@ -291,6 +322,7 @@ export default {
       ko: "언어",
       ja: "言語",
       de: "Sprache",
+      pt: "Idioma",
     }),
     muteSounds: t({
       en: "Mute sounds",
@@ -300,6 +332,7 @@ export default {
       ko: "소리 끄기",
       ja: "サウンドをミュート",
       de: "Sounds stummschalten",
+      pt: "Silenciar sons",
     }),
     unmuteSounds: t({
       en: "Unmute sounds",
@@ -309,6 +342,7 @@ export default {
       ko: "소리 켜기",
       ja: "サウンドのミュートを解除",
       de: "Sounds einschalten",
+      pt: "Ativar sons",
     }),
     others: t({
       en: "More",
@@ -318,6 +352,7 @@ export default {
       ko: "더 보기",
       ja: "もっと見る",
       de: "Mehr",
+      pt: "Mais",
     }),
     socials: t({
       en: "Socials",
@@ -327,6 +362,7 @@ export default {
       ko: "소셜",
       ja: "ソーシャル",
       de: "Social Media",
+      pt: "Redes sociais",
     }),
     theme: t({
       en: "Theme",
@@ -336,6 +372,7 @@ export default {
       ko: "테마",
       ja: "テーマ",
       de: "Design",
+      pt: "Tema",
     }),
     copyLogomark: t({
       en: "Copy logomark as SVG",
@@ -345,6 +382,7 @@ export default {
       ko: "로고마크를 SVG로 복사",
       ja: "ロゴマークをSVGでコピー",
       de: "Bildmarke als SVG kopieren",
+      pt: "Copiar símbolo como SVG",
     }),
     copyWordmark: t({
       en: "Copy wordmark as SVG",
@@ -354,6 +392,7 @@ export default {
       ko: "워드마크를 SVG로 복사",
       ja: "ワードマークをSVGでコピー",
       de: "Wortmarke als SVG kopieren",
+      pt: "Copiar logótipo como SVG",
     }),
     copyAppIcon: t({
       en: "Copy app icon as SVG",
@@ -363,6 +402,7 @@ export default {
       ko: "앱 아이콘을 SVG로 복사",
       ja: "アプリアイコンをSVGでコピー",
       de: "App-Icon als SVG kopieren",
+      pt: "Copiar ícone da app como SVG",
     }),
     guidelines: t({
       en: "Brand guidelines",
@@ -372,6 +412,7 @@ export default {
       ko: "브랜드 가이드라인",
       ja: "ブランドガイドライン",
       de: "Markenrichtlinien",
+      pt: "Diretrizes da marca",
     }),
     downloadAssets: t({
       en: "Download brand assets",
@@ -381,6 +422,7 @@ export default {
       ko: "브랜드 에셋 다운로드",
       ja: "ブランドアセットをダウンロード",
       de: "Marken-Assets herunterladen",
+      pt: "Transferir recursos da marca",
     }),
     light: t({
       en: "Light",
@@ -390,6 +432,7 @@ export default {
       ko: "라이트",
       ja: "ライト",
       de: "Hell",
+      pt: "Claro",
     }),
     dark: t({
       en: "Dark",
@@ -399,6 +442,7 @@ export default {
       ko: "다크",
       ja: "ダーク",
       de: "Dunkel",
+      pt: "Escuro",
     }),
     system: t({
       en: "System",
@@ -408,6 +452,7 @@ export default {
       ko: "시스템",
       ja: "システム",
       de: "System",
+      pt: "Sistema",
     }),
     brandAssets: t({
       en: "Brand assets",
@@ -417,6 +462,7 @@ export default {
       ko: "브랜드 에셋",
       ja: "ブランドアセット",
       de: "Marken-Assets",
+      pt: "Recursos da marca",
     }),
   },
 } satisfies Dictionary;

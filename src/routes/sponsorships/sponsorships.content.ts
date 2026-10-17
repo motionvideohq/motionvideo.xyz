@@ -12,6 +12,7 @@ export default {
       ko: "스폰서십",
       ja: "スポンサーシップ",
       de: "Sponsorings",
+      pt: "Patrocínios",
     }),
     intro: t({
       en: "Your sponsor plans and the placements they show. Every change goes live after a quick review.",
@@ -21,6 +22,7 @@ export default {
       ko: "스폰서 플랜과 표시되는 노출 영역. 모든 변경은 간단한 검토 후 반영됩니다.",
       ja: "あなたのスポンサープランと掲載内容。すべての変更は簡単な審査の後に公開されます。",
       de: "Deine Sponsoring-Tarife und die Platzierungen, die sie zeigen. Jede Änderung geht nach einer kurzen Prüfung live.",
+      pt: "Os teus planos de patrocínio e os espaços que mostram. Cada alteração fica visível após uma revisão rápida.",
     }),
     confirmingTitle: t({
       en: "Confirming your payment…",
@@ -30,6 +32,7 @@ export default {
       ko: "결제 확인 중…",
       ja: "お支払いを確認しています…",
       de: "Deine Zahlung wird bestätigt …",
+      pt: "A confirmar o teu pagamento…",
     }),
     confirmingBody: t({
       en: "Dodo Payments is still confirming your payment. It usually takes under a minute; refresh to check again.",
@@ -39,6 +42,7 @@ export default {
       ko: "Dodo Payments에서 아직 결제를 확인하고 있습니다. 보통 1분 이내에 끝나니, 새로고침해 다시 확인하세요.",
       ja: "Dodo Paymentsがまだお支払いを確認中です。通常1分以内に完了します。再読み込みしてもう一度ご確認ください。",
       de: "Dodo Payments bestätigt deine Zahlung noch. Das dauert meist weniger als eine Minute; lade neu, um erneut zu prüfen.",
+      pt: "A Dodo Payments ainda está a confirmar o teu pagamento. Normalmente demora menos de um minuto; atualiza a página para verificar novamente.",
     }),
     refresh: t({
       en: "Refresh",
@@ -48,6 +52,7 @@ export default {
       ko: "새로고침",
       ja: "再読み込み",
       de: "Neu laden",
+      pt: "Atualizar",
     }),
     activeTitle: t({
       en: "Thank you for sponsoring MotionVideo.",
@@ -57,6 +62,7 @@ export default {
       ko: "MotionVideo를 후원해 주셔서 감사합니다.",
       ja: "MotionVideoのスポンサーになっていただき、ありがとうございます。",
       de: "Danke, dass du MotionVideo sponserst.",
+      pt: "Obrigado por patrocinares o MotionVideo.",
     }),
     activeBody: t({
       en: "Payment received. We’re reviewing your placement; it goes live once approved, and you can still edit it below.",
@@ -66,6 +72,7 @@ export default {
       ko: "결제가 완료되었습니다. 노출을 검토 중이며 승인되면 게시됩니다. 아래에서 계속 수정할 수 있습니다.",
       ja: "お支払いを受け付けました。掲載内容を審査中です。承認されると公開され、下で引き続き編集できます。",
       de: "Zahlung erhalten. Wir prüfen deine Platzierung; sie geht nach der Freigabe live, und du kannst sie unten weiterhin bearbeiten.",
+      pt: "Pagamento recebido. Estamos a rever o teu espaço; fica visível assim que for aprovado, e ainda o podes editar abaixo.",
     }),
     emptyTitle: t({
       en: "No sponsorships yet",
@@ -75,6 +82,7 @@ export default {
       ko: "아직 스폰서십이 없습니다",
       ja: "スポンサーシップはまだありません",
       de: "Noch keine Sponsorings",
+      pt: "Ainda não tens patrocínios",
     }),
     emptyDescription: t({
       en: "Pick a plan to put your product in front of people who make product films and motion design.",
@@ -84,6 +92,7 @@ export default {
       ko: "플랜을 골라 제품 영상과 모션 디자인을 만드는 사람들에게 제품을 알리세요.",
       ja: "プランを選んで、プロダクトフィルムやモーションデザインを作る人々にあなたのプロダクトを届けましょう。",
       de: "Wähle einen Tarif, um dein Produkt Leuten zu zeigen, die Produktfilme und Motion Design machen.",
+      pt: "Escolhe um plano para mostrar o teu produto a quem faz filmes de produto e motion design.",
     }),
     startCampaign: t({
       en: "Start a campaign",
@@ -93,6 +102,7 @@ export default {
       ko: "캠페인 시작",
       ja: "キャンペーンを開始",
       de: "Kampagne starten",
+      pt: "Iniciar uma campanha",
     }),
     tiers: {
       diamond: t({
@@ -103,6 +113,7 @@ export default {
         ko: "Diamond",
         ja: "ダイヤモンド",
         de: "Diamond",
+        pt: "Diamante",
       }),
       gold: t({
         en: "Gold",
@@ -112,6 +123,7 @@ export default {
         ko: "Gold",
         ja: "ゴールド",
         de: "Gold",
+        pt: "Ouro",
       }),
       silver: t({
         en: "Silver",
@@ -121,6 +133,7 @@ export default {
         ko: "Silver",
         ja: "シルバー",
         de: "Silver",
+        pt: "Prata",
       }),
     },
     newSponsorship: t({
@@ -131,6 +144,7 @@ export default {
       ko: "새 스폰서십",
       ja: "新しいスポンサーシップ",
       de: "Neues Sponsoring",
+      pt: "Novo patrocínio",
     }),
     billings: {
       monthly: t({
@@ -141,6 +155,7 @@ export default {
         ko: "월간",
         ja: "月額",
         de: "Monatlich",
+        pt: "Mensal",
       }),
       once: t({
         en: "One-off, 30 days",
@@ -150,6 +165,7 @@ export default {
         ko: "1회, 30일",
         ja: "1回限り、30日間",
         de: "Einmalig, 30 Tage",
+        pt: "Pagamento único, 30 dias",
       }),
     },
     priceSuffix: {
@@ -161,6 +177,7 @@ export default {
         ko: "/ 월",
         ja: "/ 月",
         de: "/ Monat",
+        pt: "/ mês",
       }),
       once: t({
         en: "once",
@@ -170,6 +187,7 @@ export default {
         ko: "1회",
         ja: "1回",
         de: "einmalig",
+        pt: "uma vez",
       }),
     },
     finishCheckout: t({
@@ -180,6 +198,7 @@ export default {
       ko: "결제 계속하기",
       ja: "購入手続きへ進む",
       de: "Weiter zum Checkout",
+      pt: "Continuar para o pagamento",
     }),
     deleteDraft: t({
       en: "Delete",
@@ -189,6 +208,7 @@ export default {
       ko: "삭제",
       ja: "削除",
       de: "Löschen",
+      pt: "Eliminar",
     }),
     statuses: {
       unpaid: t({
@@ -199,6 +219,7 @@ export default {
         ko: "미결제",
         ja: "未払い",
         de: "Unbezahlt",
+        pt: "Por pagar",
       }),
       pending: t({
         en: "Payment pending",
@@ -208,6 +229,7 @@ export default {
         ko: "결제 대기 중",
         ja: "支払い保留中",
         de: "Zahlung ausstehend",
+        pt: "Pagamento pendente",
       }),
       active: t({
         en: "Active",
@@ -217,6 +239,7 @@ export default {
         ko: "활성",
         ja: "有効",
         de: "Aktiv",
+        pt: "Ativa",
       }),
       on_hold: t({
         en: "On hold",
@@ -226,6 +249,7 @@ export default {
         ko: "보류",
         ja: "保留",
         de: "Angehalten",
+        pt: "Em espera",
       }),
       paused: t({
         en: "Paused",
@@ -235,6 +259,7 @@ export default {
         ko: "일시정지",
         ja: "一時停止",
         de: "Pausiert",
+        pt: "Em pausa",
       }),
       cancelled: t({
         en: "Cancelled",
@@ -244,6 +269,7 @@ export default {
         ko: "취소됨",
         ja: "キャンセル済み",
         de: "Gekündigt",
+        pt: "Cancelada",
       }),
       failed: t({
         en: "Failed",
@@ -253,6 +279,7 @@ export default {
         ko: "실패",
         ja: "失敗",
         de: "Fehlgeschlagen",
+        pt: "Falhada",
       }),
       expired: t({
         en: "Expired",
@@ -262,6 +289,7 @@ export default {
         ko: "만료됨",
         ja: "期限切れ",
         de: "Abgelaufen",
+        pt: "Expirada",
       }),
       past_due: t({
         en: "Past due",
@@ -271,6 +299,7 @@ export default {
         ko: "연체",
         ja: "支払い期限超過",
         de: "Überfällig",
+        pt: "Em atraso",
       }),
     },
     renews: t({
@@ -281,6 +310,7 @@ export default {
       ko: "갱신일",
       ja: "更新日",
       de: "Verlängert sich am",
+      pt: "Renova a",
     }),
     ends: t({
       en: "Ends",
@@ -290,6 +320,7 @@ export default {
       ko: "종료일",
       ja: "終了日",
       de: "Endet am",
+      pt: "Termina a",
     }),
     placement: t({
       en: "Placement",
@@ -299,6 +330,7 @@ export default {
       ko: "노출",
       ja: "掲載",
       de: "Platzierung",
+      pt: "Espaço",
     }),
     reviews: {
       draft: t({
@@ -309,6 +341,7 @@ export default {
         ko: "결제 대기 중",
         ja: "支払い待ち",
         de: "Warte auf Zahlung",
+        pt: "A aguardar pagamento",
       }),
       pending: t({
         en: "In review",
@@ -318,6 +351,7 @@ export default {
         ko: "검토 중",
         ja: "審査中",
         de: "In Prüfung",
+        pt: "Em revisão",
       }),
       approved: t({
         en: "Live",
@@ -327,6 +361,7 @@ export default {
         ko: "게시 중",
         ja: "公開中",
         de: "Live",
+        pt: "Visível",
       }),
       rejected: t({
         en: "Changes requested",
@@ -336,6 +371,7 @@ export default {
         ko: "수정 요청됨",
         ja: "修正依頼あり",
         de: "Änderungen angefragt",
+        pt: "Alterações pedidas",
       }),
     },
     approvedInactive: t({
@@ -346,6 +382,7 @@ export default {
       ko: "승인됨, 구독이 다시 활성화될 때까지 숨김",
       ja: "承認済み。サブスクリプションが再開されるまで非表示",
       de: "Freigegeben, ausgeblendet, bis das Abo wieder aktiv ist",
+      pt: "Aprovado, oculto até a subscrição voltar a estar ativa",
     }),
     reviewNote: t({
       en: "Note from the reviewer",
@@ -355,6 +392,7 @@ export default {
       ko: "검토자 메모",
       ja: "審査担当者からのメモ",
       de: "Notiz der Prüfung",
+      pt: "Nota do revisor",
     }),
     name: t({
       en: "Name",
@@ -364,6 +402,7 @@ export default {
       ko: "이름",
       ja: "名前",
       de: "Name",
+      pt: "Nome",
     }),
     url: t({
       en: "Link",
@@ -373,6 +412,7 @@ export default {
       ko: "링크",
       ja: "リンク",
       de: "Link",
+      pt: "Ligação",
     }),
     tagline: t({
       en: "Line of copy",
@@ -382,6 +422,7 @@ export default {
       ko: "한 줄 문구",
       ja: "コピー（1行）",
       de: "Textzeile",
+      pt: "Linha de texto",
     }),
     section: t({
       en: "Section",
@@ -391,6 +432,7 @@ export default {
       ko: "섹션",
       ja: "セクション",
       de: "Bereich",
+      pt: "Secção",
     }),
     sections: {
       video: t({
@@ -401,6 +443,7 @@ export default {
         ko: "둘러보기",
         ja: "見つける",
         de: "Entdecken",
+        pt: "Descobrir",
       }),
       tool: t({
         en: "Tools",
@@ -410,6 +453,7 @@ export default {
         ko: "도구",
         ja: "ツール",
         de: "Tools",
+        pt: "Ferramentas",
       }),
       studio: t({
         en: "Creatives",
@@ -419,6 +463,7 @@ export default {
         ko: "크리에이티브",
         ja: "クリエイティブ",
         de: "Creatives",
+        pt: "Criativos",
       }),
       skill: t({
         en: "Skills",
@@ -428,6 +473,7 @@ export default {
         ko: "스킬",
         ja: "スキル",
         de: "Skills",
+        pt: "Skills",
       }),
       extra: t({
         en: "Extras",
@@ -437,6 +483,7 @@ export default {
         ko: "기타 자료",
         ja: "エクストラ",
         de: "Extras",
+        pt: "Extras",
       }),
     },
     category: t({
@@ -447,6 +494,7 @@ export default {
       ko: "카테고리",
       ja: "カテゴリ",
       de: "Kategorie",
+      pt: "Categoria",
     }),
     pickCategory: t({
       en: "Pick a category",
@@ -456,6 +504,7 @@ export default {
       ko: "카테고리 선택",
       ja: "カテゴリを選択",
       de: "Kategorie wählen",
+      pt: "Escolhe uma categoria",
     }),
     categoryHelp: t({
       en: "Your placement shows on this category’s page.",
@@ -465,6 +514,7 @@ export default {
       ko: "이 카테고리 페이지에 노출됩니다.",
       ja: "掲載はこのカテゴリのページに表示されます。",
       de: "Deine Platzierung erscheint auf der Seite dieser Kategorie.",
+      pt: "O teu espaço aparece na página desta categoria.",
     }),
     darkInvert: t({
       en: "Invert the logo in dark mode (for a dark mark on a transparent background)",
@@ -474,6 +524,7 @@ export default {
       ko: "다크 모드에서 로고 반전 (투명 배경의 어두운 마크용)",
       ja: "ダークモードでロゴを反転（透明背景に暗いマークの場合）",
       de: "Logo im Dark Mode invertieren (für ein dunkles Logo auf transparentem Hintergrund)",
+      pt: "Inverter o logótipo no modo escuro (para um símbolo escuro sobre fundo transparente)",
     }),
     resubmit: t({
       en: "Saving sends the placement back to review; it is hidden until approved again.",
@@ -483,6 +534,7 @@ export default {
       ko: "저장하면 노출이 다시 검토되며, 승인될 때까지 숨겨집니다.",
       ja: "保存すると掲載は再審査に送られ、再承認されるまで非表示になります。",
       de: "Beim Speichern geht die Platzierung erneut in die Prüfung; bis zur Freigabe ist sie ausgeblendet.",
+      pt: "Guardar envia o espaço de novo para revisão; fica oculto até voltar a ser aprovado.",
     }),
     save: t({
       en: "Save and send for review",
@@ -492,6 +544,7 @@ export default {
       ko: "저장하고 검토 요청",
       ja: "保存して審査に送信",
       de: "Speichern und zur Prüfung senden",
+      pt: "Guardar e enviar para revisão",
     }),
     saving: t({
       en: "Saving…",
@@ -501,6 +554,7 @@ export default {
       ko: "저장 중…",
       ja: "保存中…",
       de: "Wird gespeichert …",
+      pt: "A guardar…",
     }),
     saved: t({
       en: "Saved. We will review it shortly.",
@@ -510,6 +564,7 @@ export default {
       ko: "저장했습니다. 곧 검토하겠습니다.",
       ja: "保存しました。まもなく審査します。",
       de: "Gespeichert. Wir prüfen es in Kürze.",
+      pt: "Guardado. Vamos revê-lo em breve.",
     }),
     errors: {
       validation: t({
@@ -520,6 +575,7 @@ export default {
         ko: "입력란을 확인하세요: 링크는 공개 HTTPS 주소여야 합니다.",
         ja: "入力内容をご確認ください：リンクは公開されたHTTPSアドレスである必要があります。",
         de: "Prüfe die Felder: Links müssen öffentliche HTTPS-Adressen sein.",
+        pt: "Verifica os campos: as ligações têm de ser endereços HTTPS públicos.",
       }),
       cover: t({
         en: "Add a cover image for this plan.",
@@ -529,6 +585,7 @@ export default {
         ko: "이 플랜의 커버 이미지를 추가하세요.",
         ja: "このプランのカバー画像を追加してください。",
         de: "Füge ein Coverbild für diesen Tarif hinzu.",
+        pt: "Adiciona uma imagem de capa para este plano.",
       }),
       category: t({
         en: "Pick the category your placement shows on.",
@@ -538,6 +595,7 @@ export default {
         ko: "노출할 카테고리를 선택하세요.",
         ja: "掲載を表示するカテゴリを選択してください。",
         de: "Wähle die Kategorie, in der deine Platzierung erscheint.",
+        pt: "Escolhe a categoria onde o teu espaço aparece.",
       }),
       storage: t({
         en: "Could not save. Try again.",
@@ -547,6 +605,7 @@ export default {
         ko: "저장하지 못했습니다. 다시 시도하세요.",
         ja: "保存できませんでした。もう一度お試しください。",
         de: "Speichern fehlgeschlagen. Versuch es noch mal.",
+        pt: "Não foi possível guardar. Tenta novamente.",
       }),
     },
     preview: t({
@@ -557,6 +616,7 @@ export default {
       ko: "미리보기",
       ja: "プレビュー",
       de: "Vorschau",
+      pt: "Pré-visualização",
     }),
     placements: {
       card: t({
@@ -567,6 +627,7 @@ export default {
         ko: "그리드 카드",
         ja: "グリッドカード",
         de: "Rasterkarte",
+        pt: "Cartão da grelha",
       }),
       slot: t({
         en: "Sponsor slot",
@@ -576,6 +637,7 @@ export default {
         ko: "스폰서 영역",
         ja: "スポンサー枠",
         de: "Sponsorplatz",
+        pt: "Espaço de patrocínio",
       }),
     },
     campaignSection: t({
@@ -586,6 +648,7 @@ export default {
       ko: "캠페인",
       ja: "キャンペーン",
       de: "Kampagne",
+      pt: "Campanha",
     }),
     campaignSectionBody: t({
       en: "Who the placement is for, its line of copy, and where it links.",
@@ -595,6 +658,7 @@ export default {
       ko: "노출 대상, 한 줄 문구, 연결 링크.",
       ja: "掲載の対象、コピー、リンク先。",
       de: "Für wen die Platzierung ist, ihre Textzeile und wohin sie verlinkt.",
+      pt: "Para quem é o espaço, a sua linha de texto e para onde aponta a ligação.",
     }),
     brandSection: t({
       en: "Brand",
@@ -604,6 +668,7 @@ export default {
       ko: "브랜드",
       ja: "ブランド",
       de: "Marke",
+      pt: "Marca",
     }),
     brandSectionBody: t({
       en: "Your logo, shown with every placement and in the sponsor wall.",
@@ -613,6 +678,7 @@ export default {
       ko: "모든 노출과 스폰서 목록에 표시되는 로고.",
       ja: "すべての掲載とスポンサー一覧に表示されるロゴ。",
       de: "Dein Logo, angezeigt bei jeder Platzierung und auf der Sponsorenwand.",
+      pt: "O teu logótipo, apresentado em cada espaço e no mural de patrocinadores.",
     }),
     logoDrop: t({
       en: "Upload your logo",
@@ -622,6 +688,7 @@ export default {
       ko: "로고 업로드",
       ja: "ロゴをアップロード",
       de: "Lade dein Logo hoch",
+      pt: "Carrega o teu logótipo",
     }),
     logoSize: t({
       en: "Square, up to 512 × 512 px",
@@ -631,6 +698,7 @@ export default {
       ko: "정사각형, 최대 512 × 512 px",
       ja: "正方形、最大512 × 512 px",
       de: "Quadratisch, bis zu 512 × 512 px",
+      pt: "Quadrado, até 512 × 512 px",
     }),
     mediaSection: t({
       en: "Creative media",
@@ -640,6 +708,7 @@ export default {
       ko: "크리에이티브 미디어",
       ja: "クリエイティブ素材",
       de: "Creative-Medien",
+      pt: "Imagem criativa",
     }),
     mediaSectionBody: t({
       en: "One 16:9 image used for the card in the grid.",
@@ -649,6 +718,7 @@ export default {
       ko: "그리드 카드에 쓰이는 16:9 이미지 1장.",
       ja: "グリッドのカードに使う16:9の画像1枚。",
       de: "Ein 16:9-Bild für die Karte im Raster.",
+      pt: "Uma imagem 16:9 usada no cartão da grelha.",
     }),
     coverDrop: t({
       en: "Upload your cover image",
@@ -658,6 +728,7 @@ export default {
       ko: "커버 이미지 업로드",
       ja: "カバー画像をアップロード",
       de: "Lade dein Coverbild hoch",
+      pt: "Carrega a tua imagem de capa",
     }),
     coverSize: t({
       en: "1600 × 900 px recommended",
@@ -667,6 +738,7 @@ export default {
       ko: "1600 × 900 px 권장",
       ja: "1600 × 900 px推奨",
       de: "1600 × 900 px empfohlen",
+      pt: "Recomendado: 1600 × 900 px",
     }),
     placementSection: t({
       en: "Placement",
@@ -676,6 +748,7 @@ export default {
       ko: "노출",
       ja: "掲載",
       de: "Platzierung",
+      pt: "Posicionamento",
     }),
     placementSectionBody: t({
       en: "The section and category page your placement shows on.",
@@ -685,6 +758,7 @@ export default {
       ko: "노출될 섹션과 카테고리 페이지.",
       ja: "掲載を表示するセクションとカテゴリページ。",
       de: "Der Bereich und die Kategorieseite, auf denen deine Platzierung erscheint.",
+      pt: "A secção e a página de categoria onde o teu espaço aparece.",
     }),
     previewSectionBody: t({
       en: "Roughly how your placement will appear on the site.",
@@ -694,6 +768,7 @@ export default {
       ko: "사이트에 노출될 대략적인 모습.",
       ja: "サイト上での掲載のおおよその見え方。",
       de: "So ungefähr wird deine Platzierung auf der Website aussehen.",
+      pt: "Aproximadamente como o teu espaço vai aparecer no site.",
     }),
     submitSection: t({
       en: "Submit",
@@ -703,6 +778,7 @@ export default {
       ko: "제출",
       ja: "送信",
       de: "Einreichen",
+      pt: "Submeter",
     }),
     submitSectionBody: t({
       en: "Saving sends the placement to review; it goes live once approved.",
@@ -712,6 +788,7 @@ export default {
       ko: "저장하면 노출이 검토되며, 승인되면 게시됩니다.",
       ja: "保存すると掲載は審査に送られ、承認されると公開されます。",
       de: "Beim Speichern geht die Platzierung in die Prüfung; nach der Freigabe ist sie live.",
+      pt: "Guardar envia o espaço para revisão; fica visível assim que for aprovado.",
     }),
     sponsored: t({
       en: "Sponsored",
@@ -721,6 +798,7 @@ export default {
       ko: "스폰서",
       ja: "スポンサー",
       de: "Gesponsert",
+      pt: "Patrocinado",
     }),
     manageBilling: t({
       en: "Manage billing",
@@ -730,6 +808,7 @@ export default {
       ko: "결제 관리",
       ja: "請求を管理",
       de: "Abrechnung verwalten",
+      pt: "Gerir faturação",
     }),
     opening: t({
       en: "Opening…",
@@ -739,6 +818,7 @@ export default {
       ko: "여는 중…",
       ja: "開いています…",
       de: "Wird geöffnet …",
+      pt: "A abrir…",
     }),
     checkout: {
       heroTitle: t({
@@ -749,6 +829,7 @@ export default {
         ko: "모션 메이커들에게 브랜드를 알리세요.",
         ja: "モーションの作り手にあなたのブランドを。",
         de: "Bring deine Marke zu den Motion-Machern.",
+        pt: "Mostra a tua marca a quem faz motion.",
       }),
       heroIntro: t({
         en: "Pick a plan, add your creative, and check out. Your placement goes live after a quick review.",
@@ -758,6 +839,7 @@ export default {
         ko: "플랜을 고르고, 크리에이티브를 추가하고, 결제하세요. 간단한 검토 후 노출이 게시됩니다.",
         ja: "プランを選び、クリエイティブを追加して購入しましょう。簡単な審査の後に掲載が公開されます。",
         de: "Wähle einen Tarif, füge dein Creative hinzu und gehe zur Kasse. Deine Platzierung geht nach einer kurzen Prüfung live.",
+        pt: "Escolhe um plano, adiciona a tua imagem e paga. O teu espaço fica visível após uma revisão rápida.",
       }),
       planSection: t({
         en: "Plan",
@@ -767,6 +849,7 @@ export default {
         ko: "플랜",
         ja: "プラン",
         de: "Tarif",
+        pt: "Plano",
       }),
       planSectionBody: t({
         en: "Where your placement shows.",
@@ -776,6 +859,7 @@ export default {
         ko: "노출 위치.",
         ja: "掲載が表示される場所。",
         de: "Wo deine Platzierung erscheint.",
+        pt: "Onde o teu espaço aparece.",
       }),
       details: t({
         en: "Details",
@@ -785,6 +869,7 @@ export default {
         ko: "세부 정보",
         ja: "詳細",
         de: "Details",
+        pt: "Detalhes",
       }),
       soldOut: t({
         en: "Sold out: every seat is taken.",
@@ -794,6 +879,7 @@ export default {
         ko: "매진: 모든 자리가 찼습니다.",
         ja: "完売：すべての枠が埋まっています。",
         de: "Ausverkauft: Alle Plätze sind vergeben.",
+        pt: "Esgotado: todos os lugares estão ocupados.",
       }),
       billingSection: t({
         en: "Billing",
@@ -803,6 +889,7 @@ export default {
         ko: "결제",
         ja: "請求",
         de: "Abrechnung",
+        pt: "Faturação",
       }),
       billingSectionBody: t({
         en: "Renew monthly to stay visible, or run once for 30 days.",
@@ -812,6 +899,7 @@ export default {
         ko: "매월 갱신해 계속 노출하거나, 30일간 1회 진행하세요.",
         ja: "毎月更新して表示し続けるか、30日間1回限りで掲載します。",
         de: "Verlängere monatlich, um sichtbar zu bleiben, oder buche einmalig 30 Tage.",
+        pt: "Renova mensalmente para continuares visível, ou publica uma vez durante 30 dias.",
       }),
       billingBodies: {
         monthly: t({
@@ -822,6 +910,7 @@ export default {
           ko: "매월 갱신. 언제든 취소 가능.",
           ja: "毎月更新されます。いつでもキャンセルできます。",
           de: "Verlängert sich jeden Monat. Jederzeit kündbar.",
+          pt: "Renova todos os meses. Cancela quando quiseres.",
         }),
         once: t({
           en: "One 30-day run from approval. Never renews.",
@@ -831,6 +920,7 @@ export default {
           ko: "승인일부터 30일 1회 진행. 갱신되지 않습니다.",
           ja: "承認から30日間1回限り。更新されません。",
           de: "Eine 30-Tage-Laufzeit ab Freigabe. Verlängert sich nie.",
+          pt: "Um período único de 30 dias a partir da aprovação. Nunca é renovado.",
         }),
       },
       reviewSection: t({
@@ -841,6 +931,7 @@ export default {
         ko: "검토",
         ja: "確認",
         de: "Überprüfen",
+        pt: "Revisão",
       }),
       reviewSectionBody: t({
         en: "Check your order before checkout.",
@@ -850,6 +941,7 @@ export default {
         ko: "결제 전에 주문을 확인하세요.",
         ja: "購入前に注文内容をご確認ください。",
         de: "Prüfe deine Bestellung vor dem Checkout.",
+        pt: "Verifica a tua encomenda antes de pagar.",
       }),
       dueToday: t({
         en: "Due today",
@@ -859,6 +951,7 @@ export default {
         ko: "오늘 결제 금액",
         ja: "本日のお支払い",
         de: "Heute fällig",
+        pt: "A pagar hoje",
       }),
       signedInAs: t({
         en: "Signed in as",
@@ -868,6 +961,7 @@ export default {
         ko: "로그인 계정:",
         ja: "ログイン中：",
         de: "Angemeldet als",
+        pt: "Sessão iniciada como",
       }),
       note: t({
         en: "After checkout, manage your sponsorship and update your creative anytime from Sponsorships. Payments run through Dodo Payments, our merchant of record.",
@@ -877,6 +971,7 @@ export default {
         ko: "결제 후 스폰서십 페이지에서 언제든 스폰서십을 관리하고 크리에이티브를 수정할 수 있습니다. 결제는 판매 대행자인 Dodo Payments를 통해 처리됩니다.",
         ja: "購入後は、スポンサーシップページからいつでもスポンサーシップを管理し、クリエイティブを更新できます。お支払いは販売事業者であるDodo Paymentsを通じて行われます。",
         de: "Nach dem Checkout verwaltest du dein Sponsoring und aktualisierst dein Creative jederzeit unter Sponsorings. Zahlungen laufen über Dodo Payments, unseren Merchant of Record.",
+        pt: "Depois do pagamento, gere o teu patrocínio e atualiza a tua imagem a qualquer momento em Patrocínios. Os pagamentos são processados pela Dodo Payments, o nosso comerciante registado (merchant of record).",
       }),
       submit: t({
         en: "Checkout",
@@ -886,6 +981,7 @@ export default {
         ko: "결제하기",
         ja: "購入手続き",
         de: "Zur Kasse",
+        pt: "Pagar",
       }),
       opening: t({
         en: "Opening checkout…",
@@ -895,6 +991,7 @@ export default {
         ko: "결제 페이지 여는 중…",
         ja: "購入手続きを開いています…",
         de: "Checkout wird geöffnet …",
+        pt: "A abrir o pagamento…",
       }),
       errors: {
         validation: t({
@@ -905,6 +1002,7 @@ export default {
           ko: "입력란을 확인하세요: 모든 필수 항목을 채워야 하며, 링크는 공개 HTTPS 주소여야 합니다.",
           ja: "入力内容をご確認ください：必須項目はすべて入力が必要で、リンクは公開されたHTTPSアドレスである必要があります。",
           de: "Prüfe die Felder: Jedes Pflichtfeld braucht einen Wert, und Links müssen öffentliche HTTPS-Adressen sein.",
+          pt: "Verifica os campos: todos os obrigatórios precisam de um valor e as ligações têm de ser endereços HTTPS públicos.",
         }),
         cover: t({
           en: "Add a cover image for your placement.",
@@ -914,6 +1012,7 @@ export default {
           ko: "노출용 커버 이미지를 추가하세요.",
           ja: "掲載用のカバー画像を追加してください。",
           de: "Füge ein Coverbild für deine Platzierung hinzu.",
+          pt: "Adiciona uma imagem de capa para o teu espaço.",
         }),
         category: t({
           en: "Pick the category your placement shows on.",
@@ -923,6 +1022,7 @@ export default {
           ko: "노출할 카테고리를 선택하세요.",
           ja: "掲載を表示するカテゴリを選択してください。",
           de: "Wähle die Kategorie, in der deine Platzierung erscheint.",
+          pt: "Escolhe a categoria onde o teu espaço aparece.",
         }),
         "sold-out": t({
           en: "Diamond just sold out. Pick another plan.",
@@ -932,6 +1032,7 @@ export default {
           ko: "Diamond가 방금 매진되었습니다. 다른 플랜을 선택하세요.",
           ja: "ダイヤモンドは完売しました。別のプランを選択してください。",
           de: "Diamond ist gerade ausverkauft. Wähle einen anderen Tarif.",
+          pt: "O Diamante acabou de esgotar. Escolhe outro plano.",
         }),
         drafts: t({
           en: "You have 10 unpaid drafts. Finish or delete one on Sponsorships first.",
@@ -941,6 +1042,7 @@ export default {
           ko: "미결제 초안이 10개 있습니다. 먼저 스폰서십 페이지에서 하나를 완료하거나 삭제하세요.",
           ja: "未払いの下書きが10件あります。先にスポンサーシップページでいずれかを完了または削除してください。",
           de: "Du hast 10 unbezahlte Entwürfe. Schließe zuerst einen unter Sponsorings ab oder lösche ihn.",
+          pt: "Tens 10 rascunhos por pagar. Conclui ou elimina um em Patrocínios primeiro.",
         }),
         save: t({
           en: "Could not save. Try again.",
@@ -950,6 +1052,7 @@ export default {
           ko: "저장하지 못했습니다. 다시 시도하세요.",
           ja: "保存できませんでした。もう一度お試しください。",
           de: "Speichern fehlgeschlagen. Versuch es noch mal.",
+          pt: "Não foi possível guardar. Tenta novamente.",
         }),
         checkout: t({
           en: "Could not open checkout. Try again.",
@@ -959,6 +1062,7 @@ export default {
           ko: "결제 페이지를 열지 못했습니다. 다시 시도하세요.",
           ja: "購入手続きを開けませんでした。もう一度お試しください。",
           de: "Checkout konnte nicht geöffnet werden. Versuch es noch mal.",
+          pt: "Não foi possível abrir o pagamento. Tenta novamente.",
         }),
       },
     },
@@ -970,6 +1074,7 @@ export default {
       ko: "결제 관리를 열지 못했습니다. 다시 시도하세요.",
       ja: "請求ページを開けませんでした。もう一度お試しください。",
       de: "Abrechnung konnte nicht geöffnet werden. Versuch es noch mal.",
+      pt: "Não foi possível abrir a faturação. Tenta novamente.",
     }),
   },
 } satisfies Dictionary;

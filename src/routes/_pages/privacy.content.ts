@@ -12,6 +12,7 @@ const privacyContent = {
       ko: "개인정보 처리방침",
       ja: "プライバシーポリシー",
       de: "Datenschutzerklärung",
+      pt: "Política de privacidade",
     }),
     text1: t({
       en: "This policy describes what",
@@ -21,6 +22,7 @@ const privacyContent = {
       ko: "본 방침은",
       ja: "このポリシーは、",
       de: "Diese Richtlinie beschreibt, welche Daten",
+      pt: "Esta política descreve o que",
     }),
     text2: t({
       en: "(“we”, “us”, or “our”) processes when you visit",
@@ -30,6 +32,7 @@ const privacyContent = {
       ko: "(“당사”)가 다음 경우에 처리하는 정보를 설명합니다: 방문",
       ja: "（以下「当方」）が、あなたが次を訪問する際に処理する情報について説明します：",
       de: "(„wir“, „uns“ oder „unser“) verarbeitet bei deinem Besuch von",
+      pt: "(«nós», «nos» ou «nosso») trata quando visitas",
     }),
     text3: t({
       en: ", buy",
@@ -39,6 +42,7 @@ const privacyContent = {
       ko: ", 구매",
       ja: "、購入",
       de: ", beim Kauf von",
+      pt: ", compras",
     }),
     text4: t({
       en: ", sponsor us, sign in, write to us, join our newsletter list, or submit work to the collection. We do not sell your data, and no advertising trackers run on this site.",
@@ -48,6 +52,7 @@ const privacyContent = {
       ko: ", 스폰서 참여, 로그인, 문의, 뉴스레터 신청, 컬렉션에 작업물 제출. 당사는 데이터를 판매하지 않으며, 이 사이트에는 광고 추적기가 없습니다.",
       ja: "、スポンサー、ログイン、お問い合わせ、ニュースレターへの登録、コレクションへの作品投稿を行う際も同様です。当方はあなたのデータを販売せず、このサイトでは広告トラッカーを使用していません。",
       de: ", wenn du uns sponserst, dich anmeldest, uns schreibst, dich für unseren Newsletter einträgst oder Arbeiten für die Sammlung einreichst. Wir verkaufen deine Daten nicht, und auf dieser Website laufen keine Werbe-Tracker.",
+      pt: ", nos patrocinas, inicias sessão, nos escreves, te inscreves na nossa newsletter ou submetes trabalho para a coleção. Não vendemos os teus dados e não há rastreadores de publicidade a funcionar neste site.",
     }),
     heading5: t({
       en: "1. What we process",
@@ -57,6 +62,7 @@ const privacyContent = {
       ko: "1. 처리하는 정보",
       ja: "1. 処理する情報",
       de: "1. Was wir verarbeiten",
+      pt: "1. O que tratamos",
     }),
     text6: t({
       en: "Email address",
@@ -66,6 +72,7 @@ const privacyContent = {
       ko: "이메일 주소",
       ja: "メールアドレス",
       de: "E-Mail-Adresse",
+      pt: "Endereço de e-mail",
     }),
     text7: t({
       en: ": you give it to Dodo Payments at checkout, and to us when you sign in. We use it to find your orders at Dodo Payments, to send you a sign-in code, and to email you about delivery of your purchase. If you sign in with Google, Google shares your name, email address, and profile picture with us, and nothing else from your Google account. Sign-in remains limited to paid customers. Buying, sponsoring, or submitting work does not subscribe you to our newsletter; only submitting the newsletter signup form does.",
@@ -75,6 +82,7 @@ const privacyContent = {
       ko: ": 결제 시 Dodo Payments에, 로그인 시 당사에 제공합니다. 당사는 이를 Dodo Payments에서 주문을 찾고, 로그인 코드를 보내고, 구매 상품 전달에 관한 이메일을 보내는 데 사용합니다. Google로 로그인하면 Google이 이름, 이메일 주소, 프로필 사진을 당사와 공유하며, Google 계정의 그 밖의 정보는 공유하지 않습니다. 로그인은 유료 고객으로 제한됩니다. 구매, 스폰서 참여, 작업물 제출만으로는 뉴스레터에 가입되지 않으며, 뉴스레터 신청 양식을 제출한 경우에만 가입됩니다.",
       ja: "：購入時にDodo Paymentsへ、ログイン時に当方へ提供されます。Dodo Paymentsでの注文の確認、ログインコードの送信、購入品のお届けに関するメール送信に使用します。Googleでログインした場合、Googleから共有されるのはお名前、メールアドレス、プロフィール画像のみで、Googleアカウントのその他の情報は共有されません。ログインは引き続き有料顧客に限定されます。購入、スポンサー、作品投稿によってニュースレターに登録されることはなく、ニュースレター登録フォームを送信した場合のみ登録されます。",
       de: ": Du gibst sie beim Checkout an Dodo Payments und bei der Anmeldung an uns weiter. Wir nutzen sie, um deine Bestellungen bei Dodo Payments zu finden, dir einen Anmeldecode zu schicken und dich per E-Mail über die Auslieferung deines Kaufs zu informieren. Wenn du dich mit Google anmeldest, teilt Google deinen Namen, deine E-Mail-Adresse und dein Profilbild mit uns, sonst nichts aus deinem Google-Konto. Die Anmeldung bleibt zahlenden Kunden vorbehalten. Ein Kauf, ein Sponsoring oder eine Einreichung meldet dich nicht für unseren Newsletter an; das geschieht nur, wenn du das Newsletter-Anmeldeformular absendest.",
+      pt: ": forneces-o à Dodo Payments no pagamento e a nós quando inicias sessão. Usamo-lo para encontrar as tuas encomendas na Dodo Payments, para te enviar um código de início de sessão e para te enviar e-mails sobre a entrega da tua compra. Se iniciares sessão com o Google, o Google partilha connosco o teu nome, endereço de e-mail e fotografia de perfil, e nada mais da tua conta Google. O início de sessão continua limitado a clientes pagantes. Comprar, patrocinar ou submeter trabalho não te inscreve na nossa newsletter; só o envio do formulário de inscrição na newsletter o faz.",
     }),
     text8: t({
       en: "Order details",
@@ -84,6 +92,7 @@ const privacyContent = {
       ko: "주문 정보",
       ja: "注文情報",
       de: "Bestelldaten",
+      pt: "Dados da encomenda",
     }),
     text9: t({
       en: ": Dodo Payments holds your orders and sponsorship payments: what you bought, when, the amount, and your billing details. Orders stay with Dodo Payments; we read them when needed. For sponsorships we keep a copy of the subscription's status, tier, renewal date, and the Dodo customer email and ID, plus the placement details you submit (name, link, tagline, logo and cover URLs, category) and our review decision.",
@@ -93,6 +102,7 @@ const privacyContent = {
       ko: ": 주문 및 스폰서십 결제 정보(구매 품목, 시점, 금액, 청구 정보)는 Dodo Payments가 보관합니다. 주문은 Dodo Payments에 남아 있으며 당사는 필요할 때 조회합니다. 스폰서십의 경우 구독 상태, 등급, 갱신일, Dodo 고객 이메일과 ID의 사본, 그리고 제출하신 노출 정보(이름, 링크, 태그라인, 로고 및 커버 URL, 카테고리)와 당사의 검토 결과를 보관합니다.",
       ja: "：注文とスポンサー料金の支払いはDodo Paymentsが保持します（購入内容、日時、金額、請求先情報）。注文情報はDodo Paymentsに保管され、当方は必要なときに参照します。スポンサーシップについては、サブスクリプションのステータス、プラン、更新日、Dodoの顧客メールアドレスとID、およびあなたが送信した掲載情報（名前、リンク、キャッチコピー、ロゴとカバーのURL、カテゴリ）と当方の審査結果のコピーを保存します。",
       de: ": Dodo Payments verwaltet deine Bestellungen und Sponsoring-Zahlungen: was du gekauft hast, wann, den Betrag und deine Rechnungsdaten. Bestellungen verbleiben bei Dodo Payments; wir lesen sie bei Bedarf. Für Sponsorings speichern wir eine Kopie von Status, Stufe und Verlängerungsdatum des Abos sowie die Kunden-E-Mail und -ID bei Dodo, außerdem die von dir übermittelten Platzierungsdetails (Name, Link, Tagline, Logo- und Cover-URLs, Kategorie) und unsere Prüfentscheidung.",
+      pt: ": a Dodo Payments guarda as tuas encomendas e os pagamentos de patrocínios: o que compraste, quando, o montante e os teus dados de faturação. As encomendas ficam na Dodo Payments; consultamo-las quando necessário. Para os patrocínios, guardamos uma cópia do estado da subscrição, do nível, da data de renovação e do e-mail e ID de cliente da Dodo, bem como dos detalhes do espaço que submetes (nome, ligação, slogan, URLs do logótipo e da capa, categoria) e da nossa decisão de revisão.",
     }),
     text10: t({
       en: "User record",
@@ -102,6 +112,7 @@ const privacyContent = {
       ko: "사용자 기록",
       ja: "ユーザー記録",
       de: "Nutzerdatensatz",
+      pt: "Registo de utilizador",
     }),
     text11: t({
       en: ": on your first sign-in we save your email address and the time the record was created.",
@@ -111,6 +122,7 @@ const privacyContent = {
       ko: ": 처음 로그인할 때 이메일 주소와 기록 생성 시각을 저장합니다.",
       ja: "：初回ログイン時に、メールアドレスと記録の作成日時を保存します。",
       de: ": Bei deiner ersten Anmeldung speichern wir deine E-Mail-Adresse und den Zeitpunkt, zu dem der Datensatz erstellt wurde.",
+      pt: ": no teu primeiro início de sessão, guardamos o teu endereço de e-mail e a data e hora em que o registo foi criado.",
     }),
     text12: t({
       en: "Sign-in codes and sessions",
@@ -120,6 +132,7 @@ const privacyContent = {
       ko: "로그인 코드와 세션",
       ja: "ログインコードとセッション",
       de: "Anmeldecodes und Sitzungen",
+      pt: "Códigos de início de sessão e sessões",
     }),
     text13: t({
       en: ": each emailed code is single-use, works for 10 minutes and allows 5 tries; we store only a hash of it. Once you sign in, a session cookie keeps you signed in for 7 days. It is HttpOnly and Secure, so page scripts can’t read it and it only travels over HTTPS. Alongside the session we store the IP address and user agent it was opened from. Signing out ends the session.",
@@ -129,6 +142,7 @@ const privacyContent = {
       ko: ": 이메일로 보내는 코드는 1회용이며 10분간 유효하고 5회까지 시도할 수 있습니다. 당사는 코드의 해시만 저장합니다. 로그인하면 세션 쿠키가 7일간 로그인 상태를 유지합니다. 이 쿠키는 HttpOnly 및 Secure로 설정되어 페이지 스크립트가 읽을 수 없고 HTTPS로만 전송됩니다. 세션과 함께 세션을 연 IP 주소와 사용자 에이전트를 저장합니다. 로그아웃하면 세션이 종료됩니다.",
       ja: "：メールで送られる各コードは1回限り有効で、10分間使用でき、5回まで試行できます。当方はそのハッシュのみを保存します。ログイン後は、セッションCookieにより7日間ログイン状態が保持されます。CookieはHttpOnlyかつSecureで、ページのスクリプトからは読み取れず、HTTPS経由でのみ送信されます。セッションとともに、開始時のIPアドレスとユーザーエージェントを保存します。ログアウトするとセッションは終了します。",
       de: ": Jeder per E-Mail gesendete Code ist einmalig nutzbar, gilt 10 Minuten und erlaubt 5 Versuche; wir speichern nur einen Hash davon. Nach der Anmeldung hält dich ein Sitzungscookie 7 Tage lang angemeldet. Es ist HttpOnly und Secure, sodass Skripte auf der Seite es nicht lesen können und es nur über HTTPS übertragen wird. Zusammen mit der Sitzung speichern wir die IP-Adresse und den User-Agent, von denen aus sie geöffnet wurde. Mit dem Abmelden endet die Sitzung.",
+      pt: ": cada código enviado por e-mail é de utilização única, é válido durante 10 minutos e permite 5 tentativas; guardamos apenas um hash do mesmo. Depois de iniciares sessão, um cookie de sessão mantém-te com sessão iniciada durante 7 dias. É HttpOnly e Secure, pelo que os scripts da página não o conseguem ler e só circula por HTTPS. Juntamente com a sessão, guardamos o endereço IP e o user agent a partir dos quais foi aberta. Terminar sessão encerra a sessão.",
     }),
     text14: t({
       en: "GitHub username",
@@ -138,6 +152,7 @@ const privacyContent = {
       ko: "GitHub 사용자 이름",
       ja: "GitHubユーザー名",
       de: "GitHub-Benutzername",
+      pt: "Nome de utilizador do GitHub",
     }),
     text15: t({
       en: ": connecting your GitHub account in the Dodo Payments customer portal shares your GitHub username with Dodo Payments and GitHub for the repository invite, and GitHub lists you as a collaborator on our private repository, where we can see it.",
@@ -147,6 +162,7 @@ const privacyContent = {
       ko: ": Dodo Payments 고객 포털에서 GitHub 계정을 연결하면 저장소 초대를 위해 GitHub 사용자 이름이 Dodo Payments 및 GitHub와 공유되며, GitHub는 귀하를 당사 비공개 저장소의 협업자로 표시하고 당사는 이를 볼 수 있습니다.",
       ja: "：Dodo PaymentsのカスタマーポータルでGitHubアカウントを連携すると、リポジトリ招待のためにGitHubユーザー名がDodo PaymentsとGitHubに共有されます。また、GitHub上で当方の非公開リポジトリのコラボレーターとして表示され、当方もそれを確認できます。",
       de: ": Wenn du dein GitHub-Konto im Kundenportal von Dodo Payments verbindest, wird dein GitHub-Benutzername für die Repository-Einladung mit Dodo Payments und GitHub geteilt, und GitHub führt dich als Collaborator in unserem privaten Repository, wo wir ihn sehen können.",
+      pt: ": ao ligares a tua conta do GitHub no portal de cliente da Dodo Payments, o teu nome de utilizador do GitHub é partilhado com a Dodo Payments e o GitHub para o convite para o repositório, e o GitHub apresenta-te como colaborador do nosso repositório privado, onde o podemos ver.",
     }),
     text16: t({
       en: "Contact form messages",
@@ -156,6 +172,7 @@ const privacyContent = {
       ko: "문의 양식 메시지",
       ja: "お問い合わせフォームのメッセージ",
       de: "Nachrichten über das Kontaktformular",
+      pt: "Mensagens do formulário de contacto",
     }),
     text17: t({
       en: ": the name, email address, subject, and message you enter, sent to our inbox so we can answer you.",
@@ -165,6 +182,7 @@ const privacyContent = {
       ko: ": 입력하신 이름, 이메일 주소, 제목, 메시지는 답변을 위해 당사 받은편지함으로 전송됩니다.",
       ja: "：入力されたお名前、メールアドレス、件名、メッセージは、返信のために当方の受信箱に送信されます。",
       de: ": Name, E-Mail-Adresse, Betreff und Nachricht, die du eingibst, werden an unser Postfach gesendet, damit wir dir antworten können.",
+      pt: ": o nome, endereço de e-mail, assunto e mensagem que introduzes, enviados para a nossa caixa de entrada para te podermos responder.",
     }),
     text18: t({
       en: "Rate limits",
@@ -174,6 +192,7 @@ const privacyContent = {
       ko: "요청 제한",
       ja: "レート制限",
       de: "Ratenbegrenzung",
+      pt: "Limites de pedidos",
     }),
     text19: t({
       en: ": to keep the contact, newsletter, and submission forms from being flooded, we count their requests per IP address using a shared one-minute limit.",
@@ -183,6 +202,7 @@ const privacyContent = {
       ko: ": 문의, 뉴스레터, 제출 양식이 남용되지 않도록 IP 주소별 요청 수를 공용 1분 한도로 집계합니다.",
       ja: "：お問い合わせ、ニュースレター、投稿の各フォームへの大量送信を防ぐため、共通の1分間の制限でIPアドレスごとのリクエスト数をカウントします。",
       de: ": Damit das Kontakt-, Newsletter- und Einreichungsformular nicht überflutet wird, zählen wir ihre Anfragen pro IP-Adresse mit einem gemeinsamen Limit pro Minute.",
+      pt: ": para evitar que os formulários de contacto, de newsletter e de submissão sejam inundados, contamos os respetivos pedidos por endereço IP, com um limite partilhado de um minuto.",
     }),
     text20: t({
       en: "Analytics",
@@ -192,6 +212,7 @@ const privacyContent = {
       ko: "분석",
       ja: "アナリティクス",
       de: "Analyse",
+      pt: "Análise",
     }),
     text21: t({
       en: ": we use PostHog to see which pages and features are used. It records page views and actions such as opening a video, copying a prompt, searching, or starting a checkout, with your browser, device type, approximate location from your IP address, and a random id stored in your browser. Inputs are never recorded. It is not used for advertising, and we don’t sell it.",
@@ -201,6 +222,7 @@ const privacyContent = {
       ko: ": 어떤 페이지와 기능이 사용되는지 파악하기 위해 PostHog를 사용합니다. 페이지 조회와 동영상 열기, 프롬프트 복사, 검색, 결제 시작 같은 행동을 브라우저, 기기 유형, IP 주소로 추정한 대략적 위치, 브라우저에 저장된 임의 ID와 함께 기록합니다. 입력 내용은 절대 기록하지 않습니다. 광고에 사용하지 않으며 판매하지도 않습니다.",
       ja: "：どのページや機能が使われているかを把握するためにPostHogを使用しています。ページビューや、動画を開く、プロンプトをコピーする、検索する、購入を開始するといった操作を、ブラウザ、デバイスの種類、IPアドレスから推定したおおよその位置、ブラウザに保存されるランダムなIDとともに記録します。入力内容が記録されることはありません。広告には使用せず、販売もしません。",
       de: ": Wir nutzen PostHog, um zu sehen, welche Seiten und Funktionen genutzt werden. Erfasst werden Seitenaufrufe und Aktionen wie das Öffnen eines Videos, das Kopieren eines Prompts, Suchen oder das Starten eines Checkouts, zusammen mit deinem Browser, Gerätetyp, ungefährem Standort aus deiner IP-Adresse und einer zufälligen ID, die in deinem Browser gespeichert wird. Eingaben werden nie erfasst. Die Daten werden nicht für Werbung genutzt, und wir verkaufen sie nicht.",
+      pt: ": usamos o PostHog para ver que páginas e funcionalidades são usadas. Regista visualizações de páginas e ações como abrir um vídeo, copiar um prompt, pesquisar ou iniciar um pagamento, juntamente com o teu navegador, tipo de dispositivo, localização aproximada a partir do teu endereço IP e um id aleatório guardado no teu navegador. Os dados introduzidos nunca são registados. Não é usado para publicidade e não o vendemos.",
     }),
     text22: t({
       en: "We use this data to carry out the purchase or sponsorship you asked for, reply when you write to us, maintain the newsletter list you opted into, review community submissions and attribute accepted work, keep the site secure, understand which pages are read, and meet tax and accounting obligations through Dodo Payments. We do not use it for advertising tracking or marketing profiles.",
@@ -210,6 +232,7 @@ const privacyContent = {
       ko: "당사는 이 데이터를 요청하신 구매나 스폰서십 처리, 문의 답변, 동의하신 뉴스레터 목록 관리, 커뮤니티 제출물 검토 및 채택된 작업물의 출처 표기, 사이트 보안 유지, 어떤 페이지가 읽히는지 파악, Dodo Payments를 통한 세금 및 회계 의무 이행에 사용합니다. 광고 추적이나 마케팅 프로필에는 사용하지 않습니다.",
       ja: "当方はこれらのデータを、ご依頼いただいた購入やスポンサーシップの実行、お問い合わせへの返信、ご登録いただいたニュースレターリストの管理、コミュニティ投稿の審査と採用作品のクレジット表記、サイトの安全性の維持、閲覧されているページの把握、そしてDodo Paymentsを通じた税務・会計上の義務の履行のために使用します。広告トラッキングやマーケティングプロファイルには使用しません。",
       de: "Wir nutzen diese Daten, um den von dir gewünschten Kauf oder das Sponsoring abzuwickeln, dir zu antworten, wenn du uns schreibst, die Newsletter-Liste zu pflegen, für die du dich angemeldet hast, Community-Einreichungen zu prüfen und angenommene Arbeiten zuzuordnen, die Website sicher zu halten, zu verstehen, welche Seiten gelesen werden, und über Dodo Payments steuerliche und buchhalterische Pflichten zu erfüllen. Wir nutzen sie nicht für Werbe-Tracking oder Marketingprofile.",
+      pt: "Usamos estes dados para concretizar a compra ou o patrocínio que pediste, responder quando nos escreves, manter a lista da newsletter em que te inscreveste, rever submissões da comunidade e atribuir o trabalho aceite, manter o site seguro, perceber que páginas são lidas e cumprir obrigações fiscais e contabilísticas através da Dodo Payments. Não os usamos para rastreio publicitário nem para perfis de marketing.",
     }),
     heading23: t({
       en: "2. Who else sees it",
@@ -219,6 +242,7 @@ const privacyContent = {
       ko: "2. 정보를 볼 수 있는 다른 주체",
       ja: "2. 第三者による閲覧",
       de: "2. Wer sie noch sieht",
+      pt: "2. Quem mais os vê",
     }),
     text24: t({
       en: "Dodo Payments",
@@ -228,6 +252,7 @@ const privacyContent = {
       ko: "Dodo Payments",
       ja: "Dodo Payments",
       de: "Dodo Payments",
+      pt: "Dodo Payments",
     }),
     text25: t({
       en: ": the merchant of record. Payments, invoices, taxes, refunds, sponsorship subscriptions, and GitHub repository invites happen there under",
@@ -237,6 +262,7 @@ const privacyContent = {
       ko: ": 판매 대행자(Merchant of Record)입니다. 결제, 인보이스, 세금, 환불, 스폰서십 구독, GitHub 저장소 초대는 그곳에서 다음에 따라 처리됩니다:",
       ja: "：販売事業者（Merchant of Record）です。支払い、請求書、税金、返金、スポンサーシップのサブスクリプション、GitHubリポジトリへの招待は、次の規定のもとで同社が行います：",
       de: ": der Merchant of Record. Zahlungen, Rechnungen, Steuern, Rückerstattungen, Sponsoring-Abos und GitHub-Repository-Einladungen laufen dort, gemäß",
+      pt: ": o comerciante registado (merchant of record). Pagamentos, faturas, impostos, reembolsos, subscrições de patrocínio e convites para o repositório do GitHub acontecem aí, ao abrigo da",
     }),
     text26: t({
       en: "Dodo Payments’ privacy policy",
@@ -246,6 +272,7 @@ const privacyContent = {
       ko: "Dodo Payments 개인정보 처리방침",
       ja: "Dodo Paymentsのプライバシーポリシー",
       de: "Datenschutzerklärung von Dodo Payments",
+      pt: "política de privacidade da Dodo Payments",
     }),
     text27: t({
       en: "Cloudflare",
@@ -255,6 +282,7 @@ const privacyContent = {
       ko: "Cloudflare",
       ja: "Cloudflare",
       de: "Cloudflare",
+      pt: "Cloudflare",
     }),
     text28: t({
       en: ": hosts the site, our database (D1), the media storage (R2) behind assets.motionvideo.xyz, DNS, email forwarding, and the Turnstile bot check shown before we send a sign-in code, and sees the IP address of every request, as any host does. PostHog runs the analytics described above. Both act under",
@@ -264,6 +292,7 @@ const privacyContent = {
       ko: ": 사이트, 데이터베이스(D1), assets.motionvideo.xyz의 미디어 저장소(R2), DNS, 이메일 전달, 로그인 코드 발송 전 표시되는 Turnstile 봇 확인을 호스팅하며, 여느 호스트처럼 모든 요청의 IP 주소를 봅니다. PostHog는 위에서 설명한 분석을 운영합니다. 둘 다 다음에 따라 운영됩니다:",
       ja: "：サイト、データベース（D1）、assets.motionvideo.xyzの背後にあるメディアストレージ（R2）、DNS、メール転送、ログインコード送信前に表示されるTurnstileのボット確認をホストしており、一般的なホスティング事業者と同様に、すべてのリクエストのIPアドレスを確認できます。PostHogは上記のアナリティクスを運用しています。両社は次の規定のもとで処理を行います：",
       de: ": hostet die Website, unsere Datenbank (D1), den Medienspeicher (R2) hinter assets.motionvideo.xyz, DNS, die E-Mail-Weiterleitung und die Turnstile-Botprüfung, die vor dem Senden eines Anmeldecodes angezeigt wird, und sieht – wie jeder Host – die IP-Adresse jeder Anfrage. PostHog betreibt die oben beschriebene Analyse. Beide handeln gemäß",
+      pt: ": aloja o site, a nossa base de dados (D1), o armazenamento de media (R2) por trás de assets.motionvideo.xyz, o DNS, o reencaminhamento de e-mail e a verificação anti-bots Turnstile apresentada antes de enviarmos um código de início de sessão, e vê o endereço IP de cada pedido, como qualquer serviço de alojamento. O PostHog gere a análise descrita acima. Ambos atuam ao abrigo da",
     }),
     text29: t({
       en: "Cloudflare’s privacy policy",
@@ -273,6 +302,7 @@ const privacyContent = {
       ko: "Cloudflare 개인정보 처리방침",
       ja: "Cloudflareのプライバシーポリシー",
       de: "Datenschutzerklärung von Cloudflare",
+      pt: "política de privacidade da Cloudflare",
     }),
     text30: t({
       en: "Resend",
@@ -282,6 +312,7 @@ const privacyContent = {
       ko: "Resend",
       ja: "Resend",
       de: "Resend",
+      pt: "Resend",
     }),
     text31: t({
       en: ": delivers our emails, such as sign-in codes, purchase delivery emails, and contact form messages.",
@@ -291,6 +322,7 @@ const privacyContent = {
       ko: ": 로그인 코드, 구매 상품 전달 이메일, 문의 양식 메시지 등 당사 이메일을 발송합니다.",
       ja: "：ログインコード、購入品お届けメール、お問い合わせフォームのメッセージなど、当方のメールを配信します。",
       de: ": versendet unsere E-Mails, etwa Anmeldecodes, E-Mails zur Auslieferung von Käufen und Nachrichten aus dem Kontaktformular.",
+      pt: ": entrega os nossos e-mails, como códigos de início de sessão, e-mails de entrega de compras e mensagens do formulário de contacto.",
     }),
     text32: t({
       en: "GitHub",
@@ -300,6 +332,7 @@ const privacyContent = {
       ko: "GitHub",
       ja: "GitHub",
       de: "GitHub",
+      pt: "GitHub",
     }),
     text33: t({
       en: ": hosts the private repository that contains the pack.",
@@ -309,6 +342,7 @@ const privacyContent = {
       ko: ": 팩이 담긴 비공개 저장소를 호스팅합니다.",
       ja: "：パックを含む非公開リポジトリをホストしています。",
       de: ": hostet das private Repository mit dem Pack.",
+      pt: ": aloja o repositório privado que contém o pacote.",
     }),
     text34: t({
       en: "Apart from the providers above, we share no personal data unless the law requires it or you have consented to public attribution of an accepted submission. Submission email addresses are never published.",
@@ -318,6 +352,7 @@ const privacyContent = {
       ko: "위 제공업체 외에는 법률이 요구하거나 채택된 제출물의 공개 출처 표기에 동의하신 경우가 아니면 개인정보를 공유하지 않습니다. 제출물의 이메일 주소는 절대 공개되지 않습니다.",
       ja: "上記の事業者を除き、法律で求められる場合や、採用された投稿の公開クレジット表記に同意いただいた場合を除いて、個人データを共有することはありません。投稿時のメールアドレスが公開されることはありません。",
       de: "Abgesehen von den oben genannten Anbietern geben wir keine personenbezogenen Daten weiter, es sei denn, das Gesetz verlangt es oder du hast der öffentlichen Nennung bei einer angenommenen Einreichung zugestimmt. E-Mail-Adressen aus Einreichungen werden nie veröffentlicht.",
+      pt: "Para além dos fornecedores acima, não partilhamos dados pessoais, a menos que a lei o exija ou que tenhas consentido a atribuição pública de uma submissão aceite. Os endereços de e-mail das submissões nunca são publicados.",
     }),
     text36: t({
       en: "These providers run infrastructure in several countries, so your data may be processed outside the country you live in; we rely on the transfer safeguards they offer.",
@@ -327,6 +362,7 @@ const privacyContent = {
       ko: "이 제공업체들은 여러 국가에서 인프라를 운영하므로, 귀하의 데이터가 거주 국가 밖에서 처리될 수 있습니다. 당사는 이들이 제공하는 이전 보호 조치에 의존합니다.",
       ja: "これらの事業者は複数の国でインフラを運用しているため、お住まいの国以外でデータが処理される場合があります。当方は各事業者が提供する移転時の保護措置に依拠しています。",
       de: "Diese Anbieter betreiben Infrastruktur in mehreren Ländern, daher können deine Daten außerhalb deines Wohnsitzlandes verarbeitet werden; wir stützen uns auf die Übermittlungsgarantien, die sie anbieten.",
+      pt: "Estes fornecedores operam infraestruturas em vários países, pelo que os teus dados podem ser tratados fora do país onde vives; confiamos nas garantias de transferência que oferecem.",
     }),
     heading37: t({
       en: "3. How long",
@@ -336,6 +372,7 @@ const privacyContent = {
       ko: "3. 보관 기간",
       ja: "3. 保存期間",
       de: "3. Wie lange",
+      pt: "3. Durante quanto tempo",
     }),
     text38: t({
       en: "Sign-in codes: 10 minutes.",
@@ -345,6 +382,7 @@ const privacyContent = {
       ko: "로그인 코드: 10분.",
       ja: "ログインコード：10分。",
       de: "Anmeldecodes: 10 Minuten.",
+      pt: "Códigos de início de sessão: 10 minutos.",
     }),
     text39: t({
       en: "Sessions: 7 days, or until you sign out.",
@@ -354,6 +392,7 @@ const privacyContent = {
       ko: "세션: 7일 또는 로그아웃할 때까지.",
       ja: "セッション：7日間、またはログアウトするまで。",
       de: "Sitzungen: 7 Tage oder bis du dich abmeldest.",
+      pt: "Sessões: 7 dias, ou até terminares sessão.",
     }),
     text40: t({
       en: "Rate limit counts: one minute.",
@@ -363,6 +402,7 @@ const privacyContent = {
       ko: "요청 제한 집계: 1분.",
       ja: "レート制限のカウント：1分。",
       de: "Zähler für Ratenbegrenzung: eine Minute.",
+      pt: "Contagens dos limites de pedidos: um minuto.",
     }),
     text41: t({
       en: "User record: until you ask us to delete it.",
@@ -372,6 +412,7 @@ const privacyContent = {
       ko: "사용자 기록: 삭제를 요청하실 때까지.",
       ja: "ユーザー記録：削除のご依頼があるまで。",
       de: "Nutzerdatensatz: bis du uns bittest, ihn zu löschen.",
+      pt: "Registo de utilizador: até nos pedires para o eliminar.",
     }),
     text42: t({
       en: "Contact messages: in our inbox for as long as they help us support you, and deleted on request.",
@@ -381,6 +422,7 @@ const privacyContent = {
       ko: "문의 메시지: 지원에 도움이 되는 동안 받은편지함에 보관하며, 요청 시 삭제합니다.",
       ja: "お問い合わせメッセージ：サポートに役立つ間は受信箱に保管し、ご依頼があれば削除します。",
       de: "Kontaktnachrichten: in unserem Postfach, solange sie uns helfen, dich zu unterstützen, und auf Anfrage gelöscht.",
+      pt: "Mensagens de contacto: na nossa caixa de entrada enquanto nos ajudarem a dar-te suporte, e eliminadas a pedido.",
     }),
     text43: t({
       en: "Orders, subscriptions, and invoices: under Dodo Payments’ retention rules. Analytics: under PostHog’s.",
@@ -390,6 +432,7 @@ const privacyContent = {
       ko: "주문, 구독, 인보이스: Dodo Payments의 보관 규정에 따름. 분석: PostHog의 보관 규정에 따름.",
       ja: "注文、サブスクリプション、請求書：Dodo Paymentsの保存規則に従います。アナリティクス：PostHogの規則に従います。",
       de: "Bestellungen, Abos und Rechnungen: gemäß den Aufbewahrungsregeln von Dodo Payments. Analysedaten: gemäß denen von PostHog.",
+      pt: "Encomendas, subscrições e faturas: segundo as regras de conservação da Dodo Payments. Análise: segundo as do PostHog.",
     }),
     heading44: t({
       en: "4. Your rights",
@@ -399,6 +442,7 @@ const privacyContent = {
       ko: "4. 귀하의 권리",
       ja: "4. あなたの権利",
       de: "4. Deine Rechte",
+      pt: "4. Os teus direitos",
     }),
     text45: t({
       en: "Depending on where you live, you may ask what we hold about you, ask us to correct it, or ask us to delete it. Write to",
@@ -408,6 +452,7 @@ const privacyContent = {
       ko: "거주 지역에 따라 당사가 보유한 정보의 열람, 정정, 삭제를 요청할 수 있습니다. 다음 주소로 연락하세요:",
       ja: "お住まいの地域によっては、当方が保有するあなたの情報の開示、訂正、削除を求めることができます。次の宛先までご連絡ください：",
       de: "Je nachdem, wo du lebst, kannst du erfragen, welche Daten wir über dich haben, sie berichtigen oder löschen lassen. Schreib an",
+      pt: "Consoante o local onde vives, podes perguntar que dados temos sobre ti, pedir-nos que os corrijamos ou pedir-nos que os eliminemos. Escreve para",
     }),
     text46: t({
       en: "from the email address you used for your purchase, sponsorship, newsletter signup, or submission so we can find the relevant record. You can withdraw newsletter consent or ask to remove your submission the same way. For purchase-related requests, we also pass deletion requests on to Dodo Payments, where your orders live. You can complain to your local data protection authority. To keep your visits out of our analytics, block",
@@ -417,6 +462,7 @@ const privacyContent = {
       ko: "관련 기록을 찾을 수 있도록 구매, 스폰서십, 뉴스레터 신청, 제출에 사용한 이메일 주소로 보내 주세요. 뉴스레터 동의 철회나 제출물 삭제 요청도 같은 방법으로 할 수 있습니다. 구매 관련 요청의 경우, 주문이 보관된 Dodo Payments에도 삭제 요청을 전달합니다. 거주 지역의 개인정보 보호 기관에 민원을 제기할 수 있습니다. 방문 기록을 분석에서 제외하려면 브라우저나 콘텐츠 차단기에서",
       ja: "購入、スポンサーシップ、ニュースレター登録、投稿に使用したメールアドレスからご連絡いただければ、該当する記録を確認できます。ニュースレターへの同意の撤回や投稿の削除も同じ方法で依頼できます。購入に関するご依頼の場合は、注文情報を保管しているDodo Paymentsにも削除依頼を伝えます。お住まいの地域のデータ保護当局に苦情を申し立てることもできます。アナリティクスの対象外にしたい場合は、次をブロックしてください：",
       de: "von der E-Mail-Adresse, die du für deinen Kauf, dein Sponsoring, deine Newsletter-Anmeldung oder deine Einreichung verwendet hast, damit wir den passenden Datensatz finden. Auf dieselbe Weise kannst du deine Newsletter-Einwilligung widerrufen oder die Entfernung deiner Einreichung verlangen. Bei Anfragen zu Käufen leiten wir Löschanfragen außerdem an Dodo Payments weiter, wo deine Bestellungen liegen. Du kannst dich bei deiner örtlichen Datenschutzbehörde beschweren. Um deine Besuche aus unserer Analyse herauszuhalten, blockiere",
+      pt: "a partir do endereço de e-mail que usaste na compra, patrocínio, inscrição na newsletter ou submissão, para podermos encontrar o registo correspondente. Podes retirar o consentimento da newsletter ou pedir a remoção da tua submissão da mesma forma. Em pedidos relacionados com compras, também encaminhamos os pedidos de eliminação para a Dodo Payments, onde estão as tuas encomendas. Podes apresentar queixa à autoridade de proteção de dados do teu país. Para excluir as tuas visitas da nossa análise, bloqueia",
     }),
     text47: t({
       en: "us.i.posthog.com",
@@ -426,6 +472,7 @@ const privacyContent = {
       ko: "us.i.posthog.com",
       ja: "us.i.posthog.com",
       de: "us.i.posthog.com",
+      pt: "us.i.posthog.com",
     }),
     text48: t({
       en: "in your browser or with a content blocker.",
@@ -435,6 +482,7 @@ const privacyContent = {
       ko: "을(를) 차단하세요.",
       ja: "（ブラウザまたはコンテンツブロッカーで）。",
       de: "in deinem Browser oder mit einem Content-Blocker.",
+      pt: "no teu navegador ou com um bloqueador de conteúdos.",
     }),
     presenceHeading: t({
       en: "Live presence",
@@ -444,6 +492,7 @@ const privacyContent = {
       ko: "실시간 접속 표시",
       ja: "ライブプレゼンス",
       de: "Live-Präsenz",
+      pt: "Presença em direto",
     }),
     presenceText: t({
       en: "While a page is open, your browser keeps an anonymous connection to count how many people are online. With Live cursors on (the default; switch it off in the account menu or with L), your pointer position on the current page is shared with other visitors on that page, shown as an unlabelled coloured cursor. It is tied to a random id that lasts only as long as the tab, and nothing is stored.",
@@ -453,6 +502,7 @@ const privacyContent = {
       ko: "페이지가 열려 있는 동안 브라우저는 접속자 수를 세기 위해 익명 연결을 유지합니다. 실시간 커서가 켜져 있으면(기본값, 계정 메뉴나 L 키로 끌 수 있음) 현재 페이지에서의 포인터 위치가 같은 페이지의 다른 방문자에게 이름 없는 색깔 커서로 공유됩니다. 이는 탭이 열려 있는 동안만 유지되는 임의 ID에 연결되며, 아무것도 저장되지 않습니다.",
       ja: "ページを開いている間、オンラインの人数を数えるため、ブラウザは匿名の接続を維持します。ライブカーソルがオンの場合（初期設定。アカウントメニューまたはLキーでオフにできます）、現在のページ上のポインター位置が同じページの他の訪問者に共有され、ラベルのない色付きカーソルとして表示されます。これはタブを開いている間だけ有効なランダムなIDに紐づけられ、何も保存されません。",
       de: "Solange eine Seite geöffnet ist, hält dein Browser eine anonyme Verbindung, um zu zählen, wie viele Personen online sind. Wenn Live-Cursor aktiv sind (Standard; abschalten kannst du sie im Kontomenü oder mit L), wird deine Zeigerposition auf der aktuellen Seite mit anderen Besuchern dieser Seite geteilt und als unbeschrifteter farbiger Cursor angezeigt. Sie ist an eine zufällige ID gebunden, die nur so lange besteht wie der Tab, und es wird nichts gespeichert.",
+      pt: "Enquanto uma página está aberta, o teu navegador mantém uma ligação anónima para contar quantas pessoas estão online. Com os cursores em direto ativados (a predefinição; desativa-os no menu da conta ou com L), a posição do teu ponteiro na página atual é partilhada com os outros visitantes dessa página, apresentada como um cursor colorido sem nome. Está associada a um id aleatório que dura apenas enquanto o separador estiver aberto, e nada é guardado.",
     }),
     heading49: t({
       en: "5. Children",
@@ -462,6 +512,7 @@ const privacyContent = {
       ko: "5. 아동",
       ja: "5. 子ども",
       de: "5. Kinder",
+      pt: "5. Crianças",
     }),
     text50: t({
       en: "This site is not intended for children under 13, and we do not knowingly process their data. If we learn that we have, we will delete it.",
@@ -471,6 +522,7 @@ const privacyContent = {
       ko: "이 사이트는 13세 미만 아동을 대상으로 하지 않으며, 당사는 아동의 데이터를 알면서 처리하지 않습니다. 처리한 사실을 알게 되면 삭제합니다.",
       ja: "このサイトは13歳未満の子どもを対象としておらず、当方が故意にそのデータを処理することはありません。処理していたことが判明した場合は削除します。",
       de: "Diese Website richtet sich nicht an Kinder unter 13 Jahren, und wir verarbeiten wissentlich keine Daten von ihnen. Sollten wir erfahren, dass das doch geschehen ist, löschen wir sie.",
+      pt: "Este site não se destina a crianças com menos de 13 anos e não tratamos os seus dados de forma consciente. Se soubermos que o fizemos, eliminá-los-emos.",
     }),
     heading51: t({
       en: "6. Changes to this policy",
@@ -480,6 +532,7 @@ const privacyContent = {
       ko: "6. 방침 변경",
       ja: "6. このポリシーの変更",
       de: "6. Änderungen dieser Richtlinie",
+      pt: "6. Alterações a esta política",
     }),
     text52: t({
       en: "We may change this policy. The date at the top says when it last changed.",
@@ -489,6 +542,7 @@ const privacyContent = {
       ko: "당사는 본 방침을 변경할 수 있습니다. 상단의 날짜는 마지막 변경일을 나타냅니다.",
       ja: "当方はこのポリシーを変更することがあります。上部の日付が最終変更日です。",
       de: "Wir können diese Richtlinie ändern. Das Datum oben gibt an, wann sie zuletzt geändert wurde.",
+      pt: "Podemos alterar esta política. A data no topo indica quando foi alterada pela última vez.",
     }),
     heading53: t({
       en: "7. Contact",
@@ -498,6 +552,7 @@ const privacyContent = {
       ko: "7. 문의",
       ja: "7. お問い合わせ",
       de: "7. Kontakt",
+      pt: "7. Contacto",
     }),
     languagePreference: t({
       en: "Language preference: we store your selected language only in your browser’s localStorage under the key motionvideo-locale. No cookie is used for this preference. It stays until you clear your browser’s site data or choose another language.",
@@ -507,6 +562,7 @@ const privacyContent = {
       ko: "언어 설정: 선택한 언어는 브라우저의 localStorage에 motionvideo-locale 키로만 저장합니다. 이 설정에는 쿠키를 사용하지 않습니다. 브라우저의 사이트 데이터를 지우거나 다른 언어를 선택할 때까지 유지됩니다.",
       ja: "言語設定：選択した言語は、ブラウザのlocalStorageにmotionvideo-localeというキーでのみ保存します。この設定にCookieは使用しません。ブラウザのサイトデータを消去するか、別の言語を選択するまで保持されます。",
       de: "Sprachpräferenz: Wir speichern deine gewählte Sprache nur im localStorage deines Browsers unter dem Schlüssel motionvideo-locale. Für diese Einstellung wird kein Cookie verwendet. Sie bleibt bestehen, bis du die Website-Daten in deinem Browser löschst oder eine andere Sprache wählst.",
+      pt: "Preferência de idioma: guardamos o idioma que selecionaste apenas no localStorage do teu navegador, com a chave motionvideo-locale. Não é usado nenhum cookie para esta preferência. Mantém-se até limpares os dados do site no teu navegador ou escolheres outro idioma.",
     }),
     newsletterHeading: t({
       en: "Newsletter opt-in",
@@ -516,6 +572,7 @@ const privacyContent = {
       ko: "뉴스레터 수신 동의",
       ja: "ニュースレターへの登録",
       de: "Newsletter-Anmeldung",
+      pt: "Inscrição na newsletter",
     }),
     newsletterData: t({
       en: ": only when you submit the signup form, we store your normalized email address, the time you opted in, and the record’s creation time in our Cloudflare D1 database for MotionVideo updates. Signing up stores your opt-in; it does not send an email. A repeat signup does not create a duplicate.",
@@ -525,6 +582,7 @@ const privacyContent = {
       ko: ": 신청 양식을 제출한 경우에만 MotionVideo 소식을 위해 정규화된 이메일 주소, 동의 시각, 기록 생성 시각을 Cloudflare D1 데이터베이스에 저장합니다. 신청 시에는 동의만 저장되며 이메일은 발송되지 않습니다. 중복 신청 시에도 중복 기록이 생기지 않습니다.",
       ja: "：登録フォームを送信した場合に限り、正規化したメールアドレス、登録日時、記録の作成日時を、MotionVideoの最新情報のためにCloudflare D1データベースに保存します。登録は同意を保存するだけで、メールは送信されません。再度登録しても重複は作成されません。",
       de: ": Nur wenn du das Anmeldeformular absendest, speichern wir deine normalisierte E-Mail-Adresse, den Zeitpunkt deiner Anmeldung und den Erstellungszeitpunkt des Datensatzes in unserer Cloudflare-D1-Datenbank für MotionVideo-Updates. Die Anmeldung speichert deine Einwilligung; sie verschickt keine E-Mail. Eine wiederholte Anmeldung erzeugt keinen doppelten Eintrag.",
+      pt: ": só quando envias o formulário de inscrição é que guardamos o teu endereço de e-mail normalizado, a data e hora em que te inscreveste e a data de criação do registo na nossa base de dados Cloudflare D1, para as novidades do MotionVideo. A inscrição guarda o teu consentimento; não envia nenhum e-mail. Uma inscrição repetida não cria um duplicado.",
     }),
     submissionHeading: t({
       en: "Community submissions",
@@ -534,6 +592,7 @@ const privacyContent = {
       ko: "커뮤니티 제출물",
       ja: "コミュニティ投稿",
       de: "Community-Einreichungen",
+      pt: "Submissões da comunidade",
     }),
     submissionData: t({
       en: ": we store the category, name, email, title, public URL, description, optional video prompt, attribution consent time, creation time, and pending moderation status in Cloudflare D1. We use these to review your submission and contact you about it if needed. Nothing is automatically published. If accepted, your submitted content and name may be public with your consent; your email stays private. Submitting does not sign you in or join the newsletter.",
@@ -543,6 +602,7 @@ const privacyContent = {
       ko: ": 카테고리, 이름, 이메일, 제목, 공개 URL, 설명, 선택 입력한 동영상 프롬프트, 출처 표기 동의 시각, 생성 시각, 검토 대기 상태를 Cloudflare D1에 저장합니다. 이 정보는 제출물을 검토하고 필요 시 연락하는 데 사용합니다. 자동으로 게시되는 것은 없습니다. 채택되면 귀하의 동의하에 제출 콘텐츠와 이름이 공개될 수 있으며, 이메일은 비공개로 유지됩니다. 제출해도 로그인되거나 뉴스레터에 가입되지 않습니다.",
       ja: "：カテゴリ、名前、メールアドレス、タイトル、公開URL、説明、任意の動画プロンプト、クレジット表記への同意日時、作成日時、審査待ちのステータスをCloudflare D1に保存します。これらは投稿の審査と、必要に応じたご連絡に使用します。自動的に公開されることはありません。採用された場合、同意のもとで投稿内容とお名前が公開されることがありますが、メールアドレスは非公開のままです。投稿によってログインやニュースレター登録が行われることはありません。",
       de: ": Wir speichern Kategorie, Name, E-Mail, Titel, öffentliche URL, Beschreibung, optionalen Video-Prompt, Zeitpunkt der Einwilligung zur Nennung, Erstellungszeitpunkt und den ausstehenden Moderationsstatus in Cloudflare D1. Wir nutzen diese Daten, um deine Einreichung zu prüfen und dich bei Bedarf dazu zu kontaktieren. Nichts wird automatisch veröffentlicht. Bei Annahme können dein eingereichter Inhalt und dein Name mit deiner Einwilligung öffentlich sein; deine E-Mail bleibt privat. Eine Einreichung meldet dich weder an noch für den Newsletter an.",
+      pt: ": guardamos a categoria, nome, e-mail, título, URL público, descrição, prompt de vídeo opcional, data do consentimento de atribuição, data de criação e estado de moderação pendente no Cloudflare D1. Usamo-los para rever a tua submissão e contactar-te sobre ela, se necessário. Nada é publicado automaticamente. Se for aceite, o conteúdo e o nome que submeteste podem ficar públicos com o teu consentimento; o teu e-mail permanece privado. Submeter não inicia sessão nem te inscreve na newsletter.",
     }),
     newsletterRetention: t({
       en: "Newsletter email and opt-in timestamps: until you withdraw consent or ask us to delete the record by contacting us at the address below.",
@@ -552,6 +612,7 @@ const privacyContent = {
       ko: "뉴스레터 이메일 및 동의 시각: 동의를 철회하거나 아래 주소로 기록 삭제를 요청하실 때까지.",
       ja: "ニュースレターのメールアドレスと登録日時：同意を撤回するか、下記の宛先に記録の削除をご依頼いただくまで。",
       de: "Newsletter-E-Mail und Zeitstempel der Anmeldung: bis du deine Einwilligung widerrufst oder uns über die unten genannte Adresse bittest, den Datensatz zu löschen.",
+      pt: "E-mail da newsletter e datas de inscrição: até retirares o consentimento ou nos pedires para eliminar o registo, contactando-nos através do endereço abaixo.",
     }),
     submissionRetention: t({
       en: "Community submissions and attribution consent: while needed for moderation and attribution of accepted work, or until you request deletion using the contact address below.",
@@ -561,6 +622,7 @@ const privacyContent = {
       ko: "커뮤니티 제출물 및 출처 표기 동의: 검토 및 채택된 작업물의 출처 표기에 필요한 동안, 또는 아래 주소로 삭제를 요청하실 때까지.",
       ja: "コミュニティ投稿とクレジット表記への同意：審査および採用作品のクレジット表記に必要な間、または下記の宛先に削除をご依頼いただくまで。",
       de: "Community-Einreichungen und Einwilligung zur Nennung: solange sie für die Moderation und Nennung angenommener Arbeiten nötig sind oder bis du über die unten genannte Kontaktadresse die Löschung verlangst.",
+      pt: "Submissões da comunidade e consentimento de atribuição: enquanto forem necessários para a moderação e atribuição do trabalho aceite, ou até pedires a sua eliminação através do endereço de contacto abaixo.",
     }),
     feedbackHeading: t({
       en: "Site feedback",
@@ -570,6 +632,7 @@ const privacyContent = {
       ko: "사이트 피드백",
       ja: "サイトへのフィードバック",
       de: "Website-Feedback",
+      pt: "Feedback sobre o site",
     }),
     feedbackData: t({
       en: ": when you send feedback, we store your message, the optional rating you picked, the page you sent it from, the time, and either your account email (if signed in) or the email you chose to add, in Cloudflare D1, and email a copy to our inbox. We use it only to improve the site and to reply if you asked.",
@@ -579,6 +642,7 @@ const privacyContent = {
       ko: ": 피드백을 보내면 메시지, 선택한 평가, 보낸 페이지, 시각, 그리고 계정 이메일(로그인한 경우) 또는 직접 입력한 이메일을 Cloudflare D1에 저장하고, 사본을 당사 받은편지함으로 보냅니다. 사이트 개선과 요청 시 답장에만 사용합니다.",
       ja: "：フィードバックを送信すると、メッセージ、任意で選んだ評価、送信元のページ、日時、およびアカウントのメールアドレス（ログイン時）または入力されたメールアドレスをCloudflare D1に保存し、コピーを当方の受信箱にメールで送ります。サイトの改善と、ご希望の場合の返信にのみ使用します。",
       de: ": Wenn du Feedback sendest, speichern wir deine Nachricht, die optional gewählte Bewertung, die Seite, von der du es gesendet hast, den Zeitpunkt und entweder die E-Mail deines Kontos (falls angemeldet) oder die E-Mail, die du angegeben hast, in Cloudflare D1 und schicken eine Kopie an unser Postfach. Wir nutzen es nur, um die Website zu verbessern und dir zu antworten, falls du darum gebeten hast.",
+      pt: ": quando envias feedback, guardamos a tua mensagem, a avaliação opcional que escolheste, a página a partir da qual a enviaste, a data e hora e o e-mail da tua conta (se tiveres sessão iniciada) ou o e-mail que decidiste acrescentar, no Cloudflare D1, e enviamos uma cópia para a nossa caixa de entrada. Usamo-lo apenas para melhorar o site e para te responder, se o pediste.",
     }),
     feedbackRetention: t({
       en: "Site feedback: while it helps us improve the site, or until you request deletion using the contact address below.",
@@ -588,6 +652,7 @@ const privacyContent = {
       ko: "사이트 피드백: 사이트 개선에 도움이 되는 동안, 또는 아래 주소로 삭제를 요청하실 때까지.",
       ja: "サイトへのフィードバック：サイトの改善に役立つ間、または下記の宛先に削除をご依頼いただくまで。",
       de: "Website-Feedback: solange es uns hilft, die Website zu verbessern, oder bis du über die unten genannte Kontaktadresse die Löschung verlangst.",
+      pt: "Feedback sobre o site: enquanto nos ajudar a melhorar o site, ou até pedires a sua eliminação através do endereço de contacto abaixo.",
     }),
   },
 } satisfies Dictionary;

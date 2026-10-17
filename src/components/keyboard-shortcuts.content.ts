@@ -12,6 +12,7 @@ export default {
       ko: "키보드 단축키",
       ja: "キーボードショートカット",
       de: "Tastenkürzel",
+      pt: "Atalhos de teclado",
     }),
     description: t({
       en: "Press a key anywhere outside a text field.",
@@ -21,6 +22,7 @@ export default {
       ko: "텍스트 입력란 밖 어디서든 키를 누르세요.",
       ja: "テキスト入力欄以外の場所でキーを押してください。",
       de: "Drücke eine Taste irgendwo außerhalb eines Textfelds.",
+      pt: "Prime uma tecla em qualquer lugar fora de um campo de texto.",
     }),
     general: t({
       en: "General",
@@ -30,6 +32,7 @@ export default {
       ko: "일반",
       ja: "一般",
       de: "Allgemein",
+      pt: "Geral",
     }),
     sections: t({
       en: "Sections",
@@ -39,6 +42,7 @@ export default {
       ko: "섹션",
       ja: "セクション",
       de: "Bereiche",
+      pt: "Secções",
     }),
     account: t({
       en: "Account",
@@ -48,6 +52,7 @@ export default {
       ko: "계정",
       ja: "アカウント",
       de: "Konto",
+      pt: "Conta",
     }),
     videos: t({
       en: "Videos",
@@ -57,6 +62,7 @@ export default {
       ko: "동영상",
       ja: "動画",
       de: "Videos",
+      pt: "Vídeos",
     }),
     search: t({
       en: "Search",
@@ -66,6 +72,7 @@ export default {
       ko: "검색",
       ja: "検索",
       de: "Suche",
+      pt: "Pesquisar",
     }),
     toggleTheme: t({
       en: "Toggle theme",
@@ -75,6 +82,7 @@ export default {
       ko: "테마 전환",
       ja: "テーマを切り替え",
       de: "Design umschalten",
+      pt: "Alternar tema",
     }),
     toggleSounds: t({
       en: "Mute or unmute sounds",
@@ -84,6 +92,7 @@ export default {
       ko: "소리 켜기/끄기",
       ja: "サウンドのミュート／解除",
       de: "Sounds stumm- oder einschalten",
+      pt: "Silenciar ou ativar sons",
     }),
     toggleCursors: t({
       en: "Show or hide live cursors",
@@ -93,6 +102,7 @@ export default {
       ko: "실시간 커서 표시/숨기기",
       ja: "ライブカーソルの表示／非表示",
       de: "Live-Cursor ein- oder ausblenden",
+      pt: "Mostrar ou ocultar cursores em direto",
     }),
     showShortcuts: t({
       en: "Show keyboard shortcuts",
@@ -102,6 +112,7 @@ export default {
       ko: "키보드 단축키 보기",
       ja: "キーボードショートカットを表示",
       de: "Tastenkürzel anzeigen",
+      pt: "Mostrar atalhos de teclado",
     }),
     previousVideo: t({
       en: "Previous video",
@@ -111,6 +122,7 @@ export default {
       ko: "이전 동영상",
       ja: "前の動画",
       de: "Vorheriges Video",
+      pt: "Vídeo anterior",
     }),
     nextVideo: t({
       en: "Next video",
@@ -120,6 +132,7 @@ export default {
       ko: "다음 동영상",
       ja: "次の動画",
       de: "Nächstes Video",
+      pt: "Vídeo seguinte",
     }),
     closeVideo: t({
       en: "Close video",
@@ -129,6 +142,7 @@ export default {
       ko: "동영상 닫기",
       ja: "動画を閉じる",
       de: "Video schließen",
+      pt: "Fechar vídeo",
     }),
   },
 } satisfies Dictionary;

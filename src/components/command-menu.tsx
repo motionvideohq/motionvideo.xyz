@@ -93,7 +93,7 @@ const loadSearchData = async (): Promise<SearchData> => {
 };
 
 const LANGUAGE_OPTIONS: {
-  code: "en" | "es" | "fr" | "zh" | "ko" | "ja" | "de";
+  code: "en" | "es" | "fr" | "zh" | "ko" | "ja" | "de" | "pt";
   label: string;
   keywords: string;
 }[] = [
@@ -104,6 +104,7 @@ const LANGUAGE_OPTIONS: {
   { code: "ko", label: "한국어", keywords: "korean 한국어" },
   { code: "ja", label: "日本語", keywords: "japanese 日本語" },
   { code: "de", label: "Deutsch", keywords: "german deutsch" },
+  { code: "pt", label: "Português", keywords: "portuguese português" },
 ];
 
 interface PaletteItem {

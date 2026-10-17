@@ -12,6 +12,7 @@ export default {
       ko: "추천",
       ja: "掲載",
       de: "Vorgestellt",
+      pt: "Destaques",
     }),
     intro: t({
       en: "Work you submitted, credited to you.",
@@ -21,6 +22,7 @@ export default {
       ko: "제출하신 작업물로, 출처가 귀하로 표기됩니다.",
       ja: "あなたが投稿し、クレジットされた作品。",
       de: "Von dir eingereichte Arbeiten, dir zugeschrieben.",
+      pt: "Trabalho que submeteste, creditado a ti.",
     }),
     featuredHeading: t({
       en: "Featured work",
@@ -30,6 +32,7 @@ export default {
       ko: "추천 작업물",
       ja: "掲載作品",
       de: "Vorgestellte Arbeiten",
+      pt: "Trabalho em destaque",
     }),
     submissionsHeading: t({
       en: "Your submissions",
@@ -39,6 +42,7 @@ export default {
       ko: "내 제출물",
       ja: "あなたの投稿",
       de: "Deine Einreichungen",
+      pt: "As tuas submissões",
     }),
     status: {
       pending: t({
@@ -49,6 +53,7 @@ export default {
         ko: "검토 중",
         ja: "審査中",
         de: "In Prüfung",
+        pt: "Em revisão",
       }),
       featured: t({
         en: "Featured",
@@ -58,6 +63,7 @@ export default {
         ko: "추천됨",
         ja: "掲載中",
         de: "Vorgestellt",
+        pt: "Em destaque",
       }),
       declined: t({
         en: "Not selected",
@@ -67,6 +73,7 @@ export default {
         ko: "선정되지 않음",
         ja: "不採用",
         de: "Nicht ausgewählt",
+        pt: "Não selecionado",
       }),
     },
     viewFeatured: t({
@@ -77,6 +84,7 @@ export default {
       ko: "추천 보기",
       ja: "掲載を見る",
       de: "Vorgestellte ansehen",
+      pt: "Ver destaque",
     }),
     visit: t({
       en: "Visit website",
@@ -86,6 +94,7 @@ export default {
       ko: "웹사이트 방문",
       ja: "ウェブサイトを見る",
       de: "Website besuchen",
+      pt: "Visitar site",
     }),
     newTab: t({
       en: "opens in a new tab",
@@ -95,6 +104,7 @@ export default {
       ko: "새 탭에서 열림",
       ja: "新しいタブで開きます",
       de: "öffnet in neuem Tab",
+      pt: "abre num novo separador",
     }),
     emptyTitle: t({
       en: "None of your work has been featured yet",
@@ -104,6 +114,7 @@ export default {
       ko: "아직 추천된 작업물이 없습니다",
       ja: "まだ掲載された作品はありません",
       de: "Noch keine deiner Arbeiten wurde vorgestellt",
+      pt: "Ainda nenhum trabalho teu foi destacado",
     }),
     emptyDescription: t({
       en: "Work credited to you will appear here.",
@@ -113,6 +124,7 @@ export default {
       ko: "귀하로 출처가 표기된 작업물이 여기에 표시됩니다.",
       ja: "あなたがクレジットされた作品はここに表示されます。",
       de: "Dir zugeschriebene Arbeiten erscheinen hier.",
+      pt: "O trabalho creditado a ti vai aparecer aqui.",
     }),
     submit: t({
       en: "Submit your work",
@@ -122,6 +134,7 @@ export default {
       ko: "작업물 제출하기",
       ja: "作品を投稿",
       de: "Reiche deine Arbeit ein",
+      pt: "Submete o teu trabalho",
     }),
   },
 } satisfies Dictionary;
