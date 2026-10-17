@@ -13,6 +13,7 @@ const themeToggle = {
       ja: "テーマを切り替え",
       de: "Design umschalten",
       pt: "Alternar tema",
+      ru: "Сменить тему",
     }),
   },
 } satisfies Dictionary;

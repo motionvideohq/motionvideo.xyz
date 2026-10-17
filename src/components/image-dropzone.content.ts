@@ -13,6 +13,7 @@ export default {
       ja: "参照",
       de: "Durchsuchen",
       pt: "Procurar",
+      ru: "Выбрать",
     }),
     replace: t({
       en: "Replace",
@@ -23,6 +24,7 @@ export default {
       ja: "置き換え",
       de: "Ersetzen",
       pt: "Substituir",
+      ru: "Заменить",
     }),
     remove: t({
       en: "Remove",
@@ -33,6 +35,7 @@ export default {
       ja: "削除",
       de: "Entfernen",
       pt: "Remover",
+      ru: "Удалить",
     }),
     uploading: t({
       en: "Uploading…",
@@ -43,6 +46,7 @@ export default {
       ja: "アップロード中…",
       de: "Wird hochgeladen …",
       pt: "A carregar…",
+      ru: "Загрузка…",
     }),
     types: t({
       en: "JPG, PNG or WebP",
@@ -53,6 +57,7 @@ export default {
       ja: "JPG、PNG、WebP",
       de: "JPG, PNG oder WebP",
       pt: "JPG, PNG ou WebP",
+      ru: "JPG, PNG или WebP",
     }),
     max: t({
       en: "max",
@@ -63,6 +68,7 @@ export default {
       ja: "最大",
       de: "max.",
       pt: "máx.",
+      ru: "макс.",
     }),
     errorType: t({
       en: "Use a JPG, PNG or WebP image.",
@@ -73,6 +79,7 @@ export default {
       ja: "JPG、PNG、WebP画像を使用してください。",
       de: "Verwende ein JPG-, PNG- oder WebP-Bild.",
       pt: "Usa uma imagem JPG, PNG ou WebP.",
+      ru: "Используйте изображение JPG, PNG или WebP.",
     }),
     errorSize: t({
       en: "That file is too large.",
@@ -83,6 +90,7 @@ export default {
       ja: "ファイルが大きすぎます。",
       de: "Die Datei ist zu groß.",
       pt: "Esse ficheiro é demasiado grande.",
+      ru: "Файл слишком большой.",
     }),
     errorUpload: t({
       en: "Upload failed. Try again.",
@@ -93,6 +101,7 @@ export default {
       ja: "アップロードに失敗しました。もう一度お試しください。",
       de: "Upload fehlgeschlagen. Versuch es noch mal.",
       pt: "O carregamento falhou. Tenta novamente.",
+      ru: "Не удалось загрузить. Попробуйте ещё раз.",
     }),
   },
 } satisfies Dictionary;

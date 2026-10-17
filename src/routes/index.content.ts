@@ -13,6 +13,7 @@ export default {
       ja: "モーションライブラリ",
       de: "Die Motion-Bibliothek",
       pt: "A biblioteca de motion",
+      ru: "Библиотека моушна",
     }),
     title: t({
       en: "Motion worth making.",
@@ -23,6 +24,7 @@ export default {
       ja: "作る価値のあるモーション。",
       de: "Motion, die sich lohnt.",
       pt: "Motion que vale a pena fazer.",
+      ru: "Моушн, который стоит сделать.",
     }),
     intro: t({
       en: "AI-made motion videos with the prompts and skills behind them. Find one and make it your own.",
@@ -33,6 +35,7 @@ export default {
       ja: "AIで作られたモーション動画と、その裏にあるプロンプトとスキル。気に入ったものを見つけて、自分のものにしましょう。",
       de: "KI-generierte Motion-Videos mit den Prompts und Skills dahinter. Such dir eins aus und mach es zu deinem.",
       pt: "Vídeos de motion feitos com IA, com os prompts e as skills por trás deles. Encontra um e torna-o teu.",
+      ru: "Моушн-видео, созданные ИИ, вместе с промптами и скиллами, стоящими за ними. Найдите своё и сделайте по-своему.",
     }),
     submitVideo: t({
       en: "Submit a video",
@@ -43,6 +46,7 @@ export default {
       ja: "動画を投稿",
       de: "Video einreichen",
       pt: "Submeter um vídeo",
+      ru: "Отправить видео",
     }),
     surprise: t({
       en: "Surprise me",
@@ -53,6 +57,7 @@ export default {
       ja: "おまかせ",
       de: "Überrasch mich",
       pt: "Surpreende-me",
+      ru: "Мне повезёт",
     }),
     browse: t({
       en: "Explore the collection",
@@ -63,6 +68,7 @@ export default {
       ja: "コレクションを見る",
       de: "Sammlung erkunden",
       pt: "Explorar a coleção",
+      ru: "Смотреть коллекцию",
     }),
     all: t({
       en: "All",
@@ -73,6 +79,7 @@ export default {
       ja: "すべて",
       de: "Alle",
       pt: "Todos",
+      ru: "Все",
     }),
     prompt: t({
       en: "Prompt",
@@ -83,6 +90,7 @@ export default {
       ja: "プロンプト",
       de: "Prompt",
       pt: "Prompt",
+      ru: "Промпт",
     }),
     skill: t({
       en: "Skill",
@@ -93,6 +101,7 @@ export default {
       ja: "スキル",
       de: "Skill",
       pt: "Skill",
+      ru: "Скилл",
     }),
     filterType: t({
       en: "Filter by resource",
@@ -103,6 +112,7 @@ export default {
       ja: "リソースで絞り込む",
       de: "Nach Ressource filtern",
       pt: "Filtrar por recurso",
+      ru: "Фильтр по ресурсу",
     }),
     filterCategory: t({
       en: "Filter by category",
@@ -113,6 +123,7 @@ export default {
       ja: "カテゴリで絞り込む",
       de: "Nach Kategorie filtern",
       pt: "Filtrar por categoria",
+      ru: "Фильтр по категориям",
     }),
     sort: t({
       en: "Sort videos",
@@ -123,6 +134,7 @@ export default {
       ja: "動画を並べ替え",
       de: "Videos sortieren",
       pt: "Ordenar vídeos",
+      ru: "Сортировка видео",
     }),
     popular: t({
       en: "Popular",
@@ -133,6 +145,7 @@ export default {
       ja: "人気順",
       de: "Beliebt",
       pt: "Populares",
+      ru: "Популярные",
     }),
     newest: t({
       en: "Newest first",
@@ -143,6 +156,7 @@ export default {
       ja: "新しい順",
       de: "Neueste zuerst",
       pt: "Mais recentes primeiro",
+      ru: "Сначала новые",
     }),
     oldest: t({
       en: "Oldest first",
@@ -153,6 +167,7 @@ export default {
       ja: "古い順",
       de: "Älteste zuerst",
       pt: "Mais antigos primeiro",
+      ru: "Сначала старые",
     }),
     pause: t({
       en: "Pause previews",
@@ -163,6 +178,7 @@ export default {
       ja: "プレビューを一時停止",
       de: "Vorschauen pausieren",
       pt: "Pausar pré-visualizações",
+      ru: "Пауза превью",
     }),
     play: t({
       en: "Play previews",
@@ -173,6 +189,7 @@ export default {
       ja: "プレビューを再生",
       de: "Vorschauen abspielen",
       pt: "Reproduzir pré-visualizações",
+      ru: "Воспроизвести превью",
     }),
     noResults: t({
       en: "No videos found.",
@@ -183,6 +200,7 @@ export default {
       ja: "動画が見つかりません。",
       de: "Keine Videos gefunden.",
       pt: "Nenhum vídeo encontrado.",
+      ru: "Видео не найдены.",
     }),
     tryAgain: t({
       en: "Try another category or resource type.",
@@ -193,6 +211,7 @@ export default {
       ja: "別のカテゴリやリソースの種類をお試しください。",
       de: "Probier eine andere Kategorie oder einen anderen Ressourcentyp.",
       pt: "Experimenta outra categoria ou tipo de recurso.",
+      ru: "Попробуйте другую категорию или тип ресурса.",
     }),
     watch: t({
       en: "Watch video",
@@ -203,6 +222,7 @@ export default {
       ja: "動画を見る",
       de: "Video ansehen",
       pt: "Ver vídeo",
+      ru: "Смотреть видео",
     }),
     open: t({
       en: "Open",
@@ -213,6 +233,7 @@ export default {
       ja: "開く",
       de: "Öffnen",
       pt: "Abrir",
+      ru: "Открыть",
     }),
     previous: t({
       en: "Previous video",
@@ -223,6 +244,7 @@ export default {
       ja: "前の動画",
       de: "Vorheriges Video",
       pt: "Vídeo anterior",
+      ru: "Предыдущее видео",
     }),
     next: t({
       en: "Next video",
@@ -233,6 +255,7 @@ export default {
       ja: "次の動画",
       de: "Nächstes Video",
       pt: "Vídeo seguinte",
+      ru: "Следующее видео",
     }),
     noPrevious: t({
       en: "This is the first video",
@@ -243,6 +266,7 @@ export default {
       ja: "最初の動画です",
       de: "Das ist das erste Video",
       pt: "Este é o primeiro vídeo",
+      ru: "Это первое видео",
     }),
     noNext: t({
       en: "This is the last video",
@@ -253,6 +277,7 @@ export default {
       ja: "最後の動画です",
       de: "Das ist das letzte Video",
       pt: "Este é o último vídeo",
+      ru: "Это последнее видео",
     }),
     creator: t({
       en: "Creator",
@@ -263,6 +288,7 @@ export default {
       ja: "クリエイター",
       de: "Creator",
       pt: "Criador",
+      ru: "Автор",
     }),
     close: t({
       en: "Close video",
@@ -273,6 +299,7 @@ export default {
       ja: "動画を閉じる",
       de: "Video schließen",
       pt: "Fechar vídeo",
+      ru: "Закрыть видео",
     }),
     copy: t({
       en: "Copy prompt",
@@ -283,6 +310,7 @@ export default {
       ja: "プロンプトをコピー",
       de: "Prompt kopieren",
       pt: "Copiar prompt",
+      ru: "Копировать промпт",
     }),
     // Beside the "Prompt" heading in the detail view, where "prompt" is implied.
     copyShort: t({
@@ -294,6 +322,7 @@ export default {
       ja: "コピー",
       de: "Kopieren",
       pt: "Copiar",
+      ru: "Копировать",
     }),
     copied: t({
       en: "Copied",
@@ -304,6 +333,7 @@ export default {
       ja: "コピーしました",
       de: "Kopiert",
       pt: "Copiado",
+      ru: "Скопировано",
     }),
     copyError: t({
       en: "Clipboard unavailable. Select and copy the prompt below.",
@@ -314,6 +344,7 @@ export default {
       ja: "クリップボードを使用できません。下のプロンプトを選択してコピーしてください。",
       de: "Zwischenablage nicht verfügbar. Markiere den Prompt unten und kopiere ihn.",
       pt: "Área de transferência indisponível. Seleciona e copia o prompt abaixo.",
+      ru: "Буфер обмена недоступен. Выделите и скопируйте промпт ниже.",
     }),
     questions: t({
       en: "Questions, credit, or want this removed?",
@@ -324,6 +355,7 @@ export default {
       ja: "ご質問、クレジット、削除のご希望はありますか？",
       de: "Fragen, Nennung oder Entfernung gewünscht?",
       pt: "Dúvidas, créditos ou queres que seja removido?",
+      ru: "Вопросы, авторство или хотите удалить видео?",
     }),
     contactUs: t({
       en: "Contact us",
@@ -334,6 +366,7 @@ export default {
       ja: "お問い合わせ",
       de: "Kontaktiere uns",
       pt: "Contacta-nos",
+      ru: "Связаться с нами",
     }),
     unavailablePrompt: t({
       en: "The prompt is not published in this collection. Check the creator’s original post for more context.",
@@ -344,6 +377,7 @@ export default {
       ja: "このコレクションではプロンプトを公開していません。詳しくはクリエイターの元の投稿をご確認ください。",
       de: "Der Prompt ist in dieser Sammlung nicht veröffentlicht. Mehr Kontext findest du im Originalbeitrag des Creators.",
       pt: "O prompt não está publicado nesta coleção. Consulta a publicação original do criador para mais contexto.",
+      ru: "Промпт не опубликован в этой коллекции. Подробности смотрите в оригинальном посте автора.",
     }),
     viewSkill: t({
       en: "View creator’s skill",
@@ -354,6 +388,7 @@ export default {
       ja: "クリエイターのスキルを見る",
       de: "Skill des Creators ansehen",
       pt: "Ver skill do criador",
+      ru: "Смотреть скилл автора",
     }),
     viewSource: t({
       en: "View source",
@@ -364,6 +399,7 @@ export default {
       ja: "ソースを見る",
       de: "Quelle ansehen",
       pt: "Ver fonte",
+      ru: "Смотреть источник",
     }),
     openOnX: t({
       en: "Open on X",
@@ -374,6 +410,7 @@ export default {
       ja: "Xで開く",
       de: "Auf X öffnen",
       pt: "Abrir no X",
+      ru: "Открыть в X",
     }),
     watchOnYouTube: t({
       en: "Watch on YouTube",
@@ -384,6 +421,7 @@ export default {
       ja: "YouTubeで見る",
       de: "Auf YouTube ansehen",
       pt: "Ver no YouTube",
+      ru: "Смотреть на YouTube",
     }),
     viewOnGitHub: t({
       en: "View on GitHub",
@@ -394,6 +432,7 @@ export default {
       ja: "GitHubで見る",
       de: "Auf GitHub ansehen",
       pt: "Ver no GitHub",
+      ru: "Смотреть на GitHub",
     }),
     visitWebsite: t({
       en: "Visit website",
@@ -404,6 +443,7 @@ export default {
       ja: "ウェブサイトを見る",
       de: "Website besuchen",
       pt: "Visitar site",
+      ru: "Перейти на сайт",
     }),
     sponsored: t({
       en: "Sponsored",
@@ -414,6 +454,7 @@ export default {
       ja: "スポンサー",
       de: "Gesponsert",
       pt: "Patrocinado",
+      ru: "Спонсор",
     }),
     category: t({
       en: "Category",
@@ -424,6 +465,7 @@ export default {
       ja: "カテゴリ",
       de: "Kategorie",
       pt: "Categoria",
+      ru: "Категория",
     }),
     type: t({
       en: "Type",
@@ -434,6 +476,7 @@ export default {
       ja: "種類",
       de: "Typ",
       pt: "Tipo",
+      ru: "Тип",
     }),
     previewError: t({
       en: "Preview unavailable",
@@ -444,6 +487,7 @@ export default {
       ja: "プレビューを利用できません",
       de: "Vorschau nicht verfügbar",
       pt: "Pré-visualização indisponível",
+      ru: "Превью недоступно",
     }),
     videoError: t({
       en: "This hosted video could not load. You can still watch it in the original post.",
@@ -454,6 +498,7 @@ export default {
       ja: "この動画を読み込めませんでした。元の投稿で視聴できます。",
       de: "Dieses gehostete Video konnte nicht geladen werden. Du kannst es weiterhin im Originalbeitrag ansehen.",
       pt: "Não foi possível carregar este vídeo alojado. Podes vê-lo na publicação original.",
+      ru: "Не удалось загрузить видео. Его всё ещё можно посмотреть в оригинальном посте.",
     }),
     // The detail view's prompt fold and how the video was made.
     showAll: t({
@@ -465,6 +510,7 @@ export default {
       ja: "すべて表示",
       de: "Alle anzeigen",
       pt: "Mostrar tudo",
+      ru: "Показать все",
     }),
     showLess: t({
       en: "Show less",
@@ -475,6 +521,7 @@ export default {
       ja: "表示を減らす",
       de: "Weniger anzeigen",
       pt: "Mostrar menos",
+      ru: "Свернуть",
     }),
     model: t({
       en: "Model",
@@ -485,6 +532,7 @@ export default {
       ja: "モデル",
       de: "Modell",
       pt: "Modelo",
+      ru: "Модель",
     }),
     stack: t({
       en: "Stack",
@@ -495,6 +543,7 @@ export default {
       ja: "スタック",
       de: "Stack",
       pt: "Stack",
+      ru: "Стек",
     }),
     effort: t({
       en: "Effort",
@@ -505,6 +554,7 @@ export default {
       ja: "エフォート",
       de: "Aufwand",
       pt: "Esforço",
+      ru: "Усилия",
     }),
     efforts: {
       medium: t({
@@ -516,6 +566,7 @@ export default {
         ja: "中",
         de: "Mittel",
         pt: "Médio",
+        ru: "Средние",
       }),
       high: t({
         en: "High",
@@ -526,6 +577,7 @@ export default {
         ja: "高",
         de: "Hoch",
         pt: "Alto",
+        ru: "Высокие",
       }),
       max: t({
         en: "Max",
@@ -536,6 +588,7 @@ export default {
         ja: "最大",
         de: "Max.",
         pt: "Máximo",
+        ru: "Макс.",
       }),
     },
     iterations: t({
@@ -547,6 +600,7 @@ export default {
       ja: "反復",
       de: "Iterationen",
       pt: "Iterações",
+      ru: "Итерации",
     }),
     iterationCounts: {
       "one-shot": t({
@@ -558,6 +612,7 @@ export default {
         ja: "一発",
         de: "One-Shot",
         pt: "À primeira",
+        ru: "С первого раза",
       }),
       "few-rounds": t({
         en: "A few rounds",
@@ -568,6 +623,7 @@ export default {
         ja: "数回",
         de: "Ein paar Runden",
         pt: "Algumas rondas",
+        ru: "Несколько раундов",
       }),
       "many-rounds": t({
         en: "Many rounds",
@@ -578,6 +634,7 @@ export default {
         ja: "多数回",
         de: "Viele Runden",
         pt: "Muitas rondas",
+        ru: "Много раундов",
       }),
     },
     categories: {
@@ -590,6 +647,7 @@ export default {
         ja: "プロダクトUI",
         de: "Produkt-UI",
         pt: "Interface de produto",
+        ru: "UI продукта",
       }),
       phone: t({
         en: "Phone",
@@ -600,6 +658,7 @@ export default {
         ja: "スマホ",
         de: "Smartphone",
         pt: "Telemóvel",
+        ru: "Телефон",
       }),
       charts: t({
         en: "Charts",
@@ -610,6 +669,7 @@ export default {
         ja: "チャート",
         de: "Diagramme",
         pt: "Gráficos",
+        ru: "Графики",
       }),
       diagrams: t({
         en: "Diagrams",
@@ -620,6 +680,7 @@ export default {
         ja: "図解",
         de: "Schaubilder",
         pt: "Diagramas",
+        ru: "Диаграммы",
       }),
       "kinetic-type": t({
         en: "Kinetic type",
@@ -630,6 +691,7 @@ export default {
         ja: "キネティックタイポ",
         de: "Kinetische Typo",
         pt: "Tipografia cinética",
+        ru: "Кинетическая типографика",
       }),
       // Source catalog category, not an implementation-structure name.
       // oxlint-disable-next-line anti-slop/no-shape-in-symbol-names
@@ -642,6 +704,7 @@ export default {
         ja: "シェイプ",
         de: "Formen",
         pt: "Formas",
+        ru: "Фигуры",
       }),
       particles: t({
         en: "Particles",
@@ -652,6 +715,7 @@ export default {
         ja: "パーティクル",
         de: "Partikel",
         pt: "Partículas",
+        ru: "Частицы",
       }),
       characters: t({
         en: "Characters",
@@ -662,6 +726,7 @@ export default {
         ja: "キャラクター",
         de: "Figuren",
         pt: "Personagens",
+        ru: "Персонажи",
       }),
       photos: t({
         en: "Photos",
@@ -672,6 +737,7 @@ export default {
         ja: "写真",
         de: "Fotos",
         pt: "Fotos",
+        ru: "Фото",
       }),
       music: t({
         en: "Music",
@@ -682,6 +748,7 @@ export default {
         ja: "音楽",
         de: "Musik",
         pt: "Música",
+        ru: "Музыка",
       }),
       code: t({
         en: "Code",
@@ -692,6 +759,7 @@ export default {
         ja: "コード",
         de: "Code",
         pt: "Código",
+        ru: "Код",
       }),
     },
     // Intro heading and copy on each category page, e.g. /category/product-ui.
@@ -705,6 +773,7 @@ export default {
         ja: "プロダクトUIのモーション。",
         de: "Produkt-UI in Bewegung.",
         pt: "Motion de interfaces de produto.",
+        ru: "Моушн интерфейсов.",
       }),
       phone: t({
         en: "Phone and app motion.",
@@ -715,6 +784,7 @@ export default {
         ja: "スマホとアプリのモーション。",
         de: "Smartphone und Apps in Bewegung.",
         pt: "Motion de telemóveis e apps.",
+        ru: "Моушн телефонов и приложений.",
       }),
       charts: t({
         en: "Animated charts.",
@@ -725,6 +795,7 @@ export default {
         ja: "アニメーションチャート。",
         de: "Animierte Diagramme.",
         pt: "Gráficos animados.",
+        ru: "Анимированные графики.",
       }),
       diagrams: t({
         en: "Animated diagrams.",
@@ -735,6 +806,7 @@ export default {
         ja: "アニメーション図解。",
         de: "Animierte Schaubilder.",
         pt: "Diagramas animados.",
+        ru: "Анимированные диаграммы.",
       }),
       "kinetic-type": t({
         en: "Kinetic typography.",
@@ -745,6 +817,7 @@ export default {
         ja: "キネティックタイポグラフィ。",
         de: "Kinetische Typografie.",
         pt: "Tipografia cinética.",
+        ru: "Кинетическая типографика.",
       }),
       // oxlint-disable-next-line anti-slop/no-shape-in-symbol-names
       shapes: t({
@@ -756,6 +829,7 @@ export default {
         ja: "動くシェイプ。",
         de: "Formen in Bewegung.",
         pt: "Formas em movimento.",
+        ru: "Фигуры в движении.",
       }),
       particles: t({
         en: "Particle animation.",
@@ -766,6 +840,7 @@ export default {
         ja: "パーティクルアニメーション。",
         de: "Partikelanimation.",
         pt: "Animação de partículas.",
+        ru: "Анимация частиц.",
       }),
       characters: t({
         en: "Character animation.",
@@ -776,6 +851,7 @@ export default {
         ja: "キャラクターアニメーション。",
         de: "Figurenanimation.",
         pt: "Animação de personagens.",
+        ru: "Анимация персонажей.",
       }),
       photos: t({
         en: "Photos in motion.",
@@ -786,6 +862,7 @@ export default {
         ja: "動く写真。",
         de: "Fotos in Bewegung.",
         pt: "Fotos em movimento.",
+        ru: "Фото в движении.",
       }),
       music: t({
         en: "Motion set to music.",
@@ -796,6 +873,7 @@ export default {
         ja: "音楽に合わせたモーション。",
         de: "Motion zu Musik.",
         pt: "Motion ao som de música.",
+        ru: "Моушн под музыку.",
       }),
       code: t({
         en: "Code in motion.",
@@ -806,6 +884,7 @@ export default {
         ja: "動くコード。",
         de: "Code in Bewegung.",
         pt: "Código em movimento.",
+        ru: "Код в движении.",
       }),
     },
     categoryIntros: {
@@ -818,6 +897,7 @@ export default {
         ja: "ダッシュボード、アプリのウォークスルー、ローンチフィルムと、その裏にあるプロンプトとスキル。",
         de: "Dashboards, App-Walkthroughs und Launch-Filme – mit den Prompts und Skills dahinter.",
         pt: "Dashboards, demonstrações de apps e filmes de lançamento, com os prompts e as skills por trás deles.",
+        ru: "Дашборды, обзоры приложений и лонч-ролики — с промптами и скиллами, стоящими за ними.",
       }),
       phone: t({
         en: "Animated app screens, device mockups and launches, with the prompts and skills behind them.",
@@ -828,6 +908,7 @@ export default {
         ja: "アニメーションするアプリ画面、デバイスモックアップ、ローンチと、その裏にあるプロンプトとスキル。",
         de: "Animierte App-Screens, Geräte-Mockups und Launches – mit den Prompts und Skills dahinter.",
         pt: "Ecrãs de apps animados, mockups de dispositivos e lançamentos, com os prompts e as skills por trás deles.",
+        ru: "Анимированные экраны приложений, мокапы устройств и запуски — с промптами и скиллами, стоящими за ними.",
       }),
       charts: t({
         en: "Animated graphs, metrics and number reveals, with the prompts and skills behind them.",
@@ -838,6 +919,7 @@ export default {
         ja: "アニメーションするグラフ、指標、数字の演出と、その裏にあるプロンプトとスキル。",
         de: "Animierte Graphen, Kennzahlen und Zahlen-Reveals – mit den Prompts und Skills dahinter.",
         pt: "Gráficos, métricas e números animados, com os prompts e as skills por trás deles.",
+        ru: "Анимированные графики, метрики и появление цифр — с промптами и скиллами, стоящими за ними.",
       }),
       diagrams: t({
         en: "Animated flows, architectures and explainers, with the prompts and skills behind them.",
@@ -848,6 +930,7 @@ export default {
         ja: "アニメーションするフロー、アーキテクチャ、解説と、その裏にあるプロンプトとスキル。",
         de: "Animierte Abläufe, Architekturen und Erklärvideos – mit den Prompts und Skills dahinter.",
         pt: "Fluxos, arquiteturas e explicações animadas, com os prompts e as skills por trás deles.",
+        ru: "Анимированные схемы, архитектуры и объясняющие видео — с промптами и скиллами, стоящими за ними.",
       }),
       "kinetic-type": t({
         en: "Animated text, titles and type-led videos, with the prompts and skills behind them.",
@@ -858,6 +941,7 @@ export default {
         ja: "アニメーションするテキスト、タイトル、文字主体の動画と、その裏にあるプロンプトとスキル。",
         de: "Animierter Text, Titel und typografische Videos – mit den Prompts und Skills dahinter.",
         pt: "Texto, títulos e vídeos tipográficos animados, com os prompts e as skills por trás deles.",
+        ru: "Анимированный текст, титры и видео на основе типографики — с промптами и скиллами, стоящими за ними.",
       }),
       // oxlint-disable-next-line anti-slop/no-shape-in-symbol-names
       shapes: t({
@@ -869,6 +953,7 @@ export default {
         ja: "抽象的なループ、変形するフォルム、グラフィックアニメーションと、その裏にあるプロンプトとスキル。",
         de: "Abstrakte Loops, Morphing-Formen und Grafikanimation – mit den Prompts und Skills dahinter.",
         pt: "Loops abstratos, formas que se transformam e animação gráfica, com os prompts e as skills por trás deles.",
+        ru: "Абстрактные лупы, морфинг форм и графическая анимация — с промптами и скиллами, стоящими за ними.",
       }),
       particles: t({
         en: "Swarms, dots and generative motion, with the prompts and skills behind them.",
@@ -879,6 +964,7 @@ export default {
         ja: "群れ、ドット、ジェネラティブなモーションと、その裏にあるプロンプトとスキル。",
         de: "Schwärme, Punkte und generative Motion – mit den Prompts und Skills dahinter.",
         pt: "Enxames, pontos e motion generativo, com os prompts e as skills por trás deles.",
+        ru: "Рои, точки и генеративный моушн — с промптами и скиллами, стоящими за ними.",
       }),
       characters: t({
         en: "Mascots, avatars and illustrated motion, with the prompts and skills behind them.",
@@ -889,6 +975,7 @@ export default {
         ja: "マスコット、アバター、イラストのモーションと、その裏にあるプロンプトとスキル。",
         de: "Maskottchen, Avatare und illustrierte Motion – mit den Prompts und Skills dahinter.",
         pt: "Mascotes, avatares e motion ilustrado, com os prompts e as skills por trás deles.",
+        ru: "Маскоты, аватары и иллюстрированный моушн — с промптами и скиллами, стоящими за ними.",
       }),
       photos: t({
         en: "Slideshows, collages and photo animation, with the prompts and skills behind them.",
@@ -899,6 +986,7 @@ export default {
         ja: "スライドショー、コラージュ、写真アニメーションと、その裏にあるプロンプトとスキル。",
         de: "Slideshows, Collagen und Fotoanimation – mit den Prompts und Skills dahinter.",
         pt: "Apresentações, colagens e animação de fotos, com os prompts e as skills por trás deles.",
+        ru: "Слайдшоу, коллажи и анимация фото — с промптами и скиллами, стоящими за ними.",
       }),
       music: t({
         en: "Beat-synced edits, visualizers and audio-reactive motion, with the prompts and skills behind them.",
@@ -909,6 +997,7 @@ export default {
         ja: "ビートに合わせた編集、ビジュアライザー、音に反応するモーションと、その裏にあるプロンプトとスキル。",
         de: "Beat-synchrone Edits, Visualizer und audioreaktive Motion – mit den Prompts und Skills dahinter.",
         pt: "Edições sincronizadas com a batida, visualizadores e motion reativo ao áudio, com os prompts e as skills por trás deles.",
+        ru: "Монтаж в ритм, визуализаторы и моушн, реагирующий на звук, — с промптами и скиллами, стоящими за ними.",
       }),
       code: t({
         en: "Animated editors, terminals and dev tool launches, with the prompts and skills behind them.",
@@ -919,6 +1008,7 @@ export default {
         ja: "アニメーションするエディター、ターミナル、開発ツールのローンチと、その裏にあるプロンプトとスキル。",
         de: "Animierte Editoren, Terminals und Dev-Tool-Launches – mit den Prompts und Skills dahinter.",
         pt: "Editores, terminais e lançamentos de ferramentas de programação animados, com os prompts e as skills por trás deles.",
+        ru: "Анимированные редакторы, терминалы и запуски инструментов для разработчиков — с промптами и скиллами, стоящими за ними.",
       }),
     },
   },

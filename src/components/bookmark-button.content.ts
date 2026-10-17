@@ -13,6 +13,7 @@ export default {
       ja: "ブックマーク",
       de: "Merken",
       pt: "Guardar",
+      ru: "В закладки",
     }),
     remove: t({
       en: "Remove bookmark",
@@ -23,6 +24,7 @@ export default {
       ja: "ブックマークを解除",
       de: "Merkzeichen entfernen",
       pt: "Remover dos guardados",
+      ru: "Убрать из закладок",
     }),
     signInReason: t({
       en: "Sign in or create a free account to save bookmarks.",
@@ -33,6 +35,7 @@ export default {
       ja: "ブックマークを保存するには、ログインするか無料アカウントを作成してください。",
       de: "Melde dich an oder erstelle ein kostenloses Konto, um Videos zu merken.",
       pt: "Inicia sessão ou cria uma conta gratuita para guardar favoritos.",
+      ru: "Войдите или создайте бесплатный аккаунт, чтобы сохранять закладки.",
     }),
   },
 } satisfies Dictionary;

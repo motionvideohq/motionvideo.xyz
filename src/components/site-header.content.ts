@@ -13,6 +13,7 @@ export default {
       ja: "メインナビゲーション",
       de: "Hauptnavigation",
       pt: "Navegação principal",
+      ru: "Основная навигация",
     }),
     discover: t({
       en: "Discover",
@@ -23,6 +24,7 @@ export default {
       ja: "見つける",
       de: "Entdecken",
       pt: "Descobrir",
+      ru: "Обзор",
     }),
     tools: t({
       en: "Tools",
@@ -33,6 +35,7 @@ export default {
       ja: "ツール",
       de: "Tools",
       pt: "Ferramentas",
+      ru: "Инструменты",
     }),
     creatives: t({
       en: "Creatives",
@@ -43,6 +46,7 @@ export default {
       ja: "クリエイティブ",
       de: "Creatives",
       pt: "Criativos",
+      ru: "Студии",
     }),
     skills: t({
       en: "Skills",
@@ -53,6 +57,7 @@ export default {
       ja: "スキル",
       de: "Skills",
       pt: "Skills",
+      ru: "Скиллы",
     }),
     extras: t({
       en: "Extras",
@@ -63,6 +68,7 @@ export default {
       ja: "エクストラ",
       de: "Extras",
       pt: "Extras",
+      ru: "Дополнительно",
     }),
     more: t({
       en: "More",
@@ -73,6 +79,7 @@ export default {
       ja: "もっと見る",
       de: "Mehr",
       pt: "Mais",
+      ru: "Ещё",
     }),
     sponsorSlot: t({
       en: "Your logo here: sponsor MotionVideo",
@@ -83,6 +90,7 @@ export default {
       ja: "ここにあなたのロゴを：MotionVideoのスポンサーになる",
       de: "Dein Logo hier: MotionVideo sponsern",
       pt: "O teu logótipo aqui: patrocina o MotionVideo",
+      ru: "Здесь может быть ваш логотип: станьте спонсором MotionVideo",
     }),
     sponsored: t({
       en: "Sponsored",
@@ -93,6 +101,7 @@ export default {
       ja: "スポンサー",
       de: "Gesponsert",
       pt: "Patrocinado",
+      ru: "Спонсор",
     }),
     openMenu: t({
       en: "Open menu",
@@ -103,6 +112,7 @@ export default {
       ja: "メニューを開く",
       de: "Menü öffnen",
       pt: "Abrir menu",
+      ru: "Открыть меню",
     }),
     closeMenu: t({
       en: "Close menu",
@@ -113,6 +123,7 @@ export default {
       ja: "メニューを閉じる",
       de: "Menü schließen",
       pt: "Fechar menu",
+      ru: "Закрыть меню",
     }),
     skill: t({
       en: "SKILL.md",
@@ -123,6 +134,7 @@ export default {
       ja: "SKILL.md",
       de: "SKILL.md",
       pt: "SKILL.md",
+      ru: "SKILL.md",
     }),
     skillLabel: t({
       en: "Get the MotionVideo agent skill (SKILL.md)",
@@ -133,6 +145,7 @@ export default {
       ja: "MotionVideoエージェントスキル（SKILL.md）を入手",
       de: "Hol dir den MotionVideo Agent-Skill (SKILL.md)",
       pt: "Obtém a skill de agente MotionVideo (SKILL.md)",
+      ru: "Получить агентский скилл MotionVideo (SKILL.md)",
     }),
     accountMenu: t({
       en: "Account menu",
@@ -143,6 +156,7 @@ export default {
       ja: "アカウントメニュー",
       de: "Kontomenü",
       pt: "Menu da conta",
+      ru: "Меню аккаунта",
     }),
     bookmarks: t({
       en: "Bookmarks",
@@ -153,6 +167,7 @@ export default {
       ja: "ブックマーク",
       de: "Merkliste",
       pt: "Guardados",
+      ru: "Закладки",
     }),
     featured: t({
       en: "Featured",
@@ -163,6 +178,7 @@ export default {
       ja: "注目",
       de: "Empfohlen",
       pt: "Destaques",
+      ru: "Избранное",
     }),
     dashboard: t({
       en: "Dashboard",
@@ -173,6 +189,7 @@ export default {
       ja: "ダッシュボード",
       de: "Dashboard",
       pt: "Painel",
+      ru: "Панель управления",
     }),
     submit: t({
       en: "Submit a video",
@@ -183,6 +200,7 @@ export default {
       ja: "動画を投稿",
       de: "Video einreichen",
       pt: "Submeter um vídeo",
+      ru: "Отправить видео",
     }),
     sponsorships: t({
       en: "Sponsorships",
@@ -193,6 +211,7 @@ export default {
       ja: "スポンサーシップ",
       de: "Sponsorings",
       pt: "Patrocínios",
+      ru: "Спонсорство",
     }),
     settings: t({
       en: "Settings",
@@ -203,6 +222,7 @@ export default {
       ja: "設定",
       de: "Einstellungen",
       pt: "Definições",
+      ru: "Настройки",
     }),
     general: t({
       en: "General",
@@ -213,6 +233,7 @@ export default {
       ja: "一般",
       de: "Allgemein",
       pt: "Geral",
+      ru: "Общие",
     }),
     emails: t({
       en: "Emails",
@@ -223,6 +244,7 @@ export default {
       ja: "メール",
       de: "E-Mails",
       pt: "E-mails",
+      ru: "Письма",
     }),
     emailUpdates: t({
       en: "MotionVideo updates",
@@ -233,6 +255,7 @@ export default {
       ja: "MotionVideoの最新情報",
       de: "MotionVideo-Updates",
       pt: "Novidades do MotionVideo",
+      ru: "Новости MotionVideo",
     }),
     deleteAccount: t({
       en: "Delete account",
@@ -243,6 +266,7 @@ export default {
       ja: "アカウントを削除",
       de: "Konto löschen",
       pt: "Eliminar conta",
+      ru: "Удалить аккаунт",
     }),
     deleteTitle: t({
       en: "Delete your account?",
@@ -253,6 +277,7 @@ export default {
       ja: "アカウントを削除しますか？",
       de: "Dein Konto löschen?",
       pt: "Eliminar a tua conta?",
+      ru: "Удалить аккаунт?",
     }),
     deleteDescription: t({
       en: "Account deletion isn't automated yet. Write to us from your account email and we'll delete your account, submissions, and bookmarks.",
@@ -263,6 +288,7 @@ export default {
       ja: "アカウントの削除はまだ自動化されていません。アカウントのメールアドレスからご連絡いただければ、アカウント、投稿、ブックマークを削除します。",
       de: "Das Löschen von Konten ist noch nicht automatisiert. Schreib uns von der E-Mail-Adresse deines Kontos, und wir löschen dein Konto, deine Einreichungen und Merkliste.",
       pt: "A eliminação de contas ainda não é automática. Escreve-nos a partir do e-mail da tua conta e eliminaremos a tua conta, submissões e guardados.",
+      ru: "Удаление аккаунта пока не автоматизировано. Напишите нам с email вашего аккаунта, и мы удалим аккаунт, ваши заявки и закладки.",
     }),
     deleteContact: t({
       en: "Email us to delete",
@@ -273,6 +299,7 @@ export default {
       ja: "メールで削除を依頼",
       de: "Schreib uns zum Löschen",
       pt: "Envia-nos um e-mail para eliminar",
+      ru: "Написать нам для удаления",
     }),
     cancel: t({
       en: "Cancel",
@@ -283,6 +310,7 @@ export default {
       ja: "キャンセル",
       de: "Abbrechen",
       pt: "Cancelar",
+      ru: "Отмена",
     }),
     socials: t({
       en: "Socials",
@@ -293,6 +321,7 @@ export default {
       ja: "ソーシャル",
       de: "Social Media",
       pt: "Redes sociais",
+      ru: "Соцсети",
     }),
     theme: t({
       en: "Theme",
@@ -303,6 +332,7 @@ export default {
       ja: "テーマ",
       de: "Design",
       pt: "Tema",
+      ru: "Тема",
     }),
     sounds: t({
       en: "Sounds",
@@ -313,6 +343,7 @@ export default {
       ja: "サウンド",
       de: "Sounds",
       pt: "Sons",
+      ru: "Звуки",
     }),
     online: t({
       en: "online",
@@ -323,6 +354,7 @@ export default {
       ja: "オンライン",
       de: "online",
       pt: "online",
+      ru: "онлайн",
     }),
     jobs: t({
       en: "Jobs",
@@ -333,6 +365,7 @@ export default {
       ja: "求人",
       de: "Jobs",
       pt: "Empregos",
+      ru: "Вакансии",
     }),
     listings: t({
       en: "Listings",
@@ -343,6 +376,7 @@ export default {
       ja: "掲載",
       de: "Einträge",
       pt: "Anúncios",
+      ru: "Объявления",
     }),
     keyboard: t({
       en: "Keyboard",
@@ -353,6 +387,7 @@ export default {
       ja: "キーボード",
       de: "Tastatur",
       pt: "Teclado",
+      ru: "Клавиатура",
     }),
     light: t({
       en: "Light",
@@ -363,6 +398,7 @@ export default {
       ja: "ライト",
       de: "Hell",
       pt: "Claro",
+      ru: "Светлая",
     }),
     dark: t({
       en: "Dark",
@@ -373,6 +409,7 @@ export default {
       ja: "ダーク",
       de: "Dunkel",
       pt: "Escuro",
+      ru: "Тёмная",
     }),
     system: t({
       en: "System",
@@ -383,6 +420,7 @@ export default {
       ja: "システム",
       de: "System",
       pt: "Sistema",
+      ru: "Системная",
     }),
     signOut: t({
       en: "Log out",
@@ -393,6 +431,7 @@ export default {
       ja: "ログアウト",
       de: "Abmelden",
       pt: "Terminar sessão",
+      ru: "Выйти",
     }),
     signIn: t({
       en: "Sign in",
@@ -403,6 +442,7 @@ export default {
       ja: "ログイン",
       de: "Anmelden",
       pt: "Iniciar sessão",
+      ru: "Войти",
     }),
   },
 } satisfies Dictionary;

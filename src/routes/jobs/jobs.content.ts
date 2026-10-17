@@ -13,6 +13,7 @@ export default {
       ja: "モーションの求人。",
       de: "Jobs in Motion.",
       pt: "Empregos em motion.",
+      ru: "Вакансии в моушне.",
     }),
     heroIntro: t({
       en: "Open roles for motion designers, creative developers and video engineers who build with AI.",
@@ -23,6 +24,7 @@ export default {
       ja: "AIで制作するモーションデザイナー、クリエイティブデベロッパー、ビデオエンジニアの募集中ポジション。",
       de: "Offene Stellen für Motion Designer, Creative Developer und Video Engineers, die mit KI arbeiten.",
       pt: "Vagas para motion designers, programadores criativos e engenheiros de vídeo que criam com IA.",
+      ru: "Открытые вакансии для моушн-дизайнеров, креативных разработчиков и видеоинженеров, работающих с ИИ.",
     }),
     typeHeadings: {
       "full-time": t({
@@ -34,6 +36,7 @@ export default {
         ja: "正社員。",
         de: "Vollzeitstellen.",
         pt: "Vagas a tempo inteiro.",
+        ru: "Полная занятость.",
       }),
       "part-time": t({
         en: "Part-time roles.",
@@ -44,6 +47,7 @@ export default {
         ja: "パートタイム。",
         de: "Teilzeitstellen.",
         pt: "Vagas a tempo parcial.",
+        ru: "Частичная занятость.",
       }),
       contract: t({
         en: "Contract roles.",
@@ -54,6 +58,7 @@ export default {
         ja: "契約。",
         de: "Befristete Stellen.",
         pt: "Vagas por contrato.",
+        ru: "Контракт.",
       }),
       freelance: t({
         en: "Freelance gigs.",
@@ -64,6 +69,7 @@ export default {
         ja: "フリーランス。",
         de: "Freelance-Aufträge.",
         pt: "Trabalhos freelance.",
+        ru: "Фриланс.",
       }),
     },
     typeDescriptions: {
@@ -76,6 +82,7 @@ export default {
         ja: "AIで開発するチームでの、モーション、クリエイティブデベロッパー、動画関連の正社員ポジション。",
         de: "Vollzeitstellen in Motion, Creative Development und Video bei Teams, die mit KI bauen.",
         pt: "Vagas a tempo inteiro em motion, programação criativa e vídeo, em equipas que criam com IA.",
+        ru: "Вакансии с полной занятостью в моушне, креативной разработке и видео в командах, работающих с ИИ.",
       }),
       "part-time": t({
         en: "Part-time motion and video roles, for a few days a week alongside your own work.",
@@ -86,6 +93,7 @@ export default {
         ja: "自分の仕事と並行して週数日働ける、モーションと動画のパートタイムポジション。",
         de: "Teilzeitstellen in Motion und Video, für ein paar Tage pro Woche neben deiner eigenen Arbeit.",
         pt: "Vagas de motion e vídeo a tempo parcial, alguns dias por semana a par do teu próprio trabalho.",
+        ru: "Вакансии с частичной занятостью в моушне и видео — несколько дней в неделю параллельно с вашей работой.",
       }),
       contract: t({
         en: "Fixed-term contracts for launch films, product videos and motion systems.",
@@ -96,6 +104,7 @@ export default {
         ja: "ローンチフィルム、プロダクト動画、モーションシステムの期間限定の契約。",
         de: "Befristete Verträge für Launch-Filme, Produktvideos und Motion-Systeme.",
         pt: "Contratos a termo para filmes de lançamento, vídeos de produto e sistemas de motion.",
+        ru: "Срочные контракты на лонч-ролики, продуктовые видео и моушн-системы.",
       }),
       freelance: t({
         en: "Freelance projects for motion designers and creative developers, one film at a time.",
@@ -106,6 +115,7 @@ export default {
         ja: "モーションデザイナーとクリエイティブデベロッパー向けの、1本単位のフリーランス案件。",
         de: "Freelance-Projekte für Motion Designer und Creative Developer, Film für Film.",
         pt: "Projetos freelance para motion designers e programadores criativos, um filme de cada vez.",
+        ru: "Фриланс-проекты для моушн-дизайнеров и креативных разработчиков — по одному ролику за раз.",
       }),
     },
     all: t({
@@ -117,6 +127,7 @@ export default {
       ja: "すべて",
       de: "Alle",
       pt: "Todos",
+      ru: "Все",
     }),
     filterType: t({
       en: "Filter by type",
@@ -127,6 +138,7 @@ export default {
       ja: "種類で絞り込む",
       de: "Nach Typ filtern",
       pt: "Filtrar por tipo",
+      ru: "Фильтр по типу",
     }),
     emptyTitle: t({
       en: "No jobs yet",
@@ -137,6 +149,7 @@ export default {
       ja: "求人はまだありません",
       de: "Noch keine Jobs",
       pt: "Ainda não há empregos",
+      ru: "Вакансий пока нет",
     }),
     emptyBody: t({
       en: "New roles show up here as soon as they’re approved.",
@@ -147,6 +160,7 @@ export default {
       ja: "新しい求人は承認され次第ここに表示されます。",
       de: "Neue Stellen erscheinen hier, sobald sie freigegeben sind.",
       pt: "As novas vagas aparecem aqui assim que forem aprovadas.",
+      ru: "Новые вакансии появятся здесь сразу после одобрения.",
     }),
     widgetTitle: t({
       en: "Motion jobs",
@@ -157,6 +171,7 @@ export default {
       ja: "モーションの求人",
       de: "Motion-Jobs",
       pt: "Empregos em motion",
+      ru: "Вакансии в моушне",
     }),
     seeAll: t({
       en: "See all jobs",
@@ -167,6 +182,7 @@ export default {
       ja: "すべての求人を見る",
       de: "Alle Jobs ansehen",
       pt: "Ver todos os empregos",
+      ru: "Все вакансии",
     }),
     postJob: t({
       en: "Post a job",
@@ -177,6 +193,7 @@ export default {
       ja: "求人を掲載",
       de: "Job ausschreiben",
       pt: "Publicar emprego",
+      ru: "Разместить вакансию",
     }),
     featured: t({
       en: "Featured",
@@ -187,6 +204,7 @@ export default {
       ja: "注目",
       de: "Hervorgehoben",
       pt: "Destaque",
+      ru: "Выделенная",
     }),
     remote: t({
       en: "Remote",
@@ -197,6 +215,7 @@ export default {
       ja: "リモート",
       de: "Remote",
       pt: "Remoto",
+      ru: "Удалённо",
     }),
     types: {
       "full-time": t({
@@ -208,6 +227,7 @@ export default {
         ja: "正社員",
         de: "Vollzeit",
         pt: "Tempo inteiro",
+        ru: "Полная занятость",
       }),
       "part-time": t({
         en: "Part-time",
@@ -218,6 +238,7 @@ export default {
         ja: "パートタイム",
         de: "Teilzeit",
         pt: "Tempo parcial",
+        ru: "Частичная занятость",
       }),
       contract: t({
         en: "Contract",
@@ -228,6 +249,7 @@ export default {
         ja: "契約",
         de: "Befristet",
         pt: "Contrato",
+        ru: "Контракт",
       }),
       freelance: t({
         en: "Freelance",
@@ -238,6 +260,7 @@ export default {
         ja: "フリーランス",
         de: "Freelance",
         pt: "Freelance",
+        ru: "Фриланс",
       }),
     },
     perPost: t({
@@ -249,6 +272,7 @@ export default {
       ja: "1回払い・30日間",
       de: "einmalig · 30 Tage",
       pt: "pagamento único · 30 dias",
+      ru: "разово · 30 дней",
     }),
     plans: {
       standard: {
@@ -261,6 +285,7 @@ export default {
           ja: "スタンダード",
           de: "Standard",
           pt: "Normal",
+          ru: "Стандарт",
         }),
         choose: t({
           en: "Choose Standard",
@@ -271,6 +296,7 @@ export default {
           ja: "スタンダードを選択",
           de: "Standard wählen",
           pt: "Escolher Normal",
+          ru: "Выбрать Стандарт",
         }),
         perks: [
           t({
@@ -282,6 +308,7 @@ export default {
             ja: "求人ページに30日間掲載",
             de: "30 Tage auf der Jobseite gelistet",
             pt: "Publicado em Empregos durante 30 dias",
+            ru: "Вакансия на 30 дней",
           }),
           t({
             en: "Your logo, salary and apply link",
@@ -292,6 +319,7 @@ export default {
             ja: "ロゴ、給与、応募リンク",
             de: "Dein Logo, Gehalt und Bewerbungslink",
             pt: "O teu logótipo, salário e ligação de candidatura",
+            ru: "Ваш логотип, зарплата и ссылка для отклика",
           }),
           t({
             en: "Reviewed within one business day",
@@ -302,6 +330,7 @@ export default {
             ja: "1営業日以内に審査",
             de: "Geprüft innerhalb eines Werktags",
             pt: "Revisto no prazo de um dia útil",
+            ru: "Проверка в течение одного рабочего дня",
           }),
         ],
       },
@@ -315,6 +344,7 @@ export default {
           ja: "注目",
           de: "Hervorgehoben",
           pt: "Destaque",
+          ru: "Выделенная",
         }),
         choose: t({
           en: "Choose Featured",
@@ -325,6 +355,7 @@ export default {
           ja: "注目を選択",
           de: "Hervorgehoben wählen",
           pt: "Escolher Destaque",
+          ru: "Выбрать Выделенную",
         }),
         perks: [
           t({
@@ -336,6 +367,7 @@ export default {
             ja: "スタンダードのすべて",
             de: "Alles aus Standard",
             pt: "Tudo o que o plano Normal inclui",
+            ru: "Всё из тарифа Стандарт",
           }),
           t({
             en: "Pinned above standard posts",
@@ -346,6 +378,7 @@ export default {
             ja: "通常の求人より上に固定表示",
             de: "Über Standardanzeigen angeheftet",
             pt: "Fixado acima dos anúncios normais",
+            ru: "Закреплена над обычными вакансиями",
           }),
           t({
             en: "Highlighted with a Featured badge",
@@ -356,6 +389,7 @@ export default {
             ja: "注目バッジで強調表示",
             de: "Mit einem Hervorgehoben-Badge markiert",
             pt: "Realçado com um selo de Destaque",
+            ru: "Отмечена значком «Выделенная»",
           }),
           t({
             en: "A shoutout on X",
@@ -366,6 +400,7 @@ export default {
             ja: "Xで紹介",
             de: "Ein Shoutout auf X",
             pt: "Uma menção no X",
+            ru: "Упоминание в X",
           }),
         ],
       },
@@ -380,6 +415,7 @@ export default {
       ja: "モーションの作り手に向けて求人を掲載。",
       de: "Schreib deinen Job dort aus, wo Motion gemacht wird.",
       pt: "Publica um emprego para quem faz motion.",
+      ru: "Разместите вакансию для тех, кто делает моушн.",
     }),
     postHeroIntro: t({
       en: "List your role where motion designers and creative developers already look for their next thing.",
@@ -390,6 +426,7 @@ export default {
       ja: "モーションデザイナーやクリエイティブデベロッパーが次の仕事を探している場所に、あなたの求人を掲載しましょう。",
       de: "Platziere deine Stelle dort, wo Motion Designer und Creative Developer schon nach ihrem nächsten Ding suchen.",
       pt: "Anuncia a tua vaga onde motion designers e programadores criativos já procuram o próximo desafio.",
+      ru: "Опубликуйте вакансию там, где моушн-дизайнеры и креативные разработчики уже ищут новую работу.",
     }),
     planSection: t({
       en: "Plan",
@@ -400,6 +437,7 @@ export default {
       ja: "プラン",
       de: "Tarif",
       pt: "Plano",
+      ru: "Тариф",
     }),
     planSectionBody: t({
       en: "Standard lists the role; Featured pins it and adds a shoutout.",
@@ -410,6 +448,7 @@ export default {
       ja: "スタンダードは求人を掲載し、注目は上部に固定してXで紹介します。",
       de: "Standard listet die Stelle; Hervorgehoben heftet sie oben an und bringt ein Shoutout.",
       pt: "O Normal publica a vaga; o Destaque fixa-a e acrescenta uma menção.",
+      ru: "Стандарт публикует вакансию; Выделенная закрепляет её и добавляет упоминание.",
     }),
     planTerms: t({
       en: "One-off, 30 days",
@@ -420,6 +459,7 @@ export default {
       ja: "1回限り、30日間",
       de: "Einmalig, 30 Tage",
       pt: "Pagamento único, 30 dias",
+      ru: "Разово, 30 дней",
     }),
     details: t({
       en: "Details",
@@ -430,6 +470,7 @@ export default {
       ja: "詳細",
       de: "Details",
       pt: "Detalhes",
+      ru: "Детали",
     }),
     jobSection: t({
       en: "Job",
@@ -440,6 +481,7 @@ export default {
       ja: "求人",
       de: "Job",
       pt: "Vaga",
+      ru: "Вакансия",
     }),
     jobSectionBody: t({
       en: "The role, where people apply, and how it’s structured.",
@@ -450,6 +492,7 @@ export default {
       ja: "ポジション、応募先、雇用形態。",
       de: "Die Stelle, wo man sich bewirbt und wie sie aufgebaut ist.",
       pt: "A vaga, onde as pessoas se candidatam e como está organizada.",
+      ru: "Должность, где откликаться и формат работы.",
     }),
     workLocation: t({
       en: "Work location",
@@ -460,6 +503,7 @@ export default {
       ja: "勤務地",
       de: "Arbeitsort",
       pt: "Local de trabalho",
+      ru: "Место работы",
     }),
     employerSection: t({
       en: "Employer",
@@ -470,6 +514,7 @@ export default {
       ja: "雇用主",
       de: "Arbeitgeber",
       pt: "Empregador",
+      ru: "Работодатель",
     }),
     employerSectionBody: t({
       en: "Company name and logo shown on the listing.",
@@ -480,6 +525,7 @@ export default {
       ja: "求人に表示される会社名とロゴ。",
       de: "Firmenname und Logo, die in der Anzeige erscheinen.",
       pt: "Nome e logótipo da empresa apresentados no anúncio.",
+      ru: "Название и логотип компании в объявлении.",
     }),
     logoDrop: t({
       en: "Upload your company logo",
@@ -490,6 +536,7 @@ export default {
       ja: "会社のロゴをアップロード",
       de: "Lade dein Firmenlogo hoch",
       pt: "Carrega o logótipo da tua empresa",
+      ru: "Загрузите логотип компании",
     }),
     logoSize: t({
       en: "Up to 512 × 512 px",
@@ -500,6 +547,7 @@ export default {
       ja: "最大512 × 512 px",
       de: "Bis zu 512 × 512 px",
       pt: "Até 512 × 512 px",
+      ru: "До 512 × 512 px",
     }),
     detailsSection: t({
       en: "Details",
@@ -510,6 +558,7 @@ export default {
       ja: "詳細",
       de: "Details",
       pt: "Detalhes",
+      ru: "Детали",
     }),
     detailsSectionBody: t({
       en: "A short description, and a salary range if you share one.",
@@ -520,6 +569,7 @@ export default {
       ja: "簡単な説明と、公開する場合は給与の範囲。",
       de: "Eine kurze Beschreibung und eine Gehaltsspanne, wenn du eine angeben möchtest.",
       pt: "Uma descrição curta e uma faixa salarial, se a quiseres partilhar.",
+      ru: "Краткое описание и вилка зарплаты, если хотите её указать.",
     }),
     reviewSection: t({
       en: "Review",
@@ -530,6 +580,7 @@ export default {
       ja: "確認",
       de: "Überprüfen",
       pt: "Revisão",
+      ru: "Проверка",
     }),
     reviewSectionBody: t({
       en: "Check your order before checkout.",
@@ -540,6 +591,7 @@ export default {
       ja: "購入前に注文内容をご確認ください。",
       de: "Prüfe deine Bestellung vor dem Checkout.",
       pt: "Verifica a tua encomenda antes de pagar.",
+      ru: "Проверьте заказ перед оплатой.",
     }),
     dueToday: t({
       en: "Due today",
@@ -550,6 +602,7 @@ export default {
       ja: "本日のお支払い",
       de: "Heute fällig",
       pt: "A pagar hoje",
+      ru: "К оплате сегодня",
     }),
     signedInAs: t({
       en: "Signed in as",
@@ -560,6 +613,7 @@ export default {
       ja: "ログイン中：",
       de: "Angemeldet als",
       pt: "Sessão iniciada como",
+      ru: "Вы вошли как",
     }),
     alreadyPaid: t({
       en: "Already paid",
@@ -570,6 +624,7 @@ export default {
       ja: "支払い済み",
       de: "Bereits bezahlt",
       pt: "Já pago",
+      ru: "Уже оплачено",
     }),
     checkout: t({
       en: "Checkout",
@@ -580,6 +635,7 @@ export default {
       ja: "購入手続き",
       de: "Zur Kasse",
       pt: "Pagar",
+      ru: "Оплатить",
     }),
     afterCheckout: t({
       en: "After checkout, your post goes to review. Manage it anytime from Listings. Payments run through Dodo Payments, our merchant of record.",
@@ -590,6 +646,7 @@ export default {
       ja: "購入後、求人は審査に進みます。掲載からいつでも管理できます。お支払いは販売事業者であるDodo Paymentsを通じて行われます。",
       de: "Nach dem Checkout wird deine Anzeige geprüft. Du kannst sie jederzeit unter Einträge verwalten. Zahlungen laufen über Dodo Payments, unseren Merchant of Record.",
       pt: "Depois do pagamento, o teu anúncio passa para revisão. Gere-o a qualquer momento em Anúncios. Os pagamentos são processados pela Dodo Payments, o nosso comerciante registado (merchant of record).",
+      ru: "После оплаты вакансия отправится на проверку. Управлять ею можно в любой момент в разделе «Объявления». Платежи проходят через Dodo Payments, нашего продавца (merchant of record).",
     }),
     // /listings
     listingsTitle: t({
@@ -601,6 +658,7 @@ export default {
       ja: "掲載",
       de: "Einträge",
       pt: "Anúncios",
+      ru: "Объявления",
     }),
     listingsIntro: t({
       en: "Your job posts: drafts, posts in review, and live listings.",
@@ -611,6 +669,7 @@ export default {
       ja: "あなたの求人：下書き、審査中、掲載中のもの。",
       de: "Deine Jobanzeigen: Entwürfe, Anzeigen in Prüfung und Live-Einträge.",
       pt: "Os teus anúncios de emprego: rascunhos, anúncios em revisão e anúncios publicados.",
+      ru: "Ваши вакансии: черновики, вакансии на проверке и опубликованные.",
     }),
     listingsEmpty: t({
       en: "No job posts yet",
@@ -621,6 +680,7 @@ export default {
       ja: "求人はまだありません",
       de: "Noch keine Jobanzeigen",
       pt: "Ainda não há anúncios",
+      ru: "Вакансий пока нет",
     }),
     listingsEmptyBody: t({
       en: "Post a role and it shows up here, with its review status and end date.",
@@ -631,6 +691,7 @@ export default {
       ja: "求人を作成すると、審査状況と終了日とともにここに表示されます。",
       de: "Schreib eine Stelle aus, und sie erscheint hier mit Prüfstatus und Enddatum.",
       pt: "Publica uma vaga e ela aparece aqui, com o estado da revisão e a data de fim.",
+      ru: "Разместите вакансию, и она появится здесь со статусом проверки и датой окончания.",
     }),
     status: {
       draft: t({
@@ -642,6 +703,7 @@ export default {
         ja: "未払いの下書き",
         de: "Unbezahlter Entwurf",
         pt: "Rascunho por pagar",
+        ru: "Неоплаченный черновик",
       }),
       pending: t({
         en: "In review",
@@ -652,6 +714,7 @@ export default {
         ja: "審査中",
         de: "In Prüfung",
         pt: "Em revisão",
+        ru: "На проверке",
       }),
       approved: t({
         en: "Live until",
@@ -662,6 +725,7 @@ export default {
         ja: "掲載期限：",
         de: "Live bis",
         pt: "Publicado até",
+        ru: "Опубликована до",
       }),
       expired: t({
         en: "Expired",
@@ -672,6 +736,7 @@ export default {
         ja: "期限切れ",
         de: "Abgelaufen",
         pt: "Expirado",
+        ru: "Истекла",
       }),
       rejected: t({
         en: "Changes requested",
@@ -682,6 +747,7 @@ export default {
         ja: "修正依頼あり",
         de: "Änderungen angefragt",
         pt: "Alterações pedidas",
+        ru: "Нужны правки",
       }),
       refunded: t({
         en: "Refunded",
@@ -692,6 +758,7 @@ export default {
         ja: "返金済み",
         de: "Erstattet",
         pt: "Reembolsado",
+        ru: "Возвращено",
       }),
     },
     reviewNote: t({
@@ -703,6 +770,7 @@ export default {
       ja: "審査担当者のメモ：",
       de: "Notiz der Prüfung:",
       pt: "Nota do revisor:",
+      ru: "Комментарий модератора:",
     }),
     edit: t({
       en: "Edit",
@@ -713,6 +781,7 @@ export default {
       ja: "編集",
       de: "Bearbeiten",
       pt: "Editar",
+      ru: "Изменить",
     }),
     pay: t({
       en: "Pay and submit",
@@ -723,6 +792,7 @@ export default {
       ja: "支払って送信",
       de: "Bezahlen und einreichen",
       pt: "Pagar e submeter",
+      ru: "Оплатить и отправить",
     }),
     paidTitle: t({
       en: "Payment received",
@@ -733,6 +803,7 @@ export default {
       ja: "お支払いを受け付けました",
       de: "Zahlung erhalten",
       pt: "Pagamento recebido",
+      ru: "Оплата получена",
     }),
     paidBody: t({
       en: "Your post is in review. We’ll email you when it’s live.",
@@ -743,6 +814,7 @@ export default {
       ja: "求人は審査中です。掲載されたらメールでお知らせします。",
       de: "Deine Anzeige wird geprüft. Wir schicken dir eine E-Mail, sobald sie live ist.",
       pt: "O teu anúncio está em revisão. Enviamos-te um e-mail quando estiver publicado.",
+      ru: "Вакансия на проверке. Мы напишем вам, когда она будет опубликована.",
     }),
     jobTitle: t({
       en: "Job title",
@@ -753,6 +825,7 @@ export default {
       ja: "職種名",
       de: "Jobtitel",
       pt: "Título da vaga",
+      ru: "Должность",
     }),
     company: t({
       en: "Company",
@@ -763,6 +836,7 @@ export default {
       ja: "会社",
       de: "Unternehmen",
       pt: "Empresa",
+      ru: "Компания",
     }),
     location: t({
       en: "Location",
@@ -773,6 +847,7 @@ export default {
       ja: "勤務地",
       de: "Standort",
       pt: "Localização",
+      ru: "Местоположение",
     }),
     locationHelp: t({
       en: "A city and country, or a time zone range.",
@@ -783,6 +858,7 @@ export default {
       ja: "都市と国、またはタイムゾーンの範囲。",
       de: "Eine Stadt und ein Land oder eine Zeitzonenspanne.",
       pt: "Uma cidade e país, ou um intervalo de fusos horários.",
+      ru: "Город и страна или диапазон часовых поясов.",
     }),
     remoteLabel: t({
       en: "Remote friendly",
@@ -793,6 +869,7 @@ export default {
       ja: "リモート可",
       de: "Remote möglich",
       pt: "Aceita remoto",
+      ru: "Можно удалённо",
     }),
     type: t({
       en: "Type",
@@ -803,6 +880,7 @@ export default {
       ja: "種類",
       de: "Typ",
       pt: "Tipo",
+      ru: "Тип",
     }),
     salary: t({
       en: "Salary (optional)",
@@ -813,6 +891,7 @@ export default {
       ja: "給与（任意）",
       de: "Gehalt (optional)",
       pt: "Salário (opcional)",
+      ru: "Зарплата (необязательно)",
     }),
     salaryHelp: t({
       en: "For example $120k–$150k or €60/hour.",
@@ -823,6 +902,7 @@ export default {
       ja: "例：$120k–$150k、€60/時。",
       de: "Zum Beispiel 120.000–150.000 $ oder 60 €/Stunde.",
       pt: "Por exemplo, 120 000–150 000 $ ou 60 €/hora.",
+      ru: "Например, $120k–$150k или €60/час.",
     }),
     description: t({
       en: "Description",
@@ -833,6 +913,7 @@ export default {
       ja: "説明",
       de: "Beschreibung",
       pt: "Descrição",
+      ru: "Описание",
     }),
     descriptionHelp: t({
       en: "What the role is and who it suits. Plain text, up to 600 characters.",
@@ -843,6 +924,7 @@ export default {
       ja: "仕事内容と向いている人。プレーンテキスト、600文字まで。",
       de: "Worum es in der Stelle geht und zu wem sie passt. Reiner Text, bis zu 600 Zeichen.",
       pt: "Em que consiste a vaga e a quem se adequa. Texto simples, até 600 caracteres.",
+      ru: "Чем предстоит заниматься и кому подойдёт вакансия. Обычный текст, до 600 символов.",
     }),
     applyUrl: t({
       en: "Apply link",
@@ -853,6 +935,7 @@ export default {
       ja: "応募リンク",
       de: "Bewerbungslink",
       pt: "Ligação de candidatura",
+      ru: "Ссылка для отклика",
     }),
     applyHelp: t({
       en: "Your job page or application form.",
@@ -863,6 +946,7 @@ export default {
       ja: "求人ページまたは応募フォーム。",
       de: "Deine Jobseite oder dein Bewerbungsformular.",
       pt: "A página da vaga ou o formulário de candidatura.",
+      ru: "Страница вакансии или форма заявки.",
     }),
     logo: t({
       en: "Logo URL (optional)",
@@ -873,6 +957,7 @@ export default {
       ja: "ロゴURL（任意）",
       de: "Logo-URL (optional)",
       pt: "URL do logótipo (opcional)",
+      ru: "URL логотипа (необязательно)",
     }),
     resubmit: t({
       en: "Resubmit for review",
@@ -883,6 +968,7 @@ export default {
       ja: "再審査に提出",
       de: "Erneut zur Prüfung einreichen",
       pt: "Reenviar para revisão",
+      ru: "Отправить на повторную проверку",
     }),
     saving: t({
       en: "Saving…",
@@ -893,6 +979,7 @@ export default {
       ja: "保存中…",
       de: "Wird gespeichert …",
       pt: "A guardar…",
+      ru: "Сохранение…",
     }),
     opening: t({
       en: "Opening checkout…",
@@ -903,6 +990,7 @@ export default {
       ja: "購入手続きを開いています…",
       de: "Checkout wird geöffnet …",
       pt: "A abrir o pagamento…",
+      ru: "Открываем оплату…",
     }),
     errorValidation: t({
       en: "Check the fields: every required one needs a value, and links must be public HTTPS addresses.",
@@ -913,6 +1001,7 @@ export default {
       ja: "入力内容をご確認ください：必須項目はすべて入力が必要で、リンクは公開されたHTTPSアドレスである必要があります。",
       de: "Prüfe die Felder: Jedes Pflichtfeld braucht einen Wert, und Links müssen öffentliche HTTPS-Adressen sein.",
       pt: "Verifica os campos: todos os obrigatórios precisam de um valor e as ligações têm de ser endereços HTTPS públicos.",
+      ru: "Проверьте поля: все обязательные должны быть заполнены, а ссылки — публичными HTTPS-адресами.",
     }),
     errorSave: t({
       en: "Could not save. Try again.",
@@ -923,6 +1012,7 @@ export default {
       ja: "保存できませんでした。もう一度お試しください。",
       de: "Speichern fehlgeschlagen. Versuch es noch mal.",
       pt: "Não foi possível guardar. Tenta novamente.",
+      ru: "Не удалось сохранить. Попробуйте ещё раз.",
     }),
     errorCheckout: t({
       en: "Could not open checkout. Your draft is saved; try again.",
@@ -933,6 +1023,7 @@ export default {
       ja: "購入手続きを開けませんでした。下書きは保存されています。もう一度お試しください。",
       de: "Checkout konnte nicht geöffnet werden. Dein Entwurf ist gespeichert; versuch es noch mal.",
       pt: "Não foi possível abrir o pagamento. O teu rascunho está guardado; tenta novamente.",
+      ru: "Не удалось открыть оплату. Черновик сохранён; попробуйте ещё раз.",
     }),
   },
 } satisfies Dictionary;

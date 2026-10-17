@@ -13,6 +13,7 @@ export default {
       ja: "MotionVideoを検索",
       de: "MotionVideo durchsuchen",
       pt: "Pesquisar no MotionVideo",
+      ru: "Поиск по MotionVideo",
     }),
     placeholder: t({
       en: "Search videos, creators, tools, creatives…",
@@ -23,6 +24,7 @@ export default {
       ja: "動画、クリエイター、ツール、クリエイティブを検索…",
       de: "Videos, Creator, Tools, Creatives suchen …",
       pt: "Pesquisar vídeos, criadores, ferramentas, criativos…",
+      ru: "Ищите видео, авторов, инструменты, студии…",
     }),
     close: t({
       en: "Close search",
@@ -33,6 +35,7 @@ export default {
       ja: "検索を閉じる",
       de: "Suche schließen",
       pt: "Fechar pesquisa",
+      ru: "Закрыть поиск",
     }),
     empty: t({
       en: "Nothing matches that search.",
@@ -43,6 +46,7 @@ export default {
       ja: "該当する結果はありません。",
       de: "Keine Treffer für diese Suche.",
       pt: "Nada corresponde a essa pesquisa.",
+      ru: "По этому запросу ничего не найдено.",
     }),
     pages: t({
       en: "Pages",
@@ -53,6 +57,7 @@ export default {
       ja: "ページ",
       de: "Seiten",
       pt: "Páginas",
+      ru: "Страницы",
     }),
     popular: t({
       en: "Popular videos",
@@ -63,6 +68,7 @@ export default {
       ja: "人気の動画",
       de: "Beliebte Videos",
       pt: "Vídeos populares",
+      ru: "Популярные видео",
     }),
     videos: t({
       en: "Videos",
@@ -73,6 +79,7 @@ export default {
       ja: "動画",
       de: "Videos",
       pt: "Vídeos",
+      ru: "Видео",
     }),
     categories: t({
       en: "Categories",
@@ -83,6 +90,7 @@ export default {
       ja: "カテゴリ",
       de: "Kategorien",
       pt: "Categorias",
+      ru: "Категории",
     }),
     discover: t({
       en: "Discover",
@@ -93,6 +101,7 @@ export default {
       ja: "見つける",
       de: "Entdecken",
       pt: "Descobrir",
+      ru: "Обзор",
     }),
     tools: t({
       en: "Tools",
@@ -103,6 +112,7 @@ export default {
       ja: "ツール",
       de: "Tools",
       pt: "Ferramentas",
+      ru: "Инструменты",
     }),
     creatives: t({
       en: "Creatives",
@@ -113,6 +123,7 @@ export default {
       ja: "クリエイティブ",
       de: "Creatives",
       pt: "Criativos",
+      ru: "Студии",
     }),
     skills: t({
       en: "Skills",
@@ -123,6 +134,7 @@ export default {
       ja: "スキル",
       de: "Skills",
       pt: "Skills",
+      ru: "Скиллы",
     }),
     extras: t({
       en: "Extras",
@@ -133,6 +145,7 @@ export default {
       ja: "エクストラ",
       de: "Extras",
       pt: "Extras",
+      ru: "Дополнительно",
     }),
     submit: t({
       en: "Submit",
@@ -143,6 +156,7 @@ export default {
       ja: "投稿",
       de: "Einreichen",
       pt: "Submeter",
+      ru: "Отправить",
     }),
     bookmarks: t({
       en: "Bookmarks",
@@ -153,6 +167,7 @@ export default {
       ja: "ブックマーク",
       de: "Merkliste",
       pt: "Guardados",
+      ru: "Закладки",
     }),
     sponsor: t({
       en: "Sponsor",
@@ -163,6 +178,7 @@ export default {
       ja: "スポンサー",
       de: "Sponsern",
       pt: "Patrocinar",
+      ru: "Спонсорство",
     }),
     jobs: t({
       en: "Jobs",
@@ -173,6 +189,7 @@ export default {
       ja: "求人",
       de: "Jobs",
       pt: "Empregos",
+      ru: "Вакансии",
     }),
     skill: t({
       en: "MotionVideo agent skill",
@@ -183,6 +200,7 @@ export default {
       ja: "MotionVideoエージェントスキル",
       de: "MotionVideo Agent-Skill",
       pt: "Skill de agente MotionVideo",
+      ru: "Агентский скилл MotionVideo",
     }),
     about: t({
       en: "About",
@@ -193,6 +211,7 @@ export default {
       ja: "概要",
       de: "Über uns",
       pt: "Sobre",
+      ru: "О проекте",
     }),
     contact: t({
       en: "Contact",
@@ -203,6 +222,7 @@ export default {
       ja: "お問い合わせ",
       de: "Kontakt",
       pt: "Contacto",
+      ru: "Контакты",
     }),
     brand: t({
       en: "Brand",
@@ -213,6 +233,7 @@ export default {
       ja: "ブランド",
       de: "Marke",
       pt: "Marca",
+      ru: "Бренд",
     }),
     privacy: t({
       en: "Privacy policy",
@@ -223,6 +244,7 @@ export default {
       ja: "プライバシーポリシー",
       de: "Datenschutzerklärung",
       pt: "Política de privacidade",
+      ru: "Политика конфиденциальности",
     }),
     terms: t({
       en: "Terms of service",
@@ -233,6 +255,7 @@ export default {
       ja: "利用規約",
       de: "Nutzungsbedingungen",
       pt: "Termos de serviço",
+      ru: "Условия использования",
     }),
     refunds: t({
       en: "Refund policy",
@@ -243,6 +266,7 @@ export default {
       ja: "返金ポリシー",
       de: "Rückerstattungsrichtlinie",
       pt: "Política de reembolso",
+      ru: "Политика возврата",
     }),
     dashboard: t({
       en: "Dashboard",
@@ -253,6 +277,7 @@ export default {
       ja: "ダッシュボード",
       de: "Dashboard",
       pt: "Painel",
+      ru: "Панель управления",
     }),
     search: t({
       en: "Search",
@@ -263,6 +288,7 @@ export default {
       ja: "検索",
       de: "Suche",
       pt: "Pesquisar",
+      ru: "Поиск",
     }),
     legal: t({
       en: "Legal",
@@ -273,6 +299,7 @@ export default {
       ja: "法的情報",
       de: "Rechtliches",
       pt: "Legal",
+      ru: "Правовая информация",
     }),
     company: t({
       en: "Company",
@@ -283,6 +310,7 @@ export default {
       ja: "会社",
       de: "Unternehmen",
       pt: "Empresa",
+      ru: "Компания",
     }),
     otherProducts: t({
       en: "Other products",
@@ -293,6 +321,7 @@ export default {
       ja: "その他のプロダクト",
       de: "Weitere Produkte",
       pt: "Outros produtos",
+      ru: "Другие продукты",
     }),
     misc: t({
       en: "Misc.",
@@ -303,6 +332,7 @@ export default {
       ja: "その他",
       de: "Sonstiges",
       pt: "Diversos",
+      ru: "Разное",
     }),
     labsProjects: t({
       en: "Shadcn Labs projects",
@@ -313,6 +343,7 @@ export default {
       ja: "Shadcn Labsのプロジェクト",
       de: "Shadcn-Labs-Projekte",
       pt: "Projetos da Shadcn Labs",
+      ru: "Проекты Shadcn Labs",
     }),
     language: t({
       en: "Language",
@@ -323,6 +354,7 @@ export default {
       ja: "言語",
       de: "Sprache",
       pt: "Idioma",
+      ru: "Язык",
     }),
     muteSounds: t({
       en: "Mute sounds",
@@ -333,6 +365,7 @@ export default {
       ja: "サウンドをミュート",
       de: "Sounds stummschalten",
       pt: "Silenciar sons",
+      ru: "Выключить звуки",
     }),
     unmuteSounds: t({
       en: "Unmute sounds",
@@ -343,6 +376,7 @@ export default {
       ja: "サウンドのミュートを解除",
       de: "Sounds einschalten",
       pt: "Ativar sons",
+      ru: "Включить звуки",
     }),
     others: t({
       en: "More",
@@ -353,6 +387,7 @@ export default {
       ja: "もっと見る",
       de: "Mehr",
       pt: "Mais",
+      ru: "Ещё",
     }),
     socials: t({
       en: "Socials",
@@ -363,6 +398,7 @@ export default {
       ja: "ソーシャル",
       de: "Social Media",
       pt: "Redes sociais",
+      ru: "Соцсети",
     }),
     theme: t({
       en: "Theme",
@@ -373,6 +409,7 @@ export default {
       ja: "テーマ",
       de: "Design",
       pt: "Tema",
+      ru: "Тема",
     }),
     copyLogomark: t({
       en: "Copy logomark as SVG",
@@ -383,6 +420,7 @@ export default {
       ja: "ロゴマークをSVGでコピー",
       de: "Bildmarke als SVG kopieren",
       pt: "Copiar símbolo como SVG",
+      ru: "Копировать логознак как SVG",
     }),
     copyWordmark: t({
       en: "Copy wordmark as SVG",
@@ -393,6 +431,7 @@ export default {
       ja: "ワードマークをSVGでコピー",
       de: "Wortmarke als SVG kopieren",
       pt: "Copiar logótipo como SVG",
+      ru: "Копировать словесный знак как SVG",
     }),
     copyAppIcon: t({
       en: "Copy app icon as SVG",
@@ -403,6 +442,7 @@ export default {
       ja: "アプリアイコンをSVGでコピー",
       de: "App-Icon als SVG kopieren",
       pt: "Copiar ícone da app como SVG",
+      ru: "Копировать иконку приложения как SVG",
     }),
     guidelines: t({
       en: "Brand guidelines",
@@ -413,6 +453,7 @@ export default {
       ja: "ブランドガイドライン",
       de: "Markenrichtlinien",
       pt: "Diretrizes da marca",
+      ru: "Гайдлайны бренда",
     }),
     downloadAssets: t({
       en: "Download brand assets",
@@ -423,6 +464,7 @@ export default {
       ja: "ブランドアセットをダウンロード",
       de: "Marken-Assets herunterladen",
       pt: "Transferir recursos da marca",
+      ru: "Скачать материалы бренда",
     }),
     light: t({
       en: "Light",
@@ -433,6 +475,7 @@ export default {
       ja: "ライト",
       de: "Hell",
       pt: "Claro",
+      ru: "Светлая",
     }),
     dark: t({
       en: "Dark",
@@ -443,6 +486,7 @@ export default {
       ja: "ダーク",
       de: "Dunkel",
       pt: "Escuro",
+      ru: "Тёмная",
     }),
     system: t({
       en: "System",
@@ -453,6 +497,7 @@ export default {
       ja: "システム",
       de: "System",
       pt: "Sistema",
+      ru: "Системная",
     }),
     brandAssets: t({
       en: "Brand assets",
@@ -463,6 +508,7 @@ export default {
       ja: "ブランドアセット",
       de: "Marken-Assets",
       pt: "Recursos da marca",
+      ru: "Материалы бренда",
     }),
   },
 } satisfies Dictionary;

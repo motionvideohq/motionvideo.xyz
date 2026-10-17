@@ -13,6 +13,7 @@ const account = {
       ja: "規約",
       de: "AGB",
       pt: "Termos",
+      ru: "Условия",
     }),
     privacy: t({
       en: "Privacy",
@@ -23,6 +24,7 @@ const account = {
       ja: "プライバシー",
       de: "Datenschutz",
       pt: "Privacidade",
+      ru: "Конфиденциальность",
     }),
     continueWithGoogle: t({
       en: "Log in with Google",
@@ -33,6 +35,7 @@ const account = {
       ja: "Googleでログイン",
       de: "Mit Google anmelden",
       pt: "Iniciar sessão com o Google",
+      ru: "Войти через Google",
     }),
     orContinueWith: t({
       en: "Or continue with",
@@ -43,6 +46,7 @@ const account = {
       ja: "または次の方法で続行",
       de: "Oder weiter mit",
       pt: "Ou continua com",
+      ru: "Или продолжить с",
     }),
     signInTitle: t({
       en: "Sign in or create an account",
@@ -53,6 +57,7 @@ const account = {
       ja: "ログインまたはアカウント作成",
       de: "Anmelden oder Konto erstellen",
       pt: "Inicia sessão ou cria uma conta",
+      ru: "Войдите или создайте аккаунт",
     }),
     signInDescription: t({
       en: "We’ll email you a 6-digit code. New here? Your account is created when you sign in.",
@@ -63,6 +68,7 @@ const account = {
       ja: "6桁のコードをメールでお送りします。初めての方は、ログイン時にアカウントが作成されます。",
       de: "Wir schicken dir einen 6-stelligen Code per E-Mail. Neu hier? Dein Konto wird bei der Anmeldung erstellt.",
       pt: "Vamos enviar-te um código de 6 dígitos por e-mail. És novo por cá? A tua conta é criada quando inicias sessão.",
+      ru: "Мы отправим на email 6-значный код. Впервые здесь? Аккаунт создаётся при входе.",
     }),
     email: t({
       en: "Email",
@@ -73,6 +79,7 @@ const account = {
       ja: "メールアドレス",
       de: "E-Mail",
       pt: "E-mail",
+      ru: "Email",
     }),
     emailPlaceholder: t({
       en: "you@example.com",
@@ -83,6 +90,7 @@ const account = {
       ja: "you@example.com",
       de: "du@beispiel.de",
       pt: "tu@exemplo.com",
+      ru: "you@example.com",
     }),
     sending: t({
       en: "Sending…",
@@ -93,6 +101,7 @@ const account = {
       ja: "送信中…",
       de: "Wird gesendet …",
       pt: "A enviar…",
+      ru: "Отправка…",
     }),
     sendCode: t({
       en: "Send code",
@@ -103,6 +112,7 @@ const account = {
       ja: "コードを送信",
       de: "Code senden",
       pt: "Enviar código",
+      ru: "Отправить код",
     }),
     code: t({
       en: "Code",
@@ -113,6 +123,7 @@ const account = {
       ja: "コード",
       de: "Code",
       pt: "Código",
+      ru: "Код",
     }),
     signIn: t({
       en: "Sign in",
@@ -123,6 +134,7 @@ const account = {
       ja: "ログイン",
       de: "Anmelden",
       pt: "Iniciar sessão",
+      ru: "Войти",
     }),
     signingIn: t({
       en: "Signing in…",
@@ -133,6 +145,7 @@ const account = {
       ja: "ログイン中…",
       de: "Anmeldung läuft …",
       pt: "A iniciar sessão…",
+      ru: "Вход…",
     }),
     changeEmail: t({
       en: "Use a different email",
@@ -143,6 +156,7 @@ const account = {
       ja: "別のメールアドレスを使う",
       de: "Andere E-Mail verwenden",
       pt: "Usar outro e-mail",
+      ru: "Использовать другой email",
     }),
     resend: t({
       en: "Send a new code",
@@ -153,6 +167,7 @@ const account = {
       ja: "新しいコードを送信",
       de: "Neuen Code senden",
       pt: "Enviar um código novo",
+      ru: "Отправить новый код",
     }),
     resent: t({
       en: "New code sent.",
@@ -163,6 +178,7 @@ const account = {
       ja: "新しいコードを送信しました。",
       de: "Neuer Code gesendet.",
       pt: "Código novo enviado.",
+      ru: "Новый код отправлен.",
     }),
     checkEmail: t({
       en: "Check your email",
@@ -173,6 +189,7 @@ const account = {
       ja: "メールをご確認ください",
       de: "Prüfe dein Postfach",
       pt: "Verifica o teu e-mail",
+      ru: "Проверьте почту",
     }),
     sentCode: t({
       en: "We sent a 6-digit code to",
@@ -183,6 +200,7 @@ const account = {
       ja: "6桁のコードを送信しました：",
       de: "Wir haben einen 6-stelligen Code gesendet an",
       pt: "Enviámos um código de 6 dígitos para",
+      ru: "Мы отправили 6-значный код на",
     }),
     expires: t({
       en: "It expires in 10 minutes.",
@@ -193,6 +211,7 @@ const account = {
       ja: "有効期限は10分です。",
       de: "Er läuft in 10 Minuten ab.",
       pt: "Expira dentro de 10 minutos.",
+      ru: "Он действует 10 минут.",
     }),
     invalidCode: t({
       en: "That code is wrong or expired. Check it, or send a new one.",
@@ -203,6 +222,7 @@ const account = {
       ja: "コードが間違っているか、期限切れです。確認するか、新しいコードを送信してください。",
       de: "Der Code ist falsch oder abgelaufen. Prüfe ihn oder fordere einen neuen an.",
       pt: "Esse código está errado ou expirou. Verifica-o ou pede um novo.",
+      ru: "Код неверный или устарел. Проверьте его или запросите новый.",
     }),
     tooManyAttempts: t({
       en: "Too many tries with that code. Send a new one.",
@@ -213,6 +233,7 @@ const account = {
       ja: "このコードでの試行回数が多すぎます。新しいコードを送信してください。",
       de: "Zu viele Versuche mit diesem Code. Fordere einen neuen an.",
       pt: "Demasiadas tentativas com esse código. Pede um novo.",
+      ru: "Слишком много попыток с этим кодом. Запросите новый.",
     }),
     sendError: t({
       en: "Could not send the sign-in code. Try again.",
@@ -223,6 +244,7 @@ const account = {
       ja: "ログインコードを送信できませんでした。もう一度お試しください。",
       de: "Der Anmeldecode konnte nicht gesendet werden. Versuch es noch mal.",
       pt: "Não foi possível enviar o código de acesso. Tenta novamente.",
+      ru: "Не удалось отправить код для входа. Попробуйте ещё раз.",
     }),
     rateLimited: t({
       en: "Too many sign-in requests. Wait a minute and try again.",
@@ -233,6 +255,7 @@ const account = {
       ja: "ログインのリクエストが多すぎます。1分待ってからもう一度お試しください。",
       de: "Zu viele Anmeldeanfragen. Warte eine Minute und versuch es dann noch mal.",
       pt: "Demasiados pedidos de acesso. Espera um minuto e tenta novamente.",
+      ru: "Слишком много запросов на вход. Подождите минуту и попробуйте снова.",
     }),
     thanks: t({
       en: "Thanks for buying",
@@ -243,6 +266,7 @@ const account = {
       ja: "ご購入ありがとうございます",
       de: "Danke für deinen Kauf",
       pt: "Obrigado pela compra",
+      ru: "Спасибо за покупку",
     }),
     confirming: t({
       en: "Confirming your payment",
@@ -253,6 +277,7 @@ const account = {
       ja: "お支払いを確認しています",
       de: "Deine Zahlung wird bestätigt",
       pt: "A confirmar o teu pagamento",
+      ru: "Подтверждаем оплату",
     }),
     checkAgain: t({
       en: "Check again",
@@ -263,6 +288,7 @@ const account = {
       ja: "もう一度確認",
       de: "Erneut prüfen",
       pt: "Verificar novamente",
+      ru: "Проверить снова",
     }),
     seconds: t({
       en: "This usually takes a few seconds.",
@@ -273,6 +299,7 @@ const account = {
       ja: "通常は数秒で完了します。",
       de: "Das dauert normalerweise nur ein paar Sekunden.",
       pt: "Isto costuma demorar alguns segundos.",
+      ru: "Обычно это занимает несколько секунд.",
     }),
     opening: t({
       en: "Opening…",
@@ -283,6 +310,7 @@ const account = {
       ja: "開いています…",
       de: "Wird geöffnet …",
       pt: "A abrir…",
+      ru: "Открываем…",
     }),
     portal: t({
       en: "Open customer portal",
@@ -293,6 +321,7 @@ const account = {
       ja: "カスタマーポータルを開く",
       de: "Kundenportal öffnen",
       pt: "Abrir portal de cliente",
+      ru: "Открыть портал клиента",
     }),
     portalPreview: t({
       en: "Customer portal (preview)",
@@ -303,6 +332,7 @@ const account = {
       ja: "カスタマーポータル（プレビュー）",
       de: "Kundenportal (Vorschau)",
       pt: "Portal de cliente (pré-visualização)",
+      ru: "Портал клиента (предпросмотр)",
     }),
     own: t({
       en: "You own",
@@ -313,6 +343,7 @@ const account = {
       ja: "購入済み：",
       de: "Du besitzt",
       pt: "Já tens",
+      ru: "У вас есть",
     }),
     portalDescription: t({
       en: "Open the customer portal to connect your GitHub account and get access to the private skill pack repository. Receipts and invoices live there too.",
@@ -323,6 +354,7 @@ const account = {
       ja: "カスタマーポータルを開いてGitHubアカウントを連携し、非公開のスキルパックリポジトリにアクセスしてください。領収書や請求書もそこで確認できます。",
       de: "Öffne das Kundenportal, um dein GitHub-Konto zu verbinden und Zugriff auf das private Repository des Skill-Packs zu erhalten. Dort findest du auch Belege und Rechnungen.",
       pt: "Abre o portal de cliente para ligar a tua conta do GitHub e obter acesso ao repositório privado do pacote de skills. Os recibos e as faturas também estão lá.",
+      ru: "Откройте портал клиента, чтобы подключить аккаунт GitHub и получить доступ к приватному репозиторию со скиллами. Там же хранятся чеки и счета.",
     }),
     get: t({
       en: "Get",
@@ -333,6 +365,7 @@ const account = {
       ja: "入手：",
       de: "Hol dir",
       pt: "Obtém",
+      ru: "Купить",
     }),
     purchaseDescription: t({
       en: "One-time purchase. You’ll get access to the private skill pack repository and every future update.",
@@ -343,6 +376,7 @@ const account = {
       ja: "買い切りです。非公開のスキルパックリポジトリと今後のすべてのアップデートにアクセスできます。",
       de: "Einmalkauf. Du erhältst Zugriff auf das private Repository des Skill-Packs und alle künftigen Updates.",
       pt: "Compra única. Terás acesso ao repositório privado do pacote de skills e a todas as atualizações futuras.",
+      ru: "Разовая покупка. Вы получите доступ к приватному репозиторию со скиллами и всем будущим обновлениям.",
     }),
     dashboard: t({
       en: "Dashboard",
@@ -353,6 +387,7 @@ const account = {
       ja: "ダッシュボード",
       de: "Dashboard",
       pt: "Painel",
+      ru: "Панель управления",
     }),
     localPreview: t({
       en: "Local UI preview",
@@ -363,6 +398,7 @@ const account = {
       ja: "ローカルUIプレビュー",
       de: "Lokale UI-Vorschau",
       pt: "Pré-visualização local da interface",
+      ru: "Локальный предпросмотр UI",
     }),
     signOut: t({
       en: "Sign out",
@@ -373,6 +409,7 @@ const account = {
       ja: "ログアウト",
       de: "Abmelden",
       pt: "Terminar sessão",
+      ru: "Выйти",
     }),
   },
 } satisfies Dictionary;

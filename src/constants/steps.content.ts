@@ -14,6 +14,7 @@ export default {
         ja: "GitHubの招待を承認し、skillsフォルダをプロジェクトにコピーします",
         de: "Nimm die GitHub-Einladung an und kopiere den Skills-Ordner in dein Projekt",
         pt: "Aceita o convite do GitHub e copia a pasta das skills para o teu projeto",
+        ru: "Примите приглашение на GitHub и скопируйте папку со скиллами в свой проект",
       }),
       t({
         en: "Describe the piece, like “a 20s intro reel: name reveal, three project cards, calm exit”",
@@ -24,6 +25,7 @@ export default {
         ja: "「20秒のイントロ：名前の登場、プロジェクトカード3枚、落ち着いた終わり」のように内容を伝えます",
         de: "Beschreibe das Stück, etwa „ein 20-Sekunden-Intro: Namens-Reveal, drei Projektkarten, ruhiger Abgang“",
         pt: "Descreve a peça, por exemplo «um reel de introdução de 20 s: revelação do nome, três cartões de projetos, saída calma»",
+        ru: "Опишите ролик, например: «20-секундное интро: появление имени, три карточки проектов, спокойный финал»",
       }),
       t({
         en: "Your agent storyboards the beats and timing before writing any scene code",
@@ -34,6 +36,7 @@ export default {
         ja: "エージェントがシーンのコードを書く前に、構成とタイミングをストーリーボードにします",
         de: "Dein Agent plant Beats und Timing im Storyboard, bevor er Szenencode schreibt",
         pt: "O teu agente faz o storyboard dos momentos e do timing antes de escrever qualquer código de cena",
+        ru: "Агент раскадровывает ключевые моменты и тайминг до того, как писать код сцен",
       }),
       t({
         en: "It animates each scene with your fonts, colors, and components, then renders locally",
@@ -44,6 +47,7 @@ export default {
         ja: "あなたのフォント、色、コンポーネントで各シーンをアニメーションさせ、ローカルでレンダリングします",
         de: "Er animiert jede Szene mit deinen Schriften, Farben und Komponenten und rendert dann lokal",
         pt: "Anima cada cena com as tuas fontes, cores e componentes e depois renderiza localmente",
+        ru: "Он анимирует каждую сцену с вашими шрифтами, цветами и компонентами, а затем рендерит локально",
       }),
       t({
         en: "Ask for tweaks in plain words, like “hold the logo longer”, and render again",
@@ -54,6 +58,7 @@ export default {
         ja: "「ロゴをもう少し長く見せて」のように普段の言葉で修正を依頼し、再レンダリングします",
         de: "Wünsch dir Änderungen in einfachen Worten, etwa „das Logo länger stehen lassen“, und rendere erneut",
         pt: "Pede ajustes em palavras simples, como «mantém o logótipo mais tempo», e renderiza outra vez",
+        ru: "Просите правки простыми словами, например «подержи логотип подольше», и рендерите снова",
       }),
     ],
   },

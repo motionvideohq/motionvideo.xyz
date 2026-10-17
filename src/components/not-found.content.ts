@@ -13,6 +13,7 @@ const notFound = {
       ja: "このフレームはレンダリングされませんでした。",
       de: "Dieser Frame wurde nicht gerendert.",
       pt: "Este fotograma não foi renderizado.",
+      ru: "Этот кадр не отрисовался.",
     }),
     notFoundBody: t({
       en: "The page you’re looking for isn’t in the cut. It may have moved, or the link is wrong.",
@@ -23,6 +24,7 @@ const notFound = {
       ja: "お探しのページは見つかりませんでした。移動したか、リンクが間違っている可能性があります。",
       de: "Die gesuchte Seite hat es nicht in den Schnitt geschafft. Vielleicht wurde sie verschoben oder der Link ist falsch.",
       pt: "A página que procuras não entrou na montagem. Pode ter sido movida ou a ligação está errada.",
+      ru: "Страницы, которую вы ищете, нет в монтаже. Возможно, она переехала или ссылка неверна.",
     }),
     backHome: t({
       en: "Back to home",
@@ -33,6 +35,7 @@ const notFound = {
       ja: "ホームに戻る",
       de: "Zur Startseite",
       pt: "Voltar ao início",
+      ru: "На главную",
     }),
     reportLink: t({
       en: "Report a broken link",
@@ -43,6 +46,7 @@ const notFound = {
       ja: "リンク切れを報告",
       de: "Defekten Link melden",
       pt: "Reportar uma ligação partida",
+      ru: "Сообщить о битой ссылке",
     }),
   },
 } satisfies Dictionary;

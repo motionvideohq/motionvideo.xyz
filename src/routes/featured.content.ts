@@ -13,6 +13,7 @@ export default {
       ja: "掲載",
       de: "Vorgestellt",
       pt: "Destaques",
+      ru: "Избранное",
     }),
     intro: t({
       en: "Work you submitted, credited to you.",
@@ -23,6 +24,7 @@ export default {
       ja: "あなたが投稿し、クレジットされた作品。",
       de: "Von dir eingereichte Arbeiten, dir zugeschrieben.",
       pt: "Trabalho que submeteste, creditado a ti.",
+      ru: "Ваши отправленные работы с указанием авторства.",
     }),
     featuredHeading: t({
       en: "Featured work",
@@ -33,6 +35,7 @@ export default {
       ja: "掲載作品",
       de: "Vorgestellte Arbeiten",
       pt: "Trabalho em destaque",
+      ru: "Избранные работы",
     }),
     submissionsHeading: t({
       en: "Your submissions",
@@ -43,6 +46,7 @@ export default {
       ja: "あなたの投稿",
       de: "Deine Einreichungen",
       pt: "As tuas submissões",
+      ru: "Ваши заявки",
     }),
     status: {
       pending: t({
@@ -54,6 +58,7 @@ export default {
         ja: "審査中",
         de: "In Prüfung",
         pt: "Em revisão",
+        ru: "На рассмотрении",
       }),
       featured: t({
         en: "Featured",
@@ -64,6 +69,7 @@ export default {
         ja: "掲載中",
         de: "Vorgestellt",
         pt: "Em destaque",
+        ru: "В избранном",
       }),
       declined: t({
         en: "Not selected",
@@ -74,6 +80,7 @@ export default {
         ja: "不採用",
         de: "Nicht ausgewählt",
         pt: "Não selecionado",
+        ru: "Не выбрано",
       }),
     },
     viewFeatured: t({
@@ -85,6 +92,7 @@ export default {
       ja: "掲載を見る",
       de: "Vorgestellte ansehen",
       pt: "Ver destaque",
+      ru: "Смотреть в избранном",
     }),
     visit: t({
       en: "Visit website",
@@ -95,6 +103,7 @@ export default {
       ja: "ウェブサイトを見る",
       de: "Website besuchen",
       pt: "Visitar site",
+      ru: "Перейти на сайт",
     }),
     newTab: t({
       en: "opens in a new tab",
@@ -105,6 +114,7 @@ export default {
       ja: "新しいタブで開きます",
       de: "öffnet in neuem Tab",
       pt: "abre num novo separador",
+      ru: "откроется в новой вкладке",
     }),
     emptyTitle: t({
       en: "None of your work has been featured yet",
@@ -115,6 +125,7 @@ export default {
       ja: "まだ掲載された作品はありません",
       de: "Noch keine deiner Arbeiten wurde vorgestellt",
       pt: "Ainda nenhum trabalho teu foi destacado",
+      ru: "Ваши работы пока не попали в избранное",
     }),
     emptyDescription: t({
       en: "Work credited to you will appear here.",
@@ -125,6 +136,7 @@ export default {
       ja: "あなたがクレジットされた作品はここに表示されます。",
       de: "Dir zugeschriebene Arbeiten erscheinen hier.",
       pt: "O trabalho creditado a ti vai aparecer aqui.",
+      ru: "Здесь появятся работы, где вы указаны автором.",
     }),
     submit: t({
       en: "Submit your work",
@@ -135,6 +147,7 @@ export default {
       ja: "作品を投稿",
       de: "Reiche deine Arbeit ein",
       pt: "Submete o teu trabalho",
+      ru: "Отправить работу",
     }),
   },
 } satisfies Dictionary;

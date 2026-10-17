@@ -13,6 +13,7 @@ export default {
       ja: "スポンサーシップ",
       de: "Sponsorings",
       pt: "Patrocínios",
+      ru: "Спонсорство",
     }),
     intro: t({
       en: "Your sponsor plans and the placements they show. Every change goes live after a quick review.",
@@ -23,6 +24,7 @@ export default {
       ja: "あなたのスポンサープランと掲載内容。すべての変更は簡単な審査の後に公開されます。",
       de: "Deine Sponsoring-Tarife und die Platzierungen, die sie zeigen. Jede Änderung geht nach einer kurzen Prüfung live.",
       pt: "Os teus planos de patrocínio e os espaços que mostram. Cada alteração fica visível após uma revisão rápida.",
+      ru: "Ваши спонсорские тарифы и их размещения. Любое изменение публикуется после быстрой проверки.",
     }),
     confirmingTitle: t({
       en: "Confirming your payment…",
@@ -33,6 +35,7 @@ export default {
       ja: "お支払いを確認しています…",
       de: "Deine Zahlung wird bestätigt …",
       pt: "A confirmar o teu pagamento…",
+      ru: "Подтверждаем оплату…",
     }),
     confirmingBody: t({
       en: "Dodo Payments is still confirming your payment. It usually takes under a minute; refresh to check again.",
@@ -43,6 +46,7 @@ export default {
       ja: "Dodo Paymentsがまだお支払いを確認中です。通常1分以内に完了します。再読み込みしてもう一度ご確認ください。",
       de: "Dodo Payments bestätigt deine Zahlung noch. Das dauert meist weniger als eine Minute; lade neu, um erneut zu prüfen.",
       pt: "A Dodo Payments ainda está a confirmar o teu pagamento. Normalmente demora menos de um minuto; atualiza a página para verificar novamente.",
+      ru: "Dodo Payments ещё подтверждает оплату. Обычно это занимает меньше минуты; обновите страницу, чтобы проверить снова.",
     }),
     refresh: t({
       en: "Refresh",
@@ -53,6 +57,7 @@ export default {
       ja: "再読み込み",
       de: "Neu laden",
       pt: "Atualizar",
+      ru: "Обновить",
     }),
     activeTitle: t({
       en: "Thank you for sponsoring MotionVideo.",
@@ -63,6 +68,7 @@ export default {
       ja: "MotionVideoのスポンサーになっていただき、ありがとうございます。",
       de: "Danke, dass du MotionVideo sponserst.",
       pt: "Obrigado por patrocinares o MotionVideo.",
+      ru: "Спасибо, что поддерживаете MotionVideo.",
     }),
     activeBody: t({
       en: "Payment received. We’re reviewing your placement; it goes live once approved, and you can still edit it below.",
@@ -73,6 +79,7 @@ export default {
       ja: "お支払いを受け付けました。掲載内容を審査中です。承認されると公開され、下で引き続き編集できます。",
       de: "Zahlung erhalten. Wir prüfen deine Platzierung; sie geht nach der Freigabe live, und du kannst sie unten weiterhin bearbeiten.",
       pt: "Pagamento recebido. Estamos a rever o teu espaço; fica visível assim que for aprovado, e ainda o podes editar abaixo.",
+      ru: "Оплата получена. Мы проверяем ваше размещение; оно будет опубликовано после одобрения, а пока его можно изменить ниже.",
     }),
     emptyTitle: t({
       en: "No sponsorships yet",
@@ -83,6 +90,7 @@ export default {
       ja: "スポンサーシップはまだありません",
       de: "Noch keine Sponsorings",
       pt: "Ainda não tens patrocínios",
+      ru: "Спонсорства пока нет",
     }),
     emptyDescription: t({
       en: "Pick a plan to put your product in front of people who make product films and motion design.",
@@ -93,6 +101,7 @@ export default {
       ja: "プランを選んで、プロダクトフィルムやモーションデザインを作る人々にあなたのプロダクトを届けましょう。",
       de: "Wähle einen Tarif, um dein Produkt Leuten zu zeigen, die Produktfilme und Motion Design machen.",
       pt: "Escolhe um plano para mostrar o teu produto a quem faz filmes de produto e motion design.",
+      ru: "Выберите тариф, чтобы показать свой продукт тем, кто делает продуктовые ролики и моушн-дизайн.",
     }),
     startCampaign: t({
       en: "Start a campaign",
@@ -103,6 +112,7 @@ export default {
       ja: "キャンペーンを開始",
       de: "Kampagne starten",
       pt: "Iniciar uma campanha",
+      ru: "Запустить кампанию",
     }),
     tiers: {
       diamond: t({
@@ -114,6 +124,7 @@ export default {
         ja: "ダイヤモンド",
         de: "Diamond",
         pt: "Diamante",
+        ru: "Diamond",
       }),
       gold: t({
         en: "Gold",
@@ -124,6 +135,7 @@ export default {
         ja: "ゴールド",
         de: "Gold",
         pt: "Ouro",
+        ru: "Gold",
       }),
       silver: t({
         en: "Silver",
@@ -134,6 +146,7 @@ export default {
         ja: "シルバー",
         de: "Silver",
         pt: "Prata",
+        ru: "Silver",
       }),
     },
     newSponsorship: t({
@@ -145,6 +158,7 @@ export default {
       ja: "新しいスポンサーシップ",
       de: "Neues Sponsoring",
       pt: "Novo patrocínio",
+      ru: "Новое спонсорство",
     }),
     billings: {
       monthly: t({
@@ -156,6 +170,7 @@ export default {
         ja: "月額",
         de: "Monatlich",
         pt: "Mensal",
+        ru: "Ежемесячно",
       }),
       once: t({
         en: "One-off, 30 days",
@@ -166,6 +181,7 @@ export default {
         ja: "1回限り、30日間",
         de: "Einmalig, 30 Tage",
         pt: "Pagamento único, 30 dias",
+        ru: "Разово, 30 дней",
       }),
     },
     priceSuffix: {
@@ -178,6 +194,7 @@ export default {
         ja: "/ 月",
         de: "/ Monat",
         pt: "/ mês",
+        ru: "/ месяц",
       }),
       once: t({
         en: "once",
@@ -188,6 +205,7 @@ export default {
         ja: "1回",
         de: "einmalig",
         pt: "uma vez",
+        ru: "разово",
       }),
     },
     finishCheckout: t({
@@ -199,6 +217,7 @@ export default {
       ja: "購入手続きへ進む",
       de: "Weiter zum Checkout",
       pt: "Continuar para o pagamento",
+      ru: "Перейти к оплате",
     }),
     deleteDraft: t({
       en: "Delete",
@@ -209,6 +228,7 @@ export default {
       ja: "削除",
       de: "Löschen",
       pt: "Eliminar",
+      ru: "Удалить",
     }),
     statuses: {
       unpaid: t({
@@ -220,6 +240,7 @@ export default {
         ja: "未払い",
         de: "Unbezahlt",
         pt: "Por pagar",
+        ru: "Не оплачено",
       }),
       pending: t({
         en: "Payment pending",
@@ -230,6 +251,7 @@ export default {
         ja: "支払い保留中",
         de: "Zahlung ausstehend",
         pt: "Pagamento pendente",
+        ru: "Ожидает оплаты",
       }),
       active: t({
         en: "Active",
@@ -240,6 +262,7 @@ export default {
         ja: "有効",
         de: "Aktiv",
         pt: "Ativa",
+        ru: "Активно",
       }),
       on_hold: t({
         en: "On hold",
@@ -250,6 +273,7 @@ export default {
         ja: "保留",
         de: "Angehalten",
         pt: "Em espera",
+        ru: "Приостановлено",
       }),
       paused: t({
         en: "Paused",
@@ -260,6 +284,7 @@ export default {
         ja: "一時停止",
         de: "Pausiert",
         pt: "Em pausa",
+        ru: "На паузе",
       }),
       cancelled: t({
         en: "Cancelled",
@@ -270,6 +295,7 @@ export default {
         ja: "キャンセル済み",
         de: "Gekündigt",
         pt: "Cancelada",
+        ru: "Отменено",
       }),
       failed: t({
         en: "Failed",
@@ -280,6 +306,7 @@ export default {
         ja: "失敗",
         de: "Fehlgeschlagen",
         pt: "Falhada",
+        ru: "Ошибка",
       }),
       expired: t({
         en: "Expired",
@@ -290,6 +317,7 @@ export default {
         ja: "期限切れ",
         de: "Abgelaufen",
         pt: "Expirada",
+        ru: "Истекло",
       }),
       past_due: t({
         en: "Past due",
@@ -300,6 +328,7 @@ export default {
         ja: "支払い期限超過",
         de: "Überfällig",
         pt: "Em atraso",
+        ru: "Просрочено",
       }),
     },
     renews: t({
@@ -311,6 +340,7 @@ export default {
       ja: "更新日",
       de: "Verlängert sich am",
       pt: "Renova a",
+      ru: "Продление",
     }),
     ends: t({
       en: "Ends",
@@ -321,6 +351,7 @@ export default {
       ja: "終了日",
       de: "Endet am",
       pt: "Termina a",
+      ru: "Окончание",
     }),
     placement: t({
       en: "Placement",
@@ -331,6 +362,7 @@ export default {
       ja: "掲載",
       de: "Platzierung",
       pt: "Espaço",
+      ru: "Размещение",
     }),
     reviews: {
       draft: t({
@@ -342,6 +374,7 @@ export default {
         ja: "支払い待ち",
         de: "Warte auf Zahlung",
         pt: "A aguardar pagamento",
+        ru: "Ожидает оплаты",
       }),
       pending: t({
         en: "In review",
@@ -352,6 +385,7 @@ export default {
         ja: "審査中",
         de: "In Prüfung",
         pt: "Em revisão",
+        ru: "На проверке",
       }),
       approved: t({
         en: "Live",
@@ -362,6 +396,7 @@ export default {
         ja: "公開中",
         de: "Live",
         pt: "Visível",
+        ru: "Опубликовано",
       }),
       rejected: t({
         en: "Changes requested",
@@ -372,6 +407,7 @@ export default {
         ja: "修正依頼あり",
         de: "Änderungen angefragt",
         pt: "Alterações pedidas",
+        ru: "Нужны правки",
       }),
     },
     approvedInactive: t({
@@ -383,6 +419,7 @@ export default {
       ja: "承認済み。サブスクリプションが再開されるまで非表示",
       de: "Freigegeben, ausgeblendet, bis das Abo wieder aktiv ist",
       pt: "Aprovado, oculto até a subscrição voltar a estar ativa",
+      ru: "Одобрено, скрыто до возобновления подписки",
     }),
     reviewNote: t({
       en: "Note from the reviewer",
@@ -393,6 +430,7 @@ export default {
       ja: "審査担当者からのメモ",
       de: "Notiz der Prüfung",
       pt: "Nota do revisor",
+      ru: "Комментарий модератора",
     }),
     name: t({
       en: "Name",
@@ -403,6 +441,7 @@ export default {
       ja: "名前",
       de: "Name",
       pt: "Nome",
+      ru: "Название",
     }),
     url: t({
       en: "Link",
@@ -413,6 +452,7 @@ export default {
       ja: "リンク",
       de: "Link",
       pt: "Ligação",
+      ru: "Ссылка",
     }),
     tagline: t({
       en: "Line of copy",
@@ -423,6 +463,7 @@ export default {
       ja: "コピー（1行）",
       de: "Textzeile",
       pt: "Linha de texto",
+      ru: "Строка текста",
     }),
     section: t({
       en: "Section",
@@ -433,6 +474,7 @@ export default {
       ja: "セクション",
       de: "Bereich",
       pt: "Secção",
+      ru: "Раздел",
     }),
     sections: {
       video: t({
@@ -444,6 +486,7 @@ export default {
         ja: "見つける",
         de: "Entdecken",
         pt: "Descobrir",
+        ru: "Обзор",
       }),
       tool: t({
         en: "Tools",
@@ -454,6 +497,7 @@ export default {
         ja: "ツール",
         de: "Tools",
         pt: "Ferramentas",
+        ru: "Инструменты",
       }),
       studio: t({
         en: "Creatives",
@@ -464,6 +508,7 @@ export default {
         ja: "クリエイティブ",
         de: "Creatives",
         pt: "Criativos",
+        ru: "Студии",
       }),
       skill: t({
         en: "Skills",
@@ -474,6 +519,7 @@ export default {
         ja: "スキル",
         de: "Skills",
         pt: "Skills",
+        ru: "Скиллы",
       }),
       extra: t({
         en: "Extras",
@@ -484,6 +530,7 @@ export default {
         ja: "エクストラ",
         de: "Extras",
         pt: "Extras",
+        ru: "Дополнительно",
       }),
     },
     category: t({
@@ -495,6 +542,7 @@ export default {
       ja: "カテゴリ",
       de: "Kategorie",
       pt: "Categoria",
+      ru: "Категория",
     }),
     pickCategory: t({
       en: "Pick a category",
@@ -505,6 +553,7 @@ export default {
       ja: "カテゴリを選択",
       de: "Kategorie wählen",
       pt: "Escolhe uma categoria",
+      ru: "Выберите категорию",
     }),
     categoryHelp: t({
       en: "Your placement shows on this category’s page.",
@@ -515,6 +564,7 @@ export default {
       ja: "掲載はこのカテゴリのページに表示されます。",
       de: "Deine Platzierung erscheint auf der Seite dieser Kategorie.",
       pt: "O teu espaço aparece na página desta categoria.",
+      ru: "Ваше размещение показывается на странице этой категории.",
     }),
     darkInvert: t({
       en: "Invert the logo in dark mode (for a dark mark on a transparent background)",
@@ -525,6 +575,7 @@ export default {
       ja: "ダークモードでロゴを反転（透明背景に暗いマークの場合）",
       de: "Logo im Dark Mode invertieren (für ein dunkles Logo auf transparentem Hintergrund)",
       pt: "Inverter o logótipo no modo escuro (para um símbolo escuro sobre fundo transparente)",
+      ru: "Инвертировать логотип в тёмной теме (для тёмного знака на прозрачном фоне)",
     }),
     resubmit: t({
       en: "Saving sends the placement back to review; it is hidden until approved again.",
@@ -535,6 +586,7 @@ export default {
       ja: "保存すると掲載は再審査に送られ、再承認されるまで非表示になります。",
       de: "Beim Speichern geht die Platzierung erneut in die Prüfung; bis zur Freigabe ist sie ausgeblendet.",
       pt: "Guardar envia o espaço de novo para revisão; fica oculto até voltar a ser aprovado.",
+      ru: "После сохранения размещение снова отправится на проверку и будет скрыто до одобрения.",
     }),
     save: t({
       en: "Save and send for review",
@@ -545,6 +597,7 @@ export default {
       ja: "保存して審査に送信",
       de: "Speichern und zur Prüfung senden",
       pt: "Guardar e enviar para revisão",
+      ru: "Сохранить и отправить на проверку",
     }),
     saving: t({
       en: "Saving…",
@@ -555,6 +608,7 @@ export default {
       ja: "保存中…",
       de: "Wird gespeichert …",
       pt: "A guardar…",
+      ru: "Сохранение…",
     }),
     saved: t({
       en: "Saved. We will review it shortly.",
@@ -565,6 +619,7 @@ export default {
       ja: "保存しました。まもなく審査します。",
       de: "Gespeichert. Wir prüfen es in Kürze.",
       pt: "Guardado. Vamos revê-lo em breve.",
+      ru: "Сохранено. Скоро мы его проверим.",
     }),
     errors: {
       validation: t({
@@ -576,6 +631,7 @@ export default {
         ja: "入力内容をご確認ください：リンクは公開されたHTTPSアドレスである必要があります。",
         de: "Prüfe die Felder: Links müssen öffentliche HTTPS-Adressen sein.",
         pt: "Verifica os campos: as ligações têm de ser endereços HTTPS públicos.",
+        ru: "Проверьте поля: ссылки должны быть публичными HTTPS-адресами.",
       }),
       cover: t({
         en: "Add a cover image for this plan.",
@@ -586,6 +642,7 @@ export default {
         ja: "このプランのカバー画像を追加してください。",
         de: "Füge ein Coverbild für diesen Tarif hinzu.",
         pt: "Adiciona uma imagem de capa para este plano.",
+        ru: "Добавьте обложку для этого тарифа.",
       }),
       category: t({
         en: "Pick the category your placement shows on.",
@@ -596,6 +653,7 @@ export default {
         ja: "掲載を表示するカテゴリを選択してください。",
         de: "Wähle die Kategorie, in der deine Platzierung erscheint.",
         pt: "Escolhe a categoria onde o teu espaço aparece.",
+        ru: "Выберите категорию для размещения.",
       }),
       storage: t({
         en: "Could not save. Try again.",
@@ -606,6 +664,7 @@ export default {
         ja: "保存できませんでした。もう一度お試しください。",
         de: "Speichern fehlgeschlagen. Versuch es noch mal.",
         pt: "Não foi possível guardar. Tenta novamente.",
+        ru: "Не удалось сохранить. Попробуйте ещё раз.",
       }),
     },
     preview: t({
@@ -617,6 +676,7 @@ export default {
       ja: "プレビュー",
       de: "Vorschau",
       pt: "Pré-visualização",
+      ru: "Предпросмотр",
     }),
     placements: {
       card: t({
@@ -628,6 +688,7 @@ export default {
         ja: "グリッドカード",
         de: "Rasterkarte",
         pt: "Cartão da grelha",
+        ru: "Карточка в сетке",
       }),
       slot: t({
         en: "Sponsor slot",
@@ -638,6 +699,7 @@ export default {
         ja: "スポンサー枠",
         de: "Sponsorplatz",
         pt: "Espaço de patrocínio",
+        ru: "Спонсорский слот",
       }),
     },
     campaignSection: t({
@@ -649,6 +711,7 @@ export default {
       ja: "キャンペーン",
       de: "Kampagne",
       pt: "Campanha",
+      ru: "Кампания",
     }),
     campaignSectionBody: t({
       en: "Who the placement is for, its line of copy, and where it links.",
@@ -659,6 +722,7 @@ export default {
       ja: "掲載の対象、コピー、リンク先。",
       de: "Für wen die Platzierung ist, ihre Textzeile und wohin sie verlinkt.",
       pt: "Para quem é o espaço, a sua linha de texto e para onde aponta a ligação.",
+      ru: "Для кого размещение, строка текста и куда ведёт ссылка.",
     }),
     brandSection: t({
       en: "Brand",
@@ -669,6 +733,7 @@ export default {
       ja: "ブランド",
       de: "Marke",
       pt: "Marca",
+      ru: "Бренд",
     }),
     brandSectionBody: t({
       en: "Your logo, shown with every placement and in the sponsor wall.",
@@ -679,6 +744,7 @@ export default {
       ja: "すべての掲載とスポンサー一覧に表示されるロゴ。",
       de: "Dein Logo, angezeigt bei jeder Platzierung und auf der Sponsorenwand.",
       pt: "O teu logótipo, apresentado em cada espaço e no mural de patrocinadores.",
+      ru: "Ваш логотип — показывается в каждом размещении и на стене спонсоров.",
     }),
     logoDrop: t({
       en: "Upload your logo",
@@ -689,6 +755,7 @@ export default {
       ja: "ロゴをアップロード",
       de: "Lade dein Logo hoch",
       pt: "Carrega o teu logótipo",
+      ru: "Загрузите логотип",
     }),
     logoSize: t({
       en: "Square, up to 512 × 512 px",
@@ -699,6 +766,7 @@ export default {
       ja: "正方形、最大512 × 512 px",
       de: "Quadratisch, bis zu 512 × 512 px",
       pt: "Quadrado, até 512 × 512 px",
+      ru: "Квадрат, до 512 × 512 px",
     }),
     mediaSection: t({
       en: "Creative media",
@@ -709,6 +777,7 @@ export default {
       ja: "クリエイティブ素材",
       de: "Creative-Medien",
       pt: "Imagem criativa",
+      ru: "Креативы",
     }),
     mediaSectionBody: t({
       en: "One 16:9 image used for the card in the grid.",
@@ -719,6 +788,7 @@ export default {
       ja: "グリッドのカードに使う16:9の画像1枚。",
       de: "Ein 16:9-Bild für die Karte im Raster.",
       pt: "Uma imagem 16:9 usada no cartão da grelha.",
+      ru: "Одно изображение 16:9 для карточки в сетке.",
     }),
     coverDrop: t({
       en: "Upload your cover image",
@@ -729,6 +799,7 @@ export default {
       ja: "カバー画像をアップロード",
       de: "Lade dein Coverbild hoch",
       pt: "Carrega a tua imagem de capa",
+      ru: "Загрузите обложку",
     }),
     coverSize: t({
       en: "1600 × 900 px recommended",
@@ -739,6 +810,7 @@ export default {
       ja: "1600 × 900 px推奨",
       de: "1600 × 900 px empfohlen",
       pt: "Recomendado: 1600 × 900 px",
+      ru: "Рекомендуется 1600 × 900 px",
     }),
     placementSection: t({
       en: "Placement",
@@ -749,6 +821,7 @@ export default {
       ja: "掲載",
       de: "Platzierung",
       pt: "Posicionamento",
+      ru: "Размещение",
     }),
     placementSectionBody: t({
       en: "The section and category page your placement shows on.",
@@ -759,6 +832,7 @@ export default {
       ja: "掲載を表示するセクションとカテゴリページ。",
       de: "Der Bereich und die Kategorieseite, auf denen deine Platzierung erscheint.",
       pt: "A secção e a página de categoria onde o teu espaço aparece.",
+      ru: "Раздел и страница категории, где показывается размещение.",
     }),
     previewSectionBody: t({
       en: "Roughly how your placement will appear on the site.",
@@ -769,6 +843,7 @@ export default {
       ja: "サイト上での掲載のおおよその見え方。",
       de: "So ungefähr wird deine Platzierung auf der Website aussehen.",
       pt: "Aproximadamente como o teu espaço vai aparecer no site.",
+      ru: "Примерно так размещение будет выглядеть на сайте.",
     }),
     submitSection: t({
       en: "Submit",
@@ -779,6 +854,7 @@ export default {
       ja: "送信",
       de: "Einreichen",
       pt: "Submeter",
+      ru: "Отправить",
     }),
     submitSectionBody: t({
       en: "Saving sends the placement to review; it goes live once approved.",
@@ -789,6 +865,7 @@ export default {
       ja: "保存すると掲載は審査に送られ、承認されると公開されます。",
       de: "Beim Speichern geht die Platzierung in die Prüfung; nach der Freigabe ist sie live.",
       pt: "Guardar envia o espaço para revisão; fica visível assim que for aprovado.",
+      ru: "После сохранения размещение отправится на проверку и будет опубликовано после одобрения.",
     }),
     sponsored: t({
       en: "Sponsored",
@@ -799,6 +876,7 @@ export default {
       ja: "スポンサー",
       de: "Gesponsert",
       pt: "Patrocinado",
+      ru: "Спонсор",
     }),
     manageBilling: t({
       en: "Manage billing",
@@ -809,6 +887,7 @@ export default {
       ja: "請求を管理",
       de: "Abrechnung verwalten",
       pt: "Gerir faturação",
+      ru: "Управление оплатой",
     }),
     opening: t({
       en: "Opening…",
@@ -819,6 +898,7 @@ export default {
       ja: "開いています…",
       de: "Wird geöffnet …",
       pt: "A abrir…",
+      ru: "Открываем…",
     }),
     checkout: {
       heroTitle: t({
@@ -830,6 +910,7 @@ export default {
         ja: "モーションの作り手にあなたのブランドを。",
         de: "Bring deine Marke zu den Motion-Machern.",
         pt: "Mostra a tua marca a quem faz motion.",
+        ru: "Покажите свой бренд создателям моушна.",
       }),
       heroIntro: t({
         en: "Pick a plan, add your creative, and check out. Your placement goes live after a quick review.",
@@ -840,6 +921,7 @@ export default {
         ja: "プランを選び、クリエイティブを追加して購入しましょう。簡単な審査の後に掲載が公開されます。",
         de: "Wähle einen Tarif, füge dein Creative hinzu und gehe zur Kasse. Deine Platzierung geht nach einer kurzen Prüfung live.",
         pt: "Escolhe um plano, adiciona a tua imagem e paga. O teu espaço fica visível após uma revisão rápida.",
+        ru: "Выберите тариф, добавьте креатив и оплатите. Размещение опубликуется после быстрой проверки.",
       }),
       planSection: t({
         en: "Plan",
@@ -850,6 +932,7 @@ export default {
         ja: "プラン",
         de: "Tarif",
         pt: "Plano",
+        ru: "Тариф",
       }),
       planSectionBody: t({
         en: "Where your placement shows.",
@@ -860,6 +943,7 @@ export default {
         ja: "掲載が表示される場所。",
         de: "Wo deine Platzierung erscheint.",
         pt: "Onde o teu espaço aparece.",
+        ru: "Где показывается размещение.",
       }),
       details: t({
         en: "Details",
@@ -870,6 +954,7 @@ export default {
         ja: "詳細",
         de: "Details",
         pt: "Detalhes",
+        ru: "Детали",
       }),
       soldOut: t({
         en: "Sold out: every seat is taken.",
@@ -880,6 +965,7 @@ export default {
         ja: "完売：すべての枠が埋まっています。",
         de: "Ausverkauft: Alle Plätze sind vergeben.",
         pt: "Esgotado: todos os lugares estão ocupados.",
+        ru: "Распродано: все места заняты.",
       }),
       billingSection: t({
         en: "Billing",
@@ -890,6 +976,7 @@ export default {
         ja: "請求",
         de: "Abrechnung",
         pt: "Faturação",
+        ru: "Оплата",
       }),
       billingSectionBody: t({
         en: "Renew monthly to stay visible, or run once for 30 days.",
@@ -900,6 +987,7 @@ export default {
         ja: "毎月更新して表示し続けるか、30日間1回限りで掲載します。",
         de: "Verlängere monatlich, um sichtbar zu bleiben, oder buche einmalig 30 Tage.",
         pt: "Renova mensalmente para continuares visível, ou publica uma vez durante 30 dias.",
+        ru: "Продлевайте ежемесячно, чтобы оставаться на виду, или разместитесь один раз на 30 дней.",
       }),
       billingBodies: {
         monthly: t({
@@ -911,6 +999,7 @@ export default {
           ja: "毎月更新されます。いつでもキャンセルできます。",
           de: "Verlängert sich jeden Monat. Jederzeit kündbar.",
           pt: "Renova todos os meses. Cancela quando quiseres.",
+          ru: "Продлевается каждый месяц. Отмена в любой момент.",
         }),
         once: t({
           en: "One 30-day run from approval. Never renews.",
@@ -921,6 +1010,7 @@ export default {
           ja: "承認から30日間1回限り。更新されません。",
           de: "Eine 30-Tage-Laufzeit ab Freigabe. Verlängert sich nie.",
           pt: "Um período único de 30 dias a partir da aprovação. Nunca é renovado.",
+          ru: "Одно размещение на 30 дней с момента одобрения. Не продлевается.",
         }),
       },
       reviewSection: t({
@@ -932,6 +1022,7 @@ export default {
         ja: "確認",
         de: "Überprüfen",
         pt: "Revisão",
+        ru: "Проверка",
       }),
       reviewSectionBody: t({
         en: "Check your order before checkout.",
@@ -942,6 +1033,7 @@ export default {
         ja: "購入前に注文内容をご確認ください。",
         de: "Prüfe deine Bestellung vor dem Checkout.",
         pt: "Verifica a tua encomenda antes de pagar.",
+        ru: "Проверьте заказ перед оплатой.",
       }),
       dueToday: t({
         en: "Due today",
@@ -952,6 +1044,7 @@ export default {
         ja: "本日のお支払い",
         de: "Heute fällig",
         pt: "A pagar hoje",
+        ru: "К оплате сегодня",
       }),
       signedInAs: t({
         en: "Signed in as",
@@ -962,6 +1055,7 @@ export default {
         ja: "ログイン中：",
         de: "Angemeldet als",
         pt: "Sessão iniciada como",
+        ru: "Вы вошли как",
       }),
       note: t({
         en: "After checkout, manage your sponsorship and update your creative anytime from Sponsorships. Payments run through Dodo Payments, our merchant of record.",
@@ -972,6 +1066,7 @@ export default {
         ja: "購入後は、スポンサーシップページからいつでもスポンサーシップを管理し、クリエイティブを更新できます。お支払いは販売事業者であるDodo Paymentsを通じて行われます。",
         de: "Nach dem Checkout verwaltest du dein Sponsoring und aktualisierst dein Creative jederzeit unter Sponsorings. Zahlungen laufen über Dodo Payments, unseren Merchant of Record.",
         pt: "Depois do pagamento, gere o teu patrocínio e atualiza a tua imagem a qualquer momento em Patrocínios. Os pagamentos são processados pela Dodo Payments, o nosso comerciante registado (merchant of record).",
+        ru: "После оплаты управляйте спонсорством и обновляйте креатив в любой момент в разделе «Спонсорство». Платежи проходят через Dodo Payments, нашего продавца (merchant of record).",
       }),
       submit: t({
         en: "Checkout",
@@ -982,6 +1077,7 @@ export default {
         ja: "購入手続き",
         de: "Zur Kasse",
         pt: "Pagar",
+        ru: "Оплатить",
       }),
       opening: t({
         en: "Opening checkout…",
@@ -992,6 +1088,7 @@ export default {
         ja: "購入手続きを開いています…",
         de: "Checkout wird geöffnet …",
         pt: "A abrir o pagamento…",
+        ru: "Открываем оплату…",
       }),
       errors: {
         validation: t({
@@ -1003,6 +1100,7 @@ export default {
           ja: "入力内容をご確認ください：必須項目はすべて入力が必要で、リンクは公開されたHTTPSアドレスである必要があります。",
           de: "Prüfe die Felder: Jedes Pflichtfeld braucht einen Wert, und Links müssen öffentliche HTTPS-Adressen sein.",
           pt: "Verifica os campos: todos os obrigatórios precisam de um valor e as ligações têm de ser endereços HTTPS públicos.",
+          ru: "Проверьте поля: все обязательные должны быть заполнены, а ссылки — публичными HTTPS-адресами.",
         }),
         cover: t({
           en: "Add a cover image for your placement.",
@@ -1013,6 +1111,7 @@ export default {
           ja: "掲載用のカバー画像を追加してください。",
           de: "Füge ein Coverbild für deine Platzierung hinzu.",
           pt: "Adiciona uma imagem de capa para o teu espaço.",
+          ru: "Добавьте обложку для размещения.",
         }),
         category: t({
           en: "Pick the category your placement shows on.",
@@ -1023,6 +1122,7 @@ export default {
           ja: "掲載を表示するカテゴリを選択してください。",
           de: "Wähle die Kategorie, in der deine Platzierung erscheint.",
           pt: "Escolhe a categoria onde o teu espaço aparece.",
+          ru: "Выберите категорию для размещения.",
         }),
         "sold-out": t({
           en: "Diamond just sold out. Pick another plan.",
@@ -1033,6 +1133,7 @@ export default {
           ja: "ダイヤモンドは完売しました。別のプランを選択してください。",
           de: "Diamond ist gerade ausverkauft. Wähle einen anderen Tarif.",
           pt: "O Diamante acabou de esgotar. Escolhe outro plano.",
+          ru: "Тариф Diamond только что распродан. Выберите другой.",
         }),
         drafts: t({
           en: "You have 10 unpaid drafts. Finish or delete one on Sponsorships first.",
@@ -1043,6 +1144,7 @@ export default {
           ja: "未払いの下書きが10件あります。先にスポンサーシップページでいずれかを完了または削除してください。",
           de: "Du hast 10 unbezahlte Entwürfe. Schließe zuerst einen unter Sponsorings ab oder lösche ihn.",
           pt: "Tens 10 rascunhos por pagar. Conclui ou elimina um em Patrocínios primeiro.",
+          ru: "У вас 10 неоплаченных черновиков. Сначала завершите или удалите один в разделе «Спонсорство».",
         }),
         save: t({
           en: "Could not save. Try again.",
@@ -1053,6 +1155,7 @@ export default {
           ja: "保存できませんでした。もう一度お試しください。",
           de: "Speichern fehlgeschlagen. Versuch es noch mal.",
           pt: "Não foi possível guardar. Tenta novamente.",
+          ru: "Не удалось сохранить. Попробуйте ещё раз.",
         }),
         checkout: t({
           en: "Could not open checkout. Try again.",
@@ -1063,6 +1166,7 @@ export default {
           ja: "購入手続きを開けませんでした。もう一度お試しください。",
           de: "Checkout konnte nicht geöffnet werden. Versuch es noch mal.",
           pt: "Não foi possível abrir o pagamento. Tenta novamente.",
+          ru: "Не удалось открыть оплату. Попробуйте ещё раз.",
         }),
       },
     },
@@ -1075,6 +1179,7 @@ export default {
       ja: "請求ページを開けませんでした。もう一度お試しください。",
       de: "Abrechnung konnte nicht geöffnet werden. Versuch es noch mal.",
       pt: "Não foi possível abrir a faturação. Tenta novamente.",
+      ru: "Не удалось открыть управление оплатой. Попробуйте ещё раз.",
     }),
   },
 } satisfies Dictionary;

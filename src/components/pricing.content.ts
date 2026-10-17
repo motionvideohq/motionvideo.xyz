@@ -13,6 +13,7 @@ const pricing = {
       ja: "今すぐ購入：",
       de: "Jetzt kaufen für",
       pt: "Comprar agora por",
+      ru: "Купить за",
     }),
     oneTimePurchase: t({
       en: "One-time purchase",
@@ -23,6 +24,7 @@ const pricing = {
       ja: "買い切り",
       de: "Einmalkauf",
       pt: "Compra única",
+      ru: "Разовая покупка",
     }),
     oneTime: t({
       en: "one-time",
@@ -33,6 +35,7 @@ const pricing = {
       ja: "買い切り",
       de: "einmalig",
       pt: "pagamento único",
+      ru: "разово",
     }),
     launchOffer: t({
       en: "Launch offer",
@@ -43,6 +46,7 @@ const pricing = {
       ja: "ローンチ特価",
       de: "Launch-Angebot",
       pt: "Oferta de lançamento",
+      ru: "Стартовое предложение",
     }),
     live: t({
       en: "LIVE",
@@ -53,6 +57,7 @@ const pricing = {
       ja: "LIVE",
       de: "LIVE",
       pt: "ATIVA",
+      ru: "LIVE",
     }),
     left: t({
       en: "left",
@@ -63,6 +68,7 @@ const pricing = {
       ja: "残り",
       de: "übrig",
       pt: "restantes",
+      ru: "осталось",
     }),
     spotsRemaining: t({
       en: "spots remaining",
@@ -73,6 +79,7 @@ const pricing = {
       ja: "枠",
       de: "Plätze verfügbar",
       pt: "vagas restantes",
+      ru: "мест осталось",
     }),
     offerEnds: t({
       en: "The launch offer ends after the first 100 purchases. Then the price is $49.",
@@ -83,6 +90,7 @@ const pricing = {
       ja: "ローンチ特価は最初の100件の購入で終了します。その後の価格は$49です。",
       de: "Das Launch-Angebot endet nach den ersten 100 Käufen. Danach kostet es 49 $.",
       pt: "A oferta de lançamento termina após as primeiras 100 compras. Depois, o preço passa a ser 49 $.",
+      ru: "Стартовое предложение действует до первых 100 покупок. Потом цена — $49.",
     }),
     perks: [
       t({
@@ -94,6 +102,7 @@ const pricing = {
         ja: "あらゆるコーディングエージェントとレンダラーに対応するスキル",
         de: "Skills für jeden Coding-Agent und Renderer",
         pt: "Skills para qualquer agente de programação e renderizador",
+        ru: "Скиллы для любого кодинг-агента и рендерера",
       }),
       t({
         en: "Storyboard skills, scene starters, and motion tokens",
@@ -104,6 +113,7 @@ const pricing = {
         ja: "ストーリーボードスキル、シーンのスターター、モーショントークン",
         de: "Storyboard-Skills, Szenen-Starter und Motion-Tokens",
         pt: "Skills de storyboard, cenas iniciais e tokens de movimento",
+        ru: "Скиллы для раскадровки, стартовые сцены и моушн-токены",
       }),
       t({
         en: "Unlimited personal and client projects",
@@ -114,6 +124,7 @@ const pricing = {
         ja: "個人・クライアントのプロジェクトで無制限に利用可能",
         de: "Unbegrenzt viele private und Kundenprojekte",
         pt: "Projetos pessoais e de clientes ilimitados",
+        ru: "Неограниченно личных и клиентских проектов",
       }),
       t({
         en: "Updates pushed to the same repository",
@@ -124,6 +135,7 @@ const pricing = {
         ja: "同じリポジトリにアップデートを配信",
         de: "Updates im selben Repository",
         pt: "Atualizações publicadas no mesmo repositório",
+        ru: "Обновления в том же репозитории",
       }),
     ],
   },

@@ -15,6 +15,7 @@ export default {
       ja: "ブランド",
       de: "Marke",
       pt: "Marca",
+      ru: "Бренд",
     }),
     intro: t({
       en: `Logos and colors for writing about ${SITE.NAME}. There is a logomark only; set the name in plain text next to it.`,
@@ -25,6 +26,7 @@ export default {
       ja: `${SITE.NAME}について書く際のロゴと色です。ロゴマークのみ用意しています。名前はその横にプレーンテキストで記載してください。`,
       de: `Logos und Farben für Beiträge über ${SITE.NAME}. Es gibt nur eine Bildmarke; setze den Namen in normalem Text daneben.`,
       pt: `Logótipos e cores para escrever sobre o ${SITE.NAME}. Existe apenas um símbolo; escreve o nome em texto simples ao lado dele.`,
+      ru: `Логотипы и цвета для публикаций о ${SITE.NAME}. Есть только логознак; название пишите обычным текстом рядом с ним.`,
     }),
     logomark: t({
       en: "Logomark",
@@ -35,6 +37,7 @@ export default {
       ja: "ロゴマーク",
       de: "Bildmarke",
       pt: "Símbolo",
+      ru: "Логознак",
     }),
     assetNames: [
       t({
@@ -46,6 +49,7 @@ export default {
         ja: "ロゴマーク（黒）",
         de: "Bildmarke, schwarz",
         pt: "Símbolo, preto",
+        ru: "Логознак, чёрный",
       }),
       t({
         en: "Logomark, white",
@@ -56,6 +60,7 @@ export default {
         ja: "ロゴマーク（白）",
         de: "Bildmarke, weiß",
         pt: "Símbolo, branco",
+        ru: "Логознак, белый",
       }),
       t({
         en: "App icon",
@@ -66,6 +71,7 @@ export default {
         ja: "アプリアイコン",
         de: "App-Icon",
         pt: "Ícone da app",
+        ru: "Иконка приложения",
       }),
     ],
     colors: t({
@@ -77,6 +83,7 @@ export default {
       ja: "カラー",
       de: "Farben",
       pt: "Cores",
+      ru: "Цвета",
     }),
     colorNames: [
       t({
@@ -88,6 +95,7 @@ export default {
         ja: "イエロー",
         de: "Gelb",
         pt: "Amarelo",
+        ru: "Жёлтый",
       }),
       t({
         en: "Light yellow",
@@ -98,6 +106,7 @@ export default {
         ja: "ライトイエロー",
         de: "Hellgelb",
         pt: "Amarelo claro",
+        ru: "Светло-жёлтый",
       }),
       t({
         en: "Black",
@@ -108,6 +117,7 @@ export default {
         ja: "ブラック",
         de: "Schwarz",
         pt: "Preto",
+        ru: "Чёрный",
       }),
     ],
     usage: t({
@@ -119,6 +129,7 @@ export default {
       ja: "使用方法",
       de: "Verwendung",
       pt: "Utilização",
+      ru: "Использование",
     }),
     nameRule: t({
       en: `Write the name as ${SITE.NAME}: one word, capital M and V.`,
@@ -129,6 +140,7 @@ export default {
       ja: `名前は${SITE.NAME}と表記してください：1語で、MとVは大文字です。`,
       de: `Schreibe den Namen als ${SITE.NAME}: ein Wort, großes M und V.`,
       pt: `Escreve o nome como ${SITE.NAME}: uma só palavra, com M e V maiúsculos.`,
+      ru: `Пишите название как ${SITE.NAME}: одно слово, заглавные M и V.`,
     }),
     spacing: t({
       en: "Keep clear space around the logomark of at least half its height.",
@@ -139,6 +151,7 @@ export default {
       ja: "ロゴマークの周囲には、高さの半分以上の余白を確保してください。",
       de: "Halte um die Bildmarke einen Freiraum von mindestens der halben Höhe ein.",
       pt: "Mantém à volta do símbolo um espaço livre de pelo menos metade da sua altura.",
+      ru: "Оставляйте вокруг логознака свободное поле не меньше половины его высоты.",
     }),
     effects: t({
       en: "Don’t stretch, rotate, recolor outside the palette, or add effects.",
@@ -149,6 +162,7 @@ export default {
       ja: "引き伸ばし、回転、パレット外の色への変更、エフェクトの追加はしないでください。",
       de: "Nicht verzerren, drehen, außerhalb der Palette umfärben oder mit Effekten versehen.",
       pt: "Não estiques, não rodes, não uses cores fora da paleta nem acrescentes efeitos.",
+      ru: "Не растягивайте, не поворачивайте, не перекрашивайте вне палитры и не добавляйте эффекты.",
     }),
     endorsement: t({
       en: "Don’t use the mark in a way that suggests we endorse your product.",
@@ -159,6 +173,7 @@ export default {
       ja: "当サービスがあなたのプロダクトを推奨しているかのような使い方はしないでください。",
       de: "Verwende die Marke nicht so, dass der Eindruck entsteht, wir würden dein Produkt empfehlen.",
       pt: "Não uses a marca de forma a sugerir que apoiamos o teu produto.",
+      ru: "Не используйте знак так, будто мы одобряем ваш продукт.",
     }),
     questions: t({
       en: "Questions or a press request? ",
@@ -169,6 +184,7 @@ export default {
       ja: "ご質問や取材のご依頼は",
       de: "Fragen oder eine Presseanfrage? ",
       pt: "Dúvidas ou um pedido de imprensa? ",
+      ru: "Вопросы или запрос от прессы?",
     }),
   },
 } satisfies Dictionary;

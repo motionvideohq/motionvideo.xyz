@@ -15,6 +15,7 @@ export default {
         ja: "モーションのためのツール。",
         de: "Tools für Motion.",
         pt: "Ferramentas de motion.",
+        ru: "Инструменты для моушна.",
       }),
       studio: t({
         en: "Creative partners.",
@@ -25,6 +26,7 @@ export default {
         ja: "クリエイティブパートナー。",
         de: "Kreative Partner.",
         pt: "Parceiros criativos.",
+        ru: "Креативные партнёры.",
       }),
       skill: t({
         en: "Agent skills.",
@@ -35,6 +37,7 @@ export default {
         ja: "エージェントスキル。",
         de: "Agent-Skills.",
         pt: "Skills de agentes.",
+        ru: "Агентские скиллы.",
       }),
       extra: t({
         en: "Extras for makers.",
@@ -45,6 +48,7 @@ export default {
         ja: "作り手のためのエクストラ。",
         de: "Extras für Macher.",
         pt: "Extras para criadores.",
+        ru: "Дополнения для авторов.",
       }),
     },
     intros: {
@@ -57,6 +61,7 @@ export default {
         ja: "次のプロダクトフィルムのためのエディター、モーションツール、AI動画生成ツール、モックアップキット。",
         de: "Editoren, Motion-Tools, KI-Videogeneratoren und Mockup-Kits für deinen nächsten Produktfilm.",
         pt: "Editores, ferramentas de motion, geradores de vídeo com IA e kits de mockups para o teu próximo filme de produto.",
+        ru: "Редакторы, моушн-инструменты, ИИ-генераторы видео и мокапы для вашего следующего продуктового ролика.",
       }),
       studio: t({
         en: "Motion studios and independent designers who make memorable product films. Reach out directly.",
@@ -67,6 +72,7 @@ export default {
         ja: "印象に残るプロダクトフィルムを手がけるモーションスタジオと個人デザイナー。直接ご連絡ください。",
         de: "Motion-Studios und unabhängige Designer, die einprägsame Produktfilme machen. Kontaktiere sie direkt.",
         pt: "Estúdios de motion e designers independentes que criam filmes de produto memoráveis. Contacta-os diretamente.",
+        ru: "Моушн-студии и независимые дизайнеры, создающие запоминающиеся продуктовые ролики. Пишите им напрямую.",
       }),
       skill: t({
         en: "Open-source skills that let your coding agent write, animate and render motion videos.",
@@ -77,6 +83,7 @@ export default {
         ja: "コーディングエージェントがモーション動画を書き、アニメーションさせ、レンダリングできるオープンソースのスキル。",
         de: "Open-Source-Skills, mit denen dein Coding-Agent Motion-Videos schreibt, animiert und rendert.",
         pt: "Skills open source que permitem ao teu agente de programação escrever, animar e renderizar vídeos de motion.",
+        ru: "Скиллы с открытым кодом, с которыми ваш кодинг-агент пишет, анимирует и рендерит моушн-видео.",
       }),
       extra: t({
         en: "Articles, guides and references for making motion videos and product films.",
@@ -87,6 +94,7 @@ export default {
         ja: "モーション動画やプロダクトフィルム制作のための記事、ガイド、リファレンス。",
         de: "Artikel, Guides und Referenzen zum Erstellen von Motion-Videos und Produktfilmen.",
         pt: "Artigos, guias e referências para criar vídeos de motion e filmes de produto.",
+        ru: "Статьи, гайды и референсы по созданию моушн-видео и продуктовых роликов.",
       }),
     },
     submit: {
@@ -99,6 +107,7 @@ export default {
         ja: "ツールを投稿",
         de: "Tool einreichen",
         pt: "Submeter uma ferramenta",
+        ru: "Добавить инструмент",
       }),
       studio: t({
         en: "Submit a creative",
@@ -109,6 +118,7 @@ export default {
         ja: "クリエイティブを投稿",
         de: "Creative einreichen",
         pt: "Submeter um criativo",
+        ru: "Добавить студию",
       }),
       skill: t({
         en: "Submit a skill",
@@ -119,6 +129,7 @@ export default {
         ja: "スキルを投稿",
         de: "Skill einreichen",
         pt: "Submeter uma skill",
+        ru: "Добавить скилл",
       }),
       extra: t({
         en: "Submit a resource",
@@ -129,6 +140,7 @@ export default {
         ja: "リソースを投稿",
         de: "Ressource einreichen",
         pt: "Submeter um recurso",
+        ru: "Добавить ресурс",
       }),
     },
     categories: t({
@@ -140,6 +152,7 @@ export default {
       ja: "カテゴリで絞り込む",
       de: "Nach Kategorie filtern",
       pt: "Filtrar por categoria",
+      ru: "Фильтр по категориям",
     }),
     all: t({
       en: "All",
@@ -150,6 +163,7 @@ export default {
       ja: "すべて",
       de: "Alle",
       pt: "Tudo",
+      ru: "Все",
     }),
     // Chip and card labels, keyed by section and URL slug.
     labels: {
@@ -163,6 +177,7 @@ export default {
           ja: "AI",
           de: "KI",
           pt: "IA",
+          ru: "ИИ",
         }),
         editors: t({
           en: "Editors",
@@ -173,6 +188,7 @@ export default {
           ja: "エディター",
           de: "Editoren",
           pt: "Editores",
+          ru: "Редакторы",
         }),
         mockups: t({
           en: "Mockups",
@@ -183,6 +199,7 @@ export default {
           ja: "モックアップ",
           de: "Mockups",
           pt: "Mockups",
+          ru: "Мокапы",
         }),
         motion: t({
           en: "Motion",
@@ -193,6 +210,7 @@ export default {
           ja: "モーション",
           de: "Motion",
           pt: "Motion",
+          ru: "Моушн",
         }),
       },
       studio: {
@@ -205,6 +223,7 @@ export default {
           ja: "スタジオ",
           de: "Studios",
           pt: "Estúdios",
+          ru: "Студии",
         }),
         designers: t({
           en: "Designers",
@@ -215,6 +234,7 @@ export default {
           ja: "デザイナー",
           de: "Designer",
           pt: "Designers",
+          ru: "Дизайнеры",
         }),
       },
       skill: {
@@ -227,6 +247,7 @@ export default {
           ja: "モーショングラフィックス",
           de: "Motion Graphics",
           pt: "Motion graphics",
+          ru: "Моушн-графика",
         }),
         "product-films": t({
           en: "Product films",
@@ -237,6 +258,7 @@ export default {
           ja: "プロダクトフィルム",
           de: "Produktfilme",
           pt: "Filmes de produto",
+          ru: "Продуктовые ролики",
         }),
         "ai-video": t({
           en: "AI video",
@@ -247,6 +269,7 @@ export default {
           ja: "AI動画",
           de: "KI-Video",
           pt: "Vídeo com IA",
+          ru: "ИИ-видео",
         }),
       },
       extra: {
@@ -259,6 +282,7 @@ export default {
           ja: "記事",
           de: "Artikel",
           pt: "Artigos",
+          ru: "Статьи",
         }),
         resources: t({
           en: "Resources",
@@ -269,6 +293,7 @@ export default {
           ja: "リソース",
           de: "Ressourcen",
           pt: "Recursos",
+          ru: "Ресурсы",
         }),
       },
     },
@@ -284,6 +309,7 @@ export default {
           ja: "AI動画ツール。",
           de: "KI-Video-Tools.",
           pt: "Ferramentas de vídeo com IA.",
+          ru: "Инструменты для ИИ-видео.",
         }),
         editors: t({
           en: "Video editors.",
@@ -294,6 +320,7 @@ export default {
           ja: "動画エディター。",
           de: "Video-Editoren.",
           pt: "Editores de vídeo.",
+          ru: "Видеоредакторы.",
         }),
         mockups: t({
           en: "Mockup tools.",
@@ -304,6 +331,7 @@ export default {
           ja: "モックアップツール。",
           de: "Mockup-Tools.",
           pt: "Ferramentas de mockups.",
+          ru: "Инструменты для мокапов.",
         }),
         motion: t({
           en: "Motion design tools.",
@@ -314,6 +342,7 @@ export default {
           ja: "モーションデザインツール。",
           de: "Motion-Design-Tools.",
           pt: "Ferramentas de motion design.",
+          ru: "Инструменты моушн-дизайна.",
         }),
       },
       studio: {
@@ -326,6 +355,7 @@ export default {
           ja: "モーションスタジオ。",
           de: "Motion-Studios.",
           pt: "Estúdios de motion.",
+          ru: "Моушн-студии.",
         }),
         designers: t({
           en: "Motion designers.",
@@ -336,6 +366,7 @@ export default {
           ja: "モーションデザイナー。",
           de: "Motion-Designer.",
           pt: "Motion designers.",
+          ru: "Моушн-дизайнеры.",
         }),
       },
       skill: {
@@ -348,6 +379,7 @@ export default {
           ja: "モーショングラフィックス。",
           de: "Motion Graphics.",
           pt: "Motion graphics.",
+          ru: "Моушн-графика.",
         }),
         "product-films": t({
           en: "Product film skills.",
@@ -358,6 +390,7 @@ export default {
           ja: "プロダクトフィルムのスキル。",
           de: "Produktfilm-Skills.",
           pt: "Skills para filmes de produto.",
+          ru: "Скиллы для продуктовых роликов.",
         }),
         "ai-video": t({
           en: "AI video skills.",
@@ -368,6 +401,7 @@ export default {
           ja: "AI動画のスキル。",
           de: "KI-Video-Skills.",
           pt: "Skills de vídeo com IA.",
+          ru: "Скиллы для ИИ-видео.",
         }),
       },
       extra: {
@@ -380,6 +414,7 @@ export default {
           ja: "Xの記事。",
           de: "X-Artikel.",
           pt: "Artigos do X.",
+          ru: "Статьи в X.",
         }),
         resources: t({
           en: "Resources.",
@@ -390,6 +425,7 @@ export default {
           ja: "リソース。",
           de: "Ressourcen.",
           pt: "Recursos.",
+          ru: "Ресурсы.",
         }),
       },
     },
@@ -404,6 +440,7 @@ export default {
           ja: "プロダクトフィルム向けのAI動画生成、アバター、ナレーション、AIアシスト編集。",
           de: "KI-Videogeneratoren, Avatare, Voiceovers und KI-gestützter Schnitt für Produktfilme.",
           pt: "Geradores de vídeo com IA, avatares, locuções e edição assistida por IA para filmes de produto.",
+          ru: "ИИ-генераторы видео, аватары, озвучка и монтаж с помощью ИИ для продуктовых роликов.",
         }),
         editors: t({
           en: "Video editors for product films, from browser and text-based to AI-assisted cutting.",
@@ -414,6 +451,7 @@ export default {
           ja: "ブラウザ型やテキストベースからAIアシストのカットまで、プロダクトフィルム向けの動画エディター。",
           de: "Video-Editoren für Produktfilme – vom Browser über textbasierten bis zum KI-gestützten Schnitt.",
           pt: "Editores de vídeo para filmes de produto, do navegador e edição por texto ao corte assistido por IA.",
+          ru: "Видеоредакторы для продуктовых роликов: от браузерных и текстовых до монтажа с ИИ.",
         }),
         mockups: t({
           en: "Device and UI mockups for product videos: cinematic screens and product shots.",
@@ -424,6 +462,7 @@ export default {
           ja: "プロダクト動画向けのデバイス・UIモックアップ：映画的な画面とプロダクトショット。",
           de: "Geräte- und UI-Mockups für Produktvideos: cineastische Screens und Produktaufnahmen.",
           pt: "Mockups de dispositivos e interfaces para vídeos de produto: ecrãs cinematográficos e imagens de produto.",
+          ru: "Мокапы устройств и интерфейсов для продуктовых видео: кинематографичные экраны и продуктовые кадры.",
         }),
         motion: t({
           en: "Motion design tools and templates for launch videos, animated UI and product films.",
@@ -434,6 +473,7 @@ export default {
           ja: "ローンチ動画、アニメーションUI、プロダクトフィルム向けのモーションデザインツールとテンプレート。",
           de: "Motion-Design-Tools und Vorlagen für Launch-Videos, animierte UIs und Produktfilme.",
           pt: "Ferramentas e modelos de motion design para vídeos de lançamento, interfaces animadas e filmes de produto.",
+          ru: "Инструменты и шаблоны моушн-дизайна для лонч-роликов, анимированного UI и продуктовых видео.",
         }),
       },
       studio: {
@@ -446,6 +486,7 @@ export default {
           ja: "ローンチフィルムやブランド動画を制作するスタジオ。作品を見て直接ご連絡ください。",
           de: "Studios, die Launch-Filme und Markenvideos machen. Sieh dir ihre Arbeiten an und kontaktiere sie direkt.",
           pt: "Estúdios que criam filmes de lançamento e vídeos de marca. Vê o trabalho deles e contacta-os diretamente.",
+          ru: "Студии, создающие лонч-ролики и имиджевые видео. Смотрите их работы и пишите напрямую.",
         }),
         designers: t({
           en: "Independent designers who make memorable product films. Browse their work and reach out.",
@@ -456,6 +497,7 @@ export default {
           ja: "印象に残るプロダクトフィルムを手がける個人デザイナー。作品を見てご連絡ください。",
           de: "Unabhängige Designer, die einprägsame Produktfilme machen. Sieh dir ihre Arbeiten an und melde dich.",
           pt: "Designers independentes que criam filmes de produto memoráveis. Vê o trabalho deles e contacta-os.",
+          ru: "Независимые дизайнеры, создающие запоминающиеся продуктовые ролики. Смотрите работы и пишите им.",
         }),
       },
       skill: {
@@ -468,6 +510,7 @@ export default {
           ja: "コードでレンダリングするモーション：エージェントがレンダリングするアニメーションHTML、Remotion、ホワイトボード動画。",
           de: "Motion aus Code: animiertes HTML, Remotion- und Whiteboard-Videos, die dein Agent rendert.",
           pt: "Motion renderizado em código: HTML animado, Remotion e vídeos de quadro branco que o teu agente renderiza.",
+          ru: "Моушн из кода: анимированный HTML, Remotion и whiteboard-видео, которые рендерит ваш агент.",
         }),
         "product-films": t({
           en: "Skills that turn your real product into demos and launch films, made by your agent.",
@@ -478,6 +521,7 @@ export default {
           ja: "実際のプロダクトをデモやローンチフィルムに変える、エージェント向けのスキル。",
           de: "Skills, die dein echtes Produkt in Demos und Launch-Filme verwandeln – gemacht von deinem Agent.",
           pt: "Skills que transformam o teu produto real em demos e filmes de lançamento, feitos pelo teu agente.",
+          ru: "Скиллы, которые превращают ваш продукт в демо и лонч-ролики силами агента.",
         }),
         "ai-video": t({
           en: "Skills for AI video production, from script and generated footage to voiceover and final cut.",
@@ -488,6 +532,7 @@ export default {
           ja: "台本や生成映像からナレーション、最終編集まで、AI動画制作のためのスキル。",
           de: "Skills für KI-Videoproduktion, vom Skript über generiertes Material bis zu Voiceover und finalem Schnitt.",
           pt: "Skills para produção de vídeo com IA, do guião e imagens geradas à locução e montagem final.",
+          ru: "Скиллы для производства ИИ-видео: от сценария и сгенерированных кадров до озвучки и финального монтажа.",
         }),
       },
       extra: {
@@ -500,6 +545,7 @@ export default {
           ja: "Claude Opusでモーション動画を作るためのXの長文記事：ワークフロー、プロンプト、解説。",
           de: "Ausführliche X-Artikel übers Erstellen von Motion-Videos mit Claude Opus: Workflows, Prompts, Analysen.",
           pt: "Artigos longos do X sobre como criar vídeos de motion com o Claude Opus: fluxos de trabalho, prompts, análises.",
+          ru: "Длинные статьи в X о создании моушн-видео с Claude Opus: процессы, промпты, разборы.",
         }),
         resources: t({
           en: "References and archives for making motion videos and product films.",
@@ -510,6 +556,7 @@ export default {
           ja: "モーション動画やプロダクトフィルム制作のためのリファレンスとアーカイブ。",
           de: "Referenzen und Archive zum Erstellen von Motion-Videos und Produktfilmen.",
           pt: "Referências e arquivos para criar vídeos de motion e filmes de produto.",
+          ru: "Референсы и архивы для создания моушн-видео и продуктовых роликов.",
         }),
       },
     },
@@ -522,6 +569,7 @@ export default {
       ja: "ウェブサイトを見る",
       de: "Website besuchen",
       pt: "Visitar site",
+      ru: "Перейти на сайт",
     }),
     newTab: t({
       en: "opens in a new tab",
@@ -532,6 +580,7 @@ export default {
       ja: "新しいタブで開きます",
       de: "öffnet in neuem Tab",
       pt: "abre num novo separador",
+      ru: "откроется в новой вкладке",
     }),
     surprise: t({
       en: "Surprise me",
@@ -542,6 +591,7 @@ export default {
       ja: "おまかせ",
       de: "Überrasch mich",
       pt: "Surpreende-me",
+      ru: "Мне повезёт",
     }),
   },
 } satisfies Dictionary;

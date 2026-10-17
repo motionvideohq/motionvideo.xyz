@@ -13,6 +13,7 @@ export default {
       ja: "ブックマーク",
       de: "Merkliste",
       pt: "Guardados",
+      ru: "Закладки",
     }),
     intro: t({
       en: "Videos, tools, creatives, skills, and extras you saved, newest first.",
@@ -23,6 +24,7 @@ export default {
       ja: "保存した動画、ツール、クリエイティブ、スキル、エクストラ（新しい順）。",
       de: "Videos, Tools, Creatives, Skills und Extras, die du gemerkt hast, neueste zuerst.",
       pt: "Vídeos, ferramentas, criativos, skills e extras que guardaste, os mais recentes primeiro.",
+      ru: "Сохранённые видео, инструменты, студии, скиллы и дополнения — сначала новые.",
     }),
     filterKind: t({
       en: "Filter by type",
@@ -33,6 +35,7 @@ export default {
       ja: "種類で絞り込む",
       de: "Nach Typ filtern",
       pt: "Filtrar por tipo",
+      ru: "Фильтр по типу",
     }),
     all: t({
       en: "All",
@@ -43,6 +46,7 @@ export default {
       ja: "すべて",
       de: "Alle",
       pt: "Tudo",
+      ru: "Все",
     }),
     // Chip labels, keyed by bookmark kind.
     kinds: {
@@ -55,6 +59,7 @@ export default {
         ja: "動画",
         de: "Videos",
         pt: "Vídeos",
+        ru: "Видео",
       }),
       tool: t({
         en: "Tools",
@@ -65,6 +70,7 @@ export default {
         ja: "ツール",
         de: "Tools",
         pt: "Ferramentas",
+        ru: "Инструменты",
       }),
       studio: t({
         en: "Creatives",
@@ -75,6 +81,7 @@ export default {
         ja: "クリエイティブ",
         de: "Creatives",
         pt: "Criativos",
+        ru: "Студии",
       }),
       skill: t({
         en: "Skills",
@@ -85,6 +92,7 @@ export default {
         ja: "スキル",
         de: "Skills",
         pt: "Skills",
+        ru: "Скиллы",
       }),
       extra: t({
         en: "Extras",
@@ -95,6 +103,7 @@ export default {
         ja: "エクストラ",
         de: "Extras",
         pt: "Extras",
+        ru: "Дополнения",
       }),
     },
     emptyTitle: t({
@@ -106,6 +115,7 @@ export default {
       ja: "ブックマークはまだありません",
       de: "Noch nichts gemerkt",
       pt: "Ainda não tens guardados",
+      ru: "Закладок пока нет",
     }),
     emptyDescription: t({
       en: "Use the bookmark button on any video, tool, creative, skill, or extra to save it here.",
@@ -116,6 +126,7 @@ export default {
       ja: "動画、ツール、クリエイティブ、スキル、エクストラのブックマークボタンを押すと、ここに保存されます。",
       de: "Nutze den Merken-Button bei einem Video, Tool, Creative, Skill oder Extra, um es hier zu speichern.",
       pt: "Usa o botão de guardar em qualquer vídeo, ferramenta, criativo, skill ou extra para o guardares aqui.",
+      ru: "Нажмите кнопку закладки на любом видео, инструменте, студии, скилле или дополнении, чтобы сохранить его здесь.",
     }),
     discover: t({
       en: "Discover videos",
@@ -126,6 +137,7 @@ export default {
       ja: "動画を見つける",
       de: "Videos entdecken",
       pt: "Descobrir vídeos",
+      ru: "Смотреть видео",
     }),
   },
 } satisfies Dictionary;

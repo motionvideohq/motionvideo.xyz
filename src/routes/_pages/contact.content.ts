@@ -15,6 +15,7 @@ export default {
       ja: "お問い合わせ",
       de: "Kontakt",
       pt: "Contacto",
+      ru: "Контакты",
     }),
     intro: t({
       en: "Questions about the pack, a purchase, or a partnership? Send a message and we’ll reply by email.",
@@ -25,6 +26,7 @@ export default {
       ja: "パック、購入、パートナーシップについてのご質問はありますか？メッセージをお送りいただければ、メールで返信します。",
       de: "Fragen zum Pack, zu einem Kauf oder einer Partnerschaft? Schick uns eine Nachricht, wir antworten per E-Mail.",
       pt: "Dúvidas sobre o pacote, uma compra ou uma parceria? Envia uma mensagem e respondemos por e-mail.",
+      ru: "Вопросы о наборе, покупке или партнёрстве? Отправьте сообщение, и мы ответим по email.",
     }),
     validationError: t({
       en: "Add your name, a valid email, a subject, and a message of at least 10 characters.",
@@ -35,6 +37,7 @@ export default {
       ja: "お名前、有効なメールアドレス、件名、10文字以上のメッセージを入力してください。",
       de: "Gib deinen Namen, eine gültige E-Mail-Adresse, einen Betreff und eine Nachricht mit mindestens 10 Zeichen an.",
       pt: "Indica o teu nome, um e-mail válido, um assunto e uma mensagem com pelo menos 10 caracteres.",
+      ru: "Укажите имя, корректный email, тему и сообщение не короче 10 символов.",
     }),
     sendError: t({
       en: `Your message couldn’t be sent. Please email ${LINK.EMAIL} instead.`,
@@ -45,6 +48,7 @@ export default {
       ja: `メッセージを送信できませんでした。${LINK.EMAIL} 宛てにメールでお送りください。`,
       de: `Deine Nachricht konnte nicht gesendet werden. Bitte schreib stattdessen an ${LINK.EMAIL}.`,
       pt: `Não foi possível enviar a tua mensagem. Envia antes um e-mail para ${LINK.EMAIL}.`,
+      ru: `Не удалось отправить сообщение. Напишите нам на ${LINK.EMAIL}.`,
     }),
     sent: t({
       en: "Message sent",
@@ -55,6 +59,7 @@ export default {
       ja: "メッセージを送信しました",
       de: "Nachricht gesendet",
       pt: "Mensagem enviada",
+      ru: "Сообщение отправлено",
     }),
     thanks: t({
       en: "Thanks for writing. We usually reply within two working days.",
@@ -65,6 +70,7 @@ export default {
       ja: "ご連絡ありがとうございます。通常2営業日以内に返信します。",
       de: "Danke für deine Nachricht. Wir antworten in der Regel innerhalb von zwei Werktagen.",
       pt: "Obrigado por escreveres. Normalmente respondemos no prazo de dois dias úteis.",
+      ru: "Спасибо, что написали. Обычно мы отвечаем в течение двух рабочих дней.",
     }),
     name: t({
       en: "Name",
@@ -75,6 +81,7 @@ export default {
       ja: "お名前",
       de: "Name",
       pt: "Nome",
+      ru: "Имя",
     }),
     namePlaceholder: t({
       en: "John Doe",
@@ -85,6 +92,7 @@ export default {
       ja: "山田 太郎",
       de: "Max Mustermann",
       pt: "João Silva",
+      ru: "Иван Иванов",
     }),
     email: t({
       en: "Email",
@@ -95,6 +103,7 @@ export default {
       ja: "メールアドレス",
       de: "E-Mail",
       pt: "E-mail",
+      ru: "Email",
     }),
     emailPlaceholder: t({
       en: "john@doe.com",
@@ -105,6 +114,7 @@ export default {
       ja: "john@doe.com",
       de: "max@mustermann.de",
       pt: "joao@silva.pt",
+      ru: "john@doe.com",
     }),
     inquiry: t({
       en: "Inquiry type",
@@ -115,6 +125,7 @@ export default {
       ja: "お問い合わせの種類",
       de: "Art der Anfrage",
       pt: "Tipo de pedido",
+      ru: "Тип обращения",
     }),
     inquiryLabels: {
       General: t({
@@ -126,6 +137,7 @@ export default {
         ja: "一般",
         de: "Allgemein",
         pt: "Geral",
+        ru: "Общее",
       }),
       "Purchase & billing": t({
         en: "Purchase & billing",
@@ -136,6 +148,7 @@ export default {
         ja: "購入・お支払い",
         de: "Kauf & Abrechnung",
         pt: "Compra e faturação",
+        ru: "Покупка и оплата",
       }),
       Support: t({
         en: "Support",
@@ -146,6 +159,7 @@ export default {
         ja: "サポート",
         de: "Support",
         pt: "Suporte",
+        ru: "Поддержка",
       }),
       Partnership: t({
         en: "Partnership",
@@ -156,6 +170,7 @@ export default {
         ja: "パートナーシップ",
         de: "Partnerschaft",
         pt: "Parceria",
+        ru: "Партнёрство",
       }),
       Press: t({
         en: "Press",
@@ -166,6 +181,7 @@ export default {
         ja: "取材",
         de: "Presse",
         pt: "Imprensa",
+        ru: "Пресса",
       }),
       "Removal or credit": t({
         en: "Removal or credit",
@@ -176,6 +192,7 @@ export default {
         ja: "削除・クレジット表記",
         de: "Entfernung oder Nennung",
         pt: "Remoção ou crédito",
+        ru: "Удаление или указание авторства",
       }),
     },
     subject: t({
@@ -187,6 +204,7 @@ export default {
       ja: "件名",
       de: "Betreff",
       pt: "Assunto",
+      ru: "Тема",
     }),
     subjectPlaceholder: t({
       en: "Brief description of your inquiry",
@@ -197,6 +215,7 @@ export default {
       ja: "お問い合わせ内容の概要",
       de: "Kurze Beschreibung deines Anliegens",
       pt: "Breve descrição do teu pedido",
+      ru: "Кратко опишите ваш вопрос",
     }),
     message: t({
       en: "Message",
@@ -207,6 +226,7 @@ export default {
       ja: "メッセージ",
       de: "Nachricht",
       pt: "Mensagem",
+      ru: "Сообщение",
     }),
     messagePlaceholder: t({
       en: "Hi, this is my message",
@@ -217,6 +237,7 @@ export default {
       ja: "こんにちは、メッセージです",
       de: "Hallo, das ist meine Nachricht",
       pt: "Olá, esta é a minha mensagem",
+      ru: "Здравствуйте, вот моё сообщение",
     }),
     sending: t({
       en: "Sending…",
@@ -227,6 +248,7 @@ export default {
       ja: "送信中…",
       de: "Wird gesendet …",
       pt: "A enviar…",
+      ru: "Отправка…",
     }),
     send: t({
       en: "Send message",
@@ -237,6 +259,7 @@ export default {
       ja: "メッセージを送信",
       de: "Nachricht senden",
       pt: "Enviar mensagem",
+      ru: "Отправить сообщение",
     }),
     enter: t({
       en: "Enter",
@@ -247,6 +270,7 @@ export default {
       ja: "Enter",
       de: "Enter",
       pt: "Enter",
+      ru: "Enter",
     }),
     toSend: t({
       en: "to send",
@@ -257,6 +281,7 @@ export default {
       ja: "で送信",
       de: "zum Senden",
       pt: "para enviar",
+      ru: "— отправить",
     }),
     prefer: t({
       en: "Prefer something else? Email ",
@@ -267,6 +292,7 @@ export default {
       ja: "他の方法がよろしければ、メール：",
       de: "Lieber etwas anderes? Schreib an ",
       pt: "Preferes outra via? Envia um e-mail para ",
+      ru: "Удобнее по-другому? Пишите на",
     }),
     dm: t({
       en: "or send a DM on X to ",
@@ -277,6 +303,7 @@ export default {
       ja: "またはXでDMを送ってください：",
       de: "oder schick eine DM auf X an ",
       pt: "ou envia uma DM no X para ",
+      ru: "или в личные сообщения в X:",
     }),
   },
 } satisfies Dictionary;

@@ -13,6 +13,7 @@ export default {
       ja: "キーボードショートカット",
       de: "Tastenkürzel",
       pt: "Atalhos de teclado",
+      ru: "Горячие клавиши",
     }),
     description: t({
       en: "Press a key anywhere outside a text field.",
@@ -23,6 +24,7 @@ export default {
       ja: "テキスト入力欄以外の場所でキーを押してください。",
       de: "Drücke eine Taste irgendwo außerhalb eines Textfelds.",
       pt: "Prime uma tecla em qualquer lugar fora de um campo de texto.",
+      ru: "Нажмите клавишу в любом месте вне текстового поля.",
     }),
     general: t({
       en: "General",
@@ -33,6 +35,7 @@ export default {
       ja: "一般",
       de: "Allgemein",
       pt: "Geral",
+      ru: "Общие",
     }),
     sections: t({
       en: "Sections",
@@ -43,6 +46,7 @@ export default {
       ja: "セクション",
       de: "Bereiche",
       pt: "Secções",
+      ru: "Разделы",
     }),
     account: t({
       en: "Account",
@@ -53,6 +57,7 @@ export default {
       ja: "アカウント",
       de: "Konto",
       pt: "Conta",
+      ru: "Аккаунт",
     }),
     videos: t({
       en: "Videos",
@@ -63,6 +68,7 @@ export default {
       ja: "動画",
       de: "Videos",
       pt: "Vídeos",
+      ru: "Видео",
     }),
     search: t({
       en: "Search",
@@ -73,6 +79,7 @@ export default {
       ja: "検索",
       de: "Suche",
       pt: "Pesquisar",
+      ru: "Поиск",
     }),
     toggleTheme: t({
       en: "Toggle theme",
@@ -83,6 +90,7 @@ export default {
       ja: "テーマを切り替え",
       de: "Design umschalten",
       pt: "Alternar tema",
+      ru: "Сменить тему",
     }),
     toggleSounds: t({
       en: "Mute or unmute sounds",
@@ -93,6 +101,7 @@ export default {
       ja: "サウンドのミュート／解除",
       de: "Sounds stumm- oder einschalten",
       pt: "Silenciar ou ativar sons",
+      ru: "Выключить или включить звуки",
     }),
     toggleCursors: t({
       en: "Show or hide live cursors",
@@ -103,6 +112,7 @@ export default {
       ja: "ライブカーソルの表示／非表示",
       de: "Live-Cursor ein- oder ausblenden",
       pt: "Mostrar ou ocultar cursores em direto",
+      ru: "Показать или скрыть курсоры",
     }),
     showShortcuts: t({
       en: "Show keyboard shortcuts",
@@ -113,6 +123,7 @@ export default {
       ja: "キーボードショートカットを表示",
       de: "Tastenkürzel anzeigen",
       pt: "Mostrar atalhos de teclado",
+      ru: "Показать горячие клавиши",
     }),
     previousVideo: t({
       en: "Previous video",
@@ -123,6 +134,7 @@ export default {
       ja: "前の動画",
       de: "Vorheriges Video",
       pt: "Vídeo anterior",
+      ru: "Предыдущее видео",
     }),
     nextVideo: t({
       en: "Next video",
@@ -133,6 +145,7 @@ export default {
       ja: "次の動画",
       de: "Nächstes Video",
       pt: "Vídeo seguinte",
+      ru: "Следующее видео",
     }),
     closeVideo: t({
       en: "Close video",
@@ -143,6 +156,7 @@ export default {
       ja: "動画を閉じる",
       de: "Video schließen",
       pt: "Fechar vídeo",
+      ru: "Закрыть видео",
     }),
   },
 } satisfies Dictionary;

@@ -13,6 +13,7 @@ export default {
       ja: "フィードバック",
       de: "Feedback",
       pt: "Feedback",
+      ru: "Отзыв",
     }),
     title: t({
       en: "Share feedback",
@@ -23,6 +24,7 @@ export default {
       ja: "フィードバックを送る",
       de: "Feedback geben",
       pt: "Partilhar feedback",
+      ru: "Оставить отзыв",
     }),
     description: t({
       en: "What works, what’s missing, what broke. Every message is read.",
@@ -33,6 +35,7 @@ export default {
       ja: "うまく動くこと、足りないこと、壊れたこと。すべてのメッセージに目を通しています。",
       de: "Was funktioniert, was fehlt, was kaputt ist. Jede Nachricht wird gelesen.",
       pt: "O que funciona, o que falta, o que se partiu. Lemos todas as mensagens.",
+      ru: "Что работает, чего не хватает, что сломалось. Мы читаем каждое сообщение.",
     }),
     moodLabel: t({
       en: "How is MotionVideo so far?",
@@ -43,6 +46,7 @@ export default {
       ja: "MotionVideoの使い心地はいかがですか？",
       de: "Wie gefällt dir MotionVideo bisher?",
       pt: "O que achas do MotionVideo até agora?",
+      ru: "Как вам MotionVideo?",
     }),
     moods: {
       love: t({
@@ -54,6 +58,7 @@ export default {
         ja: "とても良い",
         de: "Super",
         pt: "Adoro",
+        ru: "Отлично",
       }),
       okay: t({
         en: "It’s okay",
@@ -64,6 +69,7 @@ export default {
         ja: "まあまあ",
         de: "Geht so",
         pt: "Está razoável",
+        ru: "Нормально",
       }),
       bad: t({
         en: "Not great",
@@ -74,6 +80,7 @@ export default {
         ja: "いまいち",
         de: "Nicht gut",
         pt: "Não convence",
+        ru: "Так себе",
       }),
     },
     message: t({
@@ -85,6 +92,7 @@ export default {
       ja: "フィードバック",
       de: "Dein Feedback",
       pt: "O teu feedback",
+      ru: "Ваш отзыв",
     }),
     messagePlaceholder: t({
       en: "Tell us anything: an idea, a bug, a video we should add…",
@@ -95,6 +103,7 @@ export default {
       ja: "アイデア、バグ、追加してほしい動画など、何でもお聞かせください…",
       de: "Erzähl uns alles: eine Idee, einen Bug, ein Video, das wir aufnehmen sollten …",
       pt: "Diz-nos o que quiseres: uma ideia, um erro, um vídeo que devíamos adicionar…",
+      ru: "Расскажите что угодно: идею, баг, видео, которое стоит добавить…",
     }),
     email: t({
       en: "Email (optional, if you’d like a reply)",
@@ -105,6 +114,7 @@ export default {
       ja: "メールアドレス（任意、返信をご希望の場合）",
       de: "E-Mail (optional, falls du eine Antwort möchtest)",
       pt: "E-mail (opcional, se quiseres resposta)",
+      ru: "Email (необязательно, если хотите получить ответ)",
     }),
     emailPlaceholder: t({
       en: "you@example.com",
@@ -115,6 +125,7 @@ export default {
       ja: "you@example.com",
       de: "du@beispiel.de",
       pt: "tu@exemplo.com",
+      ru: "you@example.com",
     }),
     signedInAs: t({
       en: "We’ll reply to your account email if needed.",
@@ -125,6 +136,7 @@ export default {
       ja: "必要に応じてアカウントのメールアドレスに返信します。",
       de: "Wir antworten bei Bedarf an die E-Mail-Adresse deines Kontos.",
       pt: "Respondemos para o e-mail da tua conta, se for preciso.",
+      ru: "При необходимости мы ответим на email вашего аккаунта.",
     }),
     send: t({
       en: "Send feedback",
@@ -135,6 +147,7 @@ export default {
       ja: "フィードバックを送信",
       de: "Feedback senden",
       pt: "Enviar feedback",
+      ru: "Отправить отзыв",
     }),
     sending: t({
       en: "Sending…",
@@ -145,6 +158,7 @@ export default {
       ja: "送信中…",
       de: "Wird gesendet …",
       pt: "A enviar…",
+      ru: "Отправка…",
     }),
     enter: t({
       en: "Enter",
@@ -155,6 +169,7 @@ export default {
       ja: "Enter",
       de: "Enter",
       pt: "Enter",
+      ru: "Enter",
     }),
     toSend: t({
       en: "to send",
@@ -165,6 +180,7 @@ export default {
       ja: "で送信",
       de: "zum Senden",
       pt: "para enviar",
+      ru: "— отправить",
     }),
     validationError: t({
       en: "Write a few words, and check the email address if you added one.",
@@ -175,6 +191,7 @@ export default {
       ja: "数語ご記入ください。メールアドレスを入力した場合はご確認ください。",
       de: "Schreib ein paar Worte und prüfe die E-Mail-Adresse, falls du eine angegeben hast.",
       pt: "Escreve algumas palavras e verifica o e-mail, se o adicionaste.",
+      ru: "Напишите пару слов и проверьте email, если вы его указали.",
     }),
     rateLimitError: t({
       en: "Too many messages. Try again in a minute.",
@@ -185,6 +202,7 @@ export default {
       ja: "メッセージが多すぎます。1分後にもう一度お試しください。",
       de: "Zu viele Nachrichten. Versuch es in einer Minute noch mal.",
       pt: "Demasiadas mensagens. Tenta novamente daqui a um minuto.",
+      ru: "Слишком много сообщений. Попробуйте через минуту.",
     }),
     sendError: t({
       en: "Couldn’t send that. Please try again.",
@@ -195,6 +213,7 @@ export default {
       ja: "送信できませんでした。もう一度お試しください。",
       de: "Senden fehlgeschlagen. Bitte versuch es noch mal.",
       pt: "Não foi possível enviar. Tenta novamente.",
+      ru: "Не удалось отправить. Попробуйте ещё раз.",
     }),
     thanksTitle: t({
       en: "Thanks for the feedback",
@@ -205,6 +224,7 @@ export default {
       ja: "フィードバックありがとうございます",
       de: "Danke für dein Feedback",
       pt: "Obrigado pelo feedback",
+      ru: "Спасибо за отзыв",
     }),
     thanksBody: t({
       en: "It’s in. It helps decide what gets built next.",
@@ -215,6 +235,7 @@ export default {
       ja: "受け付けました。次に何を作るかの参考にします。",
       de: "Ist angekommen. Es hilft bei der Entscheidung, was als Nächstes gebaut wird.",
       pt: "Recebido. Ajuda-nos a decidir o que construir a seguir.",
+      ru: "Получили. Это помогает решить, что делать дальше.",
     }),
     done: t({
       en: "Done",
@@ -225,6 +246,7 @@ export default {
       ja: "完了",
       de: "Fertig",
       pt: "Concluído",
+      ru: "Готово",
     }),
   },
 } satisfies Dictionary;

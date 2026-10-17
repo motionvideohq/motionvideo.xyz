@@ -15,6 +15,7 @@ export default {
       ja: `${SITE.NAME}について`,
       de: `Über ${SITE.NAME}`,
       pt: `Sobre o ${SITE.NAME}`,
+      ru: `О ${SITE.NAME}`,
     }),
     intro: t({
       en: "A small, independent product for developers who would rather write motion than keyframe it.",
@@ -25,6 +26,7 @@ export default {
       ja: "キーフレームを打つよりモーションをコードで書きたい開発者のための、小さな独立系プロダクトです。",
       de: "Ein kleines, unabhängiges Produkt für Entwickler, die Motion lieber schreiben als keyframen.",
       pt: "Um produto pequeno e independente para programadores que preferem escrever animação a fazê-la com keyframes.",
+      ru: "Небольшой независимый продукт для разработчиков, которым проще писать моушн кодом, чем расставлять ключевые кадры.",
     }),
     why: t({
       en: "Why it exists",
@@ -35,6 +37,7 @@ export default {
       ja: "作った理由",
       de: "Warum es das gibt",
       pt: "Porque existe",
+      ru: "Зачем он нужен",
     }),
     reason: t({
       en: "Motion design makes a portfolio, a launch, or a small update feel crafted, but it usually means keyframe tools, a lot of practice, or a motion designer’s calendar. Most developers skip it, or settle for a screen recording.",
@@ -45,6 +48,7 @@ export default {
       ja: "モーションデザインは、ポートフォリオやローンチ、ちょっとしたアップデートを丁寧な仕上がりに見せてくれます。しかし通常は、キーフレームツール、多くの練習、あるいはモーションデザイナーの予定が必要です。多くの開発者は諦めるか、画面録画で済ませています。",
       de: "Motion Design lässt ein Portfolio, einen Launch oder ein kleines Update durchdacht wirken – bedeutet aber meist Keyframe-Tools, viel Übung oder den Terminkalender eines Motion Designers. Die meisten Entwickler lassen es weg oder begnügen sich mit einer Bildschirmaufnahme.",
       pt: "O motion design dá um ar cuidado a um portefólio, a um lançamento ou a uma pequena atualização, mas normalmente implica ferramentas de keyframes, muita prática ou a agenda de um motion designer. A maioria dos programadores salta este passo ou contenta-se com uma gravação de ecrã.",
+      ru: "Моушн-дизайн делает портфолио, запуск или небольшое обновление продуманными, но обычно это значит программы с ключевыми кадрами, много практики или очередь к моушн-дизайнеру. Большинство разработчиков пропускают этот шаг или ограничиваются записью экрана.",
     }),
     knowledge: t({
       en: `Coding agents can already write animation code. What they lack is taste: how long to hold, what overlaps, which easing feels right. ${SITE.NAME} writes that knowledge down so your agent can storyboard and animate showreels, intros, and launch films on its own, and redo them whenever something changes.`,
@@ -55,6 +59,7 @@ export default {
       ja: `コーディングエージェントはすでにアニメーションのコードを書けます。足りないのはセンスです：どれだけ止めるか、何を重ねるか、どのイージングが自然か。${SITE.NAME}はその知識を書き起こし、エージェントがショーリール、イントロ、ローンチフィルムを自らストーリーボード化・アニメーション化し、変更があればいつでも作り直せるようにします。`,
       de: `Coding-Agents können schon Animationscode schreiben. Was ihnen fehlt, ist Gespür: wie lange etwas stehen bleibt, was sich überlappt, welches Easing sich richtig anfühlt. ${SITE.NAME} hält dieses Wissen fest, damit dein Agent Showreels, Intros und Launch-Filme selbst storyboarden und animieren kann – und sie neu macht, wann immer sich etwas ändert.`,
       pt: `Os agentes de programação já conseguem escrever código de animação. O que lhes falta é gosto: quanto tempo manter, o que se sobrepõe, que easing parece certo. O ${SITE.NAME} põe esse conhecimento por escrito para que o teu agente consiga fazer o storyboard e animar showreels, intros e filmes de lançamento sozinho, e refazê-los sempre que algo muda.`,
+      ru: `Кодинг-агенты уже умеют писать код анимаций. Им не хватает вкуса: сколько держать паузу, что перекрывать, какой изинг ощущается правильно. ${SITE.NAME} записывает эти знания, чтобы ваш агент сам раскадровывал и анимировал шоурилы, интро и лонч-ролики — и переделывал их, когда что-то меняется.`,
     }),
     what: t({
       en: "What it is",
@@ -65,6 +70,7 @@ export default {
       ja: "これは何か",
       de: "Was es ist",
       pt: "O que é",
+      ru: "Что это",
     }),
     product: t({
       en: `${SITE.NAME} is a pack of agent skills: instruction files, scene starters, and motion tokens that live in your repository. Your own agent reads them, writes the scenes in code, and renders them on your machine with an open-source renderer such as Remotion, HyperFrames, Editframe, or fframes. There is no hosted service, no credits, and no subscription.`,
@@ -75,6 +81,7 @@ export default {
       ja: `${SITE.NAME}はエージェントスキルのパックです。リポジトリに置く指示ファイル、シーンのスターター、モーショントークンで構成されます。あなたのエージェントがそれを読み、シーンをコードで書き、Remotion、HyperFrames、Editframe、fframesなどのオープンソースレンダラーで手元のマシン上にレンダリングします。ホスティングサービスも、クレジットも、サブスクリプションもありません。`,
       de: `${SITE.NAME} ist ein Paket aus Agent-Skills: Anweisungsdateien, Szenen-Starter und Motion-Tokens, die in deinem Repository liegen. Dein eigener Agent liest sie, schreibt die Szenen in Code und rendert sie auf deinem Rechner mit einem Open-Source-Renderer wie Remotion, HyperFrames, Editframe oder fframes. Es gibt keinen gehosteten Dienst, keine Credits und kein Abo.`,
       pt: `O ${SITE.NAME} é um pacote de skills de agente: ficheiros de instruções, cenas iniciais e tokens de movimento que vivem no teu repositório. O teu próprio agente lê-os, escreve as cenas em código e renderiza-as na tua máquina com um renderizador open source como Remotion, HyperFrames, Editframe ou fframes. Não há serviço alojado, nem créditos, nem subscrição.`,
+      ru: `${SITE.NAME} — это набор агентских скиллов: файлы инструкций, стартовые сцены и моушн-токены, которые лежат в вашем репозитории. Ваш агент читает их, пишет сцены кодом и рендерит их на вашем компьютере с помощью рендерера с открытым кодом, например Remotion, HyperFrames, Editframe или fframes. Никакого облачного сервиса, кредитов и подписки.`,
     }),
     who: t({
       en: "Who makes it",
@@ -85,6 +92,7 @@ export default {
       ja: "作っている人",
       de: "Wer es macht",
       pt: "Quem o faz",
+      ru: "Кто его делает",
     }),
     built: t({
       en: `${SITE.NAME} is built by `,
@@ -95,6 +103,7 @@ export default {
       ja: `${SITE.NAME}を作っているのは`,
       de: `${SITE.NAME} wird gebaut von `,
       pt: `O ${SITE.NAME} é feito por `,
+      ru: `${SITE.NAME} создаёт `,
     }),
     author: t({
       en: `, a frontend engineer in ${SITE.LEGAL.JURISDICTION} who cares about visual craft and runs `,
@@ -105,6 +114,7 @@ export default {
       ja: `です。${SITE.LEGAL.JURISDICTION}在住のフロントエンドエンジニアで、ビジュアルのクラフトを大切にし、次を運営しています：`,
       de: `, einem Frontend-Engineer aus ${SITE.LEGAL.JURISDICTION}, dem visuelles Handwerk wichtig ist. Außerdem betreibt er `,
       pt: `, um engenheiro frontend em ${SITE.LEGAL.JURISDICTION} que se preocupa com o detalhe visual e gere `,
+      ru: `, фронтенд-разработчик из ${SITE.LEGAL.JURISDICTION}, которому важно визуальное качество. Он также ведёт `,
     }),
     website: t({
       en: ". This website is ",
@@ -115,6 +125,7 @@ export default {
       ja: "。このウェブサイトは",
       de: ". Diese Website ist ",
       pt: ". Este site é ",
+      ru: ". Этот сайт —",
     }),
     openSource: t({
       en: "open source",
@@ -125,6 +136,7 @@ export default {
       ja: "オープンソース",
       de: "Open Source",
       pt: "open source",
+      ru: "открытый код",
     }),
     separately: t({
       en: "; the skill pack is sold separately.",
@@ -135,6 +147,7 @@ export default {
       ja: "です。スキルパックは別売りです。",
       de: "; das Skill-Pack wird separat verkauft.",
       pt: "; o pacote de skills é vendido à parte.",
+      ru: "; набор скиллов продаётся отдельно.",
     }),
   },
 } satisfies Dictionary;

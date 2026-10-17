@@ -13,6 +13,7 @@ const refundsContent = {
       ja: "返金ポリシー",
       de: "Rückerstattungsrichtlinie",
       pt: "Política de reembolso",
+      ru: "Политика возврата",
     }),
     text1: t({
       en: "This policy covers one-time purchases of",
@@ -23,6 +24,7 @@ const refundsContent = {
       ja: "このポリシーは、次の買い切り購入を対象とします：",
       de: "Diese Richtlinie gilt für Einmalkäufe von",
       pt: "Esta política abrange as compras únicas de",
+      ru: "Эта политика распространяется на разовые покупки",
     }),
     text2: t({
       en: ", sold by",
@@ -33,6 +35,7 @@ const refundsContent = {
       ja: "（販売：",
       de: ", verkauft von",
       pt: ", vendido por",
+      ru: ", которые продаёт",
     }),
     text3: t({
       en: ", and sponsorships. Dodo Payments, our merchant of record, processes every payment and refund. It sits alongside our",
@@ -43,6 +46,7 @@ const refundsContent = {
       ja: "）およびスポンサーシップ。すべての支払いと返金は、販売事業者であるDodo Paymentsが処理します。本ポリシーは次とあわせて適用されます：",
       de: ", sowie für Sponsorings. Dodo Payments, unser Merchant of Record, wickelt jede Zahlung und Rückerstattung ab. Sie gilt ergänzend zu unseren",
       pt: ", e os patrocínios. A Dodo Payments, o nosso comerciante registado (merchant of record), processa todos os pagamentos e reembolsos. Complementa os nossos",
+      ru: ", а также на спонсорство. Dodo Payments, наш продавец (merchant of record), обрабатывает все платежи и возвраты. Она дополняет наши",
     }),
     text4: t({
       en: "terms of service",
@@ -53,6 +57,7 @@ const refundsContent = {
       ja: "利用規約",
       de: "Nutzungsbedingungen",
       pt: "termos de serviço",
+      ru: "условия использования",
     }),
     heading5: t({
       en: "1. What you are buying",
@@ -63,6 +68,7 @@ const refundsContent = {
       ja: "1. 購入するもの",
       de: "1. Was du kaufst",
       pt: "1. O que estás a comprar",
+      ru: "1. Что вы покупаете",
     }),
     text6: t({
       en: "is a digital pack delivered as read-only access to a private GitHub repository. There is no physical shipment and no subscription. The price is $29 for the first 100 paid purchases, then $49, paid once. Instant private GitHub access and future repository updates included. After checkout you claim repository access by connecting your GitHub account in the Dodo Payments customer portal. Access includes future updates to the same repository at no extra cost.",
@@ -73,6 +79,7 @@ const refundsContent = {
       ja: "は、非公開のGitHubリポジトリへの読み取り専用アクセスとして提供されるデジタルパックです。物理的な配送やサブスクリプションはありません。価格は最初の有料購入100件までが$29、その後は$49で、一度だけのお支払いです。非公開のGitHubへの即時アクセスと、今後のリポジトリのアップデートが含まれます。購入後、Dodo PaymentsのカスタマーポータルでGitHubアカウントを連携することでリポジトリへのアクセスを取得します。アクセスには、同じリポジトリの今後のアップデートが追加費用なしで含まれます。",
       de: "ist ein digitales Paket, das als Lesezugriff auf ein privates GitHub-Repository ausgeliefert wird. Es gibt keinen physischen Versand und kein Abo. Der Preis beträgt 29 $ für die ersten 100 bezahlten Käufe, danach 49 $, einmalig zu zahlen. Sofortiger privater GitHub-Zugriff und künftige Repository-Updates inklusive. Nach dem Checkout löst du den Repository-Zugriff ein, indem du dein GitHub-Konto im Kundenportal von Dodo Payments verbindest. Der Zugriff umfasst künftige Updates desselben Repositorys ohne Zusatzkosten.",
       pt: "é um pacote digital entregue como acesso só de leitura a um repositório privado do GitHub. Não há envio físico nem subscrição. O preço é de 29 $ nas primeiras 100 compras pagas e depois de 49 $, pago uma única vez. Inclui acesso imediato ao repositório privado do GitHub e futuras atualizações do repositório. Depois do pagamento, pedes acesso ao repositório ligando a tua conta do GitHub no portal de cliente da Dodo Payments. O acesso inclui futuras atualizações do mesmo repositório sem custos adicionais.",
+      ru: "— это цифровой набор, который предоставляется как доступ только для чтения к приватному репозиторию GitHub. Физической доставки и подписки нет. Цена — $29 за первые 100 оплаченных покупок, затем $49, оплата разовая. Мгновенный доступ к приватному репозиторию GitHub и будущие обновления репозитория включены. После оплаты вы получаете доступ к репозиторию, подключив аккаунт GitHub в портале клиента Dodo Payments. Доступ включает будущие обновления того же репозитория без доплаты.",
     }),
     heading7: t({
       en: "2. Before delivery",
@@ -83,6 +90,7 @@ const refundsContent = {
       ja: "2. お届け前",
       de: "2. Vor der Auslieferung",
       pt: "2. Antes da entrega",
+      ru: "2. До доставки",
     }),
     text8: t({
       en: "Until you have claimed repository access, you can cancel your order for a full refund. Write to",
@@ -93,6 +101,7 @@ const refundsContent = {
       ja: "リポジトリへのアクセスを取得するまでは、注文をキャンセルして全額返金を受けられます。次の宛先までご連絡ください：",
       de: "Solange du den Repository-Zugriff noch nicht eingelöst hast, kannst du deine Bestellung gegen volle Rückerstattung stornieren. Schreib an",
       pt: "Até teres pedido acesso ao repositório, podes cancelar a tua encomenda e receber um reembolso total. Escreve para",
+      ru: "Пока вы не получили доступ к репозиторию, вы можете отменить заказ и получить полный возврат. Напишите на",
     }),
     text9: t({
       en: "; you do not need to give a reason.",
@@ -103,6 +112,7 @@ const refundsContent = {
       ja: "。理由をお伝えいただく必要はありません。",
       de: "; du musst keinen Grund angeben.",
       pt: "; não precisas de indicar um motivo.",
+      ru: "; указывать причину не нужно.",
     }),
     heading10: t({
       en: "3. Right of withdrawal for consumers in the EU and UK",
@@ -113,6 +123,7 @@ const refundsContent = {
       ja: "3. EUおよび英国の消費者の撤回権",
       de: "3. Widerrufsrecht für Verbraucher in der EU und im Vereinigten Königreich",
       pt: "3. Direito de livre resolução para consumidores na UE e no Reino Unido",
+      ru: "3. Право на отказ для потребителей в ЕС и Великобритании",
     }),
     text11: t({
       en: "Consumers normally have 14 days to withdraw from a purchase of digital content. Because the pack is digital content, that right ends once delivery starts.",
@@ -123,6 +134,7 @@ const refundsContent = {
       ja: "消費者は通常、デジタルコンテンツの購入から14日以内に撤回する権利があります。パックはデジタルコンテンツであるため、この権利はお届けが開始された時点で終了します。",
       de: "Verbraucher haben beim Kauf digitaler Inhalte normalerweise 14 Tage Zeit für einen Widerruf. Da das Pack ein digitaler Inhalt ist, erlischt dieses Recht, sobald die Auslieferung beginnt.",
       pt: "Os consumidores dispõem normalmente de 14 dias para desistir de uma compra de conteúdo digital. Como o pacote é conteúdo digital, esse direito termina assim que a entrega começa.",
+      ru: "Обычно у потребителей есть 14 дней на отказ от покупки цифрового контента. Поскольку набор является цифровым контентом, это право прекращается с началом доставки.",
     }),
     text12: t({
       en: "By claiming repository access, you ask us to begin delivery and acknowledge that you lose the right of withdrawal once access has been granted to you. If you would prefer to keep the 14-day period, do not claim access and write to us instead.",
@@ -133,6 +145,7 @@ const refundsContent = {
       ja: "リポジトリへのアクセスを取得することで、あなたは当方にお届けの開始を依頼し、アクセスが付与された時点で撤回権を失うことを了承したものとみなされます。14日間の期間を維持したい場合は、アクセスを取得せずに当方へご連絡ください。",
       de: "Indem du den Repository-Zugriff einlöst, verlangst du, dass wir mit der Auslieferung beginnen, und bestätigst, dass du dein Widerrufsrecht verlierst, sobald dir der Zugriff gewährt wurde. Wenn du die 14-tägige Frist lieber behalten möchtest, löse den Zugriff nicht ein und schreib uns stattdessen.",
       pt: "Ao pedires acesso ao repositório, pedes-nos que iniciemos a entrega e reconheces que perdes o direito de livre resolução assim que o acesso te for concedido. Se preferires manter o prazo de 14 dias, não peças acesso e escreve-nos em vez disso.",
+      ru: "Получая доступ к репозиторию, вы просите нас начать доставку и подтверждаете, что теряете право на отказ после предоставления доступа. Если вы хотите сохранить 14-дневный срок, не получайте доступ, а напишите нам.",
     }),
     heading13: t({
       en: "4. Refunds we do give after delivery",
@@ -143,6 +156,7 @@ const refundsContent = {
       ja: "4. お届け後に返金するケース",
       de: "4. Rückerstattungen, die wir nach der Auslieferung gewähren",
       pt: "4. Reembolsos que concedemos após a entrega",
+      ru: "4. Когда мы возвращаем деньги после доставки",
     }),
     text14: t({
       en: "You were charged twice, or charged for something you did not buy.",
@@ -153,6 +167,7 @@ const refundsContent = {
       ja: "二重に請求された場合、または購入していないものを請求された場合。",
       de: "Dir wurde doppelt abgebucht, oder dir wurde etwas berechnet, das du nicht gekauft hast.",
       pt: "Foste cobrado duas vezes, ou cobrado por algo que não compraste.",
+      ru: "С вас списали деньги дважды или за то, что вы не покупали.",
     }),
     text15: t({
       en: "Repository access never reached you, and we could not fix it for you.",
@@ -163,6 +178,7 @@ const refundsContent = {
       ja: "リポジトリへのアクセスが届かず、当方でも解決できなかった場合。",
       de: "Der Repository-Zugriff hat dich nie erreicht, und wir konnten das Problem nicht für dich beheben.",
       pt: "O acesso ao repositório nunca te chegou e não conseguimos resolver a situação por ti.",
+      ru: "Доступ к репозиторию так и не был вам предоставлен, и мы не смогли это исправить.",
     }),
     text16: t({
       en: "The pack does not do what this site says it does, and we cannot resolve it with you.",
@@ -173,6 +189,7 @@ const refundsContent = {
       ja: "パックがこのサイトの説明どおりに機能せず、あなたとともに解決できない場合。",
       de: "Das Pack leistet nicht, was diese Website verspricht, und wir können das nicht gemeinsam mit dir lösen.",
       pt: "O pacote não faz o que este site diz que faz, e não conseguimos resolver a situação contigo.",
+      ru: "Набор не делает того, что заявлено на этом сайте, и мы не можем решить это вместе с вами.",
     }),
     text17: t({
       en: "Where a refund applies, Dodo Payments, as merchant of record, returns the full amount to the original payment method. Repository access, if already granted, ends when the refund is issued. This does not limit any rights you have under the law where you live.",
@@ -183,6 +200,7 @@ const refundsContent = {
       ja: "返金が適用される場合、販売事業者であるDodo Paymentsが元の支払い方法に全額を返金します。すでにリポジトリへのアクセスが付与されている場合、返金の実行時に終了します。これは、お住まいの地域の法律に基づくあなたの権利を制限するものではありません。",
       de: "Wenn eine Rückerstattung greift, erstattet Dodo Payments als Merchant of Record den vollen Betrag auf das ursprüngliche Zahlungsmittel. Ein bereits gewährter Repository-Zugriff endet mit der Rückerstattung. Deine gesetzlichen Rechte an deinem Wohnort bleiben davon unberührt.",
       pt: "Quando há lugar a reembolso, a Dodo Payments, enquanto comerciante registado, devolve o montante total para o método de pagamento original. O acesso ao repositório, se já tiver sido concedido, termina quando o reembolso é emitido. Isto não limita quaisquer direitos que tenhas ao abrigo da lei do local onde vives.",
+      ru: "Если возврат положен, Dodo Payments как продавец (merchant of record) возвращает полную сумму на исходный способ оплаты. Доступ к репозиторию, если он уже был предоставлен, прекращается в момент возврата. Это не ограничивает права, которые есть у вас по закону страны проживания.",
     }),
     heading18: t({
       en: "5. How to ask",
@@ -193,6 +211,7 @@ const refundsContent = {
       ja: "5. 依頼方法",
       de: "5. So fragst du an",
       pt: "5. Como pedir",
+      ru: "5. Как запросить",
     }),
     text19: t({
       en: "Write to",
@@ -203,6 +222,7 @@ const refundsContent = {
       ja: "次の宛先まで",
       de: "Schreib an",
       pt: "Escreve para",
+      ru: "Напишите на",
     }),
     text20: t({
       en: "from the email address you used at checkout and tell us what went wrong. We answer every request, usually within two working days.",
@@ -213,6 +233,7 @@ const refundsContent = {
       ja: "購入時に使用したメールアドレスからご連絡いただき、問題の内容をお知らせください。すべてのご依頼に、通常2営業日以内に回答します。",
       de: "von der E-Mail-Adresse, die du beim Checkout verwendet hast, und sag uns, was schiefgelaufen ist. Wir beantworten jede Anfrage, meist innerhalb von zwei Werktagen.",
       pt: "a partir do endereço de e-mail que usaste no pagamento e diz-nos o que correu mal. Respondemos a todos os pedidos, normalmente no prazo de dois dias úteis.",
+      ru: "с адреса email, указанного при оплате, и расскажите, что пошло не так. Мы отвечаем на каждый запрос, обычно в течение двух рабочих дней.",
     }),
     heading21: t({
       en: "6. Chargebacks",
@@ -223,6 +244,7 @@ const refundsContent = {
       ja: "6. チャージバック",
       de: "6. Rückbuchungen",
       pt: "6. Estornos",
+      ru: "6. Чарджбэки",
     }),
     text22: t({
       en: "If something is wrong, contact us first. A chargeback opened without contacting us suspends access to the pack while the bank reviews it, which is slower for everyone than a refund we issue directly.",
@@ -233,6 +255,7 @@ const refundsContent = {
       ja: "問題がある場合は、まず当方にご連絡ください。ご連絡なくチャージバックが申し立てられた場合、銀行の審査中はパックへのアクセスを停止します。これは、当方が直接返金するよりも、すべての人にとって時間がかかります。",
       de: "Wenn etwas nicht stimmt, kontaktiere zuerst uns. Eine Rückbuchung ohne vorherige Kontaktaufnahme sperrt den Zugriff auf das Pack, während die Bank sie prüft – das dauert für alle länger als eine Rückerstattung, die wir direkt veranlassen.",
       pt: "Se algo estiver errado, contacta-nos primeiro. Um estorno aberto sem nos contactares suspende o acesso ao pacote enquanto o banco o analisa, o que é mais lento para todos do que um reembolso emitido diretamente por nós.",
+      ru: "Если что-то не так, сначала свяжитесь с нами. Чарджбэк, открытый без обращения к нам, приостанавливает доступ к набору на время проверки банком, а это медленнее для всех, чем возврат, который мы делаем напрямую.",
     }),
     sponsorHeading: t({
       en: "7. Sponsorships",
@@ -243,6 +266,7 @@ const refundsContent = {
       ja: "7. スポンサーシップ",
       de: "7. Sponsorings",
       pt: "7. Patrocínios",
+      ru: "7. Спонсорство",
     }),
     sponsorText1: t({
       en: "Sponsorships cost Diamond $250, Gold $150, or Silver $100, either per month as a subscription or once for a single 30-day run. You can cancel a subscription anytime from the Dodo Payments customer portal, linked in your billing emails, or by writing to us. Your placement stays up until the end of the month you paid for, and you are not charged again. A 30-day run never renews and ends on its own.",
@@ -253,6 +277,7 @@ const refundsContent = {
       ja: "スポンサーシップの料金は、ダイヤモンド$250、ゴールド$150、シルバー$100で、月額のサブスクリプションまたは30日間1回限りの掲載から選べます。サブスクリプションは、請求メールに記載されたDodo Paymentsのカスタマーポータルから、または当方へのご連絡により、いつでもキャンセルできます。掲載は支払い済みの月の終わりまで継続し、再度請求されることはありません。30日間の掲載は更新されず、自動的に終了します。",
       de: "Sponsorings kosten Diamond 250 $, Gold 150 $ oder Silver 100 $, entweder monatlich als Abo oder einmalig für eine Laufzeit von 30 Tagen. Ein Abo kannst du jederzeit im Kundenportal von Dodo Payments kündigen, das in deinen Rechnungs-E-Mails verlinkt ist, oder indem du uns schreibst. Deine Platzierung bleibt bis zum Ende des bezahlten Monats bestehen, und es wird nichts weiter abgebucht. Eine 30-Tage-Laufzeit verlängert sich nie und endet von selbst.",
       pt: "Os patrocínios custam 250 $ (Diamante), 150 $ (Ouro) ou 100 $ (Prata), por mês como subscrição ou uma única vez para um período de 30 dias. Podes cancelar uma subscrição a qualquer momento no portal de cliente da Dodo Payments, cuja ligação está nos teus e-mails de faturação, ou escrevendo-nos. O teu espaço mantém-se até ao fim do mês que pagaste e não voltas a ser cobrado. Um período de 30 dias nunca é renovado e termina por si.",
+      ru: "Спонсорство стоит: Diamond — $250, Gold — $150, Silver — $100, либо ежемесячно по подписке, либо разово за одно 30-дневное размещение. Подписку можно отменить в любой момент в портале клиента Dodo Payments (ссылка есть в письмах об оплате) или написав нам. Размещение остаётся до конца оплаченного месяца, и повторного списания не будет. 30-дневное размещение не продлевается и заканчивается само.",
     }),
     sponsorText2: t({
       en: "A month or 30-day run that has started is not refunded. If we decline your placement before it ever goes live, we refund it in full. Otherwise refunds apply only where you were charged twice or for something you did not buy, or where the law where you live requires it. Where a refund applies, Dodo Payments returns it to the original payment method.",
@@ -263,6 +288,7 @@ const refundsContent = {
       ja: "開始済みの月または30日間の掲載は返金されません。掲載開始前に当方が掲載をお断りした場合は、全額返金します。それ以外の場合、返金は二重請求や購入していないものへの請求があった場合、またはお住まいの地域の法律で求められる場合にのみ適用されます。返金が適用される場合、Dodo Paymentsが元の支払い方法に返金します。",
       de: "Ein begonnener Monat oder eine begonnene 30-Tage-Laufzeit wird nicht erstattet. Lehnen wir deine Platzierung ab, bevor sie live geht, erstatten wir den vollen Betrag. Ansonsten gibt es Rückerstattungen nur, wenn dir doppelt oder für etwas, das du nicht gekauft hast, abgebucht wurde, oder wenn das Recht an deinem Wohnort es verlangt. Wenn eine Rückerstattung greift, erstattet Dodo Payments sie auf das ursprüngliche Zahlungsmittel.",
       pt: "Um mês ou período de 30 dias já iniciado não é reembolsado. Se recusarmos o teu espaço antes de alguma vez ficar visível, reembolsamo-lo na totalidade. Caso contrário, os reembolsos aplicam-se apenas quando foste cobrado duas vezes ou por algo que não compraste, ou quando a lei do local onde vives o exige. Quando há lugar a reembolso, a Dodo Payments devolve-o para o método de pagamento original.",
+      ru: "Начавшийся месяц или 30-дневное размещение не возвращаются. Если мы отклоним размещение до его публикации, мы вернём полную сумму. В остальных случаях возврат возможен, только если с вас списали дважды или за то, что вы не покупали, либо если этого требует закон страны вашего проживания. Если возврат положен, Dodo Payments возвращает его на исходный способ оплаты.",
     }),
   },
 } satisfies Dictionary;

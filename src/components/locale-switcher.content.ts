@@ -13,6 +13,7 @@ const localeSwitcher = {
       ja: "言語",
       de: "Sprache",
       pt: "Idioma",
+      ru: "Язык",
     }),
   },
 } satisfies Dictionary;

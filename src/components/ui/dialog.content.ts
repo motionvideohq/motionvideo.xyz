@@ -13,6 +13,7 @@ export default {
       ja: "閉じる",
       de: "Schließen",
       pt: "Fechar",
+      ru: "Закрыть",
     }),
   },
 } satisfies Dictionary;

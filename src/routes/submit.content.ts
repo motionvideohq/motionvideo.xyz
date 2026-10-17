@@ -13,6 +13,7 @@ export default {
       ja: "見つける価値のあるものを共有しましょう。",
       de: "Teile etwas, das es wert ist, entdeckt zu werden.",
       pt: "Partilha algo que valha a pena descobrir.",
+      ru: "Поделитесь тем, что стоит увидеть.",
     }),
     intro: t({
       en: "Send a motion video, tool, creative, or agent skill. We review everything before it goes live.",
@@ -23,6 +24,7 @@ export default {
       ja: "モーション動画、ツール、クリエイティブ、エージェントスキルを送ってください。公開前にすべて審査します。",
       de: "Schick uns ein Motion-Video, ein Tool, ein Creative oder einen Agent-Skill. Wir prüfen alles, bevor es live geht.",
       pt: "Envia um vídeo de motion, uma ferramenta, um criativo ou uma skill de agente. Revemos tudo antes de ficar publicado.",
+      ru: "Отправьте моушн-видео, инструмент, студию или агентский скилл. Мы проверяем всё перед публикацией.",
     }),
     sections: {
       kind: t({
@@ -34,6 +36,7 @@ export default {
         ja: "種類",
         de: "Typ",
         pt: "Tipo",
+        ru: "Тип",
       }),
       kindBody: t({
         en: "What you’re sharing and where it belongs.",
@@ -44,6 +47,7 @@ export default {
         ja: "共有するものと掲載先。",
         de: "Was du teilst und wo es hingehört.",
         pt: "O que estás a partilhar e onde se encaixa.",
+        ru: "Чем вы делитесь и куда это относится.",
       }),
       entry: t({
         en: "Entry",
@@ -54,6 +58,7 @@ export default {
         ja: "エントリー",
         de: "Eintrag",
         pt: "Entrada",
+        ru: "Запись",
       }),
       entryBody: t({
         en: "The title, link, and details we review.",
@@ -64,6 +69,7 @@ export default {
         ja: "審査するタイトル、リンク、詳細。",
         de: "Titel, Link und Details, die wir prüfen.",
         pt: "O título, a ligação e os detalhes que revemos.",
+        ru: "Название, ссылка и детали для проверки.",
       }),
       you: t({
         en: "About you",
@@ -74,6 +80,7 @@ export default {
         ja: "あなたについて",
         de: "Über dich",
         pt: "Sobre ti",
+        ru: "О вас",
       }),
       youBody: t({
         en: "Who to credit and where we reply.",
@@ -84,6 +91,7 @@ export default {
         ja: "クレジット表記と返信先。",
         de: "Wen wir nennen und wohin wir antworten.",
         pt: "A quem atribuir o crédito e para onde respondemos.",
+        ru: "Кого указать автором и куда ответить.",
       }),
       submit: t({
         en: "Submit",
@@ -94,6 +102,7 @@ export default {
         ja: "送信",
         de: "Einreichen",
         pt: "Submeter",
+        ru: "Отправить",
       }),
       submitBody: t({
         en: "Every submission is reviewed before anything is published.",
@@ -104,6 +113,7 @@ export default {
         ja: "すべての投稿は公開前に審査されます。",
         de: "Jede Einreichung wird geprüft, bevor etwas veröffentlicht wird.",
         pt: "Todas as submissões são revistas antes de qualquer publicação.",
+        ru: "Каждая заявка проверяется перед публикацией.",
       }),
     },
     kind: t({
@@ -115,6 +125,7 @@ export default {
       ja: "何を共有しますか？",
       de: "Was teilst du?",
       pt: "O que estás a partilhar?",
+      ru: "Чем вы делитесь?",
     }),
     kinds: {
       video: t({
@@ -126,6 +137,7 @@ export default {
         ja: "モーション動画",
         de: "Motion-Video",
         pt: "Vídeo de motion",
+        ru: "Моушн-видео",
       }),
       tool: t({
         en: "Tool",
@@ -136,6 +148,7 @@ export default {
         ja: "ツール",
         de: "Tool",
         pt: "Ferramenta",
+        ru: "Инструмент",
       }),
       studio: t({
         en: "Creative",
@@ -146,6 +159,7 @@ export default {
         ja: "クリエイティブ",
         de: "Creative",
         pt: "Criativo",
+        ru: "Студия",
       }),
       skill: t({
         en: "Agent skill",
@@ -156,6 +170,7 @@ export default {
         ja: "エージェントスキル",
         de: "Agent-Skill",
         pt: "Skill de agente",
+        ru: "Агентский скилл",
       }),
       extra: t({
         en: "Something else",
@@ -166,6 +181,7 @@ export default {
         ja: "その他",
         de: "Etwas anderes",
         pt: "Outra coisa",
+        ru: "Другое",
       }),
     },
     category: t({
@@ -177,6 +193,7 @@ export default {
       ja: "カテゴリ",
       de: "Kategorie",
       pt: "Categoria",
+      ru: "Категория",
     }),
     noCategory: t({
       en: "Not sure",
@@ -187,6 +204,7 @@ export default {
       ja: "わからない",
       de: "Weiß nicht",
       pt: "Não sei",
+      ru: "Не знаю",
     }),
     categoryHelp: t({
       en: "Optional. Where it fits best on MotionVideo.",
@@ -197,6 +215,7 @@ export default {
       ja: "任意。MotionVideoで最も合う場所。",
       de: "Optional. Wo es auf MotionVideo am besten hinpasst.",
       pt: "Opcional. Onde se encaixa melhor no MotionVideo.",
+      ru: "Необязательно. Где это лучше всего подходит на MotionVideo.",
     }),
     name: t({
       en: "Your name / attribution",
@@ -207,6 +226,7 @@ export default {
       ja: "お名前／クレジット表記",
       de: "Dein Name / Nennung",
       pt: "O teu nome / atribuição",
+      ru: "Ваше имя / авторство",
     }),
     signedInAs: t({
       en: "Submitting as",
@@ -217,6 +237,7 @@ export default {
       ja: "投稿者：",
       de: "Einreichen als",
       pt: "A submeter como",
+      ru: "Отправляете как",
     }),
     accountEmailHelp: t({
       en: "Your account email stays private and is only used for questions about your submission.",
@@ -227,6 +248,7 @@ export default {
       ja: "アカウントのメールアドレスは公開されず、投稿に関するご質問にのみ使用します。",
       de: "Die E-Mail-Adresse deines Kontos bleibt privat und wird nur für Fragen zu deiner Einreichung verwendet.",
       pt: "O e-mail da tua conta permanece privado e só é usado para questões sobre a tua submissão.",
+      ru: "Email вашего аккаунта остаётся закрытым и используется только для вопросов по заявке.",
     }),
     entryTitle: t({
       en: "Title / project name",
@@ -237,6 +259,7 @@ export default {
       ja: "タイトル／プロジェクト名",
       de: "Titel / Projektname",
       pt: "Título / nome do projeto",
+      ru: "Название / проект",
     }),
     url: t({
       en: "Public HTTPS URL",
@@ -247,6 +270,7 @@ export default {
       ja: "公開HTTPS URL",
       de: "Öffentliche HTTPS-URL",
       pt: "URL HTTPS público",
+      ru: "Публичный HTTPS URL",
     }),
     urlHelp: t({
       en: "Link to the original video, the tool’s website, or the creative’s portfolio. No private or sign-in-only links.",
@@ -257,6 +281,7 @@ export default {
       ja: "元の動画、ツールのウェブサイト、クリエイティブのポートフォリオへのリンク。非公開やログインが必要なリンクは不可です。",
       de: "Link zum Originalvideo, zur Website des Tools oder zum Portfolio des Creatives. Keine privaten Links oder Links, die eine Anmeldung erfordern.",
       pt: "Ligação para o vídeo original, o site da ferramenta ou o portefólio do criativo. Nada de ligações privadas ou que exijam início de sessão.",
+      ru: "Ссылка на оригинальное видео, сайт инструмента или портфолио автора. Без приватных ссылок и ссылок, требующих входа.",
     }),
     description: t({
       en: "Description",
@@ -267,6 +292,7 @@ export default {
       ja: "説明",
       de: "Beschreibung",
       pt: "Descrição",
+      ru: "Описание",
     }),
     descriptionHelp: t({
       en: "Tell us what it is and why it belongs here (10–5,000 characters).",
@@ -277,6 +303,7 @@ export default {
       ja: "それが何で、なぜここにふさわしいのかを教えてください（10〜5,000文字）。",
       de: "Erzähl uns, was es ist und warum es hierher gehört (10–5.000 Zeichen).",
       pt: "Diz-nos o que é e porque pertence aqui (10–5000 caracteres).",
+      ru: "Расскажите, что это и почему это должно быть здесь (10–5000 символов).",
     }),
     prompt: t({
       en: "Prompt (optional)",
@@ -287,6 +314,7 @@ export default {
       ja: "プロンプト（任意）",
       de: "Prompt (optional)",
       pt: "Prompt (opcional)",
+      ru: "Промпт (необязательно)",
     }),
     promptHelp: t({
       en: "If this video was made with AI, share the prompt you have permission to publish.",
@@ -297,6 +325,7 @@ export default {
       ja: "AIで作られた動画の場合は、公開の許可を得ているプロンプトを共有してください。",
       de: "Wenn dieses Video mit KI erstellt wurde, teile den Prompt, den du veröffentlichen darfst.",
       pt: "Se este vídeo foi feito com IA, partilha o prompt que tens autorização para publicar.",
+      ru: "Если видео сделано с помощью ИИ, поделитесь промптом, который вы вправе опубликовать.",
     }),
     consent: t({
       en: "I have permission to share this work. I agree that my name and submitted content, including any prompt, may be published with attribution if accepted. My email stays private.",
@@ -307,6 +336,7 @@ export default {
       ja: "この作品を共有する許可を得ています。採用された場合、名前と投稿内容（プロンプトを含む）がクレジット付きで公開されることに同意します。メールアドレスは公開されません。",
       de: "Ich darf diese Arbeit teilen. Ich bin einverstanden, dass mein Name und die eingereichten Inhalte, einschließlich eines Prompts, bei Annahme mit Nennung veröffentlicht werden dürfen. Meine E-Mail bleibt privat.",
       pt: "Tenho autorização para partilhar este trabalho. Aceito que o meu nome e o conteúdo submetido, incluindo qualquer prompt, possam ser publicados com atribuição, caso sejam aceites. O meu e-mail permanece privado.",
+      ru: "У меня есть право делиться этой работой. Я согласен(-на), что моё имя и отправленный контент, включая промпт, могут быть опубликованы с указанием авторства, если работа будет принята. Мой email остаётся закрытым.",
     }),
     privacy: t({
       en: "Read our privacy policy",
@@ -317,6 +347,7 @@ export default {
       ja: "プライバシーポリシーを読む",
       de: "Lies unsere Datenschutzerklärung",
       pt: "Lê a nossa política de privacidade",
+      ru: "Прочитать политику конфиденциальности",
     }),
     submit: t({
       en: "Submit for review",
@@ -327,6 +358,7 @@ export default {
       ja: "審査に送信",
       de: "Zur Prüfung einreichen",
       pt: "Submeter para revisão",
+      ru: "Отправить на проверку",
     }),
     pending: t({
       en: "Saving submission…",
@@ -337,6 +369,7 @@ export default {
       ja: "投稿を保存中…",
       de: "Einreichung wird gespeichert …",
       pt: "A guardar a submissão…",
+      ru: "Сохраняем заявку…",
     }),
     saved: t({
       en: "Submission received.",
@@ -347,6 +380,7 @@ export default {
       ja: "投稿を受け付けました。",
       de: "Einreichung erhalten.",
       pt: "Submissão recebida.",
+      ru: "Заявка получена.",
     }),
     thanks: t({
       en: "Your submission is saved and pending review. It is not public yet. Thanks for helping the collection grow.",
@@ -357,6 +391,7 @@ export default {
       ja: "投稿は保存され、審査待ちです。まだ公開されていません。コレクションの充実にご協力いただきありがとうございます。",
       de: "Deine Einreichung ist gespeichert und wartet auf Prüfung. Sie ist noch nicht öffentlich. Danke, dass du die Sammlung wachsen lässt.",
       pt: "A tua submissão está guardada e a aguardar revisão. Ainda não é pública. Obrigado por ajudares a coleção a crescer.",
+      ru: "Ваша заявка сохранена и ждёт проверки. Пока она не опубликована. Спасибо, что помогаете коллекции расти.",
     }),
     back: t({
       en: "Back to Discover",
@@ -367,6 +402,7 @@ export default {
       ja: "見つけるに戻る",
       de: "Zurück zu Entdecken",
       pt: "Voltar a Descobrir",
+      ru: "Вернуться в Обзор",
     }),
     errors: {
       validation: t({
@@ -378,6 +414,7 @@ export default {
         ja: "必須項目をすべてご確認ください：お名前、タイトル、公開HTTPSのウェブサイトURL、10文字以上の説明、共有への同意が必要です。",
         de: "Prüfe alle Pflichtfelder: Name, Titel, eine öffentliche HTTPS-Website-URL, eine Beschreibung mit mindestens 10 Zeichen und deine Einwilligung zum Teilen sind erforderlich.",
         pt: "Verifica todos os campos obrigatórios: o teu nome, um título, um URL HTTPS público de um site, uma descrição com pelo menos 10 caracteres e o teu consentimento para partilhar são obrigatórios.",
+        ru: "Проверьте обязательные поля: нужны имя, название, публичный HTTPS URL сайта, описание не короче 10 символов и согласие на публикацию.",
       }),
       "rate-limit": t({
         en: "Too many requests. Please wait a minute before submitting again.",
@@ -388,6 +425,7 @@ export default {
         ja: "リクエストが多すぎます。1分待ってから再度送信してください。",
         de: "Zu viele Anfragen. Bitte warte eine Minute, bevor du erneut einreichst.",
         pt: "Demasiados pedidos. Espera um minuto antes de submeteres novamente.",
+        ru: "Слишком много запросов. Подождите минуту, прежде чем отправлять снова.",
       }),
       storage: t({
         en: "Your submission couldn’t be saved. Your form is still here; please try again.",
@@ -398,6 +436,7 @@ export default {
         ja: "投稿を保存できませんでした。フォームの内容は残っています。もう一度お試しください。",
         de: "Deine Einreichung konnte nicht gespeichert werden. Dein Formular ist noch da; bitte versuch es noch mal.",
         pt: "Não foi possível guardar a tua submissão. O formulário continua aqui; tenta novamente.",
+        ru: "Не удалось сохранить заявку. Форма осталась заполненной; попробуйте ещё раз.",
       }),
       unauthorized: t({
         en: "Your session has ended. Sign in again to submit; your form is still here.",
@@ -408,6 +447,7 @@ export default {
         ja: "セッションが終了しました。投稿するには再度ログインしてください。フォームの内容は残っています。",
         de: "Deine Sitzung ist abgelaufen. Melde dich erneut an, um einzureichen; dein Formular ist noch da.",
         pt: "A tua sessão terminou. Inicia sessão novamente para submeter; o formulário continua aqui.",
+        ru: "Ваша сессия завершилась. Войдите снова, чтобы отправить; форма осталась заполненной.",
       }),
     },
   },

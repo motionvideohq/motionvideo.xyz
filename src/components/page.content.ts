@@ -13,6 +13,7 @@ const page = {
       ja: "最終更新日：",
       de: "Zuletzt aktualisiert:",
       pt: "Última atualização:",
+      ru: "Обновлено:",
     }),
   },
 } satisfies Dictionary;

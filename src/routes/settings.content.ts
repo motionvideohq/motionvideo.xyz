@@ -13,6 +13,7 @@ export default {
       ja: "設定",
       de: "Einstellungen",
       pt: "Definições",
+      ru: "Настройки",
     }),
     intro: t({
       en: "Your account preferences.",
@@ -23,6 +24,7 @@ export default {
       ja: "アカウントの設定。",
       de: "Deine Kontoeinstellungen.",
       pt: "As preferências da tua conta.",
+      ru: "Настройки вашего аккаунта.",
     }),
     account: t({
       en: "Account",
@@ -33,6 +35,7 @@ export default {
       ja: "アカウント",
       de: "Konto",
       pt: "Conta",
+      ru: "Аккаунт",
     }),
     accountBody: t({
       en: "How you appear and the email you sign in with.",
@@ -43,6 +46,7 @@ export default {
       ja: "表示名とログインに使うメールアドレス。",
       de: "Wie du angezeigt wirst und mit welcher E-Mail du dich anmeldest.",
       pt: "Como apareces e o e-mail com que inicias sessão.",
+      ru: "Как вы отображаетесь и email для входа.",
     }),
     email: t({
       en: "Email",
@@ -53,6 +57,7 @@ export default {
       ja: "メールアドレス",
       de: "E-Mail",
       pt: "E-mail",
+      ru: "Email",
     }),
     avatar: t({
       en: "Avatar",
@@ -63,6 +68,7 @@ export default {
       ja: "アバター",
       de: "Avatar",
       pt: "Avatar",
+      ru: "Аватар",
     }),
     name: t({
       en: "Name",
@@ -73,6 +79,7 @@ export default {
       ja: "名前",
       de: "Name",
       pt: "Nome",
+      ru: "Имя",
     }),
     noName: t({
       en: "Not set",
@@ -83,6 +90,7 @@ export default {
       ja: "未設定",
       de: "Nicht festgelegt",
       pt: "Não definido",
+      ru: "Не указано",
     }),
     edit: t({
       en: "Edit",
@@ -93,6 +101,7 @@ export default {
       ja: "編集",
       de: "Bearbeiten",
       pt: "Editar",
+      ru: "Изменить",
     }),
     save: t({
       en: "Save",
@@ -103,6 +112,7 @@ export default {
       ja: "保存",
       de: "Speichern",
       pt: "Guardar",
+      ru: "Сохранить",
     }),
     saving: t({
       en: "Saving…",
@@ -113,6 +123,7 @@ export default {
       ja: "保存中…",
       de: "Wird gespeichert …",
       pt: "A guardar…",
+      ru: "Сохранение…",
     }),
     cancel: t({
       en: "Cancel",
@@ -123,6 +134,7 @@ export default {
       ja: "キャンセル",
       de: "Abbrechen",
       pt: "Cancelar",
+      ru: "Отмена",
     }),
     saveError: t({
       en: "Could not save. Try again.",
@@ -133,6 +145,7 @@ export default {
       ja: "保存できませんでした。もう一度お試しください。",
       de: "Speichern fehlgeschlagen. Versuch es noch mal.",
       pt: "Não foi possível guardar. Tenta novamente.",
+      ru: "Не удалось сохранить. Попробуйте ещё раз.",
     }),
     connections: t({
       en: "Connections",
@@ -143,6 +156,7 @@ export default {
       ja: "連携",
       de: "Verbindungen",
       pt: "Ligações",
+      ru: "Подключения",
     }),
     connectionsBody: t({
       en: "Other ways to sign in to this account.",
@@ -153,6 +167,7 @@ export default {
       ja: "このアカウントへのその他のログイン方法。",
       de: "Weitere Möglichkeiten, dich bei diesem Konto anzumelden.",
       pt: "Outras formas de iniciar sessão nesta conta.",
+      ru: "Другие способы входа в этот аккаунт.",
     }),
     connected: t({
       en: "Connected",
@@ -163,6 +178,7 @@ export default {
       ja: "連携済み",
       de: "Verbunden",
       pt: "Ligado",
+      ru: "Подключено",
     }),
     connect: t({
       en: "Connect",
@@ -173,6 +189,7 @@ export default {
       ja: "連携する",
       de: "Verbinden",
       pt: "Ligar",
+      ru: "Подключить",
     }),
     preferences: t({
       en: "Preferences",
@@ -183,6 +200,7 @@ export default {
       ja: "環境設定",
       de: "Präferenzen",
       pt: "Preferências",
+      ru: "Предпочтения",
     }),
     preferencesBody: t({
       en: "How the site behaves for you.",
@@ -193,6 +211,7 @@ export default {
       ja: "サイトの動作設定。",
       de: "Wie sich die Website für dich verhält.",
       pt: "Como o site se comporta para ti.",
+      ru: "Как сайт работает для вас.",
     }),
     language: t({
       en: "Language",
@@ -203,6 +222,7 @@ export default {
       ja: "言語",
       de: "Sprache",
       pt: "Idioma",
+      ru: "Язык",
     }),
     cursors: t({
       en: "Cursors",
@@ -213,6 +233,7 @@ export default {
       ja: "カーソル",
       de: "Cursor",
       pt: "Cursores",
+      ru: "Курсоры",
     }),
     cursorsHelp: t({
       en: "See and share live cursors with other visitors.",
@@ -223,6 +244,7 @@ export default {
       ja: "他の訪問者とライブカーソルを表示・共有します。",
       de: "Live-Cursor anderer Besucher sehen und deinen teilen.",
       pt: "Ver e partilhar cursores em direto com outros visitantes.",
+      ru: "Видеть курсоры других посетителей и показывать им свой.",
     }),
     delete: t({
       en: "Delete",
@@ -233,6 +255,7 @@ export default {
       ja: "削除",
       de: "Löschen",
       pt: "Eliminar",
+      ru: "Удалить",
     }),
     emailsBody: t({
       en: "What we send you, besides sign-in codes and receipts.",
@@ -243,6 +266,7 @@ export default {
       ja: "ログインコードと領収書以外にお送りするもの。",
       de: "Was wir dir außer Anmeldecodes und Belegen schicken.",
       pt: "O que te enviamos, além dos códigos de início de sessão e dos recibos.",
+      ru: "Что мы отправляем вам, помимо кодов для входа и чеков.",
     }),
     danger: t({
       en: "Danger zone",
@@ -253,6 +277,7 @@ export default {
       ja: "危険な操作",
       de: "Gefahrenzone",
       pt: "Zona de perigo",
+      ru: "Опасная зона",
     }),
     dangerBody: t({
       en: "Permanent and can’t be undone.",
@@ -263,6 +288,7 @@ export default {
       ja: "取り消すことはできません。",
       de: "Endgültig und nicht rückgängig zu machen.",
       pt: "Permanente e irreversível.",
+      ru: "Навсегда, отменить нельзя.",
     }),
     deleteAccount: t({
       en: "Delete account",
@@ -273,6 +299,7 @@ export default {
       ja: "アカウントを削除",
       de: "Konto löschen",
       pt: "Eliminar conta",
+      ru: "Удалить аккаунт",
     }),
     deleteNote: t({
       en: "Removes your account, submissions, and bookmarks.",
@@ -283,6 +310,7 @@ export default {
       ja: "アカウント、投稿、ブックマークを削除します。",
       de: "Entfernt dein Konto, deine Einreichungen und deine Merkliste.",
       pt: "Remove a tua conta, submissões e guardados.",
+      ru: "Удаляет ваш аккаунт, заявки и закладки.",
     }),
     emails: t({
       en: "Emails",
@@ -293,6 +321,7 @@ export default {
       ja: "メール",
       de: "E-Mails",
       pt: "E-mails",
+      ru: "Письма",
     }),
     updates: t({
       en: "MotionVideo updates",
@@ -303,6 +332,7 @@ export default {
       ja: "MotionVideoの最新情報",
       de: "MotionVideo-Updates",
       pt: "Novidades do MotionVideo",
+      ru: "Новости MotionVideo",
     }),
     updatesDescription: t({
       en: "New features and featured work, occasionally.",
@@ -313,6 +343,7 @@ export default {
       ja: "新機能や注目作品を時々お届けします。",
       de: "Gelegentlich neue Features und vorgestellte Arbeiten.",
       pt: "Novas funcionalidades e trabalhos em destaque, de vez em quando.",
+      ru: "Новые функции и избранные работы — изредка.",
     }),
   },
 } satisfies Dictionary;

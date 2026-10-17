@@ -15,6 +15,7 @@ export default {
           ja: "モーションデザインの経験は必要ですか？",
           de: "Brauche ich Erfahrung in Motion Design?",
           pt: "Preciso de experiência em motion design?",
+          ru: "Нужен ли опыт в моушн-дизайне?",
         }),
         answer: t({
           en: "No. The skills carry the motion knowledge: easing, overlap, holds, and pacing. You describe the result in plain words and review a storyboard before anything is rendered.",
@@ -25,6 +26,7 @@ export default {
           ja: "いいえ。イージング、オーバーラップ、ホールド、テンポといったモーションの知識はスキルに含まれています。結果を普段の言葉で伝え、レンダリング前にストーリーボードを確認するだけです。",
           de: "Nein. Die Skills bringen das Motion-Wissen mit: Easing, Überlappung, Pausen und Timing. Du beschreibst das Ergebnis in einfachen Worten und prüfst ein Storyboard, bevor irgendetwas gerendert wird.",
           pt: "Não. As skills contêm o conhecimento de motion: easing, sobreposição, pausas e ritmo. Descreves o resultado em palavras simples e revês um storyboard antes de qualquer coisa ser renderizada.",
+          ru: "Нет. Знания о моушне заложены в скиллы: изинг, перекрытия, паузы и темп. Вы описываете результат простыми словами и проверяете раскадровку до того, как что-либо будет отрендерено.",
         }),
       },
       {
@@ -37,6 +39,7 @@ export default {
           ja: "どんな動画を作れますか？",
           de: "Welche Art von Videos kann ich machen?",
           pt: "Que tipo de vídeos posso criar?",
+          ru: "Какие видео можно сделать?",
         }),
         answer: t({
           en: "Anything built from motion and type: portfolio showreels, intros, title sequences, launch films, and feature updates.",
@@ -47,6 +50,7 @@ export default {
           ja: "モーションとタイポグラフィで構成されるものなら何でも：ポートフォリオのショーリール、イントロ、タイトルシーケンス、ローンチフィルム、機能アップデートなど。",
           de: "Alles, was aus Bewegung und Typografie besteht: Portfolio-Showreels, Intros, Titelsequenzen, Launch-Filme und Feature-Updates.",
           pt: "Tudo o que seja feito de movimento e tipografia: showreels de portefólio, intros, sequências de títulos, filmes de lançamento e novidades de funcionalidades.",
+          ru: "Всё, что строится на движении и типографике: шоурилы для портфолио, интро, титры, лонч-ролики и обзоры обновлений.",
         }),
       },
       {
@@ -59,6 +63,7 @@ export default {
           ja: "どのコーディングエージェントに対応していますか？",
           de: "Welche Coding-Agents werden unterstützt?",
           pt: "Que agentes de programação são suportados?",
+          ru: "Какие кодинг-агенты поддерживаются?",
         }),
         answer: t({
           en: "Any agent that can read instruction files from your repository, including Claude Code, Codex, Cursor, Antigravity, and GitHub Copilot.",
@@ -69,6 +74,7 @@ export default {
           ja: "Claude Code、Codex、Cursor、Antigravity、GitHub Copilotなど、リポジトリ内の指示ファイルを読み込めるあらゆるエージェントに対応しています。",
           de: "Jeder Agent, der Anweisungsdateien aus deinem Repository lesen kann, darunter Claude Code, Codex, Cursor, Antigravity und GitHub Copilot.",
           pt: "Qualquer agente que consiga ler ficheiros de instruções do teu repositório, incluindo Claude Code, Codex, Cursor, Antigravity e GitHub Copilot.",
+          ru: "Любой агент, который умеет читать файлы инструкций из вашего репозитория, включая Claude Code, Codex, Cursor, Antigravity и GitHub Copilot.",
         }),
       },
       {
@@ -81,6 +87,7 @@ export default {
           ja: "どのレンダラーを選べばよいですか？",
           de: "Welchen Renderer soll ich wählen?",
           pt: "Que renderizador devo escolher?",
+          ru: "Какой рендерер выбрать?",
         }),
         answer: t({
           en: "Use whichever fits your project. Remotion suits React codebases, HyperFrames and Editframe work from HTML, and fframes renders on the GPU. Check each renderer’s own license for commercial use.",
@@ -91,6 +98,7 @@ export default {
           ja: "プロジェクトに合うものをお使いください。ReactのコードベースにはRemotion、HTMLベースならHyperFramesやEditframe、GPUでレンダリングするならfframesが適しています。商用利用については各レンダラーのライセンスをご確認ください。",
           de: "Nimm den, der zu deinem Projekt passt. Remotion eignet sich für React-Codebases, HyperFrames und Editframe arbeiten mit HTML, und fframes rendert auf der GPU. Prüfe für kommerzielle Nutzung die Lizenz des jeweiligen Renderers.",
           pt: "Usa o que melhor se adaptar ao teu projeto. O Remotion é ideal para bases de código React, o HyperFrames e o Editframe trabalham a partir de HTML e o fframes renderiza na GPU. Consulta a licença de cada renderizador para uso comercial.",
+          ru: "Тот, что подходит вашему проекту. Remotion хорош для кодовых баз на React, HyperFrames и Editframe работают с HTML, а fframes рендерит на GPU. Условия коммерческого использования смотрите в лицензии каждого рендерера.",
         }),
       },
       {
@@ -103,6 +111,7 @@ export default {
           ja: "支払い後、ファイルはどうやって受け取りますか？",
           de: "Wie bekomme ich die Dateien nach dem Bezahlen?",
           pt: "Como obtenho os ficheiros depois de pagar?",
+          ru: "Как получить файлы после оплаты?",
         }),
         answer: t({
           en: "Checkout needs no account. Right after paying, sign in with the email you paid with, open the Dodo Payments customer portal from your dashboard, and connect your GitHub account. Dodo Payments then invites you to the private repository.",
@@ -113,6 +122,7 @@ export default {
           ja: "購入にアカウントは不要です。支払い後すぐに、支払いに使ったメールアドレスでログインし、ダッシュボードからDodo Paymentsのカスタマーポータルを開いてGitHubアカウントを連携してください。その後、Dodo Paymentsから非公開リポジトリへの招待が届きます。",
           de: "Für den Checkout brauchst du kein Konto. Melde dich direkt nach dem Bezahlen mit der E-Mail-Adresse an, mit der du bezahlt hast, öffne in deinem Dashboard das Kundenportal von Dodo Payments und verbinde dein GitHub-Konto. Dodo Payments lädt dich dann ins private Repository ein.",
           pt: "O pagamento não exige conta. Logo depois de pagares, inicia sessão com o e-mail com que pagaste, abre o portal de cliente da Dodo Payments a partir do teu painel e liga a tua conta do GitHub. A Dodo Payments convida-te depois para o repositório privado.",
+          ru: "Для оплаты аккаунт не нужен. Сразу после оплаты войдите с email, указанным при оплате, откройте портал клиента Dodo Payments из панели управления и подключите аккаунт GitHub. Затем Dodo Payments пригласит вас в приватный репозиторий.",
         }),
       },
       {
@@ -125,6 +135,7 @@ export default {
           ja: "クライアントのプロジェクトにも使えますか？",
           de: "Kann ich es für Kundenprojekte nutzen?",
           pt: "Posso usá-lo em projetos de clientes?",
+          ru: "Можно ли использовать его в клиентских проектах?",
         }),
         answer: t({
           en: "Yes. The license is per person and covers every project you work on, including work for clients.",
@@ -135,6 +146,7 @@ export default {
           ja: "はい。ライセンスは個人単位で、クライアントワークを含め、あなたが携わるすべてのプロジェクトが対象です。",
           de: "Ja. Die Lizenz gilt pro Person und deckt jedes Projekt ab, an dem du arbeitest – auch Arbeiten für Kunden.",
           pt: "Sim. A licença é por pessoa e abrange todos os projetos em que trabalhas, incluindo trabalho para clientes.",
+          ru: "Да. Лицензия персональная и распространяется на все ваши проекты, включая работу для клиентов.",
         }),
       },
       {
@@ -147,6 +159,7 @@ export default {
           ja: "返金はできますか？",
           de: "Kann ich eine Rückerstattung bekommen?",
           pt: "Posso obter um reembolso?",
+          ru: "Можно ли вернуть деньги?",
         }),
         answer: t({
           en: "Yes. Email us before you claim repository access for a full refund. After that, see our refund policy if you have a problem with your order or access.",
@@ -157,6 +170,7 @@ export default {
           ja: "はい。リポジトリへのアクセスを取得する前にメールでご連絡いただければ全額返金します。それ以降、注文やアクセスに問題がある場合は返金ポリシーをご覧ください。",
           de: "Ja. Schreib uns, bevor du den Repository-Zugriff einlöst, und du bekommst den vollen Betrag zurück. Danach gilt unsere Rückerstattungsrichtlinie, falls es ein Problem mit deiner Bestellung oder deinem Zugriff gibt.",
           pt: "Sim. Envia-nos um e-mail antes de pedires acesso ao repositório para receberes um reembolso total. Depois disso, consulta a nossa política de reembolso se tiveres algum problema com a tua encomenda ou com o acesso.",
+          ru: "Да. Напишите нам до получения доступа к репозиторию — и мы вернём полную сумму. После этого, если возникла проблема с заказом или доступом, см. нашу политику возврата.",
         }),
       },
     ],

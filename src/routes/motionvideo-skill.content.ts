@@ -15,6 +15,7 @@ export default {
       ja: "モーションデザインを、",
       de: "Motion Design,",
       pt: "Motion design,",
+      ru: "Моушн-дизайн,",
     }),
     heroEnd: t({
       en: "written in code.",
@@ -25,6 +26,7 @@ export default {
       ja: "コードで。",
       de: "in Code geschrieben.",
       pt: "escrito em código.",
+      ru: "написанный кодом.",
     }),
     agents: t({
       en: "Works with any agent",
@@ -35,6 +37,7 @@ export default {
       ja: "どのエージェントにも対応",
       de: "Funktioniert mit jedem Agent",
       pt: "Funciona com qualquer agente",
+      ru: "Работает с любым агентом",
     }),
     stack: t({
       en: "Works with any stack",
@@ -45,6 +48,7 @@ export default {
       ja: "どのスタックにも対応",
       de: "Funktioniert mit jedem Stack",
       pt: "Funciona com qualquer stack",
+      ru: "Работает с любым стеком",
     }),
     intro: t({
       en: "Agent skills that teach your coding agent real motion design: timing, easing, and choreography. Showreels, intros, and launch films, rendered from a prompt.",
@@ -55,6 +59,7 @@ export default {
       ja: "コーディングエージェントに本物のモーションデザイン（タイミング、イージング、振り付け）を教えるエージェントスキル。ショーリール、イントロ、ローンチフィルムをプロンプトからレンダリング。",
       de: "Agent-Skills, die deinem Coding-Agent echtes Motion Design beibringen: Timing, Easing und Choreografie. Showreels, Intros und Launch-Filme, gerendert aus einem Prompt.",
       pt: "Skills de agente que ensinam ao teu agente de programação motion design a sério: timing, easing e coreografia. Showreels, intros e filmes de lançamento, renderizados a partir de um prompt.",
+      ru: "Агентские скиллы, которые учат вашего кодинг-агента настоящему моушн-дизайну: таймингу, изингу и хореографии. Шоурилы, интро и лонч-ролики, отрендеренные по промпту.",
     }),
     pricing: t({
       en: "See pricing",
@@ -65,6 +70,7 @@ export default {
       ja: "料金を見る",
       de: "Preise ansehen",
       pt: "Ver preços",
+      ru: "Смотреть цены",
     }),
     oneTime: t({
       en: "One-time purchase",
@@ -75,6 +81,7 @@ export default {
       ja: "買い切り",
       de: "Einmalkauf",
       pt: "Compra única",
+      ru: "Разовая покупка",
     }),
     timeline: t({
       en: "Motion design without a timeline.",
@@ -85,6 +92,7 @@ export default {
       ja: "タイムラインなしのモーションデザイン。",
       de: "Motion Design ohne Timeline.",
       pt: "Motion design sem timeline.",
+      ru: "Моушн-дизайн без таймлайна.",
     }),
     judgment: t({
       en: "Good motion is mostly judgment: how long to hold, when things overlap, which easing makes a move feel intentional. That judgment usually lives in keyframe tools and years of practice.",
@@ -95,6 +103,7 @@ export default {
       ja: "良いモーションの大部分は判断です：どれだけ止めるか、いつ重ねるか、どのイージングなら動きに意図が感じられるか。その判断は通常、キーフレームツールと長年の経験の中にあります。",
       de: "Gute Motion ist vor allem Urteilsvermögen: wie lange etwas stehen bleibt, wann sich Dinge überlappen, welches Easing eine Bewegung bewusst wirken lässt. Dieses Urteilsvermögen steckt normalerweise in Keyframe-Tools und jahrelanger Übung.",
       pt: "Um bom motion é sobretudo uma questão de critério: quanto tempo manter, quando as coisas se sobrepõem, que easing faz um movimento parecer intencional. Esse critério costuma viver em ferramentas de keyframes e em anos de prática.",
+      ru: "Хороший моушн — это в основном чутьё: сколько держать паузу, когда элементы перекрываются, какой изинг делает движение осмысленным. Обычно это чутьё живёт в программах с ключевыми кадрами и годах практики.",
     }),
     code: t({
       en: `${SITE.NAME} writes it down for your agent. It storyboards the beats, then animates type, shapes, and your own components in code, so every frame is reviewable and every change is a re-render away.`,
@@ -105,6 +114,7 @@ export default {
       ja: `${SITE.NAME}はそれをエージェントのために書き起こします。構成をストーリーボードにし、文字、シェイプ、あなた自身のコンポーネントをコードでアニメーションさせるので、すべてのフレームを確認でき、どんな変更も再レンダリングするだけです。`,
       de: `${SITE.NAME} schreibt es für deinen Agent auf. Er plant die Beats im Storyboard und animiert dann Typo, Formen und deine eigenen Komponenten in Code – so ist jeder Frame überprüfbar und jede Änderung nur ein erneutes Rendern entfernt.`,
       pt: `O ${SITE.NAME} põe-no por escrito para o teu agente. Ele faz o storyboard dos momentos e depois anima tipografia, formas e os teus próprios componentes em código, para que cada fotograma possa ser revisto e cada alteração esteja à distância de uma nova renderização.`,
+      ru: `${SITE.NAME} записывает его для вашего агента. Агент раскадровывает ключевые моменты, а затем анимирует текст, фигуры и ваши собственные компоненты кодом — каждый кадр можно проверить, а любое изменение — просто повторный рендер.`,
     }),
     showreel: t({
       en: "Portfolio showreel",
@@ -115,6 +125,7 @@ export default {
       ja: "ポートフォリオのショーリール",
       de: "Portfolio-Showreel",
       pt: "Showreel de portefólio",
+      ru: "Шоурил для портфолио",
     }),
     showreelPrompt: t({
       en: "A 15s intro reel for my portfolio",
@@ -125,6 +136,7 @@ export default {
       ja: "ポートフォリオ用の15秒のイントロ",
       de: "Ein 15-Sekunden-Intro für mein Portfolio",
       pt: "Um reel de introdução de 15 s para o meu portefólio",
+      ru: "15-секундное интро для моего портфолио",
     }),
     launchTitle: t({
       en: "From showreels to launch films.",
@@ -135,6 +147,7 @@ export default {
       ja: "ショーリールからローンチフィルムまで。",
       de: "Von Showreels bis zu Launch-Filmen.",
       pt: "De showreels a filmes de lançamento.",
+      ru: "От шоурилов до лонч-роликов.",
     }),
     launchBody: t({
       en: "The same skills cover the videos that ship with a product: launch films, feature updates, and changelog clips, built from the interface you already have instead of a redraw.",
@@ -145,6 +158,7 @@ export default {
       ja: "同じスキルで、プロダクトとともに出す動画もカバーします：ローンチフィルム、機能アップデート、変更履歴クリップを、描き直すことなく既存のインターフェースから作ります。",
       de: "Dieselben Skills decken die Videos ab, die mit einem Produkt ausgeliefert werden: Launch-Filme, Feature-Updates und Changelog-Clips, gebaut aus dem Interface, das du schon hast, statt neu gezeichnet.",
       pt: "As mesmas skills cobrem os vídeos que acompanham um produto: filmes de lançamento, novidades de funcionalidades e clips de changelog, criados a partir da interface que já tens, sem a redesenhar.",
+      ru: "Те же скиллы подходят для видео, которые выходят вместе с продуктом: лонч-роликов, обзоров обновлений и роликов о changelog — на основе уже готового интерфейса, без перерисовки.",
     }),
     control: t({
       en: "You stay in charge of the cut. Review the storyboard, ask for changes in plain words, and render again.",
@@ -155,6 +169,7 @@ export default {
       ja: "編集の主導権はあなたにあります。ストーリーボードを確認し、普段の言葉で修正を依頼して、再レンダリングするだけです。",
       de: "Du behältst die Kontrolle über den Schnitt. Prüfe das Storyboard, wünsch dir Änderungen in einfachen Worten und rendere erneut.",
       pt: "A montagem continua nas tuas mãos. Revê o storyboard, pede alterações em palavras simples e renderiza outra vez.",
+      ru: "Монтаж остаётся под вашим контролем. Проверьте раскадровку, попросите правки простыми словами и отрендерите снова.",
     }),
     launchLabel: t({
       en: "shadercn launch film",
@@ -165,6 +180,7 @@ export default {
       ja: "shadercnのローンチフィルム",
       de: "shadercn-Launch-Film",
       pt: "Filme de lançamento do shadercn",
+      ru: "Лонч-ролик shadercn",
     }),
     launchPrompt: t({
       en: "A 15s launch film for shadercn",
@@ -175,6 +191,7 @@ export default {
       ja: "shadercn用の15秒のローンチフィルム",
       de: "Ein 15-Sekunden-Launch-Film für shadercn",
       pt: "Um filme de lançamento de 15 s para o shadercn",
+      ru: "15-секундный лонч-ролик для shadercn",
     }),
     how: t({
       en: "How it works",
@@ -185,6 +202,7 @@ export default {
       ja: "仕組み",
       de: "So funktioniert’s",
       pt: "Como funciona",
+      ru: "Как это работает",
     }),
     pack: t({
       en: "What’s in the pack",
@@ -195,6 +213,7 @@ export default {
       ja: "パックの内容",
       de: "Was im Pack steckt",
       pt: "O que inclui o pacote",
+      ru: "Что входит в набор",
     }),
     packIntro: t({
       en: "Everything your agent needs to go from a sentence to a rendered file, without starting from a blank composition.",
@@ -205,6 +224,7 @@ export default {
       ja: "1文からレンダリング済みファイルまで、空のコンポジションから始めることなく、エージェントに必要なものがすべて揃っています。",
       de: "Alles, was dein Agent braucht, um von einem Satz zu einer gerenderten Datei zu kommen – ohne mit einer leeren Komposition zu starten.",
       pt: "Tudo o que o teu agente precisa para passar de uma frase a um ficheiro renderizado, sem começar de uma composição em branco.",
+      ru: "Всё, что нужно агенту, чтобы пройти путь от одной фразы до готового файла, не начиная с пустой композиции.",
     }),
     faq: t({
       en: "FAQ",
@@ -215,6 +235,7 @@ export default {
       ja: "よくある質問",
       de: "FAQ",
       pt: "Perguntas frequentes",
+      ru: "FAQ",
     }),
     priceTitle: t({
       en: "One price. Every update.",
@@ -225,6 +246,7 @@ export default {
       ja: "価格は1つ。アップデートはすべて込み。",
       de: "Ein Preis. Alle Updates.",
       pt: "Um preço. Todas as atualizações.",
+      ru: "Одна цена. Все обновления.",
     }),
   },
 } satisfies Dictionary;
