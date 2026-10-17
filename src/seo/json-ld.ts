@@ -108,3 +108,16 @@ export const breadcrumbJsonLd = (current: BreadcrumbItem) =>
       position: index + 1,
     })),
   });
+
+// An ordered list of pages, e.g. the prompt templates on `/templates`.
+export const itemListJsonLd = (name: string, items: BreadcrumbItem[]) =>
+  jsonLdScript({
+    "@type": "ItemList",
+    itemListElement: items.map((item, index) => ({
+      "@type": "ListItem",
+      name: item.name,
+      position: index + 1,
+      url: absoluteUrl(item.path),
+    })),
+    name,
+  });

@@ -52,12 +52,14 @@ import { Route as SkillsIndexRouteImport } from './routes/skills/index'
 import { Route as SkillsCategoryRouteImport } from './routes/skills/$category'
 import { Route as SponsorshipsIndexRouteImport } from './routes/sponsorships/index'
 import { Route as SponsorshipsNewRouteImport } from './routes/sponsorships/new'
+import { Route as TemplatesIndexRouteImport } from './routes/templates/index'
 import { Route as ToolsIndexRouteImport } from './routes/tools/index'
 import { Route as ToolsCategoryRouteImport } from './routes/tools/$category'
 import { Route as GalleryCategoryCategoryRouteImport } from './routes/_gallery/category.$category'
 import { Route as GalleryVideosSlugRouteImport } from './routes/_gallery/videos.$slug'
 import { Route as ApiAuthSplatRouteImport } from './routes/api/auth/$'
 import { Route as ApiWebhookDodoRouteImport } from './routes/api/webhook/dodo'
+import { Route as TemplatesTemplateIdIndexRouteImport } from './routes/templates/$templateId.index'
 import { Route as GalleryCategoryCategoryIndexRouteImport } from './routes/_gallery/category.$category.index'
 import { Route as GalleryCategoryCategoryVideosSlugRouteImport } from './routes/_gallery/category.$category.videos.$slug'
 
@@ -274,6 +276,11 @@ const SponsorshipsNewRoute = SponsorshipsNewRouteImport.update({
   path: '/sponsorships/new',
   getParentRoute: () => rootRouteImport,
 } as any)
+const TemplatesIndexRoute = TemplatesIndexRouteImport.update({
+  id: '/templates/',
+  path: '/templates/',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ToolsIndexRoute = ToolsIndexRouteImport.update({
   id: '/',
   path: '/',
@@ -304,6 +311,12 @@ const ApiWebhookDodoRoute = ApiWebhookDodoRouteImport.update({
   path: '/api/webhook/dodo',
   getParentRoute: () => rootRouteImport,
 } as any)
+const TemplatesTemplateIdIndexRoute =
+  TemplatesTemplateIdIndexRouteImport.update({
+    id: '/templates/$templateId/',
+    path: '/templates/$templateId/',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 const GalleryCategoryCategoryIndexRoute =
   GalleryCategoryCategoryIndexRouteImport.update({
     id: '/',
@@ -360,11 +373,13 @@ export interface FileRoutesByFullPath {
   '/jobs/': typeof JobsIndexRoute
   '/skills/': typeof SkillsIndexRoute
   '/sponsorships/': typeof SponsorshipsIndexRoute
+  '/templates/': typeof TemplatesIndexRoute
   '/tools/': typeof ToolsIndexRoute
   '/category/$category': typeof GalleryCategoryCategoryRouteWithChildren
   '/videos/$slug': typeof GalleryVideosSlugRoute
   '/api/auth/$': typeof ApiAuthSplatRoute
   '/api/webhook/dodo': typeof ApiWebhookDodoRoute
+  '/templates/$templateId/': typeof TemplatesTemplateIdIndexRoute
   '/category/$category/': typeof GalleryCategoryCategoryIndexRoute
   '/category/$category/videos/$slug': typeof GalleryCategoryCategoryVideosSlugRoute
 }
@@ -406,10 +421,12 @@ export interface FileRoutesByTo {
   '/jobs': typeof JobsIndexRoute
   '/skills': typeof SkillsIndexRoute
   '/sponsorships': typeof SponsorshipsIndexRoute
+  '/templates': typeof TemplatesIndexRoute
   '/tools': typeof ToolsIndexRoute
   '/videos/$slug': typeof GalleryVideosSlugRoute
   '/api/auth/$': typeof ApiAuthSplatRoute
   '/api/webhook/dodo': typeof ApiWebhookDodoRoute
+  '/templates/$templateId': typeof TemplatesTemplateIdIndexRoute
   '/category/$category': typeof GalleryCategoryCategoryIndexRoute
   '/category/$category/videos/$slug': typeof GalleryCategoryCategoryVideosSlugRoute
 }
@@ -459,11 +476,13 @@ export interface FileRoutesById {
   '/jobs/': typeof JobsIndexRoute
   '/skills/': typeof SkillsIndexRoute
   '/sponsorships/': typeof SponsorshipsIndexRoute
+  '/templates/': typeof TemplatesIndexRoute
   '/tools/': typeof ToolsIndexRoute
   '/_gallery/category/$category': typeof GalleryCategoryCategoryRouteWithChildren
   '/_gallery/videos/$slug': typeof GalleryVideosSlugRoute
   '/api/auth/$': typeof ApiAuthSplatRoute
   '/api/webhook/dodo': typeof ApiWebhookDodoRoute
+  '/templates/$templateId/': typeof TemplatesTemplateIdIndexRoute
   '/_gallery/category/$category/': typeof GalleryCategoryCategoryIndexRoute
   '/_gallery/category/$category/videos/$slug': typeof GalleryCategoryCategoryVideosSlugRoute
 }
@@ -512,11 +531,13 @@ export interface FileRouteTypes {
     | '/jobs/'
     | '/skills/'
     | '/sponsorships/'
+    | '/templates/'
     | '/tools/'
     | '/category/$category'
     | '/videos/$slug'
     | '/api/auth/$'
     | '/api/webhook/dodo'
+    | '/templates/$templateId/'
     | '/category/$category/'
     | '/category/$category/videos/$slug'
   fileRoutesByTo: FileRoutesByTo
@@ -558,10 +579,12 @@ export interface FileRouteTypes {
     | '/jobs'
     | '/skills'
     | '/sponsorships'
+    | '/templates'
     | '/tools'
     | '/videos/$slug'
     | '/api/auth/$'
     | '/api/webhook/dodo'
+    | '/templates/$templateId'
     | '/category/$category'
     | '/category/$category/videos/$slug'
   id:
@@ -610,11 +633,13 @@ export interface FileRouteTypes {
     | '/jobs/'
     | '/skills/'
     | '/sponsorships/'
+    | '/templates/'
     | '/tools/'
     | '/_gallery/category/$category'
     | '/_gallery/videos/$slug'
     | '/api/auth/$'
     | '/api/webhook/dodo'
+    | '/templates/$templateId/'
     | '/_gallery/category/$category/'
     | '/_gallery/category/$category/videos/$slug'
   fileRoutesById: FileRoutesById
@@ -645,8 +670,10 @@ export interface RootRouteChildren {
   SponsorshipsNewRoute: typeof SponsorshipsNewRoute
   JobsIndexRoute: typeof JobsIndexRoute
   SponsorshipsIndexRoute: typeof SponsorshipsIndexRoute
+  TemplatesIndexRoute: typeof TemplatesIndexRoute
   ApiAuthSplatRoute: typeof ApiAuthSplatRoute
   ApiWebhookDodoRoute: typeof ApiWebhookDodoRoute
+  TemplatesTemplateIdIndexRoute: typeof TemplatesTemplateIdIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -952,6 +979,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SponsorshipsNewRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/templates/': {
+      id: '/templates/'
+      path: '/templates'
+      fullPath: '/templates/'
+      preLoaderRoute: typeof TemplatesIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/tools/': {
       id: '/tools/'
       path: '/'
@@ -992,6 +1026,13 @@ declare module '@tanstack/react-router' {
       path: '/api/webhook/dodo'
       fullPath: '/api/webhook/dodo'
       preLoaderRoute: typeof ApiWebhookDodoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/templates/$templateId/': {
+      id: '/templates/$templateId/'
+      path: '/templates/$templateId'
+      fullPath: '/templates/$templateId/'
+      preLoaderRoute: typeof TemplatesTemplateIdIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/_gallery/category/$category/': {
@@ -1159,8 +1200,10 @@ const rootRouteChildren: RootRouteChildren = {
   SponsorshipsNewRoute: SponsorshipsNewRoute,
   JobsIndexRoute: JobsIndexRoute,
   SponsorshipsIndexRoute: SponsorshipsIndexRoute,
+  TemplatesIndexRoute: TemplatesIndexRoute,
   ApiAuthSplatRoute: ApiAuthSplatRoute,
   ApiWebhookDodoRoute: ApiWebhookDodoRoute,
+  TemplatesTemplateIdIndexRoute: TemplatesTemplateIdIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

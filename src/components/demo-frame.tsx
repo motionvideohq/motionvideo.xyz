@@ -9,11 +9,15 @@ import { cn } from "@/lib/utils";
 interface DemoFrameProps {
   /** Rendered video URL. Empty shows the animated placeholder. */
   src: string;
-  variant: "dashboard" | "palette";
+  /** Placeholder scene while `src` is empty. */
+  variant?: "dashboard" | "palette";
   caption?: { label: string; prompt: string };
   /** `load`: play as soon as the page loads (hero). Default: play only
    * while at least half the video is on screen. */
   autoplay?: "load" | "visible";
+  poster?: string;
+  /** width / height; 16:9 when omitted. */
+  aspectRatio?: number;
 }
 
 const Rise = ({ className }: { className: string }) => (
@@ -108,9 +112,11 @@ const play = async (video: HTMLVideoElement) => {
 const AutoplayVideo = ({
   src,
   autoplay,
+  poster,
 }: {
   src: string;
   autoplay: "load" | "visible";
+  poster?: string;
 }) => {
   const ref = useRef<HTMLVideoElement>(null);
 
@@ -144,7 +150,8 @@ const AutoplayVideo = ({
       ref={ref}
       slot="media"
       // `#t=0.1` makes browsers paint the first frame as the poster.
-      src={`${src}#t=0.1`}
+      src={poster ? src : `${src}#t=0.1`}
+      poster={poster}
       muted
       loop
       playsInline
@@ -155,20 +162,25 @@ const AutoplayVideo = ({
 };
 
 // A video in the Sutro player (player.style), or a looping CSS-only stand-in
-// until `src` is set.
+// until `src` is set. Gallery videos pass their own poster and shape.
 export const DemoFrame = ({
   src,
-  variant,
+  variant = "dashboard",
   caption,
   autoplay = "visible",
+  poster,
+  aspectRatio,
 }: DemoFrameProps) => {
   const content = useIntlayer("demo-frame");
   return (
     <figure className="flex flex-col gap-3">
-      <div className="bg-muted/40 relative aspect-video overflow-hidden rounded-xl border shadow-sm">
+      <div
+        className="bg-muted/40 relative aspect-video overflow-hidden rounded-xl border shadow-sm"
+        style={aspectRatio ? { aspectRatio } : undefined}
+      >
         {src ? (
           <MediaThemeSutro className="block size-full">
-            <AutoplayVideo src={src} autoplay={autoplay} />
+            <AutoplayVideo src={src} autoplay={autoplay} poster={poster} />
           </MediaThemeSutro>
         ) : (
           <>

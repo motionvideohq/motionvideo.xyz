@@ -500,6 +500,12 @@ export default {
       pt: "Não foi possível carregar este vídeo alojado. Podes vê-lo na publicação original.",
       ru: "Не удалось загрузить видео. Его всё ещё можно посмотреть в оригинальном посте.",
     }),
+    // Links the detail view to the template that rewrites its prompt.
+    strongerVersion: t({
+      en: "A stronger version of this prompt",
+      es: "Una versión mejorada de esta instrucción",
+      fr: "Une version améliorée de cette instruction",
+    }),
     // The detail view's prompt fold and how the video was made.
     showAll: t({
       en: "Show all",

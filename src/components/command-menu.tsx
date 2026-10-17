@@ -9,6 +9,7 @@ import { Envelope } from "reicon-react/icons/Envelope";
 import { File } from "reicon-react/icons/File";
 import { HandHeart } from "reicon-react/icons/HandHeart";
 import { Information } from "reicon-react/icons/Information";
+import { Layout } from "reicon-react/icons/Layout";
 import { Lock } from "reicon-react/icons/Lock";
 import { Monitor } from "reicon-react/icons/Monitor";
 import { Moon } from "reicon-react/icons/Moon";
@@ -48,6 +49,7 @@ type PagePath =
   | "/creatives"
   | "/skills"
   | "/extras"
+  | "/templates"
   | "/jobs"
   | "/sponsor"
   | "/motionvideo-skill"
@@ -234,6 +236,12 @@ export const CommandMenu = () => {
             <Sparkles aria-hidden="true" />
           ),
           page("/extras", content.extras.value, <Plus aria-hidden="true" />),
+          page(
+            "/templates",
+            content.templates.value,
+            <Layout aria-hidden="true" />,
+            ["prompt", "template"]
+          ),
           page("/jobs", content.jobs.value, <Briefcase aria-hidden="true" />, [
             "hiring",
             "career",

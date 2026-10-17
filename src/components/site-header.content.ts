@@ -70,6 +70,7 @@ export default {
       pt: "Extras",
       ru: "Дополнительно",
     }),
+    templates: t({ en: "Templates", es: "Plantillas", fr: "Modèles" }),
     more: t({
       en: "More",
       es: "Más",

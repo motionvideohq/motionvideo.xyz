@@ -147,6 +147,7 @@ export default {
       pt: "Extras",
       ru: "Дополнительно",
     }),
+    templates: t({ en: "Templates", es: "Plantillas", fr: "Modèles" }),
     submit: t({
       en: "Submit",
       es: "Enviar",

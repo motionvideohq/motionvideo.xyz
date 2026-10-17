@@ -14,10 +14,12 @@ import type { ComponentPropsWithRef, ReactNode } from "react";
 import { flushSync } from "react-dom";
 import { useIntlayer, useLocale } from "react-intlayer";
 import type { IconComponent } from "reicon-react";
+import { ArrowRight } from "reicon-react/icons/ArrowRight";
 import { ArrowRightUp } from "reicon-react/icons/ArrowRightUp";
 import { ChevronDown } from "reicon-react/icons/ChevronDown";
 import { ChevronLeft } from "reicon-react/icons/ChevronLeft";
 import { ChevronRight } from "reicon-react/icons/ChevronRight";
+import { Sparkles } from "reicon-react/icons/Sparkles";
 import { User } from "reicon-react/icons/User";
 import { Xmark } from "reicon-react/icons/Xmark";
 
@@ -47,6 +49,7 @@ import type {
   MotionCategory,
   MotionVideo,
 } from "@/lib/motion-catalog";
+import { strongerTemplateFor } from "@/lib/prompt-templates";
 import { relativeDate } from "@/lib/relative-date";
 import { cn } from "@/lib/utils";
 
@@ -552,6 +555,31 @@ const PromptText = ({ prompt }: { prompt: string }) => {
   );
 };
 
+/** Links the detail view to the template that rewrites this video's prompt. */
+const StrongerVersionBanner = ({ templateId }: { templateId: string }) => {
+  const content = useIntlayer("motion-gallery");
+  return (
+    <Link
+      to="/templates/$templateId"
+      params={{ templateId }}
+      data-track="stronger_prompt_click"
+      data-track-template={templateId}
+      className="border-primary/40 bg-primary/10 hover:bg-primary/20 group flex items-center gap-3 rounded-xl border p-3 transition-colors"
+    >
+      <span className="bg-primary text-primary-foreground flex size-8 shrink-0 items-center justify-center rounded-full">
+        <Sparkles aria-hidden="true" className="size-4" />
+      </span>
+      <span className="min-w-0 flex-1 text-sm font-medium">
+        {content.strongerVersion}
+      </span>
+      <ArrowRight
+        aria-hidden="true"
+        className="size-4 shrink-0 transition-transform group-hover:translate-x-0.5 motion-reduce:transition-none"
+      />
+    </Link>
+  );
+};
+
 // Hosts the detail view's source button names, by registrable domain.
 const SOURCE_ACTIONS = {
   "x.com": "openOnX",
@@ -694,6 +722,7 @@ export const MotionVideoOverlay = ({
   }, [goPrevious, goNext]);
   const types = video.tags.filter((tag) => tag === "prompt" || tag === "skill");
   const { locale } = useLocale();
+  const stronger = strongerTemplateFor(video);
 
   const copyPrompt = async () => {
     if (!video.prompt) {
@@ -862,6 +891,7 @@ export const MotionVideoOverlay = ({
                   </a>
                 )}
               </div>
+              {stronger && <StrongerVersionBanner templateId={stronger.id} />}
               <dl>
                 <DetailRow label={content.creator}>
                   <a

@@ -113,6 +113,7 @@ const MobileMenu = () => {
                 [ROUTES.CREATIVES, content.creatives],
                 [ROUTES.SKILLS, content.skills],
                 [ROUTES.EXTRAS, content.extras],
+                [ROUTES.TEMPLATES, content.templates],
                 [ROUTES.JOBS, content.jobs],
               ] as const
             ).map(([to, label]) => (
@@ -162,6 +163,9 @@ export const SiteHeader = ({ signedIn }: { signedIn?: boolean }) => {
           </Link>
           <Link to={ROUTES.EXTRAS} className={linkClass}>
             {content.extras}
+          </Link>
+          <Link to={ROUTES.TEMPLATES} className={linkClass}>
+            {content.templates}
           </Link>
           <Link to={ROUTES.JOBS} className={linkClass}>
             {content.jobs}
