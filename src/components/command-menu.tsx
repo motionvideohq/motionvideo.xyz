@@ -93,7 +93,7 @@ const loadSearchData = async (): Promise<SearchData> => {
 };
 
 const LANGUAGE_OPTIONS: {
-  code: "en" | "es" | "fr" | "zh";
+  code: "en" | "es" | "fr" | "zh" | "ko";
   label: string;
   keywords: string;
 }[] = [
@@ -101,6 +101,7 @@ const LANGUAGE_OPTIONS: {
   { code: "es", label: "Español", keywords: "spanish español" },
   { code: "fr", label: "Français", keywords: "french français" },
   { code: "zh", label: "简体中文", keywords: "chinese simplified 中文 简体" },
+  { code: "ko", label: "한국어", keywords: "korean 한국어" },
 ];
 
 interface PaletteItem {

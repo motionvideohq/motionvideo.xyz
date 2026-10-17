@@ -9,6 +9,7 @@ const page = {
       es: "Última actualización:",
       fr: "Dernière mise à jour :",
       zh: "最后更新：",
+      ko: "최종 업데이트:",
     }),
   },
 } satisfies Dictionary;
