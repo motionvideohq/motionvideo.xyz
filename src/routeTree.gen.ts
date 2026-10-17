@@ -41,6 +41,8 @@ import { Route as AdminJobsRouteImport } from './routes/admin/jobs'
 import { Route as AdminSponsorshipsRouteImport } from './routes/admin/sponsorships'
 import { Route as AdminSubmissionsRouteImport } from './routes/admin/submissions'
 import { Route as ApiUploadRouteImport } from './routes/api/upload'
+import { Route as BlogIndexRouteImport } from './routes/blog/index'
+import { Route as BlogSlugRouteImport } from './routes/blog/$slug'
 import { Route as CreativesIndexRouteImport } from './routes/creatives/index'
 import { Route as CreativesCategoryRouteImport } from './routes/creatives/$category'
 import { Route as ExtrasIndexRouteImport } from './routes/extras/index'
@@ -219,6 +221,16 @@ const ApiUploadRoute = ApiUploadRouteImport.update({
   path: '/api/upload',
   getParentRoute: () => rootRouteImport,
 } as any)
+const BlogIndexRoute = BlogIndexRouteImport.update({
+  id: '/blog/',
+  path: '/blog/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BlogSlugRoute = BlogSlugRouteImport.update({
+  id: '/blog/$slug',
+  path: '/blog/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const CreativesIndexRoute = CreativesIndexRouteImport.update({
   id: '/',
   path: '/',
@@ -347,6 +359,7 @@ export interface FileRoutesByFullPath {
   '/admin/sponsorships': typeof AdminSponsorshipsRoute
   '/admin/submissions': typeof AdminSubmissionsRoute
   '/api/upload': typeof ApiUploadRoute
+  '/blog/$slug': typeof BlogSlugRoute
   '/creatives/$category': typeof CreativesCategoryRoute
   '/extras/$category': typeof ExtrasCategoryRoute
   '/jobs/$type': typeof JobsTypeRoute
@@ -355,6 +368,7 @@ export interface FileRoutesByFullPath {
   '/sponsorships/new': typeof SponsorshipsNewRoute
   '/tools/$category': typeof ToolsCategoryRoute
   '/admin/': typeof AdminIndexRoute
+  '/blog/': typeof BlogIndexRoute
   '/creatives/': typeof CreativesIndexRoute
   '/extras/': typeof ExtrasIndexRoute
   '/jobs/': typeof JobsIndexRoute
@@ -393,6 +407,7 @@ export interface FileRoutesByTo {
   '/admin/sponsorships': typeof AdminSponsorshipsRoute
   '/admin/submissions': typeof AdminSubmissionsRoute
   '/api/upload': typeof ApiUploadRoute
+  '/blog/$slug': typeof BlogSlugRoute
   '/creatives/$category': typeof CreativesCategoryRoute
   '/extras/$category': typeof ExtrasCategoryRoute
   '/jobs/$type': typeof JobsTypeRoute
@@ -401,6 +416,7 @@ export interface FileRoutesByTo {
   '/sponsorships/new': typeof SponsorshipsNewRoute
   '/tools/$category': typeof ToolsCategoryRoute
   '/admin': typeof AdminIndexRoute
+  '/blog': typeof BlogIndexRoute
   '/creatives': typeof CreativesIndexRoute
   '/extras': typeof ExtrasIndexRoute
   '/jobs': typeof JobsIndexRoute
@@ -445,6 +461,7 @@ export interface FileRoutesById {
   '/admin/sponsorships': typeof AdminSponsorshipsRoute
   '/admin/submissions': typeof AdminSubmissionsRoute
   '/api/upload': typeof ApiUploadRoute
+  '/blog/$slug': typeof BlogSlugRoute
   '/creatives/$category': typeof CreativesCategoryRoute
   '/extras/$category': typeof ExtrasCategoryRoute
   '/jobs/$type': typeof JobsTypeRoute
@@ -454,6 +471,7 @@ export interface FileRoutesById {
   '/tools/$category': typeof ToolsCategoryRoute
   '/_gallery/': typeof GalleryIndexRoute
   '/admin/': typeof AdminIndexRoute
+  '/blog/': typeof BlogIndexRoute
   '/creatives/': typeof CreativesIndexRoute
   '/extras/': typeof ExtrasIndexRoute
   '/jobs/': typeof JobsIndexRoute
@@ -499,6 +517,7 @@ export interface FileRouteTypes {
     | '/admin/sponsorships'
     | '/admin/submissions'
     | '/api/upload'
+    | '/blog/$slug'
     | '/creatives/$category'
     | '/extras/$category'
     | '/jobs/$type'
@@ -507,6 +526,7 @@ export interface FileRouteTypes {
     | '/sponsorships/new'
     | '/tools/$category'
     | '/admin/'
+    | '/blog/'
     | '/creatives/'
     | '/extras/'
     | '/jobs/'
@@ -545,6 +565,7 @@ export interface FileRouteTypes {
     | '/admin/sponsorships'
     | '/admin/submissions'
     | '/api/upload'
+    | '/blog/$slug'
     | '/creatives/$category'
     | '/extras/$category'
     | '/jobs/$type'
@@ -553,6 +574,7 @@ export interface FileRouteTypes {
     | '/sponsorships/new'
     | '/tools/$category'
     | '/admin'
+    | '/blog'
     | '/creatives'
     | '/extras'
     | '/jobs'
@@ -596,6 +618,7 @@ export interface FileRouteTypes {
     | '/admin/sponsorships'
     | '/admin/submissions'
     | '/api/upload'
+    | '/blog/$slug'
     | '/creatives/$category'
     | '/extras/$category'
     | '/jobs/$type'
@@ -605,6 +628,7 @@ export interface FileRouteTypes {
     | '/tools/$category'
     | '/_gallery/'
     | '/admin/'
+    | '/blog/'
     | '/creatives/'
     | '/extras/'
     | '/jobs/'
@@ -640,9 +664,11 @@ export interface RootRouteChildren {
   ToolsRoute: typeof ToolsRouteWithChildren
   WelcomeRoute: typeof WelcomeRoute
   ApiUploadRoute: typeof ApiUploadRoute
+  BlogSlugRoute: typeof BlogSlugRoute
   JobsTypeRoute: typeof JobsTypeRoute
   JobsPostRoute: typeof JobsPostRoute
   SponsorshipsNewRoute: typeof SponsorshipsNewRoute
+  BlogIndexRoute: typeof BlogIndexRoute
   JobsIndexRoute: typeof JobsIndexRoute
   SponsorshipsIndexRoute: typeof SponsorshipsIndexRoute
   ApiAuthSplatRoute: typeof ApiAuthSplatRoute
@@ -873,6 +899,20 @@ declare module '@tanstack/react-router' {
       path: '/api/upload'
       fullPath: '/api/upload'
       preLoaderRoute: typeof ApiUploadRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/blog/': {
+      id: '/blog/'
+      path: '/blog'
+      fullPath: '/blog/'
+      preLoaderRoute: typeof BlogIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/blog/$slug': {
+      id: '/blog/$slug'
+      path: '/blog/$slug'
+      fullPath: '/blog/$slug'
+      preLoaderRoute: typeof BlogSlugRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/creatives/': {
@@ -1154,9 +1194,11 @@ const rootRouteChildren: RootRouteChildren = {
   ToolsRoute: ToolsRouteWithChildren,
   WelcomeRoute: WelcomeRoute,
   ApiUploadRoute: ApiUploadRoute,
+  BlogSlugRoute: BlogSlugRoute,
   JobsTypeRoute: JobsTypeRoute,
   JobsPostRoute: JobsPostRoute,
   SponsorshipsNewRoute: SponsorshipsNewRoute,
+  BlogIndexRoute: BlogIndexRoute,
   JobsIndexRoute: JobsIndexRoute,
   SponsorshipsIndexRoute: SponsorshipsIndexRoute,
   ApiAuthSplatRoute: ApiAuthSplatRoute,

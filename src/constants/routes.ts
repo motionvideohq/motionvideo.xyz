@@ -5,6 +5,7 @@ export const ROUTES = {
   ADMIN_JOBS: "/admin/jobs",
   ADMIN_SPONSORSHIPS: "/admin/sponsorships",
   ADMIN_SUBMISSIONS: "/admin/submissions",
+  BLOG: "/blog",
   BOOKMARKS: "/bookmarks",
   BRAND: "/brand",
   CHECKOUT: "/checkout",

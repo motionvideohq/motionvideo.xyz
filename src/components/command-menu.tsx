@@ -5,6 +5,7 @@ import { useIntlayer, useLocale } from "react-intlayer";
 import { Briefcase } from "reicon-react/icons/Briefcase";
 import { Compass } from "reicon-react/icons/Compass";
 import { Designtools } from "reicon-react/icons/Designtools";
+import { DocumentText } from "reicon-react/icons/DocumentText";
 import { Envelope } from "reicon-react/icons/Envelope";
 import { File } from "reicon-react/icons/File";
 import { HandHeart } from "reicon-react/icons/HandHeart";
@@ -52,6 +53,7 @@ type PagePath =
   | "/sponsor"
   | "/motionvideo-skill"
   | "/about"
+  | "/blog"
   | "/brand"
   | "/contact"
   | "/privacy"
@@ -248,6 +250,12 @@ export const CommandMenu = () => {
             "/about",
             content.about.value,
             <Information aria-hidden="true" />
+          ),
+          page(
+            "/blog",
+            content.blog.value,
+            <DocumentText aria-hidden="true" />,
+            ["articles", "guides"]
           ),
           page(
             "/contact",

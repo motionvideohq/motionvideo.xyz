@@ -1,0 +1,76 @@
+import { t } from "intlayer";
+import type { Dictionary } from "intlayer";
+
+// Chrome for /blog, /blog/$slug and the post renderer. The posts themselves
+// stay in English (src/lib/blog.ts).
+export default {
+  key: "blog",
+  content: {
+    title: t({
+      en: "Blog",
+      es: "Blog",
+      fr: "Blog",
+      zh: "博客",
+      ko: "블로그",
+      ja: "ブログ",
+      de: "Blog",
+      pt: "Blog",
+      ru: "Блог",
+    }),
+    intro: t({
+      en: "Notes on making motion graphics with AI coding agents, drawn from the prompts in the gallery.",
+      es: "Notas sobre cómo crear motion graphics con agentes de programación, a partir de los prompts de la galería.",
+      fr: "Notes sur la création de motion design avec des agents de programmation, tirées des prompts de la galerie.",
+      zh: "关于用 AI 编程智能体制作动态图形的笔记，取材自画廊中的提示词。",
+      ko: "AI 코딩 에이전트로 모션 그래픽을 만드는 방법에 관한 노트로, 갤러리의 프롬프트를 바탕으로 합니다.",
+      ja: "AIコーディングエージェントでモーショングラフィックスを作るためのノート。ギャラリーのプロンプトをもとにしています。",
+      de: "Notizen zum Erstellen von Motion Graphics mit KI-Coding-Agents, basierend auf den Prompts aus der Galerie.",
+      pt: "Notas sobre como criar motion graphics com agentes de programação de IA, a partir dos prompts da galeria.",
+      ru: "Заметки о создании моушн-графики с помощью ИИ-кодинг-агентов на основе промптов из галереи.",
+    }),
+    englishOnly: t({
+      en: "Posts are written in English.",
+      es: "Los artículos están escritos en inglés.",
+      fr: "Les articles sont rédigés en anglais.",
+      zh: "文章以英文撰写。",
+      ko: "글은 영어로 작성되어 있습니다.",
+      ja: "記事は英語で書かれています。",
+      de: "Die Beiträge sind auf Englisch verfasst.",
+      pt: "Os artigos estão escritos em inglês.",
+      ru: "Статьи написаны на английском.",
+    }),
+    back: t({
+      en: "All posts",
+      es: "Todos los artículos",
+      fr: "Tous les articles",
+      zh: "全部文章",
+      ko: "모든 글",
+      ja: "すべての記事",
+      de: "Alle Beiträge",
+      pt: "Todos os artigos",
+      ru: "Все статьи",
+    }),
+    morePosts: t({
+      en: "More from the blog",
+      es: "Más del blog",
+      fr: "Plus d’articles",
+      zh: "更多博客文章",
+      ko: "블로그의 다른 글",
+      ja: "ブログのその他の記事",
+      de: "Mehr aus dem Blog",
+      pt: "Mais do blog",
+      ru: "Ещё из блога",
+    }),
+    by: t({
+      en: "by",
+      es: "de",
+      fr: "par",
+      zh: "作者：",
+      ko: "작성자:",
+      ja: "著者：",
+      de: "von",
+      pt: "por",
+      ru: "автор:",
+    }),
+  },
+} satisfies Dictionary;

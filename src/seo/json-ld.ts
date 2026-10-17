@@ -90,6 +90,26 @@ export const faqJsonLd = () =>
     })),
   });
 
+export const blogPostingJsonLd = (post: {
+  slug: string;
+  title: string;
+  description: string;
+  date: string;
+}) =>
+  jsonLdScript({
+    "@type": "BlogPosting",
+    author: organization,
+    dateModified: post.date,
+    datePublished: post.date,
+    description: post.description,
+    headline: post.title,
+    image: absoluteUrl("/og.jpg"),
+    inLanguage: "en-US",
+    mainEntityOfPage: absoluteUrl(`${ROUTES.BLOG}/${post.slug}`),
+    publisher: organization,
+    url: absoluteUrl(`${ROUTES.BLOG}/${post.slug}`),
+  });
+
 export interface BreadcrumbItem {
   name: string;
   path: string;
