@@ -11,6 +11,7 @@ export default {
       zh: "搜索 MotionVideo",
       ko: "MotionVideo 검색",
       ja: "MotionVideoを検索",
+      de: "MotionVideo durchsuchen",
     }),
     placeholder: t({
       en: "Search videos, creators, tools, creatives…",
@@ -19,6 +20,7 @@ export default {
       zh: "搜索视频、创作者、工具、创意团队…",
       ko: "동영상, 크리에이터, 도구, 크리에이티브 검색…",
       ja: "動画、クリエイター、ツール、クリエイティブを検索…",
+      de: "Videos, Creator, Tools, Creatives suchen …",
     }),
     close: t({
       en: "Close search",
@@ -27,6 +29,7 @@ export default {
       zh: "关闭搜索",
       ko: "검색 닫기",
       ja: "検索を閉じる",
+      de: "Suche schließen",
     }),
     empty: t({
       en: "Nothing matches that search.",
@@ -35,6 +38,7 @@ export default {
       zh: "没有匹配的结果。",
       ko: "검색 결과가 없습니다.",
       ja: "該当する結果はありません。",
+      de: "Keine Treffer für diese Suche.",
     }),
     pages: t({
       en: "Pages",
@@ -43,6 +47,7 @@ export default {
       zh: "页面",
       ko: "페이지",
       ja: "ページ",
+      de: "Seiten",
     }),
     popular: t({
       en: "Popular videos",
@@ -51,6 +56,7 @@ export default {
       zh: "热门视频",
       ko: "인기 동영상",
       ja: "人気の動画",
+      de: "Beliebte Videos",
     }),
     videos: t({
       en: "Videos",
@@ -59,6 +65,7 @@ export default {
       zh: "视频",
       ko: "동영상",
       ja: "動画",
+      de: "Videos",
     }),
     categories: t({
       en: "Categories",
@@ -67,6 +74,7 @@ export default {
       zh: "分类",
       ko: "카테고리",
       ja: "カテゴリ",
+      de: "Kategorien",
     }),
     discover: t({
       en: "Discover",
@@ -75,6 +83,7 @@ export default {
       zh: "发现",
       ko: "둘러보기",
       ja: "見つける",
+      de: "Entdecken",
     }),
     tools: t({
       en: "Tools",
@@ -83,6 +92,7 @@ export default {
       zh: "工具",
       ko: "도구",
       ja: "ツール",
+      de: "Tools",
     }),
     creatives: t({
       en: "Creatives",
@@ -91,6 +101,7 @@ export default {
       zh: "创意团队",
       ko: "크리에이티브",
       ja: "クリエイティブ",
+      de: "Creatives",
     }),
     skills: t({
       en: "Skills",
@@ -99,6 +110,7 @@ export default {
       zh: "技能",
       ko: "스킬",
       ja: "スキル",
+      de: "Skills",
     }),
     extras: t({
       en: "Extras",
@@ -107,6 +119,7 @@ export default {
       zh: "其他资源",
       ko: "기타 자료",
       ja: "エクストラ",
+      de: "Extras",
     }),
     submit: t({
       en: "Submit",
@@ -115,6 +128,7 @@ export default {
       zh: "提交",
       ko: "제출",
       ja: "投稿",
+      de: "Einreichen",
     }),
     bookmarks: t({
       en: "Bookmarks",
@@ -123,6 +137,7 @@ export default {
       zh: "收藏",
       ko: "북마크",
       ja: "ブックマーク",
+      de: "Merkliste",
     }),
     sponsor: t({
       en: "Sponsor",
@@ -131,6 +146,7 @@ export default {
       zh: "赞助",
       ko: "스폰서",
       ja: "スポンサー",
+      de: "Sponsern",
     }),
     jobs: t({
       en: "Jobs",
@@ -139,6 +155,7 @@ export default {
       zh: "招聘",
       ko: "채용",
       ja: "求人",
+      de: "Jobs",
     }),
     skill: t({
       en: "MotionVideo agent skill",
@@ -147,6 +164,7 @@ export default {
       zh: "MotionVideo 智能体技能",
       ko: "MotionVideo 에이전트 스킬",
       ja: "MotionVideoエージェントスキル",
+      de: "MotionVideo Agent-Skill",
     }),
     about: t({
       en: "About",
@@ -155,6 +173,7 @@ export default {
       zh: "关于",
       ko: "소개",
       ja: "概要",
+      de: "Über uns",
     }),
     contact: t({
       en: "Contact",
@@ -163,6 +182,7 @@ export default {
       zh: "联系",
       ko: "문의",
       ja: "お問い合わせ",
+      de: "Kontakt",
     }),
     brand: t({
       en: "Brand",
@@ -171,6 +191,7 @@ export default {
       zh: "品牌",
       ko: "브랜드",
       ja: "ブランド",
+      de: "Marke",
     }),
     privacy: t({
       en: "Privacy policy",
@@ -179,6 +200,7 @@ export default {
       zh: "隐私政策",
       ko: "개인정보 처리방침",
       ja: "プライバシーポリシー",
+      de: "Datenschutzerklärung",
     }),
     terms: t({
       en: "Terms of service",
@@ -187,6 +209,7 @@ export default {
       zh: "服务条款",
       ko: "서비스 약관",
       ja: "利用規約",
+      de: "Nutzungsbedingungen",
     }),
     refunds: t({
       en: "Refund policy",
@@ -195,6 +218,7 @@ export default {
       zh: "退款政策",
       ko: "환불 정책",
       ja: "返金ポリシー",
+      de: "Rückerstattungsrichtlinie",
     }),
     dashboard: t({
       en: "Dashboard",
@@ -203,6 +227,7 @@ export default {
       zh: "控制台",
       ko: "대시보드",
       ja: "ダッシュボード",
+      de: "Dashboard",
     }),
     search: t({
       en: "Search",
@@ -211,6 +236,7 @@ export default {
       zh: "搜索",
       ko: "검색",
       ja: "検索",
+      de: "Suche",
     }),
     legal: t({
       en: "Legal",
@@ -219,6 +245,7 @@ export default {
       zh: "法律",
       ko: "법적 고지",
       ja: "法的情報",
+      de: "Rechtliches",
     }),
     company: t({
       en: "Company",
@@ -227,6 +254,7 @@ export default {
       zh: "公司",
       ko: "회사",
       ja: "会社",
+      de: "Unternehmen",
     }),
     otherProducts: t({
       en: "Other products",
@@ -235,6 +263,7 @@ export default {
       zh: "其他产品",
       ko: "다른 제품",
       ja: "その他のプロダクト",
+      de: "Weitere Produkte",
     }),
     misc: t({
       en: "Misc.",
@@ -243,6 +272,7 @@ export default {
       zh: "其他",
       ko: "기타",
       ja: "その他",
+      de: "Sonstiges",
     }),
     labsProjects: t({
       en: "Shadcn Labs projects",
@@ -251,6 +281,7 @@ export default {
       zh: "Shadcn Labs 项目",
       ko: "Shadcn Labs 프로젝트",
       ja: "Shadcn Labsのプロジェクト",
+      de: "Shadcn-Labs-Projekte",
     }),
     language: t({
       en: "Language",
@@ -259,6 +290,7 @@ export default {
       zh: "语言",
       ko: "언어",
       ja: "言語",
+      de: "Sprache",
     }),
     muteSounds: t({
       en: "Mute sounds",
@@ -267,6 +299,7 @@ export default {
       zh: "静音",
       ko: "소리 끄기",
       ja: "サウンドをミュート",
+      de: "Sounds stummschalten",
     }),
     unmuteSounds: t({
       en: "Unmute sounds",
@@ -275,6 +308,7 @@ export default {
       zh: "取消静音",
       ko: "소리 켜기",
       ja: "サウンドのミュートを解除",
+      de: "Sounds einschalten",
     }),
     others: t({
       en: "More",
@@ -283,6 +317,7 @@ export default {
       zh: "更多",
       ko: "더 보기",
       ja: "もっと見る",
+      de: "Mehr",
     }),
     socials: t({
       en: "Socials",
@@ -291,6 +326,7 @@ export default {
       zh: "社交媒体",
       ko: "소셜",
       ja: "ソーシャル",
+      de: "Social Media",
     }),
     theme: t({
       en: "Theme",
@@ -299,6 +335,7 @@ export default {
       zh: "主题",
       ko: "테마",
       ja: "テーマ",
+      de: "Design",
     }),
     copyLogomark: t({
       en: "Copy logomark as SVG",
@@ -307,6 +344,7 @@ export default {
       zh: "复制 Logo 标志 SVG",
       ko: "로고마크를 SVG로 복사",
       ja: "ロゴマークをSVGでコピー",
+      de: "Bildmarke als SVG kopieren",
     }),
     copyWordmark: t({
       en: "Copy wordmark as SVG",
@@ -315,6 +353,7 @@ export default {
       zh: "复制字标 SVG",
       ko: "워드마크를 SVG로 복사",
       ja: "ワードマークをSVGでコピー",
+      de: "Wortmarke als SVG kopieren",
     }),
     copyAppIcon: t({
       en: "Copy app icon as SVG",
@@ -323,6 +362,7 @@ export default {
       zh: "复制应用图标 SVG",
       ko: "앱 아이콘을 SVG로 복사",
       ja: "アプリアイコンをSVGでコピー",
+      de: "App-Icon als SVG kopieren",
     }),
     guidelines: t({
       en: "Brand guidelines",
@@ -331,6 +371,7 @@ export default {
       zh: "品牌规范",
       ko: "브랜드 가이드라인",
       ja: "ブランドガイドライン",
+      de: "Markenrichtlinien",
     }),
     downloadAssets: t({
       en: "Download brand assets",
@@ -339,6 +380,7 @@ export default {
       zh: "下载品牌素材",
       ko: "브랜드 에셋 다운로드",
       ja: "ブランドアセットをダウンロード",
+      de: "Marken-Assets herunterladen",
     }),
     light: t({
       en: "Light",
@@ -347,6 +389,7 @@ export default {
       zh: "浅色",
       ko: "라이트",
       ja: "ライト",
+      de: "Hell",
     }),
     dark: t({
       en: "Dark",
@@ -355,6 +398,7 @@ export default {
       zh: "深色",
       ko: "다크",
       ja: "ダーク",
+      de: "Dunkel",
     }),
     system: t({
       en: "System",
@@ -363,6 +407,7 @@ export default {
       zh: "跟随系统",
       ko: "시스템",
       ja: "システム",
+      de: "System",
     }),
     brandAssets: t({
       en: "Brand assets",
@@ -371,6 +416,7 @@ export default {
       zh: "品牌素材",
       ko: "브랜드 에셋",
       ja: "ブランドアセット",
+      de: "Marken-Assets",
     }),
   },
 } satisfies Dictionary;

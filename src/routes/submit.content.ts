@@ -11,6 +11,7 @@ export default {
       zh: "分享值得发现的内容。",
       ko: "발견할 가치가 있는 것을 공유하세요.",
       ja: "見つける価値のあるものを共有しましょう。",
+      de: "Teile etwas, das es wert ist, entdeckt zu werden.",
     }),
     intro: t({
       en: "Send a motion video, tool, creative, or agent skill. We review everything before it goes live.",
@@ -19,6 +20,7 @@ export default {
       zh: "提交动效视频、工具、创意团队或智能体技能。所有内容上线前都会经过审核。",
       ko: "모션 동영상, 도구, 크리에이티브, 에이전트 스킬을 보내 주세요. 게시 전에 모두 검토합니다.",
       ja: "モーション動画、ツール、クリエイティブ、エージェントスキルを送ってください。公開前にすべて審査します。",
+      de: "Schick uns ein Motion-Video, ein Tool, ein Creative oder einen Agent-Skill. Wir prüfen alles, bevor es live geht.",
     }),
     sections: {
       kind: t({
@@ -28,6 +30,7 @@ export default {
         zh: "类型",
         ko: "유형",
         ja: "種類",
+        de: "Typ",
       }),
       kindBody: t({
         en: "What you’re sharing and where it belongs.",
@@ -36,6 +39,7 @@ export default {
         zh: "你分享的内容及其所属位置。",
         ko: "공유할 항목과 들어갈 위치.",
         ja: "共有するものと掲載先。",
+        de: "Was du teilst und wo es hingehört.",
       }),
       entry: t({
         en: "Entry",
@@ -44,6 +48,7 @@ export default {
         zh: "条目",
         ko: "항목",
         ja: "エントリー",
+        de: "Eintrag",
       }),
       entryBody: t({
         en: "The title, link, and details we review.",
@@ -52,6 +57,7 @@ export default {
         zh: "我们审核的标题、链接和详情。",
         ko: "검토할 제목, 링크, 세부 정보.",
         ja: "審査するタイトル、リンク、詳細。",
+        de: "Titel, Link und Details, die wir prüfen.",
       }),
       you: t({
         en: "About you",
@@ -60,6 +66,7 @@ export default {
         zh: "关于你",
         ko: "내 정보",
         ja: "あなたについて",
+        de: "Über dich",
       }),
       youBody: t({
         en: "Who to credit and where we reply.",
@@ -68,6 +75,7 @@ export default {
         zh: "署名信息及回复地址。",
         ko: "출처 표기 대상과 답장 받을 곳.",
         ja: "クレジット表記と返信先。",
+        de: "Wen wir nennen und wohin wir antworten.",
       }),
       submit: t({
         en: "Submit",
@@ -76,6 +84,7 @@ export default {
         zh: "提交",
         ko: "제출",
         ja: "送信",
+        de: "Einreichen",
       }),
       submitBody: t({
         en: "Every submission is reviewed before anything is published.",
@@ -84,6 +93,7 @@ export default {
         zh: "所有提交在发布前都会经过审核。",
         ko: "모든 제출물은 게시 전에 검토됩니다.",
         ja: "すべての投稿は公開前に審査されます。",
+        de: "Jede Einreichung wird geprüft, bevor etwas veröffentlicht wird.",
       }),
     },
     kind: t({
@@ -93,6 +103,7 @@ export default {
       zh: "你要分享什么？",
       ko: "무엇을 공유하시나요?",
       ja: "何を共有しますか？",
+      de: "Was teilst du?",
     }),
     kinds: {
       video: t({
@@ -102,6 +113,7 @@ export default {
         zh: "动效视频",
         ko: "모션 동영상",
         ja: "モーション動画",
+        de: "Motion-Video",
       }),
       tool: t({
         en: "Tool",
@@ -110,6 +122,7 @@ export default {
         zh: "工具",
         ko: "도구",
         ja: "ツール",
+        de: "Tool",
       }),
       studio: t({
         en: "Creative",
@@ -118,6 +131,7 @@ export default {
         zh: "创意团队",
         ko: "크리에이티브",
         ja: "クリエイティブ",
+        de: "Creative",
       }),
       skill: t({
         en: "Agent skill",
@@ -126,6 +140,7 @@ export default {
         zh: "智能体技能",
         ko: "에이전트 스킬",
         ja: "エージェントスキル",
+        de: "Agent-Skill",
       }),
       extra: t({
         en: "Something else",
@@ -134,6 +149,7 @@ export default {
         zh: "其他",
         ko: "기타",
         ja: "その他",
+        de: "Etwas anderes",
       }),
     },
     category: t({
@@ -143,6 +159,7 @@ export default {
       zh: "分类",
       ko: "카테고리",
       ja: "カテゴリ",
+      de: "Kategorie",
     }),
     noCategory: t({
       en: "Not sure",
@@ -151,6 +168,7 @@ export default {
       zh: "不确定",
       ko: "잘 모르겠음",
       ja: "わからない",
+      de: "Weiß nicht",
     }),
     categoryHelp: t({
       en: "Optional. Where it fits best on MotionVideo.",
@@ -159,6 +177,7 @@ export default {
       zh: "可选。它最适合放在 MotionVideo 的哪个位置。",
       ko: "선택. MotionVideo에서 가장 잘 맞는 위치.",
       ja: "任意。MotionVideoで最も合う場所。",
+      de: "Optional. Wo es auf MotionVideo am besten hinpasst.",
     }),
     name: t({
       en: "Your name / attribution",
@@ -167,6 +186,7 @@ export default {
       zh: "你的姓名 / 署名",
       ko: "이름 / 출처 표기",
       ja: "お名前／クレジット表記",
+      de: "Dein Name / Nennung",
     }),
     signedInAs: t({
       en: "Submitting as",
@@ -175,6 +195,7 @@ export default {
       zh: "提交身份",
       ko: "제출 계정:",
       ja: "投稿者：",
+      de: "Einreichen als",
     }),
     accountEmailHelp: t({
       en: "Your account email stays private and is only used for questions about your submission.",
@@ -183,6 +204,7 @@ export default {
       zh: "你的账号邮箱将保密，仅用于就你的提交进行沟通。",
       ko: "계정 이메일은 비공개로 유지되며 제출물 관련 문의에만 사용됩니다.",
       ja: "アカウントのメールアドレスは公開されず、投稿に関するご質問にのみ使用します。",
+      de: "Die E-Mail-Adresse deines Kontos bleibt privat und wird nur für Fragen zu deiner Einreichung verwendet.",
     }),
     entryTitle: t({
       en: "Title / project name",
@@ -191,6 +213,7 @@ export default {
       zh: "标题 / 项目名称",
       ko: "제목 / 프로젝트 이름",
       ja: "タイトル／プロジェクト名",
+      de: "Titel / Projektname",
     }),
     url: t({
       en: "Public HTTPS URL",
@@ -199,6 +222,7 @@ export default {
       zh: "公开 HTTPS URL",
       ko: "공개 HTTPS URL",
       ja: "公開HTTPS URL",
+      de: "Öffentliche HTTPS-URL",
     }),
     urlHelp: t({
       en: "Link to the original video, the tool’s website, or the creative’s portfolio. No private or sign-in-only links.",
@@ -207,6 +231,7 @@ export default {
       zh: "原视频、工具官网或创意团队作品集的链接。不接受私密或需登录才能访问的链接。",
       ko: "원본 동영상, 도구 웹사이트, 또는 크리에이티브의 포트폴리오 링크. 비공개 또는 로그인 전용 링크는 안 됩니다.",
       ja: "元の動画、ツールのウェブサイト、クリエイティブのポートフォリオへのリンク。非公開やログインが必要なリンクは不可です。",
+      de: "Link zum Originalvideo, zur Website des Tools oder zum Portfolio des Creatives. Keine privaten Links oder Links, die eine Anmeldung erfordern.",
     }),
     description: t({
       en: "Description",
@@ -215,6 +240,7 @@ export default {
       zh: "描述",
       ko: "설명",
       ja: "説明",
+      de: "Beschreibung",
     }),
     descriptionHelp: t({
       en: "Tell us what it is and why it belongs here (10–5,000 characters).",
@@ -223,6 +249,7 @@ export default {
       zh: "告诉我们它是什么，以及为什么值得收录（10–5,000 个字符）。",
       ko: "무엇인지, 왜 여기에 어울리는지 알려 주세요 (10–5,000자).",
       ja: "それが何で、なぜここにふさわしいのかを教えてください（10〜5,000文字）。",
+      de: "Erzähl uns, was es ist und warum es hierher gehört (10–5.000 Zeichen).",
     }),
     prompt: t({
       en: "Prompt (optional)",
@@ -231,6 +258,7 @@ export default {
       zh: "提示词（可选）",
       ko: "프롬프트 (선택)",
       ja: "プロンプト（任意）",
+      de: "Prompt (optional)",
     }),
     promptHelp: t({
       en: "If this video was made with AI, share the prompt you have permission to publish.",
@@ -239,6 +267,7 @@ export default {
       zh: "如果该视频由 AI 制作，请分享你有权公开的提示词。",
       ko: "AI로 만든 동영상이라면, 공개 권한이 있는 프롬프트를 공유해 주세요.",
       ja: "AIで作られた動画の場合は、公開の許可を得ているプロンプトを共有してください。",
+      de: "Wenn dieses Video mit KI erstellt wurde, teile den Prompt, den du veröffentlichen darfst.",
     }),
     consent: t({
       en: "I have permission to share this work. I agree that my name and submitted content, including any prompt, may be published with attribution if accepted. My email stays private.",
@@ -247,6 +276,7 @@ export default {
       zh: "我有权分享此作品。我同意，若被采纳，我的姓名和提交的内容（包括任何提示词）可署名发布。我的邮箱将保密。",
       ko: "이 작업물을 공유할 권한이 있습니다. 채택되면 프롬프트를 포함한 제출 콘텐츠와 이름이 출처 표기와 함께 게시될 수 있음에 동의합니다. 이메일은 비공개로 유지됩니다.",
       ja: "この作品を共有する許可を得ています。採用された場合、名前と投稿内容（プロンプトを含む）がクレジット付きで公開されることに同意します。メールアドレスは公開されません。",
+      de: "Ich darf diese Arbeit teilen. Ich bin einverstanden, dass mein Name und die eingereichten Inhalte, einschließlich eines Prompts, bei Annahme mit Nennung veröffentlicht werden dürfen. Meine E-Mail bleibt privat.",
     }),
     privacy: t({
       en: "Read our privacy policy",
@@ -255,6 +285,7 @@ export default {
       zh: "阅读我们的隐私政策",
       ko: "개인정보 처리방침 읽기",
       ja: "プライバシーポリシーを読む",
+      de: "Lies unsere Datenschutzerklärung",
     }),
     submit: t({
       en: "Submit for review",
@@ -263,6 +294,7 @@ export default {
       zh: "提交审核",
       ko: "검토 요청",
       ja: "審査に送信",
+      de: "Zur Prüfung einreichen",
     }),
     pending: t({
       en: "Saving submission…",
@@ -271,6 +303,7 @@ export default {
       zh: "正在保存提交…",
       ko: "제출물 저장 중…",
       ja: "投稿を保存中…",
+      de: "Einreichung wird gespeichert …",
     }),
     saved: t({
       en: "Submission received.",
@@ -279,6 +312,7 @@ export default {
       zh: "已收到提交。",
       ko: "제출되었습니다.",
       ja: "投稿を受け付けました。",
+      de: "Einreichung erhalten.",
     }),
     thanks: t({
       en: "Your submission is saved and pending review. It is not public yet. Thanks for helping the collection grow.",
@@ -287,6 +321,7 @@ export default {
       zh: "你的提交已保存，正在等待审核，目前尚未公开。感谢你帮助合集不断壮大。",
       ko: "제출물이 저장되어 검토를 기다리고 있습니다. 아직 공개되지 않았습니다. 컬렉션을 키우는 데 도움을 주셔서 감사합니다.",
       ja: "投稿は保存され、審査待ちです。まだ公開されていません。コレクションの充実にご協力いただきありがとうございます。",
+      de: "Deine Einreichung ist gespeichert und wartet auf Prüfung. Sie ist noch nicht öffentlich. Danke, dass du die Sammlung wachsen lässt.",
     }),
     back: t({
       en: "Back to Discover",
@@ -295,6 +330,7 @@ export default {
       zh: "返回发现",
       ko: "둘러보기로 돌아가기",
       ja: "見つけるに戻る",
+      de: "Zurück zu Entdecken",
     }),
     errors: {
       validation: t({
@@ -304,6 +340,7 @@ export default {
         zh: "请检查所有必填项：姓名、标题、公开的 HTTPS 网站 URL、至少 10 个字符的描述以及分享同意均为必填。",
         ko: "모든 필수 항목을 확인하세요: 이름, 제목, 공개 HTTPS 웹사이트 URL, 10자 이상의 설명, 공유 동의가 필요합니다.",
         ja: "必須項目をすべてご確認ください：お名前、タイトル、公開HTTPSのウェブサイトURL、10文字以上の説明、共有への同意が必要です。",
+        de: "Prüfe alle Pflichtfelder: Name, Titel, eine öffentliche HTTPS-Website-URL, eine Beschreibung mit mindestens 10 Zeichen und deine Einwilligung zum Teilen sind erforderlich.",
       }),
       "rate-limit": t({
         en: "Too many requests. Please wait a minute before submitting again.",
@@ -312,6 +349,7 @@ export default {
         zh: "请求过多。请等待一分钟后再提交。",
         ko: "요청이 너무 많습니다. 1분 후에 다시 제출해 주세요.",
         ja: "リクエストが多すぎます。1分待ってから再度送信してください。",
+        de: "Zu viele Anfragen. Bitte warte eine Minute, bevor du erneut einreichst.",
       }),
       storage: t({
         en: "Your submission couldn’t be saved. Your form is still here; please try again.",
@@ -320,6 +358,7 @@ export default {
         zh: "你的提交未能保存。表单内容仍在，请重试。",
         ko: "제출물을 저장하지 못했습니다. 양식 내용은 그대로 있으니 다시 시도해 주세요.",
         ja: "投稿を保存できませんでした。フォームの内容は残っています。もう一度お試しください。",
+        de: "Deine Einreichung konnte nicht gespeichert werden. Dein Formular ist noch da; bitte versuch es noch mal.",
       }),
       unauthorized: t({
         en: "Your session has ended. Sign in again to submit; your form is still here.",
@@ -328,6 +367,7 @@ export default {
         zh: "你的会话已结束。请重新登录后提交；表单内容仍在。",
         ko: "세션이 만료되었습니다. 다시 로그인해 제출하세요. 양식 내용은 그대로 있습니다.",
         ja: "セッションが終了しました。投稿するには再度ログインしてください。フォームの内容は残っています。",
+        de: "Deine Sitzung ist abgelaufen. Melde dich erneut an, um einzureichen; dein Formular ist noch da.",
       }),
     },
   },

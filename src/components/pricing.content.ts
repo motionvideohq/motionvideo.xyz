@@ -11,6 +11,7 @@ const pricing = {
       zh: "立即购买，仅需",
       ko: "지금 구매:",
       ja: "今すぐ購入：",
+      de: "Jetzt kaufen für",
     }),
     oneTimePurchase: t({
       en: "One-time purchase",
@@ -19,6 +20,7 @@ const pricing = {
       zh: "一次性购买",
       ko: "1회 구매",
       ja: "買い切り",
+      de: "Einmalkauf",
     }),
     oneTime: t({
       en: "one-time",
@@ -27,6 +29,7 @@ const pricing = {
       zh: "一次性",
       ko: "1회 결제",
       ja: "買い切り",
+      de: "einmalig",
     }),
     launchOffer: t({
       en: "Launch offer",
@@ -35,6 +38,7 @@ const pricing = {
       zh: "首发优惠",
       ko: "출시 기념 할인",
       ja: "ローンチ特価",
+      de: "Launch-Angebot",
     }),
     live: t({
       en: "LIVE",
@@ -43,6 +47,7 @@ const pricing = {
       zh: "进行中",
       ko: "LIVE",
       ja: "LIVE",
+      de: "LIVE",
     }),
     left: t({
       en: "left",
@@ -51,6 +56,7 @@ const pricing = {
       zh: "剩余",
       ko: "남음",
       ja: "残り",
+      de: "übrig",
     }),
     spotsRemaining: t({
       en: "spots remaining",
@@ -59,6 +65,7 @@ const pricing = {
       zh: "个名额",
       ko: "자리 남음",
       ja: "枠",
+      de: "Plätze verfügbar",
     }),
     offerEnds: t({
       en: "The launch offer ends after the first 100 purchases. Then the price is $49.",
@@ -67,6 +74,7 @@ const pricing = {
       zh: "首发优惠在前 100 笔购买后结束，之后价格为 $49。",
       ko: "출시 기념 할인은 첫 100건 구매 후 종료됩니다. 이후 가격은 $49입니다.",
       ja: "ローンチ特価は最初の100件の購入で終了します。その後の価格は$49です。",
+      de: "Das Launch-Angebot endet nach den ersten 100 Käufen. Danach kostet es 49 $.",
     }),
     perks: [
       t({
@@ -76,6 +84,7 @@ const pricing = {
         zh: "适用于任意编程智能体和渲染器的技能",
         ko: "모든 코딩 에이전트와 렌더러용 스킬",
         ja: "あらゆるコーディングエージェントとレンダラーに対応するスキル",
+        de: "Skills für jeden Coding-Agent und Renderer",
       }),
       t({
         en: "Storyboard skills, scene starters, and motion tokens",
@@ -84,6 +93,7 @@ const pricing = {
         zh: "分镜技能、场景模板和动效 token",
         ko: "스토리보드 스킬, 장면 스타터, 모션 토큰",
         ja: "ストーリーボードスキル、シーンのスターター、モーショントークン",
+        de: "Storyboard-Skills, Szenen-Starter und Motion-Tokens",
       }),
       t({
         en: "Unlimited personal and client projects",
@@ -92,6 +102,7 @@ const pricing = {
         zh: "个人和客户项目不限数量",
         ko: "개인 및 클라이언트 프로젝트 무제한",
         ja: "個人・クライアントのプロジェクトで無制限に利用可能",
+        de: "Unbegrenzt viele private und Kundenprojekte",
       }),
       t({
         en: "Updates pushed to the same repository",
@@ -100,6 +111,7 @@ const pricing = {
         zh: "更新推送到同一仓库",
         ko: "같은 저장소로 업데이트 제공",
         ja: "同じリポジトリにアップデートを配信",
+        de: "Updates im selben Repository",
       }),
     ],
   },

@@ -11,6 +11,7 @@ const page = {
       zh: "最后更新：",
       ko: "최종 업데이트:",
       ja: "最終更新日：",
+      de: "Zuletzt aktualisiert:",
     }),
   },
 } satisfies Dictionary;

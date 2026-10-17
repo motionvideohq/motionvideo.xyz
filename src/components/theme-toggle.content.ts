@@ -11,6 +11,7 @@ const themeToggle = {
       zh: "切换主题",
       ko: "테마 전환",
       ja: "テーマを切り替え",
+      de: "Design umschalten",
     }),
   },
 } satisfies Dictionary;

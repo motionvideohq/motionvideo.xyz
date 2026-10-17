@@ -11,6 +11,7 @@ export default {
       zh: "设置",
       ko: "설정",
       ja: "設定",
+      de: "Einstellungen",
     }),
     intro: t({
       en: "Your account preferences.",
@@ -19,6 +20,7 @@ export default {
       zh: "你的账号偏好。",
       ko: "계정 환경설정.",
       ja: "アカウントの設定。",
+      de: "Deine Kontoeinstellungen.",
     }),
     account: t({
       en: "Account",
@@ -27,6 +29,7 @@ export default {
       zh: "账号",
       ko: "계정",
       ja: "アカウント",
+      de: "Konto",
     }),
     accountBody: t({
       en: "How you appear and the email you sign in with.",
@@ -35,6 +38,7 @@ export default {
       zh: "你的展示信息和登录邮箱。",
       ko: "표시되는 정보와 로그인 이메일.",
       ja: "表示名とログインに使うメールアドレス。",
+      de: "Wie du angezeigt wirst und mit welcher E-Mail du dich anmeldest.",
     }),
     email: t({
       en: "Email",
@@ -43,6 +47,7 @@ export default {
       zh: "邮箱",
       ko: "이메일",
       ja: "メールアドレス",
+      de: "E-Mail",
     }),
     avatar: t({
       en: "Avatar",
@@ -51,6 +56,7 @@ export default {
       zh: "头像",
       ko: "아바타",
       ja: "アバター",
+      de: "Avatar",
     }),
     name: t({
       en: "Name",
@@ -59,6 +65,7 @@ export default {
       zh: "姓名",
       ko: "이름",
       ja: "名前",
+      de: "Name",
     }),
     noName: t({
       en: "Not set",
@@ -67,6 +74,7 @@ export default {
       zh: "未设置",
       ko: "설정 안 됨",
       ja: "未設定",
+      de: "Nicht festgelegt",
     }),
     edit: t({
       en: "Edit",
@@ -75,6 +83,7 @@ export default {
       zh: "编辑",
       ko: "편집",
       ja: "編集",
+      de: "Bearbeiten",
     }),
     save: t({
       en: "Save",
@@ -83,6 +92,7 @@ export default {
       zh: "保存",
       ko: "저장",
       ja: "保存",
+      de: "Speichern",
     }),
     saving: t({
       en: "Saving…",
@@ -91,6 +101,7 @@ export default {
       zh: "保存中…",
       ko: "저장 중…",
       ja: "保存中…",
+      de: "Wird gespeichert …",
     }),
     cancel: t({
       en: "Cancel",
@@ -99,6 +110,7 @@ export default {
       zh: "取消",
       ko: "취소",
       ja: "キャンセル",
+      de: "Abbrechen",
     }),
     saveError: t({
       en: "Could not save. Try again.",
@@ -107,6 +119,7 @@ export default {
       zh: "保存失败，请重试。",
       ko: "저장하지 못했습니다. 다시 시도하세요.",
       ja: "保存できませんでした。もう一度お試しください。",
+      de: "Speichern fehlgeschlagen. Versuch es noch mal.",
     }),
     connections: t({
       en: "Connections",
@@ -115,6 +128,7 @@ export default {
       zh: "关联账号",
       ko: "연결",
       ja: "連携",
+      de: "Verbindungen",
     }),
     connectionsBody: t({
       en: "Other ways to sign in to this account.",
@@ -123,6 +137,7 @@ export default {
       zh: "登录此账号的其他方式。",
       ko: "이 계정에 로그인하는 다른 방법.",
       ja: "このアカウントへのその他のログイン方法。",
+      de: "Weitere Möglichkeiten, dich bei diesem Konto anzumelden.",
     }),
     connected: t({
       en: "Connected",
@@ -131,6 +146,7 @@ export default {
       zh: "已关联",
       ko: "연결됨",
       ja: "連携済み",
+      de: "Verbunden",
     }),
     connect: t({
       en: "Connect",
@@ -139,6 +155,7 @@ export default {
       zh: "关联",
       ko: "연결",
       ja: "連携する",
+      de: "Verbinden",
     }),
     preferences: t({
       en: "Preferences",
@@ -147,6 +164,7 @@ export default {
       zh: "偏好设置",
       ko: "환경설정",
       ja: "環境設定",
+      de: "Präferenzen",
     }),
     preferencesBody: t({
       en: "How the site behaves for you.",
@@ -155,6 +173,7 @@ export default {
       zh: "网站对你的呈现方式。",
       ko: "사이트 동작 방식.",
       ja: "サイトの動作設定。",
+      de: "Wie sich die Website für dich verhält.",
     }),
     language: t({
       en: "Language",
@@ -163,6 +182,7 @@ export default {
       zh: "语言",
       ko: "언어",
       ja: "言語",
+      de: "Sprache",
     }),
     cursors: t({
       en: "Cursors",
@@ -171,6 +191,7 @@ export default {
       zh: "光标",
       ko: "커서",
       ja: "カーソル",
+      de: "Cursor",
     }),
     cursorsHelp: t({
       en: "See and share live cursors with other visitors.",
@@ -179,6 +200,7 @@ export default {
       zh: "查看并与其他访客共享实时光标。",
       ko: "다른 방문자와 실시간 커서를 보고 공유합니다.",
       ja: "他の訪問者とライブカーソルを表示・共有します。",
+      de: "Live-Cursor anderer Besucher sehen und deinen teilen.",
     }),
     delete: t({
       en: "Delete",
@@ -187,6 +209,7 @@ export default {
       zh: "删除",
       ko: "삭제",
       ja: "削除",
+      de: "Löschen",
     }),
     emailsBody: t({
       en: "What we send you, besides sign-in codes and receipts.",
@@ -195,6 +218,7 @@ export default {
       zh: "除登录验证码和收据外，我们会发给你的内容。",
       ko: "로그인 코드와 영수증 외에 보내 드리는 이메일.",
       ja: "ログインコードと領収書以外にお送りするもの。",
+      de: "Was wir dir außer Anmeldecodes und Belegen schicken.",
     }),
     danger: t({
       en: "Danger zone",
@@ -203,6 +227,7 @@ export default {
       zh: "危险操作",
       ko: "위험 구역",
       ja: "危険な操作",
+      de: "Gefahrenzone",
     }),
     dangerBody: t({
       en: "Permanent and can’t be undone.",
@@ -211,6 +236,7 @@ export default {
       zh: "永久生效，无法撤销。",
       ko: "영구적이며 되돌릴 수 없습니다.",
       ja: "取り消すことはできません。",
+      de: "Endgültig und nicht rückgängig zu machen.",
     }),
     deleteAccount: t({
       en: "Delete account",
@@ -219,6 +245,7 @@ export default {
       zh: "删除账号",
       ko: "계정 삭제",
       ja: "アカウントを削除",
+      de: "Konto löschen",
     }),
     deleteNote: t({
       en: "Removes your account, submissions, and bookmarks.",
@@ -227,6 +254,7 @@ export default {
       zh: "删除你的账号、提交内容和收藏。",
       ko: "계정, 제출물, 북마크를 삭제합니다.",
       ja: "アカウント、投稿、ブックマークを削除します。",
+      de: "Entfernt dein Konto, deine Einreichungen und deine Merkliste.",
     }),
     emails: t({
       en: "Emails",
@@ -235,6 +263,7 @@ export default {
       zh: "邮件",
       ko: "이메일",
       ja: "メール",
+      de: "E-Mails",
     }),
     updates: t({
       en: "MotionVideo updates",
@@ -243,6 +272,7 @@ export default {
       zh: "MotionVideo 动态",
       ko: "MotionVideo 소식",
       ja: "MotionVideoの最新情報",
+      de: "MotionVideo-Updates",
     }),
     updatesDescription: t({
       en: "New features and featured work, occasionally.",
@@ -251,6 +281,7 @@ export default {
       zh: "新功能和精选作品，不定期发送。",
       ko: "새 기능과 추천 작업물을 가끔 보내 드립니다.",
       ja: "新機能や注目作品を時々お届けします。",
+      de: "Gelegentlich neue Features und vorgestellte Arbeiten.",
     }),
   },
 } satisfies Dictionary;

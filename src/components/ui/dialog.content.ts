@@ -11,6 +11,7 @@ export default {
       zh: "关闭",
       ko: "닫기",
       ja: "閉じる",
+      de: "Schließen",
     }),
   },
 } satisfies Dictionary;

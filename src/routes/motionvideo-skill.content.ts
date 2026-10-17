@@ -13,6 +13,7 @@ export default {
       zh: "动效设计，",
       ko: "모션 디자인을",
       ja: "モーションデザインを、",
+      de: "Motion Design,",
     }),
     heroEnd: t({
       en: "written in code.",
@@ -21,6 +22,7 @@ export default {
       zh: "用代码书写。",
       ko: "코드로 쓰다.",
       ja: "コードで。",
+      de: "in Code geschrieben.",
     }),
     agents: t({
       en: "Works with any agent",
@@ -29,6 +31,7 @@ export default {
       zh: "适用于任意智能体",
       ko: "모든 에이전트와 호환",
       ja: "どのエージェントにも対応",
+      de: "Funktioniert mit jedem Agent",
     }),
     stack: t({
       en: "Works with any stack",
@@ -37,6 +40,7 @@ export default {
       zh: "适用于任意技术栈",
       ko: "모든 스택과 호환",
       ja: "どのスタックにも対応",
+      de: "Funktioniert mit jedem Stack",
     }),
     intro: t({
       en: "Agent skills that teach your coding agent real motion design: timing, easing, and choreography. Showreels, intros, and launch films, rendered from a prompt.",
@@ -45,6 +49,7 @@ export default {
       zh: "教你的编程智能体真正动效设计的智能体技能：时间、缓动和编排。作品集集锦、片头和发布影片，一句提示词即可渲染。",
       ko: "코딩 에이전트에게 타이밍, 이징, 안무 같은 진짜 모션 디자인을 가르치는 에이전트 스킬. 프롬프트 하나로 쇼릴, 인트로, 출시 영상을 렌더링합니다.",
       ja: "コーディングエージェントに本物のモーションデザイン（タイミング、イージング、振り付け）を教えるエージェントスキル。ショーリール、イントロ、ローンチフィルムをプロンプトからレンダリング。",
+      de: "Agent-Skills, die deinem Coding-Agent echtes Motion Design beibringen: Timing, Easing und Choreografie. Showreels, Intros und Launch-Filme, gerendert aus einem Prompt.",
     }),
     pricing: t({
       en: "See pricing",
@@ -53,6 +58,7 @@ export default {
       zh: "查看价格",
       ko: "가격 보기",
       ja: "料金を見る",
+      de: "Preise ansehen",
     }),
     oneTime: t({
       en: "One-time purchase",
@@ -61,6 +67,7 @@ export default {
       zh: "一次性购买",
       ko: "1회 구매",
       ja: "買い切り",
+      de: "Einmalkauf",
     }),
     timeline: t({
       en: "Motion design without a timeline.",
@@ -69,6 +76,7 @@ export default {
       zh: "无需时间轴的动效设计。",
       ko: "타임라인 없는 모션 디자인.",
       ja: "タイムラインなしのモーションデザイン。",
+      de: "Motion Design ohne Timeline.",
     }),
     judgment: t({
       en: "Good motion is mostly judgment: how long to hold, when things overlap, which easing makes a move feel intentional. That judgment usually lives in keyframe tools and years of practice.",
@@ -77,6 +85,7 @@ export default {
       zh: "好的动效主要靠判断：停留多久、何时重叠、哪种缓动让动作显得有意图。这种判断通常存在于关键帧工具和多年的练习之中。",
       ko: "좋은 모션은 대부분 판단의 문제입니다: 얼마나 오래 멈출지, 언제 겹칠지, 어떤 이징이 움직임을 의도적으로 보이게 하는지. 이런 판단은 보통 키프레임 도구와 수년간의 연습 속에 있습니다.",
       ja: "良いモーションの大部分は判断です：どれだけ止めるか、いつ重ねるか、どのイージングなら動きに意図が感じられるか。その判断は通常、キーフレームツールと長年の経験の中にあります。",
+      de: "Gute Motion ist vor allem Urteilsvermögen: wie lange etwas stehen bleibt, wann sich Dinge überlappen, welches Easing eine Bewegung bewusst wirken lässt. Dieses Urteilsvermögen steckt normalerweise in Keyframe-Tools und jahrelanger Übung.",
     }),
     code: t({
       en: `${SITE.NAME} writes it down for your agent. It storyboards the beats, then animates type, shapes, and your own components in code, so every frame is reviewable and every change is a re-render away.`,
@@ -85,6 +94,7 @@ export default {
       zh: `${SITE.NAME} 把它写下来交给你的智能体。智能体先规划节拍分镜，再用代码为文字、图形和你自己的组件制作动画，每一帧都可审阅，每次修改只需重新渲染。`,
       ko: `${SITE.NAME}은 그 판단을 에이전트를 위해 글로 정리합니다. 에이전트는 비트를 스토리보드로 짠 뒤 타이포, 도형, 여러분의 컴포넌트를 코드로 애니메이션화하므로, 모든 프레임을 검토할 수 있고 모든 변경은 다시 렌더링하면 끝입니다.`,
       ja: `${SITE.NAME}はそれをエージェントのために書き起こします。構成をストーリーボードにし、文字、シェイプ、あなた自身のコンポーネントをコードでアニメーションさせるので、すべてのフレームを確認でき、どんな変更も再レンダリングするだけです。`,
+      de: `${SITE.NAME} schreibt es für deinen Agent auf. Er plant die Beats im Storyboard und animiert dann Typo, Formen und deine eigenen Komponenten in Code – so ist jeder Frame überprüfbar und jede Änderung nur ein erneutes Rendern entfernt.`,
     }),
     showreel: t({
       en: "Portfolio showreel",
@@ -93,6 +103,7 @@ export default {
       zh: "作品集集锦",
       ko: "포트폴리오 쇼릴",
       ja: "ポートフォリオのショーリール",
+      de: "Portfolio-Showreel",
     }),
     showreelPrompt: t({
       en: "A 15s intro reel for my portfolio",
@@ -101,6 +112,7 @@ export default {
       zh: "为我的作品集做一段 15 秒的片头",
       ko: "내 포트폴리오용 15초 인트로 릴",
       ja: "ポートフォリオ用の15秒のイントロ",
+      de: "Ein 15-Sekunden-Intro für mein Portfolio",
     }),
     launchTitle: t({
       en: "From showreels to launch films.",
@@ -109,6 +121,7 @@ export default {
       zh: "从作品集集锦到发布影片。",
       ko: "쇼릴부터 출시 영상까지.",
       ja: "ショーリールからローンチフィルムまで。",
+      de: "Von Showreels bis zu Launch-Filmen.",
     }),
     launchBody: t({
       en: "The same skills cover the videos that ship with a product: launch films, feature updates, and changelog clips, built from the interface you already have instead of a redraw.",
@@ -117,6 +130,7 @@ export default {
       zh: "同样的技能也适用于随产品发布的视频：发布影片、功能更新和更新日志短片，直接用你现有的界面构建，无需重画。",
       ko: "같은 스킬로 제품과 함께 나가는 영상도 만듭니다: 출시 영상, 기능 업데이트, 변경 내역 클립을 다시 그리지 않고 지금 있는 인터페이스로 만듭니다.",
       ja: "同じスキルで、プロダクトとともに出す動画もカバーします：ローンチフィルム、機能アップデート、変更履歴クリップを、描き直すことなく既存のインターフェースから作ります。",
+      de: "Dieselben Skills decken die Videos ab, die mit einem Produkt ausgeliefert werden: Launch-Filme, Feature-Updates und Changelog-Clips, gebaut aus dem Interface, das du schon hast, statt neu gezeichnet.",
     }),
     control: t({
       en: "You stay in charge of the cut. Review the storyboard, ask for changes in plain words, and render again.",
@@ -125,6 +139,7 @@ export default {
       zh: "剪辑始终由你掌控。审阅分镜，用平实的语言提出修改，然后重新渲染。",
       ko: "편집 결정은 여러분이 합니다. 스토리보드를 검토하고, 평범한 말로 수정을 요청하고, 다시 렌더링하세요.",
       ja: "編集の主導権はあなたにあります。ストーリーボードを確認し、普段の言葉で修正を依頼して、再レンダリングするだけです。",
+      de: "Du behältst die Kontrolle über den Schnitt. Prüfe das Storyboard, wünsch dir Änderungen in einfachen Worten und rendere erneut.",
     }),
     launchLabel: t({
       en: "shadercn launch film",
@@ -133,6 +148,7 @@ export default {
       zh: "shadercn 发布影片",
       ko: "shadercn 출시 영상",
       ja: "shadercnのローンチフィルム",
+      de: "shadercn-Launch-Film",
     }),
     launchPrompt: t({
       en: "A 15s launch film for shadercn",
@@ -141,6 +157,7 @@ export default {
       zh: "为 shadercn 做一段 15 秒的发布影片",
       ko: "shadercn을 위한 15초 출시 영상",
       ja: "shadercn用の15秒のローンチフィルム",
+      de: "Ein 15-Sekunden-Launch-Film für shadercn",
     }),
     how: t({
       en: "How it works",
@@ -149,6 +166,7 @@ export default {
       zh: "工作原理",
       ko: "작동 방식",
       ja: "仕組み",
+      de: "So funktioniert’s",
     }),
     pack: t({
       en: "What’s in the pack",
@@ -157,6 +175,7 @@ export default {
       zh: "技能包里有什么",
       ko: "팩 구성",
       ja: "パックの内容",
+      de: "Was im Pack steckt",
     }),
     packIntro: t({
       en: "Everything your agent needs to go from a sentence to a rendered file, without starting from a blank composition.",
@@ -165,6 +184,7 @@ export default {
       zh: "智能体从一句话到渲染出文件所需的一切，无需从空白合成开始。",
       ko: "빈 컴포지션에서 시작하지 않고, 문장 하나에서 렌더링된 파일까지 가는 데 에이전트에게 필요한 모든 것.",
       ja: "1文からレンダリング済みファイルまで、空のコンポジションから始めることなく、エージェントに必要なものがすべて揃っています。",
+      de: "Alles, was dein Agent braucht, um von einem Satz zu einer gerenderten Datei zu kommen – ohne mit einer leeren Komposition zu starten.",
     }),
     faq: t({
       en: "FAQ",
@@ -173,6 +193,7 @@ export default {
       zh: "常见问题",
       ko: "FAQ",
       ja: "よくある質問",
+      de: "FAQ",
     }),
     priceTitle: t({
       en: "One price. Every update.",
@@ -181,6 +202,7 @@ export default {
       zh: "一次付费，永久更新。",
       ko: "한 번 결제. 모든 업데이트.",
       ja: "価格は1つ。アップデートはすべて込み。",
+      de: "Ein Preis. Alle Updates.",
     }),
   },
 } satisfies Dictionary;

@@ -13,6 +13,7 @@ export default {
       zh: "品牌",
       ko: "브랜드",
       ja: "ブランド",
+      de: "Marke",
     }),
     intro: t({
       en: `Logos and colors for writing about ${SITE.NAME}. There is a logomark only; set the name in plain text next to it.`,
@@ -21,6 +22,7 @@ export default {
       zh: `撰写 ${SITE.NAME} 相关内容时可使用的 Logo 和颜色。我们只有 Logo 标志；请在其旁边以纯文本写出名称。`,
       ko: `${SITE.NAME}에 대해 글을 쓸 때 사용할 로고와 색상입니다. 로고마크만 있으니, 이름은 옆에 일반 텍스트로 적어 주세요.`,
       ja: `${SITE.NAME}について書く際のロゴと色です。ロゴマークのみ用意しています。名前はその横にプレーンテキストで記載してください。`,
+      de: `Logos und Farben für Beiträge über ${SITE.NAME}. Es gibt nur eine Bildmarke; setze den Namen in normalem Text daneben.`,
     }),
     logomark: t({
       en: "Logomark",
@@ -29,6 +31,7 @@ export default {
       zh: "Logo 标志",
       ko: "로고마크",
       ja: "ロゴマーク",
+      de: "Bildmarke",
     }),
     assetNames: [
       t({
@@ -38,6 +41,7 @@ export default {
         zh: "Logo 标志，黑色",
         ko: "로고마크, 검정",
         ja: "ロゴマーク（黒）",
+        de: "Bildmarke, schwarz",
       }),
       t({
         en: "Logomark, white",
@@ -46,6 +50,7 @@ export default {
         zh: "Logo 标志，白色",
         ko: "로고마크, 흰색",
         ja: "ロゴマーク（白）",
+        de: "Bildmarke, weiß",
       }),
       t({
         en: "App icon",
@@ -54,6 +59,7 @@ export default {
         zh: "应用图标",
         ko: "앱 아이콘",
         ja: "アプリアイコン",
+        de: "App-Icon",
       }),
     ],
     colors: t({
@@ -63,6 +69,7 @@ export default {
       zh: "颜色",
       ko: "색상",
       ja: "カラー",
+      de: "Farben",
     }),
     colorNames: [
       t({
@@ -72,6 +79,7 @@ export default {
         zh: "黄色",
         ko: "노랑",
         ja: "イエロー",
+        de: "Gelb",
       }),
       t({
         en: "Light yellow",
@@ -80,6 +88,7 @@ export default {
         zh: "浅黄色",
         ko: "연노랑",
         ja: "ライトイエロー",
+        de: "Hellgelb",
       }),
       t({
         en: "Black",
@@ -88,6 +97,7 @@ export default {
         zh: "黑色",
         ko: "검정",
         ja: "ブラック",
+        de: "Schwarz",
       }),
     ],
     usage: t({
@@ -97,6 +107,7 @@ export default {
       zh: "使用规范",
       ko: "사용법",
       ja: "使用方法",
+      de: "Verwendung",
     }),
     nameRule: t({
       en: `Write the name as ${SITE.NAME}: one word, capital M and V.`,
@@ -105,6 +116,7 @@ export default {
       zh: `名称请写作 ${SITE.NAME}：一个词，M 和 V 大写。`,
       ko: `이름은 ${SITE.NAME}로 적어 주세요: 한 단어, 대문자 M과 V.`,
       ja: `名前は${SITE.NAME}と表記してください：1語で、MとVは大文字です。`,
+      de: `Schreibe den Namen als ${SITE.NAME}: ein Wort, großes M und V.`,
     }),
     spacing: t({
       en: "Keep clear space around the logomark of at least half its height.",
@@ -113,6 +125,7 @@ export default {
       zh: "Logo 标志四周至少保留其高度一半的留白。",
       ko: "로고마크 주위에 높이의 절반 이상 여백을 두세요.",
       ja: "ロゴマークの周囲には、高さの半分以上の余白を確保してください。",
+      de: "Halte um die Bildmarke einen Freiraum von mindestens der halben Höhe ein.",
     }),
     effects: t({
       en: "Don’t stretch, rotate, recolor outside the palette, or add effects.",
@@ -121,6 +134,7 @@ export default {
       zh: "请勿拉伸、旋转、使用调色板以外的颜色或添加特效。",
       ko: "늘리거나, 회전하거나, 팔레트 밖의 색으로 바꾸거나, 효과를 넣지 마세요.",
       ja: "引き伸ばし、回転、パレット外の色への変更、エフェクトの追加はしないでください。",
+      de: "Nicht verzerren, drehen, außerhalb der Palette umfärben oder mit Effekten versehen.",
     }),
     endorsement: t({
       en: "Don’t use the mark in a way that suggests we endorse your product.",
@@ -129,6 +143,7 @@ export default {
       zh: "请勿以暗示我们为你的产品背书的方式使用标志。",
       ko: "저희가 귀하의 제품을 보증하는 것처럼 보이게 마크를 사용하지 마세요.",
       ja: "当サービスがあなたのプロダクトを推奨しているかのような使い方はしないでください。",
+      de: "Verwende die Marke nicht so, dass der Eindruck entsteht, wir würden dein Produkt empfehlen.",
     }),
     questions: t({
       en: "Questions or a press request? ",
@@ -137,6 +152,7 @@ export default {
       zh: "有疑问或媒体需求？",
       ko: "문의나 언론 요청이 있으신가요? ",
       ja: "ご質問や取材のご依頼は",
+      de: "Fragen oder eine Presseanfrage? ",
     }),
   },
 } satisfies Dictionary;

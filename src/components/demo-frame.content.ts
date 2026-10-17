@@ -11,6 +11,7 @@ const demoFrame = {
       zh: "提示词：",
       ko: "프롬프트:",
       ja: "プロンプト：",
+      de: "Prompt:",
     }),
   },
 } satisfies Dictionary;

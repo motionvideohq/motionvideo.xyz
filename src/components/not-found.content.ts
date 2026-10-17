@@ -11,6 +11,7 @@ const notFound = {
       zh: "这一帧没有渲染出来。",
       ko: "이 프레임을 렌더링하지 못했습니다.",
       ja: "このフレームはレンダリングされませんでした。",
+      de: "Dieser Frame wurde nicht gerendert.",
     }),
     notFoundBody: t({
       en: "The page you’re looking for isn’t in the cut. It may have moved, or the link is wrong.",
@@ -19,6 +20,7 @@ const notFound = {
       zh: "你要找的页面不在这一版剪辑里。它可能已被移动，或链接有误。",
       ko: "찾으시는 페이지가 없습니다. 이동되었거나 링크가 잘못되었을 수 있습니다.",
       ja: "お探しのページは見つかりませんでした。移動したか、リンクが間違っている可能性があります。",
+      de: "Die gesuchte Seite hat es nicht in den Schnitt geschafft. Vielleicht wurde sie verschoben oder der Link ist falsch.",
     }),
     backHome: t({
       en: "Back to home",
@@ -27,6 +29,7 @@ const notFound = {
       zh: "返回首页",
       ko: "홈으로 돌아가기",
       ja: "ホームに戻る",
+      de: "Zur Startseite",
     }),
     reportLink: t({
       en: "Report a broken link",
@@ -35,6 +38,7 @@ const notFound = {
       zh: "报告失效链接",
       ko: "깨진 링크 신고",
       ja: "リンク切れを報告",
+      de: "Defekten Link melden",
     }),
   },
 } satisfies Dictionary;

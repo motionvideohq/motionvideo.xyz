@@ -13,6 +13,7 @@ export default {
           zh: "我需要动效设计经验吗？",
           ko: "모션 디자인 경험이 필요한가요?",
           ja: "モーションデザインの経験は必要ですか？",
+          de: "Brauche ich Erfahrung in Motion Design?",
         }),
         answer: t({
           en: "No. The skills carry the motion knowledge: easing, overlap, holds, and pacing. You describe the result in plain words and review a storyboard before anything is rendered.",
@@ -21,6 +22,7 @@ export default {
           zh: "不需要。技能本身承载了动效知识：缓动、重叠、停顿和节奏。你只需用平实的语言描述想要的效果，并在渲染前审阅分镜。",
           ko: "아니요. 이징, 오버랩, 홀드, 페이싱 같은 모션 지식은 스킬에 담겨 있습니다. 원하는 결과를 평범한 말로 설명하고, 렌더링 전에 스토리보드를 검토하면 됩니다.",
           ja: "いいえ。イージング、オーバーラップ、ホールド、テンポといったモーションの知識はスキルに含まれています。結果を普段の言葉で伝え、レンダリング前にストーリーボードを確認するだけです。",
+          de: "Nein. Die Skills bringen das Motion-Wissen mit: Easing, Überlappung, Pausen und Timing. Du beschreibst das Ergebnis in einfachen Worten und prüfst ein Storyboard, bevor irgendetwas gerendert wird.",
         }),
       },
       {
@@ -31,6 +33,7 @@ export default {
           zh: "我能做出什么样的视频？",
           ko: "어떤 동영상을 만들 수 있나요?",
           ja: "どんな動画を作れますか？",
+          de: "Welche Art von Videos kann ich machen?",
         }),
         answer: t({
           en: "Anything built from motion and type: portfolio showreels, intros, title sequences, launch films, and feature updates.",
@@ -39,6 +42,7 @@ export default {
           zh: "任何由动效和文字构成的内容：作品集集锦、片头、标题序列、发布影片和功能更新视频。",
           ko: "모션과 타이포그래피로 만드는 모든 것: 포트폴리오 쇼릴, 인트로, 타이틀 시퀀스, 출시 영상, 기능 업데이트.",
           ja: "モーションとタイポグラフィで構成されるものなら何でも：ポートフォリオのショーリール、イントロ、タイトルシーケンス、ローンチフィルム、機能アップデートなど。",
+          de: "Alles, was aus Bewegung und Typografie besteht: Portfolio-Showreels, Intros, Titelsequenzen, Launch-Filme und Feature-Updates.",
         }),
       },
       {
@@ -49,6 +53,7 @@ export default {
           zh: "支持哪些编程智能体？",
           ko: "어떤 코딩 에이전트를 지원하나요?",
           ja: "どのコーディングエージェントに対応していますか？",
+          de: "Welche Coding-Agents werden unterstützt?",
         }),
         answer: t({
           en: "Any agent that can read instruction files from your repository, including Claude Code, Codex, Cursor, Antigravity, and GitHub Copilot.",
@@ -57,6 +62,7 @@ export default {
           zh: "任何能读取仓库中指令文件的智能体，包括 Claude Code、Codex、Cursor、Antigravity 和 GitHub Copilot。",
           ko: "Claude Code, Codex, Cursor, Antigravity, GitHub Copilot 등 저장소의 지침 파일을 읽을 수 있는 모든 에이전트.",
           ja: "Claude Code、Codex、Cursor、Antigravity、GitHub Copilotなど、リポジトリ内の指示ファイルを読み込めるあらゆるエージェントに対応しています。",
+          de: "Jeder Agent, der Anweisungsdateien aus deinem Repository lesen kann, darunter Claude Code, Codex, Cursor, Antigravity und GitHub Copilot.",
         }),
       },
       {
@@ -67,6 +73,7 @@ export default {
           zh: "我该选哪个渲染器？",
           ko: "어떤 렌더러를 골라야 하나요?",
           ja: "どのレンダラーを選べばよいですか？",
+          de: "Welchen Renderer soll ich wählen?",
         }),
         answer: t({
           en: "Use whichever fits your project. Remotion suits React codebases, HyperFrames and Editframe work from HTML, and fframes renders on the GPU. Check each renderer’s own license for commercial use.",
@@ -75,6 +82,7 @@ export default {
           zh: "选适合你项目的即可。Remotion 适合 React 代码库，HyperFrames 和 Editframe 基于 HTML，fframes 使用 GPU 渲染。商业使用请查看各渲染器自己的许可证。",
           ko: "프로젝트에 맞는 것을 쓰세요. Remotion은 React 코드베이스에, HyperFrames와 Editframe은 HTML 기반 작업에 맞고, fframes는 GPU로 렌더링합니다. 상업적 사용은 각 렌더러의 라이선스를 확인하세요.",
           ja: "プロジェクトに合うものをお使いください。ReactのコードベースにはRemotion、HTMLベースならHyperFramesやEditframe、GPUでレンダリングするならfframesが適しています。商用利用については各レンダラーのライセンスをご確認ください。",
+          de: "Nimm den, der zu deinem Projekt passt. Remotion eignet sich für React-Codebases, HyperFrames und Editframe arbeiten mit HTML, und fframes rendert auf der GPU. Prüfe für kommerzielle Nutzung die Lizenz des jeweiligen Renderers.",
         }),
       },
       {
@@ -85,6 +93,7 @@ export default {
           zh: "付款后如何获取文件？",
           ko: "결제 후 파일은 어떻게 받나요?",
           ja: "支払い後、ファイルはどうやって受け取りますか？",
+          de: "Wie bekomme ich die Dateien nach dem Bezahlen?",
         }),
         answer: t({
           en: "Checkout needs no account. Right after paying, sign in with the email you paid with, open the Dodo Payments customer portal from your dashboard, and connect your GitHub account. Dodo Payments then invites you to the private repository.",
@@ -93,6 +102,7 @@ export default {
           zh: "结账无需账号。付款后立即用付款邮箱登录，从控制台打开 Dodo Payments 客户门户，并关联你的 GitHub 账号。随后 Dodo Payments 会邀请你加入私有仓库。",
           ko: "결제에는 계정이 필요 없습니다. 결제 직후 결제한 이메일로 로그인하고, 대시보드에서 Dodo Payments 고객 포털을 열어 GitHub 계정을 연결하세요. 그러면 Dodo Payments가 비공개 저장소로 초대합니다.",
           ja: "購入にアカウントは不要です。支払い後すぐに、支払いに使ったメールアドレスでログインし、ダッシュボードからDodo Paymentsのカスタマーポータルを開いてGitHubアカウントを連携してください。その後、Dodo Paymentsから非公開リポジトリへの招待が届きます。",
+          de: "Für den Checkout brauchst du kein Konto. Melde dich direkt nach dem Bezahlen mit der E-Mail-Adresse an, mit der du bezahlt hast, öffne in deinem Dashboard das Kundenportal von Dodo Payments und verbinde dein GitHub-Konto. Dodo Payments lädt dich dann ins private Repository ein.",
         }),
       },
       {
@@ -103,6 +113,7 @@ export default {
           zh: "可以用于客户项目吗？",
           ko: "클라이언트 프로젝트에도 쓸 수 있나요?",
           ja: "クライアントのプロジェクトにも使えますか？",
+          de: "Kann ich es für Kundenprojekte nutzen?",
         }),
         answer: t({
           en: "Yes. The license is per person and covers every project you work on, including work for clients.",
@@ -111,6 +122,7 @@ export default {
           zh: "可以。许可证按人授权，涵盖你参与的所有项目，包括为客户做的工作。",
           ko: "네. 라이선스는 1인 기준이며 클라이언트 작업을 포함해 참여하는 모든 프로젝트에 적용됩니다.",
           ja: "はい。ライセンスは個人単位で、クライアントワークを含め、あなたが携わるすべてのプロジェクトが対象です。",
+          de: "Ja. Die Lizenz gilt pro Person und deckt jedes Projekt ab, an dem du arbeitest – auch Arbeiten für Kunden.",
         }),
       },
       {
@@ -121,6 +133,7 @@ export default {
           zh: "可以退款吗？",
           ko: "환불받을 수 있나요?",
           ja: "返金はできますか？",
+          de: "Kann ich eine Rückerstattung bekommen?",
         }),
         answer: t({
           en: "Yes. Email us before you claim repository access for a full refund. After that, see our refund policy if you have a problem with your order or access.",
@@ -129,6 +142,7 @@ export default {
           zh: "可以。在领取仓库访问权限前给我们发邮件即可全额退款。之后如果订单或访问出现问题，请参阅我们的退款政策。",
           ko: "네. 저장소 접근 권한을 받기 전에 이메일을 보내 주시면 전액 환불해 드립니다. 그 이후 주문이나 접근에 문제가 있다면 환불 정책을 확인하세요.",
           ja: "はい。リポジトリへのアクセスを取得する前にメールでご連絡いただければ全額返金します。それ以降、注文やアクセスに問題がある場合は返金ポリシーをご覧ください。",
+          de: "Ja. Schreib uns, bevor du den Repository-Zugriff einlöst, und du bekommst den vollen Betrag zurück. Danach gilt unsere Rückerstattungsrichtlinie, falls es ein Problem mit deiner Bestellung oder deinem Zugriff gibt.",
         }),
       },
     ],

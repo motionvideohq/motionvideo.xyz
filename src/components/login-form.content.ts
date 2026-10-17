@@ -11,6 +11,7 @@ const account = {
       zh: "条款",
       ko: "약관",
       ja: "規約",
+      de: "AGB",
     }),
     privacy: t({
       en: "Privacy",
@@ -19,6 +20,7 @@ const account = {
       zh: "隐私",
       ko: "개인정보",
       ja: "プライバシー",
+      de: "Datenschutz",
     }),
     continueWithGoogle: t({
       en: "Log in with Google",
@@ -27,6 +29,7 @@ const account = {
       zh: "使用 Google 登录",
       ko: "Google로 로그인",
       ja: "Googleでログイン",
+      de: "Mit Google anmelden",
     }),
     orContinueWith: t({
       en: "Or continue with",
@@ -35,6 +38,7 @@ const account = {
       zh: "或使用以下方式",
       ko: "또는 다음으로 계속",
       ja: "または次の方法で続行",
+      de: "Oder weiter mit",
     }),
     signInTitle: t({
       en: "Sign in or create an account",
@@ -43,6 +47,7 @@ const account = {
       zh: "登录或创建账号",
       ko: "로그인 또는 계정 만들기",
       ja: "ログインまたはアカウント作成",
+      de: "Anmelden oder Konto erstellen",
     }),
     signInDescription: t({
       en: "We’ll email you a 6-digit code. New here? Your account is created when you sign in.",
@@ -51,6 +56,7 @@ const account = {
       zh: "我们会向你的邮箱发送 6 位验证码。新用户？登录时会自动创建账号。",
       ko: "6자리 코드를 이메일로 보내드립니다. 처음이신가요? 로그인하면 계정이 만들어집니다.",
       ja: "6桁のコードをメールでお送りします。初めての方は、ログイン時にアカウントが作成されます。",
+      de: "Wir schicken dir einen 6-stelligen Code per E-Mail. Neu hier? Dein Konto wird bei der Anmeldung erstellt.",
     }),
     email: t({
       en: "Email",
@@ -59,6 +65,7 @@ const account = {
       zh: "邮箱",
       ko: "이메일",
       ja: "メールアドレス",
+      de: "E-Mail",
     }),
     emailPlaceholder: t({
       en: "you@example.com",
@@ -67,6 +74,7 @@ const account = {
       zh: "you@example.com",
       ko: "you@example.com",
       ja: "you@example.com",
+      de: "du@beispiel.de",
     }),
     sending: t({
       en: "Sending…",
@@ -75,6 +83,7 @@ const account = {
       zh: "发送中…",
       ko: "보내는 중…",
       ja: "送信中…",
+      de: "Wird gesendet …",
     }),
     sendCode: t({
       en: "Send code",
@@ -83,6 +92,7 @@ const account = {
       zh: "发送验证码",
       ko: "코드 보내기",
       ja: "コードを送信",
+      de: "Code senden",
     }),
     code: t({
       en: "Code",
@@ -91,6 +101,7 @@ const account = {
       zh: "验证码",
       ko: "코드",
       ja: "コード",
+      de: "Code",
     }),
     signIn: t({
       en: "Sign in",
@@ -99,6 +110,7 @@ const account = {
       zh: "登录",
       ko: "로그인",
       ja: "ログイン",
+      de: "Anmelden",
     }),
     signingIn: t({
       en: "Signing in…",
@@ -107,6 +119,7 @@ const account = {
       zh: "登录中…",
       ko: "로그인 중…",
       ja: "ログイン中…",
+      de: "Anmeldung läuft …",
     }),
     changeEmail: t({
       en: "Use a different email",
@@ -115,6 +128,7 @@ const account = {
       zh: "使用其他邮箱",
       ko: "다른 이메일 사용",
       ja: "別のメールアドレスを使う",
+      de: "Andere E-Mail verwenden",
     }),
     resend: t({
       en: "Send a new code",
@@ -123,6 +137,7 @@ const account = {
       zh: "重新发送验证码",
       ko: "새 코드 보내기",
       ja: "新しいコードを送信",
+      de: "Neuen Code senden",
     }),
     resent: t({
       en: "New code sent.",
@@ -131,6 +146,7 @@ const account = {
       zh: "新验证码已发送。",
       ko: "새 코드를 보냈습니다.",
       ja: "新しいコードを送信しました。",
+      de: "Neuer Code gesendet.",
     }),
     checkEmail: t({
       en: "Check your email",
@@ -139,6 +155,7 @@ const account = {
       zh: "请查收邮件",
       ko: "이메일을 확인하세요",
       ja: "メールをご確認ください",
+      de: "Prüfe dein Postfach",
     }),
     sentCode: t({
       en: "We sent a 6-digit code to",
@@ -147,6 +164,7 @@ const account = {
       zh: "我们已将 6 位验证码发送至",
       ko: "6자리 코드를 보낸 주소:",
       ja: "6桁のコードを送信しました：",
+      de: "Wir haben einen 6-stelligen Code gesendet an",
     }),
     expires: t({
       en: "It expires in 10 minutes.",
@@ -155,6 +173,7 @@ const account = {
       zh: "10 分钟内有效。",
       ko: "10분 후에 만료됩니다.",
       ja: "有効期限は10分です。",
+      de: "Er läuft in 10 Minuten ab.",
     }),
     invalidCode: t({
       en: "That code is wrong or expired. Check it, or send a new one.",
@@ -163,6 +182,7 @@ const account = {
       zh: "验证码错误或已过期。请检查，或重新发送。",
       ko: "코드가 틀렸거나 만료되었습니다. 확인하거나 새 코드를 받으세요.",
       ja: "コードが間違っているか、期限切れです。確認するか、新しいコードを送信してください。",
+      de: "Der Code ist falsch oder abgelaufen. Prüfe ihn oder fordere einen neuen an.",
     }),
     tooManyAttempts: t({
       en: "Too many tries with that code. Send a new one.",
@@ -171,6 +191,7 @@ const account = {
       zh: "该验证码尝试次数过多，请重新获取。",
       ko: "이 코드로 시도한 횟수가 너무 많습니다. 새 코드를 받으세요.",
       ja: "このコードでの試行回数が多すぎます。新しいコードを送信してください。",
+      de: "Zu viele Versuche mit diesem Code. Fordere einen neuen an.",
     }),
     sendError: t({
       en: "Could not send the sign-in code. Try again.",
@@ -179,6 +200,7 @@ const account = {
       zh: "无法发送登录验证码，请重试。",
       ko: "로그인 코드를 보내지 못했습니다. 다시 시도하세요.",
       ja: "ログインコードを送信できませんでした。もう一度お試しください。",
+      de: "Der Anmeldecode konnte nicht gesendet werden. Versuch es noch mal.",
     }),
     rateLimited: t({
       en: "Too many sign-in requests. Wait a minute and try again.",
@@ -187,6 +209,7 @@ const account = {
       zh: "登录请求过多，请稍等一分钟再试。",
       ko: "로그인 요청이 너무 많습니다. 1분 후에 다시 시도하세요.",
       ja: "ログインのリクエストが多すぎます。1分待ってからもう一度お試しください。",
+      de: "Zu viele Anmeldeanfragen. Warte eine Minute und versuch es dann noch mal.",
     }),
     thanks: t({
       en: "Thanks for buying",
@@ -195,6 +218,7 @@ const account = {
       zh: "感谢购买",
       ko: "구매해 주셔서 감사합니다",
       ja: "ご購入ありがとうございます",
+      de: "Danke für deinen Kauf",
     }),
     confirming: t({
       en: "Confirming your payment",
@@ -203,6 +227,7 @@ const account = {
       zh: "正在确认付款",
       ko: "결제 확인 중",
       ja: "お支払いを確認しています",
+      de: "Deine Zahlung wird bestätigt",
     }),
     checkAgain: t({
       en: "Check again",
@@ -211,6 +236,7 @@ const account = {
       zh: "再次检查",
       ko: "다시 확인",
       ja: "もう一度確認",
+      de: "Erneut prüfen",
     }),
     seconds: t({
       en: "This usually takes a few seconds.",
@@ -219,6 +245,7 @@ const account = {
       zh: "通常只需几秒钟。",
       ko: "보통 몇 초면 끝납니다.",
       ja: "通常は数秒で完了します。",
+      de: "Das dauert normalerweise nur ein paar Sekunden.",
     }),
     opening: t({
       en: "Opening…",
@@ -227,6 +254,7 @@ const account = {
       zh: "正在打开…",
       ko: "여는 중…",
       ja: "開いています…",
+      de: "Wird geöffnet …",
     }),
     portal: t({
       en: "Open customer portal",
@@ -235,6 +263,7 @@ const account = {
       zh: "打开客户门户",
       ko: "고객 포털 열기",
       ja: "カスタマーポータルを開く",
+      de: "Kundenportal öffnen",
     }),
     portalPreview: t({
       en: "Customer portal (preview)",
@@ -243,6 +272,7 @@ const account = {
       zh: "客户门户（预览）",
       ko: "고객 포털 (미리보기)",
       ja: "カスタマーポータル（プレビュー）",
+      de: "Kundenportal (Vorschau)",
     }),
     own: t({
       en: "You own",
@@ -251,6 +281,7 @@ const account = {
       zh: "你已拥有",
       ko: "보유 중:",
       ja: "購入済み：",
+      de: "Du besitzt",
     }),
     portalDescription: t({
       en: "Open the customer portal to connect your GitHub account and get access to the private skill pack repository. Receipts and invoices live there too.",
@@ -259,6 +290,7 @@ const account = {
       zh: "打开客户门户，关联你的 GitHub 账号并获取私有技能包仓库的访问权限。收据和发票也在那里。",
       ko: "고객 포털을 열어 GitHub 계정을 연결하면 비공개 스킬 팩 저장소에 접근할 수 있습니다. 영수증과 인보이스도 그곳에 있습니다.",
       ja: "カスタマーポータルを開いてGitHubアカウントを連携し、非公開のスキルパックリポジトリにアクセスしてください。領収書や請求書もそこで確認できます。",
+      de: "Öffne das Kundenportal, um dein GitHub-Konto zu verbinden und Zugriff auf das private Repository des Skill-Packs zu erhalten. Dort findest du auch Belege und Rechnungen.",
     }),
     get: t({
       en: "Get",
@@ -267,6 +299,7 @@ const account = {
       zh: "获取",
       ko: "구매:",
       ja: "入手：",
+      de: "Hol dir",
     }),
     purchaseDescription: t({
       en: "One-time purchase. You’ll get access to the private skill pack repository and every future update.",
@@ -275,6 +308,7 @@ const account = {
       zh: "一次性购买。你将获得私有技能包仓库的访问权限及所有后续更新。",
       ko: "1회 구매. 비공개 스킬 팩 저장소와 앞으로의 모든 업데이트에 접근할 수 있습니다.",
       ja: "買い切りです。非公開のスキルパックリポジトリと今後のすべてのアップデートにアクセスできます。",
+      de: "Einmalkauf. Du erhältst Zugriff auf das private Repository des Skill-Packs und alle künftigen Updates.",
     }),
     dashboard: t({
       en: "Dashboard",
@@ -283,6 +317,7 @@ const account = {
       zh: "控制台",
       ko: "대시보드",
       ja: "ダッシュボード",
+      de: "Dashboard",
     }),
     localPreview: t({
       en: "Local UI preview",
@@ -291,6 +326,7 @@ const account = {
       zh: "本地 UI 预览",
       ko: "로컬 UI 미리보기",
       ja: "ローカルUIプレビュー",
+      de: "Lokale UI-Vorschau",
     }),
     signOut: t({
       en: "Sign out",
@@ -299,6 +335,7 @@ const account = {
       zh: "退出登录",
       ko: "로그아웃",
       ja: "ログアウト",
+      de: "Abmelden",
     }),
   },
 } satisfies Dictionary;

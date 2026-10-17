@@ -4,7 +4,15 @@ import type { ReactNode } from "react";
 import { IntlayerProvider, useLocale } from "react-intlayer";
 
 export const LOCALE_STORAGE_KEY = "motionvideo-locale";
-export const SUPPORTED_LOCALES = ["en", "es", "fr", "zh", "ko", "ja"] as const;
+export const SUPPORTED_LOCALES = [
+  "en",
+  "es",
+  "fr",
+  "zh",
+  "ko",
+  "ja",
+  "de",
+] as const;
 
 const isSupportedLocale = (
   value: string | null

@@ -14,6 +14,7 @@ export default {
           zh: "智能体技能",
           ko: "에이전트 스킬",
           ja: "エージェントスキル",
+          de: "Agent-Skills",
         }),
         body: t({
           en: "Instruction files that cover storyboarding, choreography, pacing, and typography in motion, loaded by your agent only when it needs them.",
@@ -22,6 +23,7 @@ export default {
           zh: "涵盖分镜、编排、节奏和动态排版的指令文件，智能体只在需要时加载。",
           ko: "스토리보드, 안무, 페이싱, 모션 타이포그래피를 다루는 지침 파일로, 에이전트가 필요할 때만 불러옵니다.",
           ja: "ストーリーボード、振り付け、テンポ、モーションタイポグラフィを扱う指示ファイル。エージェントが必要なときだけ読み込みます。",
+          de: "Anweisungsdateien zu Storyboarding, Choreografie, Timing und Typografie in Bewegung, die dein Agent nur lädt, wenn er sie braucht.",
         }),
       },
       {
@@ -33,6 +35,7 @@ export default {
           zh: "场景模板",
           ko: "장면 스타터",
           ja: "シーンのスターター",
+          de: "Szenen-Starter",
         }),
         body: t({
           en: "Ready-to-fork compositions for showreels, title sequences, launch films, and changelog clips, so your agent never starts from an empty file.",
@@ -41,6 +44,7 @@ export default {
           zh: "可直接 fork 的作品集集锦、标题序列、发布影片和更新日志短片合成，让你的智能体永远不必从空文件开始。",
           ko: "쇼릴, 타이틀 시퀀스, 출시 영상, 변경 내역 클립용으로 바로 포크할 수 있는 컴포지션. 에이전트가 빈 파일에서 시작할 일이 없습니다.",
           ja: "ショーリール、タイトルシーケンス、ローンチフィルム、変更履歴クリップ用のすぐにフォークできるコンポジション。エージェントが空のファイルから始めることはありません。",
+          de: "Fertige Kompositionen zum Forken für Showreels, Titelsequenzen, Launch-Filme und Changelog-Clips, damit dein Agent nie mit einer leeren Datei startet.",
         }),
       },
       {
@@ -52,6 +56,7 @@ export default {
           zh: "动效 token",
           ko: "모션 토큰",
           ja: "モーショントークン",
+          de: "Motion-Tokens",
         }),
         body: t({
           en: "Spring, easing, and timing values tuned for motion design, kept in one place so every scene moves with the same rhythm.",
@@ -60,6 +65,7 @@ export default {
           zh: "为动效设计调校的弹簧、缓动和时间参数，集中管理，让每个场景都保持同样的节奏。",
           ko: "모션 디자인에 맞춘 스프링, 이징, 타이밍 값을 한곳에 모아 모든 장면이 같은 리듬으로 움직입니다.",
           ja: "モーションデザイン向けに調整したスプリング、イージング、タイミングの値を一箇所にまとめ、すべてのシーンを同じリズムで動かします。",
+          de: "Spring-, Easing- und Timing-Werte, abgestimmt auf Motion Design und an einem Ort gebündelt, damit sich jede Szene im selben Rhythmus bewegt.",
         }),
       },
       {
@@ -71,6 +77,7 @@ export default {
           zh: "渲染器指南",
           ko: "렌더러 가이드",
           ja: "レンダラーガイド",
+          de: "Renderer-Guides",
         }),
         body: t({
           en: "Setup notes for Remotion, HyperFrames, Editframe, and fframes, so the same scene plan works with your stack.",
@@ -79,6 +86,7 @@ export default {
           zh: "Remotion、HyperFrames、Editframe 和 fframes 的配置说明，让同一份场景方案适配你的技术栈。",
           ko: "Remotion, HyperFrames, Editframe, fframes 설정 노트. 같은 장면 계획이 여러분의 스택에서 그대로 동작합니다.",
           ja: "Remotion、HyperFrames、Editframe、fframesのセットアップ手順。同じシーン構成をあなたのスタックで使えます。",
+          de: "Setup-Hinweise für Remotion, HyperFrames, Editframe und fframes, damit derselbe Szenenplan mit deinem Stack funktioniert.",
         }),
       },
     ],
