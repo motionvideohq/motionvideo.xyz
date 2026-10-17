@@ -31,6 +31,7 @@ export const ROUTES = {
   SPONSORSHIPS: "/sponsorships",
   SPONSORSHIPS_NEW: "/sponsorships/new",
   SUBMIT: "/submit",
+  TEMPLATES: "/templates",
   TERMS: "/terms",
   TOOLS: "/tools",
   WELCOME: "/welcome",
