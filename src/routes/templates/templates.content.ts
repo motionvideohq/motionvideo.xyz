@@ -112,6 +112,12 @@ export default {
       en: "Customize this template",
       es: "Personalizar esta plantilla",
       fr: "Personnaliser ce modèle",
+      zh: "自定义此模板",
+      ko: "이 템플릿 맞춤 설정",
+      ja: "このテンプレートをカスタマイズ",
+      de: "Diese Vorlage anpassen",
+      pt: "Personalizar este modelo",
+      ru: "Настроить этот шаблон",
     }),
     note: t({
       en: `Written by ${SITE.NAME}. Run it with Opus 5.5 at max effort for best results.`,
