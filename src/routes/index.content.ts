@@ -505,6 +505,12 @@ export default {
       en: "A stronger version of this prompt",
       es: "Una versión mejorada de esta instrucción",
       fr: "Une version améliorée de cette instruction",
+      zh: "这条提示词的增强版",
+      ko: "이 프롬프트의 강화 버전",
+      ja: "このプロンプトの強化版",
+      de: "Eine stärkere Version dieses Prompts",
+      pt: "Uma versão melhorada deste prompt",
+      ru: "Улучшенная версия этого промпта",
     }),
     // The detail view's prompt fold and how the video was made.
     showAll: t({

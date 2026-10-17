@@ -147,7 +147,17 @@ export default {
       pt: "Extras",
       ru: "Дополнительно",
     }),
-    templates: t({ en: "Templates", es: "Plantillas", fr: "Modèles" }),
+    templates: t({
+      en: "Templates",
+      es: "Plantillas",
+      fr: "Modèles",
+      zh: "模板",
+      ko: "템플릿",
+      ja: "テンプレート",
+      de: "Vorlagen",
+      pt: "Modelos",
+      ru: "Шаблоны",
+    }),
     submit: t({
       en: "Submit",
       es: "Enviar",
