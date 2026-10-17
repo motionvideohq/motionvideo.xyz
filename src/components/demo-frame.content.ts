@@ -4,7 +4,12 @@ import type { Dictionary } from "intlayer";
 const demoFrame = {
   key: "demo-frame",
   content: {
-    prompt: t({ en: "Prompt:", es: "Instrucción:", fr: "Consigne :" }),
+    prompt: t({
+      en: "Prompt:",
+      es: "Instrucción:",
+      fr: "Consigne :",
+      zh: "提示词：",
+    }),
   },
 } satisfies Dictionary;
 

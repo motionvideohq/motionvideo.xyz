@@ -2,7 +2,7 @@ import type { IntlayerConfig } from "intlayer";
 
 const config = {
   internationalization: {
-    locales: ["en", "es", "fr"],
+    locales: ["en", "es", "fr", "zh"],
     defaultLocale: "en",
   },
   routing: {

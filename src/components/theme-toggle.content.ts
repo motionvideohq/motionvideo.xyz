@@ -8,6 +8,7 @@ const themeToggle = {
       en: "Toggle theme",
       es: "Cambiar tema",
       fr: "Changer de thème",
+      zh: "切换主题",
     }),
   },
 } satisfies Dictionary;
