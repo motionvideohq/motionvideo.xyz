@@ -10,6 +10,7 @@ export default {
       fr: "Copier le symbole en SVG",
       zh: "复制 Logo 标志 SVG",
       ko: "로고마크를 SVG로 복사",
+      ja: "ロゴマークをSVGでコピー",
     }),
     copyLogotype: t({
       en: "Copy logotype as SVG",
@@ -17,6 +18,7 @@ export default {
       fr: "Copier le logotype en SVG",
       zh: "复制 Logo 字标 SVG",
       ko: "로고타입을 SVG로 복사",
+      ja: "ロゴタイプをSVGでコピー",
     }),
     copyAppIcon: t({
       en: "Copy app icon as SVG",
@@ -24,6 +26,7 @@ export default {
       fr: "Copier l’icône d’app en SVG",
       zh: "复制应用图标 SVG",
       ko: "앱 아이콘을 SVG로 복사",
+      ja: "アプリアイコンをSVGでコピー",
     }),
     guidelines: t({
       en: "Brand guidelines",
@@ -31,6 +34,7 @@ export default {
       fr: "Charte de marque",
       zh: "品牌规范",
       ko: "브랜드 가이드라인",
+      ja: "ブランドガイドライン",
     }),
     download: t({
       en: "Download brand assets",
@@ -38,6 +42,7 @@ export default {
       fr: "Télécharger les ressources de marque",
       zh: "下载品牌素材",
       ko: "브랜드 에셋 다운로드",
+      ja: "ブランドアセットをダウンロード",
     }),
   },
 } satisfies Dictionary;

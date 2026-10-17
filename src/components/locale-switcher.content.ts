@@ -10,6 +10,7 @@ const localeSwitcher = {
       fr: "Langue",
       zh: "语言",
       ko: "언어",
+      ja: "言語",
     }),
   },
 } satisfies Dictionary;

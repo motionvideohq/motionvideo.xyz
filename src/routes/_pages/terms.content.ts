@@ -10,6 +10,7 @@ const termsContent = {
       fr: "Conditions d’utilisation",
       zh: "服务条款",
       ko: "서비스 약관",
+      ja: "利用規約",
     }),
     text1: t({
       en: "These terms govern your use of",
@@ -17,6 +18,7 @@ const termsContent = {
       fr: "Ces conditions régissent votre utilisation de",
       zh: "本条款约束你对",
       ko: "본 약관은",
+      ja: "本規約は、次の利用に適用されます：",
     }),
     text2: t({
       en: "and the",
@@ -24,6 +26,7 @@ const termsContent = {
       fr: "et du",
       zh: "及其上销售的",
       ko: "및 그곳에서 판매되는",
+      ja: "および",
     }),
     text3: t({
       en: "pack and sponsorships sold on it, operated by",
@@ -31,6 +34,7 @@ const termsContent = {
       fr: "pack et des parrainages vendus sur ce site, exploité par",
       zh: "技能包和赞助的使用，运营方为",
       ko: "팩과 스폰서십의 이용에 적용됩니다. 운영자는",
+      ja: "パックとそこで販売されるスポンサーシップ（運営：",
     }),
     text4: t({
       en: "(“we”, “us”, or “our”). By buying or using",
@@ -38,6 +42,7 @@ const termsContent = {
       fr: "(« nous » ou « notre »). En achetant ou en utilisant",
       zh: "（“我们”）。购买或使用",
       ko: "(“당사”)입니다.",
+      ja: "（以下「当方」））。購入または利用することで",
     }),
     text5: t({
       en: "you agree to them. If you do not agree, do not buy.",
@@ -45,6 +50,7 @@ const termsContent = {
       fr: ", vous les acceptez. Si vous n’êtes pas d’accord, n’achetez pas.",
       zh: "即表示你同意本条款。如不同意，请勿购买。",
       ko: "을(를) 구매하거나 사용하면 본 약관에 동의하는 것입니다. 동의하지 않으면 구매하지 마세요.",
+      ja: "本規約に同意したものとみなされます。同意しない場合は購入しないでください。",
     }),
     heading6: t({
       en: "1. What we sell",
@@ -52,6 +58,7 @@ const termsContent = {
       fr: "1. Ce que nous vendons",
       zh: "1. 我们销售什么",
       ko: "1. 판매 상품",
+      ja: "1. 販売するもの",
     }),
     text7: t({
       en: "is a digital good: a pack of agent skills, which are instruction files plus example code that teach a coding agent (Claude Code, Codex, Cursor, Antigravity, Copilot, and similar tools) to design and animate motion videos, such as showreels, intros, and launch films, from code and your own UI components. Videos are rendered on your computer with open-source programmatic renderers such as Remotion, HyperFrames, Editframe, or fframes.",
@@ -59,6 +66,7 @@ const termsContent = {
       fr: "est un produit numérique : un pack de compétences pour agents, composé de fichiers d’instructions et d’exemples de code qui apprennent à un agent de programmation (Claude Code, Codex, Cursor, Antigravity, Copilot et outils similaires) à concevoir et animer des vidéos, telles que des bandes démo, des introductions et des films de lancement, à partir de code et de vos propres composants d’interface. Les vidéos sont rendues sur votre ordinateur avec des moteurs de rendu programmatiques open source tels que Remotion, HyperFrames, Editframe ou fframes.",
       zh: "是一款数字商品：一套智能体技能包，包含指令文件和示例代码，用于教会编程智能体（Claude Code、Codex、Cursor、Antigravity、Copilot 及类似工具）基于代码和你自己的 UI 组件设计并制作动效视频，例如作品集集锦、片头和发布影片。视频在你的电脑上使用 Remotion、HyperFrames、Editframe 或 fframes 等开源程序化渲染器渲染。",
       ko: "은(는) 디지털 상품입니다. 지침 파일과 예제 코드로 구성된 에이전트 스킬 팩으로, 코딩 에이전트(Claude Code, Codex, Cursor, Antigravity, Copilot 등)가 코드와 귀하의 UI 컴포넌트로 쇼릴, 인트로, 출시 영상 같은 모션 동영상을 디자인하고 애니메이션으로 만들도록 가르칩니다. 동영상은 Remotion, HyperFrames, Editframe, fframes 같은 오픈소스 프로그래밍 방식 렌더러로 귀하의 컴퓨터에서 렌더링됩니다.",
+      ja: "はデジタル商品です。エージェントスキルのパック、つまり指示ファイルとサンプルコードで構成され、コーディングエージェント（Claude Code、Codex、Cursor、Antigravity、Copilotなど）が、コードとあなた自身のUIコンポーネントからショーリール、イントロ、ローンチフィルムなどのモーション動画をデザイン・アニメーションできるようにします。動画は、Remotion、HyperFrames、Editframe、fframesなどのオープンソースのプログラマティックレンダラーを使ってあなたのコンピューター上でレンダリングされます。",
     }),
     text8: t({
       en: "It is a one-time purchase. There is no subscription and no physical shipment. We don’t run an AI model or a video generation service; all of the work happens in your tools, on your hardware.",
@@ -66,6 +74,7 @@ const termsContent = {
       fr: "Il s’agit d’un achat unique. Il n’y a ni abonnement ni livraison physique. Nous n’exploitons ni modèle d’IA ni service de génération vidéo ; tout le travail se fait dans vos outils, sur votre matériel.",
       zh: "这是一次性购买。没有订阅，也没有实物发货。我们不运行 AI 模型或视频生成服务；所有工作都在你的工具和你的硬件上完成。",
       ko: "1회 구매 상품입니다. 구독과 실물 배송은 없습니다. 당사는 AI 모델이나 동영상 생성 서비스를 운영하지 않으며, 모든 작업은 귀하의 도구와 하드웨어에서 이루어집니다.",
+      ja: "買い切りの商品です。サブスクリプションや物理的な配送はありません。当方はAIモデルや動画生成サービスを運用しておらず、すべての作業はあなたのツールとハードウェア上で行われます。",
     }),
     heading9: t({
       en: "2. Buying",
@@ -73,6 +82,7 @@ const termsContent = {
       fr: "2. Achat",
       zh: "2. 购买",
       ko: "2. 구매",
+      ja: "2. 購入",
     }),
     text10: t({
       en: "Dodo Payments",
@@ -80,6 +90,7 @@ const termsContent = {
       fr: "Dodo Payments",
       zh: "Dodo Payments",
       ko: "Dodo Payments",
+      ja: "Dodo Payments",
     }),
     text11: t({
       en: "is the merchant of record. Dodo Payments runs the checkout, charges you, issues your invoice, collects and remits taxes, and processes refunds under",
@@ -87,6 +98,7 @@ const termsContent = {
       fr: "est le vendeur officiel. Dodo Payments gère le paiement, vous facture, émet votre facture, collecte et reverse les taxes et traite les remboursements selon",
       zh: "是记录商户。Dodo Payments 负责结账、扣款、开具发票、代收代缴税费并处理退款，适用",
       ko: "가 판매 대행자(Merchant of Record)입니다. Dodo Payments는 결제를 진행하고, 요금을 청구하고, 인보이스를 발행하고, 세금을 징수·납부하며, 다음에 따라 환불을 처리합니다:",
+      ja: "が販売事業者です。Dodo Paymentsは決済の実行、請求、請求書の発行、税金の徴収と納付、返金処理を、次の規定のもとで行います：",
     }),
     merchantTerms: t({
       en: "its terms of use",
@@ -94,6 +106,7 @@ const termsContent = {
       fr: "ses conditions d’utilisation",
       zh: "其使用条款",
       ko: "이용 약관",
+      ja: "同社の利用規約",
     }),
     text11b: t({
       en: ". The price is $29 for the first 100 paid purchases, then $49, paid once. Instant private GitHub access and future repository updates included. The price is shown before you check out, and taxes are added where they apply.",
@@ -101,6 +114,7 @@ const termsContent = {
       fr: ". Le prix est de 29 $ pour les 100 premiers achats payés, puis de 49 $, en un seul paiement. L’accès instantané au dépôt GitHub privé et les futures mises à jour du dépôt sont inclus. Le prix est affiché avant le paiement et les taxes applicables sont ajoutées.",
       zh: "。前 100 笔付费购买价格为 $29，之后为 $49，一次性付款。包含即时私有 GitHub 访问权限和仓库的后续更新。价格会在结账前显示，并在适用时加收税费。",
       ko: ". 가격은 첫 100건의 유료 구매까지 $29, 이후 $49이며 1회 결제입니다. 즉시 비공개 GitHub 접근과 향후 저장소 업데이트가 포함됩니다. 가격은 결제 전에 표시되며, 해당되는 경우 세금이 추가됩니다.",
+      ja: "。価格は最初の有料購入100件までが$29、その後は$49で、一度だけのお支払いです。非公開のGitHubへの即時アクセスと、今後のリポジトリのアップデートが含まれます。価格は購入前に表示され、該当する場合は税金が加算されます。",
     }),
     heading12: t({
       en: "3. Delivery and access",
@@ -108,6 +122,7 @@ const termsContent = {
       fr: "3. Livraison et accès",
       zh: "3. 交付与访问",
       ko: "3. 전달 및 접근",
+      ja: "3. お届けとアクセス",
     }),
     text13: t({
       en: "The pack lives in a private GitHub repository. After checkout you open the Dodo Payments customer portal (linked in Dodo’s payment email, or from your dashboard after signing in with the email you paid with), connect your GitHub account, and Dodo Payments invites it to the repository with read-only access. You need a GitHub account to receive the files.",
@@ -115,6 +130,7 @@ const termsContent = {
       fr: "Le pack se trouve dans un dépôt GitHub privé. Après le paiement, vous ouvrez le portail client de Dodo Payments (lien dans l’e-mail de paiement de Dodo, ou depuis votre tableau de bord après connexion avec l’adresse utilisée pour payer), connectez votre compte GitHub, et Dodo Payments l’invite au dépôt avec un accès en lecture seule. Vous avez besoin d’un compte GitHub pour recevoir les fichiers.",
       zh: "技能包存放在私有 GitHub 仓库中。结账后，你打开 Dodo Payments 客户门户（链接见 Dodo 的付款邮件，或用付款邮箱登录后从控制台进入），关联你的 GitHub 账号，Dodo Payments 会以只读权限邀请该账号加入仓库。你需要一个 GitHub 账号才能接收文件。",
       ko: "팩은 비공개 GitHub 저장소에 있습니다. 결제 후 Dodo Payments 고객 포털(Dodo 결제 이메일의 링크 또는 결제한 이메일로 로그인한 뒤 대시보드에서)을 열고 GitHub 계정을 연결하면, Dodo Payments가 해당 계정을 읽기 전용 권한으로 저장소에 초대합니다. 파일을 받으려면 GitHub 계정이 필요합니다.",
+      ja: "パックは非公開のGitHubリポジトリにあります。購入後、Dodo Paymentsのカスタマーポータル（Dodoの支払いメールに記載、または支払いに使ったメールアドレスでログイン後のダッシュボードから）を開いてGitHubアカウントを連携すると、Dodo Paymentsがそのアカウントを読み取り専用アクセスでリポジトリに招待します。ファイルを受け取るにはGitHubアカウントが必要です。",
     }),
     text14: t({
       en: "There are no passwords. Checkout works as a guest, and to come back you request a sign-in code at the",
@@ -122,6 +138,7 @@ const termsContent = {
       fr: "Il n’y a pas de mot de passe. Vous pouvez payer en tant qu’invité et, pour revenir, demander un code de connexion sur la",
       zh: "没有密码。结账支持访客模式；之后再访问时，请在",
       ko: "비밀번호는 없습니다. 결제는 게스트로 진행되며, 다시 접속하려면 다음에서 로그인 코드를 요청하세요:",
+      ja: "パスワードはありません。購入はゲストとして行え、再訪時は次のページでログインコードをリクエストします：",
     }),
     text15: t({
       en: "sign-in page",
@@ -129,6 +146,7 @@ const termsContent = {
       fr: "page de connexion",
       zh: "登录页面",
       ko: "로그인 페이지",
+      ja: "ログインページ",
     }),
     text16: t({
       en: ". We only send links to addresses with a paid order, and each link works for 15 minutes. Right after payment, the welcome page sends the first one for you. Anyone who can read that inbox can open your purchase, so keep it secure.",
@@ -136,6 +154,7 @@ const termsContent = {
       fr: ". Nous envoyons des liens uniquement aux adresses associées à une commande payée, et chaque lien fonctionne pendant 15 minutes. Juste après le paiement, la page de bienvenue envoie le premier pour vous. Toute personne pouvant lire cette boîte de réception peut accéder à votre achat ; protégez-la.",
       zh: "申请登录验证码。我们只向有付费订单的邮箱发送链接，每个链接有效期 15 分钟。付款后，欢迎页面会立即为你发送第一个链接。任何能查看该收件箱的人都能打开你的购买内容，请妥善保护。",
       ko: ". 링크는 유료 주문이 있는 주소로만 보내며, 각 링크는 15분간 유효합니다. 결제 직후에는 환영 페이지가 첫 링크를 대신 보냅니다. 해당 받은편지함을 읽을 수 있는 사람은 누구나 구매 내역을 열 수 있으니 안전하게 관리하세요.",
+      ja: "。リンクは有料の注文があるアドレスにのみ送信し、各リンクの有効期間は15分です。支払い直後には、ウェルカムページが最初のリンクを自動で送信します。その受信箱を読める人は誰でもあなたの購入内容を開けるため、安全に管理してください。",
     }),
     text17: t({
       en: "Updates pushed to the same repository are included at no extra cost for as long as the repository is maintained.",
@@ -143,6 +162,7 @@ const termsContent = {
       fr: "Les mises à jour publiées dans le même dépôt sont incluses sans coût supplémentaire tant que le dépôt est maintenu.",
       zh: "只要仓库仍在维护，推送到同一仓库的更新均免费包含在内。",
       ko: "같은 저장소에 올라오는 업데이트는 저장소가 유지되는 동안 추가 비용 없이 포함됩니다.",
+      ja: "同じリポジトリに配信されるアップデートは、リポジトリが保守されている限り追加費用なしで含まれます。",
     }),
     heading18: t({
       en: "4. License",
@@ -150,6 +170,7 @@ const termsContent = {
       fr: "4. Licence",
       zh: "4. 许可",
       ko: "4. 라이선스",
+      ja: "4. ライセンス",
     }),
     text19: t({
       en: "When you buy",
@@ -157,6 +178,7 @@ const termsContent = {
       fr: "Lorsque vous achetez",
       zh: "当你购买",
       ko: "귀하가",
+      ja: "を購入すると",
     }),
     text20: t({
       en: ", we grant you a personal, non-exclusive, non-transferable license to use its files. The license is per person.",
@@ -164,6 +186,7 @@ const termsContent = {
       fr: ", nous vous accordons une licence personnelle, non exclusive et non transférable pour utiliser ses fichiers. La licence est individuelle.",
       zh: "后，我们授予你一项个人的、非独占的、不可转让的许可，以使用其中的文件。许可按人授权。",
       ko: "을(를) 구매하면, 당사는 그 파일을 사용할 수 있는 개인적, 비독점적, 양도 불가능한 라이선스를 부여합니다. 라이선스는 1인 기준입니다.",
+      ja: "、当方はそのファイルを使用するための個人的、非独占的、譲渡不可のライセンスをあなたに付与します。ライセンスは個人単位です。",
     }),
     text21: t({
       en: "You may use the skills in any project you work on, including client work, on any number of machines, and with any agent.",
@@ -171,6 +194,7 @@ const termsContent = {
       fr: "Vous pouvez utiliser les compétences dans tout projet auquel vous participez, y compris pour des clients, sur autant de machines que vous le souhaitez et avec tout agent.",
       zh: "你可以在参与的任何项目中使用这些技能，包括客户工作，可在任意数量的设备上、配合任意智能体使用。",
       ko: "클라이언트 작업을 포함해 참여하는 모든 프로젝트에서, 대수 제한 없이 어떤 컴퓨터와 에이전트로든 스킬을 사용할 수 있습니다.",
+      ja: "クライアントワークを含むあなたが携わるあらゆるプロジェクトで、台数を問わず、どのエージェントとでもスキルを使用できます。",
     }),
     text22: t({
       en: "You may not share, sell, publish, or otherwise redistribute the pack’s files, in whole or in part, for example in a public repository, template, or package, or make them available to people who have not bought it. You also may not build them into a product or service that lets others use the skills without their own license, use them to make a competing skill or motion design product, or use them to train or fine-tune AI models.",
@@ -178,6 +202,7 @@ const termsContent = {
       fr: "Vous ne pouvez pas partager, vendre, publier ni redistribuer autrement les fichiers du pack, en tout ou en partie, par exemple dans un dépôt public, un modèle ou un paquet, ni les mettre à disposition de personnes qui ne l’ont pas acheté. Vous ne pouvez pas non plus les intégrer à un produit ou service permettant à d’autres d’utiliser les skills sans leur propre licence, vous en servir pour créer une skill ou un produit de motion design concurrent, ni les utiliser pour entraîner ou affiner des modèles d’IA.",
       zh: "你不得全部或部分地分享、出售、发布或以其他方式再分发技能包中的文件，例如放入公开仓库、模板或软件包中，也不得向未购买的人提供这些文件。你也不得将其集成到让他人无需自有许可即可使用这些技能的产品或服务中，不得用其制作竞争性的技能或动效设计产品，也不得用其训练或微调 AI 模型。",
       ko: "팩의 파일을 전부 또는 일부라도 공유, 판매, 공개 또는 재배포할 수 없습니다(예: 공개 저장소, 템플릿, 패키지). 구매하지 않은 사람에게 제공해서도 안 됩니다. 또한 다른 사람이 자체 라이선스 없이 스킬을 사용할 수 있는 제품이나 서비스에 포함하거나, 경쟁 스킬 또는 모션 디자인 제품을 만들거나, AI 모델 학습이나 미세 조정에 사용할 수 없습니다.",
+      ja: "パックのファイルの全部または一部を、公開リポジトリ、テンプレート、パッケージなどで共有、販売、公開、その他の方法で再配布すること、または購入していない人に提供することはできません。また、他者が自身のライセンスなしにスキルを使える製品やサービスに組み込むこと、競合するスキルやモーションデザイン製品の制作に使うこと、AIモデルの学習やファインチューニングに使うこともできません。",
     }),
     text23: t({
       en: "What you and your agent make with the pack (videos, code, and other output) is yours to keep, publish, and sell. We claim nothing in it.",
@@ -185,6 +210,7 @@ const termsContent = {
       fr: "Ce que vous et votre agent créez avec le pack (vidéos, code et autres résultats) vous appartient ; vous pouvez le conserver, le publier et le vendre. Nous ne revendiquons aucun droit dessus.",
       zh: "你和你的智能体用技能包制作的内容（视频、代码及其他产出）归你所有，可自由保留、发布和出售。我们对此不主张任何权利。",
       ko: "귀하와 에이전트가 팩으로 만든 결과물(동영상, 코드, 기타 산출물)은 귀하의 것으로, 보관·공개·판매할 수 있습니다. 당사는 이에 대해 어떤 권리도 주장하지 않습니다.",
+      ja: "パックを使ってあなたとエージェントが作ったもの（動画、コード、その他の成果物）はあなたのものであり、保持、公開、販売が自由です。当方は一切の権利を主張しません。",
     }),
     text24: t({
       en: "We keep every right in the pack and its files not granted here.",
@@ -192,6 +218,7 @@ const termsContent = {
       fr: "Nous conservons tous les droits sur le pack et ses fichiers qui ne sont pas accordés ici.",
       zh: "本条款未授予的、与技能包及其文件相关的一切权利均由我们保留。",
       ko: "여기서 부여하지 않은 팩과 파일에 대한 모든 권리는 당사가 보유합니다.",
+      ja: "ここで付与されていないパックおよびそのファイルに関するすべての権利は当方が保持します。",
     }),
     heading25: t({
       en: "5. Refunds",
@@ -199,6 +226,7 @@ const termsContent = {
       fr: "5. Remboursements",
       zh: "5. 退款",
       ko: "5. 환불",
+      ja: "5. 返金",
     }),
     text26: t({
       en: "Refunds follow our",
@@ -206,6 +234,7 @@ const termsContent = {
       fr: "Les remboursements suivent notre",
       zh: "退款遵循我们的",
       ko: "환불은 당사의",
+      ja: "返金は当方の次に従います：",
     }),
     text27: t({
       en: "refund policy",
@@ -213,6 +242,7 @@ const termsContent = {
       fr: "politique de remboursement",
       zh: "退款政策",
       ko: "환불 정책",
+      ja: "返金ポリシー",
     }),
     text28: t({
       en: ". Where a refund applies, Dodo Payments returns the amount to the original payment method, and repository access, if already granted, ends when the refund is issued.",
@@ -220,6 +250,7 @@ const termsContent = {
       fr: ". Lorsqu’un remboursement s’applique, Dodo Payments restitue le montant sur le moyen de paiement initial, et l’accès au dépôt, s’il a déjà été accordé, prend fin lors du remboursement.",
       zh: "。符合退款条件时，Dodo Payments 会将款项退回原付款方式；如已授予仓库访问权限，退款发放时访问权限即终止。",
       ko: "을 따릅니다. 환불이 적용되는 경우 Dodo Payments가 원래 결제 수단으로 금액을 환불하며, 이미 부여된 저장소 접근 권한은 환불 시점에 종료됩니다.",
+      ja: "。返金が適用される場合、Dodo Paymentsが元の支払い方法に返金し、すでにリポジトリへのアクセスが付与されている場合は返金の実行時に終了します。",
     }),
     heading29: t({
       en: "8. Acceptable use",
@@ -227,6 +258,7 @@ const termsContent = {
       fr: "8. Utilisation acceptable",
       zh: "8. 可接受的使用",
       ko: "8. 허용되는 사용",
+      ja: "8. 禁止事項",
     }),
     text30: t({
       en: "You agree not to:",
@@ -234,6 +266,7 @@ const termsContent = {
       fr: "Vous vous engagez à ne pas :",
       zh: "你同意不会：",
       ko: "귀하는 다음 행위를 하지 않는 데 동의합니다:",
+      ja: "あなたは次のことを行わないことに同意します：",
     }),
     text31: t({
       en: "Bypass or attempt to bypass the check that confirms a purchase.",
@@ -241,6 +274,7 @@ const termsContent = {
       fr: "Contourner ou tenter de contourner la vérification confirmant un achat.",
       zh: "绕过或试图绕过确认购买的验证。",
       ko: "구매 확인 절차를 우회하거나 우회하려는 시도.",
+      ja: "購入を確認する仕組みを回避する、または回避しようとすること。",
     }),
     text32: t({
       en: "Share your sign-in codes or repository access with others. A sign-in code opens your account for whoever holds it until it expires.",
@@ -248,6 +282,7 @@ const termsContent = {
       fr: "Partager vos codes de connexion ou votre accès au dépôt avec d’autres personnes. Un code de connexion permet à quiconque le détient d’accéder à votre compte jusqu’à son expiration.",
       zh: "与他人分享你的登录验证码或仓库访问权限。登录验证码在失效前，持有者均可用其进入你的账号。",
       ko: "로그인 코드나 저장소 접근 권한을 타인과 공유하는 행위. 로그인 코드는 만료될 때까지 이를 가진 누구에게나 계정을 엽니다.",
+      ja: "ログインコードやリポジトリへのアクセスを他者と共有すること。ログインコードは、有効期限が切れるまで保持者なら誰でもあなたのアカウントを開けます。",
     }),
     text33: t({
       en: "Scrape, overload, or otherwise interfere with",
@@ -255,6 +290,7 @@ const termsContent = {
       fr: "Extraire automatiquement des données, surcharger ou perturber de toute autre manière",
       zh: "抓取、过载或以其他方式干扰",
       ko: "다음을 스크래핑하거나, 과부하를 주거나, 기타 방식으로 방해하는 행위:",
+      ja: "次に対するスクレイピング、過負荷、その他の妨害行為：",
     }),
     text34: t({
       en: "Use the pack to make material that is unlawful or infringes the rights of others.",
@@ -262,6 +298,7 @@ const termsContent = {
       fr: "Utiliser le pack pour créer du contenu illégal ou portant atteinte aux droits d’autrui.",
       zh: "使用技能包制作违法或侵犯他人权利的内容。",
       ko: "팩을 사용해 불법적이거나 타인의 권리를 침해하는 자료를 만드는 행위.",
+      ja: "違法な、または他者の権利を侵害するコンテンツの制作にパックを使用すること。",
     }),
     text35: t({
       en: "We may remove access from a purchase that is used in breach of these terms.",
@@ -269,6 +306,7 @@ const termsContent = {
       fr: "Nous pouvons retirer l’accès à un achat utilisé en violation de ces conditions.",
       zh: "对于违反本条款使用的购买，我们可能撤销其访问权限。",
       ko: "본 약관을 위반해 사용된 구매에 대해서는 접근 권한을 회수할 수 있습니다.",
+      ja: "本規約に違反して使用された購入については、アクセスを削除する場合があります。",
     }),
     heading36: t({
       en: "9. Changes to the pack",
@@ -276,6 +314,7 @@ const termsContent = {
       fr: "9. Modifications du pack",
       zh: "9. 技能包的变更",
       ko: "9. 팩의 변경",
+      ja: "9. パックの変更",
     }),
     text37: t({
       en: "We may update, reorganize, or retire parts of the pack over time, and we may stop selling it. A purchase made before sales stop keeps its access.",
@@ -283,6 +322,7 @@ const termsContent = {
       fr: "Nous pouvons mettre à jour, réorganiser ou retirer des parties du pack au fil du temps et cesser de le vendre. Un achat effectué avant l’arrêt des ventes conserve son accès.",
       zh: "我们可能会随时间更新、重组或停用技能包的部分内容，也可能停止销售。停售前完成的购买将保留访问权限。",
       ko: "당사는 시간이 지나면서 팩의 일부를 업데이트, 재구성 또는 폐기할 수 있으며, 판매를 중단할 수 있습니다. 판매 중단 전에 이루어진 구매는 접근 권한이 유지됩니다.",
+      ja: "当方は、パックの一部を随時更新、再構成、廃止することがあり、販売を終了することもあります。販売終了前の購入は引き続きアクセスできます。",
     }),
     heading38: t({
       en: "10. Disclaimer and liability",
@@ -290,6 +330,7 @@ const termsContent = {
       fr: "10. Exclusion de garanties et responsabilité",
       zh: "10. 免责声明与责任",
       ko: "10. 면책 및 책임",
+      ja: "10. 免責と責任",
     }),
     text39: t({
       en: "is provided as is. Coding agents are not deterministic, so we do not promise a particular video or result from using the pack. The renderers the skills rely on are third-party projects with their own licenses; if your use needs a paid license from one of them (a Remotion company license, for instance), getting it is up to you.",
@@ -297,6 +338,7 @@ const termsContent = {
       fr: "est fourni en l’état. Les agents de programmation ne sont pas déterministes ; nous ne promettons donc aucune vidéo ni aucun résultat particulier lors de l’utilisation du pack. Les moteurs de rendu sur lesquels reposent les compétences sont des projets tiers avec leurs propres licences ; si votre utilisation nécessite une licence payante de l’un d’entre eux (une licence d’entreprise Remotion, par exemple), il vous appartient de l’obtenir.",
       zh: "按“现状”提供。编程智能体的输出并非确定性的，因此我们不保证使用技能包会得到特定的视频或结果。技能所依赖的渲染器是拥有各自许可证的第三方项目；如果你的使用需要其中某个的付费许可（例如 Remotion 公司许可），需由你自行获取。",
       ko: "은(는) 있는 그대로 제공됩니다. 코딩 에이전트는 결정론적이지 않으므로, 팩 사용으로 특정 동영상이나 결과를 보장하지 않습니다. 스킬이 의존하는 렌더러는 자체 라이선스를 가진 제3자 프로젝트이며, 그중 하나의 유료 라이선스(예: Remotion 회사 라이선스)가 필요한 경우 이를 취득하는 것은 귀하의 책임입니다.",
+      ja: "は現状のまま提供されます。コーディングエージェントは決定論的ではないため、パックの使用によって特定の動画や結果が得られることを保証しません。スキルが依存するレンダラーは、それぞれ独自のライセンスを持つサードパーティのプロジェクトです。いずれかの有料ライセンス（たとえばRemotionの企業ライセンス）が必要な場合、その取得はあなたの責任となります。",
     }),
     text40: t({
       en: "To the extent the law allows, our liability for any claim connected to",
@@ -304,6 +346,7 @@ const termsContent = {
       fr: "Dans la mesure permise par la loi, notre responsabilité pour toute réclamation liée à",
       zh: "在法律允许的范围内，对于任何与",
       ko: "법이 허용하는 범위에서,",
+      ja: "法律で認められる範囲において、次に関連するあらゆる請求に対する当方の責任：",
     }),
     text41: t({
       en: "is limited to the amount you paid for it. Nothing in these terms limits rights you have as a consumer that cannot be waived.",
@@ -311,6 +354,7 @@ const termsContent = {
       fr: "est limitée au montant que vous avez payé. Aucune disposition de ces conditions ne limite vos droits de consommateur auxquels il ne peut être renoncé.",
       zh: "相关的索赔，我们的责任以你为其支付的金额为限。本条款不限制你作为消费者依法享有且不可放弃的权利。",
       ko: "와(과) 관련된 모든 청구에 대한 당사의 책임은 귀하가 지불한 금액으로 제한됩니다. 본 약관의 어떤 내용도 포기할 수 없는 소비자로서의 권리를 제한하지 않습니다.",
+      ja: "は、お支払いいただいた金額を上限とします。本規約のいかなる内容も、放棄できない消費者としての権利を制限するものではありません。",
     }),
     heading42: t({
       en: "11. Governing law",
@@ -318,6 +362,7 @@ const termsContent = {
       fr: "11. Droit applicable",
       zh: "11. 适用法律",
       ko: "11. 준거법",
+      ja: "11. 準拠法",
     }),
     text43: t({
       en: "These terms are governed by the laws of",
@@ -325,6 +370,7 @@ const termsContent = {
       fr: "Ces conditions sont régies par les lois de",
       zh: "本条款受以下法律管辖：",
       ko: "본 약관은 다음 지역의 법률을 따릅니다:",
+      ja: "本規約は次の法律に準拠します：",
     }),
     text44: t({
       en: ". Before any formal legal action, you agree to contact us and try to resolve the matter informally for at least 30 days.",
@@ -332,6 +378,7 @@ const termsContent = {
       fr: ". Avant toute action judiciaire formelle, vous acceptez de nous contacter et d’essayer de résoudre le différend à l’amiable pendant au moins 30 jours.",
       zh: "。在采取任何正式法律行动之前，你同意先联系我们，并尝试以非正式方式解决问题至少 30 天。",
       ko: ". 정식 법적 조치를 취하기 전에, 귀하는 당사에 연락해 최소 30일 동안 비공식적으로 문제 해결을 시도하는 데 동의합니다.",
+      ja: "。正式な法的手続きを取る前に、少なくとも30日間、当方に連絡して非公式に解決を試みることに同意するものとします。",
     }),
     heading45: t({
       en: "12. Changes to these terms",
@@ -339,6 +386,7 @@ const termsContent = {
       fr: "12. Modifications de ces conditions",
       zh: "12. 本条款的变更",
       ko: "12. 약관 변경",
+      ja: "12. 本規約の変更",
     }),
     text46: t({
       en: "We may change these terms. The date at the top says when they last changed. Changes apply to purchases made and sponsorship months starting after that date.",
@@ -346,6 +394,7 @@ const termsContent = {
       fr: "Nous pouvons modifier ces conditions. La date en haut indique leur dernière modification. Les changements s’appliquent aux achats effectués et aux mois de parrainage commençant après cette date.",
       zh: "我们可能会修改本条款。顶部的日期表示最近一次修改时间。变更适用于该日期之后的购买及之后开始的赞助月份。",
       ko: "당사는 본 약관을 변경할 수 있습니다. 상단의 날짜는 마지막 변경일을 나타냅니다. 변경 사항은 그 날짜 이후의 구매와 그 이후 시작되는 스폰서십 월에 적용됩니다.",
+      ja: "当方は本規約を変更することがあります。上部の日付が最終変更日です。変更は、その日以降に行われた購入と、その日以降に始まるスポンサーシップの月に適用されます。",
     }),
     sponsorHeading: t({
       en: "6. Sponsorships",
@@ -353,6 +402,7 @@ const termsContent = {
       fr: "6. Parrainages",
       zh: "6. 赞助",
       ko: "6. 스폰서십",
+      ja: "6. スポンサーシップ",
     }),
     sponsorText1: t({
       en: "Sponsors get a labelled placement on the site: Diamond at $250, Gold at $150, or Silver at $100, plus taxes where they apply. Each is sold either as a monthly subscription, which renews each month until you cancel, or as a single 30-day run, which starts when we approve the placement and never renews. Dodo Payments bills both as merchant of record.",
@@ -360,6 +410,7 @@ const termsContent = {
       fr: "Les sponsors obtiennent un emplacement identifié sur le site : Diamond à 250 $, Gold à 150 $ ou Silver à 100 $, taxes applicables en sus. Chacun est vendu soit en abonnement mensuel, renouvelé chaque mois jusqu’à votre résiliation, soit en une seule diffusion de 30 jours, qui commence quand nous validons l’emplacement et n’est jamais renouvelée. Dodo Payments facture les deux en tant que vendeur officiel.",
       zh: "赞助商可在本站获得带标注的展示位：钻石 $250、黄金 $150 或白银 $100，适用时另加税费。每档均可按月订阅（每月自动续订，直到你取消），或一次性购买单期 30 天（自我们批准展示位时开始，不会续订）。两者均由 Dodo Payments 作为记录商户收费。",
       ko: "스폰서는 사이트에 표시가 붙은 노출 영역을 얻습니다: Diamond $250, Gold $150, Silver $100(해당되는 경우 세금 별도). 각각 취소할 때까지 매월 갱신되는 월 구독, 또는 당사가 노출을 승인한 시점부터 시작되어 갱신되지 않는 30일 단일 기간으로 판매됩니다. 두 방식 모두 판매 대행자인 Dodo Payments가 청구합니다.",
+      ja: "スポンサーにはサイト上にラベル付きの掲載枠が提供されます：ダイヤモンド$250、ゴールド$150、シルバー$100（該当する場合は税別）。それぞれ、キャンセルするまで毎月更新される月額サブスクリプション、または掲載承認時に開始し更新されない30日間1回限りの掲載として販売されます。いずれもDodo Paymentsが販売事業者として請求します。",
     }),
     sponsorText2: t({
       en: "You can cancel anytime from the Dodo Payments customer portal, linked in your billing emails, or by writing to us. Your placement stays up until the end of the month you paid for, and you are not charged again. A month or 30-day run that has started is not refunded unless the law requires it; if we decline a placement before it goes live, we refund it in full.",
@@ -367,6 +418,7 @@ const termsContent = {
       fr: "Vous pouvez résilier à tout moment depuis le portail client de Dodo Payments, accessible via vos e-mails de facturation, ou en nous écrivant. Votre emplacement reste en ligne jusqu’à la fin du mois payé et vous n’êtes plus facturé. Un mois ou une diffusion de 30 jours commencés ne sont pas remboursés, sauf si la loi l’exige ; si nous refusons un emplacement avant sa mise en ligne, nous le remboursons intégralement.",
       zh: "你可以随时通过账单邮件中链接的 Dodo Payments 客户门户或写信给我们取消。你的展示位会保留到已付费月份结束，之后不会再扣费。已开始的月份或 30 天单期不予退款，法律另有要求的除外；如果我们在展示位上线前拒绝了它，我们会全额退款。",
       ko: "청구 이메일에 링크된 Dodo Payments 고객 포털이나 당사에 연락해 언제든 취소할 수 있습니다. 노출은 결제한 달의 마지막 날까지 유지되며 추가로 청구되지 않습니다. 이미 시작된 월 또는 30일 기간은 법률이 요구하지 않는 한 환불되지 않으며, 게시 전에 당사가 노출을 거절하면 전액 환불합니다.",
+      ja: "請求メールに記載されたDodo Paymentsのカスタマーポータルから、または当方へのご連絡により、いつでもキャンセルできます。掲載は支払い済みの月の終わりまで継続し、再度請求されることはありません。開始済みの月または30日間の掲載は、法律で求められる場合を除き返金されません。掲載開始前に当方が掲載をお断りした場合は、全額返金します。",
     }),
     sponsorText3: t({
       en: 'Sponsored placements are labelled as sponsored, and their links carry rel="sponsored". Sponsoring never buys inclusion or ranking in the catalogue. We may decline or remove a sponsor whose content is unlawful, misleading, or unrelated to the site; if we remove one, we stop future billing.',
@@ -374,6 +426,7 @@ const termsContent = {
       fr: 'Les emplacements sponsorisés sont identifiés comme tels et leurs liens portent rel="sponsored". Un parrainage n’achète jamais l’inclusion ni le classement dans le catalogue. Nous pouvons refuser ou retirer un sponsor dont le contenu est illégal, trompeur ou sans rapport avec le site ; dans ce cas, nous arrêtons la facturation future.',
       zh: '赞助展示位会标注为赞助内容，其链接带有 rel="sponsored"。赞助绝不能换取收录或在目录中的排名。对于内容违法、误导或与本站无关的赞助商，我们可能拒绝或移除；如果移除，我们会停止后续收费。',
       ko: '스폰서 노출에는 스폰서 표시가 붙으며, 링크에는 rel="sponsored"가 지정됩니다. 스폰서십으로 카탈로그 등재나 순위를 살 수는 없습니다. 콘텐츠가 불법적이거나, 오해의 소지가 있거나, 사이트와 무관한 스폰서는 거절하거나 삭제할 수 있으며, 삭제하는 경우 이후 청구를 중단합니다.',
+      ja: 'スポンサー掲載には「スポンサー」と表示され、リンクにはrel="sponsored"が付与されます。スポンサーになってもカタログへの掲載や順位を買うことはできません。違法、誤解を招く、またはサイトと無関係な内容のスポンサーは、お断りまたは削除する場合があります。削除した場合、以降の請求は停止します。',
     }),
     worksHeading: t({
       en: "7. Featured work and credits",
@@ -381,6 +434,7 @@ const termsContent = {
       fr: "7. Œuvres présentées et crédits",
       zh: "7. 精选作品与署名",
       ko: "7. 소개 작업물과 출처 표기",
+      ja: "7. 掲載作品とクレジット",
     }),
     worksText1: t({
       en: "The gallery and the Tools and Creatives directories show work made by others. Each piece is credited and linked to its creator, who keeps every right in it. We mirror the media (videos, posters, avatars, and covers) to our Cloudflare R2 storage and serve it from",
@@ -388,6 +442,7 @@ const termsContent = {
       fr: "La galerie et les annuaires d’outils et de créatifs présentent des travaux réalisés par d’autres. Chaque œuvre est créditée et liée à son créateur, qui en conserve tous les droits. Nous copions les médias (vidéos, affiches, avatars et couvertures) sur notre stockage Cloudflare R2 et les diffusons depuis",
       zh: "画廊以及工具和创意团队目录展示的是他人制作的作品。每件作品都注明并链接到其创作者，创作者保留其全部权利。我们将媒体（视频、封面图、头像和封面）镜像到我们的 Cloudflare R2 存储，并通过以下地址提供：",
       ko: "갤러리와 도구 및 크리에이티브 디렉터리에는 다른 사람이 만든 작업물이 소개됩니다. 각 작업물에는 출처가 표기되고 제작자에게 링크되며, 모든 권리는 제작자에게 있습니다. 당사는 미디어(동영상, 포스터, 아바타, 커버)를 Cloudflare R2 저장소에 미러링하여 다음에서 제공합니다:",
+      ja: "ギャラリーおよびツールとクリエイティブのディレクトリには、他者が制作した作品を掲載しています。各作品にはクレジットと制作者へのリンクが付され、すべての権利は制作者に帰属します。メディア（動画、ポスター、アバター、カバー）はCloudflare R2ストレージにミラーし、次から配信しています：",
     }),
     worksText2: t({
       en: "If you made something shown here and want it credited differently or taken down, write to us through the",
@@ -395,6 +450,7 @@ const termsContent = {
       fr: "Si vous avez créé une œuvre présentée ici et souhaitez modifier son crédit ou la faire retirer, écrivez-nous via la",
       zh: "如果这里展示了你制作的作品，而你希望更改署名或将其下架，请通过",
       ko: "여기에 소개된 작업물의 제작자로서 출처 표기 변경이나 삭제를 원하시면 다음을 통해 연락해 주세요:",
+      ja: "ここに掲載されている作品の制作者で、クレジット表記の変更や削除をご希望の場合は、次からご連絡ください：",
     }),
     worksContact: t({
       en: "contact page",
@@ -402,6 +458,7 @@ const termsContent = {
       fr: "page de contact",
       zh: "联系页面",
       ko: "문의 페이지",
+      ja: "お問い合わせページ",
     }),
     worksText3: t({
       en: "or at",
@@ -409,6 +466,7 @@ const termsContent = {
       fr: "ou à",
       zh: "或发邮件至",
       ko: "또는",
+      ja: "または",
     }),
     heading47: t({
       en: "13. Contact",
@@ -416,6 +474,7 @@ const termsContent = {
       fr: "13. Contact",
       zh: "13. 联系方式",
       ko: "13. 문의",
+      ja: "13. お問い合わせ",
     }),
   },
 } satisfies Dictionary;

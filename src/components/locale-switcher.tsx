@@ -19,6 +19,7 @@ export const LOCALE_NAMES = {
   fr: "Français",
   zh: "简体中文",
   ko: "한국어",
+  ja: "日本語",
 } as const;
 
 export const LocaleSwitcher = () => {

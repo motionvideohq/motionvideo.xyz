@@ -10,6 +10,7 @@ export default {
       fr: "Favoris",
       zh: "收藏",
       ko: "북마크",
+      ja: "ブックマーク",
     }),
     intro: t({
       en: "Videos, tools, creatives, skills, and extras you saved, newest first.",
@@ -17,6 +18,7 @@ export default {
       fr: "Les vidéos, outils, créatifs, compétences et extras que vous avez enregistrés, les plus récents d’abord.",
       zh: "你保存的视频、工具、创意团队、技能和其他资源，按最新排序。",
       ko: "저장한 동영상, 도구, 크리에이티브, 스킬, 기타 자료를 최신순으로 보여 줍니다.",
+      ja: "保存した動画、ツール、クリエイティブ、スキル、エクストラ（新しい順）。",
     }),
     filterKind: t({
       en: "Filter by type",
@@ -24,8 +26,16 @@ export default {
       fr: "Filtrer par type",
       zh: "按类型筛选",
       ko: "유형으로 필터",
+      ja: "種類で絞り込む",
     }),
-    all: t({ en: "All", es: "Todo", fr: "Tout", zh: "全部", ko: "전체" }),
+    all: t({
+      en: "All",
+      es: "Todo",
+      fr: "Tout",
+      zh: "全部",
+      ko: "전체",
+      ja: "すべて",
+    }),
     // Chip labels, keyed by bookmark kind.
     kinds: {
       video: t({
@@ -34,6 +44,7 @@ export default {
         fr: "Vidéos",
         zh: "视频",
         ko: "동영상",
+        ja: "動画",
       }),
       tool: t({
         en: "Tools",
@@ -41,6 +52,7 @@ export default {
         fr: "Outils",
         zh: "工具",
         ko: "도구",
+        ja: "ツール",
       }),
       studio: t({
         en: "Creatives",
@@ -48,6 +60,7 @@ export default {
         fr: "Créatifs",
         zh: "创意团队",
         ko: "크리에이티브",
+        ja: "クリエイティブ",
       }),
       skill: t({
         en: "Skills",
@@ -55,6 +68,7 @@ export default {
         fr: "Compétences",
         zh: "技能",
         ko: "스킬",
+        ja: "スキル",
       }),
       extra: t({
         en: "Extras",
@@ -62,6 +76,7 @@ export default {
         fr: "Extras",
         zh: "其他资源",
         ko: "기타 자료",
+        ja: "エクストラ",
       }),
     },
     emptyTitle: t({
@@ -70,6 +85,7 @@ export default {
       fr: "Aucun favori pour le moment",
       zh: "还没有收藏",
       ko: "아직 북마크가 없습니다",
+      ja: "ブックマークはまだありません",
     }),
     emptyDescription: t({
       en: "Use the bookmark button on any video, tool, creative, skill, or extra to save it here.",
@@ -77,6 +93,7 @@ export default {
       fr: "Utilisez le bouton favori d’une vidéo, d’un outil, d’un créatif, d’une compétence ou d’un extra pour l’enregistrer ici.",
       zh: "在任意视频、工具、创意团队、技能或其他资源上点击收藏按钮，即可保存到这里。",
       ko: "동영상, 도구, 크리에이티브, 스킬, 기타 자료의 북마크 버튼을 눌러 여기에 저장하세요.",
+      ja: "動画、ツール、クリエイティブ、スキル、エクストラのブックマークボタンを押すと、ここに保存されます。",
     }),
     discover: t({
       en: "Discover videos",
@@ -84,6 +101,7 @@ export default {
       fr: "Découvrir des vidéos",
       zh: "发现视频",
       ko: "동영상 둘러보기",
+      ja: "動画を見つける",
     }),
   },
 } satisfies Dictionary;

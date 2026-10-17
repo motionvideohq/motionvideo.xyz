@@ -10,6 +10,7 @@ export default {
       fr: "Parcourir",
       zh: "浏览",
       ko: "찾아보기",
+      ja: "参照",
     }),
     replace: t({
       en: "Replace",
@@ -17,6 +18,7 @@ export default {
       fr: "Remplacer",
       zh: "替换",
       ko: "교체",
+      ja: "置き換え",
     }),
     remove: t({
       en: "Remove",
@@ -24,6 +26,7 @@ export default {
       fr: "Retirer",
       zh: "移除",
       ko: "삭제",
+      ja: "削除",
     }),
     uploading: t({
       en: "Uploading…",
@@ -31,6 +34,7 @@ export default {
       fr: "Envoi…",
       zh: "上传中…",
       ko: "업로드 중…",
+      ja: "アップロード中…",
     }),
     types: t({
       en: "JPG, PNG or WebP",
@@ -38,14 +42,23 @@ export default {
       fr: "JPG, PNG ou WebP",
       zh: "JPG、PNG 或 WebP",
       ko: "JPG, PNG 또는 WebP",
+      ja: "JPG、PNG、WebP",
     }),
-    max: t({ en: "max", es: "máx.", fr: "max.", zh: "最大", ko: "최대" }),
+    max: t({
+      en: "max",
+      es: "máx.",
+      fr: "max.",
+      zh: "最大",
+      ko: "최대",
+      ja: "最大",
+    }),
     errorType: t({
       en: "Use a JPG, PNG or WebP image.",
       es: "Usa una imagen JPG, PNG o WebP.",
       fr: "Utilisez une image JPG, PNG ou WebP.",
       zh: "请使用 JPG、PNG 或 WebP 图片。",
       ko: "JPG, PNG 또는 WebP 이미지를 사용하세요.",
+      ja: "JPG、PNG、WebP画像を使用してください。",
     }),
     errorSize: t({
       en: "That file is too large.",
@@ -53,6 +66,7 @@ export default {
       fr: "Ce fichier est trop volumineux.",
       zh: "文件过大。",
       ko: "파일이 너무 큽니다.",
+      ja: "ファイルが大きすぎます。",
     }),
     errorUpload: t({
       en: "Upload failed. Try again.",
@@ -60,6 +74,7 @@ export default {
       fr: "L’envoi a échoué. Réessayez.",
       zh: "上传失败，请重试。",
       ko: "업로드에 실패했습니다. 다시 시도하세요.",
+      ja: "アップロードに失敗しました。もう一度お試しください。",
     }),
   },
 } satisfies Dictionary;

@@ -10,6 +10,7 @@ export default {
       fr: "Navigation principale",
       zh: "主导航",
       ko: "주 메뉴",
+      ja: "メインナビゲーション",
     }),
     discover: t({
       en: "Discover",
@@ -17,6 +18,7 @@ export default {
       fr: "Découvrir",
       zh: "发现",
       ko: "둘러보기",
+      ja: "見つける",
     }),
     tools: t({
       en: "Tools",
@@ -24,6 +26,7 @@ export default {
       fr: "Outils",
       zh: "工具",
       ko: "도구",
+      ja: "ツール",
     }),
     creatives: t({
       en: "Creatives",
@@ -31,6 +34,7 @@ export default {
       fr: "Créatifs",
       zh: "创意团队",
       ko: "크리에이티브",
+      ja: "クリエイティブ",
     }),
     skills: t({
       en: "Skills",
@@ -38,6 +42,7 @@ export default {
       fr: "Compétences",
       zh: "技能",
       ko: "스킬",
+      ja: "スキル",
     }),
     extras: t({
       en: "Extras",
@@ -45,14 +50,23 @@ export default {
       fr: "Extras",
       zh: "其他资源",
       ko: "기타 자료",
+      ja: "エクストラ",
     }),
-    more: t({ en: "More", es: "Más", fr: "Plus", zh: "更多", ko: "더 보기" }),
+    more: t({
+      en: "More",
+      es: "Más",
+      fr: "Plus",
+      zh: "更多",
+      ko: "더 보기",
+      ja: "もっと見る",
+    }),
     sponsorSlot: t({
       en: "Your logo here: sponsor MotionVideo",
       es: "Tu logo aquí: patrocina MotionVideo",
       fr: "Votre logo ici : sponsorisez MotionVideo",
       zh: "在此展示你的 Logo：赞助 MotionVideo",
       ko: "여기에 로고를: MotionVideo 스폰서 되기",
+      ja: "ここにあなたのロゴを：MotionVideoのスポンサーになる",
     }),
     sponsored: t({
       en: "Sponsored",
@@ -60,6 +74,7 @@ export default {
       fr: "Sponsorisé",
       zh: "赞助",
       ko: "스폰서",
+      ja: "スポンサー",
     }),
     openMenu: t({
       en: "Open menu",
@@ -67,6 +82,7 @@ export default {
       fr: "Ouvrir le menu",
       zh: "打开菜单",
       ko: "메뉴 열기",
+      ja: "メニューを開く",
     }),
     closeMenu: t({
       en: "Close menu",
@@ -74,6 +90,7 @@ export default {
       fr: "Fermer le menu",
       zh: "关闭菜单",
       ko: "메뉴 닫기",
+      ja: "メニューを閉じる",
     }),
     skill: t({
       en: "SKILL.md",
@@ -81,6 +98,7 @@ export default {
       fr: "SKILL.md",
       zh: "SKILL.md",
       ko: "SKILL.md",
+      ja: "SKILL.md",
     }),
     skillLabel: t({
       en: "Get the MotionVideo agent skill (SKILL.md)",
@@ -88,6 +106,7 @@ export default {
       fr: "Obtenir la compétence d’agent MotionVideo (SKILL.md)",
       zh: "获取 MotionVideo 智能体技能（SKILL.md）",
       ko: "MotionVideo 에이전트 스킬(SKILL.md) 받기",
+      ja: "MotionVideoエージェントスキル（SKILL.md）を入手",
     }),
     accountMenu: t({
       en: "Account menu",
@@ -95,6 +114,7 @@ export default {
       fr: "Menu du compte",
       zh: "账号菜单",
       ko: "계정 메뉴",
+      ja: "アカウントメニュー",
     }),
     bookmarks: t({
       en: "Bookmarks",
@@ -102,6 +122,7 @@ export default {
       fr: "Favoris",
       zh: "收藏",
       ko: "북마크",
+      ja: "ブックマーク",
     }),
     featured: t({
       en: "Featured",
@@ -109,6 +130,7 @@ export default {
       fr: "À l’honneur",
       zh: "精选",
       ko: "추천",
+      ja: "注目",
     }),
     dashboard: t({
       en: "Dashboard",
@@ -116,6 +138,7 @@ export default {
       fr: "Tableau de bord",
       zh: "控制台",
       ko: "대시보드",
+      ja: "ダッシュボード",
     }),
     submit: t({
       en: "Submit a video",
@@ -123,6 +146,7 @@ export default {
       fr: "Proposer une vidéo",
       zh: "提交视频",
       ko: "동영상 제출",
+      ja: "動画を投稿",
     }),
     sponsorships: t({
       en: "Sponsorships",
@@ -130,6 +154,7 @@ export default {
       fr: "Parrainages",
       zh: "赞助合作",
       ko: "스폰서십",
+      ja: "スポンサーシップ",
     }),
     settings: t({
       en: "Settings",
@@ -137,6 +162,7 @@ export default {
       fr: "Réglages",
       zh: "设置",
       ko: "설정",
+      ja: "設定",
     }),
     general: t({
       en: "General",
@@ -144,6 +170,7 @@ export default {
       fr: "Général",
       zh: "通用",
       ko: "일반",
+      ja: "一般",
     }),
     emails: t({
       en: "Emails",
@@ -151,6 +178,7 @@ export default {
       fr: "E-mails",
       zh: "邮件",
       ko: "이메일",
+      ja: "メール",
     }),
     emailUpdates: t({
       en: "MotionVideo updates",
@@ -158,6 +186,7 @@ export default {
       fr: "Actualités de MotionVideo",
       zh: "MotionVideo 动态",
       ko: "MotionVideo 소식",
+      ja: "MotionVideoの最新情報",
     }),
     deleteAccount: t({
       en: "Delete account",
@@ -165,6 +194,7 @@ export default {
       fr: "Supprimer le compte",
       zh: "删除账号",
       ko: "계정 삭제",
+      ja: "アカウントを削除",
     }),
     deleteTitle: t({
       en: "Delete your account?",
@@ -172,6 +202,7 @@ export default {
       fr: "Supprimer votre compte ?",
       zh: "删除你的账号？",
       ko: "계정을 삭제할까요?",
+      ja: "アカウントを削除しますか？",
     }),
     deleteDescription: t({
       en: "Account deletion isn't automated yet. Write to us from your account email and we'll delete your account, submissions, and bookmarks.",
@@ -179,6 +210,7 @@ export default {
       fr: "La suppression de compte n’est pas encore automatisée. Écrivez-nous depuis votre adresse e-mail et nous supprimerons votre compte, vos propositions et vos favoris.",
       zh: "账号删除尚未自动化。请用你的账号邮箱给我们写信，我们会删除你的账号、提交内容和收藏。",
       ko: "계정 삭제는 아직 자동화되어 있지 않습니다. 계정 이메일로 연락 주시면 계정, 제출물, 북마크를 삭제해 드립니다.",
+      ja: "アカウントの削除はまだ自動化されていません。アカウントのメールアドレスからご連絡いただければ、アカウント、投稿、ブックマークを削除します。",
     }),
     deleteContact: t({
       en: "Email us to delete",
@@ -186,6 +218,7 @@ export default {
       fr: "Écrivez-nous pour supprimer",
       zh: "发邮件申请删除",
       ko: "이메일로 삭제 요청",
+      ja: "メールで削除を依頼",
     }),
     cancel: t({
       en: "Cancel",
@@ -193,6 +226,7 @@ export default {
       fr: "Annuler",
       zh: "取消",
       ko: "취소",
+      ja: "キャンセル",
     }),
     socials: t({
       en: "Socials",
@@ -200,14 +234,23 @@ export default {
       fr: "Réseaux",
       zh: "社交媒体",
       ko: "소셜",
+      ja: "ソーシャル",
     }),
-    theme: t({ en: "Theme", es: "Tema", fr: "Thème", zh: "主题", ko: "테마" }),
+    theme: t({
+      en: "Theme",
+      es: "Tema",
+      fr: "Thème",
+      zh: "主题",
+      ko: "테마",
+      ja: "テーマ",
+    }),
     sounds: t({
       en: "Sounds",
       es: "Sonidos",
       fr: "Sons",
       zh: "音效",
       ko: "소리",
+      ja: "サウンド",
     }),
     online: t({
       en: "online",
@@ -215,6 +258,7 @@ export default {
       fr: "en ligne",
       zh: "在线",
       ko: "온라인",
+      ja: "オンライン",
     }),
     jobs: t({
       en: "Jobs",
@@ -222,6 +266,7 @@ export default {
       fr: "Emplois",
       zh: "招聘",
       ko: "채용",
+      ja: "求人",
     }),
     listings: t({
       en: "Listings",
@@ -229,6 +274,7 @@ export default {
       fr: "Annonces",
       zh: "职位",
       ko: "공고",
+      ja: "掲載",
     }),
     keyboard: t({
       en: "Keyboard",
@@ -236,6 +282,7 @@ export default {
       fr: "Clavier",
       zh: "键盘",
       ko: "키보드",
+      ja: "キーボード",
     }),
     light: t({
       en: "Light",
@@ -243,14 +290,23 @@ export default {
       fr: "Clair",
       zh: "浅色",
       ko: "라이트",
+      ja: "ライト",
     }),
-    dark: t({ en: "Dark", es: "Oscuro", fr: "Sombre", zh: "深色", ko: "다크" }),
+    dark: t({
+      en: "Dark",
+      es: "Oscuro",
+      fr: "Sombre",
+      zh: "深色",
+      ko: "다크",
+      ja: "ダーク",
+    }),
     system: t({
       en: "System",
       es: "Sistema",
       fr: "Système",
       zh: "跟随系统",
       ko: "시스템",
+      ja: "システム",
     }),
     signOut: t({
       en: "Log out",
@@ -258,6 +314,7 @@ export default {
       fr: "Se déconnecter",
       zh: "退出登录",
       ko: "로그아웃",
+      ja: "ログアウト",
     }),
     signIn: t({
       en: "Sign in",
@@ -265,6 +322,7 @@ export default {
       fr: "Se connecter",
       zh: "登录",
       ko: "로그인",
+      ja: "ログイン",
     }),
   },
 } satisfies Dictionary;

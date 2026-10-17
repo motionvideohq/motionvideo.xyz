@@ -10,6 +10,7 @@ const page = {
       fr: "Dernière mise à jour :",
       zh: "最后更新：",
       ko: "최종 업데이트:",
+      ja: "最終更新日：",
     }),
   },
 } satisfies Dictionary;

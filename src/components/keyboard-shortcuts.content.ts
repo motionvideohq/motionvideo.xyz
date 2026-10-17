@@ -10,6 +10,7 @@ export default {
       fr: "Raccourcis clavier",
       zh: "键盘快捷键",
       ko: "키보드 단축키",
+      ja: "キーボードショートカット",
     }),
     description: t({
       en: "Press a key anywhere outside a text field.",
@@ -17,6 +18,7 @@ export default {
       fr: "Appuyez sur une touche n’importe où, hors d’un champ de texte.",
       zh: "在文本框以外的任意位置按键即可。",
       ko: "텍스트 입력란 밖 어디서든 키를 누르세요.",
+      ja: "テキスト入力欄以外の場所でキーを押してください。",
     }),
     general: t({
       en: "General",
@@ -24,6 +26,7 @@ export default {
       fr: "Général",
       zh: "通用",
       ko: "일반",
+      ja: "一般",
     }),
     sections: t({
       en: "Sections",
@@ -31,6 +34,7 @@ export default {
       fr: "Sections",
       zh: "栏目",
       ko: "섹션",
+      ja: "セクション",
     }),
     account: t({
       en: "Account",
@@ -38,6 +42,7 @@ export default {
       fr: "Compte",
       zh: "账号",
       ko: "계정",
+      ja: "アカウント",
     }),
     videos: t({
       en: "Videos",
@@ -45,6 +50,7 @@ export default {
       fr: "Vidéos",
       zh: "视频",
       ko: "동영상",
+      ja: "動画",
     }),
     search: t({
       en: "Search",
@@ -52,6 +58,7 @@ export default {
       fr: "Rechercher",
       zh: "搜索",
       ko: "검색",
+      ja: "検索",
     }),
     toggleTheme: t({
       en: "Toggle theme",
@@ -59,6 +66,7 @@ export default {
       fr: "Changer de thème",
       zh: "切换主题",
       ko: "테마 전환",
+      ja: "テーマを切り替え",
     }),
     toggleSounds: t({
       en: "Mute or unmute sounds",
@@ -66,6 +74,7 @@ export default {
       fr: "Couper ou activer les sons",
       zh: "静音或取消静音",
       ko: "소리 켜기/끄기",
+      ja: "サウンドのミュート／解除",
     }),
     toggleCursors: t({
       en: "Show or hide live cursors",
@@ -73,6 +82,7 @@ export default {
       fr: "Afficher ou masquer les curseurs en direct",
       zh: "显示或隐藏实时光标",
       ko: "실시간 커서 표시/숨기기",
+      ja: "ライブカーソルの表示／非表示",
     }),
     showShortcuts: t({
       en: "Show keyboard shortcuts",
@@ -80,6 +90,7 @@ export default {
       fr: "Afficher les raccourcis clavier",
       zh: "显示键盘快捷键",
       ko: "키보드 단축키 보기",
+      ja: "キーボードショートカットを表示",
     }),
     previousVideo: t({
       en: "Previous video",
@@ -87,6 +98,7 @@ export default {
       fr: "Vidéo précédente",
       zh: "上一个视频",
       ko: "이전 동영상",
+      ja: "前の動画",
     }),
     nextVideo: t({
       en: "Next video",
@@ -94,6 +106,7 @@ export default {
       fr: "Vidéo suivante",
       zh: "下一个视频",
       ko: "다음 동영상",
+      ja: "次の動画",
     }),
     closeVideo: t({
       en: "Close video",
@@ -101,6 +114,7 @@ export default {
       fr: "Fermer la vidéo",
       zh: "关闭视频",
       ko: "동영상 닫기",
+      ja: "動画を閉じる",
     }),
   },
 } satisfies Dictionary;

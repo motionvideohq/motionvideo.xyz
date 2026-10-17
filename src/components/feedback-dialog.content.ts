@@ -10,6 +10,7 @@ export default {
       fr: "Avis",
       zh: "反馈",
       ko: "피드백",
+      ja: "フィードバック",
     }),
     title: t({
       en: "Share feedback",
@@ -17,6 +18,7 @@ export default {
       fr: "Donnez votre avis",
       zh: "分享反馈",
       ko: "피드백 보내기",
+      ja: "フィードバックを送る",
     }),
     description: t({
       en: "What works, what’s missing, what broke. Every message is read.",
@@ -24,6 +26,7 @@ export default {
       fr: "Ce qui marche, ce qui manque, ce qui casse. Chaque message est lu.",
       zh: "哪些好用、缺了什么、哪里出错了。每条消息我们都会阅读。",
       ko: "잘 되는 점, 아쉬운 점, 고장 난 점을 알려 주세요. 모든 메시지를 읽습니다.",
+      ja: "うまく動くこと、足りないこと、壊れたこと。すべてのメッセージに目を通しています。",
     }),
     moodLabel: t({
       en: "How is MotionVideo so far?",
@@ -31,6 +34,7 @@ export default {
       fr: "Que pensez-vous de MotionVideo jusqu’ici ?",
       zh: "目前觉得 MotionVideo 怎么样？",
       ko: "지금까지 MotionVideo는 어떤가요?",
+      ja: "MotionVideoの使い心地はいかがですか？",
     }),
     moods: {
       love: t({
@@ -39,6 +43,7 @@ export default {
         fr: "J’adore",
         zh: "很喜欢",
         ko: "아주 좋아요",
+        ja: "とても良い",
       }),
       okay: t({
         en: "It’s okay",
@@ -46,6 +51,7 @@ export default {
         fr: "Pas mal",
         zh: "还行",
         ko: "괜찮아요",
+        ja: "まあまあ",
       }),
       bad: t({
         en: "Not great",
@@ -53,6 +59,7 @@ export default {
         fr: "Bof",
         zh: "不太好",
         ko: "별로예요",
+        ja: "いまいち",
       }),
     },
     message: t({
@@ -61,6 +68,7 @@ export default {
       fr: "Votre avis",
       zh: "你的反馈",
       ko: "피드백",
+      ja: "フィードバック",
     }),
     messagePlaceholder: t({
       en: "Tell us anything: an idea, a bug, a video we should add…",
@@ -68,6 +76,7 @@ export default {
       fr: "Dites-nous tout : une idée, un bug, une vidéo à ajouter…",
       zh: "随便说：一个想法、一个 bug、一个我们该收录的视频…",
       ko: "아이디어, 버그, 추가했으면 하는 동영상 등 무엇이든 알려 주세요…",
+      ja: "アイデア、バグ、追加してほしい動画など、何でもお聞かせください…",
     }),
     email: t({
       en: "Email (optional, if you’d like a reply)",
@@ -75,6 +84,7 @@ export default {
       fr: "E-mail (facultatif, pour recevoir une réponse)",
       zh: "邮箱（可选，如需回复）",
       ko: "이메일 (선택, 답장을 원하시면)",
+      ja: "メールアドレス（任意、返信をご希望の場合）",
     }),
     emailPlaceholder: t({
       en: "you@example.com",
@@ -82,6 +92,7 @@ export default {
       fr: "vous@exemple.com",
       zh: "you@example.com",
       ko: "you@example.com",
+      ja: "you@example.com",
     }),
     signedInAs: t({
       en: "We’ll reply to your account email if needed.",
@@ -89,6 +100,7 @@ export default {
       fr: "Nous répondrons à l’e-mail de votre compte si besoin.",
       zh: "如有需要，我们会回复到你的账号邮箱。",
       ko: "필요하면 계정 이메일로 답장드립니다.",
+      ja: "必要に応じてアカウントのメールアドレスに返信します。",
     }),
     send: t({
       en: "Send feedback",
@@ -96,6 +108,7 @@ export default {
       fr: "Envoyer",
       zh: "发送反馈",
       ko: "피드백 보내기",
+      ja: "フィードバックを送信",
     }),
     sending: t({
       en: "Sending…",
@@ -103,6 +116,7 @@ export default {
       fr: "Envoi…",
       zh: "发送中…",
       ko: "보내는 중…",
+      ja: "送信中…",
     }),
     enter: t({
       en: "Enter",
@@ -110,6 +124,7 @@ export default {
       fr: "Entrée",
       zh: "Enter",
       ko: "Enter",
+      ja: "Enter",
     }),
     toSend: t({
       en: "to send",
@@ -117,6 +132,7 @@ export default {
       fr: "pour envoyer",
       zh: "发送",
       ko: "키로 보내기",
+      ja: "で送信",
     }),
     validationError: t({
       en: "Write a few words, and check the email address if you added one.",
@@ -124,6 +140,7 @@ export default {
       fr: "Écrivez quelques mots et vérifiez l’e-mail si vous en avez saisi un.",
       zh: "请写几句话，如填写了邮箱请检查是否正确。",
       ko: "몇 마디 적어 주시고, 이메일을 입력했다면 주소를 확인해 주세요.",
+      ja: "数語ご記入ください。メールアドレスを入力した場合はご確認ください。",
     }),
     rateLimitError: t({
       en: "Too many messages. Try again in a minute.",
@@ -131,6 +148,7 @@ export default {
       fr: "Trop de messages. Réessayez dans une minute.",
       zh: "消息过多，请一分钟后再试。",
       ko: "메시지가 너무 많습니다. 1분 후에 다시 시도하세요.",
+      ja: "メッセージが多すぎます。1分後にもう一度お試しください。",
     }),
     sendError: t({
       en: "Couldn’t send that. Please try again.",
@@ -138,6 +156,7 @@ export default {
       fr: "Envoi impossible. Veuillez réessayer.",
       zh: "发送失败，请重试。",
       ko: "보내지 못했습니다. 다시 시도해 주세요.",
+      ja: "送信できませんでした。もう一度お試しください。",
     }),
     thanksTitle: t({
       en: "Thanks for the feedback",
@@ -145,6 +164,7 @@ export default {
       fr: "Merci pour votre avis",
       zh: "感谢你的反馈",
       ko: "피드백 감사합니다",
+      ja: "フィードバックありがとうございます",
     }),
     thanksBody: t({
       en: "It’s in. It helps decide what gets built next.",
@@ -152,7 +172,15 @@ export default {
       fr: "C’est reçu. Cela aide à décider de la suite.",
       zh: "已收到。它会帮助我们决定接下来做什么。",
       ko: "잘 받았습니다. 다음에 무엇을 만들지 정하는 데 도움이 됩니다.",
+      ja: "受け付けました。次に何を作るかの参考にします。",
     }),
-    done: t({ en: "Done", es: "Listo", fr: "Terminé", zh: "完成", ko: "완료" }),
+    done: t({
+      en: "Done",
+      es: "Listo",
+      fr: "Terminé",
+      zh: "完成",
+      ko: "완료",
+      ja: "完了",
+    }),
   },
 } satisfies Dictionary;

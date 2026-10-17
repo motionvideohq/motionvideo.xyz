@@ -10,6 +10,7 @@ export default {
       fr: "À l’honneur",
       zh: "精选",
       ko: "추천",
+      ja: "掲載",
     }),
     intro: t({
       en: "Work you submitted, credited to you.",
@@ -17,6 +18,7 @@ export default {
       fr: "Les œuvres que vous avez proposées, créditées à votre nom.",
       zh: "你提交的、署名为你的作品。",
       ko: "제출하신 작업물로, 출처가 귀하로 표기됩니다.",
+      ja: "あなたが投稿し、クレジットされた作品。",
     }),
     featuredHeading: t({
       en: "Featured work",
@@ -24,6 +26,7 @@ export default {
       fr: "Œuvres à l’honneur",
       zh: "精选作品",
       ko: "추천 작업물",
+      ja: "掲載作品",
     }),
     submissionsHeading: t({
       en: "Your submissions",
@@ -31,6 +34,7 @@ export default {
       fr: "Vos propositions",
       zh: "你的提交",
       ko: "내 제출물",
+      ja: "あなたの投稿",
     }),
     status: {
       pending: t({
@@ -39,6 +43,7 @@ export default {
         fr: "En cours d’examen",
         zh: "审核中",
         ko: "검토 중",
+        ja: "審査中",
       }),
       featured: t({
         en: "Featured",
@@ -46,6 +51,7 @@ export default {
         fr: "À l’honneur",
         zh: "已精选",
         ko: "추천됨",
+        ja: "掲載中",
       }),
       declined: t({
         en: "Not selected",
@@ -53,6 +59,7 @@ export default {
         fr: "Non retenu",
         zh: "未入选",
         ko: "선정되지 않음",
+        ja: "不採用",
       }),
     },
     viewFeatured: t({
@@ -61,6 +68,7 @@ export default {
       fr: "Voir l’œuvre",
       zh: "查看精选",
       ko: "추천 보기",
+      ja: "掲載を見る",
     }),
     visit: t({
       en: "Visit website",
@@ -68,6 +76,7 @@ export default {
       fr: "Visiter le site",
       zh: "访问网站",
       ko: "웹사이트 방문",
+      ja: "ウェブサイトを見る",
     }),
     newTab: t({
       en: "opens in a new tab",
@@ -75,6 +84,7 @@ export default {
       fr: "s’ouvre dans un nouvel onglet",
       zh: "在新标签页中打开",
       ko: "새 탭에서 열림",
+      ja: "新しいタブで開きます",
     }),
     emptyTitle: t({
       en: "None of your work has been featured yet",
@@ -82,6 +92,7 @@ export default {
       fr: "Aucune de vos œuvres n’a encore été mise à l’honneur",
       zh: "你的作品还没有被精选",
       ko: "아직 추천된 작업물이 없습니다",
+      ja: "まだ掲載された作品はありません",
     }),
     emptyDescription: t({
       en: "Work credited to you will appear here.",
@@ -89,6 +100,7 @@ export default {
       fr: "Les œuvres créditées à votre nom apparaîtront ici.",
       zh: "署名为你的作品会显示在这里。",
       ko: "귀하로 출처가 표기된 작업물이 여기에 표시됩니다.",
+      ja: "あなたがクレジットされた作品はここに表示されます。",
     }),
     submit: t({
       en: "Submit your work",
@@ -96,6 +108,7 @@ export default {
       fr: "Proposez votre œuvre",
       zh: "提交你的作品",
       ko: "작업물 제출하기",
+      ja: "作品を投稿",
     }),
   },
 } satisfies Dictionary;

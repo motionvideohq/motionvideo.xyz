@@ -12,6 +12,7 @@ export default {
       fr: "Contact",
       zh: "联系我们",
       ko: "문의",
+      ja: "お問い合わせ",
     }),
     intro: t({
       en: "Questions about the pack, a purchase, or a partnership? Send a message and we’ll reply by email.",
@@ -19,6 +20,7 @@ export default {
       fr: "Une question sur le pack, un achat ou un partenariat ? Envoyez un message et nous vous répondrons par e-mail.",
       zh: "关于技能包、购买或合作有疑问？发送消息，我们会通过邮件回复。",
       ko: "스킬 팩, 구매, 파트너십에 대해 궁금한 점이 있으신가요? 메시지를 보내 주시면 이메일로 답장드립니다.",
+      ja: "パック、購入、パートナーシップについてのご質問はありますか？メッセージをお送りいただければ、メールで返信します。",
     }),
     validationError: t({
       en: "Add your name, a valid email, a subject, and a message of at least 10 characters.",
@@ -26,6 +28,7 @@ export default {
       fr: "Ajoutez votre nom, une adresse e-mail valide, un objet et un message d’au moins 10 caractères.",
       zh: "请填写姓名、有效邮箱、主题，以及至少 10 个字符的消息。",
       ko: "이름, 유효한 이메일, 제목, 10자 이상의 메시지를 입력하세요.",
+      ja: "お名前、有効なメールアドレス、件名、10文字以上のメッセージを入力してください。",
     }),
     sendError: t({
       en: `Your message couldn’t be sent. Please email ${LINK.EMAIL} instead.`,
@@ -33,6 +36,7 @@ export default {
       fr: `Votre message n’a pas pu être envoyé. Écrivez plutôt à ${LINK.EMAIL}.`,
       zh: `消息发送失败。请改为发邮件至 ${LINK.EMAIL}。`,
       ko: `메시지를 보내지 못했습니다. 대신 ${LINK.EMAIL}로 이메일을 보내 주세요.`,
+      ja: `メッセージを送信できませんでした。${LINK.EMAIL} 宛てにメールでお送りください。`,
     }),
     sent: t({
       en: "Message sent",
@@ -40,6 +44,7 @@ export default {
       fr: "Message envoyé",
       zh: "消息已发送",
       ko: "메시지를 보냈습니다",
+      ja: "メッセージを送信しました",
     }),
     thanks: t({
       en: "Thanks for writing. We usually reply within two working days.",
@@ -47,14 +52,23 @@ export default {
       fr: "Merci pour votre message. Nous répondons généralement sous deux jours ouvrés.",
       zh: "感谢来信。我们通常会在两个工作日内回复。",
       ko: "연락해 주셔서 감사합니다. 보통 영업일 기준 2일 이내에 답장드립니다.",
+      ja: "ご連絡ありがとうございます。通常2営業日以内に返信します。",
     }),
-    name: t({ en: "Name", es: "Nombre", fr: "Nom", zh: "姓名", ko: "이름" }),
+    name: t({
+      en: "Name",
+      es: "Nombre",
+      fr: "Nom",
+      zh: "姓名",
+      ko: "이름",
+      ja: "お名前",
+    }),
     namePlaceholder: t({
       en: "John Doe",
       es: "Juan Pérez",
       fr: "Jean Dupont",
       zh: "张三",
       ko: "홍길동",
+      ja: "山田 太郎",
     }),
     email: t({
       en: "Email",
@@ -62,6 +76,7 @@ export default {
       fr: "E-mail",
       zh: "邮箱",
       ko: "이메일",
+      ja: "メールアドレス",
     }),
     emailPlaceholder: t({
       en: "john@doe.com",
@@ -69,6 +84,7 @@ export default {
       fr: "jean@exemple.com",
       zh: "john@doe.com",
       ko: "john@doe.com",
+      ja: "john@doe.com",
     }),
     inquiry: t({
       en: "Inquiry type",
@@ -76,6 +92,7 @@ export default {
       fr: "Type de demande",
       zh: "咨询类型",
       ko: "문의 유형",
+      ja: "お問い合わせの種類",
     }),
     inquiryLabels: {
       General: t({
@@ -84,6 +101,7 @@ export default {
         fr: "Général",
         zh: "一般咨询",
         ko: "일반",
+        ja: "一般",
       }),
       "Purchase & billing": t({
         en: "Purchase & billing",
@@ -91,6 +109,7 @@ export default {
         fr: "Achat et facturation",
         zh: "购买与账单",
         ko: "구매 및 결제",
+        ja: "購入・お支払い",
       }),
       Support: t({
         en: "Support",
@@ -98,6 +117,7 @@ export default {
         fr: "Assistance",
         zh: "支持",
         ko: "지원",
+        ja: "サポート",
       }),
       Partnership: t({
         en: "Partnership",
@@ -105,6 +125,7 @@ export default {
         fr: "Partenariat",
         zh: "合作",
         ko: "파트너십",
+        ja: "パートナーシップ",
       }),
       Press: t({
         en: "Press",
@@ -112,6 +133,7 @@ export default {
         fr: "Presse",
         zh: "媒体",
         ko: "언론",
+        ja: "取材",
       }),
       "Removal or credit": t({
         en: "Removal or credit",
@@ -119,6 +141,7 @@ export default {
         fr: "Retrait ou crédit",
         zh: "移除或署名",
         ko: "삭제 또는 출처 표기",
+        ja: "削除・クレジット表記",
       }),
     },
     subject: t({
@@ -127,6 +150,7 @@ export default {
       fr: "Objet",
       zh: "主题",
       ko: "제목",
+      ja: "件名",
     }),
     subjectPlaceholder: t({
       en: "Brief description of your inquiry",
@@ -134,6 +158,7 @@ export default {
       fr: "Brève description de votre demande",
       zh: "简要描述你的问题",
       ko: "문의 내용 요약",
+      ja: "お問い合わせ内容の概要",
     }),
     message: t({
       en: "Message",
@@ -141,6 +166,7 @@ export default {
       fr: "Message",
       zh: "消息",
       ko: "메시지",
+      ja: "メッセージ",
     }),
     messagePlaceholder: t({
       en: "Hi, this is my message",
@@ -148,6 +174,7 @@ export default {
       fr: "Bonjour, voici mon message",
       zh: "你好，这是我的消息",
       ko: "안녕하세요, 문의드립니다",
+      ja: "こんにちは、メッセージです",
     }),
     sending: t({
       en: "Sending…",
@@ -155,6 +182,7 @@ export default {
       fr: "Envoi…",
       zh: "发送中…",
       ko: "보내는 중…",
+      ja: "送信中…",
     }),
     send: t({
       en: "Send message",
@@ -162,6 +190,7 @@ export default {
       fr: "Envoyer le message",
       zh: "发送消息",
       ko: "메시지 보내기",
+      ja: "メッセージを送信",
     }),
     enter: t({
       en: "Enter",
@@ -169,6 +198,7 @@ export default {
       fr: "Entrée",
       zh: "Enter",
       ko: "Enter",
+      ja: "Enter",
     }),
     toSend: t({
       en: "to send",
@@ -176,6 +206,7 @@ export default {
       fr: "pour envoyer",
       zh: "发送",
       ko: "키로 보내기",
+      ja: "で送信",
     }),
     prefer: t({
       en: "Prefer something else? Email ",
@@ -183,6 +214,7 @@ export default {
       fr: "Vous préférez un autre moyen ? Écrivez à ",
       zh: "想用别的方式？发邮件至 ",
       ko: "다른 방법을 원하시나요? 이메일: ",
+      ja: "他の方法がよろしければ、メール：",
     }),
     dm: t({
       en: "or send a DM on X to ",
@@ -190,6 +222,7 @@ export default {
       fr: "ou envoyez un message privé sur X à ",
       zh: "或在 X 上私信 ",
       ko: "또는 X DM: ",
+      ja: "またはXでDMを送ってください：",
     }),
   },
 } satisfies Dictionary;

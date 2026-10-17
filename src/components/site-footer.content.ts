@@ -10,6 +10,7 @@ export default {
       fr: "Dépôt GitHub",
       zh: "GitHub 仓库",
       ko: "GitHub 저장소",
+      ja: "GitHubリポジトリ",
     }),
     starGithub: t({
       en: "Star on GitHub",
@@ -17,6 +18,7 @@ export default {
       fr: "Ajouter une étoile sur GitHub",
       zh: "在 GitHub 上 Star",
       ko: "GitHub에서 Star",
+      ja: "GitHubでスターする",
     }),
     followX: t({
       en: "Follow on X",
@@ -24,6 +26,7 @@ export default {
       fr: "Nous suivre sur X",
       zh: "在 X 上关注",
       ko: "X에서 팔로우",
+      ja: "Xでフォロー",
     }),
     footer: t({
       en: "Footer",
@@ -31,6 +34,7 @@ export default {
       fr: "Pied de page",
       zh: "页脚",
       ko: "푸터",
+      ja: "フッター",
     }),
     builtBy: t({
       en: "Built by",
@@ -38,6 +42,7 @@ export default {
       fr: "Créé par",
       zh: "作者",
       ko: "제작:",
+      ja: "制作：",
     }),
     company: t({
       en: "Company",
@@ -45,6 +50,7 @@ export default {
       fr: "Entreprise",
       zh: "公司",
       ko: "회사",
+      ja: "会社",
     }),
     about: t({
       en: "About",
@@ -52,6 +58,7 @@ export default {
       fr: "À propos",
       zh: "关于",
       ko: "소개",
+      ja: "概要",
     }),
     brand: t({
       en: "Brand",
@@ -59,6 +66,7 @@ export default {
       fr: "Marque",
       zh: "品牌",
       ko: "브랜드",
+      ja: "ブランド",
     }),
     contact: t({
       en: "Contact",
@@ -66,6 +74,7 @@ export default {
       fr: "Contact",
       zh: "联系",
       ko: "문의",
+      ja: "お問い合わせ",
     }),
     sponsor: t({
       en: "Sponsor",
@@ -73,6 +82,7 @@ export default {
       fr: "Sponsoriser",
       zh: "赞助",
       ko: "스폰서",
+      ja: "スポンサー",
     }),
     legal: t({
       en: "Legal",
@@ -80,6 +90,7 @@ export default {
       fr: "Mentions légales",
       zh: "法律",
       ko: "법적 고지",
+      ja: "法的情報",
     }),
     terms: t({
       en: "Terms of service",
@@ -87,6 +98,7 @@ export default {
       fr: "Conditions d’utilisation",
       zh: "服务条款",
       ko: "서비스 약관",
+      ja: "利用規約",
     }),
     privacy: t({
       en: "Privacy policy",
@@ -94,6 +106,7 @@ export default {
       fr: "Politique de confidentialité",
       zh: "隐私政策",
       ko: "개인정보 처리방침",
+      ja: "プライバシーポリシー",
     }),
     refunds: t({
       en: "Refund policy",
@@ -101,6 +114,7 @@ export default {
       fr: "Politique de remboursement",
       zh: "退款政策",
       ko: "환불 정책",
+      ja: "返金ポリシー",
     }),
     otherProducts: t({
       en: "Other products",
@@ -108,6 +122,7 @@ export default {
       fr: "Autres produits",
       zh: "其他产品",
       ko: "다른 제품",
+      ja: "その他のプロダクト",
     }),
     labsProjects: t({
       en: "Shadcn Labs projects",
@@ -115,6 +130,7 @@ export default {
       fr: "Projets Shadcn Labs",
       zh: "Shadcn Labs 项目",
       ko: "Shadcn Labs 프로젝트",
+      ja: "Shadcn Labsのプロジェクト",
     }),
   },
 } satisfies Dictionary;

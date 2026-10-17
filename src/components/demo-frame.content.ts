@@ -10,6 +10,7 @@ const demoFrame = {
       fr: "Consigne :",
       zh: "提示词：",
       ko: "프롬프트:",
+      ja: "プロンプト：",
     }),
   },
 } satisfies Dictionary;

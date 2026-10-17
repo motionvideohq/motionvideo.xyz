@@ -10,6 +10,7 @@ const refundsContent = {
       fr: "Politique de remboursement",
       zh: "退款政策",
       ko: "환불 정책",
+      ja: "返金ポリシー",
     }),
     text1: t({
       en: "This policy covers one-time purchases of",
@@ -17,6 +18,7 @@ const refundsContent = {
       fr: "Cette politique couvre les achats uniques de",
       zh: "本政策适用于一次性购买的",
       ko: "본 정책은 다음의 1회 구매와",
+      ja: "このポリシーは、次の買い切り購入を対象とします：",
     }),
     text2: t({
       en: ", sold by",
@@ -24,6 +26,7 @@ const refundsContent = {
       fr: ", vendu par",
       zh: "（由",
       ko: "(판매자:",
+      ja: "（販売：",
     }),
     text3: t({
       en: ", and sponsorships. Dodo Payments, our merchant of record, processes every payment and refund. It sits alongside our",
@@ -31,6 +34,7 @@ const refundsContent = {
       fr: ", ainsi que les parrainages. Dodo Payments, notre vendeur officiel, traite tous les paiements et remboursements. Elle complète nos",
       zh: "销售）以及赞助。我们的记录商户 Dodo Payments 处理所有付款和退款。本政策与我们的",
       ko: ") 스폰서십에 적용됩니다. 모든 결제와 환불은 판매 대행자(Merchant of Record)인 Dodo Payments가 처리합니다. 본 정책은 다음과 함께 적용됩니다:",
+      ja: "）およびスポンサーシップ。すべての支払いと返金は、販売事業者であるDodo Paymentsが処理します。本ポリシーは次とあわせて適用されます：",
     }),
     text4: t({
       en: "terms of service",
@@ -38,6 +42,7 @@ const refundsContent = {
       fr: "conditions d’utilisation",
       zh: "服务条款",
       ko: "서비스 약관",
+      ja: "利用規約",
     }),
     heading5: t({
       en: "1. What you are buying",
@@ -45,6 +50,7 @@ const refundsContent = {
       fr: "1. Ce que vous achetez",
       zh: "1. 你购买的是什么",
       ko: "1. 구매하는 상품",
+      ja: "1. 購入するもの",
     }),
     text6: t({
       en: "is a digital pack delivered as read-only access to a private GitHub repository. There is no physical shipment and no subscription. The price is $29 for the first 100 paid purchases, then $49, paid once. Instant private GitHub access and future repository updates included. After checkout you claim repository access by connecting your GitHub account in the Dodo Payments customer portal. Access includes future updates to the same repository at no extra cost.",
@@ -52,6 +58,7 @@ const refundsContent = {
       fr: "est un pack numérique livré sous forme d’accès en lecture seule à un dépôt GitHub privé. Il n’y a ni livraison physique ni abonnement. Le prix est de 29 $ pour les 100 premiers achats payés, puis de 49 $, en un seul paiement. L’accès instantané au dépôt GitHub privé et les futures mises à jour du dépôt sont inclus. Après le paiement, vous demandez l’accès au dépôt en connectant votre compte GitHub dans le portail client de Dodo Payments. L’accès comprend les futures mises à jour du même dépôt sans coût supplémentaire.",
       zh: "是一套数字内容包，以私有 GitHub 仓库只读访问权限的形式交付。没有实物发货，也没有订阅。前 100 笔付费购买价格为 $29，之后为 $49，一次性付款。包含即时私有 GitHub 访问权限和仓库的后续更新。结账后，你需在 Dodo Payments 客户门户中关联 GitHub 账号来领取仓库访问权限。访问权限包含同一仓库的后续更新，无需额外付费。",
       ko: "은(는) 비공개 GitHub 저장소에 대한 읽기 전용 접근 권한으로 제공되는 디지털 팩입니다. 실물 배송과 구독은 없습니다. 가격은 첫 100건의 유료 구매까지 $29, 이후 $49이며 1회 결제입니다. 즉시 비공개 GitHub 접근과 향후 저장소 업데이트가 포함됩니다. 결제 후 Dodo Payments 고객 포털에서 GitHub 계정을 연결해 저장소 접근 권한을 받습니다. 접근 권한에는 같은 저장소의 향후 업데이트가 추가 비용 없이 포함됩니다.",
+      ja: "は、非公開のGitHubリポジトリへの読み取り専用アクセスとして提供されるデジタルパックです。物理的な配送やサブスクリプションはありません。価格は最初の有料購入100件までが$29、その後は$49で、一度だけのお支払いです。非公開のGitHubへの即時アクセスと、今後のリポジトリのアップデートが含まれます。購入後、Dodo PaymentsのカスタマーポータルでGitHubアカウントを連携することでリポジトリへのアクセスを取得します。アクセスには、同じリポジトリの今後のアップデートが追加費用なしで含まれます。",
     }),
     heading7: t({
       en: "2. Before delivery",
@@ -59,6 +66,7 @@ const refundsContent = {
       fr: "2. Avant la livraison",
       zh: "2. 交付之前",
       ko: "2. 전달 전",
+      ja: "2. お届け前",
     }),
     text8: t({
       en: "Until you have claimed repository access, you can cancel your order for a full refund. Write to",
@@ -66,6 +74,7 @@ const refundsContent = {
       fr: "Tant que vous n’avez pas demandé l’accès au dépôt, vous pouvez annuler votre commande pour obtenir un remboursement intégral. Écrivez à",
       zh: "在你领取仓库访问权限之前，你可以取消订单并获得全额退款。请写信至",
       ko: "저장소 접근 권한을 받기 전까지는 주문을 취소하고 전액 환불받을 수 있습니다. 다음 주소로 연락하세요:",
+      ja: "リポジトリへのアクセスを取得するまでは、注文をキャンセルして全額返金を受けられます。次の宛先までご連絡ください：",
     }),
     text9: t({
       en: "; you do not need to give a reason.",
@@ -73,6 +82,7 @@ const refundsContent = {
       fr: "; vous n’avez pas à donner de motif.",
       zh: "；无需说明理由。",
       ko: ". 이유를 밝히지 않아도 됩니다.",
+      ja: "。理由をお伝えいただく必要はありません。",
     }),
     heading10: t({
       en: "3. Right of withdrawal for consumers in the EU and UK",
@@ -80,6 +90,7 @@ const refundsContent = {
       fr: "3. Droit de rétractation pour les consommateurs de l’UE et du Royaume-Uni",
       zh: "3. 欧盟和英国消费者的撤回权",
       ko: "3. EU 및 영국 소비자의 청약 철회권",
+      ja: "3. EUおよび英国の消費者の撤回権",
     }),
     text11: t({
       en: "Consumers normally have 14 days to withdraw from a purchase of digital content. Because the pack is digital content, that right ends once delivery starts.",
@@ -87,6 +98,7 @@ const refundsContent = {
       fr: "Les consommateurs disposent normalement de 14 jours pour se rétracter après un achat de contenu numérique. Le pack étant un contenu numérique, ce droit prend fin dès le début de la livraison.",
       zh: "消费者购买数字内容通常享有 14 天的撤回期。由于本技能包属于数字内容，该权利在交付开始后即终止。",
       ko: "소비자는 일반적으로 디지털 콘텐츠 구매 후 14일 이내에 청약을 철회할 수 있습니다. 팩은 디지털 콘텐츠이므로 전달이 시작되면 이 권리는 소멸합니다.",
+      ja: "消費者は通常、デジタルコンテンツの購入から14日以内に撤回する権利があります。パックはデジタルコンテンツであるため、この権利はお届けが開始された時点で終了します。",
     }),
     text12: t({
       en: "By claiming repository access, you ask us to begin delivery and acknowledge that you lose the right of withdrawal once access has been granted to you. If you would prefer to keep the 14-day period, do not claim access and write to us instead.",
@@ -94,6 +106,7 @@ const refundsContent = {
       fr: "En demandant l’accès au dépôt, vous nous demandez de commencer la livraison et reconnaissez perdre votre droit de rétractation une fois l’accès accordé. Si vous préférez conserver le délai de 14 jours, ne demandez pas l’accès et écrivez-nous à la place.",
       zh: "领取仓库访问权限即表示你要求我们开始交付，并确认一旦获得访问权限即丧失撤回权。如果你希望保留 14 天撤回期，请不要领取访问权限，而是写信给我们。",
       ko: "저장소 접근 권한을 받으면 당사에 전달 개시를 요청하고, 접근 권한이 부여된 후에는 청약 철회권을 잃는다는 데 동의하는 것입니다. 14일 기간을 유지하고 싶다면 접근 권한을 받지 말고 당사에 연락하세요.",
+      ja: "リポジトリへのアクセスを取得することで、あなたは当方にお届けの開始を依頼し、アクセスが付与された時点で撤回権を失うことを了承したものとみなされます。14日間の期間を維持したい場合は、アクセスを取得せずに当方へご連絡ください。",
     }),
     heading13: t({
       en: "4. Refunds we do give after delivery",
@@ -101,6 +114,7 @@ const refundsContent = {
       fr: "4. Remboursements accordés après la livraison",
       zh: "4. 交付后我们仍会退款的情形",
       ko: "4. 전달 후에도 환불하는 경우",
+      ja: "4. お届け後に返金するケース",
     }),
     text14: t({
       en: "You were charged twice, or charged for something you did not buy.",
@@ -108,6 +122,7 @@ const refundsContent = {
       fr: "Vous avez été facturé deux fois ou pour quelque chose que vous n’avez pas acheté.",
       zh: "你被重复扣款，或因未购买的商品被扣款。",
       ko: "이중으로 청구되었거나, 구매하지 않은 항목이 청구된 경우.",
+      ja: "二重に請求された場合、または購入していないものを請求された場合。",
     }),
     text15: t({
       en: "Repository access never reached you, and we could not fix it for you.",
@@ -115,6 +130,7 @@ const refundsContent = {
       fr: "Vous n’avez jamais reçu l’accès au dépôt et nous n’avons pas pu résoudre le problème.",
       zh: "你始终未获得仓库访问权限，且我们无法为你解决。",
       ko: "저장소 접근 권한이 전달되지 않았고 당사가 해결하지 못한 경우.",
+      ja: "リポジトリへのアクセスが届かず、当方でも解決できなかった場合。",
     }),
     text16: t({
       en: "The pack does not do what this site says it does, and we cannot resolve it with you.",
@@ -122,6 +138,7 @@ const refundsContent = {
       fr: "Le pack ne fait pas ce que ce site annonce et nous ne pouvons pas résoudre le problème avec vous.",
       zh: "技能包未能实现本网站所述的功能，且我们无法与你协商解决。",
       ko: "팩이 이 사이트에 설명된 대로 작동하지 않고 당사가 함께 해결하지 못한 경우.",
+      ja: "パックがこのサイトの説明どおりに機能せず、あなたとともに解決できない場合。",
     }),
     text17: t({
       en: "Where a refund applies, Dodo Payments, as merchant of record, returns the full amount to the original payment method. Repository access, if already granted, ends when the refund is issued. This does not limit any rights you have under the law where you live.",
@@ -129,6 +146,7 @@ const refundsContent = {
       fr: "Lorsqu’un remboursement s’applique, Dodo Payments, en tant que vendeur officiel, restitue l’intégralité du montant sur le moyen de paiement initial. L’accès au dépôt, s’il a déjà été accordé, prend fin lors du remboursement. Cela ne limite aucun droit prévu par la législation de votre lieu de résidence.",
       zh: "符合退款条件时，Dodo Payments 作为记录商户会将全款退回原付款方式。如已授予仓库访问权限，退款发放时访问权限即终止。这不限制你依据居住地法律享有的任何权利。",
       ko: "환불이 적용되는 경우, 판매 대행자인 Dodo Payments가 원래 결제 수단으로 전액을 환불합니다. 이미 부여된 저장소 접근 권한은 환불 시점에 종료됩니다. 이는 거주 지역 법률에 따른 귀하의 권리를 제한하지 않습니다.",
+      ja: "返金が適用される場合、販売事業者であるDodo Paymentsが元の支払い方法に全額を返金します。すでにリポジトリへのアクセスが付与されている場合、返金の実行時に終了します。これは、お住まいの地域の法律に基づくあなたの権利を制限するものではありません。",
     }),
     heading18: t({
       en: "5. How to ask",
@@ -136,6 +154,7 @@ const refundsContent = {
       fr: "5. Comment faire une demande",
       zh: "5. 如何申请",
       ko: "5. 요청 방법",
+      ja: "5. 依頼方法",
     }),
     text19: t({
       en: "Write to",
@@ -143,6 +162,7 @@ const refundsContent = {
       fr: "Écrivez à",
       zh: "请用结账时使用的邮箱地址写信至",
       ko: "다음 주소로 연락하세요:",
+      ja: "次の宛先まで",
     }),
     text20: t({
       en: "from the email address you used at checkout and tell us what went wrong. We answer every request, usually within two working days.",
@@ -150,6 +170,7 @@ const refundsContent = {
       fr: "depuis l’adresse utilisée lors du paiement et expliquez ce qui s’est passé. Nous répondons à chaque demande, généralement sous deux jours ouvrés.",
       zh: "，并告诉我们出了什么问题。我们会回复每一个请求，通常在两个工作日内。",
       ko: "결제에 사용한 이메일 주소로 보내시고 무엇이 문제인지 알려 주세요. 모든 요청에 답변하며, 보통 영업일 기준 2일 이내에 답합니다.",
+      ja: "購入時に使用したメールアドレスからご連絡いただき、問題の内容をお知らせください。すべてのご依頼に、通常2営業日以内に回答します。",
     }),
     heading21: t({
       en: "6. Chargebacks",
@@ -157,6 +178,7 @@ const refundsContent = {
       fr: "6. Contestations de paiement",
       zh: "6. 拒付",
       ko: "6. 지불 거절(차지백)",
+      ja: "6. チャージバック",
     }),
     text22: t({
       en: "If something is wrong, contact us first. A chargeback opened without contacting us suspends access to the pack while the bank reviews it, which is slower for everyone than a refund we issue directly.",
@@ -164,6 +186,7 @@ const refundsContent = {
       fr: "En cas de problème, contactez-nous d’abord. Une contestation de paiement ouverte sans nous contacter suspend l’accès au pack pendant l’examen par la banque, ce qui est plus lent pour tout le monde qu’un remboursement que nous effectuons directement.",
       zh: "如有问题，请先联系我们。未联系我们就发起的拒付会在银行审核期间暂停你对技能包的访问，这对所有人来说都比我们直接退款更慢。",
       ko: "문제가 있다면 먼저 당사에 연락하세요. 연락 없이 차지백을 신청하면 은행 검토 기간 동안 팩 접근이 정지되며, 이는 당사가 직접 환불하는 것보다 모두에게 더 오래 걸립니다.",
+      ja: "問題がある場合は、まず当方にご連絡ください。ご連絡なくチャージバックが申し立てられた場合、銀行の審査中はパックへのアクセスを停止します。これは、当方が直接返金するよりも、すべての人にとって時間がかかります。",
     }),
     sponsorHeading: t({
       en: "7. Sponsorships",
@@ -171,6 +194,7 @@ const refundsContent = {
       fr: "7. Parrainages",
       zh: "7. 赞助",
       ko: "7. 스폰서십",
+      ja: "7. スポンサーシップ",
     }),
     sponsorText1: t({
       en: "Sponsorships cost Diamond $250, Gold $150, or Silver $100, either per month as a subscription or once for a single 30-day run. You can cancel a subscription anytime from the Dodo Payments customer portal, linked in your billing emails, or by writing to us. Your placement stays up until the end of the month you paid for, and you are not charged again. A 30-day run never renews and ends on its own.",
@@ -178,6 +202,7 @@ const refundsContent = {
       fr: "Les parrainages coûtent Diamond 250 $, Gold 150 $ ou Silver 100 $, par mois en abonnement ou une seule fois pour une diffusion de 30 jours. Vous pouvez résilier un abonnement à tout moment depuis le portail client de Dodo Payments, accessible via vos e-mails de facturation, ou en nous écrivant. Votre emplacement reste en ligne jusqu’à la fin du mois payé et vous n’êtes plus facturé. Une diffusion de 30 jours n’est jamais renouvelée et s’arrête d’elle-même.",
       zh: "赞助价格为钻石 $250、黄金 $150 或白银 $100，可按月订阅，也可一次性购买单期 30 天。你可以随时通过账单邮件中链接的 Dodo Payments 客户门户或写信给我们取消订阅。你的展示位会保留到已付费月份结束，之后不会再扣费。30 天单期不会续订，到期自动结束。",
       ko: "스폰서십 가격은 Diamond $250, Gold $150, Silver $100이며, 월 단위 구독 또는 30일 단일 기간으로 결제합니다. 구독은 청구 이메일에 링크된 Dodo Payments 고객 포털이나 당사에 연락해 언제든 취소할 수 있습니다. 노출은 결제한 달의 마지막 날까지 유지되며 추가로 청구되지 않습니다. 30일 단일 기간은 갱신되지 않고 자동으로 종료됩니다.",
+      ja: "スポンサーシップの料金は、ダイヤモンド$250、ゴールド$150、シルバー$100で、月額のサブスクリプションまたは30日間1回限りの掲載から選べます。サブスクリプションは、請求メールに記載されたDodo Paymentsのカスタマーポータルから、または当方へのご連絡により、いつでもキャンセルできます。掲載は支払い済みの月の終わりまで継続し、再度請求されることはありません。30日間の掲載は更新されず、自動的に終了します。",
     }),
     sponsorText2: t({
       en: "A month or 30-day run that has started is not refunded. If we decline your placement before it ever goes live, we refund it in full. Otherwise refunds apply only where you were charged twice or for something you did not buy, or where the law where you live requires it. Where a refund applies, Dodo Payments returns it to the original payment method.",
@@ -185,6 +210,7 @@ const refundsContent = {
       fr: "Un mois ou une diffusion de 30 jours commencés ne sont pas remboursés. Si nous refusons votre emplacement avant sa mise en ligne, nous le remboursons intégralement. Sinon, un remboursement ne s’applique que si vous avez été facturé deux fois ou pour quelque chose que vous n’avez pas acheté, ou si la législation de votre lieu de résidence l’exige. Lorsqu’un remboursement s’applique, Dodo Payments le restitue sur le moyen de paiement initial.",
       zh: "已开始的月份或 30 天单期不予退款。如果我们在你的展示位上线前拒绝了它，我们会全额退款。除此之外，仅在你被重复扣款、因未购买的商品被扣款，或你居住地法律要求时才退款。符合退款条件时，Dodo Payments 会将款项退回原付款方式。",
       ko: "이미 시작된 월 또는 30일 기간은 환불되지 않습니다. 게시 전에 당사가 노출을 거절하면 전액 환불합니다. 그 외에는 이중 청구되었거나 구매하지 않은 항목이 청구된 경우, 또는 거주 지역 법률이 요구하는 경우에만 환불됩니다. 환불이 적용되는 경우 Dodo Payments가 원래 결제 수단으로 환불합니다.",
+      ja: "開始済みの月または30日間の掲載は返金されません。掲載開始前に当方が掲載をお断りした場合は、全額返金します。それ以外の場合、返金は二重請求や購入していないものへの請求があった場合、またはお住まいの地域の法律で求められる場合にのみ適用されます。返金が適用される場合、Dodo Paymentsが元の支払い方法に返金します。",
     }),
   },
 } satisfies Dictionary;

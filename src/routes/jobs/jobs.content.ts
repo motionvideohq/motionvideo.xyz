@@ -10,6 +10,7 @@ export default {
       fr: "Emplois motion.",
       zh: "动效职位。",
       ko: "모션 채용.",
+      ja: "モーションの求人。",
     }),
     heroIntro: t({
       en: "Open roles for motion designers, creative developers and video engineers who build with AI.",
@@ -17,6 +18,7 @@ export default {
       fr: "Postes pour motion designers, développeurs créatifs et ingénieurs vidéo qui créent avec l’IA.",
       zh: "面向使用 AI 创作的动效设计师、创意开发者和视频工程师的开放职位。",
       ko: "AI로 작업하는 모션 디자이너, 크리에이티브 개발자, 동영상 엔지니어를 위한 채용 공고.",
+      ja: "AIで制作するモーションデザイナー、クリエイティブデベロッパー、ビデオエンジニアの募集中ポジション。",
     }),
     typeHeadings: {
       "full-time": t({
@@ -25,6 +27,7 @@ export default {
         fr: "Temps plein.",
         zh: "全职职位。",
         ko: "정규직.",
+        ja: "正社員。",
       }),
       "part-time": t({
         en: "Part-time roles.",
@@ -32,6 +35,7 @@ export default {
         fr: "Temps partiel.",
         zh: "兼职职位。",
         ko: "파트타임.",
+        ja: "パートタイム。",
       }),
       contract: t({
         en: "Contract roles.",
@@ -39,6 +43,7 @@ export default {
         fr: "Missions en contrat.",
         zh: "合同职位。",
         ko: "계약직.",
+        ja: "契約。",
       }),
       freelance: t({
         en: "Freelance gigs.",
@@ -46,6 +51,7 @@ export default {
         fr: "Freelance.",
         zh: "自由职业项目。",
         ko: "프리랜스.",
+        ja: "フリーランス。",
       }),
     },
     typeDescriptions: {
@@ -55,6 +61,7 @@ export default {
         fr: "Postes à temps plein en motion, dev créatif et vidéo, dans des équipes qui utilisent l’IA.",
         zh: "在使用 AI 的团队中担任动效、创意开发和视频相关的全职职位。",
         ko: "AI로 제품을 만드는 팀의 모션, 크리에이티브 개발자, 동영상 정규직.",
+        ja: "AIで開発するチームでの、モーション、クリエイティブデベロッパー、動画関連の正社員ポジション。",
       }),
       "part-time": t({
         en: "Part-time motion and video roles, for a few days a week alongside your own work.",
@@ -62,6 +69,7 @@ export default {
         fr: "Postes motion et vidéo à temps partiel, quelques jours par semaine en parallèle.",
         zh: "兼职动效和视频职位，每周几天，与你自己的工作并行。",
         ko: "본업과 병행할 수 있는 주 며칠 근무의 모션 및 동영상 파트타임.",
+        ja: "自分の仕事と並行して週数日働ける、モーションと動画のパートタイムポジション。",
       }),
       contract: t({
         en: "Fixed-term contracts for launch films, product videos and motion systems.",
@@ -69,6 +77,7 @@ export default {
         fr: "Contrats à durée fixe pour films de lancement, vidéos produit et systèmes motion.",
         zh: "固定期限合同，制作发布影片、产品视频和动效系统。",
         ko: "출시 영상, 제품 동영상, 모션 시스템을 위한 기간제 계약.",
+        ja: "ローンチフィルム、プロダクト動画、モーションシステムの期間限定の契約。",
       }),
       freelance: t({
         en: "Freelance projects for motion designers and creative developers, one film at a time.",
@@ -76,15 +85,24 @@ export default {
         fr: "Projets freelance pour motion designers et développeurs créatifs, un film à la fois.",
         zh: "面向动效设计师和创意开发者的自由职业项目，一次一部影片。",
         ko: "모션 디자이너와 크리에이티브 개발자를 위한 프리랜스 프로젝트, 한 번에 영상 하나씩.",
+        ja: "モーションデザイナーとクリエイティブデベロッパー向けの、1本単位のフリーランス案件。",
       }),
     },
-    all: t({ en: "All", es: "Todos", fr: "Tous", zh: "全部", ko: "전체" }),
+    all: t({
+      en: "All",
+      es: "Todos",
+      fr: "Tous",
+      zh: "全部",
+      ko: "전체",
+      ja: "すべて",
+    }),
     filterType: t({
       en: "Filter by type",
       es: "Filtrar por tipo",
       fr: "Filtrer par type",
       zh: "按类型筛选",
       ko: "유형으로 필터",
+      ja: "種類で絞り込む",
     }),
     emptyTitle: t({
       en: "No jobs yet",
@@ -92,6 +110,7 @@ export default {
       fr: "Aucune offre pour le moment",
       zh: "还没有职位",
       ko: "아직 채용 공고가 없습니다",
+      ja: "求人はまだありません",
     }),
     emptyBody: t({
       en: "New roles show up here as soon as they’re approved.",
@@ -99,6 +118,7 @@ export default {
       fr: "Les nouveaux postes apparaissent ici dès leur validation.",
       zh: "新职位审核通过后会立即显示在这里。",
       ko: "새 공고는 승인되는 즉시 여기에 표시됩니다.",
+      ja: "新しい求人は承認され次第ここに表示されます。",
     }),
     widgetTitle: t({
       en: "Motion jobs",
@@ -106,6 +126,7 @@ export default {
       fr: "Emplois motion",
       zh: "动效职位",
       ko: "모션 채용",
+      ja: "モーションの求人",
     }),
     seeAll: t({
       en: "See all jobs",
@@ -113,6 +134,7 @@ export default {
       fr: "Voir toutes les offres",
       zh: "查看全部职位",
       ko: "모든 채용 보기",
+      ja: "すべての求人を見る",
     }),
     postJob: t({
       en: "Post a job",
@@ -120,6 +142,7 @@ export default {
       fr: "Publier une offre",
       zh: "发布职位",
       ko: "채용 공고 올리기",
+      ja: "求人を掲載",
     }),
     featured: t({
       en: "Featured",
@@ -127,6 +150,7 @@ export default {
       fr: "À la une",
       zh: "精选",
       ko: "추천",
+      ja: "注目",
     }),
     remote: t({
       en: "Remote",
@@ -134,6 +158,7 @@ export default {
       fr: "Télétravail",
       zh: "远程",
       ko: "원격",
+      ja: "リモート",
     }),
     types: {
       "full-time": t({
@@ -142,6 +167,7 @@ export default {
         fr: "Temps plein",
         zh: "全职",
         ko: "정규직",
+        ja: "正社員",
       }),
       "part-time": t({
         en: "Part-time",
@@ -149,6 +175,7 @@ export default {
         fr: "Temps partiel",
         zh: "兼职",
         ko: "파트타임",
+        ja: "パートタイム",
       }),
       contract: t({
         en: "Contract",
@@ -156,6 +183,7 @@ export default {
         fr: "Contrat",
         zh: "合同",
         ko: "계약직",
+        ja: "契約",
       }),
       freelance: t({
         en: "Freelance",
@@ -163,6 +191,7 @@ export default {
         fr: "Freelance",
         zh: "自由职业",
         ko: "프리랜스",
+        ja: "フリーランス",
       }),
     },
     perPost: t({
@@ -171,6 +200,7 @@ export default {
       fr: "paiement unique · 30 jours",
       zh: "一次性 · 30 天",
       ko: "1회 결제 · 30일",
+      ja: "1回払い・30日間",
     }),
     plans: {
       standard: {
@@ -180,6 +210,7 @@ export default {
           fr: "Standard",
           zh: "标准",
           ko: "스탠다드",
+          ja: "スタンダード",
         }),
         choose: t({
           en: "Choose Standard",
@@ -187,6 +218,7 @@ export default {
           fr: "Choisir Standard",
           zh: "选择标准",
           ko: "스탠다드 선택",
+          ja: "スタンダードを選択",
         }),
         perks: [
           t({
@@ -195,6 +227,7 @@ export default {
             fr: "Publiée dans Emplois pendant 30 jours",
             zh: "在招聘栏目展示 30 天",
             ko: "채용 페이지에 30일간 게시",
+            ja: "求人ページに30日間掲載",
           }),
           t({
             en: "Your logo, salary and apply link",
@@ -202,6 +235,7 @@ export default {
             fr: "Votre logo, salaire et lien de candidature",
             zh: "展示你的 Logo、薪资和申请链接",
             ko: "로고, 급여, 지원 링크 표시",
+            ja: "ロゴ、給与、応募リンク",
           }),
           t({
             en: "Reviewed within one business day",
@@ -209,6 +243,7 @@ export default {
             fr: "Relue sous un jour ouvré",
             zh: "一个工作日内审核",
             ko: "영업일 1일 이내 검토",
+            ja: "1営業日以内に審査",
           }),
         ],
       },
@@ -219,6 +254,7 @@ export default {
           fr: "À la une",
           zh: "精选",
           ko: "추천",
+          ja: "注目",
         }),
         choose: t({
           en: "Choose Featured",
@@ -226,6 +262,7 @@ export default {
           fr: "Choisir À la une",
           zh: "选择精选",
           ko: "추천 선택",
+          ja: "注目を選択",
         }),
         perks: [
           t({
@@ -234,6 +271,7 @@ export default {
             fr: "Tout ce qu’inclut Standard",
             zh: "包含标准版全部内容",
             ko: "스탠다드의 모든 기능",
+            ja: "スタンダードのすべて",
           }),
           t({
             en: "Pinned above standard posts",
@@ -241,6 +279,7 @@ export default {
             fr: "Épinglée au-dessus des offres standard",
             zh: "置顶于标准职位之上",
             ko: "일반 공고보다 상단에 고정",
+            ja: "通常の求人より上に固定表示",
           }),
           t({
             en: "Highlighted with a Featured badge",
@@ -248,6 +287,7 @@ export default {
             fr: "Mise en avant avec un badge À la une",
             zh: "带精选徽章高亮显示",
             ko: "추천 배지로 강조",
+            ja: "注目バッジで強調表示",
           }),
           t({
             en: "A shoutout on X",
@@ -255,6 +295,7 @@ export default {
             fr: "Une mention sur X",
             zh: "在 X 上推荐一次",
             ko: "X에서 소개",
+            ja: "Xで紹介",
           }),
         ],
       },
@@ -266,6 +307,7 @@ export default {
       fr: "Publiez une offre auprès de celles et ceux qui font du motion.",
       zh: "把职位发布给做动效的人。",
       ko: "모션을 만드는 사람들에게 채용 공고를 올리세요.",
+      ja: "モーションの作り手に向けて求人を掲載。",
     }),
     postHeroIntro: t({
       en: "List your role where motion designers and creative developers already look for their next thing.",
@@ -273,6 +315,7 @@ export default {
       fr: "Publiez votre poste là où motion designers et développeurs créatifs cherchent déjà leur prochain projet.",
       zh: "在动效设计师和创意开发者寻找下一份工作的地方发布你的职位。",
       ko: "모션 디자이너와 크리에이티브 개발자가 다음 기회를 찾는 곳에 공고를 게시하세요.",
+      ja: "モーションデザイナーやクリエイティブデベロッパーが次の仕事を探している場所に、あなたの求人を掲載しましょう。",
     }),
     planSection: t({
       en: "Plan",
@@ -280,6 +323,7 @@ export default {
       fr: "Formule",
       zh: "方案",
       ko: "플랜",
+      ja: "プラン",
     }),
     planSectionBody: t({
       en: "Standard lists the role; Featured pins it and adds a shoutout.",
@@ -287,6 +331,7 @@ export default {
       fr: "Standard publie le poste ; À la une l’épingle et ajoute une mention.",
       zh: "标准版发布职位；精选版置顶并在 X 上推荐。",
       ko: "스탠다드는 공고를 게시하고, 추천은 상단 고정과 X 소개를 더합니다.",
+      ja: "スタンダードは求人を掲載し、注目は上部に固定してXで紹介します。",
     }),
     planTerms: t({
       en: "One-off, 30 days",
@@ -294,6 +339,7 @@ export default {
       fr: "Ponctuel, 30 jours",
       zh: "一次性，30 天",
       ko: "1회, 30일",
+      ja: "1回限り、30日間",
     }),
     details: t({
       en: "Details",
@@ -301,6 +347,7 @@ export default {
       fr: "Détails",
       zh: "详情",
       ko: "세부 정보",
+      ja: "詳細",
     }),
     jobSection: t({
       en: "Job",
@@ -308,6 +355,7 @@ export default {
       fr: "Poste",
       zh: "职位",
       ko: "채용",
+      ja: "求人",
     }),
     jobSectionBody: t({
       en: "The role, where people apply, and how it’s structured.",
@@ -315,6 +363,7 @@ export default {
       fr: "Le poste, où postuler et son organisation.",
       zh: "职位信息、申请方式及工作形式。",
       ko: "직무, 지원 방법, 근무 형태.",
+      ja: "ポジション、応募先、雇用形態。",
     }),
     workLocation: t({
       en: "Work location",
@@ -322,6 +371,7 @@ export default {
       fr: "Lieu de travail",
       zh: "工作地点",
       ko: "근무지",
+      ja: "勤務地",
     }),
     employerSection: t({
       en: "Employer",
@@ -329,6 +379,7 @@ export default {
       fr: "Employeur",
       zh: "雇主",
       ko: "고용주",
+      ja: "雇用主",
     }),
     employerSectionBody: t({
       en: "Company name and logo shown on the listing.",
@@ -336,6 +387,7 @@ export default {
       fr: "Nom et logo de l’entreprise affichés sur l’offre.",
       zh: "职位页面上显示的公司名称和 Logo。",
       ko: "공고에 표시될 회사 이름과 로고.",
+      ja: "求人に表示される会社名とロゴ。",
     }),
     logoDrop: t({
       en: "Upload your company logo",
@@ -343,6 +395,7 @@ export default {
       fr: "Importez le logo de votre entreprise",
       zh: "上传公司 Logo",
       ko: "회사 로고 업로드",
+      ja: "会社のロゴをアップロード",
     }),
     logoSize: t({
       en: "Up to 512 × 512 px",
@@ -350,6 +403,7 @@ export default {
       fr: "Jusqu’à 512 × 512 px",
       zh: "最大 512 × 512 px",
       ko: "최대 512 × 512 px",
+      ja: "最大512 × 512 px",
     }),
     detailsSection: t({
       en: "Details",
@@ -357,6 +411,7 @@ export default {
       fr: "Détails",
       zh: "详情",
       ko: "세부 정보",
+      ja: "詳細",
     }),
     detailsSectionBody: t({
       en: "A short description, and a salary range if you share one.",
@@ -364,6 +419,7 @@ export default {
       fr: "Une courte description, et une fourchette de salaire si vous la partagez.",
       zh: "简短描述，如愿意可附上薪资范围。",
       ko: "간단한 설명과, 공개한다면 급여 범위.",
+      ja: "簡単な説明と、公開する場合は給与の範囲。",
     }),
     reviewSection: t({
       en: "Review",
@@ -371,6 +427,7 @@ export default {
       fr: "Récapitulatif",
       zh: "确认",
       ko: "검토",
+      ja: "確認",
     }),
     reviewSectionBody: t({
       en: "Check your order before checkout.",
@@ -378,6 +435,7 @@ export default {
       fr: "Vérifiez votre commande avant le paiement.",
       zh: "结账前请核对订单。",
       ko: "결제 전에 주문을 확인하세요.",
+      ja: "購入前に注文内容をご確認ください。",
     }),
     dueToday: t({
       en: "Due today",
@@ -385,6 +443,7 @@ export default {
       fr: "À payer aujourd’hui",
       zh: "今日应付",
       ko: "오늘 결제 금액",
+      ja: "本日のお支払い",
     }),
     signedInAs: t({
       en: "Signed in as",
@@ -392,6 +451,7 @@ export default {
       fr: "Connecté en tant que",
       zh: "登录身份",
       ko: "로그인 계정:",
+      ja: "ログイン中：",
     }),
     alreadyPaid: t({
       en: "Already paid",
@@ -399,6 +459,7 @@ export default {
       fr: "Déjà payé",
       zh: "已付款",
       ko: "결제 완료",
+      ja: "支払い済み",
     }),
     checkout: t({
       en: "Checkout",
@@ -406,6 +467,7 @@ export default {
       fr: "Payer",
       zh: "结账",
       ko: "결제하기",
+      ja: "購入手続き",
     }),
     afterCheckout: t({
       en: "After checkout, your post goes to review. Manage it anytime from Listings. Payments run through Dodo Payments, our merchant of record.",
@@ -413,6 +475,7 @@ export default {
       fr: "Après le paiement, votre offre passe en relecture. Gérez-la à tout moment depuis Annonces. Les paiements passent par Dodo Payments, notre marchand officiel.",
       zh: "结账后，你的职位会进入审核。可随时在“职位”中管理。付款通过我们的记录商户 Dodo Payments 处理。",
       ko: "결제 후 공고는 검토 단계로 넘어갑니다. 공고 페이지에서 언제든 관리할 수 있습니다. 결제는 판매 대행자인 Dodo Payments를 통해 처리됩니다.",
+      ja: "購入後、求人は審査に進みます。掲載からいつでも管理できます。お支払いは販売事業者であるDodo Paymentsを通じて行われます。",
     }),
     // /listings
     listingsTitle: t({
@@ -421,6 +484,7 @@ export default {
       fr: "Annonces",
       zh: "职位",
       ko: "공고",
+      ja: "掲載",
     }),
     listingsIntro: t({
       en: "Your job posts: drafts, posts in review, and live listings.",
@@ -428,6 +492,7 @@ export default {
       fr: "Vos offres d’emploi : brouillons, en relecture et en ligne.",
       zh: "你的职位发布：草稿、审核中和已上线的职位。",
       ko: "내 채용 공고: 초안, 검토 중인 공고, 게시 중인 공고.",
+      ja: "あなたの求人：下書き、審査中、掲載中のもの。",
     }),
     listingsEmpty: t({
       en: "No job posts yet",
@@ -435,6 +500,7 @@ export default {
       fr: "Aucune offre pour l’instant",
       zh: "还没有发布职位",
       ko: "아직 채용 공고가 없습니다",
+      ja: "求人はまだありません",
     }),
     listingsEmptyBody: t({
       en: "Post a role and it shows up here, with its review status and end date.",
@@ -442,6 +508,7 @@ export default {
       fr: "Publiez un poste et il apparaîtra ici, avec son statut et sa date de fin.",
       zh: "发布职位后会显示在这里，附带审核状态和结束日期。",
       ko: "공고를 올리면 검토 상태와 종료일과 함께 여기에 표시됩니다.",
+      ja: "求人を作成すると、審査状況と終了日とともにここに表示されます。",
     }),
     status: {
       draft: t({
@@ -450,6 +517,7 @@ export default {
         fr: "Brouillon non payé",
         zh: "未付款草稿",
         ko: "미결제 초안",
+        ja: "未払いの下書き",
       }),
       pending: t({
         en: "In review",
@@ -457,6 +525,7 @@ export default {
         fr: "En relecture",
         zh: "审核中",
         ko: "검토 중",
+        ja: "審査中",
       }),
       approved: t({
         en: "Live until",
@@ -464,6 +533,7 @@ export default {
         fr: "En ligne jusqu’au",
         zh: "上线至",
         ko: "게시 종료일:",
+        ja: "掲載期限：",
       }),
       expired: t({
         en: "Expired",
@@ -471,6 +541,7 @@ export default {
         fr: "Expirée",
         zh: "已过期",
         ko: "만료됨",
+        ja: "期限切れ",
       }),
       rejected: t({
         en: "Changes requested",
@@ -478,6 +549,7 @@ export default {
         fr: "Modifications demandées",
         zh: "需要修改",
         ko: "수정 요청됨",
+        ja: "修正依頼あり",
       }),
       refunded: t({
         en: "Refunded",
@@ -485,6 +557,7 @@ export default {
         fr: "Remboursée",
         zh: "已退款",
         ko: "환불됨",
+        ja: "返金済み",
       }),
     },
     reviewNote: t({
@@ -493,6 +566,7 @@ export default {
       fr: "Note de relecture :",
       zh: "审核备注：",
       ko: "검토자 메모:",
+      ja: "審査担当者のメモ：",
     }),
     edit: t({
       en: "Edit",
@@ -500,6 +574,7 @@ export default {
       fr: "Modifier",
       zh: "编辑",
       ko: "편집",
+      ja: "編集",
     }),
     pay: t({
       en: "Pay and submit",
@@ -507,6 +582,7 @@ export default {
       fr: "Payer et envoyer",
       zh: "付款并提交",
       ko: "결제하고 제출",
+      ja: "支払って送信",
     }),
     paidTitle: t({
       en: "Payment received",
@@ -514,6 +590,7 @@ export default {
       fr: "Paiement reçu",
       zh: "已收到付款",
       ko: "결제 완료",
+      ja: "お支払いを受け付けました",
     }),
     paidBody: t({
       en: "Your post is in review. We’ll email you when it’s live.",
@@ -521,6 +598,7 @@ export default {
       fr: "Votre offre est en relecture. Nous vous écrirons dès sa mise en ligne.",
       zh: "你的职位正在审核中。上线后我们会发邮件通知你。",
       ko: "공고를 검토 중입니다. 게시되면 이메일로 알려 드립니다.",
+      ja: "求人は審査中です。掲載されたらメールでお知らせします。",
     }),
     jobTitle: t({
       en: "Job title",
@@ -528,6 +606,7 @@ export default {
       fr: "Intitulé du poste",
       zh: "职位名称",
       ko: "직무명",
+      ja: "職種名",
     }),
     company: t({
       en: "Company",
@@ -535,6 +614,7 @@ export default {
       fr: "Entreprise",
       zh: "公司",
       ko: "회사",
+      ja: "会社",
     }),
     location: t({
       en: "Location",
@@ -542,6 +622,7 @@ export default {
       fr: "Lieu",
       zh: "地点",
       ko: "근무지",
+      ja: "勤務地",
     }),
     locationHelp: t({
       en: "A city and country, or a time zone range.",
@@ -549,6 +630,7 @@ export default {
       fr: "Une ville et un pays, ou une plage de fuseaux horaires.",
       zh: "城市和国家，或时区范围。",
       ko: "도시와 국가, 또는 시간대 범위.",
+      ja: "都市と国、またはタイムゾーンの範囲。",
     }),
     remoteLabel: t({
       en: "Remote friendly",
@@ -556,14 +638,23 @@ export default {
       fr: "Télétravail possible",
       zh: "支持远程",
       ko: "원격 가능",
+      ja: "リモート可",
     }),
-    type: t({ en: "Type", es: "Tipo", fr: "Type", zh: "类型", ko: "유형" }),
+    type: t({
+      en: "Type",
+      es: "Tipo",
+      fr: "Type",
+      zh: "类型",
+      ko: "유형",
+      ja: "種類",
+    }),
     salary: t({
       en: "Salary (optional)",
       es: "Salario (opcional)",
       fr: "Salaire (facultatif)",
       zh: "薪资（可选）",
       ko: "급여 (선택)",
+      ja: "給与（任意）",
     }),
     salaryHelp: t({
       en: "For example $120k–$150k or €60/hour.",
@@ -571,6 +662,7 @@ export default {
       fr: "Par exemple 120 k–150 k $ ou 60 €/heure.",
       zh: "例如 $120k–$150k 或 €60/小时。",
       ko: "예: $120k–$150k 또는 €60/시간.",
+      ja: "例：$120k–$150k、€60/時。",
     }),
     description: t({
       en: "Description",
@@ -578,6 +670,7 @@ export default {
       fr: "Description",
       zh: "描述",
       ko: "설명",
+      ja: "説明",
     }),
     descriptionHelp: t({
       en: "What the role is and who it suits. Plain text, up to 600 characters.",
@@ -585,6 +678,7 @@ export default {
       fr: "Le poste et le profil recherché. Texte brut, 600 caractères maximum.",
       zh: "职位内容及适合人群。纯文本，最多 600 个字符。",
       ko: "어떤 직무이며 누구에게 맞는지. 일반 텍스트, 최대 600자.",
+      ja: "仕事内容と向いている人。プレーンテキスト、600文字まで。",
     }),
     applyUrl: t({
       en: "Apply link",
@@ -592,6 +686,7 @@ export default {
       fr: "Lien de candidature",
       zh: "申请链接",
       ko: "지원 링크",
+      ja: "応募リンク",
     }),
     applyHelp: t({
       en: "Your job page or application form.",
@@ -599,6 +694,7 @@ export default {
       fr: "La page du poste ou le formulaire de candidature.",
       zh: "你的职位页面或申请表单。",
       ko: "채용 페이지 또는 지원 양식.",
+      ja: "求人ページまたは応募フォーム。",
     }),
     logo: t({
       en: "Logo URL (optional)",
@@ -606,6 +702,7 @@ export default {
       fr: "URL du logo (facultatif)",
       zh: "Logo URL（可选）",
       ko: "로고 URL (선택)",
+      ja: "ロゴURL（任意）",
     }),
     resubmit: t({
       en: "Resubmit for review",
@@ -613,6 +710,7 @@ export default {
       fr: "Renvoyer en relecture",
       zh: "重新提交审核",
       ko: "다시 검토 요청",
+      ja: "再審査に提出",
     }),
     saving: t({
       en: "Saving…",
@@ -620,6 +718,7 @@ export default {
       fr: "Enregistrement…",
       zh: "保存中…",
       ko: "저장 중…",
+      ja: "保存中…",
     }),
     opening: t({
       en: "Opening checkout…",
@@ -627,6 +726,7 @@ export default {
       fr: "Ouverture du paiement…",
       zh: "正在打开结账…",
       ko: "결제 페이지 여는 중…",
+      ja: "購入手続きを開いています…",
     }),
     errorValidation: t({
       en: "Check the fields: every required one needs a value, and links must be public HTTPS addresses.",
@@ -634,6 +734,7 @@ export default {
       fr: "Vérifiez les champs : chaque champ obligatoire doit être rempli et les liens doivent être des adresses HTTPS publiques.",
       zh: "请检查字段：所有必填项都需填写，链接必须是公开的 HTTPS 地址。",
       ko: "입력란을 확인하세요: 모든 필수 항목을 채워야 하며, 링크는 공개 HTTPS 주소여야 합니다.",
+      ja: "入力内容をご確認ください：必須項目はすべて入力が必要で、リンクは公開されたHTTPSアドレスである必要があります。",
     }),
     errorSave: t({
       en: "Could not save. Try again.",
@@ -641,6 +742,7 @@ export default {
       fr: "Enregistrement impossible. Réessayez.",
       zh: "保存失败，请重试。",
       ko: "저장하지 못했습니다. 다시 시도하세요.",
+      ja: "保存できませんでした。もう一度お試しください。",
     }),
     errorCheckout: t({
       en: "Could not open checkout. Your draft is saved; try again.",
@@ -648,6 +750,7 @@ export default {
       fr: "Impossible d’ouvrir le paiement. Votre brouillon est enregistré ; réessayez.",
       zh: "无法打开结账。草稿已保存，请重试。",
       ko: "결제 페이지를 열지 못했습니다. 초안은 저장되었으니 다시 시도하세요.",
+      ja: "購入手続きを開けませんでした。下書きは保存されています。もう一度お試しください。",
     }),
   },
 } satisfies Dictionary;
