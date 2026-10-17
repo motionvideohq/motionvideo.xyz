@@ -15,6 +15,7 @@ import { Route as AdminRouteImport } from './routes/admin'
 import { Route as BookmarksRouteImport } from './routes/bookmarks'
 import { Route as CheckoutRouteImport } from './routes/checkout'
 import { Route as CreativesRouteImport } from './routes/creatives'
+import { Route as CustomizeRouteImport } from './routes/customize'
 import { Route as DashboardRouteImport } from './routes/dashboard'
 import { Route as ExtrasRouteImport } from './routes/extras'
 import { Route as FeaturedRouteImport } from './routes/featured'
@@ -43,6 +44,8 @@ import { Route as AdminSubmissionsRouteImport } from './routes/admin/submissions
 import { Route as ApiUploadRouteImport } from './routes/api/upload'
 import { Route as CreativesIndexRouteImport } from './routes/creatives/index'
 import { Route as CreativesCategoryRouteImport } from './routes/creatives/$category'
+import { Route as CustomizeIndexRouteImport } from './routes/customize/index'
+import { Route as CustomizeSlugRouteImport } from './routes/customize/$slug'
 import { Route as ExtrasIndexRouteImport } from './routes/extras/index'
 import { Route as ExtrasCategoryRouteImport } from './routes/extras/$category'
 import { Route as JobsIndexRouteImport } from './routes/jobs/index'
@@ -60,6 +63,7 @@ import { Route as GalleryVideosSlugRouteImport } from './routes/_gallery/videos.
 import { Route as ApiAuthSplatRouteImport } from './routes/api/auth/$'
 import { Route as ApiWebhookDodoRouteImport } from './routes/api/webhook/dodo'
 import { Route as TemplatesTemplateIdIndexRouteImport } from './routes/templates/$templateId.index'
+import { Route as TemplatesTemplateIdCustomizeRouteImport } from './routes/templates/$templateId.customize'
 import { Route as GalleryCategoryCategoryIndexRouteImport } from './routes/_gallery/category.$category.index'
 import { Route as GalleryCategoryCategoryVideosSlugRouteImport } from './routes/_gallery/category.$category.videos.$slug'
 
@@ -89,6 +93,11 @@ const CheckoutRoute = CheckoutRouteImport.update({
 const CreativesRoute = CreativesRouteImport.update({
   id: '/creatives',
   path: '/creatives',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CustomizeRoute = CustomizeRouteImport.update({
+  id: '/customize',
+  path: '/customize',
   getParentRoute: () => rootRouteImport,
 } as any)
 const DashboardRoute = DashboardRouteImport.update({
@@ -231,6 +240,16 @@ const CreativesCategoryRoute = CreativesCategoryRouteImport.update({
   path: '/$category',
   getParentRoute: () => CreativesRoute,
 } as any)
+const CustomizeIndexRoute = CustomizeIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => CustomizeRoute,
+} as any)
+const CustomizeSlugRoute = CustomizeSlugRouteImport.update({
+  id: '/$slug',
+  path: '/$slug',
+  getParentRoute: () => CustomizeRoute,
+} as any)
 const ExtrasIndexRoute = ExtrasIndexRouteImport.update({
   id: '/',
   path: '/',
@@ -317,6 +336,12 @@ const TemplatesTemplateIdIndexRoute =
     path: '/templates/$templateId/',
     getParentRoute: () => rootRouteImport,
   } as any)
+const TemplatesTemplateIdCustomizeRoute =
+  TemplatesTemplateIdCustomizeRouteImport.update({
+    id: '/templates/$templateId/customize',
+    path: '/templates/$templateId/customize',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 const GalleryCategoryCategoryIndexRoute =
   GalleryCategoryCategoryIndexRouteImport.update({
     id: '/',
@@ -336,6 +361,7 @@ export interface FileRoutesByFullPath {
   '/bookmarks': typeof BookmarksRoute
   '/checkout': typeof CheckoutRoute
   '/creatives': typeof CreativesRouteWithChildren
+  '/customize': typeof CustomizeRouteWithChildren
   '/dashboard': typeof DashboardRoute
   '/extras': typeof ExtrasRouteWithChildren
   '/featured': typeof FeaturedRoute
@@ -361,6 +387,7 @@ export interface FileRoutesByFullPath {
   '/admin/submissions': typeof AdminSubmissionsRoute
   '/api/upload': typeof ApiUploadRoute
   '/creatives/$category': typeof CreativesCategoryRoute
+  '/customize/$slug': typeof CustomizeSlugRoute
   '/extras/$category': typeof ExtrasCategoryRoute
   '/jobs/$type': typeof JobsTypeRoute
   '/jobs/post': typeof JobsPostRoute
@@ -369,6 +396,7 @@ export interface FileRoutesByFullPath {
   '/tools/$category': typeof ToolsCategoryRoute
   '/admin/': typeof AdminIndexRoute
   '/creatives/': typeof CreativesIndexRoute
+  '/customize/': typeof CustomizeIndexRoute
   '/extras/': typeof ExtrasIndexRoute
   '/jobs/': typeof JobsIndexRoute
   '/skills/': typeof SkillsIndexRoute
@@ -379,6 +407,7 @@ export interface FileRoutesByFullPath {
   '/videos/$slug': typeof GalleryVideosSlugRoute
   '/api/auth/$': typeof ApiAuthSplatRoute
   '/api/webhook/dodo': typeof ApiWebhookDodoRoute
+  '/templates/$templateId/customize': typeof TemplatesTemplateIdCustomizeRoute
   '/templates/$templateId/': typeof TemplatesTemplateIdIndexRoute
   '/category/$category/': typeof GalleryCategoryCategoryIndexRoute
   '/category/$category/videos/$slug': typeof GalleryCategoryCategoryVideosSlugRoute
@@ -409,6 +438,7 @@ export interface FileRoutesByTo {
   '/admin/submissions': typeof AdminSubmissionsRoute
   '/api/upload': typeof ApiUploadRoute
   '/creatives/$category': typeof CreativesCategoryRoute
+  '/customize/$slug': typeof CustomizeSlugRoute
   '/extras/$category': typeof ExtrasCategoryRoute
   '/jobs/$type': typeof JobsTypeRoute
   '/jobs/post': typeof JobsPostRoute
@@ -417,6 +447,7 @@ export interface FileRoutesByTo {
   '/tools/$category': typeof ToolsCategoryRoute
   '/admin': typeof AdminIndexRoute
   '/creatives': typeof CreativesIndexRoute
+  '/customize': typeof CustomizeIndexRoute
   '/extras': typeof ExtrasIndexRoute
   '/jobs': typeof JobsIndexRoute
   '/skills': typeof SkillsIndexRoute
@@ -426,6 +457,7 @@ export interface FileRoutesByTo {
   '/videos/$slug': typeof GalleryVideosSlugRoute
   '/api/auth/$': typeof ApiAuthSplatRoute
   '/api/webhook/dodo': typeof ApiWebhookDodoRoute
+  '/templates/$templateId/customize': typeof TemplatesTemplateIdCustomizeRoute
   '/templates/$templateId': typeof TemplatesTemplateIdIndexRoute
   '/category/$category': typeof GalleryCategoryCategoryIndexRoute
   '/category/$category/videos/$slug': typeof GalleryCategoryCategoryVideosSlugRoute
@@ -438,6 +470,7 @@ export interface FileRoutesById {
   '/bookmarks': typeof BookmarksRoute
   '/checkout': typeof CheckoutRoute
   '/creatives': typeof CreativesRouteWithChildren
+  '/customize': typeof CustomizeRouteWithChildren
   '/dashboard': typeof DashboardRoute
   '/extras': typeof ExtrasRouteWithChildren
   '/featured': typeof FeaturedRoute
@@ -463,6 +496,7 @@ export interface FileRoutesById {
   '/admin/submissions': typeof AdminSubmissionsRoute
   '/api/upload': typeof ApiUploadRoute
   '/creatives/$category': typeof CreativesCategoryRoute
+  '/customize/$slug': typeof CustomizeSlugRoute
   '/extras/$category': typeof ExtrasCategoryRoute
   '/jobs/$type': typeof JobsTypeRoute
   '/jobs/post': typeof JobsPostRoute
@@ -472,6 +506,7 @@ export interface FileRoutesById {
   '/_gallery/': typeof GalleryIndexRoute
   '/admin/': typeof AdminIndexRoute
   '/creatives/': typeof CreativesIndexRoute
+  '/customize/': typeof CustomizeIndexRoute
   '/extras/': typeof ExtrasIndexRoute
   '/jobs/': typeof JobsIndexRoute
   '/skills/': typeof SkillsIndexRoute
@@ -482,6 +517,7 @@ export interface FileRoutesById {
   '/_gallery/videos/$slug': typeof GalleryVideosSlugRoute
   '/api/auth/$': typeof ApiAuthSplatRoute
   '/api/webhook/dodo': typeof ApiWebhookDodoRoute
+  '/templates/$templateId/customize': typeof TemplatesTemplateIdCustomizeRoute
   '/templates/$templateId/': typeof TemplatesTemplateIdIndexRoute
   '/_gallery/category/$category/': typeof GalleryCategoryCategoryIndexRoute
   '/_gallery/category/$category/videos/$slug': typeof GalleryCategoryCategoryVideosSlugRoute
@@ -494,6 +530,7 @@ export interface FileRouteTypes {
     | '/bookmarks'
     | '/checkout'
     | '/creatives'
+    | '/customize'
     | '/dashboard'
     | '/extras'
     | '/featured'
@@ -519,6 +556,7 @@ export interface FileRouteTypes {
     | '/admin/submissions'
     | '/api/upload'
     | '/creatives/$category'
+    | '/customize/$slug'
     | '/extras/$category'
     | '/jobs/$type'
     | '/jobs/post'
@@ -527,6 +565,7 @@ export interface FileRouteTypes {
     | '/tools/$category'
     | '/admin/'
     | '/creatives/'
+    | '/customize/'
     | '/extras/'
     | '/jobs/'
     | '/skills/'
@@ -537,6 +576,7 @@ export interface FileRouteTypes {
     | '/videos/$slug'
     | '/api/auth/$'
     | '/api/webhook/dodo'
+    | '/templates/$templateId/customize'
     | '/templates/$templateId/'
     | '/category/$category/'
     | '/category/$category/videos/$slug'
@@ -567,6 +607,7 @@ export interface FileRouteTypes {
     | '/admin/submissions'
     | '/api/upload'
     | '/creatives/$category'
+    | '/customize/$slug'
     | '/extras/$category'
     | '/jobs/$type'
     | '/jobs/post'
@@ -575,6 +616,7 @@ export interface FileRouteTypes {
     | '/tools/$category'
     | '/admin'
     | '/creatives'
+    | '/customize'
     | '/extras'
     | '/jobs'
     | '/skills'
@@ -584,6 +626,7 @@ export interface FileRouteTypes {
     | '/videos/$slug'
     | '/api/auth/$'
     | '/api/webhook/dodo'
+    | '/templates/$templateId/customize'
     | '/templates/$templateId'
     | '/category/$category'
     | '/category/$category/videos/$slug'
@@ -595,6 +638,7 @@ export interface FileRouteTypes {
     | '/bookmarks'
     | '/checkout'
     | '/creatives'
+    | '/customize'
     | '/dashboard'
     | '/extras'
     | '/featured'
@@ -620,6 +664,7 @@ export interface FileRouteTypes {
     | '/admin/submissions'
     | '/api/upload'
     | '/creatives/$category'
+    | '/customize/$slug'
     | '/extras/$category'
     | '/jobs/$type'
     | '/jobs/post'
@@ -629,6 +674,7 @@ export interface FileRouteTypes {
     | '/_gallery/'
     | '/admin/'
     | '/creatives/'
+    | '/customize/'
     | '/extras/'
     | '/jobs/'
     | '/skills/'
@@ -639,6 +685,7 @@ export interface FileRouteTypes {
     | '/_gallery/videos/$slug'
     | '/api/auth/$'
     | '/api/webhook/dodo'
+    | '/templates/$templateId/customize'
     | '/templates/$templateId/'
     | '/_gallery/category/$category/'
     | '/_gallery/category/$category/videos/$slug'
@@ -651,6 +698,7 @@ export interface RootRouteChildren {
   BookmarksRoute: typeof BookmarksRoute
   CheckoutRoute: typeof CheckoutRoute
   CreativesRoute: typeof CreativesRouteWithChildren
+  CustomizeRoute: typeof CustomizeRouteWithChildren
   DashboardRoute: typeof DashboardRoute
   ExtrasRoute: typeof ExtrasRouteWithChildren
   FeaturedRoute: typeof FeaturedRoute
@@ -673,6 +721,7 @@ export interface RootRouteChildren {
   TemplatesIndexRoute: typeof TemplatesIndexRoute
   ApiAuthSplatRoute: typeof ApiAuthSplatRoute
   ApiWebhookDodoRoute: typeof ApiWebhookDodoRoute
+  TemplatesTemplateIdCustomizeRoute: typeof TemplatesTemplateIdCustomizeRoute
   TemplatesTemplateIdIndexRoute: typeof TemplatesTemplateIdIndexRoute
 }
 
@@ -718,6 +767,13 @@ declare module '@tanstack/react-router' {
       path: '/creatives'
       fullPath: '/creatives'
       preLoaderRoute: typeof CreativesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/customize': {
+      id: '/customize'
+      path: '/customize'
+      fullPath: '/customize'
+      preLoaderRoute: typeof CustomizeRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/dashboard': {
@@ -916,6 +972,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CreativesCategoryRouteImport
       parentRoute: typeof CreativesRoute
     }
+    '/customize/': {
+      id: '/customize/'
+      path: '/'
+      fullPath: '/customize/'
+      preLoaderRoute: typeof CustomizeIndexRouteImport
+      parentRoute: typeof CustomizeRoute
+    }
+    '/customize/$slug': {
+      id: '/customize/$slug'
+      path: '/$slug'
+      fullPath: '/customize/$slug'
+      preLoaderRoute: typeof CustomizeSlugRouteImport
+      parentRoute: typeof CustomizeRoute
+    }
     '/extras/': {
       id: '/extras/'
       path: '/'
@@ -1035,6 +1105,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof TemplatesTemplateIdIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/templates/$templateId/customize': {
+      id: '/templates/$templateId/customize'
+      path: '/templates/$templateId/customize'
+      fullPath: '/templates/$templateId/customize'
+      preLoaderRoute: typeof TemplatesTemplateIdCustomizeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/_gallery/category/$category/': {
       id: '/_gallery/category/$category/'
       path: '/'
@@ -1136,6 +1213,20 @@ const CreativesRouteWithChildren = CreativesRoute._addFileChildren(
   CreativesRouteChildren,
 )
 
+interface CustomizeRouteChildren {
+  CustomizeSlugRoute: typeof CustomizeSlugRoute
+  CustomizeIndexRoute: typeof CustomizeIndexRoute
+}
+
+const CustomizeRouteChildren: CustomizeRouteChildren = {
+  CustomizeSlugRoute: CustomizeSlugRoute,
+  CustomizeIndexRoute: CustomizeIndexRoute,
+}
+
+const CustomizeRouteWithChildren = CustomizeRoute._addFileChildren(
+  CustomizeRouteChildren,
+)
+
 interface ExtrasRouteChildren {
   ExtrasCategoryRoute: typeof ExtrasCategoryRoute
   ExtrasIndexRoute: typeof ExtrasIndexRoute
@@ -1181,6 +1272,7 @@ const rootRouteChildren: RootRouteChildren = {
   BookmarksRoute: BookmarksRoute,
   CheckoutRoute: CheckoutRoute,
   CreativesRoute: CreativesRouteWithChildren,
+  CustomizeRoute: CustomizeRouteWithChildren,
   DashboardRoute: DashboardRoute,
   ExtrasRoute: ExtrasRouteWithChildren,
   FeaturedRoute: FeaturedRoute,
@@ -1203,6 +1295,7 @@ const rootRouteChildren: RootRouteChildren = {
   TemplatesIndexRoute: TemplatesIndexRoute,
   ApiAuthSplatRoute: ApiAuthSplatRoute,
   ApiWebhookDodoRoute: ApiWebhookDodoRoute,
+  TemplatesTemplateIdCustomizeRoute: TemplatesTemplateIdCustomizeRoute,
   TemplatesTemplateIdIndexRoute: TemplatesTemplateIdIndexRoute,
 }
 export const routeTree = rootRouteImport

@@ -10,6 +10,7 @@ export const ROUTES = {
   CHECKOUT: "/checkout",
   CONTACT: "/contact",
   CREATIVES: "/creatives",
+  CUSTOMIZE: "/customize",
   DASHBOARD: "/dashboard",
   EXTRAS: "/extras",
   FAQ: "/motionvideo-skill#faq",

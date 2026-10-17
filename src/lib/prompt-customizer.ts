@@ -1,7 +1,53 @@
-// Fills prompt templates: every `{{key}}` slot takes the reader's value or
-// the field's fallback, and three dials (creativity, pace, polish) can each
-// add one line. The text added to prompts stays in English whatever the UI
-// language: it is read by the model, next to an English prompt.
+// Turns a prompt from the gallery (or a template) into one made for the
+// reader: their details, plus three dials (creativity, pace, polish) that add
+// one line each. Everything runs in the browser; the details persist in
+// localStorage so they carry from one prompt to the next.
+//
+// The text added to prompts stays in English whatever the UI language: it is
+// read by the model, next to an English prompt. Labels live in the
+// `prompt-customizer` dictionary.
+
+export const VIDEO_SIZES = [
+  "1920x1080",
+  "1080x1920",
+  "1080x1080",
+  "1080x1350",
+] as const;
+export type VideoSize = (typeof VIDEO_SIZES)[number];
+
+const SIZE_NAMES: Record<VideoSize, string> = {
+  "1080x1080": "square",
+  "1080x1350": "portrait 4:5",
+  "1080x1920": "vertical 9:16",
+  "1920x1080": "landscape 16:9",
+};
+
+/** Details anyone can add to any prompt. Empty fields leave the prompt as is. */
+export const DETAIL_KEYS = [
+  "subject",
+  "size",
+  "length",
+  "colors",
+  "typeface",
+  "notes",
+] as const;
+export type DetailKey = (typeof DETAIL_KEYS)[number];
+export type Details = Partial<Record<DetailKey, string>>;
+
+const DETAIL_LINES: Record<DetailKey, (value: string) => string> = {
+  colors: (value) => `Colors: ${value}`,
+  length: (value) =>
+    /^\d+(?:\.\d+)?$/u.test(value)
+      ? `Length: ${value} seconds`
+      : `Length: ${value}`,
+  notes: (value) => `Also: ${value}`,
+  size: (value) => {
+    const size = VIDEO_SIZES.find((entry) => entry === value);
+    return `Frame size: ${value}${size ? ` (${SIZE_NAMES[size]})` : ""}`;
+  },
+  subject: (value) => `The video is about: ${value}`,
+  typeface: (value) => `Typeface: ${value}`,
+};
 
 export const DIAL_KEYS = ["creativity", "pace", "polish"] as const;
 export type DialKey = (typeof DIAL_KEYS)[number];
@@ -39,6 +85,28 @@ const DIAL_LINES: Record<DialKey, readonly string[]> = {
 /** The lines a set of dials adds, in dial order. */
 const dialLines = (dials: Dials) =>
   DIAL_KEYS.map((dial) => DIAL_LINES[dial][dials[dial]] ?? "").filter(Boolean);
+
+/**
+ * The reader's details and dials as one block, appended after a prompt from
+ * the gallery. Where they disagree with the prompt, the block says it wins.
+ */
+export const customizePrompt = (
+  prompt: string,
+  details: Details,
+  dials: Dials
+) => {
+  const lines = [
+    ...DETAIL_KEYS.flatMap((key) => {
+      const value = details[key]?.trim();
+      return value ? [DETAIL_LINES[key](value)] : [];
+    }),
+    ...dialLines(dials),
+  ];
+  if (lines.length === 0) {
+    return prompt;
+  }
+  return `${prompt.trimEnd()}\n\n<my-brief>\nUse the prompt above with these changes. Where they conflict with it, follow these:\n${lines.map((line) => `- ${line}`).join("\n")}\n</my-brief>`;
+};
 
 /** A slot in a template prompt, written `{{key}}` in its text. */
 export interface TemplateField {
@@ -99,3 +167,5 @@ export const fillTemplate = (
   }
   return segments;
 };
+
+export const DETAILS_STORAGE_KEY = "motionvideo:prompt-details";

@@ -17,6 +17,7 @@ import { Play } from "reicon-react/icons/Play";
 import { Plus } from "reicon-react/icons/Plus";
 import { Scroll } from "reicon-react/icons/Scroll";
 import { Search } from "reicon-react/icons/Search";
+import { Sliders } from "reicon-react/icons/Sliders";
 import { Sparkles } from "reicon-react/icons/Sparkles";
 import { Sun } from "reicon-react/icons/Sun";
 import { Undo } from "reicon-react/icons/Undo";
@@ -50,6 +51,7 @@ type PagePath =
   | "/skills"
   | "/extras"
   | "/templates"
+  | "/customize"
   | "/jobs"
   | "/sponsor"
   | "/motionvideo-skill"
@@ -241,6 +243,12 @@ export const CommandMenu = () => {
             content.templates.value,
             <Layout aria-hidden="true" />,
             ["prompt", "template"]
+          ),
+          page(
+            "/customize",
+            content.customize.value,
+            <Sliders aria-hidden="true" />,
+            ["prompt", "customize"]
           ),
           page("/jobs", content.jobs.value, <Briefcase aria-hidden="true" />, [
             "hiring",

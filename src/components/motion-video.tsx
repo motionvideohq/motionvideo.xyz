@@ -19,6 +19,7 @@ import { ArrowRightUp } from "reicon-react/icons/ArrowRightUp";
 import { ChevronDown } from "reicon-react/icons/ChevronDown";
 import { ChevronLeft } from "reicon-react/icons/ChevronLeft";
 import { ChevronRight } from "reicon-react/icons/ChevronRight";
+import { Sliders } from "reicon-react/icons/Sliders";
 import { Sparkles } from "reicon-react/icons/Sparkles";
 import { User } from "reicon-react/icons/User";
 import { Xmark } from "reicon-react/icons/Xmark";
@@ -945,12 +946,27 @@ export const MotionVideoOverlay = ({
                 <div className="flex items-center justify-between gap-3">
                   <h2 className="text-sm font-medium">{content.prompt}</h2>
                   {video.prompt && (
-                    <Button variant="outline" size="sm" onClick={copyPrompt}>
-                      <CopyIcon copied={copyStatus === "copied"} />
-                      {copyStatus === "copied"
-                        ? content.copied
-                        : content.copyShort}
-                    </Button>
+                    <div className="flex gap-2">
+                      <Link
+                        to="/customize/$slug"
+                        params={{ slug: video.slug }}
+                        data-track="customize_click"
+                        data-track-slug={video.slug}
+                        className={buttonVariants({
+                          variant: "outline",
+                          size: "sm",
+                        })}
+                      >
+                        <Sliders aria-hidden="true" />
+                        {content.customize}
+                      </Link>
+                      <Button variant="outline" size="sm" onClick={copyPrompt}>
+                        <CopyIcon copied={copyStatus === "copied"} />
+                        {copyStatus === "copied"
+                          ? content.copied
+                          : content.copyShort}
+                      </Button>
+                    </div>
                   )}
                 </div>
                 {video.prompt ? (

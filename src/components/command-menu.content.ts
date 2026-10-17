@@ -158,6 +158,7 @@ export default {
       pt: "Modelos",
       ru: "Шаблоны",
     }),
+    customize: t({ en: "Customize a prompt", es: "Personalizar un prompt", fr: "Personnaliser un prompt" }),
     submit: t({
       en: "Submit",
       es: "Enviar",
