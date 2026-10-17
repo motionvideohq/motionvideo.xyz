@@ -512,6 +512,17 @@ export default {
       pt: "Uma versão melhorada deste prompt",
       ru: "Улучшенная версия этого промпта",
     }),
+    customize: t({
+      en: "Customize",
+      es: "Personalizar",
+      fr: "Personnaliser",
+      zh: "自定义",
+      ko: "맞춤 설정",
+      ja: "カスタマイズ",
+      de: "Anpassen",
+      pt: "Personalizar",
+      ru: "Настроить",
+    }),
     // The detail view's prompt fold and how the video was made.
     showAll: t({
       en: "Show all",

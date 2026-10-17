@@ -108,6 +108,17 @@ export default {
       pt: "As partes destacadas são campos. Personaliza-as ou copia o prompt com os valores predefinidos preenchidos.",
       ru: "Выделенные части — это поля. Настройте их или скопируйте промпт с заполненными значениями по умолчанию.",
     }),
+    customize: t({
+      en: "Customize this template",
+      es: "Personalizar esta plantilla",
+      fr: "Personnaliser ce modèle",
+      zh: "自定义此模板",
+      ko: "이 템플릿 맞춤 설정",
+      ja: "このテンプレートをカスタマイズ",
+      de: "Diese Vorlage anpassen",
+      pt: "Personalizar este modelo",
+      ru: "Настроить этот шаблон",
+    }),
     note: t({
       en: `Written by ${SITE.NAME}. Run it with Opus 5.5 at max effort for best results.`,
       es: `Escrito por ${SITE.NAME}. Para obtener los mejores resultados, úsalo con Opus 5.5 con esfuerzo máximo.`,

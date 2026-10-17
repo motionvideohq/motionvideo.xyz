@@ -6,6 +6,7 @@ import {
 } from "@tanstack/react-router";
 import { useIntlayer } from "react-intlayer";
 import { Check } from "reicon-react/icons/Check";
+import { Sparkles } from "reicon-react/icons/Sparkles";
 
 import { CopyPromptButton } from "@/components/copy-prompt-button";
 import { DemoFrame } from "@/components/demo-frame";
@@ -13,6 +14,7 @@ import { MotionVideoCard } from "@/components/motion-video";
 import { pageContainerClass } from "@/components/page";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
+import { buttonVariants } from "@/components/ui/button";
 import { VirtualMasonry } from "@/components/virtual-masonry";
 import { ROUTES } from "@/constants/routes";
 import type { MotionVideo } from "@/lib/motion-catalog";
@@ -160,9 +162,26 @@ const TemplateDetail = () => {
                 );
               })}
             </pre>
-            <p className="text-muted-foreground text-xs text-pretty">
-              {content.note}
-            </p>
+            {/* The note sits beside the button at its 36px height: two short
+              lines at most. */}
+            <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+              <Link
+                to="/templates/$templateId/customize"
+                params={{ templateId: template.id }}
+                data-track="template_customize"
+                data-track-template={template.id}
+                className={cn(
+                  buttonVariants({ size: "lg" }),
+                  "w-full sm:w-fit"
+                )}
+              >
+                <Sparkles />
+                {content.customize}
+              </Link>
+              <p className="text-muted-foreground text-xs leading-4 text-pretty sm:max-w-sm sm:text-right">
+                {content.note}
+              </p>
+            </div>
           </section>
 
           <section className="flex flex-col gap-4">
