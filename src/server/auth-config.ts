@@ -1,10 +1,13 @@
 import { drizzleAdapter } from "@better-auth/drizzle-adapter";
+import { mcp } from "@better-auth/mcp";
 import { betterAuth } from "better-auth";
-import { captcha, emailOTP } from "better-auth/plugins";
+import { captcha, emailOTP, jwt } from "better-auth/plugins";
 import { tanstackStartCookies } from "better-auth/tanstack-start";
 import type { DrizzleD1Database } from "drizzle-orm/d1";
 
 import { WELCOME_HEADER } from "../constants/auth";
+import { MCP_RESOURCE, OAUTH_SCOPES } from "../constants/oauth";
+import { ROUTES } from "../constants/routes";
 import type * as schema from "./db/schema";
 
 export interface AuthConfig {
@@ -82,6 +85,37 @@ export const createAuth = (
             }),
           ]
         : []),
+      // The MotionVideo MCP server is an OAuth 2.1 resource; this site is its
+      // authorization server. jwt() signs audience-bound access tokens and
+      // mcp() binds them to the MCP resource, links it to dynamically
+      // registered clients, and serves RFC 9728 discovery. Sign-in and
+      // consent hop through our own pages, so clients only ever see us.
+      jwt(),
+      mcp({
+        // MCP clients (ChatGPT, Claude, Cursor, …) register themselves; they
+        // are public first-party clients, so registration needs no token.
+        allowDynamicClientRegistration: true,
+        allowUnauthenticatedClientRegistration: true,
+        consentPage: ROUTES.CONSENT,
+        // Identity claims for per-user views on the MCP server, shared only
+        // when the client asked for the matching scope.
+        customAccessTokenClaims: ({ scopes, user }) => {
+          const claims: Record<string, string> = {};
+          if (user && scopes.includes("email")) {
+            claims.email = user.email;
+          }
+          if (user && scopes.includes("profile")) {
+            claims.name = user.name;
+            if (user.image) {
+              claims.picture = user.image;
+            }
+          }
+          return claims;
+        },
+        loginPage: ROUTES.SIGN_IN,
+        resource: MCP_RESOURCE,
+        scopes: [...OAUTH_SCOPES],
+      }),
       // Must stay last.
       tanstackStartCookies(),
     ],

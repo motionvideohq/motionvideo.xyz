@@ -14,6 +14,7 @@ import { Route as PagesRouteImport } from './routes/_pages'
 import { Route as AdminRouteImport } from './routes/admin'
 import { Route as BookmarksRouteImport } from './routes/bookmarks'
 import { Route as CheckoutRouteImport } from './routes/checkout'
+import { Route as ConsentRouteImport } from './routes/consent'
 import { Route as CreativesRouteImport } from './routes/creatives'
 import { Route as DashboardRouteImport } from './routes/dashboard'
 import { Route as ExtrasRouteImport } from './routes/extras'
@@ -30,6 +31,7 @@ import { Route as StudiosRouteImport } from './routes/studios'
 import { Route as SubmitRouteImport } from './routes/submit'
 import { Route as ToolsRouteImport } from './routes/tools'
 import { Route as WelcomeRouteImport } from './routes/welcome'
+import { Route as DotwellKnownSplatRouteImport } from './routes/[.]well-known.$'
 import { Route as GalleryIndexRouteImport } from './routes/_gallery/index'
 import { Route as PagesAboutRouteImport } from './routes/_pages/about'
 import { Route as PagesBrandRouteImport } from './routes/_pages/brand'
@@ -68,6 +70,8 @@ import { Route as GalleryVideosSlugRouteImport } from './routes/_gallery/videos.
 import { Route as ApiAuthSplatRouteImport } from './routes/api/auth/$'
 import { Route as ApiCatalogIndexRouteImport } from './routes/api/catalog/index'
 import { Route as ApiCatalogDirectoriesRouteImport } from './routes/api/catalog/directories'
+import { Route as ApiMcpBookmarksRouteImport } from './routes/api/mcp/bookmarks'
+import { Route as ApiMcpFeaturedRouteImport } from './routes/api/mcp/featured'
 import { Route as ApiWebhookDodoRouteImport } from './routes/api/webhook/dodo'
 import { Route as DashboardJobsPostRouteImport } from './routes/dashboard/jobs/post'
 import { Route as DashboardSponsorshipsIndexRouteImport } from './routes/dashboard/sponsorships/index'
@@ -96,6 +100,11 @@ const BookmarksRoute = BookmarksRouteImport.update({
 const CheckoutRoute = CheckoutRouteImport.update({
   id: '/checkout',
   path: '/checkout',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ConsentRoute = ConsentRouteImport.update({
+  id: '/consent',
+  path: '/consent',
   getParentRoute: () => rootRouteImport,
 } as any)
 const CreativesRoute = CreativesRouteImport.update({
@@ -176,6 +185,11 @@ const ToolsRoute = ToolsRouteImport.update({
 const WelcomeRoute = WelcomeRouteImport.update({
   id: '/welcome',
   path: '/welcome',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DotwellKnownSplatRoute = DotwellKnownSplatRouteImport.update({
+  id: '/.well-known/$',
+  path: '/.well-known/$',
   getParentRoute: () => rootRouteImport,
 } as any)
 const GalleryIndexRoute = GalleryIndexRouteImport.update({
@@ -368,6 +382,16 @@ const ApiCatalogDirectoriesRoute = ApiCatalogDirectoriesRouteImport.update({
   path: '/api/catalog/directories',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ApiMcpBookmarksRoute = ApiMcpBookmarksRouteImport.update({
+  id: '/api/mcp/bookmarks',
+  path: '/api/mcp/bookmarks',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiMcpFeaturedRoute = ApiMcpFeaturedRouteImport.update({
+  id: '/api/mcp/featured',
+  path: '/api/mcp/featured',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ApiWebhookDodoRoute = ApiWebhookDodoRouteImport.update({
   id: '/api/webhook/dodo',
   path: '/api/webhook/dodo',
@@ -408,6 +432,7 @@ export interface FileRoutesByFullPath {
   '/admin': typeof AdminRouteWithChildren
   '/bookmarks': typeof BookmarksRoute
   '/checkout': typeof CheckoutRoute
+  '/consent': typeof ConsentRoute
   '/creatives': typeof CreativesRouteWithChildren
   '/dashboard': typeof DashboardRouteWithChildren
   '/extras': typeof ExtrasRouteWithChildren
@@ -424,6 +449,7 @@ export interface FileRoutesByFullPath {
   '/submit': typeof SubmitRoute
   '/tools': typeof ToolsRouteWithChildren
   '/welcome': typeof WelcomeRoute
+  '/.well-known/$': typeof DotwellKnownSplatRoute
   '/about': typeof PagesAboutRoute
   '/brand': typeof PagesBrandRoute
   '/contact': typeof PagesContactRoute
@@ -460,6 +486,8 @@ export interface FileRoutesByFullPath {
   '/videos/$slug': typeof GalleryVideosSlugRoute
   '/api/auth/$': typeof ApiAuthSplatRoute
   '/api/catalog/directories': typeof ApiCatalogDirectoriesRoute
+  '/api/mcp/bookmarks': typeof ApiMcpBookmarksRoute
+  '/api/mcp/featured': typeof ApiMcpFeaturedRoute
   '/api/webhook/dodo': typeof ApiWebhookDodoRoute
   '/dashboard/jobs/post': typeof DashboardJobsPostRoute
   '/dashboard/sponsorships/new': typeof DashboardSponsorshipsNewRoute
@@ -472,6 +500,7 @@ export interface FileRoutesByTo {
   '/': typeof GalleryIndexRoute
   '/bookmarks': typeof BookmarksRoute
   '/checkout': typeof CheckoutRoute
+  '/consent': typeof ConsentRoute
   '/featured': typeof FeaturedRoute
   '/listings': typeof ListingsRoute
   '/llms.txt': typeof LlmsDottxtRoute
@@ -483,6 +512,7 @@ export interface FileRoutesByTo {
   '/studios': typeof StudiosRoute
   '/submit': typeof SubmitRoute
   '/welcome': typeof WelcomeRoute
+  '/.well-known/$': typeof DotwellKnownSplatRoute
   '/about': typeof PagesAboutRoute
   '/brand': typeof PagesBrandRoute
   '/contact': typeof PagesContactRoute
@@ -518,6 +548,8 @@ export interface FileRoutesByTo {
   '/videos/$slug': typeof GalleryVideosSlugRoute
   '/api/auth/$': typeof ApiAuthSplatRoute
   '/api/catalog/directories': typeof ApiCatalogDirectoriesRoute
+  '/api/mcp/bookmarks': typeof ApiMcpBookmarksRoute
+  '/api/mcp/featured': typeof ApiMcpFeaturedRoute
   '/api/webhook/dodo': typeof ApiWebhookDodoRoute
   '/dashboard/jobs/post': typeof DashboardJobsPostRoute
   '/dashboard/sponsorships/new': typeof DashboardSponsorshipsNewRoute
@@ -533,6 +565,7 @@ export interface FileRoutesById {
   '/admin': typeof AdminRouteWithChildren
   '/bookmarks': typeof BookmarksRoute
   '/checkout': typeof CheckoutRoute
+  '/consent': typeof ConsentRoute
   '/creatives': typeof CreativesRouteWithChildren
   '/dashboard': typeof DashboardRouteWithChildren
   '/extras': typeof ExtrasRouteWithChildren
@@ -549,6 +582,7 @@ export interface FileRoutesById {
   '/submit': typeof SubmitRoute
   '/tools': typeof ToolsRouteWithChildren
   '/welcome': typeof WelcomeRoute
+  '/.well-known/$': typeof DotwellKnownSplatRoute
   '/_pages/about': typeof PagesAboutRoute
   '/_pages/brand': typeof PagesBrandRoute
   '/_pages/contact': typeof PagesContactRoute
@@ -586,6 +620,8 @@ export interface FileRoutesById {
   '/_gallery/videos/$slug': typeof GalleryVideosSlugRoute
   '/api/auth/$': typeof ApiAuthSplatRoute
   '/api/catalog/directories': typeof ApiCatalogDirectoriesRoute
+  '/api/mcp/bookmarks': typeof ApiMcpBookmarksRoute
+  '/api/mcp/featured': typeof ApiMcpFeaturedRoute
   '/api/webhook/dodo': typeof ApiWebhookDodoRoute
   '/dashboard/jobs/post': typeof DashboardJobsPostRoute
   '/dashboard/sponsorships/new': typeof DashboardSponsorshipsNewRoute
@@ -601,6 +637,7 @@ export interface FileRouteTypes {
     | '/admin'
     | '/bookmarks'
     | '/checkout'
+    | '/consent'
     | '/creatives'
     | '/dashboard'
     | '/extras'
@@ -617,6 +654,7 @@ export interface FileRouteTypes {
     | '/submit'
     | '/tools'
     | '/welcome'
+    | '/.well-known/$'
     | '/about'
     | '/brand'
     | '/contact'
@@ -653,6 +691,8 @@ export interface FileRouteTypes {
     | '/videos/$slug'
     | '/api/auth/$'
     | '/api/catalog/directories'
+    | '/api/mcp/bookmarks'
+    | '/api/mcp/featured'
     | '/api/webhook/dodo'
     | '/dashboard/jobs/post'
     | '/dashboard/sponsorships/new'
@@ -665,6 +705,7 @@ export interface FileRouteTypes {
     | '/'
     | '/bookmarks'
     | '/checkout'
+    | '/consent'
     | '/featured'
     | '/listings'
     | '/llms.txt'
@@ -676,6 +717,7 @@ export interface FileRouteTypes {
     | '/studios'
     | '/submit'
     | '/welcome'
+    | '/.well-known/$'
     | '/about'
     | '/brand'
     | '/contact'
@@ -711,6 +753,8 @@ export interface FileRouteTypes {
     | '/videos/$slug'
     | '/api/auth/$'
     | '/api/catalog/directories'
+    | '/api/mcp/bookmarks'
+    | '/api/mcp/featured'
     | '/api/webhook/dodo'
     | '/dashboard/jobs/post'
     | '/dashboard/sponsorships/new'
@@ -725,6 +769,7 @@ export interface FileRouteTypes {
     | '/admin'
     | '/bookmarks'
     | '/checkout'
+    | '/consent'
     | '/creatives'
     | '/dashboard'
     | '/extras'
@@ -741,6 +786,7 @@ export interface FileRouteTypes {
     | '/submit'
     | '/tools'
     | '/welcome'
+    | '/.well-known/$'
     | '/_pages/about'
     | '/_pages/brand'
     | '/_pages/contact'
@@ -778,6 +824,8 @@ export interface FileRouteTypes {
     | '/_gallery/videos/$slug'
     | '/api/auth/$'
     | '/api/catalog/directories'
+    | '/api/mcp/bookmarks'
+    | '/api/mcp/featured'
     | '/api/webhook/dodo'
     | '/dashboard/jobs/post'
     | '/dashboard/sponsorships/new'
@@ -793,6 +841,7 @@ export interface RootRouteChildren {
   AdminRoute: typeof AdminRouteWithChildren
   BookmarksRoute: typeof BookmarksRoute
   CheckoutRoute: typeof CheckoutRoute
+  ConsentRoute: typeof ConsentRoute
   CreativesRoute: typeof CreativesRouteWithChildren
   DashboardRoute: typeof DashboardRouteWithChildren
   ExtrasRoute: typeof ExtrasRouteWithChildren
@@ -809,6 +858,7 @@ export interface RootRouteChildren {
   SubmitRoute: typeof SubmitRoute
   ToolsRoute: typeof ToolsRouteWithChildren
   WelcomeRoute: typeof WelcomeRoute
+  DotwellKnownSplatRoute: typeof DotwellKnownSplatRoute
   ApiUploadRoute: typeof ApiUploadRoute
   JobsTypeRoute: typeof JobsTypeRoute
   JobsPostRoute: typeof JobsPostRoute
@@ -817,6 +867,8 @@ export interface RootRouteChildren {
   SponsorshipsIndexRoute: typeof SponsorshipsIndexRoute
   ApiAuthSplatRoute: typeof ApiAuthSplatRoute
   ApiCatalogDirectoriesRoute: typeof ApiCatalogDirectoriesRoute
+  ApiMcpBookmarksRoute: typeof ApiMcpBookmarksRoute
+  ApiMcpFeaturedRoute: typeof ApiMcpFeaturedRoute
   ApiWebhookDodoRoute: typeof ApiWebhookDodoRoute
   ApiCatalogIndexRoute: typeof ApiCatalogIndexRoute
 }
@@ -856,6 +908,13 @@ declare module '@tanstack/react-router' {
       path: '/checkout'
       fullPath: '/checkout'
       preLoaderRoute: typeof CheckoutRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/consent': {
+      id: '/consent'
+      path: '/consent'
+      fullPath: '/consent'
+      preLoaderRoute: typeof ConsentRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/creatives': {
@@ -968,6 +1027,13 @@ declare module '@tanstack/react-router' {
       path: '/welcome'
       fullPath: '/welcome'
       preLoaderRoute: typeof WelcomeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/.well-known/$': {
+      id: '/.well-known/$'
+      path: '/.well-known/$'
+      fullPath: '/.well-known/$'
+      preLoaderRoute: typeof DotwellKnownSplatRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/_gallery/': {
@@ -1236,6 +1302,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ApiCatalogDirectoriesRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/api/mcp/bookmarks': {
+      id: '/api/mcp/bookmarks'
+      path: '/api/mcp/bookmarks'
+      fullPath: '/api/mcp/bookmarks'
+      preLoaderRoute: typeof ApiMcpBookmarksRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/mcp/featured': {
+      id: '/api/mcp/featured'
+      path: '/api/mcp/featured'
+      fullPath: '/api/mcp/featured'
+      preLoaderRoute: typeof ApiMcpFeaturedRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/api/webhook/dodo': {
       id: '/api/webhook/dodo'
       path: '/api/webhook/dodo'
@@ -1439,6 +1519,7 @@ const rootRouteChildren: RootRouteChildren = {
   AdminRoute: AdminRouteWithChildren,
   BookmarksRoute: BookmarksRoute,
   CheckoutRoute: CheckoutRoute,
+  ConsentRoute: ConsentRoute,
   CreativesRoute: CreativesRouteWithChildren,
   DashboardRoute: DashboardRouteWithChildren,
   ExtrasRoute: ExtrasRouteWithChildren,
@@ -1455,6 +1536,7 @@ const rootRouteChildren: RootRouteChildren = {
   SubmitRoute: SubmitRoute,
   ToolsRoute: ToolsRouteWithChildren,
   WelcomeRoute: WelcomeRoute,
+  DotwellKnownSplatRoute: DotwellKnownSplatRoute,
   ApiUploadRoute: ApiUploadRoute,
   JobsTypeRoute: JobsTypeRoute,
   JobsPostRoute: JobsPostRoute,
@@ -1463,6 +1545,8 @@ const rootRouteChildren: RootRouteChildren = {
   SponsorshipsIndexRoute: SponsorshipsIndexRoute,
   ApiAuthSplatRoute: ApiAuthSplatRoute,
   ApiCatalogDirectoriesRoute: ApiCatalogDirectoriesRoute,
+  ApiMcpBookmarksRoute: ApiMcpBookmarksRoute,
+  ApiMcpFeaturedRoute: ApiMcpFeaturedRoute,
   ApiWebhookDodoRoute: ApiWebhookDodoRoute,
   ApiCatalogIndexRoute: ApiCatalogIndexRoute,
 }

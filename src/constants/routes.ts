@@ -7,6 +7,7 @@ export const ROUTES = {
   ADMIN_SUBMISSIONS: "/admin/submissions",
   BRAND: "/brand",
   CHECKOUT: "/checkout",
+  CONSENT: "/consent",
   CONTACT: "/contact",
   CREATIVES: "/creatives",
   DASHBOARD: "/dashboard",

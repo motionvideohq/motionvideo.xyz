@@ -4,6 +4,7 @@ import { env } from "cloudflare:workers";
 import { STATIC_PAGES } from "@/constants/routes";
 import { SITE } from "@/constants/site";
 import { UPLOAD_PATH_PREFIX } from "@/lib/uploads";
+import { oauthPreflight, withOAuthCors } from "@/server/oauth-cors";
 
 // Durable Object classes must be exported from the Worker entry.
 export { Presence } from "@/server/presence";
@@ -75,6 +76,10 @@ export default {
       const presence = env.PRESENCE.get(env.PRESENCE.idFromName("site"));
       return presence.fetch(request);
     }
-    return withSecurityHeaders(await route(request));
+    const preflight = oauthPreflight(request);
+    if (preflight) {
+      return preflight;
+    }
+    return withSecurityHeaders(withOAuthCors(request, await route(request)));
   },
 };
