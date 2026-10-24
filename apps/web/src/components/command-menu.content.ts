@@ -147,6 +147,17 @@ export default {
       pt: "Extras",
       ru: "Дополнительно",
     }),
+    customize: t({
+      en: "Customize a prompt",
+      es: "Personalizar un prompt",
+      fr: "Personnaliser un prompt",
+      zh: "自定义提示词",
+      ko: "프롬프트 맞춤 설정",
+      ja: "プロンプトをカスタマイズ",
+      de: "Prompt anpassen",
+      pt: "Personalizar um prompt",
+      ru: "Настроить промпт",
+    }),
     submit: t({
       en: "Submit",
       es: "Enviar",

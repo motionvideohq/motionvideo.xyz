@@ -33,6 +33,11 @@ const PAGES: { lastmod?: string; path: string }[] = [
     lastmod: video.date,
     path: `${ROUTES.HOME}videos/${video.slug}`,
   })),
+  // The customizer, and one page per video with a prompt.
+  { path: ROUTES.CUSTOMIZE },
+  ...catalog.videos
+    .filter((video) => video.prompt)
+    .map((video) => ({ path: `${ROUTES.CUSTOMIZE}/${video.slug}` })),
   { path: ROUTES.TOOLS },
   ...DIRECTORY_CATEGORIES.tool.map((category) => ({
     path: `${ROUTES.TOOLS}/${category.slug}`,

@@ -324,6 +324,18 @@ export default {
       pt: "Copiar",
       ru: "Копировать",
     }),
+    // Beside Copy in the detail view: opens /customize/$slug.
+    customize: t({
+      en: "Customize",
+      es: "Personalizar",
+      fr: "Personnaliser",
+      zh: "自定义",
+      ko: "맞춤 설정",
+      ja: "カスタマイズ",
+      de: "Anpassen",
+      pt: "Personalizar",
+      ru: "Настроить",
+    }),
     copied: t({
       en: "Copied",
       es: "Copiado",

@@ -9,6 +9,7 @@ export const ROUTES = {
   CHECKOUT: "/checkout",
   CONTACT: "/contact",
   CREATIVES: "/creatives",
+  CUSTOMIZE: "/customize",
   DASHBOARD: "/dashboard",
   DASHBOARD_BOOKMARKS: "/dashboard/bookmarks",
   DASHBOARD_FEATURED: "/dashboard/featured",
