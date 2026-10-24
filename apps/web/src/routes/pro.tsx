@@ -161,7 +161,7 @@ const Pro = () => {
                   <ArrowRight aria-hidden="true" className="size-3.5" />
                 </Link>
               }
-              className="sm:col-span-2 lg:col-span-4 lg:row-span-2"
+              className="sm:col-span-2 lg:col-span-4 lg:row-span-3"
             >
               {/* Clips from moves' gallery examples, cropped to one shape. */}
               <ul className="mt-auto grid grid-cols-2 gap-2">
@@ -175,6 +175,17 @@ const Pro = () => {
                 ))}
               </ul>
             </Tile>
+            <Tile
+              title={content.templatesTitle}
+              body={content.templatesBody}
+              link={
+                <Link to={ROUTES.TEMPLATES} className={featureLinkClass}>
+                  {content.browseTemplates}
+                  <ArrowRight aria-hidden="true" className="size-3.5" />
+                </Link>
+              }
+              className="sm:col-span-2 lg:col-span-2"
+            />
             <Tile
               title={content.mcpTitle}
               body={content.mcpBody}
@@ -313,7 +324,7 @@ export const Route = createFileRoute("/pro")({
     ...createMetadata({
       canonical: ROUTES.PRO,
       title: "MotionVideo Pro",
-      description: `${SITE.NAME} Pro and Business: the full Moves library with every prompt, the Pro agent skill and every update. Pro from $9 a month, $79 a year or $149 once; Business with 3 seats from $29 a month.`,
+      description: `${SITE.NAME} Pro and Business: the full Moves library with every prompt, every prompt template with its customizer, the Pro agent skill and every update. Pro from $9 a month, $79 a year or $149 once; Business with 3 seats from $29 a month.`,
     }),
     scripts: planJsonLd(),
   }),

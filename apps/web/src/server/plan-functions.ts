@@ -158,7 +158,7 @@ export const inviteSeat = createServerFn({ method: "POST" })
       await sendEmail({
         to: email,
         subject: `You have a seat on ${SITE.NAME} Business`,
-        text: `${session.user.email} added you to their ${SITE.NAME} Business plan. It includes the Moves library, the Pro agent skill and every future update.\n\nSign in with this email to start: ${signIn}`,
+        text: `${session.user.email} added you to their ${SITE.NAME} Business plan. It includes the Moves library, every prompt template, the Pro agent skill and every future update.\n\nSign in with this email to start: ${signIn}`,
       });
     } catch (error) {
       // The seat is saved; signing in with the email works without the mail.

@@ -5,9 +5,9 @@ import type { ComponentPropsWithRef, ReactNode } from "react";
 import { useIntlayer } from "react-intlayer";
 import { ChevronLeft } from "reicon-react/icons/ChevronLeft";
 import { ChevronRight } from "reicon-react/icons/ChevronRight";
-import { Lock } from "reicon-react/icons/Lock";
 
 import { CopyIcon } from "@/components/copy-icon";
+import { LockedPrompt } from "@/components/locked-prompt";
 import {
   DetailOverlay,
   DetailRow,
@@ -17,10 +17,7 @@ import {
   StepButton,
   useArrowSteps,
 } from "@/components/motion-video";
-import { Button, buttonVariants } from "@/components/ui/button";
-import { PLAN_PRICE_CENTS } from "@/constants/plans";
-import { formatUsd } from "@/constants/pricing";
-import { ROUTES } from "@/constants/routes";
+import { Button } from "@/components/ui/button";
 import { useTransientStatus } from "@/hooks/use-transient-status";
 import type { MotionVideo } from "@/lib/motion-catalog";
 import type { MoveFamily } from "@/lib/move-families";
@@ -202,10 +199,7 @@ const PromptSection = ({ prompt }: { prompt: MovePrompt }) => {
   );
 };
 
-/**
- * Everyone else: what Pro unlocks and how much, without any of the prompt in
- * the page. Signed-out visitors may already be on Pro, so they can sign in.
- */
+/** Everyone else: the upgrade panel in place of the prompt. */
 const LockedPromptSection = ({
   signedIn,
   move,
@@ -220,39 +214,14 @@ const LockedPromptSection = ({
       <h2 id={id} className="text-sm font-medium">
         {content.prompt}
       </h2>
-      <div className="bg-muted flex flex-col items-start gap-3 rounded-xl p-4">
-        <span className="flex items-center gap-2 text-sm font-medium text-pretty">
-          <Lock aria-hidden="true" className="size-4 shrink-0" />
-          {content.lockedTitle}
-        </span>
-        <p className="text-muted-foreground text-sm text-pretty">
-          {content.lockedBody}
-        </p>
-        <div className="flex flex-wrap items-center gap-3">
-          <Link
-            to={ROUTES.PRO}
-            data-track="moves_unlock"
-            data-track-move={move.slug}
-            className={buttonVariants({ variant: "gradient" })}
-          >
-            {content.unlock}
-          </Link>
-          <span className="text-muted-foreground text-sm">
-            {content.priceBefore}
-            {formatUsd(PLAN_PRICE_CENTS.pro.monthly ?? 0)}
-            {content.priceAfter}
-          </span>
-        </div>
-        {!signedIn && (
-          <Link
-            to={ROUTES.SIGN_IN}
-            search={{ redirect: movePath(move) }}
-            className="text-muted-foreground hover:text-foreground text-xs underline underline-offset-4 transition-colors"
-          >
-            {content.signInReason}
-          </Link>
-        )}
-      </div>
+      <LockedPrompt
+        title={content.lockedTitle}
+        body={content.lockedBody}
+        signInReason={content.signInReason}
+        signedIn={signedIn}
+        redirect={movePath(move)}
+        track={{ "data-track": "moves_unlock", "data-track-move": move.slug }}
+      />
     </section>
   );
 };

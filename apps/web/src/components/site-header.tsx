@@ -58,6 +58,7 @@ const DOCS_PAGES = [
   ["mcp", "mcpServer"],
   ["skill", "agentSkill"],
   ["moves", "usingMoves"],
+  ["templates", "usingTemplates"],
   ["plans", "plansBilling"],
   ["api", "publicApi"],
 ] as const;
@@ -73,7 +74,7 @@ const FIRST_ITEM: Record<MenuName, string> = {
   explore: "discover",
 };
 
-const TOP_LINKS = ["moves", "mcp", "skill", "docs"] as const;
+const TOP_LINKS = ["moves", "templates", "mcp", "skill", "docs"] as const;
 type TopLinkName = (typeof TOP_LINKS)[number];
 
 // Muted until hovered, open, or holding the current page; the list's pill
@@ -112,7 +113,7 @@ const GetProLink = ({
   );
 };
 
-type Section = MenuName | "moves" | "docs" | null;
+type Section = MenuName | "moves" | "templates" | "docs" | null;
 
 /** Which menu or docs link holds the current page, to mark it. */
 const useCurrentSection = (): Section => {
@@ -128,11 +129,14 @@ const useCurrentSection = (): Section => {
   if (under(ROUTES.MOVES)) {
     return "moves";
   }
+  if (under(ROUTES.TEMPLATES)) {
+    return "templates";
+  }
   return under(ROUTES.DOCS) ? "docs" : null;
 };
 
 /**
- * Moves, Skill, MCP or Docs. Skill and MCP are the product pages (their
+ * Moves, Templates, Skill, MCP or Docs. Skill and MCP are the product pages (their
  * reference lives in the docs); Docs stays marked on every docs page.
  */
 const TopLink = ({
@@ -152,6 +156,15 @@ const TopLink = ({
       />
     );
   }
+  if (name === "templates") {
+    return (
+      <Link
+        to={ROUTES.TEMPLATES}
+        aria-current={section === "templates" ? "page" : undefined}
+        {...props}
+      />
+    );
+  }
   if (name === "skill") {
     return <Link to={ROUTES.MOTIONVIDEO_SKILL} {...props} />;
   }
@@ -167,7 +180,7 @@ const TopLink = ({
   );
 };
 
-/** Desktop: the Explore menu, then Moves, MCP and Docs. */
+/** Desktop: the Explore menu, then Moves, Templates, MCP and Docs. */
 const DesktopNav = () => {
   const content = useIntlayer("site-header");
   const section = useCurrentSection();
@@ -255,7 +268,7 @@ const DesktopNav = () => {
 
 /**
  * Below lg: Explore and Docs open in place with their pages indented under
- * them; Moves, MCP and Skill are links, all the same size, with the Get Pro
+ * them; Moves, Templates, MCP and Skill are links, all the same size, with the Get Pro
  * CTA at the bottom. Account items and preferences stay in the avatar
  * popover, as on desktop.
  */

@@ -1,7 +1,6 @@
 {
   "name": "motionvideo",
   "private": true,
-  "packageManager": "pnpm@10.28.2",
   "license": "MIT",
   "type": "module",
   "scripts": {
@@ -24,6 +23,7 @@
     "typescript": "^6",
     "ultracite": "7.12.1"
   },
+  "packageManager": "pnpm@10.28.2",
   "pnpm": {
     "overrides": {
       "@better-auth/oauth-provider": "1.7.6"

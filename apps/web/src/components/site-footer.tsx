@@ -161,6 +161,7 @@ export const SiteFooter = () => {
   const moves = useIntlayer("moves");
   const product = [
     [ROUTES.MOVES, header.moves],
+    [ROUTES.TEMPLATES, header.templates],
     [ROUTES.MOTIONVIDEO_SKILL, header.skill],
     [ROUTES.MOTIONVIDEO_MCP, header.mcp],
     [ROUTES.PRO, header.pricing],
@@ -170,6 +171,7 @@ export const SiteFooter = () => {
     [ROUTES.DOCS_MCP, content.mcpServer],
     [ROUTES.DOCS_SKILL, content.agentSkill],
     [ROUTES.DOCS_MOVES, content.usingMoves],
+    [ROUTES.DOCS_TEMPLATES, content.usingTemplates],
     [ROUTES.DOCS_PLANS, content.plansBilling],
     [ROUTES.DOCS_API, content.publicApi],
   ] as const;

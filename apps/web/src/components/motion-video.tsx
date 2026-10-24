@@ -19,11 +19,13 @@ import { ArrowRightUp } from "reicon-react/icons/ArrowRightUp";
 import { ChevronDown } from "reicon-react/icons/ChevronDown";
 import { ChevronLeft } from "reicon-react/icons/ChevronLeft";
 import { ChevronRight } from "reicon-react/icons/ChevronRight";
+import { Sliders } from "reicon-react/icons/Sliders";
 import { User } from "reicon-react/icons/User";
 import { Xmark } from "reicon-react/icons/Xmark";
 
 import { BookmarkButton } from "@/components/bookmark-button";
 import { CopyIcon } from "@/components/copy-icon";
+import { CopyPromptButton } from "@/components/copy-prompt-button";
 import { SponsoredCard } from "@/components/sponsored-card";
 import { Button, buttonVariants } from "@/components/ui/button";
 import {
@@ -34,7 +36,6 @@ import {
   SharedTooltip,
   createTooltipHandle,
 } from "@/components/ui/tooltip";
-import type { TooltipHandle } from "@/components/ui/tooltip";
 import { ROUTES } from "@/constants/routes";
 import { absoluteUrl } from "@/constants/url";
 import { useTransientStatus } from "@/hooks/use-transient-status";
@@ -50,7 +51,9 @@ import type {
   GallerySearch,
   MotionVideo,
 } from "@/lib/motion-catalog";
+import { templateForVideo } from "@/lib/prompt-templates";
 import { promptFor } from "@/lib/prompt-translations";
+import type { PromptLanguage } from "@/lib/prompt-translations";
 import { relativeDate } from "@/lib/relative-date";
 import { cn } from "@/lib/utils";
 
@@ -266,48 +269,6 @@ const TOOLTIP_DELAY = 200;
 const HOVER_ACTION =
   "pointer-events-none absolute opacity-0 transition-opacity duration-200 group-has-[:focus-visible]/card:pointer-events-auto group-has-[:focus-visible]/card:opacity-100 group-hover/card:pointer-events-auto group-hover/card:opacity-100 motion-reduce:transition-none [@media(hover:none)]:pointer-events-auto [@media(hover:none)]:opacity-100";
 
-const CopyPromptButton = ({
-  prompt,
-  size,
-  tooltip,
-}: {
-  prompt: string;
-  size: "icon" | "icon-sm";
-  tooltip: TooltipHandle<ReactNode>;
-}) => {
-  const content = useIntlayer("motion-gallery");
-  const [copyStatus, flashCopyStatus] = useTransientStatus<"idle" | "copied">(
-    "idle"
-  );
-  const copied = copyStatus === "copied";
-  const label = copied ? content.copied.value : content.copy.value;
-  return (
-    <TooltipTrigger
-      delay={TOOLTIP_DELAY}
-      handle={tooltip}
-      // Its label changes on click (Copied, Remove bookmark…): stay open.
-      closeOnClick={false}
-      payload={label}
-      render={<button type="button" aria-label={label} />}
-      onClick={async () => {
-        try {
-          await navigator.clipboard.writeText(prompt);
-          track("prompt_copy", { from: "card" });
-          flashCopyStatus("copied");
-        } catch {
-          // The detail view explains clipboard failures; keep this control quiet.
-        }
-      }}
-      className={cn(
-        buttonVariants({ size, variant: "outline" }),
-        "rounded-full"
-      )}
-    >
-      <CopyIcon copied={copied} />
-    </TooltipTrigger>
-  );
-};
-
 /**
  * Copy prompt and Bookmark (the two main actions, outline) on the card.
  */
@@ -338,7 +299,13 @@ const VideoActions = ({
     />
   );
   const copyPrompt = prompt ? (
-    <CopyPromptButton prompt={prompt.text} size={size} tooltip={tooltip} />
+    <CopyPromptButton
+      prompt={prompt.text}
+      analytics={{ from: "card" }}
+      size={size}
+      className="rounded-full"
+      tooltip={tooltip}
+    />
   ) : null;
 
   if (bookmarkAlwaysVisible) {
@@ -785,6 +752,37 @@ export const OverlayPlayer = ({
   );
 };
 
+/** Which language a translated prompt came from, and a switch back to it. */
+const TranslationToggle = ({
+  language,
+  showOriginal,
+  onToggle,
+}: {
+  language: PromptLanguage;
+  showOriginal: boolean;
+  onToggle: () => void;
+}) => {
+  const content = useIntlayer("motion-gallery");
+  return (
+    <p className="text-muted-foreground flex items-center gap-2 text-xs">
+      <span
+        title={
+          showOriginal
+            ? content.originalIn[language].value
+            : content.translatedFrom[language].value
+        }
+      >
+        {LANGUAGE_NAMES[language]}
+        {!showOriginal && " → EN"}
+      </span>
+      <span aria-hidden="true">·</span>
+      <button type="button" className={PROMPT_LINK} onClick={onToggle}>
+        {showOriginal ? content.showTranslation : content.showOriginal}
+      </button>
+    </p>
+  );
+};
+
 /**
  * The detail view's prompt: copy button and folded text. English visitors
  * get a translation of non-English prompts, with "Show original" to switch
@@ -798,6 +796,7 @@ const PromptSection = ({ video }: { video: MotionVideo }) => {
   >("idle");
   const [showOriginal, setShowOriginal] = useState(false);
   const translated = promptFor(video, locale);
+  const template = templateForVideo(video.slug);
   const prompt =
     translated?.translatedFrom && showOriginal
       ? { text: video.prompt ?? translated.text }
@@ -821,10 +820,22 @@ const PromptSection = ({ video }: { video: MotionVideo }) => {
       <div className="flex items-center justify-between gap-3">
         <h2 className="text-sm font-medium">{content.prompt}</h2>
         {prompt && (
-          <Button variant="outline" size="sm" onClick={copyPrompt}>
-            <CopyIcon copied={copyStatus === "copied"} />
-            {copyStatus === "copied" ? content.copied : content.copyShort}
-          </Button>
+          <div className="flex gap-2">
+            <Link
+              to="/customize/$slug"
+              params={{ slug: video.slug }}
+              data-track="customize_click"
+              data-track-slug={video.slug}
+              className={buttonVariants({ variant: "outline", size: "sm" })}
+            >
+              <Sliders aria-hidden="true" />
+              {content.customize}
+            </Link>
+            <Button variant="outline" size="sm" onClick={copyPrompt}>
+              <CopyIcon copied={copyStatus === "copied"} />
+              {copyStatus === "copied" ? content.copied : content.copyShort}
+            </Button>
+          </div>
         )}
       </div>
       {prompt ? (
@@ -833,29 +844,31 @@ const PromptSection = ({ video }: { video: MotionVideo }) => {
           prompt={prompt.text}
           lang={prompt.translatedFrom ? "en" : translated?.translatedFrom}
           aside={
-            translated?.translatedFrom && (
-              <p className="text-muted-foreground flex items-center gap-2 text-xs">
-                <span
-                  title={
-                    showOriginal
-                      ? content.originalIn[translated.translatedFrom].value
-                      : content.translatedFrom[translated.translatedFrom].value
-                  }
-                >
-                  {LANGUAGE_NAMES[translated.translatedFrom]}
-                  {!showOriginal && " → EN"}
-                </span>
-                <span aria-hidden="true">·</span>
-                <button
-                  type="button"
-                  className={PROMPT_LINK}
-                  onClick={() => setShowOriginal(!showOriginal)}
-                >
-                  {showOriginal
-                    ? content.showTranslation
-                    : content.showOriginal}
-                </button>
-              </p>
+            (translated?.translatedFrom || template) && (
+              <div className="flex flex-wrap items-center gap-x-4 gap-y-1">
+                {translated?.translatedFrom && (
+                  <TranslationToggle
+                    language={translated.translatedFrom}
+                    showOriginal={showOriginal}
+                    onToggle={() => setShowOriginal(!showOriginal)}
+                  />
+                )}
+                {/* Made with the prompt a template grew from: link to it. */}
+                {template && (
+                  <Link
+                    to="/templates/$templateId"
+                    params={{ templateId: template.id }}
+                    title={template.name}
+                    data-track="template_link_click"
+                    data-track-template={template.id}
+                    data-track-slug={video.slug}
+                    className={PROMPT_LINK}
+                  >
+                    {content.template}
+                    <ArrowRightUp aria-hidden="true" className="size-3.5" />
+                  </Link>
+                )}
+              </div>
             )
           }
         />

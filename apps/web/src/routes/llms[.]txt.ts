@@ -19,6 +19,7 @@ const body = `# ${SITE.NAME}
 - [MotionVideo MCP](${absoluteUrl(ROUTES.MOTIONVIDEO_MCP)}): The free MCP server: search the gallery and pull prompts from Claude, ChatGPT, Cursor and other MCP clients. Setup reference: ${absoluteUrl(ROUTES.DOCS_MCP)}
 - [MotionVideo Skill](${absoluteUrl(ROUTES.MOTIONVIDEO_SKILL)}): The motion design skill pack included in Pro and Business. Install reference: ${absoluteUrl(ROUTES.DOCS_SKILL)}
 - [Moves](${absoluteUrl(ROUTES.MOVES)}): Named motion design techniques with gallery examples; each move's copy-ready prompt is in Pro.
+- [Templates](${absoluteUrl(ROUTES.TEMPLATES)}): Prompt templates with fill-in fields (concept, palette, length, size); each template's full prompt is in Pro.
 - [MotionVideo Pro](${absoluteUrl(ROUTES.PRO)}): Pro and Business plans: what they include and what they cost.
 - [Tools](${absoluteUrl(ROUTES.TOOLS)}): Agent tools and plugins for motion design, by category.
 - [Creatives](${absoluteUrl(ROUTES.CREATIVES)}): Studios, designers, and agencies that make motion work.

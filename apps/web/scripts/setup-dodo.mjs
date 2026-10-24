@@ -58,7 +58,7 @@ const oneTimePrice = (cents) => ({
 });
 
 const PRO_SUMMARY =
-  "MotionVideo Pro: the full Moves library of motion techniques with copy-ready prompts, the Pro agent skill (read-only access to a private GitHub repository), the Pro tools of the MotionVideo MCP server (sign in with your account), every future update, and a commercial license.";
+  "MotionVideo Pro: the full Moves library of motion techniques with copy-ready prompts, every prompt template (full prompts and the template customizer), the Pro agent skill (read-only access to a private GitHub repository), the Pro tools of the MotionVideo MCP server (sign in with your account), every future update, and a commercial license.";
 const BUSINESS_SUMMARY = `MotionVideo Business: everything in MotionVideo Pro for a team of 3 seats (the buyer plus 2 invited members), with a commercial license.`;
 
 const PRODUCTS = [

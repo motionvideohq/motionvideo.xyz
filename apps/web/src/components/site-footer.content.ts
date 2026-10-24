@@ -235,6 +235,17 @@ export default {
       pt: "Usar Moves",
       ru: "Как пользоваться приёмами",
     }),
+    usingTemplates: t({
+      en: "Using templates",
+      es: "Usar plantillas",
+      fr: "Utiliser les modèles",
+      zh: "使用模板",
+      ko: "템플릿 사용하기",
+      ja: "テンプレートの使い方",
+      de: "Vorlagen nutzen",
+      pt: "Usar modelos",
+      ru: "Как пользоваться шаблонами",
+    }),
     plansBilling: t({
       en: "Plans and billing",
       es: "Planes y facturación",

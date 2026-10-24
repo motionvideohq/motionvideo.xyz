@@ -324,6 +324,18 @@ export default {
       pt: "Copiar",
       ru: "Копировать",
     }),
+    // Beside Copy in the detail view: opens /customize/$slug.
+    customize: t({
+      en: "Customize",
+      es: "Personalizar",
+      fr: "Personnaliser",
+      zh: "自定义",
+      ko: "맞춤 설정",
+      ja: "カスタマイズ",
+      de: "Anpassen",
+      pt: "Personalizar",
+      ru: "Настроить",
+    }),
     copied: t({
       en: "Copied",
       es: "Copiado",
@@ -378,6 +390,18 @@ export default {
       de: "Der Prompt ist in dieser Sammlung nicht veröffentlicht. Mehr Kontext findest du im Originalbeitrag des Creators.",
       pt: "O prompt não está publicado nesta coleção. Consulta a publicação original do criador para mais contexto.",
       ru: "Промпт не опубликован в этой коллекции. Подробности смотрите в оригинальном посте автора.",
+    }),
+    // Below a prompt that a template grew from: links to the template.
+    template: t({
+      en: "Template",
+      es: "Plantilla",
+      fr: "Modèle",
+      zh: "模板",
+      ko: "템플릿",
+      ja: "テンプレート",
+      de: "Vorlage",
+      pt: "Modelo",
+      ru: "Шаблон",
     }),
     // Above a prompt shown in English translation (English locale only),
     // by the original's language.
