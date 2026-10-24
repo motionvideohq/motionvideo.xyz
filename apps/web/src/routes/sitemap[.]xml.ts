@@ -11,6 +11,8 @@ import {
   MOTION_TYPES,
   motionModelSlug,
 } from "@/lib/motion-catalog";
+import { MOVE_FAMILIES } from "@/lib/move-families";
+import { MOVES, movePath } from "@/lib/moves";
 
 // Public, canonical pages only: signed-in pages (/dashboard/…), redirects
 // (/studios, /tools/skills), and utility pages (/checkout, /welcome) stay out.
@@ -52,7 +54,23 @@ const PAGES: { lastmod?: string; path: string }[] = [
   { path: ROUTES.JOBS },
   ...JOB_TYPES.map((type) => ({ path: `${ROUTES.JOBS}/${type}` })),
   { path: ROUTES.SPONSOR },
+  { path: ROUTES.PRO },
   { path: ROUTES.MOTIONVIDEO_SKILL },
+  { path: ROUTES.MOTIONVIDEO_MCP },
+  { path: ROUTES.MOVES },
+  ...MOVE_FAMILIES.map((family) => ({
+    path: `${ROUTES.MOVES}/${family}`,
+  })),
+  ...MOVES.map((move) => ({ path: movePath(move) })),
+  // Docs pages (content/docs/*.mdx).
+  ...[
+    ROUTES.DOCS,
+    ROUTES.DOCS_MCP,
+    ROUTES.DOCS_SKILL,
+    ROUTES.DOCS_MOVES,
+    ROUTES.DOCS_PLANS,
+    ROUTES.DOCS_API,
+  ].map((path) => ({ path })),
   ...STATIC_PAGES.map((page) => ({ path: page })),
 ];
 

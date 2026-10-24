@@ -1,0 +1,33 @@
+---
+title: Public API
+description: Read-only JSON and text endpoints for the catalog, directories and moves.
+---
+
+Read-only JSON and text. The endpoints need no key or sign-in. Move prompts are part of Pro: the [Pro MCP tools](/docs/mcp#pro-tools) return them when you sign in with a Pro or Business account.
+
+## Endpoints
+
+| Endpoint | Returns |
+| --- | --- |
+| `GET /api/catalog` | Every gallery video with its prompt, model, stack, effort and media URLs. |
+| `GET /api/catalog/directories` | The tools, studios, skills and extras directories. |
+| `GET /api/moves` | The public part of every move: name, family, summary, good-for tags, gallery examples and related moves. No prompts. |
+| `GET /llms.txt` | A plain-text map of the public site for LLM agents. |
+| `GET /skill.md` | An agent skill that tells a coding agent how to use MotionVideo. |
+
+## Examples
+
+```bash title="Terminal"
+curl https://motionvideo.xyz/api/catalog
+curl https://motionvideo.xyz/api/moves
+```
+
+## Caching
+
+Public JSON responses carry an ETag. Send it back in `If-None-Match` and you get a `304` when nothing changed.
+
+Only download the catalog when it changed:
+
+```bash title="Terminal"
+curl -i https://motionvideo.xyz/api/catalog -H 'If-None-Match: "<etag>"'
+```

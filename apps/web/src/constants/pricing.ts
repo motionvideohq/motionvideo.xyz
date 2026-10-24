@@ -1,23 +1,14 @@
-export const BASE_PRICE_CENTS = 4900;
-export const LAUNCH_PRICE_CENTS = 2900;
-export const LAUNCH_LIMIT = 100;
-
-export interface Offer {
-  active: boolean;
-  sold: number;
-  limit: number;
-}
-export const PRODUCT_NAME = "MotionVideo Skill Bundle";
-
+// Whole-dollar prices drop the cents ($79, not $79.00); others keep them ($9.50).
 export const formatUsd = (cents: number): string =>
   new Intl.NumberFormat("en-US", {
-    style: "currency",
     currency: "USD",
+    maximumFractionDigits: cents % 100 === 0 ? 0 : 2,
+    minimumFractionDigits: cents % 100 === 0 ? 0 : 2,
+    style: "currency",
   }).format(cents / 100);
 
-export const PERKS = [
-  "Skills for any coding agent and renderer",
-  "Storyboard skills, scene starters, and motion tokens",
-  "Unlimited personal and client projects",
-  "Updates pushed to the same repository",
-] as const;
+/** Percent saved by paying yearly instead of twelve monthly payments. */
+export const annualSavingsPercent = (
+  monthlyCents: number,
+  annualCents: number
+): number => Math.round((1 - annualCents / (monthlyCents * 12)) * 100);

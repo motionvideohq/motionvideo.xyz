@@ -1,10 +1,10 @@
-import { createFileRoute, getRouteApi } from "@tanstack/react-router";
+import { Link, createFileRoute, getRouteApi } from "@tanstack/react-router";
 import { useIntlayer } from "react-intlayer";
+import { ArrowRight } from "reicon-react/icons/ArrowRight";
 
+import { GitHubIcon } from "@/components/brand-icons";
 import { DemoFrame } from "@/components/demo-frame";
 import { FeatureArt } from "@/components/feature-art";
-import { LogoGroup } from "@/components/logo-group";
-import { PriceCard } from "@/components/pricing";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
 import {
@@ -16,19 +16,18 @@ import {
 import { buttonVariants } from "@/components/ui/button";
 import { ROUTES } from "@/constants/routes";
 import { SITE } from "@/constants/site";
-import { AGENTS, RENDERERS } from "@/constants/stack";
+import { SKILL } from "@/constants/skill";
 import { VIDEOS } from "@/constants/videos";
-import { cn } from "@/lib/utils";
-import { faqJsonLd, productJsonLd } from "@/seo/json-ld";
+import { faqJsonLd } from "@/seo/json-ld";
 import { createMetadata } from "@/seo/metadata";
-import { getLandingData, getOffer } from "@/server/functions";
+import { getLandingData } from "@/server/functions";
 
 const routeApi = getRouteApi("/motionvideo-skill");
 
 const sectionTitle = "text-2xl font-semibold tracking-tight";
 
 const Landing = () => {
-  const { signedIn, offer } = routeApi.useLoaderData();
+  const { signedIn } = routeApi.useLoaderData();
   const content = useIntlayer("landing");
   const { faqs } = useIntlayer("faqs");
   const { features } = useIntlayer("features");
@@ -42,35 +41,45 @@ const Landing = () => {
         className="flex flex-col gap-24 pt-12 pb-8 sm:pt-20"
       >
         <div className="mx-auto flex w-full max-w-5xl flex-col gap-12 px-6">
-          <section className="grid gap-8 md:grid-cols-[max-content_minmax(0,1fr)] md:gap-16">
+          <section className="grid gap-8 md:grid-cols-[max-content_minmax(0,1fr)] md:gap-12">
             <div className="flex flex-col justify-between gap-6">
               <h1 className="text-4xl font-semibold tracking-tight sm:text-5xl">
                 {content.heroStart}
                 <br />
                 {content.heroEnd}
               </h1>
-              <div className="flex flex-col gap-3">
-                <LogoGroup logos={AGENTS} label={content.agents.value} />
-                <LogoGroup logos={RENDERERS} label={content.stack.value} />
-              </div>
+              <p className="text-muted-foreground text-sm">{content.note}</p>
             </div>
             <div className="flex flex-col justify-between gap-6">
               <p className="text-muted-foreground text-lg text-pretty">
                 {content.intro}
               </p>
-              <div className="flex flex-wrap items-center gap-4">
-                <a
-                  href="#pricing"
+              {/* One gradient CTA; the rest are plain. */}
+              <div className="flex flex-wrap gap-2">
+                {/* ROUTES.DOCS_SKILL, through the docs' catch-all route. */}
+                <Link
+                  to="/docs/$"
+                  params={{ _splat: "skill" }}
                   className={buttonVariants({
                     size: "xl",
                     variant: "gradient",
                   })}
                 >
-                  {content.pricing}
+                  {content.setUp}
+                  <ArrowRight aria-hidden="true" />
+                </Link>
+                <a
+                  href={SKILL.SETUP_SOURCE}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={buttonVariants({
+                    size: "xl",
+                    variant: "outline",
+                  })}
+                >
+                  <GitHubIcon aria-hidden="true" className="size-4" />
+                  {content.github}
                 </a>
-                <span className="text-muted-foreground text-sm">
-                  {content.oneTime}
-                </span>
               </div>
             </div>
           </section>
@@ -168,13 +177,6 @@ const Landing = () => {
               ))}
             </Accordion>
           </section>
-
-          <section id="pricing" className="flex scroll-mt-8 flex-col gap-8">
-            <h2 className={cn(sectionTitle, "text-center")}>
-              {content.priceTitle}
-            </h2>
-            <PriceCard offer={offer} />
-          </section>
         </div>
       </main>
       <SiteFooter />
@@ -184,15 +186,12 @@ const Landing = () => {
 
 export const Route = createFileRoute("/motionvideo-skill")({
   component: Landing,
-  head: ({ loaderData }) => ({
+  head: () => ({
     ...createMetadata({
       canonical: ROUTES.MOTIONVIDEO_SKILL,
       description: SITE.DESCRIPTION.LONG,
     }),
-    scripts: [productJsonLd(loaderData?.offer), faqJsonLd()],
+    scripts: [faqJsonLd()],
   }),
-  loader: async () => {
-    const [landing, offer] = await Promise.all([getLandingData(), getOffer()]);
-    return { ...landing, offer };
-  },
+  loader: () => getLandingData(),
 });

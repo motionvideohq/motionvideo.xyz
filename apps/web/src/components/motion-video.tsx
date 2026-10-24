@@ -176,12 +176,13 @@ const CreatorAvatar = ({
   );
 };
 
-const MotionPreview = ({
+/** A looping, muted card preview that plays while on screen. */
+export const MotionPreview = ({
   video,
   paused,
   transitionName,
 }: {
-  video: MotionVideo;
+  video: Pick<MotionVideo, "poster" | "preview" | "width" | "height">;
   paused: boolean;
   transitionName?: string;
 }) => {
@@ -504,7 +505,7 @@ export const MotionVideoCard = ({
   );
 };
 
-const DetailRow = ({
+export const DetailRow = ({
   label,
   children,
 }: {
@@ -657,7 +658,7 @@ const sourceAction = (url: string): SourceAction => {
  * Previous/next beside Bookmark in the panel's top row. At either end of the
  * grid the arrow stays, disabled: there is nothing that way.
  */
-const StepButton = ({
+export const StepButton = ({
   onStep,
   icon: Icon,
   label,
@@ -679,6 +680,110 @@ const StepButton = ({
     <Icon aria-hidden="true" />
   </Button>
 );
+
+/**
+ * Arrow keys step through the grid behind an overlay, like its on-screen
+ * buttons. Text fields and the player (whose arrows seek) keep their keys.
+ */
+export const useArrowSteps = (previous?: () => void, next?: () => void) => {
+  useEffect(() => {
+    const onKeyDown = (event: KeyboardEvent) => {
+      const { key, target } = event;
+      if (
+        target instanceof HTMLElement &&
+        (target.isContentEditable ||
+          /^(?:INPUT|TEXTAREA|SELECT)$/u.test(target.tagName) ||
+          target.closest("media-theme-sutro"))
+      ) {
+        return;
+      }
+      if (key === "ArrowLeft" && previous) {
+        return previous();
+      }
+      if (key === "ArrowRight" && next) {
+        return next();
+      }
+    };
+    // Capture phase: the dialog stops arrow keys before they bubble up.
+    window.addEventListener("keydown", onKeyDown, true);
+    return () => window.removeEventListener("keydown", onKeyDown, true);
+  }, [previous, next]);
+};
+
+/** The overlay's close button, for the top-left of its sidebar. */
+export const OverlayCloseButton = ({ label }: { label: string }) => (
+  <Dialog.Close
+    aria-label={label}
+    className={cn(
+      buttonVariants({ variant: "secondary", size: "icon-lg" }),
+      "rounded-full"
+    )}
+  >
+    <Xmark aria-hidden="true" />
+  </Dialog.Close>
+);
+
+/**
+ * A catalog video in the overlay's Sutro player, fitted to the stage and
+ * started on mount: with sound if the browser allows, else muted. Key it by
+ * video so each clip starts once and a paused one stays paused.
+ */
+export const OverlayPlayer = ({
+  video,
+  transitionName,
+  onError,
+}: {
+  video: Pick<MotionVideo, "video" | "poster" | "width" | "height" | "title">;
+  transitionName?: string;
+  onError: () => void;
+}) => {
+  // `autoPlay` alone was inconsistent: browsers block unmuted autoplay
+  // without a recent user gesture (or, in Safari, only for videos that have
+  // sound), so some clips stayed paused. Stable, so it runs once per <video>.
+  const autoplay = useCallback((element: HTMLVideoElement | null) => {
+    if (!element) {
+      return;
+    }
+    const start = async () => {
+      try {
+        await element.play();
+      } catch {
+        element.muted = true;
+        try {
+          await element.play();
+        } catch {
+          // Still blocked (e.g. data saver): leave the poster and controls.
+        }
+      }
+    };
+    void start();
+  }, []);
+  return (
+    // Sutro (player.style) frame, fitted both ways inside the stage.
+    <MediaThemeSutro
+      className="pointer-events-auto relative block overflow-hidden rounded-xl shadow-2xl"
+      style={{
+        aspectRatio: `${video.width} / ${video.height}`,
+        width: `min(100cqw, calc(100cqh * ${video.width / video.height}))`,
+        viewTransitionName: transitionName,
+      }}
+    >
+      {/* The source catalog does not supply caption tracks. */}
+      {/* oxlint-disable-next-line jsx-a11y/media-has-caption */}
+      <video
+        slot="media"
+        src={video.video}
+        poster={video.poster}
+        ref={autoplay}
+        playsInline
+        preload="metadata"
+        aria-label={video.title}
+        onError={onError}
+        className="bg-muted size-full object-cover"
+      />
+    </MediaThemeSutro>
+  );
+};
 
 /**
  * The detail view's prompt: copy button and folded text. English visitors
@@ -763,6 +868,76 @@ const PromptSection = ({ video }: { video: MotionVideo }) => {
         {copyStatus === "failed" && content.copyError}
       </output>
     </section>
+  );
+};
+
+/**
+ * The detail overlay shared by videos and moves: a full-bleed frosted stage
+ * (clicking its empty space closes) with the media centred over a soft glow
+ * in the media's own colours, and a details sidebar beside it.
+ */
+export const DetailOverlay = ({
+  onClose,
+  glow,
+  stage,
+  children,
+}: {
+  onClose: () => void;
+  /** An image whose colours glow behind the stage. */
+  glow?: string;
+  stage: ReactNode;
+  /** The sidebar's content. */
+  children: ReactNode;
+}) => {
+  // Fades out page chrome keyed on `in-data-overlay-open` (the bottom blur).
+  useEffect(() => {
+    const root = document.documentElement;
+    root.dataset.overlayOpen = "";
+    return () => {
+      delete root.dataset.overlayOpen;
+    };
+  }, []);
+  return (
+    <Dialog.Root
+      open
+      onOpenChange={(open) => {
+        if (!open) {
+          onClose();
+        }
+      }}
+    >
+      <Dialog.Portal>
+        <Dialog.Backdrop className="bg-background/80 fixed inset-0 z-50 backdrop-blur-xl" />
+        <Dialog.Popup className="fixed inset-0 z-50 overflow-y-auto outline-none lg:overflow-hidden">
+          <div className="grid min-h-full lg:h-full lg:grid-cols-[minmax(0,1fr)_22rem]">
+            <div className="relative min-h-[70svh] lg:min-h-0">
+              <Dialog.Close
+                tabIndex={-1}
+                aria-hidden="true"
+                className="absolute inset-0 cursor-default"
+              />
+              {glow && (
+                <img
+                  src={glow}
+                  alt=""
+                  aria-hidden="true"
+                  className="pointer-events-none absolute inset-[8%] size-[84%] scale-110 object-cover opacity-60 blur-3xl saturate-150 dark:opacity-45"
+                />
+              )}
+              {/* Inset so the media never touches the viewport edges. As a
+                  size container it lets the player fit both ways and stay
+                  centred, whatever the media's shape. */}
+              <div className="[container-type:size] pointer-events-none absolute inset-5 flex items-center justify-center">
+                {stage}
+              </div>
+            </div>
+            <aside className="bg-background flex min-h-0 flex-col gap-5 border-t p-5 lg:h-full lg:overflow-y-auto lg:border-t-0 lg:border-l">
+              {children}
+            </aside>
+          </div>
+        </Dialog.Popup>
+      </Dialog.Portal>
+    </Dialog.Root>
   );
 };
 
@@ -869,293 +1044,176 @@ export const MotionVideoOverlay = ({
 }) => {
   const content = useIntlayer("motion-gallery");
   const [failed, setFailed] = useState(false);
-  // Every detail video starts playing. `autoPlay` alone was inconsistent:
-  // browsers block unmuted autoplay without a recent user gesture (or, in
-  // Safari, only for videos that have sound), so some clips stayed paused.
-  // Try with sound first; if the browser refuses, play muted instead.
-  // Stable, so it runs once per mounted <video> (keyed by slug) and never
-  // restarts a clip the viewer paused.
-  const autoplay = useCallback((element: HTMLVideoElement | null) => {
-    if (!element) {
-      return;
-    }
-    const start = async () => {
-      try {
-        await element.play();
-      } catch {
-        element.muted = true;
-        try {
-          await element.play();
-        } catch {
-          // Still blocked (e.g. data saver): leave the poster and controls.
-        }
-      }
-    };
-    void start();
-  }, []);
   // One event per video shown, however it was opened (card, arrows, link).
   useEffect(() => {
     track("video_open", { slug: video.slug });
   }, [video.slug]);
-  // Fades out page chrome keyed on `in-data-overlay-open` (the bottom blur).
-  useEffect(() => {
-    const root = document.documentElement;
-    root.dataset.overlayOpen = "";
-    return () => {
-      delete root.dataset.overlayOpen;
-    };
-  }, []);
   useEffect(() => {
     rememberMorphCard(video.slug);
   }, [video.slug]);
   const previous = goPrevious && (() => stepPlayer(goPrevious));
   const next = goNext && (() => stepPlayer(goNext));
-  // Arrow keys step through the grid, like the on-screen buttons.
-  useEffect(() => {
-    const onKeyDown = (event: KeyboardEvent) => {
-      const { key, target } = event;
-      // Text fields and the player (whose arrows seek) keep their keys.
-      if (
-        target instanceof HTMLElement &&
-        (target.isContentEditable ||
-          /^(?:INPUT|TEXTAREA|SELECT)$/u.test(target.tagName) ||
-          target.closest("media-theme-sutro"))
-      ) {
-        return;
-      }
-      if (key === "ArrowLeft" && goPrevious) {
-        return stepPlayer(goPrevious);
-      }
-      if (key === "ArrowRight" && goNext) {
-        return stepPlayer(goNext);
-      }
-    };
-    // Capture phase: the dialog stops arrow keys before they bubble up.
-    window.addEventListener("keydown", onKeyDown, true);
-    return () => window.removeEventListener("keydown", onKeyDown, true);
-  }, [goPrevious, goNext]);
+  useArrowSteps(previous, next);
   const types = video.tags.filter((tag) => tag === "prompt" || tag === "skill");
   const { locale } = useLocale();
   return (
-    <Dialog.Root
-      open
-      onOpenChange={(open) => {
-        if (!open) {
-          onClose();
-        }
-      }}
+    <DetailOverlay
+      onClose={onClose}
+      glow={video.poster}
+      stage={
+        <OverlayPlayer
+          key={video.slug}
+          video={video}
+          transitionName={videoTransitionName(video.slug)}
+          onError={() => setFailed(true)}
+        />
+      }
     >
-      <Dialog.Portal>
-        <Dialog.Backdrop className="bg-background/80 fixed inset-0 z-50 backdrop-blur-xl" />
-        <Dialog.Popup className="fixed inset-0 z-50 overflow-y-auto outline-none lg:overflow-hidden">
-          <div className="grid min-h-full lg:h-full lg:grid-cols-[minmax(0,1fr)_22rem]">
-            {/* Full-bleed frosted stage: the whole page is blurred, so the
-                empty space around the player reads as dismissible. */}
-            <div className="relative min-h-[70svh] lg:min-h-0">
-              {/* Clicking the empty space around the player closes, like a backdrop. */}
-              <Dialog.Close
-                tabIndex={-1}
-                aria-hidden="true"
-                className="absolute inset-0 cursor-default"
-              />
-              {/* The video's own colours, as a soft glow behind the player. */}
-              <img
-                src={video.poster}
-                alt=""
-                aria-hidden="true"
-                className="pointer-events-none absolute inset-[8%] size-[84%] scale-110 object-cover opacity-60 blur-3xl saturate-150 dark:opacity-45"
-              />
-              {/* Inset so the video never touches the viewport edges. As a
-                  size container it lets the player fit both ways and stay
-                  centred, whatever the video's shape. */}
-              <div className="[container-type:size] pointer-events-none absolute inset-5 flex items-center justify-center">
-                {/* Sutro (player.style) frame, as on the skill page. */}
-                <MediaThemeSutro
-                  className="pointer-events-auto relative block overflow-hidden rounded-xl shadow-2xl"
-                  style={{
-                    aspectRatio: `${video.width} / ${video.height}`,
-                    width: `min(100cqw, calc(100cqh * ${video.width / video.height}))`,
-                    viewTransitionName: videoTransitionName(video.slug),
-                  }}
-                >
-                  {/* The source catalog does not supply caption tracks. */}
-                  {/* oxlint-disable-next-line jsx-a11y/media-has-caption */}
-                  <video
-                    key={video.slug}
-                    slot="media"
-                    src={video.video}
-                    poster={video.poster}
-                    ref={autoplay}
-                    playsInline
-                    preload="metadata"
-                    aria-label={video.title}
-                    onError={() => setFailed(true)}
-                    className="bg-muted size-full object-cover"
-                  />
-                </MediaThemeSutro>
-              </div>
-            </div>
-            <aside className="bg-background flex min-h-0 flex-col gap-5 border-t p-5 lg:h-full lg:overflow-y-auto lg:border-t-0 lg:border-l">
-              <div className="flex flex-col gap-3">
-                {/* Close on the left; Bookmark, then previous/next, on the
-                    right; the title below. */}
-                <div className="flex items-center justify-between gap-2">
-                  <Dialog.Close
-                    aria-label={content.close.value}
-                    className={cn(
-                      buttonVariants({
-                        variant: "secondary",
-                        size: "icon-lg",
-                      }),
-                      "rounded-full"
-                    )}
-                  >
-                    <Xmark aria-hidden="true" />
-                  </Dialog.Close>
-                  <div className="flex shrink-0 gap-2">
-                    <BookmarkButton
-                      kind="video"
-                      id={video.slug}
-                      variant="secondary"
-                      size="icon-lg"
-                      className="rounded-full"
-                      inDialog
-                    />
-                    <StepButton
-                      onStep={previous}
-                      icon={ChevronLeft}
-                      label={content.previous.value}
-                      endLabel={content.noPrevious.value}
-                    />
-                    <StepButton
-                      onStep={next}
-                      icon={ChevronRight}
-                      label={content.next.value}
-                      endLabel={content.noNext.value}
-                    />
-                  </div>
-                </div>
-                <Dialog.Title className="text-xl leading-tight font-semibold tracking-tight text-balance">
-                  {video.title}
-                </Dialog.Title>
-                {/* Avatar, then name over @handle: the two lines match the
-                    avatar's 40px height. */}
-                <a
-                  href={`https://x.com/${video.handle}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="group/creator flex items-center gap-3 self-start"
-                >
-                  <CreatorAvatar
-                    src={video.avatar}
-                    size={40}
-                    className="size-10 shrink-0 rounded-full"
-                  />
-                  <span className="flex h-10 min-w-0 flex-col justify-center text-sm leading-5">
-                    <span className="truncate font-medium group-hover/creator:underline">
-                      {video.creatorName ?? `@${video.handle}`}
-                    </span>
-                    <span className="text-muted-foreground truncate">
-                      @{video.handle}
-                    </span>
-                  </span>
-                </a>
-              </div>
-              {video.description && (
-                <Dialog.Description className="text-sm leading-relaxed text-pretty">
-                  {video.description}
-                </Dialog.Description>
-              )}
-              <time
-                dateTime={video.date}
-                className="text-muted-foreground -mt-2 text-sm"
-              >
-                {relativeDate(video.date, locale)}
-              </time>
-              {failed && (
-                <p role="alert" className="text-destructive text-sm">
-                  {content.videoError}
-                </p>
-              )}
-              <div className="flex flex-col gap-2">
-                {video.tweetUrl && (
-                  <a
-                    href={video.tweetUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    data-track="source_click"
-                    data-track-from="detail"
-                    data-track-slug={video.slug}
-                    className={buttonVariants({
-                      variant: "gradient",
-                      size: "lg",
-                    })}
-                  >
-                    {content[sourceAction(video.tweetUrl)]}
-                    <ArrowRightUp aria-hidden="true" />
-                  </a>
-                )}
-              </div>
-              <dl>
-                {/* Diamond's third placement: the first details row, beside
-                    every video. Renders nothing until a Diamond is live. */}
-                <SponsoredCard placement="sidebar" />
-                {video.contentTags.length > 0 && (
-                  <DetailRow label={content.category}>
-                    {video.contentTags.map((tag) => {
-                      const category = findMotionCategory(tag);
-                      return category ? (
-                        <Link
-                          key={tag}
-                          to="/category/$category"
-                          params={{ category }}
-                          className="hover:underline"
-                        >
-                          {content.categories[category]}
-                        </Link>
-                      ) : (
-                        <span key={tag}>{tag}</span>
-                      );
-                    })}
-                  </DetailRow>
-                )}
-                {types.length > 0 && (
-                  <DetailRow label={content.type}>
-                    {types.map((tag) => (
-                      <span key={tag}>
-                        {tag === "prompt" ? content.prompt : content.skill}
-                      </span>
-                    ))}
-                  </DetailRow>
-                )}
-                <MakingRows video={video} />
-              </dl>
-              {/* A skill video without a prompt shows only the skill. */}
-              {(video.prompt || !video.skillUrl) && (
-                <PromptSection key={video.slug} video={video} />
-              )}
-              {video.skillUrl && (
-                <SkillSection key={`${video.slug}-skill`} video={video} />
-              )}
-              {/* Quiet, at the bottom: questions, credit or removal requests
-                  land on /contact with this video already filled in. */}
-              <p className="text-muted-foreground mt-auto pt-2 text-xs">
-                {content.questions}{" "}
-                <Link
-                  to={ROUTES.CONTACT}
-                  search={{
-                    inquiry: "removal",
-                    ref: absoluteUrl(`/videos/${video.slug}`),
-                  }}
-                  className="hover:text-foreground underline underline-offset-4 transition-colors"
-                >
-                  {content.contactUs}
-                </Link>
-              </p>
-            </aside>
+      <div className="flex flex-col gap-3">
+        {/* Close on the left; Bookmark, then previous/next, on the right;
+            the title below. */}
+        <div className="flex items-center justify-between gap-2">
+          <OverlayCloseButton label={content.close.value} />
+          <div className="flex shrink-0 gap-2">
+            <BookmarkButton
+              kind="video"
+              id={video.slug}
+              variant="secondary"
+              size="icon-lg"
+              className="rounded-full"
+              inDialog
+            />
+            <StepButton
+              onStep={previous}
+              icon={ChevronLeft}
+              label={content.previous.value}
+              endLabel={content.noPrevious.value}
+            />
+            <StepButton
+              onStep={next}
+              icon={ChevronRight}
+              label={content.next.value}
+              endLabel={content.noNext.value}
+            />
           </div>
-        </Dialog.Popup>
-      </Dialog.Portal>
-    </Dialog.Root>
+        </div>
+        <Dialog.Title className="text-xl leading-tight font-semibold tracking-tight text-balance">
+          {video.title}
+        </Dialog.Title>
+        {/* Avatar, then name over @handle: the two lines match the
+            avatar's 40px height. */}
+        <a
+          href={`https://x.com/${video.handle}`}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="group/creator flex items-center gap-3 self-start"
+        >
+          <CreatorAvatar
+            src={video.avatar}
+            size={40}
+            className="size-10 shrink-0 rounded-full"
+          />
+          <span className="flex h-10 min-w-0 flex-col justify-center text-sm leading-5">
+            <span className="truncate font-medium group-hover/creator:underline">
+              {video.creatorName ?? `@${video.handle}`}
+            </span>
+            <span className="text-muted-foreground truncate">
+              @{video.handle}
+            </span>
+          </span>
+        </a>
+      </div>
+      {video.description && (
+        <Dialog.Description className="text-sm leading-relaxed text-pretty">
+          {video.description}
+        </Dialog.Description>
+      )}
+      <time
+        dateTime={video.date}
+        className="text-muted-foreground -mt-2 text-sm"
+      >
+        {relativeDate(video.date, locale)}
+      </time>
+      {failed && (
+        <p role="alert" className="text-destructive text-sm">
+          {content.videoError}
+        </p>
+      )}
+      <div className="flex flex-col gap-2">
+        {video.tweetUrl && (
+          <a
+            href={video.tweetUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            data-track="source_click"
+            data-track-from="detail"
+            data-track-slug={video.slug}
+            className={buttonVariants({
+              variant: "gradient",
+              size: "lg",
+            })}
+          >
+            {content[sourceAction(video.tweetUrl)]}
+            <ArrowRightUp aria-hidden="true" />
+          </a>
+        )}
+      </div>
+      <dl>
+        {/* Diamond's third placement: the first details row, beside
+            every video. Renders nothing until a Diamond is live. */}
+        <SponsoredCard placement="sidebar" />
+        {video.contentTags.length > 0 && (
+          <DetailRow label={content.category}>
+            {video.contentTags.map((tag) => {
+              const category = findMotionCategory(tag);
+              return category ? (
+                <Link
+                  key={tag}
+                  to="/category/$category"
+                  params={{ category }}
+                  className="hover:underline"
+                >
+                  {content.categories[category]}
+                </Link>
+              ) : (
+                <span key={tag}>{tag}</span>
+              );
+            })}
+          </DetailRow>
+        )}
+        {types.length > 0 && (
+          <DetailRow label={content.type}>
+            {types.map((tag) => (
+              <span key={tag}>
+                {tag === "prompt" ? content.prompt : content.skill}
+              </span>
+            ))}
+          </DetailRow>
+        )}
+        <MakingRows video={video} />
+      </dl>
+      {/* A skill video without a prompt shows only the skill. */}
+      {(video.prompt || !video.skillUrl) && (
+        <PromptSection key={video.slug} video={video} />
+      )}
+      {video.skillUrl && (
+        <SkillSection key={`${video.slug}-skill`} video={video} />
+      )}
+      {/* Quiet, at the bottom: questions, credit or removal requests
+          land on /contact with this video already filled in. */}
+      <p className="text-muted-foreground mt-auto pt-2 text-xs">
+        {content.questions}{" "}
+        <Link
+          to={ROUTES.CONTACT}
+          search={{
+            inquiry: "removal",
+            ref: absoluteUrl(`/videos/${video.slug}`),
+          }}
+          className="hover:text-foreground underline underline-offset-4 transition-colors"
+        >
+          {content.contactUs}
+        </Link>
+      </p>
+    </DetailOverlay>
   );
 };

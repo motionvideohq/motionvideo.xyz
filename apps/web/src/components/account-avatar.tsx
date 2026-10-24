@@ -9,9 +9,9 @@ import type { ReactNode } from "react";
 import { useIntlayer } from "react-intlayer";
 import { Bookmark } from "reicon-react/icons/Bookmark";
 import { Briefcase } from "reicon-react/icons/Briefcase";
+import { Card2 } from "reicon-react/icons/Card2";
 import { ChatRoundDots } from "reicon-react/icons/ChatRoundDots";
 import { Exit } from "reicon-react/icons/Exit";
-import { File } from "reicon-react/icons/File";
 import { HandHeart } from "reicon-react/icons/HandHeart";
 import { Keyboard } from "reicon-react/icons/Keyboard";
 import { Moon } from "reicon-react/icons/Moon";
@@ -261,11 +261,11 @@ export const AccountMenu = ({
             />
           </DropdownMenuLinkItem>
           <DropdownMenuLinkItem
-            render={<Link to={ROUTES.DASHBOARD_SKILL} />}
+            render={<Link to={ROUTES.DASHBOARD_BILLING} />}
             className="group py-1.5"
           >
-            {content.accessSkill}
-            <File
+            {content.billing}
+            <Card2
               aria-hidden="true"
               className="text-muted-foreground group-hover:text-foreground group-focus:text-accent-foreground ml-auto transition-colors"
             />

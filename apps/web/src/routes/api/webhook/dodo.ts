@@ -3,6 +3,7 @@ import type { UnwrapWebhookEvent } from "dodopayments/resources/webhooks";
 
 import { getDodo } from "@/server/dodo";
 import { syncJobPayment } from "@/server/jobs";
+import { syncPlanPayment, syncPlanSubscription } from "@/server/plans";
 import { syncSponsorPayment, syncSponsorship } from "@/server/sponsorships";
 
 type SubscriptionEvent = Extract<
@@ -42,24 +43,28 @@ export const Route = createFileRoute("/api/webhook/dodo")({
           return Response.json({ received: false }, { status: 401 });
         }
 
-        // Sponsor subscriptions are mirrored into D1 for /sponsorships and the
-        // live placements. The sync re-reads the subscription from the API, so
-        // redeliveries and out-of-order events are harmless, and a failure
-        // returns 500 for Dodo to retry. Everything else needs no fulfillment
-        // here: Dodo's GitHub entitlement sends the repository invite on
-        // `payment.succeeded` and removes it on refund, and sign-in reads paid
-        // orders from Dodo.
+        // Sponsor and plan subscriptions are mirrored into D1 (/sponsorships,
+        // live placements, Pro access). Each sync re-reads the subscription
+        // from the API and ignores the other's products, so redeliveries and
+        // out-of-order events are harmless, and a failure returns 500 for Dodo
+        // to retry. The skill repository needs no fulfillment here: Dodo's
+        // GitHub entitlement (on every plan product) sends the invite on
+        // payment and removes it on refund or cancellation.
         if (isSubscriptionEvent(event)) {
           try {
-            await syncSponsorship(event.data.subscription_id);
+            await Promise.all([
+              syncSponsorship(event.data.subscription_id),
+              syncPlanSubscription(event.data.subscription_id),
+            ]);
           } catch (error) {
-            console.error("Sponsorship sync failed", error);
+            console.error("Subscription sync failed", error);
             return Response.json({ received: false }, { status: 500 });
           }
         }
-        // Job posts and one-off sponsorships: a payment moves the draft to
-        // review; a full refund pulls it. Same re-read-from-the-API approach
-        // as subscriptions; each sync ignores the other's products.
+        // Job posts, one-off sponsorships and Pro lifetime: a payment moves
+        // the draft to review or grants access; a full refund takes it back.
+        // Same re-read-from-the-API approach; each sync ignores the others'
+        // products.
         if (
           event.type === "payment.succeeded" ||
           event.type === "refund.succeeded"
@@ -68,6 +73,7 @@ export const Route = createFileRoute("/api/webhook/dodo")({
             await Promise.all([
               syncJobPayment(event.data.payment_id),
               syncSponsorPayment(event.data.payment_id),
+              syncPlanPayment(event.data.payment_id),
             ]);
           } catch (error) {
             console.error("Payment sync failed", error);

@@ -1,0 +1,412 @@
+---
+title: Agent skill
+description: The Pro skill pack that teaches your coding agent motion design, rendered from code.
+---
+
+The agent skill is a pack of nine skills that teach your coding agent motion design, rendered from code. It covers showreels, intros, title sequences, launch films and feature updates, built with Remotion, HyperFrames, Editframe or fframes. It comes with [Pro and Business](/pro). For a short overview, see the [MotionVideo Skill page](/motionvideo-skill).
+
+You describe the film in plain words. Your agent keeps a motion bible for your brand, storyboards the beats before writing code, animates with real motion craft (timing, easing, springs, choreography, type), reviews its own frames and renders locally. Notes like "hold the logo longer" or "make it snappier" become small, precise changes.
+
+## What's in the pack
+
+| Skill | What it does |
+| --- | --- |
+| `motion-video` | Entry point: order of work, approval gates, workspace layout, renderer choice, scenarios and edge cases |
+| `motion-system` | `MOTION_DESIGN.md`, the brand's motion bible: identity, tokens, rules, series continuity, film log. Generates token files for every renderer. |
+| `motion-storyboard` | Brief, reference study, format playbooks, launch-film styles, beat sheet, copy, sound plan, approval |
+| `motion-craft` | Timing and read floors, springs, choreography, transitions, kinetic type, camera, color, rhythm, anti-patterns |
+| `motion-review` | Stills, contact sheets, strips, critique, scoring, notes to changes, verification and delivery |
+| `motion-remotion` | Remotion guide and a six-film starter |
+| `motion-hyperframes` | HyperFrames guide and a six-film starter |
+| `motion-editframe` | Editframe guide and a six-film starter |
+| `motion-fframes` | fframes guide and a six-film starter |
+
+Each skill is a `SKILL.md` your agent loads only when it needs it. Each skill folder can also have:
+
+```text title="Skill layout"
+skills/<skill>/SKILL.md         instructions the agent loads
+skills/<skill>/references/      detail loaded on demand
+skills/<skill>/scripts/         Node scripts (no npm dependencies)
+skills/<skill>/assets/          templates, examples, fonts, starters
+```
+
+### motion-video
+
+The entry point, which holds the order of work. Your agent loads it first whenever you ask for a showreel, intro, title sequence, launch film, feature update, changelog clip, logo sting, promo, social cutdown or any other animated video or motion graphic. It also loads it when you ask to edit, re-time, review or re-render one. From there, it loads the other skills as it needs them.
+
+It works out what kind of request you made and picks a path:
+
+| Request | Path |
+| --- | --- |
+| A new film | The full order of work |
+| The next film in a series | The full order of work, reusing the series kit |
+| An edit to an existing film | Read the film's storyboard and cue file, apply the change, re-render and log it. No interview. |
+| Review or fix an existing video | `motion-review` only |
+| Set up or change the motion identity | `motion-system` only |
+| Port a film to another renderer | Build tokens for the new renderer, then use its skill. Compare stills at the same cues. |
+| Live-action editing, AI video generation, 3D character animation | The agent says the renderers can't do it, suggests the right tool and offers what motion design can do |
+
+It also covers edge cases: series and episode numbering, rebrands mid-series, several products or clients in one repository, cutdowns and aspect ratios, localization, voice-led and silent films, footage and screen recordings, missing fonts or ffmpeg, agents that can't view images, and licenses for music, fonts and renderers.
+
+### motion-system
+
+Creates and maintains `MOTION_DESIGN.md`, the motion bible that keeps every video for a product, person or client consistent. It holds the identity, motion tokens, type and color rules, movement grammar, transitions, logo animation, sound palette, series rules, learned preferences and a film log. Films read it before they're planned and write back to it after they're reviewed.
+
+It runs before any video is planned. It also runs when a project has no bible yet, when a review produces a lasting preference, for the next film in a series, after a rebrand, and when you ask to set up, change or sync motion tokens.
+
+| Mode | When |
+| --- | --- |
+| Create | No bible exists. The agent builds one from what your product already decided: design tokens, theme files, fonts, logo, landing page copy and brand guidelines. When those say nothing about motion, it offers two or three motion personalities to choose from. The bible stays `provisional` until you approve the first film made with it. |
+| Use | A film is being planned or built. Scene code reads every color, font, curve, spring, duration and hold from the generated tokens. |
+| Update | A review ended or you stated a lasting preference. The agent adds it to learned preferences and the film log, and bumps the version. |
+| Build | Tokens changed or token files are missing. The agent validates and regenerates them. |
+| Rebrand | A new brand identity arrives. The bible gets a major version and old films are frozen. |
+
+The token script checks the bible and generates token files for each renderer: TypeScript (Remotion, HyperFrames, Editframe), CSS, GSAP, Rust (fframes) and JSON for anything else.
+
+```bash title="Terminal"
+node <skill-dir>/scripts/tokens.mjs check   videos/MOTION_DESIGN.md
+node <skill-dir>/scripts/tokens.mjs inspect videos/MOTION_DESIGN.md
+node <skill-dir>/scripts/tokens.mjs build   videos/MOTION_DESIGN.md --target <target> --out <dir> --assets <fonts dir>
+```
+
+If your product has no fonts of its own, the skill ships Geist under the SIL Open Font License.
+
+### motion-storyboard
+
+Turns a request into an approved plan before any scene code is written. It runs at the start of every video. It also runs when you share a reference video, when the brief is vague, and when timing, pacing, copy or music sync needs planning.
+
+- **Brief.** A short interview, at most two rounds of questions, each with recommended defaults drawn from your product.
+- **References.** If you share a reference video, the agent measures it with `study.mjs` (shot lengths, cuts, holds, palette, beat sync), then writes what to keep and what to change.
+- **Format.** Eight playbooks: showreel, intro, title sequence, launch film, feature update, logo sting, cutdowns (9:16, 1:1, 6/15/30 s cuts) and seamless loops.
+- **Launch styles.** A library of 13 styles, including kinetic manifesto, prompt to result, agent workflow, one-shape UI morph, device showcase, capability reel and match-cut montage.
+- **Plan.** A one-sentence logline, then a beat sheet in `STORYBOARD.md`. It has timed cues, on-screen copy checked against reading time, a sound plan with the music's tempo measured by `beats.mjs`, and three to five style frames to render first.
+- **Approval.** The agent shows you the logline, beat sheet and style frames and asks for approval. It writes no scene code before then unless you say "just make it".
+
+### motion-craft
+
+Rules and numbers for motion that is watched, not clicked. The agent uses it while designing or animating any scene. It also uses it when motion feels robotic, rushed, floaty, busy or generic.
+
+It covers timing and read floors (a settled line of text holds for `max(1.0 s, 0.6 s + 0.3 s × words)`), easing curves and six spring presets with measured settle times. It also covers choreography, transitions, kinetic typography, virtual camera, color and texture, rhythm and music sync, an energy ladder from serene to hype, and 31 anti-patterns that make generated motion look cheap. Tokens in your `MOTION_DESIGN.md` override its defaults.
+
+### motion-review
+
+Reviews and verifies videos without watching them in real time. The agent uses it after building any scene, before showing a draft, before final delivery, and whenever you give notes.
+
+- Renders stills at cue points, contact sheets, onion skins and frame strips around fast transitions (`sheet.mjs`).
+- Checks legibility, pacing, choreography, continuity with `MOTION_DESIGN.md`, sound sync and loudness, loop seams, color range, flashes and delivery specs (`verify.mjs`), then makes a poster frame (`poster.mjs`).
+- Scores each draft against a checklist and fixes problems until every score is 8 or more. For films longer than about 10 seconds, it gets an independent critique from a subagent or fresh session first.
+- Turns plain-words notes ("hold the logo longer", "make it snappier", "feels cheap") into concrete timing and easing changes.
+- Keeps every rendered version and never overwrites one you've seen.
+
+Agents that can't view images rely on numbers instead and tell you which stills to check yourself.
+
+### Renderer skills
+
+Each renderer skill covers project setup, binding `MOTION_DESIGN.md` tokens and fonts, stills for review, draft and final renders, and that renderer's gotchas. Your agent uses the one that matches your project, or the one you choose for a new project.
+
+| Skill | Renderer | Notes |
+| --- | --- | --- |
+| `motion-remotion` | Remotion (React) | Works inside an existing codebase or from the starter. Motion kit with cue helpers, closed-form springs, word mask reveals, typing, logo lockup, camera, flood, wipe, cursor and UI twins. Alpha and audio. |
+| `motion-hyperframes` | HyperFrames (HTML and GSAP, headless Chrome) | Review with `snapshot` and `check`. Renders MP4, MOV and WebM with alpha, GIF and PNG sequences. Variables and batch renders. |
+| `motion-editframe` | Editframe (HTML and React elements) | Browser workbench preview, renders with its CLI in headless Chrome. Audio on cues and data-driven renders. |
+| `motion-fframes` | fframes (Rust, Skia) | One Cargo project with a Rust port of the motion kit. Command line to render, inspect, strip and onion by beat name. |
+
+### Scene starters
+
+Every renderer skill ships a starter with the same six films, built from the same storyboards:
+
+| Film                                          | Length |
+| --------------------------------------------- | ------ |
+| Showreel                                      | 20 s   |
+| Title sequence                                | 16 s   |
+| Launch film                                   | 24 s   |
+| Feature update                                | 16 s   |
+| Kinetic manifesto                             | 24 s   |
+| Prompt to result, shot as one continuous take | 20 s   |
+
+A starter is a structure to fork, not a look to keep. The agent regenerates tokens from your bible, replaces the content and placeholder artwork, and deletes the films you don't need.
+
+## Supported agents and renderers
+
+The skills work with Claude Code, Codex, Cursor, Antigravity, GitHub Copilot, opencode, Amp, Pi, Hermes Agent, OpenClaw and other agents that load skills.
+
+For a new project, the agent recommends a renderer:
+
+| Renderer | Recommended when | License |
+| --- | --- | --- |
+| Remotion | You have a React or TypeScript codebase and want to reuse real components | Source-available. Free for individuals and small teams. Larger companies need a company license. |
+| HyperFrames | You prefer plain HTML, CSS and GSAP, or have no React | Apache-2.0 |
+| Editframe | You want a visual timeline editor for your team, or to author with CSS animations | Free for organizations of up to 3 employees, non-profits, education and personal projects. Paid above that. |
+| fframes | You work in Rust or want the fastest renders, a native preview window or GPU shaders | MIT |
+
+Without a strong signal, it picks Remotion for product films in web codebases and HyperFrames for everything else. Existing projects keep their renderer. Renderers are installed per project from their own sources, under their own licenses. Check the license of the one you pick before commercial use.
+
+| Tool | Needed for |
+| --- | --- |
+| Node.js 18+ (20.19+ for Editframe, 22+ for HyperFrames) | Token generator, review and study scripts, Remotion, HyperFrames, Editframe |
+| ffmpeg and ffprobe | Review, study and beat scripts, HyperFrames rendering, Editframe stills |
+| Rust toolchain, x264, pkg-config, nasm | fframes only. It compiles its own FFmpeg, and the first build takes about 30 minutes. |
+
+## Get access
+
+The skill pack comes with Pro and Business. It lives in a private GitHub repository, and Dodo Payments invites you to it for as long as your plan is active.
+
+<Steps>
+<Step>
+
+### Subscribe
+
+Subscribe to Pro or Business on the [pricing page](/pro).
+
+</Step>
+<Step>
+
+### Connect GitHub
+
+Open [Plan and billing in your dashboard](/dashboard/billing), go to the Dodo Payments customer portal and connect your GitHub account.
+
+</Step>
+<Step>
+
+### Accept the invite
+
+Accept the private repository invite that arrives by email.
+
+</Step>
+<Step>
+
+### Install
+
+Install the skills with one of the methods below, then ask your agent for a video.
+
+</Step>
+</Steps>
+
+## Install
+
+Accept the GitHub invite first, so your git credentials can read the repository. The skills CLI (`npx skills`) installs into Claude Code, Codex, Cursor, Gemini CLI, opencode and other agents.
+
+<Tabs items={["Project level", "User level", "Choose interactively", "By hand"]}>
+<Tab value="Project level">
+
+Run this from your project to install every skill there, for Claude Code. It's the command shown in your dashboard. Cloud agent sessions should use it as shown.
+
+```bash title="Terminal"
+npx skills add https://github.com/motionvideohq/motionvideo-skill.git --skill '*' -a claude-code -y
+```
+
+</Tab>
+<Tab value="User level">
+
+Add `-g` to install the skills for your user, so every local agent session sees them in every project:
+
+```bash title="Terminal"
+npx skills add git@github.com:motionvideohq/motionvideo-skill.git --skill '*' -a claude-code -g -y
+```
+
+Install at the user level when you work in a public repository, so the skill files stay out of it.
+
+</Tab>
+<Tab value="Choose interactively">
+
+Choose the agents and skills in prompts:
+
+```bash title="Terminal"
+npx skills add git@github.com:motionvideohq/motionvideo-skill.git
+```
+
+</Tab>
+<Tab value="By hand">
+
+Copy the folders inside `skills/` into your agent's skills directory. For Claude Code, that's `.claude/skills/` in a project or `~/.claude/skills/` for your user. Keep them together, because the skills refer to each other by name.
+
+</Tab>
+</Tabs>
+
+The examples use both the HTTPS and the SSH address of the repository. Use the one your git credentials work with.
+
+<Callout type="warn" title="Don't publish the files">
+  The pack's license doesn't allow publishing its files. In a public repository,
+  install the skills at the user level or keep the skills folder out of git.
+</Callout>
+
+## Update
+
+To get new versions, run:
+
+```bash title="Terminal"
+npx skills update
+```
+
+You can also run the install command again. If you installed by hand, copy the new `skills/` folders over the old ones.
+
+Each release is tagged `motionvideo-skill@<version>`, with notes on the repository's Releases page and in `CHANGELOG.md`. Every skill's version matches the pack version:
+
+- **Major:** changes how existing projects work.
+- **Minor:** adds skills, starters or features.
+- **Patch:** fixes mistakes.
+
+## How a session runs
+
+Ask in plain words. The agent works like a small studio: a brief, a plan you approve, style frames, drafts, notes and a verified final. There are three approval gates. At each one, the agent shows you the smallest thing that answers the question (a table, three stills, a half-size draft) and asks one clear question.
+
+<Steps>
+<Step>
+
+### Motion bible
+
+The agent finds `MOTION_DESIGN.md` or creates a provisional one from your product, then reads it completely.
+
+</Step>
+<Step>
+
+### Renderer
+
+It detects the renderer your project uses, or recommends one for a new project.
+
+</Step>
+<Step>
+
+### Storyboard
+
+It writes the brief, studies any reference you share, then picks the format and style, logline, beat sheet, copy and sound. **Gate 1:** you approve the storyboard. No scene code comes before that unless you waive it.
+
+</Step>
+<Step>
+
+### Workspace and tokens
+
+It sets up the project with the renderer skill, copying the scene starter when it fits, and generates tokens from the bible.
+
+</Step>
+<Step>
+
+### Style frames
+
+It builds the key moments from the storyboard first and renders them as stills. **Gate 2:** you approve the look from the stills.
+
+</Step>
+<Step>
+
+### Animatic
+
+It blocks every scene with its final timing, rough shapes and real words, and renders it at half size with the music. Pacing gets fixed here, where it's cheap.
+
+</Step>
+<Step>
+
+### Build
+
+It animates every scene from the cue table, keeping every number a token or a cue.
+
+</Step>
+<Step>
+
+### Review
+
+It checks stills, sheets, strips and pops, scores against the checklist, and gets an independent critique for anything longer than about 10 seconds. It keeps fixing until every score is 8 or more.
+
+</Step>
+<Step>
+
+### Draft
+
+It sends you a half-size draft with sound. **Gate 3:** you give notes and it makes new drafts until you approve.
+
+</Step>
+<Step>
+
+### Final
+
+It makes a full-quality render, verifies it, and adds a poster, cutdowns and delivery files in a version folder.
+
+</Step>
+<Step>
+
+### Log
+
+It updates the bible's film log, learned preferences and changelog. It commits or publishes only when you ask.
+
+</Step>
+</Steps>
+
+Throughout, the agent follows a few rules. Your product's own design wins: its colors, type, components, copy and claims. Every frame is a pure function of time, so renders are repeatable. The agent shows only real product surfaces and approved claims, and marks placeholders. It keeps every rendered version, and asks before installing global tools, downloading large dependencies, committing, pushing or publishing.
+
+The agent keeps everything in a `videos/` workspace:
+
+```text title="Workspace"
+videos/
+  MOTION_DESIGN.md     the motion bible
+  fonts/               font files named by the tokens, with their licenses
+  <renderer project>   one folder per film: STORYBOARD.md, cue file, beats.json, scene code
+  out/                 renders (gitignored)
+    <film>/
+      review/          stills, contact sheets, onion skins, drafts
+      v1/  v2/  ...    every version shown to you, with deliverables and poster
+```
+
+When you ask for changes later, the agent updates the storyboard first, then the cue file, then the code, so the plan and the film never drift apart.
+
+## Example prompts
+
+```text title="Prompts"
+Set up our MOTION_DESIGN.md from the landing page and design tokens.
+Make a 20 second intro reel: name reveal, three project cards, calm exit.
+Make a feature update video for the new search, like our last one.
+Here is a launch video I like. Study it and plan ours with the same pacing.
+Hold the logo longer and make the feature scenes snappier.
+```
+
+## License
+
+Your plan gives you a license to use the pack. Pro covers one person's projects, including work for clients. Business covers a company's projects and three people. Everything you make with the pack is yours.
+
+You may:
+
+- Use the pack in as many of your own projects as you like, on any machine and with any coding agent.
+- Copy and modify it for that use, including installing the skills into agents and copying starter code into projects.
+- Use it for client work, and hand over starter and kit code that ends up in a client's project as part of the finished work.
+- Keep, publish and sell whatever you make with it.
+
+You may not:
+
+- Share the pack, or any part of it, with people who don't have access, for free or for money.
+- Publish its files, for example in a public repository, package, template gallery, marketplace or course.
+- Share your repository access or invitation, or work around the purchase check.
+- Use it to build and sell a competing skill pack, template pack or course.
+
+Renderers, their dependencies and ffmpeg aren't included in the pack. Some need a paid license for some uses, for example a Remotion company license. The full terms are in `LICENSE.md` in the repository and in the [terms of sale](/terms).
+
+## Bought the Skill Bundle?
+
+The one-time Skill Bundle is no longer sold. If you bought it, you keep your skill repository access with no subscription, under the terms you bought it with. Install the same way. The customer portal in your dashboard still has your receipts and the GitHub connection for the repository invite.
+
+The Skill Bundle doesn't include Pro. Pro adds the full Moves library with every prompt, plus the Pro MCP tools as they roll out. See [plans](/pro).
+
+Questions about the pack? Email hello@motionvideo.xyz.
+
+## Next
+
+<Cards>
+  <Card
+    title="MotionVideo Skill"
+    href="/motionvideo-skill"
+    description="What the skill pack does, at a glance."
+  />
+  <Card
+    title="Plans and pricing"
+    href="/pro"
+    description="Pro and Business both include the skill pack."
+  />
+  <Card
+    title="Moves"
+    href="/docs/moves"
+    description="Use named motion design techniques with your agent."
+  />
+  <Card
+    title="MCP"
+    href="/docs/mcp"
+    description="Search the catalog and pull prompts from any MCP client."
+  />
+</Cards>

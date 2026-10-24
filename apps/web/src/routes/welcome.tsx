@@ -39,7 +39,7 @@ const Welcome = () => {
               presetEmail={checkout.email}
               welcome
               title={`${content.thanks.value} ${SITE.NAME}!`}
-              callbackURL={ROUTES.DASHBOARD_SKILL}
+              callbackURL={ROUTES.DASHBOARD_BILLING}
             />
           </>
         ) : (

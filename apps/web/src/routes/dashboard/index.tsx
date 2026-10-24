@@ -11,7 +11,7 @@ import { useIntlayer } from "react-intlayer";
 import { ArrowRight } from "reicon-react/icons/ArrowRight";
 import { Bookmark } from "reicon-react/icons/Bookmark";
 import { Briefcase } from "reicon-react/icons/Briefcase";
-import { File } from "reicon-react/icons/File";
+import { Card2 } from "reicon-react/icons/Card2";
 import { HandHeart } from "reicon-react/icons/HandHeart";
 import { Settings } from "reicon-react/icons/Settings";
 import { Sparkles } from "reicon-react/icons/Sparkles";
@@ -97,6 +97,17 @@ const Dashboard = () => {
       />
       <section aria-label={content.sections.value} className="grid gap-3">
         <HubCard
+          to={ROUTES.DASHBOARD_BILLING}
+          icon={<Card2 aria-hidden="true" />}
+          title={content.billing}
+          description={content.billingBody}
+          badge={
+            <Badge variant={purchased ? "default" : "secondary"}>
+              {purchased ? content.owned : content.notOwned}
+            </Badge>
+          }
+        />
+        <HubCard
           to={ROUTES.DASHBOARD_FEATURED}
           icon={<Sparkles aria-hidden="true" />}
           title={content.featured}
@@ -107,17 +118,6 @@ const Dashboard = () => {
           icon={<Bookmark aria-hidden="true" />}
           title={content.bookmarks}
           description={content.bookmarksBody}
-        />
-        <HubCard
-          to={ROUTES.DASHBOARD_SKILL}
-          icon={<File aria-hidden="true" />}
-          title={content.skill}
-          description={content.skillBody}
-          badge={
-            <Badge variant={purchased ? "default" : "secondary"}>
-              {purchased ? content.owned : content.notOwned}
-            </Badge>
-          }
         />
         <HubCard
           to={ROUTES.DASHBOARD_LISTINGS}

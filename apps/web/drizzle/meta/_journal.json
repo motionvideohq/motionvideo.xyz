@@ -57,6 +57,20 @@
       "when": 1792083338151,
       "tag": "0007_sponsorship_checkout",
       "breakpoints": true
+    },
+    {
+      "idx": 8,
+      "version": "6",
+      "when": 1792614551998,
+      "tag": "0008_pro_plans",
+      "breakpoints": true
+    },
+    {
+      "idx": 9,
+      "version": "6",
+      "when": 1792779230035,
+      "tag": "0009_oauth_provider",
+      "breakpoints": true
     }
   ]
 }

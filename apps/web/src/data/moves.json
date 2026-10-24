@@ -1,0 +1,2135 @@
+{
+  "moves": [
+    {
+      "slug": "squash-and-stretch",
+      "name": "Squash and stretch",
+      "family": "timing",
+      "aka": [
+        "squash & stretch",
+        "squash and stretch animation",
+        "bouncing ball animation",
+        "elastic deformation"
+      ],
+      "summary": "An object flattens on impact and lengthens in fast travel while keeping its volume, so it reads as soft, alive and pulled by gravity.",
+      "body": "Squash and stretch is the oldest trick for making a shape feel like it has mass. A ball lengthens along its direction of travel when it moves fast, flattens against the floor on contact, then springs back to round. The eye reads the deformation as weight and softness long before it reads the geometry.\n\nThe rule that makes it work is **volume preservation**: if the shape grows 30 percent on one axis, it shrinks on the other so the area stays about the same. `scaleX = 1 / scaleY` is a good starting point.\n\nIt works best on:\n\n- mascots, dots, balls and blobs\n- buttons and chips that get pressed or land\n- playful brands where a little rubber is welcome\n\nCommon mistakes:\n\n- scaling from the center instead of the contact point, so the ball floats above the floor while it squashes\n- stretching on the screen axis instead of along the velocity\n- deforming text, logos or product UI that must stay legible\n- holding the squash too long; two to four frames on contact is plenty",
+      "goodFor": [
+        "characters",
+        "mascots",
+        "playful brands",
+        "bouncing objects"
+      ],
+      "examples": ["fanxing321-a52ec8", "notdwd-2c76f5"],
+      "related": ["anticipation", "arc-motion", "follow-through"]
+    },
+    {
+      "slug": "anticipation",
+      "name": "Anticipation",
+      "family": "timing",
+      "aka": [
+        "wind-up",
+        "anticipation animation",
+        "pre-move",
+        "crouch before jump"
+      ],
+      "summary": "A small move in the opposite direction before the main action, like a crouch before a jump, so the viewer knows something is about to happen.",
+      "body": "Anticipation is the small opposite move that comes before the real one. A character crouches before it jumps, a card dips 6 px before it flies up, a logo shrinks a hair before it pops. It tells the viewer where to look and makes the main action feel powered instead of teleported.\n\nThe size of the wind-up sets the energy. A barely visible dip reads as precise and product-like; a deep, slow crouch reads as cartoon. The wind-up is usually slower than the action it sets up: the crouch eases in, the release snaps.\n\nUse it for:\n\n- jumps, launches and throws\n- elements that leave the frame fast\n- big reveals you want the audience ready for\n\nCommon mistakes:\n\n- wind-ups on every element, which makes the whole film feel hesitant\n- a wind-up as big as the action, which reads as a stutter\n- a fast exit with no wind-up at all, which can look like a dropped frame\n- adding anticipation to text the viewer is still reading",
+      "goodFor": ["characters", "launches", "hero reveals", "fast exits"],
+      "examples": ["fanxing321-a52ec8", "majidmanzarpour-3cee15"],
+      "related": [
+        "squash-and-stretch",
+        "overshoot-and-settle",
+        "ease-out-entrance"
+      ]
+    },
+    {
+      "slug": "overshoot-and-settle",
+      "name": "Overshoot and settle",
+      "family": "timing",
+      "aka": [
+        "overshoot animation",
+        "ease out back",
+        "back easing",
+        "bounce settle"
+      ],
+      "summary": "An element travels slightly past its resting place and eases back, giving arrivals a sense of momentum instead of a dead stop.",
+      "body": "An object with momentum does not stop exactly where it is going. Overshoot lets it pass the target by a few percent and come back, so the arrival has a little life. In code this is either an `easeOutBack` curve or an underdamped spring.\n\nHow much is the whole decision. A rough budget by tone:\n\n- premium or editorial: none\n- confident product: 0 to 3 percent\n- friendly: 4 to 8 percent\n- playful or kids: 8 to 17 percent\n\nOvershoot is punctuation. Put it on the hero, or on the last item of a group so it marks the moment the group is complete. Scale overshoot reads more strongly than position overshoot, so use about half as much on scale.\n\nCommon mistakes:\n\n- overshoot on everything, which turns a product film into a toy\n- springing opacity, which clips above 1 and makes the fade look cut off\n- scaling up from 0, which passes through tiny unreadable sizes; start at 0.85 or higher\n- wobble that is still visible while the viewer tries to read",
+      "goodFor": ["UI arrivals", "logo pops", "playful brands", "emphasis"],
+      "examples": ["techhalla-94fbea", "ultimaxbt-bbebf5", "rossaxbt-94583b"],
+      "related": ["spring-animation", "ease-out-entrance", "follow-through"]
+    },
+    {
+      "slug": "follow-through",
+      "name": "Follow-through and overlapping action",
+      "family": "timing",
+      "aka": [
+        "overlapping action",
+        "drag",
+        "follow through animation",
+        "trailing motion"
+      ],
+      "summary": "Loose parts of an object start moving after the body and keep going after it stops, so a move reads as one physical thing instead of a rigid block.",
+      "body": "When a body stops, the loose parts attached to it keep going for a moment: hair, a tail, a cape, a shadow, a label hanging under a card. When the body starts, those parts start late. That offset is follow-through and overlapping action, and it is what separates a rigid move from a physical one.\n\nIn code it is cheap. Run the attached part on the same curve as the body with a delay of 2 to 6 frames, or on a softer spring so it trails and catches up. Each step further from the body gets a little more lag.\n\nGood places for it:\n\n- UI cards with labels, badges or shadows\n- characters with limbs, ears or antennas\n- tab indicators whose back edge catches up with the front edge\n\nCommon mistakes:\n\n- lag so long that the parts look disconnected\n- every part on the same delay, which reads as a second block arriving late\n- trailing parts that wobble far more than the body, which looks like jelly\n- splitting up text lines that need to be read together",
+      "goodFor": [
+        "characters",
+        "UI cards",
+        "tab indicators",
+        "shadows and labels"
+      ],
+      "examples": ["fanxing321-a52ec8", "twoclipping-5cba86"],
+      "related": [
+        "secondary-action",
+        "overshoot-and-settle",
+        "spring-animation"
+      ]
+    },
+    {
+      "slug": "spring-animation",
+      "name": "Spring animation",
+      "family": "timing",
+      "aka": [
+        "spring physics",
+        "spring easing",
+        "damped spring",
+        "physics-based animation"
+      ],
+      "summary": "Motion driven by a damped spring instead of a fixed curve, tuned with stiffness, damping and mass, so arrivals feel physical and consistent.",
+      "body": "A spring moves a value toward its target the way a weight on a spring would. Instead of choosing a duration and a curve, you choose **stiffness** (how hard it pulls), **damping** (how quickly it calms down) and **mass** (how heavy it feels). One set of numbers then handles arrivals, presses and interruptions with the same physics.\n\nThe number that predicts the feel is the damping ratio, `damping / (2 × √(stiffness × mass))`. Near 1 the value lands firmly with no wobble. Around 0.6 it overshoots once and settles. Below 0.4 it rings like a cartoon.\n\nSprings suit anything that should feel physical. Use a cubic-bezier instead when a move must finish on an exact frame, like a wipe that lands on a beat.\n\nCommon mistakes:\n\n- mixing several spring personalities in one scene, so objects seem to come from different worlds\n- restarting a spring from zero velocity when its target changes, which leaves a visible kink\n- forgetting that a spring has no fixed end; compute its settle time before placing it on a cue",
+      "goodFor": [
+        "product UI",
+        "morphing shapes",
+        "interruptible motion",
+        "physical arrivals"
+      ],
+      "examples": ["verbove-593f1c", "heyiamnick-b6aae7", "twoclipping-5cba86"],
+      "related": ["overshoot-and-settle", "follow-through", "ease-out-entrance"]
+    },
+    {
+      "slug": "staggered-timing",
+      "name": "Staggered timing",
+      "family": "timing",
+      "aka": [
+        "stagger animation",
+        "cascade animation",
+        "offset animation",
+        "sequential reveal"
+      ],
+      "summary": "A group of items runs the same animation with small start offsets, so the group arrives as one directional ripple instead of all at once.",
+      "body": "Stagger takes one animation and starts it at slightly different times for each item in a group. Cards, list rows, words or logos cascade in, and the group reads as a single gesture with a direction.\n\nTypical offsets:\n\n- words in a headline: 60 to 120 ms\n- cards and tiles: 80 to 160 ms\n- many small items, like a logo wall: 40 to 80 ms\n\nKeep the whole cascade under about 0.8 s. Past that, shrink the offset or reveal in chunks. Order follows meaning: reading order for text, importance for features, center-out for radial layouts.\n\nCommon mistakes:\n\n- offsets below two frames, which read as simultaneous anyway\n- a perfectly even ladder across a dozen items, which looks generated; group them in phrases like 2 + 3 + 2\n- varying the easing per item; keep the curve and duration identical and vary only the start time\n- exits that stagger as slowly as entrances; use half the offset, or exit all at once",
+      "goodFor": ["lists and grids", "feature rows", "headlines", "logo walls"],
+      "examples": [
+        "fleyta88-1cd374",
+        "techhalla-94fbea",
+        "brainextends-e19ac3"
+      ],
+      "related": ["ease-out-entrance", "follow-through", "moving-hold"]
+    },
+    {
+      "slug": "slow-in-slow-out",
+      "name": "Slow in and slow out",
+      "family": "timing",
+      "aka": [
+        "ease in out",
+        "ease-in-out",
+        "easing curve",
+        "acceleration and deceleration"
+      ],
+      "summary": "A move starts gently, gathers speed in the middle and decelerates into its stop. The default for anything traveling between two on-screen points.",
+      "body": "Real objects do not jump to full speed or stop dead. Slow in and slow out spaces the frames tightly at the start and end of a move and widely in the middle, so the object accelerates, travels, then decelerates. In code that is an ease-in-out curve: `cubic-bezier(0.83, 0, 0.17, 1)` for a strong quint shape, or a sine in-out for something gentler.\n\nUse it when something moves between two places that are both on screen:\n\n- camera pushes, pans and pulls\n- a card rearranging into a new layout\n- wipes and panels that cross the frame\n\nThe steepness of the curve is the character. A gentle sine feels calm and expensive; a steep quint feels decisive.\n\nCommon mistakes:\n\n- `linear` on anything except constant-speed motion such as tickers and rotation loops\n- ease-in-out on entrances, which makes them arrive sluggishly; entrances should only decelerate\n- a steep curve on a slow two-second camera move, which makes the middle feel rushed\n- the same duration for short and long moves; longer travel needs more time",
+      "goodFor": ["camera moves", "layout changes", "wipes", "repositioning"],
+      "examples": ["jake11moran-3041df", "notdwd-7de38a"],
+      "related": ["ease-out-entrance", "arc-motion", "moving-hold"]
+    },
+    {
+      "slug": "ease-out-entrance",
+      "name": "Ease-out entrance",
+      "family": "timing",
+      "aka": ["ease out", "decelerate", "expo out", "enter soft, leave fast"],
+      "summary": "Elements arrive fast and decelerate into place, then leave by accelerating away, so entrances feel confident and exits get out of the way.",
+      "body": "The single most useful easing rule: things that **arrive** decelerate, things that **leave** accelerate. An entrance on an exponential ease-out covers most of its distance in the first third of its duration, then glides into place. The viewer sees motion immediately and gets a calm landing to read.\n\nA good default is `cubic-bezier(0.16, 1, 0.3, 1)`. Exits use the mirror, an ease-in like `cubic-bezier(0.7, 0, 0.84, 0)`, take 60 to 75 percent of the entrance time and travel less.\n\nIt reads well for:\n\n- headlines, cards and panels entering\n- anything that needs a readable resting state soon after it appears\n\nCommon mistakes:\n\n- ease-in entrances, which make the element feel late and then slam into place\n- ease-out exits, which make leaving elements linger and compete with what comes next\n- exits as long as entrances, which slows the whole film down\n- animating an exit at all when the scene is about to cut; let the cut do it",
+      "goodFor": [
+        "text entrances",
+        "cards and panels",
+        "product films",
+        "exits"
+      ],
+      "examples": ["notdwd-7de38a", "notdwd-2c76f5"],
+      "related": [
+        "slow-in-slow-out",
+        "overshoot-and-settle",
+        "staggered-timing"
+      ]
+    },
+    {
+      "slug": "arc-motion",
+      "name": "Arcs",
+      "family": "timing",
+      "aka": [
+        "motion arcs",
+        "arc animation",
+        "curved motion path",
+        "parabolic path"
+      ],
+      "summary": "Moving objects follow curved paths rather than straight lines, the way thrown balls, swinging limbs and real hands on a mouse do.",
+      "body": "Almost nothing in the physical world travels in a straight line. A thrown object follows a parabola, a limb swings around a joint, a hand moving a mouse traces a soft curve. Motion on arcs reads as natural; motion on straight lines between keyframes reads as computed.\n\nIn code, an arc usually comes from animating x and y on different curves. Run x on a gentle ease and y on an ease-out going up and an ease-in coming down, and the path bends into a parabola. For a cursor, put one bezier control point off the straight line by 10 to 20 percent of the distance.\n\nWhere it matters most:\n\n- jumps, throws and landings\n- cursors traveling between buttons\n- logos or dots that fly to a new position\n\nCommon mistakes:\n\n- interpolating x and y together on one curve, which always gives a straight line\n- arcs that bend against gravity for no reason\n- arcs that bend to a different side on every move, which looks random\n- huge arcs on UI elements, which turns a precise move into a cartoon",
+      "goodFor": [
+        "cursors",
+        "jumps and throws",
+        "flying elements",
+        "characters"
+      ],
+      "examples": ["notdwd-2c76f5", "gdgtify-efbc09", "fanxing321-a52ec8"],
+      "related": ["squash-and-stretch", "slow-in-slow-out", "anticipation"]
+    },
+    {
+      "slug": "moving-hold",
+      "name": "Moving hold",
+      "family": "timing",
+      "aka": [
+        "breathing hold",
+        "living hold",
+        "micro drift",
+        "slow push on hold"
+      ],
+      "summary": "During a pause the frame keeps a trace of motion, like a 2 percent push-in or a slow drift, so a held moment never looks frozen.",
+      "body": "A hold is where the viewer actually reads. But a frame where nothing moves at all looks like the video stalled. A moving hold keeps a tiny amount of motion running while everything important stays put: a 1 to 3 percent push-in, a slow background drift, a gentle scale breath on a logo.\n\nThe motion has to be slow enough not to compete. Run it at a steady speed across the whole hold, and keep it on the camera or the background, not on the text being read.\n\nIt works for:\n\n- the hold right after a big reveal\n- end lockups and calls to action\n- stats or quotes that need several seconds on screen\n\nCommon mistakes:\n\n- drift fast enough that the eye follows it instead of reading\n- easing the drift in and out inside the hold, which makes the frame pulse\n- holding before the big moment instead of after it; the longest hold belongs right after the peak\n- cutting a hold below the read floor: one to three words need at least 0.8 s fully settled",
+      "goodFor": [
+        "end lockups",
+        "quotes and stats",
+        "after a reveal",
+        "calls to action"
+      ],
+      "examples": ["twoclipping-56402e", "techhalla-94fbea", "notdwd-2c76f5"],
+      "related": ["slow-in-slow-out", "staggered-timing", "secondary-action"]
+    },
+    {
+      "slug": "secondary-action",
+      "name": "Secondary action",
+      "family": "timing",
+      "aka": [
+        "secondary animation",
+        "supporting action",
+        "reaction animation",
+        "environment reaction"
+      ],
+      "summary": "A smaller supporting motion that happens with the main one, like a blink during a hop or neighbors nudging aside when a card lands.",
+      "body": "Secondary action is a small extra motion that supports the main one without competing with it. A character hops and its eyes glance at a light; a card lands and its neighbors nudge 4 to 8 px aside; a button is pressed and a ring spreads from it. The scene feels connected because things respond to each other.\n\nTwo rules keep it honest: the secondary motion is **smaller** than the main action, and it comes **later**, usually as the main action lands. If it is as big or as early, the viewer no longer knows which move matters.\n\nIt works for:\n\n- landings and clicks, where the world can react\n- mascots and characters, through blinks, glances and breathing\n- dashboards, where a changing number can tint its label\n\nCommon mistakes:\n\n- secondary motion that starts before the main action and steals the focus\n- reactions on everything in the frame\n- reactions on a different spring or curve family from the rest of the film",
+      "goodFor": ["characters", "clicks and landings", "dashboards", "mascots"],
+      "examples": ["fanxing321-a52ec8"],
+      "related": ["follow-through", "moving-hold", "squash-and-stretch"]
+    },
+    {
+      "slug": "animating-on-twos",
+      "name": "Animating on twos",
+      "family": "timing",
+      "aka": [
+        "on twos",
+        "stepped animation",
+        "choppy frame rate",
+        "stop motion look",
+        "12 fps animation"
+      ],
+      "summary": "Each pose is held for two or more frames, giving smooth code-driven motion the stepped, hand-made cadence of cel animation or stop motion.",
+      "body": "Code animation is perfectly smooth by default, which can make it feel synthetic. Animating on twos holds each pose for two frames, so a 24 fps film shows 12 new poses per second. On threes or fours it gets choppier and more handmade. Paper, pencil, crayon and pixel styles look far more convincing with this stepped cadence.\n\nNothing needs redrawing. Compute the animation as usual, then quantize time before sampling it: `t = floor(frame / 2) * 2 / fps`. Line boil, where hand-drawn strokes jitter slightly on each new pose, is the same trick applied to a noise seed.\n\nIt works for:\n\n- hand-drawn, paper and collage looks\n- pixel art and sprite-style loops\n- character moments inside an otherwise smooth film, for contrast\n\nCommon mistakes:\n\n- stepping the camera as well, which turns a smooth pan into a stutter\n- stepping text that should stay perfectly stable\n- mixing stepped and smooth layers without a clear rule, so it reads as dropped frames",
+      "goodFor": ["hand-drawn looks", "pixel art", "stop motion", "characters"],
+      "examples": ["majidmanzarpour-3cee15", "heyiamnick-b6aae7"],
+      "related": ["squash-and-stretch", "arc-motion", "secondary-action"]
+    },
+    {
+      "slug": "staggered-letter-reveal",
+      "name": "Staggered letter reveal",
+      "family": "type",
+      "aka": [
+        "letter by letter animation",
+        "per-character stagger",
+        "character cascade",
+        "split text animation"
+      ],
+      "summary": "A word appears one character at a time, each letter rising and fading in a few frames after the one before it, so the word ripples into place.",
+      "body": "Each character is its own layer. They all run the same short entrance (a rise, a fade, sometimes a small scale), but each one starts a fixed delay after its neighbour. The eye reads it as a wave travelling through the word rather than twelve separate events.\n\nIt works best on **one short word or a name**: a brand reveal, a title card, the hero word of a scene. Past about 20 characters the wave takes too long and the viewer waits for the end before they can read it.\n\n- Keep the per-letter move small. A 20 to 40 px rise is enough; big travel turns into noise.\n- Use a total spread, not just a delay. Decide that the whole word lands in 400 to 600 ms and divide by the letter count.\n- Lay out the full word first, then animate letters in their final slots. Never let kerning or centering shift while letters arrive.\n- Do not mix directions. If letters come up from below, every letter comes up from below.\n\nThe common mistake is easing each letter linearly. Give every letter a strong ease-out so each one decelerates into place.",
+      "goodFor": ["brand names", "title cards", "hero words"],
+      "examples": ["heyiamnick-b6aae7", "twoclipping-15d018", "0xnicc0-eccd15"],
+      "related": [
+        "line-mask-text-reveal",
+        "word-by-word-reveal",
+        "tracking-expand-title"
+      ]
+    },
+    {
+      "slug": "word-by-word-reveal",
+      "name": "Word by word reveal",
+      "family": "type",
+      "aka": [
+        "word stagger",
+        "kinetic sentence",
+        "one word at a time text",
+        "spoken word captions"
+      ],
+      "summary": "A sentence builds one word at a time, each word rising out of a light blur into its final slot, paced to the voice or the beat.",
+      "body": "The line is laid out in full but invisible. Words then switch on one after another, each with a quick rise and fade, sometimes out of a soft blur. Because the reader gets one word per beat, the sentence feels spoken even without audio.\n\nUse it for **headlines, punchlines, voiceover captions and manifesto lines**. It is the default for sentences, where a per-letter stagger would be too slow and too busy.\n\n- Space words 60 to 120 ms apart for a brisk read; match exact word timestamps when there is a voice.\n- Reserve every word's position first. A line that re-centres as it grows looks broken.\n- Give the key word something extra: a later arrival, the accent colour, or a slightly longer hold before the next word.\n- Hold the finished line long enough to read twice before it leaves.\n\nThe usual mistakes are wrapping a long sentence onto four lines (split it into cards instead) and timing words evenly when the voice does not speak evenly. Short words like \"a\" and \"the\" can arrive together with the word after them.",
+      "goodFor": ["captions", "headlines", "manifestos"],
+      "examples": [
+        "twoclipping-56402e",
+        "kloss_xyz-1747b4",
+        "ultimaxbt-2ddf1e"
+      ],
+      "related": [
+        "staggered-letter-reveal",
+        "line-mask-text-reveal",
+        "scale-punch-headline"
+      ]
+    },
+    {
+      "slug": "typewriter-text",
+      "name": "Typewriter text",
+      "family": "type",
+      "aka": [
+        "typing animation",
+        "type on effect",
+        "typewriter effect",
+        "text typing with cursor"
+      ],
+      "summary": "Text types itself out character by character behind a caret, with an uneven human rhythm, like someone entering a prompt or a search query.",
+      "body": "Characters appear one at a time at the end of the line, led by a caret. Nothing moves or fades; a character is either there or not. That plainness is the point: the viewer reads it as input, as something being typed right now.\n\nIt fits **prompts, search bars, chat messages, code and terminal scenes**. It is wrong for anything the viewer must read instantly, because the message only exists once typing finishes.\n\n- Type at 20 to 40 characters per second, and break the rhythm: short pauses after spaces and punctuation, an occasional two-character burst.\n- Derive visible characters from time (`floor(progress * length)`), so scrubbing and rendering are deterministic.\n- Left-align the text so the start never moves as the line grows.\n- The caret stays solid while typing and blinks only while idle, at about 530 ms per phase.\n\nMistakes: perfectly even spacing (reads robotic), fading each character in (reads as a reveal, not typing), and typing a long paragraph the viewer gives up on. Pair it with soft key clicks if there is sound.",
+      "goodFor": ["prompts", "search bars", "code scenes"],
+      "examples": ["notdwd-c2037d", "ultimaxbt-2ddf1e", "notdwd-2c76f5"],
+      "related": [
+        "text-scramble-decode",
+        "rotating-word-swap",
+        "word-by-word-reveal"
+      ]
+    },
+    {
+      "slug": "text-scramble-decode",
+      "name": "Text scramble decode",
+      "family": "type",
+      "aka": [
+        "scramble text effect",
+        "decode text animation",
+        "hacker text",
+        "glyph shuffle"
+      ],
+      "summary": "Each letter flickers through random glyphs before locking onto the right character, left to right, so the word appears to decode itself.",
+      "body": "Every character slot cycles through random symbols for a short while, then settles on its real letter. Slots resolve in order, usually left to right, so a readable word spreads across a field of noise. It reads as computation: data resolving, a password cracking, a signal coming through.\n\nUse it for **tech brands, data products, labels and short titles**. Keep it to one line. On a paragraph it is unreadable and tiring.\n\n- Use a monospace font, or fix each slot's width, so shuffling glyphs never make the line jitter sideways.\n- Pick the noise set on purpose: uppercase plus a few symbols looks cleaner than the full ASCII range.\n- Change glyphs every 2 frames at 30 fps, not every frame. Every-frame flicker turns to grey mush.\n- Seed the randomness so every render produces the same frames.\n\nThe common mistake is resolving every letter at once at the end. The left-to-right lock is what makes it readable. A second mistake is leaving resolved letters still flickering.",
+      "goodFor": ["tech brands", "data labels", "short titles"],
+      "examples": ["techhalla-94fbea"],
+      "related": [
+        "typewriter-text",
+        "split-flap-text",
+        "staggered-letter-reveal"
+      ]
+    },
+    {
+      "slug": "line-mask-text-reveal",
+      "name": "Line mask text reveal",
+      "family": "type",
+      "aka": [
+        "masked text reveal",
+        "text rising from a line",
+        "clip reveal text",
+        "line lift"
+      ],
+      "summary": "Each line of text slides up from behind an invisible edge, as if rising out of a slot in the page, then stops dead on its baseline.",
+      "body": "Each line sits inside a clipping box the height of the line. The text starts fully below the box and slides up into view, so it seems to emerge from a hard edge rather than fade in. It looks precise and editorial, and it hides the fact that anything moved.\n\nIt suits **headlines, credits, editorial layouts and calm product films**. It is the cleanest way to bring in two or three lines without any blur or opacity.\n\n- Make the mask about 1.15 times the line height with extra room at the bottom, or descenders get clipped.\n- Travel the full line height. A half-height rise shows the cut-off top of the letters at the start.\n- Use a strong ease-out, around 500 to 700 ms per line, and offset lines by 80 to 120 ms.\n- Exit the same way: lines lift out through the top of the mask.\n\nMistakes: adding a fade on top (it muddies the hard edge), a loose mask that reveals the text before it crosses the line, and different line heights on one card so lines arrive at uneven speeds.",
+      "goodFor": ["headlines", "credits", "editorial"],
+      "examples": [
+        "twoclipping-221cab",
+        "beamnxw-375dbf",
+        "twoclipping-15d018"
+      ],
+      "related": [
+        "staggered-letter-reveal",
+        "word-by-word-reveal",
+        "rotating-word-swap"
+      ]
+    },
+    {
+      "slug": "variable-font-weight-animation",
+      "name": "Variable font weight animation",
+      "family": "type",
+      "aka": [
+        "font weight animation",
+        "variable font motion",
+        "weight axis animation",
+        "thin to bold text"
+      ],
+      "summary": "A word swells from hairline thin to heavy black (or back) by animating a variable font's weight axis, so the letters themselves change shape.",
+      "body": "Instead of moving the text, you change its anatomy. A variable font exposes axes such as weight (`wght`) and width (`wdth`), and animating them makes strokes thicken or letters widen in place. A word that grows from 100 to 900 weight feels like it is gaining force.\n\nIt works for **emphasis on one word, playful identities, beat hits and breathing loops**. It is subtle and typographic, so it suits brands that would never use a bounce.\n\n- Only use fonts that ship the axis. Faking it with stroke width or scale looks wrong immediately.\n- Weight changes widen the word. Anchor it left or right, or animate width in the opposite direction to hold the footprint.\n- Ease it like a physical push: fast into the heavy weight, slow back out.\n- For a wave, offset the weight per letter by 30 to 50 ms.\n\nThe common mistake is letting the line reflow as the weight grows, shoving every word after it. Lay the line out at its heaviest state, or isolate the animated word in its own box with a fixed width.",
+      "goodFor": ["word emphasis", "brand identity", "beat hits"],
+      "examples": ["_elenajoseph_-6b96f6"],
+      "related": [
+        "scale-punch-headline",
+        "tracking-expand-title",
+        "outline-to-fill-text"
+      ]
+    },
+    {
+      "slug": "text-on-a-path",
+      "name": "Text on a path",
+      "family": "type",
+      "aka": [
+        "text along a path",
+        "circular text animation",
+        "rotating text ring",
+        "curved text animation"
+      ],
+      "summary": "A line of text runs along a curve, circle or wave and slides along it, so the words travel the shape like a train on a track.",
+      "body": "The text is set on a path instead of a straight baseline: a circle, an arc, a wave, the outline of a product. Animating the start offset along the path makes the words crawl around the shape. A ring of text slowly turning around a logo or a badge is the classic case.\n\nUse it for **badges, stickers, end cards, loops and decorative frames** around a hero object. It is supporting type, not the main message: curved text is slower to read.\n\n- Keep the phrase short and repeat it with a separator (a dot or a star) so a closed ring has no gap.\n- Move slowly. One full turn every 8 to 12 seconds reads; faster becomes a blur.\n- On tight curves, increase tracking a little so letters on the inside do not collide.\n- For a seamless loop, make the total offset over the loop exactly one path length.\n\nMistakes: putting the key message on a curve, using a path with sharp corners (letters fold and overlap), and letting the text run upside down at the bottom of a circle where it matters.",
+      "goodFor": ["badges", "loops", "end cards"],
+      "examples": [],
+      "related": [
+        "tracking-expand-title",
+        "rotating-word-swap",
+        "outline-to-fill-text"
+      ]
+    },
+    {
+      "slug": "rotating-word-swap",
+      "name": "Rotating word swap",
+      "family": "type",
+      "aka": [
+        "word rotator",
+        "rolling text swap",
+        "changing word in headline",
+        "word carousel"
+      ],
+      "summary": "One word inside a fixed headline rolls vertically to the next option and the next, while the rest of the sentence stays perfectly still.",
+      "body": "A headline like \"Made for designers\" keeps its frame, and only the last word changes: designers, founders, teams. The outgoing word slides up and out of a mask while the new one slides up from below. The still part of the line anchors the eye, so the swap reads as a list without showing a list.\n\nIt is made for **audience lists, feature lists, use cases and time or status changes**.\n\n- Each swap takes 350 to 500 ms; hold each word at least long enough to read it twice, around 700 ms or more.\n- Mask the swap slot so words never overlap the static text.\n- When the words differ in width, either left-align the slot or animate the slot width alongside the roll so the sentence does not jump.\n- Keep the direction constant. Up and out, up and in, every time.\n\nMistakes: swapping faster than anyone can read, letting the whole line re-centre on every word, and cycling more than five or six words. Land on the final word with a slightly longer roll and a firm stop.",
+      "goodFor": ["audience lists", "feature lists", "headlines"],
+      "examples": ["twoclipping-809e2a", "flxrnc-c083a6", "twoclipping-15d018"],
+      "related": ["line-mask-text-reveal", "split-flap-text", "typewriter-text"]
+    },
+    {
+      "slug": "split-flap-text",
+      "name": "Split-flap text",
+      "family": "type",
+      "aka": [
+        "split flap display",
+        "solari board animation",
+        "flip board text",
+        "departure board effect"
+      ],
+      "summary": "Letters flip like an old airport departure board, each tile rattling through the alphabet before it lands on the right character.",
+      "body": "Each character sits on a tile split horizontally in the middle. To change, the top half falls forward and reveals the next character, over and over, until the tile reaches its target. Tiles finish at different times, so the board settles in a ragged wave.\n\nIt suits **travel, schedules, countdowns, launch dates, scores and retro product themes**. The mechanical motion says \"live update\" in a way a fade never does.\n\n- Each flip is short, around 60 to 90 ms, with the falling half accelerating as it drops.\n- Darken the falling half as it tilts and add a thin gap line between halves; that shading sells the hinge.\n- Give each tile a different number of flips so they land at staggered moments.\n- Use a monospace or tabular font so tiles stay a fixed size.\n\nMistakes: flipping the whole tile as one card (it reads as a turn, not a flap), every tile stopping on the same frame, and running it on long text. Six to sixteen characters is the comfortable range. Pair each flip with a tiny click if there is sound.",
+      "goodFor": ["countdowns", "schedules", "retro themes"],
+      "examples": [],
+      "related": [
+        "text-scramble-decode",
+        "rotating-word-swap",
+        "typewriter-text"
+      ]
+    },
+    {
+      "slug": "scale-punch-headline",
+      "name": "Scale punch headline",
+      "family": "type",
+      "aka": [
+        "punch in text",
+        "text slam",
+        "impact text",
+        "bouncy headline pop"
+      ],
+      "summary": "A headline hits the screen oversized, snaps down past its final size and settles with a small spring, landing like a punch on the beat.",
+      "body": "The word appears big, around 120 to 140 percent, and compresses into place in a few frames, overshooting slightly below full size before springing back. The fast shrink reads as impact. It is the type version of a drum hit.\n\nUse it for **hooks, punchlines, short promo lines and beat drops**. One or two words per punch; it does not work on a sentence.\n\n- Make the hit fast: 150 to 250 ms from first frame to rest, with most of the change in the first third.\n- Keep overshoot small, about 3 to 6 percent. Big wobble makes the word unreadable while it settles.\n- Land the moment of contact exactly on the beat or the stressed syllable, not the start of the move.\n- Sell it with a companion: a one-frame flash, a short camera nudge, or a thud.\n\nMistakes: punching every line in a video (it stops meaning anything), scaling single letters inside a word, and scaling from the centre when the text is left-aligned. Set the transform origin to where the text is anchored.",
+      "goodFor": ["hooks", "beat drops", "punchlines"],
+      "examples": ["techhalla-94fbea"],
+      "related": [
+        "variable-font-weight-animation",
+        "word-by-word-reveal",
+        "outline-to-fill-text"
+      ]
+    },
+    {
+      "slug": "tracking-expand-title",
+      "name": "Tracking expand title",
+      "family": "type",
+      "aka": [
+        "letter spacing animation",
+        "tracking in text",
+        "cinematic title spread",
+        "expanding letters"
+      ],
+      "summary": "A title fades in with its letters slowly drifting apart, letter-spacing easing from tight to wide over several seconds, like a film opening.",
+      "body": "Only the space between letters animates. The title appears tight and spreads gently outward while it fades in, sometimes continuing to drift for the whole time it is on screen. It is slow, quiet and confident: the classic film-title move.\n\nIt fits **cinematic titles, trailers, luxury or calm brands and chapter cards**. It needs time, so give it at least 2 to 4 seconds of screen life.\n\n- Use uppercase, which tolerates wide tracking. Lowercase falls apart when spread.\n- Animate tracking from a small negative value to a moderate positive one, for example 0 to 0.3 em, never to absurd widths.\n- Keep the centre fixed. The title should grow outward from the middle, not slide right.\n- Use a slow ease-out, or keep a very slow linear drift after the fade so the shot never feels frozen.\n\nMistakes: animating it fast (it looks like a glitch), using it on body text, and letting the final width break out of the safe area. Lay out the end state first and check it fits.",
+      "goodFor": ["film titles", "trailers", "chapter cards"],
+      "examples": [],
+      "related": [
+        "staggered-letter-reveal",
+        "variable-font-weight-animation",
+        "text-on-a-path"
+      ]
+    },
+    {
+      "slug": "outline-to-fill-text",
+      "name": "Outline to fill text",
+      "family": "type",
+      "aka": [
+        "stroke to fill text",
+        "text outline draw",
+        "hollow to solid text",
+        "outlined text animation"
+      ],
+      "summary": "Letters first draw themselves as thin outlines, then fill in with solid colour, so a word goes from blueprint to finished type.",
+      "body": "The move has two beats. First the letter outlines draw on, the stroke tracing each glyph's contour. Then the fill floods in, by fading, by wiping up from the baseline, or letter by letter. The viewer sees the word being constructed before it becomes solid.\n\nIt suits **logo and wordmark reveals, design or engineering brands, and \"from idea to product\" stories**. It needs large display type; outlines on small text vanish.\n\n- Convert the text to paths so each glyph has a stroke you can draw with a dash offset.\n- Draw all letters together or with a 40 to 60 ms stagger, over 600 to 900 ms.\n- Start the fill only after the outline is complete, with a short beat of 100 to 200 ms between them.\n- Keep the stroke the same colour as the fill so the fill looks like it grows from the line, then drop the stroke once filled.\n\nMistakes: a stroke so thin it disappears on a phone, drawing glyphs from random start points (pick a consistent start per letter), and filling before the outline closes, which makes it look like a loading error.",
+      "goodFor": ["logo reveals", "wordmarks", "design brands"],
+      "examples": [],
+      "related": [
+        "staggered-letter-reveal",
+        "scale-punch-headline",
+        "variable-font-weight-animation"
+      ]
+    },
+    {
+      "slug": "match-cut",
+      "name": "Match cut",
+      "family": "transitions",
+      "aka": ["graphic match", "shape match cut", "match on action"],
+      "summary": "A hard cut between two shots that share a shape, color or position, so the eye carries straight across and the change feels intended.",
+      "body": "A match cut is a plain cut with one thing held constant across it: a circle becomes a button, a horizon becomes a divider line, a word in the same spot becomes another word. The viewer's eye is already parked on that shape, so the new shot arrives without a search.\n\nIt works best when the two shots are different things that rhyme, and when the cut lands on a beat or mid-action. It costs zero screen time, which makes it the strongest option when a film is short on seconds.\n\nCommon mistakes:\n\n- **Alignment drift.** A few pixels of offset in position or size reads as a mistake. Compare the frame before and after the cut side by side.\n- Matching shapes that are too small to register. The shared element should be the dominant shape in both frames.\n- Cutting between two still frames. Keep something moving through the cut so it reads as one gesture.\n- Using it every scene. Three or four good matches per film are enough.",
+      "goodFor": ["launch films", "short ads", "beat-synced edits"],
+      "examples": ["higgsfield_ai-edddb9", "raphaelaubryy-b20885"],
+      "related": ["morph-transition", "whip-pan-transition", "j-cut-and-l-cut"]
+    },
+    {
+      "slug": "whip-pan-transition",
+      "name": "Whip pan transition",
+      "family": "transitions",
+      "aka": ["whip transition", "swish pan", "smear transition", "whip tilt"],
+      "summary": "The outgoing shot snaps sideways into a directional blur and the next shot decelerates in from the same direction, hiding the cut in the smear.",
+      "body": "A whip pan fakes a camera flicking so fast that the picture smears. The cut sits inside the blurriest frames, so the viewer never sees it. It reads as energy and momentum, a jump to the next idea without a pause.\n\nUse it between sections that belong to the same world, on a beat, ideally with a short whoosh whose peak lands on the cut frame. A vertical version (whip tilt) works well for scrolling into a new page or panel.\n\nCommon mistakes:\n\n- **Mismatched direction.** If the outgoing shot leaves to the left, the incoming one must arrive moving left too, or the motion reverses and jolts.\n- Blur on every frame. Apply directional blur only during the fastest part of the move; the start and the settle should be sharp.\n- Symmetric timing. The exit should accelerate hard and the entry should spend longer decelerating.\n- Whipping every two seconds. It loses its punch fast; save it for jumps in energy.",
+      "goodFor": ["high-energy edits", "hype teasers", "music-driven cuts"],
+      "examples": [
+        "notdwd-7de38a",
+        "twoclipping-6dd14e",
+        "higgsfield_ai-1cd3b7"
+      ],
+      "related": ["push-transition", "match-cut", "zoom-through-transition"]
+    },
+    {
+      "slug": "wipe-transition",
+      "name": "Wipe transition",
+      "family": "transitions",
+      "aka": ["mask wipe", "linear wipe", "edge wipe", "scan line wipe"],
+      "summary": "A moving edge sweeps across the frame, revealing the next shot behind it, often with a thin accent-colored line leading the reveal.",
+      "body": "A wipe replaces one shot with another along a moving edge: a straight line, a diagonal, a clock hand, or a brand shape. It openly says \"new section\" without the softness of a fade, which suits chapter breaks, list items and before/after comparisons.\n\nIt looks designed rather than default when the edge has character. A thin accent-colored bar or line that runs a few frames ahead of the reveal edge gives the eye something to follow and hides any aliasing on the mask.\n\nCommon mistakes:\n\n- **Linear speed.** A constant-speed wipe looks like a 1990s slideshow. Use an in-out curve unless you want a deliberately mechanical look.\n- Wiping against the film's direction of travel. If time moves left to right, keep wipes moving the same way every time.\n- Soft, feathered edges at large sizes. They read as a smudge; keep the edge crisp or use a clear leading line.\n- Mixing three wipe shapes in one film.",
+      "goodFor": ["chapter breaks", "explainers", "before/after reveals"],
+      "examples": ["techhalla-94fbea", "heyiamnick-b6aae7"],
+      "related": [
+        "iris-transition",
+        "color-flood-transition",
+        "push-transition"
+      ]
+    },
+    {
+      "slug": "iris-transition",
+      "name": "Iris transition",
+      "family": "transitions",
+      "aka": [
+        "iris wipe",
+        "iris in",
+        "iris out",
+        "aperture transition",
+        "circle wipe"
+      ],
+      "summary": "A circle or aperture closes down on a point of the frame and opens again onto the next shot, centred on the same spot.",
+      "body": "An iris shrinks the visible picture to a point, then opens it onto something new. Because the closing point is chosen, it doubles as a pointer: the last thing you see is the button, face or product you want remembered, and the next shot opens from the same place.\n\nA plain circle reads playful and cartoon-like. A bladed camera aperture reads mechanical and premium, and suits photo, camera and hardware products. Both work well on a strong beat, closing just before it and snapping open on it.\n\nCommon mistakes:\n\n- **Closing on nothing.** Center the iris on the subject, not on the frame center by default.\n- Leaving it fully closed too long. Two to four frames of black is plenty; more feels like a stall.\n- Opening too small. The final radius must reach past the farthest frame corner, or corners stay masked for a frame.\n- Using a soft feathered circle, which looks like a vignette rather than a transition.",
+      "goodFor": [
+        "playful edits",
+        "camera and photo products",
+        "focus on a detail"
+      ],
+      "examples": ["twoclipping-221cab", "thejohnnyhuy-5fe10f"],
+      "related": [
+        "wipe-transition",
+        "color-flood-transition",
+        "zoom-through-transition"
+      ]
+    },
+    {
+      "slug": "morph-transition",
+      "name": "Morph transition",
+      "family": "transitions",
+      "aka": [
+        "magic move",
+        "shared element transition",
+        "morph cut",
+        "smart animate"
+      ],
+      "summary": "One element persists across two scenes and glides from its old size, position and color into its new one while the rest of the scene changes around it.",
+      "body": "A morph transition carries one shared element from scene A into scene B: a card becomes a page, a pill becomes a toolbar, a word becomes a logo. Nothing is replaced; the viewer watches one thing change, so continuity is built into the edit.\n\nIt is the backbone of continuous-take product films and app demos, where every scene should grow out of the previous one. Interpolate position, size, corner radius and color together on one curve, and let the destination scene's supporting elements arrive after the traveller is most of the way there.\n\nCommon mistakes:\n\n- **Guessed coordinates.** Measure the element's box in both scenes; an off landing creates a visible pop on the last frame.\n- Animating font size, which shimmers. Scale the element and swap to the real text on the landing frame.\n- Morphing two things that have no relationship. Use a match cut or push instead.\n- Everything arriving at once with the traveller.",
+      "goodFor": ["product demos", "app launch films", "continuous takes"],
+      "examples": [
+        "twoclipping-809e2a",
+        "twoclipping-4ea78e",
+        "daniel-haida-8691d4"
+      ],
+      "related": [
+        "color-flood-transition",
+        "match-cut",
+        "zoom-through-transition"
+      ]
+    },
+    {
+      "slug": "color-flood-transition",
+      "name": "Color flood transition",
+      "family": "transitions",
+      "aka": [
+        "flood fill transition",
+        "shape expand transition",
+        "circle grow transition",
+        "shape mask transition"
+      ],
+      "summary": "A shape grows out of an element in the frame until its color covers the screen, then becomes the next scene's background or shrinks into its next element.",
+      "body": "A color flood turns a small element, usually a button, dot or card, into the whole frame. It reads as \"this thing opens up into the next idea\", which is why it pairs naturally with a click or a beat drop. The flood can hold as the next scene's background, or contract into a different element and hand the story on.\n\nUse the element's own shape (circle, pill, rounded rectangle) so the growth feels like the object expanding, not a generic wipe. A copy of the button's label can ride on top of the flood and land as the next title.\n\nCommon mistakes:\n\n- **Stopping at the frame edge.** The shape must grow past the farthest corner, or corners stay uncovered for a frame.\n- Too slow. Much past a third of a second reads as a fade rather than a burst.\n- Stacking bugs: an outgoing layer floating above the flood. Set layer order explicitly.\n- Full-frame accent floods every scene, which overloads the palette.",
+      "goodFor": ["click-to-reveal", "beat drops", "continuous takes"],
+      "examples": [
+        "twoclipping-15d018",
+        "_elenajoseph_-6b96f6",
+        "ultimaxbt-2ddf1e"
+      ],
+      "related": ["morph-transition", "iris-transition", "wipe-transition"]
+    },
+    {
+      "slug": "zoom-through-transition",
+      "name": "Zoom-through transition",
+      "family": "transitions",
+      "aka": [
+        "zoom transition",
+        "push-through",
+        "zoom into detail transition",
+        "infinite zoom cut"
+      ],
+      "summary": "The camera pushes into a detail with accelerating scale until it fills the frame, then the next scene settles in from inside it.",
+      "body": "A zoom-through dives into one detail of the current shot (a tile, a pixel, a word, a dot) until the detail becomes the whole screen, and the next scene starts from there. It says \"look closer\" and reads like going one level deeper into a product or story.\n\nThe key is an exponential scale ramp: scale doubling at a steady rate feels like constant speed, while a linear scale ramp feels like it stalls and then lurches. Hand off at the moment the detail fills the frame, with the incoming scene starting slightly oversized and easing down to rest.\n\nCommon mistakes:\n\n- **Linear scale interpolation.** Interpolate in log space.\n- Zooming into tiny or blank points, which produces a few frames of meaningless blur.\n- Zooming in and immediately back out. Pick a direction and keep it.\n- Rasterized content. Scaling bitmap UI 20x shows pixels; render vector or high-res sources at the deep end.",
+      "goodFor": [
+        "app walkthroughs",
+        "hierarchical stories",
+        "drilling into detail"
+      ],
+      "examples": ["beamnxw-375dbf", "_elenajoseph_-6b96f6"],
+      "related": ["morph-transition", "whip-pan-transition", "iris-transition"]
+    },
+    {
+      "slug": "push-transition",
+      "name": "Push transition",
+      "family": "transitions",
+      "aka": [
+        "slide transition",
+        "push slide",
+        "carousel transition",
+        "page push"
+      ],
+      "summary": "The outgoing shot slides off one edge while the incoming shot slides on behind it, both moving together like pages on a strip.",
+      "body": "In a push, both shots move as one strip: the old one leaves as the new one arrives, with no gap. It reads as \"next, in the same space\", like swiping pages or moving along a timeline, so it suits sequences such as feature lists, stats and onboarding steps.\n\nA small scale-down on the outgoing shot adds depth, and a little directional blur during the fastest middle of the move adds speed without smearing the readable frames.\n\nCommon mistakes:\n\n- **Inconsistent direction.** Pick one direction of travel for the whole film; new content usually enters from the right.\n- Ease-out only. A push needs an in-out curve, or the start jerks.\n- Eating the read time. The text on both sides needs its own hold outside the transition duration.\n- Generic slide-left on every scene. If every cut is a push, it becomes wallpaper. Mix with hard cuts.",
+      "goodFor": ["feature sequences", "stat runs", "UI onboarding"],
+      "examples": ["twoclipping-6dd14e", "twoclipping-221cab"],
+      "related": ["whip-pan-transition", "wipe-transition", "cross-dissolve"]
+    },
+    {
+      "slug": "cross-dissolve",
+      "name": "Cross-dissolve",
+      "family": "transitions",
+      "aka": [
+        "crossfade",
+        "dissolve",
+        "blur dissolve",
+        "fade transition",
+        "dip to black"
+      ],
+      "summary": "Two shots overlap in opacity so one fades through the other, signaling passing time or a change of mood rather than a jump.",
+      "body": "A cross-dissolve blends the outgoing and incoming shots over a short overlap. It is the softest transition and means \"time passes\" or \"the feeling shifts\". It is also the most overused, which is why many motion directors ban it from product films entirely.\n\nIt works when the two shots are calm, related in tone, and the film wants a breath. A blur-dissolve, where both shots pick up a few pixels of blur at the midpoint, hides the double-exposure look. A dip to the background color is a cleaner cousin for chapter breaks.\n\nCommon mistakes:\n\n- **The muddy midpoint.** Two busy frames at 50% each look like a mistake. Dissolve between simple compositions.\n- Linear opacity on dark-to-light changes, which brightens unevenly. Ease the curve.\n- Using it to avoid planning a real transition. If an element could carry over, morph it instead.\n- Adding scale, blur and flash on top. Pick one.",
+      "goodFor": ["mood shifts", "time passing", "calm endings"],
+      "examples": ["notdwd-7de38a", "twoclipping-4ea78e"],
+      "related": ["push-transition", "light-leak-transition", "j-cut-and-l-cut"]
+    },
+    {
+      "slug": "glitch-cut",
+      "name": "Glitch cut",
+      "family": "transitions",
+      "aka": [
+        "glitch transition",
+        "datamosh cut",
+        "RGB split cut",
+        "digital distortion transition"
+      ],
+      "summary": "One or two frames of digital breakup, like channel split, slice offsets or pixel smear, sit exactly on a cut so the change feels like signal interference.",
+      "body": "A glitch cut puts a very short burst of digital damage on the cut point: red and blue channels split apart, horizontal slices offset, blocks smear. It reads as interference, tech, or a hard jump in tone. The effect belongs to the cut, not to the shot, so it should be gone almost before the viewer can name it.\n\nIt suits tech launches, music videos and edgy brand bumpers, especially paired with a click or a crunchy sound hit on the same frame.\n\nCommon mistakes:\n\n- **Too long.** Past three or four frames it becomes an effect layer instead of a cut.\n- Random glitches with no cut behind them. Tie every glitch to a real edit point.\n- Breaking readable text. Readable lines should get clean frames before and after the glitch.\n- Using a random seed per render. Seed the slice offsets so the result is identical every render.\n- Flashing too often; check frequency against photosensitivity limits.",
+      "goodFor": ["tech launches", "music videos", "brand bumpers"],
+      "examples": ["notdwd-2805b9", "kloss_xyz-a09bae", "techhalla-94fbea"],
+      "related": ["whip-pan-transition", "light-leak-transition", "match-cut"]
+    },
+    {
+      "slug": "light-leak-transition",
+      "name": "Light leak transition",
+      "family": "transitions",
+      "aka": [
+        "light leak",
+        "film burn transition",
+        "lens flare transition",
+        "flash transition"
+      ],
+      "summary": "A warm wash of overexposed color blooms across the frame, peaks over the cut point, and fades to reveal the next shot, like light hitting film.",
+      "body": "A light leak borrows from film cameras where stray light fogged the frame. A soft gradient of warm color (orange, red, pale yellow) drifts in from an edge, brightens to cover the cut, and fades away. It reads nostalgic, warm and organic, a gentle way to bridge two shots without a hard edge.\n\nIt fits travel, lifestyle, music and analog-themed pieces, and works best over footage or photos rather than flat UI.\n\nCommon mistakes:\n\n- **Pure white flash.** A full-frame jump to white is a flash, not a leak. Keep the peak tinted and below full brightness, and blend with screen or add.\n- Static gradients. A leak should drift and change shape a little while it passes.\n- Using it on crisp product UI, where it looks like a filter slapped on top.\n- Every cut getting one. One or two per film keeps them special.",
+      "goodFor": ["lifestyle edits", "music videos", "analog looks"],
+      "examples": [],
+      "related": ["cross-dissolve", "glitch-cut", "wipe-transition"]
+    },
+    {
+      "slug": "j-cut-and-l-cut",
+      "name": "J-cut and L-cut",
+      "family": "transitions",
+      "aka": ["J cut", "L cut", "split edit", "audio-led cut", "sound bridge"],
+      "summary": "The sound of the next scene starts before its picture (J-cut), or the current scene's sound continues after the picture changes (L-cut).",
+      "body": "A split edit offsets the audio cut from the picture cut. In a **J-cut**, you hear the next scene first: a voice, a click, the first note of the drop, and the picture follows. In an **L-cut**, the current sound carries over into the next picture. Either way the ear bridges the cut, so the visual change feels motivated instead of abrupt.\n\nIn code-made videos this matters most for voiceover and sound design: start the next line of narration or the incoming whoosh a few frames before the scene changes, and the edit stops feeling like slides.\n\nCommon mistakes:\n\n- **Offsets that are too long.** A second of mismatched sound feels like a sync error. A few to a dozen frames is usually enough.\n- Splitting every cut. Keep some hard, synchronous cuts for impact.\n- Letting the carried-over sound clash with the new scene's music. Duck it.\n- Splitting visual-sound hits that must land together, like a click on a button.",
+      "goodFor": ["voiceover explainers", "story-driven ads", "podcast clips"],
+      "examples": [],
+      "related": ["match-cut", "cross-dissolve"]
+    },
+    {
+      "slug": "cursor-led-demo",
+      "name": "Cursor-led product demo",
+      "family": "ui",
+      "aka": [
+        "animated cursor demo",
+        "fake cursor walkthrough",
+        "product walkthrough animation",
+        "click-through demo video"
+      ],
+      "summary": "A synthetic cursor glides across a recreated interface, pauses, clicks and drives each state change so the viewer follows one point of attention.",
+      "body": "A cursor-led demo uses a drawn pointer as the narrator. Every change on screen happens because the cursor went somewhere and did something, so the viewer never has to search the frame for what moved.\n\nIt reads well when the cursor travels on gentle curves, slows down before it arrives, rests for a few frames, then clicks. That small pause tells the eye \"this is the target\" before anything reacts.\n\nIt works for:\n\n- SaaS launch videos and feature announcements\n- Onboarding clips that show one flow end to end\n- Social cuts where the UI has to be readable at phone size\n\nCommon mistakes:\n\n- Moving in straight lines at constant speed, which looks like a robot replay of a screen recording\n- Clicking the instant the cursor lands, so the click and the arrival blur together\n- Letting the UI respond before the press finishes\n- Wandering paths with no purpose between targets\n\nKeep the cursor slightly larger than real size, and give it a soft shadow so it sits above the interface instead of inside it.",
+      "goodFor": ["SaaS launch", "feature demo", "onboarding"],
+      "examples": ["notdwd-7de38a", "screeendev-3e043d", "rossaxbt-94583b"],
+      "related": ["click-ripple", "auto-zoom-on-click", "modal-spring-in"]
+    },
+    {
+      "slug": "click-ripple",
+      "name": "Click ripple",
+      "family": "ui",
+      "aka": [
+        "tap ripple",
+        "click feedback animation",
+        "material ripple",
+        "button press animation"
+      ],
+      "summary": "On click, the button dips slightly and a soft ring expands from the exact press point and fades, confirming the interaction.",
+      "body": "A click ripple is the visual receipt for an action. The button compresses for a moment, and a ring or filled circle grows outward from where the pointer touched, fading as it spreads.\n\nIn a video there is no real finger or mouse, so the ripple is what makes a click feel physical. Without it, a state change after a cursor arrives can look accidental.\n\nIt works best when:\n\n- The ripple starts at the click point, not the button center\n- The press and the ripple begin on the same frame\n- The result of the click starts as the ripple is still fading, so cause and effect overlap\n\nCommon mistakes:\n\n- Ripples that are too opaque or too large and cover the label\n- Using a linear expansion, which looks mechanical; the ring should burst out fast and decelerate\n- Adding ripples to every click in a long demo, which turns into noise\n\nA ripple can also grow into the next scene: let it keep expanding until its color fills the frame and becomes the background of what comes next.",
+      "goodFor": ["button clicks", "tap feedback", "scene handoff"],
+      "examples": ["ultimaxbt-2ddf1e", "flxrnc-c083a6"],
+      "related": ["cursor-led-demo", "ui-state-morph"]
+    },
+    {
+      "slug": "auto-zoom-on-click",
+      "name": "Auto zoom on click",
+      "family": "ui",
+      "aka": [
+        "screen recording zoom",
+        "Screen Studio style zoom",
+        "zoom to cursor",
+        "smart zoom demo"
+      ],
+      "summary": "The whole interface scales up toward the area being used, follows the cursor while it works, then eases back out to show context.",
+      "body": "Auto zoom fixes the biggest problem of product footage: a full desktop UI is unreadable on a phone. Instead of showing everything at once, the frame pushes in on the region where the action happens, holds there while the cursor works, and pulls back out once the result needs context.\n\nThe zoom should feel like an attentive camera operator. It starts slightly before the cursor reaches its target, settles, and drifts a little with the cursor rather than staying frozen.\n\nIt works for:\n\n- Recreated app screens and real screen recordings\n- Form filling, typing in a prompt box, toggling settings\n- Vertical cuts of desktop products\n\nCommon mistakes:\n\n- Zooming on every single click, which causes motion sickness\n- Zoom levels above about 2.5x, where text and borders go soft\n- Snapping the zoom center to the cursor each frame, which makes the screen jitter\n- Zooming out and back in within one second\n\nGroup nearby actions under one zoom and only return to the wide view when the location really changes.",
+      "goodFor": ["screen recordings", "vertical product clips", "tutorials"],
+      "examples": ["screeendev-3e043d"],
+      "related": ["cursor-led-demo", "scroll-through-screen"]
+    },
+    {
+      "slug": "card-stack",
+      "name": "Card stack",
+      "family": "ui",
+      "aka": [
+        "stacked cards animation",
+        "card deck animation",
+        "stacking cards",
+        "card pile reveal"
+      ],
+      "summary": "Cards arrive one after another and settle on top of each other with a small offset, shrink and dim, building a layered pile with depth.",
+      "body": "A card stack shows several items as a pile instead of a row. Each new card slides or rises in and lands on top, while the cards beneath step back: a little smaller, a little higher, a little darker. The result reads as depth without any 3D camera.\n\nIt is a good fit for:\n\n- Feature lists where each card is one benefit\n- Testimonials, notifications or messages piling up\n- Showing a queue or history of items\n\nThe stack only reads if the offsets are consistent. Every card underneath should move by the same step, so the pile looks ordered rather than scattered.\n\nCommon mistakes:\n\n- Leaving lower cards at full brightness, so they compete with the top card\n- Offsets so small the stack looks like one thick card\n- Stacking more than four visible layers; past that, hide the bottom ones\n- All cards animating at once, which removes the counting rhythm\n\nTo exit, you can fan the stack apart, swipe the top card away to reveal the next, or collapse the whole pile into a single badge.",
+      "goodFor": ["feature lists", "testimonials", "message piles"],
+      "examples": ["notdwd-7de38a", "notdwd-c2037d"],
+      "related": ["toast-notification", "modal-spring-in"]
+    },
+    {
+      "slug": "modal-spring-in",
+      "name": "Modal spring-in",
+      "family": "ui",
+      "aka": [
+        "dialog pop-up animation",
+        "modal open animation",
+        "popover scale in",
+        "sheet slide up"
+      ],
+      "summary": "A dialog scales up from slightly smaller with a light spring overshoot while the background dims and blurs behind it.",
+      "body": "Modal spring-in is how a dialog, popover or bottom sheet enters with weight. The panel starts a little smaller and transparent, grows to full size with a small overshoot, and the page behind it dims so attention moves to the front.\n\nIt reads as responsive when the modal grows from the thing that triggered it, such as the button that was clicked, rather than from the screen center.\n\nUse it for:\n\n- Confirmation dialogs, checkout sheets, command palettes\n- Showing a detail view without cutting away from the app\n- Mobile bottom sheets, using a vertical slide instead of a scale\n\nCommon mistakes:\n\n- Starting from scale 0, which looks like a cartoon pop rather than software\n- Too much bounce; real interfaces overshoot by a few percent at most\n- Dimming the background after the modal lands instead of during\n- Content inside the modal appearing at the same instant as the frame\n\nLet the modal's content follow slightly behind the container. Title first, then body, then buttons, so the eye reads it top to bottom.",
+      "goodFor": ["dialogs", "bottom sheets", "command palettes"],
+      "examples": [],
+      "related": ["card-stack", "toast-notification", "click-ripple"]
+    },
+    {
+      "slug": "skeleton-to-content",
+      "name": "Skeleton to content",
+      "family": "ui",
+      "aka": [
+        "skeleton loader animation",
+        "shimmer loading",
+        "loading placeholder reveal",
+        "skeleton screen"
+      ],
+      "summary": "Grey placeholder blocks shimmer in the shape of a layout, then real text and images fade in over them block by block.",
+      "body": "Skeleton to content shows a screen loading. The layout appears first as rounded grey bars and boxes, a soft highlight sweeps across them, and then real content replaces each block in reading order.\n\nIn a video this move is a way to say \"it's working\" or \"it's generating\" without a spinner. It also makes the arrival of the real content feel like a payoff.\n\nIt works for:\n\n- AI tools generating a result\n- Dashboards that fill with data\n- Feeds or search results populating\n\nThe placeholders must match the final layout. If a grey bar sits where a heading lands, the swap looks intentional; if the shapes do not line up, it looks like a glitch.\n\nCommon mistakes:\n\n- Holding the shimmer too long; one or two sweeps are enough in a video\n- Replacing everything at once instead of top to bottom\n- A shimmer so bright it flickers on compressed social video\n- Hard cuts from grey to content with no crossfade\n\nKeep the shimmer subtle and angled slightly, and stagger the reveal so the screen fills like it is arriving from a server.",
+      "goodFor": ["AI generation", "dashboards", "loading states"],
+      "examples": [],
+      "related": ["ui-number-ticker", "card-stack"]
+    },
+    {
+      "slug": "toast-notification",
+      "name": "Toast notification",
+      "family": "ui",
+      "aka": [
+        "notification pop-in",
+        "toast animation",
+        "push notification animation",
+        "snackbar animation"
+      ],
+      "summary": "A small notification slides in from a screen edge with a quick spring, holds long enough to read, then slides or shrinks away.",
+      "body": "A toast is a short message that confirms an action or announces something new. It enters from an edge, settles with a tiny overshoot, stays still while it is read, and leaves faster than it arrived.\n\nIn product videos, toasts are useful as punctuation. After a sequence of clicks, a toast saying \"Exported\" or \"3 new leads\" closes the beat and states the result in words.\n\nIt works for:\n\n- Confirming the outcome of a demo flow\n- Simulated incoming messages or alerts\n- Several notifications stacking, with older ones pushed down\n\nCommon mistakes:\n\n- Not leaving enough reading time; count roughly 250 ms per word plus a beat\n- Entering with a long fade instead of motion, which feels sluggish\n- Toasts that cover the very UI element they describe\n- Exits slower than entrances\n\nWhen several arrive, push older toasts down and shrink them slightly so the newest one is always the clearest. Matching the app's real toast style, position and corner radius makes the demo feel authentic.",
+      "goodFor": ["confirmations", "alerts", "message beats"],
+      "examples": ["twoclipping-809e2a", "flxrnc-c083a6", "demonugc-4c5753"],
+      "related": ["card-stack", "modal-spring-in"]
+    },
+    {
+      "slug": "tab-indicator-slide",
+      "name": "Tab indicator slide",
+      "family": "ui",
+      "aka": [
+        "tab underline animation",
+        "sliding tab indicator",
+        "liquid tab indicator",
+        "segmented control animation"
+      ],
+      "summary": "The active tab underline or pill glides to the newly selected tab, stretching as it travels, then snaps to the new width.",
+      "body": "When a tab is selected, the indicator does not jump. It travels from the old tab to the new one, and on the way its leading edge moves ahead of its trailing edge, so it stretches like a drop of liquid and contracts as it lands.\n\nThe stretch is what makes the move feel alive. It comes from animating the left and right edges separately, with the edge in the direction of travel moving first.\n\nUse it for:\n\n- Tabs, segmented controls, nav bars\n- Filters and category pickers in app demos\n- Any time you switch between views in the same screen\n\nCommon mistakes:\n\n- Moving the indicator as a rigid box, which looks stiff\n- Changing the label colors before the indicator arrives\n- Overshooting so much that the pill passes the next tab\n- Different durations for short and long jumps that make the motion feel inconsistent\n\nThe content below the tabs should switch as the indicator lands, ideally sliding in from the same direction the indicator moved.",
+      "goodFor": ["tabs", "segmented controls", "navigation"],
+      "examples": ["annacher___-6f2fc1", "verbove-593f1c", "demonugc-4c5753"],
+      "related": ["ui-state-morph", "cursor-led-demo"]
+    },
+    {
+      "slug": "ui-number-ticker",
+      "name": "UI number ticker",
+      "family": "ui",
+      "aka": [
+        "animated counter in app",
+        "rolling digits",
+        "odometer number animation",
+        "stat count up UI"
+      ],
+      "summary": "A number inside the interface counts or rolls to its new value, digit columns spinning like an odometer, then settles.",
+      "body": "A UI number ticker animates a value that lives inside an app screen: a balance, a follower count, a frame counter, a revenue figure. Instead of swapping, the number rolls to its new value so the change is felt.\n\nThere are two common styles:\n\n- **Count up**: the value interpolates from start to end with an ease-out, so it races at first and slows near the target\n- **Digit roll**: each digit is its own vertical strip that slides to the new digit, like an odometer\n\nIt works best when the number is the outcome of something the viewer just watched, such as a click, a send, or data loading.\n\nCommon mistakes:\n\n- Proportional fonts, which make the number wobble in width as it changes; use tabular figures\n- Linear counting, which hides the landing\n- Counting for too long; around one second is usually enough\n- Ending on an ugly value, then jumping\n\nAdd a small scale bump or color flash on the final digit so the viewer knows the count is finished.",
+      "goodFor": ["stats", "dashboards", "result reveal"],
+      "examples": ["flxrnc-c083a6", "twoclipping-809e2a"],
+      "related": ["skeleton-to-content", "toast-notification"]
+    },
+    {
+      "slug": "scroll-through-screen",
+      "name": "Scroll-through screen",
+      "family": "ui",
+      "aka": [
+        "website scroll animation",
+        "landing page scroll video",
+        "app screen scroll",
+        "page scroll mockup"
+      ],
+      "summary": "A long page or app screen scrolls past inside a frame with eased momentum, stopping on key sections before moving on.",
+      "body": "A scroll-through shows more of a page than fits on screen by moving it upward inside a frame, the way a person would scroll. Good scroll motion has momentum: it accelerates, glides, and settles, often with a tiny overshoot back.\n\nThe point is not to show every pixel. It is to stop on the sections that matter and move quickly between them.\n\nIt works for:\n\n- Landing page and website showcases\n- Long app screens like feeds, docs, settings\n- Portfolio reels showing several pages\n\nCommon mistakes:\n\n- Constant-speed scrolling, which looks like a screen capture of an autoscroll\n- Scrolling so fast the text smears and becomes unreadable\n- No pauses, so nothing lands\n- Scrolling while the frame itself is also moving, which doubles the motion\n\nTreat each scroll as a short move from one stop to the next. A light motion blur on fast segments helps hide stutter, and sections can animate into place as they enter, the way scroll-triggered sites do.",
+      "goodFor": ["landing pages", "website showcase", "long screens"],
+      "examples": ["notdwd-7de38a", "notdwd-c2037d"],
+      "related": ["device-frame-reveal", "auto-zoom-on-click"]
+    },
+    {
+      "slug": "device-frame-reveal",
+      "name": "Device frame reveal",
+      "family": "ui",
+      "aka": [
+        "phone mockup reveal",
+        "pull back to phone",
+        "laptop mockup animation",
+        "bezel reveal"
+      ],
+      "summary": "The shot starts full-screen on the UI, then pulls back as a phone or laptop bezel grows around it, placing the app in a device.",
+      "body": "A device frame reveal begins inside the screen. The viewer sees the interface edge to edge, then the frame scales down and a bezel grows outward from the screen edge until a full phone or laptop is visible.\n\nIt answers \"where does this run?\" after the viewer has already seen the UI up close. Running it in reverse, pushing into the screen until the bezel leaves the frame, is a clean way to go from a product shot into the app.\n\nUse it for:\n\n- Mobile app launches\n- Switching from detail to context midway through a demo\n- Showing the same product on phone and desktop\n\nCommon mistakes:\n\n- Letting the screen content shrink as a flat image while the bezel appears separately; they should be one object\n- Bezel shapes that do not match a real device's corner radius\n- Revealing the device and then moving straight on, with no hold\n- Heavy reflections that fight the UI for attention\n\nAdd a soft floor shadow as the device appears so it sits in a space rather than floating on a flat color.",
+      "goodFor": ["mobile apps", "product context", "launch films"],
+      "examples": ["twoclipping-221cab", "beamnxw-375dbf", "ultimaxbt-2ddf1e"],
+      "related": ["scroll-through-screen", "ui-state-morph"]
+    },
+    {
+      "slug": "ui-state-morph",
+      "name": "UI state morph",
+      "family": "ui",
+      "aka": [
+        "morphing UI loop",
+        "one shape becomes every component",
+        "dynamic island morph",
+        "button to loader morph"
+      ],
+      "summary": "One shape flows through a chain of interface states, button to loader to check to slider to toast, without ever cutting.",
+      "body": "A UI state morph takes a single element and keeps transforming it into the next component. A button squeezes into a loading dot, the dot draws a check, the check stretches into a slider, the slider becomes a toggle. Nothing appears from nowhere; every state is grown from the previous one.\n\nThis move works because it is easy to follow. The eye locks onto one object and stays with it for the whole video.\n\nIt works for:\n\n- Short beat-synced brand loops\n- Showing the breadth of a design system or component library\n- Product teasers where the story is a sequence of actions\n\nCommon mistakes:\n\n- Crossfading between states instead of reshaping, which breaks the illusion of one object\n- Changing too many properties at once; width, height and radius should lead, color and labels follow\n- Uneven pacing, so some states feel rushed and others drag\n- A loop whose last frame does not match the first\n\nSet each change on a musical beat and let width and corner radius ride springs, so the shape stretches and settles like something soft.",
+      "goodFor": ["brand loops", "design systems", "beat-synced teasers"],
+      "examples": ["demonugc-4c5753", "flxrnc-c083a6", "verbove-593f1c"],
+      "related": ["tab-indicator-slide", "click-ripple", "device-frame-reveal"]
+    },
+    {
+      "slug": "path-draw-on",
+      "name": "Path draw-on",
+      "family": "vector",
+      "aka": [
+        "stroke draw-on",
+        "line draw animation",
+        "stroke-dashoffset animation",
+        "self-drawing line",
+        "write-on stroke"
+      ],
+      "summary": "A vector stroke draws itself along its path from start to end, as if an invisible pen were tracing the shape in real time.",
+      "body": "A path draw-on reveals a stroke progressively along its own length. In code this is usually a dash pattern the size of the path, with the dash offset animated from full length to zero, or a trimmed path whose end value goes from 0 to 1.\n\nIt reads as intent: someone is drawing this right now. That makes it a strong opener for logos, diagrams, signatures, maps and one-line illustrations where the line carries the story from object to object.\n\nWhere it works best:\n\n- Line icons and logos before a fill fades in\n- Single continuous-line illustrations\n- Connectors and arrows in explainers\n\nCommon mistakes:\n\n- **Linear speed.** A constant rate looks like a progress bar. Ease the drawn length, and slow down on corners or small details.\n- **Ignoring path direction.** If the path was authored right to left, it draws right to left. Reverse it or flip the offset.\n- **Drawing everything at once.** Ten strokes finishing together read as a fade. Stagger them, or order them the way a hand would draw.\n- **Round caps at length zero** leave a dot on screen before the draw starts. Hide the stroke until progress is above zero.",
+      "goodFor": [
+        "logo reveals",
+        "line illustration",
+        "explainers",
+        "signatures"
+      ],
+      "examples": [
+        "paripune-d45f7d",
+        "dan_riverbendai-c2cfe6",
+        "heyiamnick-b6aae7"
+      ],
+      "related": [
+        "trim-path-loop",
+        "shard-assemble-logo",
+        "geometric-pattern-build"
+      ]
+    },
+    {
+      "slug": "shape-morph",
+      "name": "Shape morph",
+      "family": "vector",
+      "aka": [
+        "path morph",
+        "shape tween",
+        "SVG morph",
+        "shape shifting animation",
+        "shape interpolation"
+      ],
+      "summary": "One vector shape smoothly turns into another, its outline flowing from circle to square to whatever comes next without a cut.",
+      "body": "A shape morph interpolates the outline of one shape into another. The viewer never sees a swap, only one object changing its mind, so the eye stays locked on a single element through the whole change.\n\nIt is the backbone of continuous one-take videos: a dot becomes a button, the button becomes a card, the card becomes a chart. It also works for simple geometry sequences (circle, triangle, square, hexagon) on a beat.\n\nTo morph cleanly, both paths need the same number of points in a matching order. Resample both outlines to an equal point count and align their starting points, or use a library that does this for you. For rectangles and pills, animating width, height and corner radius is simpler and cleaner than point interpolation.\n\nCommon mistakes:\n\n- **Mismatched start points**, which make the shape twist or turn inside out midway.\n- **Morphing too far in one step.** A star into a letter is mush. Pass through an intermediate shape.\n- **Even timing.** Give each morph a strong ease-in-out, or a spring with a small overshoot so it settles.\n- **Changing color and shape on different curves**, which splits one gesture into two.",
+      "goodFor": ["one-take videos", "UI state changes", "logo transitions"],
+      "examples": ["twoclipping-5cba86", "cgclick-f4aad3", "heyiamnick-b6aae7"],
+      "related": ["icon-morph", "gooey-split-merge", "vector-mask-reveal"]
+    },
+    {
+      "slug": "vector-mask-reveal",
+      "name": "Vector mask reveal",
+      "family": "vector",
+      "aka": [
+        "shape mask reveal",
+        "clip path reveal",
+        "matte reveal",
+        "track matte reveal",
+        "circle mask reveal"
+      ],
+      "summary": "Content appears through a growing vector shape used as a mask, so the image or scene is revealed in the silhouette of that shape.",
+      "body": "In a vector mask reveal, a shape acts as a window. As the shape grows, rotates or slides, it uncovers whatever sits beneath it: a photo, a UI screen, a color field, the next part of the scene.\n\nThe shape carries meaning. A circle that grows from a button tells the viewer the button caused the reveal. A mask cut from a logo or product outline ties the reveal to the brand. A plain rectangle wipe has the least character, so pick the shape on purpose.\n\nGood uses:\n\n- Revealing a photo inside a logo letterform or icon\n- Growing a circle out of the exact spot a cursor clicked\n- Uncovering a product screen through its own rounded-rect frame\n\nCommon mistakes:\n\n- **Mask grows from the center of the frame** when the cause sits elsewhere. Anchor it to the origin of the action.\n- **Mask stops exactly at the frame edge.** A circle must reach the farthest corner, not the nearest side, or corners stay hidden.\n- **Static content under the mask.** Let the revealed layer scale down slightly (around 108% to 100%) as the mask opens so it feels alive.\n- **Hard, aliased mask edges** at low resolution.",
+      "goodFor": ["photo reveals", "brand intros", "scene openers"],
+      "examples": ["daniel-haida-8691d4"],
+      "related": ["shape-morph", "radial-burst", "path-draw-on"]
+    },
+    {
+      "slug": "gooey-split-merge",
+      "name": "Gooey split and merge",
+      "family": "vector",
+      "aka": [
+        "gooey effect",
+        "liquid merge",
+        "blob split",
+        "metaball UI",
+        "dynamic island morph",
+        "liquid blob"
+      ],
+      "summary": "Shapes pull apart and fuse like drops of liquid, stretching a bridge between them before they snap into separate blobs or one.",
+      "body": "A gooey split and merge makes separate shapes behave like liquid. When two blobs approach, a neck forms and pulls them together. When one blob divides, it stretches, pinches thin and snaps into two. The effect is usually built with a blur followed by a hard alpha threshold, or with a signed distance field and a smooth union.\n\nIt reads as soft, physical and playful. It is ideal when one thing becomes several, or several become one: a pill splitting into three dots, notifications merging into a status bar, a loader dividing into results.\n\nWhere it works:\n\n- Dynamic Island style status pills\n- Typing indicators and loaders\n- Brand marks built from round shapes\n\nCommon mistakes:\n\n- **Threshold too low**, which leaves blurry halos instead of crisp liquid edges.\n- **Applying the goo to text or icons inside the blobs.** Filter only the blob layer and draw content on top.\n- **No squash.** Blobs that move fast should stretch along their direction of travel.\n- **Merging at constant speed.** The bridge should snap: slow approach, quick fuse, small wobble after.",
+      "goodFor": ["UI pills", "loaders", "playful brands"],
+      "examples": ["twoclipping-809e2a", "twoclipping-4ea78e"],
+      "related": ["shape-morph", "icon-morph", "orbiting-shapes"]
+    },
+    {
+      "slug": "trim-path-loop",
+      "name": "Trim path loop",
+      "family": "vector",
+      "aka": [
+        "trim paths",
+        "line trim loop",
+        "chasing stroke",
+        "material spinner",
+        "stroke loader animation"
+      ],
+      "summary": "A stroke segment chases itself around a path: its head and tail move at different speeds, so the line grows, shrinks and loops forever.",
+      "body": "A trim path loop animates both ends of a visible stroke segment instead of drawing the whole path once. The head races ahead while the tail lags, then the tail catches up. Add a slow rotation of the whole path and you get the familiar loading spinner. Run it along a custom path and you get a line that endlessly travels through a logo, a route or a decorative frame.\n\nIt reads as ongoing activity. That makes it right for loaders, waiting states, energy flowing through a circuit, or an ambient loop behind a title.\n\nThe trick is giving start and end their own easing curves with an offset in time. If both ends move on the same curve, the segment just slides at a fixed length and looks mechanical.\n\nCommon mistakes:\n\n- **Seam pops.** On closed paths, the moment the segment wraps past the path's start point can jump. Wrap the values with modulo and test that frame.\n- **Segment gets too short** and vanishes into a dot. Keep a minimum length.\n- **Loop length that doesn't divide the video.** Make the cycle a whole fraction of the clip so the loop is seamless.",
+      "goodFor": ["loaders", "ambient loops", "circuit and flow lines"],
+      "examples": [],
+      "related": ["path-draw-on", "orbiting-shapes", "radial-burst"]
+    },
+    {
+      "slug": "icon-morph",
+      "name": "Icon morph",
+      "family": "vector",
+      "aka": [
+        "animated icon",
+        "play pause morph",
+        "hamburger to close animation",
+        "icon transition",
+        "micro-interaction icon"
+      ],
+      "summary": "A small icon transforms into its next state, like play into pause or menu into close, with its strokes rotating and reshaping in place.",
+      "body": "An icon morph changes one glyph into another without a fade. The three bars of a menu rotate into an X. A play triangle splits into two pause bars. A plus spins into a check. Because the icon never disappears, the change feels like a response to the user, not a replacement.\n\nIn videos made with code, icon morphs sell product UI: they show that the interface reacts. They are also small, so they belong on a beat or right after a cursor click, not as the main event.\n\nHow to build them cleanly:\n\n- Draw both states from the same parts. The X uses the top and bottom menu bars; the middle bar fades or shrinks.\n- Rotate parts around a shared center, and keep stroke width and caps identical across states.\n- Use 200 to 350 ms for the whole change.\n\nCommon mistakes:\n\n- **Crossfading two icons** and calling it a morph.\n- **Stroke widths that change** between states, which looks like a bug.\n- **Too much overshoot.** A tiny settle is fine; a wobbling icon looks cheap.\n- **Rotating the wrong way.** Turn in the direction that matches the action, like clockwise for forward.",
+      "goodFor": ["product UI", "micro-interactions", "app demos"],
+      "examples": ["twoclipping-5cba86", "demonugc-4c5753", "dzhohola-72ebb4"],
+      "related": ["shape-morph", "gooey-split-merge"]
+    },
+    {
+      "slug": "geometric-pattern-build",
+      "name": "Geometric pattern build",
+      "family": "vector",
+      "aka": [
+        "geometric animation",
+        "sacred geometry animation",
+        "pattern build-up",
+        "construction lines animation",
+        "mandala animation"
+      ],
+      "summary": "A geometric pattern assembles step by step from simple primitives, with lines, circles and polygons appearing in a precise construction order.",
+      "body": "A geometric pattern build shows how a figure is made. It starts with one primitive, such as a circle or a line, then adds copies, rotations and intersections until a full pattern stands on screen. The order is part of the design: construction lines first, then the shapes they define, then fills and color.\n\nIt reads as precise and intelligent. It suits technical brands, math explainers, music visuals and logos built from circles and grids.\n\nWhat makes it work:\n\n- **One rule repeated.** Rotate by a fixed angle, scale by a fixed ratio, offset by a fixed step.\n- **A visible rhythm.** Add one ring or one copy per beat so the build feels musical.\n- **Hierarchy of weight.** Thin, faint guides; bolder final shapes. Remove or dim the guides at the end.\n\nCommon mistakes:\n\n- Adding pieces in random order, which hides the logic that makes the pattern satisfying.\n- Too many elements arriving at once.\n- Leaving all construction lines at full strength, so the final figure never resolves.\n- Floating point drift in rotated copies, which shows up as hairline gaps. Compute every copy from the original, not from the previous copy.",
+      "goodFor": [
+        "title cards",
+        "math explainers",
+        "music visuals",
+        "logo builds"
+      ],
+      "examples": ["heyiamnick-b6aae7"],
+      "related": ["grid-tessellation", "path-draw-on", "radial-burst"]
+    },
+    {
+      "slug": "isometric-build",
+      "name": "Isometric build",
+      "family": "vector",
+      "aka": [
+        "isometric animation",
+        "isometric illustration animation",
+        "2.5D isometric",
+        "isometric blocks assemble",
+        "axonometric build"
+      ],
+      "summary": "Flat isometric blocks, buildings or devices assemble piece by piece, dropping and extruding into place on a 30-degree grid.",
+      "body": "An isometric build animates a scene drawn on an isometric grid, where the three axes sit 120 degrees apart and nothing shrinks with distance. Blocks drop in from above, extrude up from their footprint, or slide along grid axes until a small world is complete: a city, a server stack, a desk, a product diagram.\n\nIt reads as a clear, ordered system. Because there is no perspective, every piece stays the same size wherever it sits, so it is easy to explain architectures, pipelines and processes with it.\n\nHow to keep it convincing:\n\n- Move pieces only along the three isometric axes or straight down.\n- Light it with three fixed face tones (top lightest, one side mid, the other darkest) and keep them consistent.\n- Build bottom-up and back-to-front so draw order never breaks.\n\nCommon mistakes:\n\n- **Wrong depth sorting.** A block in front drawn before the one behind it. Sort by grid position every frame.\n- **Mixing perspective and isometric** elements in one scene.\n- **Everything landing at once.** Stagger by 40 to 80 ms and give each landing a small squash.\n- **Off-grid positions** that make edges wobble by a pixel.",
+      "goodFor": ["architecture diagrams", "explainers", "tech brands"],
+      "examples": [],
+      "related": [
+        "grid-tessellation",
+        "shard-assemble-logo",
+        "geometric-pattern-build"
+      ]
+    },
+    {
+      "slug": "radial-burst",
+      "name": "Radial burst",
+      "family": "vector",
+      "aka": [
+        "starburst animation",
+        "burst lines",
+        "ray burst",
+        "sunburst animation",
+        "impact lines"
+      ],
+      "summary": "Short lines or shapes shoot outward from a single point in a ring, flaring and fading in a fraction of a second to mark an impact.",
+      "body": "A radial burst is a ring of strokes, dots or small shapes that fire outward from one point. Each element travels a short distance, shrinks or trims away, and is gone within a few hundred milliseconds. It is the vector cousin of a spark: a punctuation mark for a moment.\n\nIt reads as emphasis. Use it when something lands: a like button, a counter hitting its target, a logo snapping into place. A slower version, with long rays rotating out from a center, works as a logo flourish or a sunburst background.\n\nHow to make it feel good:\n\n- Trim the lines from the inside out, so each ray detaches from the center and flies away.\n- Use a fast ease-out. Most of the travel happens in the first third.\n- Vary length or angle slightly so it doesn't look stamped.\n\nCommon mistakes:\n\n- **Too slow.** Above about 500 ms the burst stops being an accent and becomes a distraction.\n- **Too many bursts.** Once per scene is plenty; on every beat it becomes wallpaper.\n- **Firing from the wrong point.** The burst must come from the exact impact spot.\n- Bursts that linger after their moment.",
+      "goodFor": ["impact accents", "button feedback", "logo flourishes"],
+      "examples": ["twoclipping-4ea78e"],
+      "related": [
+        "trim-path-loop",
+        "orbiting-shapes",
+        "geometric-pattern-build"
+      ]
+    },
+    {
+      "slug": "orbiting-shapes",
+      "name": "Orbiting shapes",
+      "family": "vector",
+      "aka": [
+        "orbit animation",
+        "orbiting icons",
+        "planet orbit loop",
+        "circular motion loop",
+        "satellite animation"
+      ],
+      "summary": "Small shapes, icons or words circle a central element on elliptical paths, giving a hub-and-satellites loop that never stops moving.",
+      "body": "Orbiting shapes place a central object, such as a logo, a product or a dot, and send smaller elements around it on circular or tilted elliptical paths. Each satellite has its own radius and speed, and the orbits can be drawn as thin lines or left invisible.\n\nIt reads as a system with a core: integrations around a product, features around a brand, words around an idea. It also makes a calm, endless loop for backgrounds and end cards.\n\nHow to make it read in 2D:\n\n- Squash the orbit vertically (to around 30 to 45% height) so it reads as a tilted ring.\n- Scale satellites up and brighten them on the front half, smaller and dimmer on the back half.\n- Pass satellites behind the center object on the back half of the ellipse.\n\nCommon mistakes:\n\n- **Same speed for every orbit.** Inner orbits should move faster, like real ones.\n- **Satellites always in front.** Without depth sorting, the orbit reads as flat circles.\n- **Rotating text that becomes upside down.** Keep labels upright while their positions orbit.\n- **Loop length mismatched with the video,** so the last frame jumps.",
+      "goodFor": [
+        "integrations",
+        "end cards",
+        "ambient loops",
+        "ecosystem diagrams"
+      ],
+      "examples": ["notdwd-c2037d", "0xnicc0-eccd15", "ultimaxbt-bbebf5"],
+      "related": ["radial-burst", "trim-path-loop", "gooey-split-merge"]
+    },
+    {
+      "slug": "grid-tessellation",
+      "name": "Grid tessellation",
+      "family": "vector",
+      "aka": [
+        "tile animation",
+        "tessellation animation",
+        "honeycomb animation",
+        "grid flip transition",
+        "tiling pattern animation"
+      ],
+      "summary": "A surface fills with repeating tiles such as squares, triangles or hexagons that appear, flip or rotate in waves across the grid.",
+      "body": "A grid tessellation builds or changes a surface made of identical tiles that fit without gaps. Tiles can pop in one by one, flip to show a new color, rotate to form a different pattern, or grow outward from a single cell into a full honeycomb.\n\nThe magic comes from the wave. Each tile runs the same small animation, but its start time depends on its position: distance from a center, a diagonal index, or a noise value. That turns a dull grid into a visible ripple.\n\nGood uses:\n\n- Background textures for titles\n- Transitions where tiles flip from one scene to the next\n- Building a logo or icon out of cells\n\nCommon mistakes:\n\n- **Random order.** Pure random delays look like static. Use a structured wave, with a little noise if needed.\n- **Visible seams.** Tiles drawn at fractional positions leave hairline gaps. Overlap each tile by half a pixel or snap to whole pixels.\n- **Animating every tile at full contrast** behind text. Keep background grids low contrast.\n- **Delays that grow too large.** A wave much longer than the tile animation drags. Aim for the full sweep in under a second.",
+      "goodFor": ["backgrounds", "tile transitions", "pattern openers"],
+      "examples": ["heyiamnick-b6aae7"],
+      "related": ["geometric-pattern-build", "isometric-build"]
+    },
+    {
+      "slug": "shard-assemble-logo",
+      "name": "Shard assemble",
+      "family": "vector",
+      "aka": [
+        "low poly logo reveal",
+        "shatter assemble",
+        "pieces fly together",
+        "logo assemble animation",
+        "fragments forming logo"
+      ],
+      "summary": "Faceted polygon shards fly in from around the frame and lock together, one by one, until they form a complete logo or object.",
+      "body": "A shard assemble splits a logo or shape into triangles or faceted pieces, scatters them, then flies each piece back to its home position. The pieces may spin, scale and shade as they travel, then snap flush with their neighbors. Often a thin wireframe of the final shape is drawn first, so the viewer sees the target before it fills.\n\nIt reads as construction and precision: many parts becoming one thing. It suits tech and gaming logos, crystal styles, and any reveal that should feel built, not shown.\n\nHow to make it work:\n\n- Stagger by distance from the center or along one axis so the logo fills in a clear direction.\n- Bring pieces in with a strong ease-out, and let them settle with a tiny rotation correction.\n- Shade each facet with a slightly different tone so the polygons read.\n\nCommon mistakes:\n\n- **Pieces landing at the same moment**, which looks like a crossfade.\n- **Visible cracks** in the final logo. On the last frames, swap the shards for the clean vector logo.\n- **Pieces flying from random directions** with no pattern, which reads as chaos.\n- Running long; 1 to 2 seconds is enough.",
+      "goodFor": ["logo reveals", "tech intros", "gaming"],
+      "examples": ["mounnna-d238c0"],
+      "related": ["path-draw-on", "isometric-build", "geometric-pattern-build"]
+    },
+    {
+      "slug": "particle-assemble",
+      "name": "Particle assemble",
+      "family": "generative",
+      "aka": [
+        "particles forming a logo",
+        "particle text effect",
+        "particle convergence",
+        "dust to logo",
+        "particle disintegration"
+      ],
+      "summary": "Thousands of scattered particles fly in and settle into a logo, word or image, or break apart from it and drift away.",
+      "body": "A cloud of points starts loose across the frame, then each point travels to its own target pixel sampled from a logo, word or photo. The shape appears to condense out of dust. Played backwards, the same setup becomes a disintegration.\n\nIt reads well because the viewer sees chaos turn into meaning, so it works for logo reveals, title cards and the payoff of a section. It is weaker as background decoration.\n\n- Sample targets from the shape's filled pixels on a grid, then shuffle the order with a seeded random so arrivals do not sweep in reading order.\n- Give each particle a slightly different start time and duration. All of them landing on the same frame looks mechanical.\n- Ease the final 20 percent hard so the shape locks into crisp edges, then cross to the real vector logo once the dots are settled.\n\n**Common mistakes:** too few particles (the shape never reads), particles still jittering after they land, and using `Math.random()` per frame so every render differs. Compute every position from the frame number and a seed.",
+      "goodFor": ["logo reveals", "title cards", "openers"],
+      "examples": ["pluvio9yte-099d1d"],
+      "related": ["flow-field", "flocking-boids", "instanced-grid"]
+    },
+    {
+      "slug": "flow-field",
+      "name": "Flow field",
+      "family": "generative",
+      "aka": [
+        "vector field animation",
+        "perlin flow field",
+        "curl noise particles",
+        "flow lines",
+        "noise field trails"
+      ],
+      "summary": "Particles drift along an invisible current defined by noise, leaving soft streaks that look like wind, smoke or iron filings.",
+      "body": "A flow field assigns a direction to every point in the frame, usually from 2D or 3D noise. Particles read that direction each step and move along it, so thousands of points follow coherent, swirling lanes instead of random paths. Draw their recent positions as thin lines and the field becomes visible as streams.\n\nIt works as a living background behind type, as a texture for abstract openers, and as a metaphor for data, traffic or ideas moving.\n\n- Use curl noise or rotate gradient noise 90 degrees so particles circulate instead of piling into sinks.\n- Keep the noise scale large: two or three big swirls across the frame read better than dozens of small eddies.\n- Animate the field itself slowly through a third noise dimension so the currents evolve.\n\n**Common mistakes:** simulating step by step in a way that breaks when the renderer jumps to frame 400, trails that fill the screen to a gray mush, and contrast high enough to fight the text on top. Precompute paths deterministically or integrate from frame zero with a fixed step.",
+      "goodFor": ["backgrounds", "abstract openers", "ambient loops"],
+      "examples": [],
+      "related": ["attractor-trails", "noise-displacement", "particle-assemble"]
+    },
+    {
+      "slug": "noise-displacement",
+      "name": "Noise displacement",
+      "family": "generative",
+      "aka": [
+        "perlin noise displacement",
+        "simplex noise wobble",
+        "displacement map animation",
+        "organic distortion",
+        "noise warp"
+      ],
+      "summary": "Coherent noise pushes vertices or pixels around over time, so a flat shape, grid or surface ripples and breathes like something alive.",
+      "body": "Displacement offsets each vertex or pixel by a value sampled from smooth noise. Move through the noise over time and the surface undulates: a plane becomes rolling terrain, a sphere becomes a blob, a line becomes a hand-drawn wobble, a photo warps like heat haze.\n\nIt is the base ingredient of most organic looks in code-made video. Use it to make rigid geometry feel soft, to give a still frame life during a long hold, or to transition between states by ramping the amount up and back down.\n\n- Layer two octaves: one large slow wave for the overall shape and one small faster one for surface detail at about a quarter of the strength.\n- Animate the amplitude, not just the time offset. A ramp from 0 to full and back is a ready-made transition.\n- Keep motion speed low. Noise that changes fast reads as jitter, not as life.\n\n**Common mistakes:** displacing text you want people to read, using white noise instead of gradient noise, and a seed that changes between renders.",
+      "goodFor": ["organic surfaces", "terrain", "transitions", "holds"],
+      "examples": [],
+      "related": ["flow-field", "metaballs", "reaction-diffusion"]
+    },
+    {
+      "slug": "instanced-grid",
+      "name": "Instanced grid",
+      "family": "generative",
+      "aka": [
+        "dot grid animation",
+        "grid ripple",
+        "cube grid wave",
+        "instancing",
+        "field of dots",
+        "tile grid animation"
+      ],
+      "summary": "A large grid of identical dots, tiles or cubes where every cell reacts to one shared field, producing ripples, waves and shapes that sweep across.",
+      "body": "One shape repeated hundreds or thousands of times in rows and columns, with each copy's scale, height, color or rotation driven by a single function of its position and time. A distance-from-center sine gives a ripple, a moving point gives a wake, a sampled image turns the grid into a low-resolution picture.\n\nThe grid reads as one organism, which makes it good for tech and data themes, for transitions where a pixel image resolves out of the field, and for loops.\n\n- Drive everything from one field function, for example `sin(distance * k - t * speed)`, and map it to two properties at once, such as scale and brightness.\n- Add a small per-cell delay from distance so motion visibly travels instead of happening everywhere at once.\n- Use real instancing (WebGL, Three.js `InstancedMesh`) above a few thousand cells; separate DOM nodes will crawl.\n\n**Common mistakes:** cells so small the pattern turns to moire after video compression, perfectly uniform motion with no falloff, and a grid that never resolves into anything meaningful.",
+      "goodFor": ["tech themes", "loops", "pixel reveals", "transitions"],
+      "examples": [
+        "_elenajoseph_-6b96f6",
+        "twoclipping-809e2a",
+        "nischalsharma_-24a27c"
+      ],
+      "related": ["ordered-dither", "particle-assemble", "voronoi-cells"]
+    },
+    {
+      "slug": "l-system-growth",
+      "name": "L-system growth",
+      "family": "generative",
+      "aka": [
+        "procedural tree growth",
+        "branching growth animation",
+        "recursive branches",
+        "fractal tree",
+        "growing vines",
+        "space colonization"
+      ],
+      "summary": "Lines branch and split from a single seed point into a tree, root network or vein pattern that grows across the frame over time.",
+      "body": "Growth systems start from one point and repeatedly split into branches according to rules: an L-system rewrites a string of turtle commands, recursion splits each branch into two shorter ones at an angle, and space colonization grows toward scattered attractor points. Animated, the structure creeps outward generation by generation.\n\nIt reads as growth, connection and spreading, so it fits stories about networks, ecosystems, teams, roots of an idea or a product reaching more people.\n\n- Generate the full structure once with a seed, store each segment with its depth, then reveal segments by depth over time. Rendering stays a pure function of the frame.\n- Taper stroke width by depth and slightly vary angles with the seed so it looks grown, not drawn with a ruler.\n- Let children start before parents finish, overlapping by about half a segment, so growth flows instead of stepping.\n\n**Common mistakes:** perfectly symmetric trees that look like clip art, too many generations so the tips become noise, and growth at a constant speed with no slowdown at the tips.",
+      "goodFor": ["networks", "growth stories", "organic reveals"],
+      "examples": [],
+      "related": [
+        "voronoi-cells",
+        "reaction-diffusion",
+        "infinite-fractal-zoom"
+      ]
+    },
+    {
+      "slug": "flocking-boids",
+      "name": "Flocking boids",
+      "family": "generative",
+      "aka": [
+        "boids",
+        "flocking simulation",
+        "swarm animation",
+        "school of fish animation",
+        "murmuration"
+      ],
+      "summary": "Many small agents steer by three simple rules, separation, alignment and cohesion, so they move together like a flock of birds or a school of fish.",
+      "body": "Each agent looks at its neighbors and adjusts its heading to avoid crowding, match their direction and stay near the group. No one leads, yet the whole swarm turns, splits and rejoins like a living thing.\n\nIt reads as collective behavior: communities, crowds, markets, many users acting together. A target force lets the flock gather into a shape or chase a point, which turns ambient motion into storytelling.\n\n- Tune separation radius first. It sets the density of the flock more than any other value.\n- Cap speed and turn rate so agents bank smoothly instead of snapping.\n- Point each agent along its velocity. Orientation is what sells the effect, even with simple triangles.\n- Simulate from frame zero with a fixed timestep and seeded start positions, or bake the paths to a buffer, so any frame renders the same.\n\n**Common mistakes:** too few agents to look like a group, all agents at the same speed, a flock that stays clumped in the middle of the frame forever, and simulation tied to real time so the render differs from the preview.",
+      "goodFor": ["community themes", "ambient life", "shape formation"],
+      "examples": ["zeezomb-9246e2"],
+      "related": ["particle-assemble", "flow-field", "attractor-trails"]
+    },
+    {
+      "slug": "voronoi-cells",
+      "name": "Voronoi cells",
+      "family": "generative",
+      "aka": [
+        "voronoi diagram animation",
+        "cellular pattern",
+        "delaunay triangulation",
+        "cracked glass pattern",
+        "worley noise"
+      ],
+      "summary": "The frame splits into organic cells around moving seed points, with borders that shift and redraw as the points drift, like foam, cracked mud or stained glass.",
+      "body": "A Voronoi diagram divides space so each region contains every pixel closest to one seed point. Animate the points and the borders slide, cells grow and shrink, and neighbors trade edges. The look sits between biology and architecture: skin cells, giraffe patches, dried earth, stained glass.\n\nIt works for themes of territory, partitioning and many parts making a whole, and as a shattered-glass transition when cells fly apart.\n\n- Move seeds slowly with seeded noise. Fast seeds make borders flicker.\n- Use Lloyd relaxation once at setup for even cell sizes, or leave it off for a rougher, more natural look.\n- Fill cells from a short palette and keep borders thin and consistent. The pattern does the work.\n- For a shatter, give each cell its own spin and drift outward from the impact point with a short stagger by distance.\n\n**Common mistakes:** hundreds of tiny cells that turn to noise on a phone, rainbow fills, and recomputing the diagram with a library that returns cells in different order each frame, which makes colors jump.",
+      "goodFor": ["backgrounds", "shatter transitions", "biology themes"],
+      "examples": [],
+      "related": ["instanced-grid", "reaction-diffusion", "metaballs"]
+    },
+    {
+      "slug": "reaction-diffusion",
+      "name": "Reaction-diffusion",
+      "family": "generative",
+      "aka": [
+        "turing patterns",
+        "gray-scott",
+        "coral pattern",
+        "organic maze pattern",
+        "zebra stripe generator"
+      ],
+      "summary": "Two simulated chemicals spread and react to grow labyrinths, spots and coral-like stripes that slowly fill the frame from a seed.",
+      "body": "Reaction-diffusion simulates two substances that diffuse at different rates and convert each other. Depending on two rates (feed and kill), the result settles into spots, stripes, mazes or splitting cells. The growth front creeps outward and fills shapes in a way that feels biological rather than drawn.\n\nUse it when something should feel alive or grown: a logo filling with coral texture, a background that evolves over a whole film, a transition where pattern spreads to cover the frame.\n\n- Seed inside a mask, such as a logo or word, and confine growth to it for a strong reveal.\n- Run thousands of simulation steps per second of video. Render several steps per frame on the GPU.\n- Map the concentration through a two-color ramp with a sharp threshold. Smooth gradients look muddy.\n\n**Common mistakes:** parameters that die out to blank or explode to noise, running in real time so renders vary, and starting from random noise everywhere instead of a deliberate seed. Simulate once with a fixed step count per frame and cache frames if the renderer seeks.",
+      "goodFor": ["organic textures", "logo fills", "evolving backgrounds"],
+      "examples": [],
+      "related": ["noise-displacement", "voronoi-cells", "l-system-growth"]
+    },
+    {
+      "slug": "metaballs",
+      "name": "Metaballs",
+      "family": "generative",
+      "aka": [
+        "gooey blobs",
+        "lava lamp effect",
+        "blob merge animation",
+        "isosurface blobs",
+        "sticky circles"
+      ],
+      "summary": "Soft round blobs drift and, when close, stretch and fuse into one gooey surface, then neck and split apart again like a lava lamp.",
+      "body": "Each blob contributes a falloff field. Summing the fields and drawing everything above a threshold gives a surface where nearby blobs merge with smooth necks instead of overlapping as hard circles. Pull them apart and the neck thins and snaps.\n\nIt reads as liquid, playful and cohesive, good for merging ideas, joining teams, loading states and transitions where one shape splits into many or many pool into one.\n\n- In 2D, the cheapest version is blur plus a contrast threshold (an SVG `feColorMatrix` alpha clamp or a shader step). In 3D, raymarch a smooth-minimum distance field.\n- Keep blob sizes varied, roughly 1x to 2.5x between smallest and largest.\n- Time merges so the neck forms over 8 to 12 frames. Faster and it pops, slower and it looks stuck.\n\n**Common mistakes:** blurry edges because the threshold is too soft, blobs that never touch so the effect never shows, and running the blur on large full-frame layers that slow renders to a crawl.",
+      "goodFor": ["merge moments", "playful brands", "loaders", "transitions"],
+      "examples": [],
+      "related": ["noise-displacement", "voronoi-cells", "flocking-boids"]
+    },
+    {
+      "slug": "ordered-dither",
+      "name": "Ordered dither",
+      "family": "generative",
+      "aka": [
+        "dithering effect",
+        "bayer dither",
+        "1-bit animation",
+        "pixel dither",
+        "dithered gradient",
+        "retro dither"
+      ],
+      "summary": "Images, gradients or 3D renders reduced to a small set of colors through a fixed threshold pattern, giving a crisp 1-bit, retro-print look.",
+      "body": "Ordered dithering compares each pixel against a small repeating threshold matrix, usually a 4x4 or 8x8 Bayer pattern, and outputs one of two (or a few) colors. Gradients become cross-hatched textures and 3D shading becomes a lattice of dots. Because the matrix is fixed, the pattern stays put while the image under it moves, which looks intentional rather than noisy.\n\nIt suits tech, retro computing and editorial looks, and it makes generic 3D or gradients feel designed.\n\n- Quantize at a coarse pixel size (3 to 6 screen pixels per dither cell) and upscale with nearest-neighbor so it survives video compression.\n- Pick two colors with strong contrast from the brand palette, not just black and white.\n- Keep the matrix fixed in screen space. Re-randomizing per frame turns it into static.\n\n**Common mistakes:** dither cells so fine that the encoder smears them into gray, applying it over small text, and using error diffusion (Floyd-Steinberg) on moving footage, which crawls and shimmers from frame to frame.",
+      "goodFor": ["retro looks", "tech brands", "stylized 3D"],
+      "examples": [],
+      "related": ["instanced-grid", "noise-displacement", "reaction-diffusion"]
+    },
+    {
+      "slug": "attractor-trails",
+      "name": "Attractor trails",
+      "family": "generative",
+      "aka": [
+        "strange attractor",
+        "lorenz attractor animation",
+        "chaos trails",
+        "clifford attractor",
+        "particle trails"
+      ],
+      "summary": "Points follow the equations of a strange attractor, tracing glowing ribbons that loop around invisible centers without ever repeating.",
+      "body": "A strange attractor is a small set of equations, such as Lorenz, Aizawa, Thomas or Clifford, whose solutions orbit forever without settling or repeating. Integrate thousands of points through it and draw their recent history, and you get dense, woven ribbon forms that slowly rotate in 3D.\n\nIt reads as complexity with order inside, so it suits science, AI, finance and anything about systems or chaos. It also makes a striking slow backdrop for a single line of type.\n\n- Integrate with a small fixed step from seeded starting points, and precompute positions so any frame can be rendered directly.\n- Color by speed or by the age of the trail segment. A gradient along the trail shows direction.\n- Rotate the camera slowly around the form. Most attractors only make sense in three dimensions.\n\n**Common mistakes:** a single trail that looks like a scribble, step sizes so large the shape breaks down, and additive glow cranked up until the core is a white blob with no structure.",
+      "goodFor": ["science themes", "abstract backdrops", "AI and data"],
+      "examples": [],
+      "related": ["flow-field", "flocking-boids", "infinite-fractal-zoom"]
+    },
+    {
+      "slug": "infinite-fractal-zoom",
+      "name": "Infinite fractal zoom",
+      "family": "generative",
+      "aka": [
+        "fractal zoom",
+        "mandelbrot zoom",
+        "endless zoom loop",
+        "droste effect",
+        "recursive zoom"
+      ],
+      "summary": "The camera dives into a self-similar shape forever: every level reveals the same pattern again, so the zoom loops seamlessly.",
+      "body": "A self-similar structure, either a true fractal like the Mandelbrot set or a designed recursion where a shape contains a smaller copy of itself, lets the camera zoom without end. When the zoom reaches the next copy at exactly the scale of the start, the loop point is invisible.\n\nIt reads as depth, infinity and detail inside detail, good for loops, intros and ideas like scale, recursion or a product that contains whole worlds.\n\n- Zoom on a log scale: scale = `base ^ t`, not a linear ramp. Linear zoom looks like it accelerates forever.\n- For a designed recursion, place the child copy at a fixed ratio (for example 1/8) and offset, then loop when scale reaches 8x.\n- For true fractals, use double precision or perturbation once zoom passes about 10^6, or the image dissolves into blocks.\n\n**Common mistakes:** a zoom target that drifts off the detail so the screen fills with flat color, a visible jump at the loop point, and too much rotation stacked on the zoom.",
+      "goodFor": ["loops", "intros", "scale stories"],
+      "examples": ["aidinzeo-df5a5e"],
+      "related": ["l-system-growth", "attractor-trails", "instanced-grid"]
+    },
+    {
+      "slug": "dolly-in",
+      "name": "Dolly in",
+      "family": "camera",
+      "aka": ["push in", "slow push", "camera push in", "zoom in slowly"],
+      "summary": "The whole frame moves steadily closer to the subject, so attention narrows onto one thing without a cut.",
+      "body": "A dolly in moves the camera toward the subject over one to three seconds. In a code-made video the \"camera\" is usually one transform on a world container, so a dolly in is a scale and translate on that container, not on each element.\n\nIt reads as \"look here, this matters.\" Use it to go from a full layout to the one button, number or line that the scene is about.\n\n- Push **1.1x to 1.3x** over 1.2 to 2.5 s. Bigger pushes start to feel like a zoom effect, not a camera.\n- Interpolate scale in log space. Linear scale looks like it speeds up toward the end.\n- Keep captions, logo bug and grain outside the world so they do not grow with it.\n\nCommon mistakes: pushing while text is still typing and reflowing, pushing into a screenshot past its native resolution so it goes soft, and following a push straight away with a pull out, which reads as indecision. End the move with a settle, never a hard stop.",
+      "goodFor": ["product demos", "explainers", "focus on a detail"],
+      "examples": ["notdwd-2805b9", "_elenajoseph_-6b96f6"],
+      "related": ["breathing-push", "pull-back-reveal", "camera-punch-in"]
+    },
+    {
+      "slug": "breathing-push",
+      "name": "Breathing push",
+      "family": "camera",
+      "aka": ["camera drift", "slow zoom on hold", "ken burns", "subtle push"],
+      "summary": "A barely visible, continuous push of 2 to 4 percent during a hold that keeps a static frame feeling alive.",
+      "body": "A breathing push is a camera move the viewer should not consciously notice. During a hold, the world scales from 1.00 to about 1.03 across the whole shot, so a still frame never looks frozen.\n\nIt works on title cards, quotes, end cards, product hero shots and any moment where the content is done animating but the frame needs to stay on screen for reading time.\n\n- Keep it between **2 and 4 percent** of scale for the full hold, 2 to 6 seconds.\n- Use linear or a very soft ease. It should feel like drift, not a move.\n- When the next scene starts, begin it at the scale where this one ended, or reset on a cut.\n\nCommon mistakes: pushing hard enough that it becomes a dolly in, applying it to text layers that then shimmer as they resample, and stacking it with other camera moves in the same shot. If the renderer shows subpixel jitter, render text outside the world or at a higher scale.",
+      "goodFor": ["title cards", "holds", "end cards"],
+      "examples": ["rossaxbt-3085b7"],
+      "related": ["dolly-in", "parallax-layers"]
+    },
+    {
+      "slug": "camera-punch-in",
+      "name": "Punch in",
+      "family": "camera",
+      "aka": ["punch zoom", "digital punch in", "beat zoom", "snap in"],
+      "summary": "A sudden 4 to 8 frame jump in framing, tighter on the subject, used to hit a beat or a key word.",
+      "body": "A punch in is a fast, short reframe: the camera snaps closer in a handful of frames and then holds. It comes from editing, where a punch in is a crop on the same take, and in code it plays the same role: emphasis without a new shot.\n\nUse it on a music hit, the landing of an object, or the word in a line that carries the meaning. Small values work best. A **4 to 15 percent** punch already reads clearly; larger values belong to a crash zoom.\n\n- Spend 4 to 8 frames on the move, then hold.\n- Use a snappy ease-out or a stiff spring with almost no overshoot.\n- Release with a slower move or on the next cut, never as a mirror of the punch.\n\nCommon mistakes: punching on every beat until it reads as a twitch, punching into soft or low-resolution assets, and timing the punch a frame after the sound. Land the move on the hit frame or one frame before it.",
+      "goodFor": ["music videos", "beat hits", "emphasis"],
+      "examples": ["fanxing321-a52ec8"],
+      "related": ["crash-zoom", "dolly-in", "camera-shake"]
+    },
+    {
+      "slug": "crash-zoom",
+      "name": "Crash zoom",
+      "family": "camera",
+      "aka": ["snap zoom", "fast zoom", "smash zoom", "whip zoom"],
+      "summary": "A violent, very fast zoom from wide to tight with motion blur, used for comedy, shock or a hard reveal.",
+      "body": "A crash zoom rushes the camera from a wide frame to a tight one in under half a second, usually with heavy motion blur and sometimes a slight overshoot. It is louder than a punch in: the travel itself is the point.\n\nIt works for reveals (\"and the winner is...\"), comic double takes, and energetic social edits where a moment needs a jolt. Use it once or twice per film at most.\n\n- Go from 1x to **2x or more** in 6 to 12 frames.\n- Ease in hard and stop hard: an expo-in curve, a short settle, then hold.\n- Add radial or directional blur only during the fastest frames.\n\nCommon mistakes: zooming linearly, which looks like a slideshow transition; landing off target so the subject drifts into frame after the move; and zooming into a raster image that turns to mush at 3x. If the subject is a screenshot, build it big or vector so the end frame is sharp.",
+      "goodFor": ["reveals", "comedy beats", "social edits"],
+      "examples": [],
+      "related": ["camera-punch-in", "dolly-zoom", "camera-shake"]
+    },
+    {
+      "slug": "pull-back-reveal",
+      "name": "Pull back reveal",
+      "family": "camera",
+      "aka": ["pull out", "zoom out reveal", "dolly out", "reveal shot"],
+      "summary": "The camera pulls away from a detail to show the larger scene it belongs to, turning a close-up into context.",
+      "body": "A pull back reveal starts tight on one element and moves the camera away until the surrounding scene explains it: a single bubble becomes a chat inside a phone, a button becomes a full dashboard, a word becomes a sentence.\n\nIt is the natural closer for a sequence. Close-ups set up \"what is this,\" the pull back answers \"this is where it lives.\"\n\n- Pull from about **1.3x to 1.0x** (or further for big reveals) over 1.5 to 3 s.\n- Interpolate in log scale so the pace feels even as the frame widens.\n- Let new elements arrive during the pull so the wider frame is not empty.\n\nCommon mistakes: revealing context that was never designed (empty edges, cut-off UI), pulling back and then immediately pushing in again, and starting the pull while the close-up text is still being read. If the reveal is very large, like a desktop shrinking to a dot, split it into eased segments with short holds rather than one long linear drift.",
+      "goodFor": ["closing shots", "context reveals", "UI tours"],
+      "examples": ["jake11moran-3041df", "rossaxbt-94583b", "gdgtify-efbc09"],
+      "related": ["dolly-in", "overhead-fly-over"]
+    },
+    {
+      "slug": "parallax-layers",
+      "name": "Parallax layers",
+      "family": "camera",
+      "aka": [
+        "parallax scroll",
+        "multiplane camera",
+        "depth parallax",
+        "layered parallax"
+      ],
+      "summary": "Foreground, midground and background move at different speeds as the camera travels, creating depth from flat layers.",
+      "body": "Parallax fakes depth by moving each layer by an amount inversely related to its distance. Near layers slide far, distant layers barely move. It is the oldest trick in the multiplane camera and still the cheapest way to make a flat scene feel spatial.\n\nIt works for title scenes, illustrated explainers, product shots over a backdrop and slow lateral camera moves.\n\n- Use 3 to 5 depth planes. Typical speed ratios: background 0.2, midground 0.5, subject 1.0, foreground 1.4.\n- Make distant layers smaller, slightly blurred (2 to 8 px) and shifted 10 to 30 percent toward the background color.\n- Drive every layer from one camera value so the ratios stay locked.\n\nCommon mistakes: animating each layer with its own keyframes, so the depth drifts apart; foreground layers that move fast across text and hurt readability; and gaps at the edges of slower layers. Oversize every layer by its maximum travel so no edge ever shows.",
+      "goodFor": ["title scenes", "illustrated explainers", "hero shots"],
+      "examples": ["daniel-haida-8691d4"],
+      "related": ["camera-projection-2-5d", "breathing-push", "rack-focus"]
+    },
+    {
+      "slug": "camera-orbit",
+      "name": "Camera orbit",
+      "family": "camera",
+      "aka": ["orbit shot", "arc shot", "360 product spin", "turntable camera"],
+      "summary": "The camera circles around a subject on an arc, revealing its sides and depth while keeping it centered.",
+      "body": "An orbit moves the camera along an arc around a subject while always looking at it. The subject stays put in the center; the world and lighting swing around it. It reads as inspection and gives a product or a 3D object weight.\n\nIt works in real 3D scenes and in 2.5D setups where a card, device or logo can rotate on its Y axis with perspective.\n\n- A partial arc is usually stronger than a full turn: **10 to 40 degrees** over 3 to 8 seconds.\n- Keep the speed even in the middle and ease only at the ends, or loop with constant speed.\n- Combine with a small push (10 to 25 percent) only if it is designed as one arc.\n\nCommon mistakes: orbiting a flat element far enough that it goes edge-on and disappears, letting text in the scene rotate into unreadable angles, and orbiting at a rate that strobes on fine detail. With 2.5D cards, keep perspective between 1200 and 2000 px so the distortion stays believable.",
+      "goodFor": ["product shots", "3D objects", "logo reveals"],
+      "examples": [
+        "fanxing321-a52ec8",
+        "higgsfield_ai-1cd3b7",
+        "higgsfield_ai-edddb9"
+      ],
+      "related": ["dolly-in", "parallax-layers"]
+    },
+    {
+      "slug": "rack-focus",
+      "name": "Rack focus",
+      "family": "camera",
+      "aka": [
+        "focus pull",
+        "pull focus",
+        "depth of field shift",
+        "focus shift"
+      ],
+      "summary": "Focus shifts from one layer to another: the old subject softens into blur while the new one sharpens.",
+      "body": "A rack focus moves attention between two subjects at different depths without moving the camera. One layer blurs out while the other comes into focus, so the viewer's eye follows the sharp area.\n\nIn code it is an animated blur on two or more layers, sometimes with a small scale change to mimic focus breathing on a real lens.\n\n- Defocused layers sit at **6 to 12 px** of blur; the focused one at 0.\n- Transfer over 0.5 to 0.8 seconds with a smooth move curve.\n- Start the incoming sharpen a few frames after the outgoing blur begins.\n\nIt works for over-the-shoulder setups, a phone in the foreground with a dashboard behind it, or a headline in front of an image. Use it once or twice per film; it is a strong signal.\n\nCommon mistakes: blurring text that still needs to be read, animating heavy blur in a renderer that cannot keep up (pre-render the layers if needed), and racking between layers that sit at the same apparent depth, which just looks like a fade.",
+      "goodFor": [
+        "cinematic shots",
+        "foreground/background reveals",
+        "storytelling"
+      ],
+      "examples": ["zhu185178-41d6a2"],
+      "related": ["parallax-layers", "dolly-zoom"]
+    },
+    {
+      "slug": "camera-shake",
+      "name": "Camera shake",
+      "family": "camera",
+      "aka": [
+        "handheld shake",
+        "screen shake",
+        "impact shake",
+        "handheld camera"
+      ],
+      "summary": "The frame jitters with decaying, seeded noise for a few frames after an impact, or drifts gently like a handheld camera.",
+      "body": "Camera shake comes in two flavors. **Impact shake** is a short, decaying jolt on a hit: a slam, a drop, a bass hit. **Handheld drift** is a slow, low-amplitude wander that makes a shot feel filmed rather than generated.\n\nBoth should be driven by seeded noise, not random numbers per frame, so renders are repeatable and the motion is smooth enough to read as a camera.\n\n- Impact: 2 to 6 px of translation (plus up to 0.5 degrees of rotation), 3 to 6 frames, decaying to zero.\n- Handheld: 1 to 3 px, noise frequency around 0.5 to 1.5 Hz, continuous.\n- Shake the world container, not the captions.\n\nCommon mistakes: shaking text that must be read, using white noise that looks like a broken render, shaking every hit until nothing feels like an impact, and shaking in calm UI documentation where it reads as a bug. Many polished brand films ban it outright; keep it for energetic or physical moments.",
+      "goodFor": ["impacts", "action beats", "documentary feel"],
+      "examples": [],
+      "related": ["camera-punch-in", "crash-zoom"]
+    },
+    {
+      "slug": "dolly-zoom",
+      "name": "Dolly zoom",
+      "family": "camera",
+      "aka": [
+        "vertigo effect",
+        "vertigo shot",
+        "zolly",
+        "contra zoom",
+        "trombone shot"
+      ],
+      "summary": "The subject holds its size while the background stretches or compresses behind it, creating an uneasy shift in space.",
+      "body": "A dolly zoom moves the camera toward or away from the subject while changing the field of view in the opposite direction. The subject stays the same size on screen, but the background seems to rush away or close in. It reads as realization, dread or a sudden shift in perspective.\n\nIn 3D, animate camera distance and FOV together so `distance × tan(fov / 2)` stays constant. In 2.5D, keep the subject layer at a fixed scale while background layers scale at different rates by depth.\n\n- A strong effect needs a real depth gap and a background with lines or texture.\n- Run it slow (2 to 4 s) for unease, fast (under 1 s) for a jolt or a riser.\n\nCommon mistakes: a flat background with nothing to show the stretch, letting the subject drift in size because the math is not locked, and using it as a generic transition. It is a statement move: once per film is plenty.",
+      "goodFor": ["dramatic beats", "risers", "realization moments"],
+      "examples": ["kloss_xyz-a09bae"],
+      "related": ["crash-zoom", "rack-focus", "camera-projection-2-5d"]
+    },
+    {
+      "slug": "camera-projection-2-5d",
+      "name": "2.5D camera projection",
+      "family": "camera",
+      "aka": [
+        "2.5D parallax photo",
+        "camera projection",
+        "photo parallax",
+        "depth map parallax",
+        "3D photo effect"
+      ],
+      "summary": "A still image is split into depth layers or mapped onto depth, so a virtual camera can move through it with real parallax.",
+      "body": "2.5D camera projection turns a flat picture into a shallow 3D set. The image is cut into layers (subject, mid, background) or paired with a depth map, and a virtual camera moves a short distance through it. Near parts shift more than far parts, so a photo or illustration gains real volume.\n\nIt works for archival photos, AI-generated stills, illustrated backgrounds and establishing shots where you have no footage.\n\n- Keep camera travel small: a slow push or lateral drift of **3 to 8 percent** of the frame.\n- Fill the holes behind cut-out subjects (inpaint or extend the background) before moving.\n- Add a little focus blur on far layers to sell the depth.\n\nCommon mistakes: moving too far so stretched pixels and torn edges appear around the subject, using a noisy depth map that wobbles hair and fine detail, and combining it with a fast orbit. Short, slow moves are the whole trick.",
+      "goodFor": ["photos", "establishing shots", "AI stills"],
+      "examples": ["zhu185178-41d6a2"],
+      "related": ["parallax-layers", "dolly-zoom", "rack-focus"]
+    },
+    {
+      "slug": "overhead-fly-over",
+      "name": "Overhead fly-over",
+      "family": "camera",
+      "aka": [
+        "fly-over shot",
+        "crane up",
+        "top-down reveal",
+        "bird's-eye view",
+        "drone shot"
+      ],
+      "summary": "The camera glides low over a surface, then rises to a straight-down overhead view that shows the whole layout at once.",
+      "body": "A fly-over treats a flat thing, like a landing page, a map, a board or a desk of objects, as a landscape. The camera starts low and tilted, glides across it, then cranes up to look straight down so the whole layout reads as one picture.\n\nIt is a strong single-take move for showing something long: a page, a timeline, a workflow. The low pass gives scale and detail, the overhead gives structure.\n\n- Fly the low pass at one steady speed; ease only at the start.\n- Rise in log scale with a slow-down into the overhead and a short hold there.\n- Use shallow depth of field on the low pass so near content softens.\n\nCommon mistakes: changing speed constantly so it feels like a drone in wind, tilting so steeply the content becomes unreadable, and rising past the point where text is legible without holding long enough to show the full layout. Keep one continuous camera; a cut in the middle breaks the effect.",
+      "goodFor": ["landing pages", "maps and boards", "long layouts"],
+      "examples": ["twoclipping-56402e", "notdwd-7eece3"],
+      "related": ["pull-back-reveal", "camera-orbit"]
+    },
+    {
+      "slug": "film-grain",
+      "name": "Film grain",
+      "family": "texture",
+      "aka": ["grain overlay", "noise overlay", "film texture", "grain effect"],
+      "summary": "A fine layer of monochrome noise, regenerated every frame, that makes flat vector or UI frames feel shot rather than exported.",
+      "body": "Film grain is a thin layer of random luminance noise laid over the frame and refreshed on every frame. It makes clean vector work read as a physical image, and it covers the banding that 8-bit encoders put into large soft gradients.\n\nIt works best on flat color fields, dark scenes and long gradients, and on films that want a warm, slightly analog feel. It is wrong for UI documentation where every pixel of the product should be sharp.\n\n- Keep it small: about **1.5 to 4 percent** luminance, monochrome, not colored speckle.\n- Regenerate it each frame (or every second frame for a slower, filmic pulse). A frozen grain pattern looks like a dirty screen.\n- Seed the generator from the frame number so renders are identical every time.\n- Put it above the world and below the text, or above everything at lower strength.\n\nCommon mistakes: grain so heavy it eats small type, grain that only covers one layer so its edge shows, and grain that disappears after encoding because it was too fine for the bitrate. Check the final MP4, not the preview.",
+      "goodFor": [
+        "brand films",
+        "dark scenes",
+        "gradient backgrounds",
+        "retro looks"
+      ],
+      "examples": ["notdwd-2805b9", "twoclipping-15d018", "jake11moran-3041df"],
+      "related": ["grainy-gradient", "crt-scanlines", "paper-texture"]
+    },
+    {
+      "slug": "chromatic-aberration",
+      "name": "Chromatic aberration",
+      "family": "texture",
+      "aka": ["RGB split", "color fringing", "channel split", "chroma fringe"],
+      "summary": "Red and blue channels drift a pixel or two apart toward the frame edges, giving a lens-like color fringe on high-contrast shapes.",
+      "body": "Chromatic aberration imitates a cheap or wide lens: the red, green and blue channels land in slightly different places, so hard edges pick up a thin warm fringe on one side and a cool fringe on the other. Done lightly, it makes a computer-made frame feel like it passed through glass.\n\nIt works on high-contrast edges, hand-drawn or retro looks, and as a brief accent on an impact frame. Real lenses fringe more at the edges than in the center, so the offset should grow with distance from the frame center.\n\n- Keep the resting offset at **1 to 2 px** at 1080p, near zero in the center.\n- Shift channels outward from center (radial), not all in one direction.\n- Clamp at the frame edge so a colored border does not appear.\n- Spike it briefly (3 to 6 frames) on a hit, then settle back.\n\nCommon mistakes: a constant 6 px split over everything, which reads as a broken monitor, and fringing on small body text, which makes it unreadable. If the viewer notices the effect before the content, it is too strong.",
+      "goodFor": [
+        "retro looks",
+        "impact frames",
+        "hand-drawn styles",
+        "music videos"
+      ],
+      "examples": ["groundcontrol-61b7d8", "notdwd-2805b9"],
+      "related": ["crt-scanlines", "risograph-print", "glow-and-bloom"]
+    },
+    {
+      "slug": "halftone",
+      "name": "Halftone",
+      "family": "texture",
+      "aka": ["halftone dots", "dot screen", "comic dots", "print dots"],
+      "summary": "Tone is drawn as a grid of dots whose size follows brightness, giving a printed, comic-book or newspaper finish that can animate.",
+      "body": "Halftone turns a continuous image into a grid of dots: dark areas get big dots, light areas get small ones. In motion it does two jobs. It is a finish that makes photos and gradients look printed, and it is a graphic element in its own right, a field of dots that can grow, flip color or sweep across the frame as a transition.\n\nIt suits editorial, comic, manga and poster styles, and explainer graphics that want a print feel without image assets.\n\n- Pick a cell size you can see on a phone: around **8 to 16 px** at 1080p.\n- Rotate the grid (15 or 45 degrees) for a classic print look.\n- Animate dot radius from a value (brightness, a gradient, a moving falloff) rather than moving the grid itself.\n- Keep text out of the halftone or on a solid plate above it.\n\nCommon mistakes: cells so small they turn into moire or mush after compression, a grid that slides with the camera and flickers, and halftone applied to everything so nothing stands out.",
+      "goodFor": ["editorial", "comic and manga", "posters", "transitions"],
+      "examples": ["ultimaxbt-bbebf5", "rossaxbt-b85583", "theviclaw-77dadd"],
+      "related": ["risograph-print", "grainy-gradient", "paper-texture"]
+    },
+    {
+      "slug": "glow-and-bloom",
+      "name": "Glow and bloom",
+      "family": "texture",
+      "aka": [
+        "bloom effect",
+        "soft glow",
+        "outer glow",
+        "neon glow",
+        "halation"
+      ],
+      "summary": "Bright parts of the frame bleed a soft halo of light into their surroundings, so the lead element looks lit rather than drawn.",
+      "body": "Bloom takes the brightest pixels in a frame, blurs them, and adds them back on top, so light spills past edges the way it does in a camera. A glow is the same idea on one element: a blurred copy behind it. Used on one thing, it tells the viewer where the light is and where to look.\n\nIt works on dark backgrounds, neon and screen-light looks, emissive 3D materials, and a hero card that needs to separate from its background.\n\n- One light source per scene, on the lead only.\n- Threshold the bloom so only the brightest 5 to 10 percent of pixels contribute.\n- Keep glow opacity low (**15 to 35 percent**) and the radius wide and soft.\n- Fade the glow in after the element lands, over 300 to 500 ms.\n\nCommon mistakes: glow on every icon and label, which looks like a default effect, and bloom on white text that blurs the letterforms. Bright things on dark backgrounds already look bigger, so a strong glow makes them look swollen.",
+      "goodFor": ["dark scenes", "hero cards", "3D renders", "neon looks"],
+      "examples": [
+        "fanxing321-a52ec8",
+        "khlaseek_dsgner-d03a05",
+        "phase89-09eeb1"
+      ],
+      "related": ["light-sweep", "chromatic-aberration", "crt-scanlines"]
+    },
+    {
+      "slug": "paper-texture",
+      "name": "Paper texture",
+      "family": "texture",
+      "aka": [
+        "paper grain",
+        "paper background",
+        "papercraft look",
+        "paper tooth"
+      ],
+      "summary": "A visible paper surface with fibers and tooth sits under the artwork, and ink or color sits in it, so the film reads as made by hand.",
+      "body": "Paper texture puts a physical surface under the animation: a warm off-white with faint fibers, tooth and uneven tone. Strokes and fills then pick up that surface, getting lighter where the paper is raised. The result reads as drawn, printed or cut by hand, even when everything is generated in code.\n\nIt suits hand-drawn, crayon, pencil, collage and storybook styles, and explainers that want warmth instead of a software look.\n\n- Generate the texture from low-frequency noise for tone plus high-frequency noise for tooth, or use one scanned sheet.\n- Multiply the artwork onto the paper so the texture shows through the color.\n- Keep the paper still. If the camera moves, the paper moves with the scene, not in screen space.\n- Add a very slight per-frame jitter (boil) to line work only if the style is frame-by-frame.\n\nCommon mistakes: a tiled texture with a visible repeat, paper that is too dark so contrast drops, and crisp vector UI pasted on top, which breaks the illusion.",
+      "goodFor": [
+        "hand-drawn styles",
+        "explainers",
+        "storybook films",
+        "collage"
+      ],
+      "examples": ["0xcodez-680ca1", "obydulme-672238", "vignesh_rav-9d555f"],
+      "related": ["ink-bleed", "film-grain", "risograph-print"]
+    },
+    {
+      "slug": "crt-scanlines",
+      "name": "CRT scanlines",
+      "family": "texture",
+      "aka": [
+        "scanlines",
+        "CRT effect",
+        "retro monitor",
+        "old TV effect",
+        "VHS look"
+      ],
+      "summary": "Thin dark horizontal lines, a slight screen curve and a soft phosphor glow make the frame look like it is playing on an old tube monitor.",
+      "body": "The CRT look recreates an old tube screen: dark horizontal scanlines, a faint bulge toward the corners, a vignette, a little glow around bright pixels and sometimes a slow brightness roll. It sets a time period instantly and gives retro-futuristic films a strong identity.\n\nUse it for retro or archival sequences, terminal and hacker aesthetics, and footage that is meant to be shown on a screen inside the scene. It can be the whole film's finish or only the content of one TV in the frame.\n\n- Scanline period of **3 to 4 px** at 1080p, darkening 15 to 30 percent.\n- Add a slow rolling band (a brighter stripe moving down every 4 to 8 seconds) rather than constant flicker.\n- Barrel distortion should be small, a few percent at the corners.\n- Pair with a soft glow and a 1 px channel offset.\n\nCommon mistakes: scanlines too fine for the output size, which turn into moire after scaling, fast flicker that can hurt viewers, and a CRT finish on the end card where the logo must be clean.",
+      "goodFor": [
+        "retro looks",
+        "archival footage",
+        "terminal aesthetics",
+        "launch films"
+      ],
+      "examples": ["johnsavage_ai-5cb99d", "notdwd-2805b9"],
+      "related": ["chromatic-aberration", "film-grain", "glow-and-bloom"]
+    },
+    {
+      "slug": "mesh-gradient",
+      "name": "Mesh gradient",
+      "family": "texture",
+      "aka": [
+        "animated gradient",
+        "gradient mesh",
+        "fluid gradient",
+        "aurora gradient"
+      ],
+      "summary": "Several soft color points drift slowly under a background, blending into a smooth, shifting field of color that never quite repeats.",
+      "body": "A mesh gradient blends color from several control points instead of a single line, so the background looks like soft, flowing light. Animated, the points drift on slow paths and the colors pool and separate. It gives a scene depth and movement without adding objects.\n\nIt works as a background behind product shots, hero type and glass UI, and as a brand color field on title cards. It depends on the palette: three to five colors from the brand, close in value, read as calm. Saturated opposites read as noise.\n\n- Use 3 to 5 points, each moving on a slow loop (**8 to 20 seconds** per cycle).\n- Interpolate in OKLab or OKLCH so blends do not go gray.\n- Add 1 to 3 percent grain on top to stop banding in the encode.\n- Keep motion slow enough that the eye stays on the foreground.\n\nCommon mistakes: the generic purple-blue gradient orb, which reads as template design, motion fast enough to compete with the content, and a perfectly smooth gradient that bands into stripes once compressed.",
+      "goodFor": ["backgrounds", "title cards", "glass UI", "brand films"],
+      "examples": [],
+      "related": ["grainy-gradient", "glow-and-bloom", "light-sweep"]
+    },
+    {
+      "slug": "risograph-print",
+      "name": "Risograph print",
+      "family": "texture",
+      "aka": [
+        "riso effect",
+        "duotone",
+        "print misregistration",
+        "two-color print",
+        "spot color print"
+      ],
+      "summary": "Two or three flat spot-color inks overlap with grainy fills and a slight misregistration, like a small-run risograph poster.",
+      "body": "The risograph look comes from cheap stencil printing: a few flat spot inks, visible grain inside fills, overlaps that create a third color, and layers that do not quite line up. It reads as indie, editorial and human, and it is a strong way to give a whole film one coherent finish.\n\nIt suits studio intros, posters that move, event promos and explainers with a zine feel. Duotone, mapping an image to two inks, is the simplest version.\n\n- Limit the palette to **2 or 3 inks** plus paper. Overlaps multiply.\n- Offset one ink layer by **2 to 4 px**, and change the offset only on hits, not every frame.\n- Fill shapes with stipple or grain rather than flat color.\n- Keep small text in one ink so it stays readable.\n\nCommon mistakes: misregistration that jitters on every frame, which looks like a rendering bug, too many colors so the print logic is lost, and photos dropped in at full color next to riso graphics.",
+      "goodFor": ["studio intros", "posters", "editorial", "music promos"],
+      "examples": ["rneayan-474bcf", "techhalla-94fbea"],
+      "related": ["halftone", "paper-texture", "chromatic-aberration"]
+    },
+    {
+      "slug": "light-sweep",
+      "name": "Light sweep",
+      "family": "texture",
+      "aka": ["sheen", "shine effect", "glint", "specular sweep", "logo shine"],
+      "summary": "A narrow band of light slides across a logo, card or button once, as if it caught a reflection, then the surface settles back.",
+      "body": "A light sweep is a soft, angled highlight that travels across a surface once. It suggests the object is glossy and physical, and it marks a moment: the logo is done, the card is ready, the product has arrived.\n\nIt works as a lockup move on end cards, on metallic or glass surfaces, and on a hero button or badge after it lands. It is a full stop, so it belongs at the end of a phrase.\n\n- Run it **once per film**, or once per hero object, over **600 to 1000 ms** on the film's main ease.\n- Angle the band 20 to 30 degrees from vertical; make it 10 to 20 percent of the object's width.\n- Clip it to the object's shape and use an additive or screen blend at low opacity.\n- Start it after the object has fully settled.\n\nCommon mistakes: repeating the sweep on a loop, which turns it into a loading shimmer, a band so bright it washes out the logo, and a sweep over a matte, flat design where no light could reflect.",
+      "goodFor": ["logo lockups", "end cards", "glass and metal", "badges"],
+      "examples": ["daniel-haida-8691d4"],
+      "related": ["glow-and-bloom", "mesh-gradient"]
+    },
+    {
+      "slug": "motion-blur",
+      "name": "Motion blur",
+      "family": "texture",
+      "aka": [
+        "subframe blur",
+        "shutter blur",
+        "directional blur",
+        "temporal blur"
+      ],
+      "summary": "Fast-moving elements smear along their path within each frame, the way a camera shutter records them, so quick moves look smooth instead of strobing.",
+      "body": "A real camera keeps its shutter open for part of each frame, so anything moving quickly smears along its path. Rendered frames are instants, so fast motion in code looks choppy and strobes. Motion blur adds the smear back, and it is often the single biggest difference between a cheap and a finished-looking render.\n\nUse it on fast moves: whips, pushes, flying cards, spinning shapes, quick slides. Elements at rest should be perfectly sharp.\n\n- **Subframe accumulation** is the most faithful: render several moments inside each frame and average them. Four subframes cover moderate speed; very fast moves need eight or more.\n- A 180-degree shutter (samples spread over half the frame) is a natural default.\n- Cheaper option: blur each element along its direction of travel, scaled by speed, zero when settled.\n- Never average across a cut.\n\nCommon mistakes: visible ghost copies from too few subframes, blur on text that has stopped, and blur that points in a different direction from the motion.",
+      "goodFor": [
+        "fast moves",
+        "product launches",
+        "3D fly-throughs",
+        "beat-synced edits"
+      ],
+      "examples": [
+        "diamai_-c01dfd",
+        "jake11moran-3041df",
+        "brainextends-e19ac3"
+      ],
+      "related": ["film-grain", "glow-and-bloom"]
+    },
+    {
+      "slug": "ink-bleed",
+      "name": "Ink bleed",
+      "family": "texture",
+      "aka": [
+        "ink spread",
+        "watercolor bleed",
+        "ink wash",
+        "sumi-e reveal",
+        "ink reveal"
+      ],
+      "summary": "Ink or paint spreads from a point into the paper with ragged, feathered edges, revealing an image or shape the way wet media soaks in.",
+      "body": "Ink bleed imitates wet media soaking into paper. A mark starts as a drop and spreads outward with an uneven, fibrous edge, darker where the ink pools and lighter at the fringe. It can be a texture on strokes or a reveal: the next image appears inside a growing ink stain.\n\nIt suits ink painting and watercolor styles, hand-made explainers, title reveals over paper and quiet, contemplative films.\n\n- Grow the mask from a seed point with noise on its edge so the boundary is ragged, not circular.\n- Spread fast at first and slow down (ease out over **800 to 1500 ms**), like real absorption.\n- Darken the edge slightly where pigment collects.\n- Let the paper texture show through the ink.\n\nCommon mistakes: a perfectly round expanding circle with a blur on it, which reads as a vector mask, spreading at constant speed, and ink that bleeds over clean UI or small type. Wet media looks best when it stays on paper.",
+      "goodFor": [
+        "ink painting styles",
+        "title reveals",
+        "hand-drawn explainers",
+        "watercolor"
+      ],
+      "examples": ["pradeepxkapoor-d20ab7"],
+      "related": ["paper-texture", "risograph-print"]
+    },
+    {
+      "slug": "grainy-gradient",
+      "name": "Grainy gradient",
+      "family": "texture",
+      "aka": [
+        "noise gradient",
+        "dithered gradient",
+        "gradient with grain",
+        "grain gradient"
+      ],
+      "summary": "A soft color gradient carries visible noise so it looks tactile and printed, and so it survives video compression without banding.",
+      "body": "A grainy gradient is a smooth color ramp with noise mixed into it. The noise does two things. It gives the gradient a tactile, almost sprayed surface instead of a plastic one, and it breaks up the flat steps that 8-bit video turns large gradients into.\n\nIt works for backgrounds, glow shapes behind type, sky-like fields and any large area of soft color, especially in dark films where banding is worst.\n\n- Add noise **before** quantizing to 8 bits, at about 1 to 3 percent for invisible dithering or 5 to 10 percent for a visible grainy style.\n- Use monochrome noise so hue stays stable.\n- Animate the noise per frame for a living surface, or keep it fixed if the gradient itself moves.\n- Check the gradient in the final encode at the target bitrate.\n\nCommon mistakes: adding grain only to the preview and losing it in export, noise so strong it competes with the content, and high-contrast gradients where no amount of noise hides the steps.",
+      "goodFor": ["backgrounds", "dark films", "brand color fields", "posters"],
+      "examples": [],
+      "related": ["mesh-gradient", "film-grain", "halftone"]
+    },
+    {
+      "slug": "bar-chart-race",
+      "name": "Bar chart race",
+      "family": "data",
+      "aka": [
+        "racing bar chart",
+        "animated ranking chart",
+        "bar race animation",
+        "ranking over time"
+      ],
+      "summary": "Horizontal bars grow and swap rank over time while a large date counter ticks, showing who leads and when the lead changes.",
+      "body": "A bar chart race plays a ranking through time. Each row is a bar with a label and value; as the clock advances, bars stretch or shrink and slide past each other when their rank changes. A big date or year in a corner tells the viewer where they are.\n\nIt works when the story is about **overtakes**: market share, popularity, records. It fails when the order barely changes, because then it is just a slow bar chart.\n\nWhat makes it readable:\n\n- Interpolate values between data points every frame, and animate rank position separately with a short ease so swaps glide instead of teleporting.\n- Keep the axis scale moving smoothly toward the current maximum, never jumping.\n- Show 8 to 12 bars. More turns into noise.\n- Give each entity a fixed color for the whole run.\n\nCommon mistakes: linear rank swaps that cross bars through each other with no easing, labels that jitter because numerals are not tabular, and a pace so fast that no overtake can be read. Slow down around the moments that matter.",
+      "goodFor": ["rankings", "history", "social clips"],
+      "examples": [],
+      "related": [
+        "highlight-one-bar",
+        "counter-roll-up",
+        "axis-and-grid-reveal"
+      ]
+    },
+    {
+      "slug": "line-chart-draw",
+      "name": "Line chart draw-on",
+      "family": "data",
+      "aka": [
+        "animated line graph",
+        "line graph draw",
+        "graph line animation",
+        "trend line reveal"
+      ],
+      "summary": "A chart line draws itself from left to right with a glowing head, so the viewer follows the trend as it happens instead of seeing it all at once.",
+      "body": "The line is revealed along its length, usually by animating the stroke dash offset or clipping the path from left to right. A small dot or glow rides the leading tip, and the latest value can travel with it as a label.\n\nUse it when the shape of the trend is the message: growth, a crash, a recovery. The draw speed sets the drama, so let it slow down near the key turn and arrive at the final point with a gentle ease.\n\nThings that help:\n\n- Draw the axis and gridlines first, faint, so the line has a stage.\n- Fill the area under the line a beat later with a low-opacity gradient.\n- End with a small pulse or callout on the last point.\n\nCommon mistakes: drawing at constant speed over an uneven path, which makes steep segments feel rushed; letting the camera or axis rescale while the line draws; and smoothing the data so much that real dips disappear. A wobbly, decorative line reads as fake; the line should be the data.",
+      "goodFor": ["growth stories", "finance", "product metrics"],
+      "examples": ["khlaseek_dsgner-d03a05", "rossaxbt-b85583"],
+      "related": [
+        "axis-and-grid-reveal",
+        "annotation-callout",
+        "stacked-area-grow"
+      ]
+    },
+    {
+      "slug": "counter-roll-up",
+      "name": "Counter roll-up",
+      "family": "data",
+      "aka": [
+        "number count up",
+        "animated counter",
+        "stat counter",
+        "number ticker",
+        "big number reveal"
+      ],
+      "summary": "A big number counts up from zero and decelerates onto its final value, often with a small punch when it lands.",
+      "body": "The counter roll-up turns a single statistic into an event. The number climbs quickly at first, then slows as it approaches the target, and lands with a tiny scale bump, a color change or a sound hit.\n\nIt works for one strong number per shot: users, revenue, time saved. Two counters running at once split attention, so stagger them or pick one.\n\nDetails that matter:\n\n- Use **tabular numerals** and reserve the final width so the digits do not jitter or re-center.\n- Ease the value, not the frame rate: an ease-out curve on the value gives the deceleration for free.\n- Round to display precision every frame and format with separators (1,240,000 rather than 1240000).\n- Pair the number with its unit and a short label in the same block.\n\nCommon mistakes: linear counting that stops abruptly, counting so long the viewer stops caring (under 1.5 seconds is usually enough), and fake precision like decimals that flicker. Only animate real numbers.",
+      "goodFor": ["stats", "launch videos", "milestones"],
+      "examples": [
+        "twoclipping-809e2a",
+        "notdwd-2805b9",
+        "_elenajoseph_-6b96f6"
+      ],
+      "related": ["donut-chart-sweep", "annotation-callout", "bar-chart-race"]
+    },
+    {
+      "slug": "donut-chart-sweep",
+      "name": "Donut chart sweep",
+      "family": "data",
+      "aka": [
+        "pie chart animation",
+        "animated donut chart",
+        "radial progress",
+        "ring chart sweep"
+      ],
+      "summary": "Donut or pie segments sweep around the circle one after another, each settling into its share while the percentage counts beside it.",
+      "body": "A donut sweep builds a part-to-whole chart by growing each segment's arc around the ring. Segments start from 12 o'clock and fill clockwise in order, so the eye reads the shares as they arrive.\n\nIt suits proportions with few parts: two to five segments. A single-value version (one arc on a faint track) is the cleanest way to show a percentage like 72%.\n\nWhat makes it read well:\n\n- Sweep each segment with an ease-out, and start the next one just before the previous one finishes so it feels continuous.\n- Leave a small gap between segments, and round the stroke caps only if there are very few of them.\n- Put the key number in the hole and count it in sync with the sweep.\n- Pull the important segment out slightly or brighten it after the build.\n\nCommon mistakes: too many slices, legends far from the ring that force eye travel, and rotating the whole chart while it builds. Spinning donuts look busy and make the angles harder to compare.",
+      "goodFor": ["percentages", "market share", "budgets"],
+      "examples": [],
+      "related": ["counter-roll-up", "stacked-area-grow", "highlight-one-bar"]
+    },
+    {
+      "slug": "map-route-draw",
+      "name": "Map route draw",
+      "family": "data",
+      "aka": [
+        "animated map route",
+        "travel route animation",
+        "path on map",
+        "journey line map"
+      ],
+      "summary": "A route line draws across a map from origin to destination, with a marker leading the line and the camera following the journey.",
+      "body": "The route draw shows movement through geography. A line grows along the path, a marker or icon rides its head, and stops can pop in as the line reaches them. On longer journeys the camera pans or zooms to keep the head in frame.\n\nUse it for travel, logistics, delivery, migration, or any story where where-it-went matters. It also works for transit networks, where many routes draw in staggered.\n\nGood practice:\n\n- Mute the base map (low contrast, few labels) so the route is the brightest thing on screen.\n- Draw at roughly constant ground speed, then ease out at the destination.\n- Drop a short pulse or ring on each stop as the line arrives.\n- If the camera moves, ease it on a slightly slower curve than the line so it trails rather than leads.\n\nCommon mistakes: straight lines for curved routes, a camera that jumps between zoom levels, and busy map styles that hide the path. Great-circle arcs for flights and real road geometry for drives make it believable.",
+      "goodFor": ["travel", "logistics", "explainers"],
+      "examples": ["milos_gis-276513"],
+      "related": ["line-chart-draw", "annotation-callout", "sankey-flow"]
+    },
+    {
+      "slug": "dot-swarm-chart",
+      "name": "Dot swarm chart",
+      "family": "data",
+      "aka": [
+        "scatter swarm",
+        "unit chart",
+        "isotype chart",
+        "dots rearrange into chart",
+        "beeswarm animation"
+      ],
+      "summary": "Many small dots, one per unit, fly from a loose cloud into a grid, cluster or scatter plot, so quantities become something you can count.",
+      "body": "In a dot swarm, every dot stands for a thing: a person, a million people, a sale. The dots start scattered or piled up, then travel to positions that form a chart. Because the same dots keep moving, they can regroup from one chart to the next and carry the viewer with them.\n\nIt shines when scale is the point, or when you want to show the same population sliced several ways.\n\nWhat makes it work:\n\n- Give each dot a slightly different delay (a few frames of random stagger) so the swarm moves like a flock, not a block.\n- Move dots along gentle curves rather than straight lines.\n- Color the dots that matter before they move, so the viewer tracks them.\n- Say what one dot equals, on screen.\n\nCommon mistakes: too many dots to render smoothly, motion so chaotic that nobody sees the final shape, and changing dot meaning between charts. Let the final arrangement hold for a full second before the next regroup.",
+      "goodFor": ["population data", "scale", "explainers"],
+      "examples": ["rneayan-3ba57b", "twoclipping-809e2a"],
+      "related": ["highlight-one-bar", "before-after-split", "sankey-flow"]
+    },
+    {
+      "slug": "highlight-one-bar",
+      "name": "Highlight one bar",
+      "family": "data",
+      "aka": [
+        "focus bar",
+        "dim the rest",
+        "spotlight data point",
+        "emphasize one value"
+      ],
+      "summary": "After a chart builds, every bar fades to grey except one, which takes the accent color and a label, telling the viewer exactly where to look.",
+      "body": "Highlighting one bar is the simplest way to make a chart say one thing. The full chart appears in neutral tones, holds briefly, and then everything except the subject dims while that one bar brightens, maybe grows a little, and gets its value label.\n\nUse it whenever a chart has a hero: your product against competitors, this year against past years, the outlier. It also works on lines, dots and map regions.\n\nHow to do it well:\n\n- Build the chart first in one neutral color; the change of color is the moment.\n- Dim the others to around 25 to 35% opacity, not zero, so the context stays.\n- Add one emphasis only: color, a small lift, or a label. Stacking all three plus a glow is too much.\n- Time the highlight on a beat or a spoken word.\n\nCommon mistakes: starting with a rainbow chart so the highlight has nothing to contrast against, highlighting several bars at once, and moving the bar so far that the comparison is distorted.",
+      "goodFor": ["comparisons", "product vs competitors", "explainers"],
+      "examples": [],
+      "related": [
+        "annotation-callout",
+        "bar-chart-race",
+        "axis-and-grid-reveal"
+      ]
+    },
+    {
+      "slug": "axis-and-grid-reveal",
+      "name": "Axis and grid reveal",
+      "family": "data",
+      "aka": [
+        "chart axis animation",
+        "gridlines draw in",
+        "chart build",
+        "axis unfold"
+      ],
+      "summary": "The chart frame builds before the data: axes extend from the origin, gridlines draw across in a quick stagger, and tick labels fade in.",
+      "body": "An axis reveal sets the stage for the data. The baseline and vertical axis grow out from their shared corner, faint gridlines unfold across the plot one after another, and tick labels fade in. Only then does the data arrive.\n\nIt matters most in explainers, where the viewer needs to know what is being measured before the line or bars appear. In fast promo edits it can be compressed into a quarter of a second.\n\nKeep it subtle:\n\n- Axes are the strongest lines; gridlines sit at low opacity, around 10 to 20%.\n- Stagger gridlines from the baseline upward so the build has direction.\n- Label units once, clearly, rather than on every tick.\n- Leave a short gap before the data starts, so the frame is read as context.\n\nCommon mistakes: animating the frame as loudly as the data, rescaling the axis after the data is in place, and decorative tick marks that do not match the real scale. A chart frame that bounces undermines trust in the numbers.",
+      "goodFor": ["explainers", "chart intros", "reports"],
+      "examples": [],
+      "related": ["line-chart-draw", "stacked-area-grow", "bar-chart-race"]
+    },
+    {
+      "slug": "stacked-area-grow",
+      "name": "Stacked area grow",
+      "family": "data",
+      "aka": [
+        "animated area chart",
+        "stacked area chart animation",
+        "layered area reveal",
+        "streamgraph grow"
+      ],
+      "summary": "Layered areas rise from the baseline one band at a time, each stacking on the last, so the viewer sees both the total and its parts.",
+      "body": "A stacked area grows each band up from the baseline in turn, or sweeps the whole stack in from left to right. The top edge shows the total; the bands show how it is split and how that split shifts over time.\n\nIt works for composition over time: revenue by product, energy mix by source, traffic by channel. Three to five bands is the readable range.\n\nGood choices:\n\n- Put the steadiest band at the bottom so the others have a stable floor.\n- Grow bands bottom to top with a short stagger, each rising from the top of the one below it.\n- Use related colors with clear value steps, and label bands directly at the right edge instead of in a legend.\n- After the build, isolate one band by dimming the rest if there is a point to make.\n\nCommon mistakes: animating band heights from zero independently so they overlap, using too many similar colors, and sweeping so fast that the shape change over time is missed. Ease the sweep out so the latest period gets attention.",
+      "goodFor": ["composition over time", "reports", "explainers"],
+      "examples": [],
+      "related": [
+        "line-chart-draw",
+        "axis-and-grid-reveal",
+        "donut-chart-sweep"
+      ]
+    },
+    {
+      "slug": "annotation-callout",
+      "name": "Annotation callout",
+      "family": "data",
+      "aka": [
+        "chart callout",
+        "data label pop",
+        "leader line annotation",
+        "pointer label"
+      ],
+      "summary": "A leader line draws out from a data point and a short label pops in at its end, pointing the viewer to the one detail that matters.",
+      "body": "An annotation callout attaches meaning to a spot on a chart. A small ring pulses on the point, a thin leader line draws out to clear space, and a label with a number or a few words springs in at its end.\n\nUse it for peaks, drops, records, and anything the voiceover names. One callout per moment keeps it clear; if you need several, bring them in one at a time and remove the previous one.\n\nGood practice:\n\n- Draw the leader line from the data point outward, so the eye travels from data to text.\n- Keep label text short: a value and two to four words.\n- Spring the label in with a small overshoot, then hold still while it is read.\n- Place the label where it never covers the data it describes.\n\nCommon mistakes: callouts that appear before the data point exists, long sentences in tiny type, and labels that drift with the camera. Give each callout at least a second of hold time per short line of text.",
+      "goodFor": ["key moments", "explainers", "voiceover sync"],
+      "examples": ["rossaxbt-b85583"],
+      "related": ["highlight-one-bar", "line-chart-draw", "counter-roll-up"]
+    },
+    {
+      "slug": "sankey-flow",
+      "name": "Sankey flow",
+      "family": "data",
+      "aka": [
+        "animated sankey diagram",
+        "flow diagram animation",
+        "alluvial flow",
+        "money flow chart"
+      ],
+      "summary": "Bands of varying width flow from sources to destinations, drawing left to right so the viewer sees where every share of a total goes.",
+      "body": "A Sankey flow shows a total splitting and merging as it moves through stages. Nodes appear as bars on the left, then curved bands draw toward the next column, their widths matching the amounts. The animation turns a dense diagram into a sequence the viewer can follow.\n\nIt works for budgets, user funnels, energy use and supply chains, anywhere the question is where does it go.\n\nMaking it readable:\n\n- Reveal one stage at a time: nodes, then the bands leaving them, then the next nodes.\n- Grow bands along their length (a clip or mask moving left to right), not by fading.\n- Color bands by their source so a stream stays identifiable after it splits.\n- After the build, light up one path end to end and dim the rest.\n\nCommon mistakes: showing all stages at once, too many thin bands that turn into spaghetti, and labels placed on the bands where they collide. Group small flows into an \"Other\" band and label nodes outside the flow.",
+      "goodFor": ["budgets", "funnels", "explainers"],
+      "examples": [],
+      "related": ["dot-swarm-chart", "stacked-area-grow", "map-route-draw"]
+    },
+    {
+      "slug": "before-after-split",
+      "name": "Before and after data split",
+      "family": "data",
+      "aka": [
+        "before after comparison",
+        "comparison slider",
+        "split screen comparison",
+        "then vs now chart"
+      ],
+      "summary": "Two states of the same chart or metric share the frame, split by a divider that slides across to reveal the change from before to after.",
+      "body": "A before and after split puts two versions side by side, or stacked under a moving divider, so the difference is impossible to miss. The divider travels across the frame, revealing the after state behind it, often with the key numbers updating as it passes.\n\nUse it for results: load time before and after, costs before and after, a map in 2000 against 2025. It is strongest when the layout is identical and only the data changes.\n\nWhat helps:\n\n- Keep axes, scale and framing identical on both sides; otherwise the comparison lies.\n- Label each side plainly (\"Before\" and \"After\", or the two dates) and keep labels fixed.\n- Move the divider with a slow in-out ease, pause in the middle, then finish.\n- Finish with the delta as a single number: \"-62%\" or \"3x faster\".\n\nCommon mistakes: different scales on each side, a divider that moves so fast the before state never registers, and decorative wipes that hide the data. The change should be visible in a still frame.",
+      "goodFor": ["results", "case studies", "comparisons"],
+      "examples": [],
+      "related": ["highlight-one-bar", "counter-roll-up", "dot-swarm-chart"]
+    },
+    {
+      "slug": "beat-synced-cuts",
+      "name": "Beat-synced cuts",
+      "family": "sound",
+      "aka": [
+        "cutting on the beat",
+        "cut to the beat",
+        "beat matching edit",
+        "music sync edit"
+      ],
+      "summary": "Scene changes land exactly on the music's downbeats, so the edit feels played by the track instead of laid over it.",
+      "body": "Every scene change happens on a measured beat of the song, usually a downbeat. The viewer never sees the sync; they feel that the film and the music are one thing.\n\nIt works best for launch films, reels and anything with a clear groove. Big changes (new scene, the reveal, the logo) go on bar 1 of a phrase; smaller changes can sit on beat 3 or on an off-beat for swing.\n\nHow to make it hold up:\n\n- Measure the track. Tempo plus first downbeat gives every beat time; guessing drifts by half a second within a minute.\n- Cut on the frame closest to the beat. At 30 fps a frame is 33 ms, so rounding is fine; drifting is not.\n- Vary the length. Cutting on every single beat for 20 seconds turns into a metronome. Mix 1-, 2- and 4-beat shots.\n\nCommon mistakes: syncing to a tempo read off the track's title instead of the audio, starting the music on a pickup note so everything sits a beat late, and fast cuts over text that needs two beats to read.",
+      "goodFor": ["launch films", "showreels", "music videos"],
+      "examples": ["prasenx-3c11d1", "gorden-sun-041f56"],
+      "related": ["bpm-grid-timing", "transient-hit-frames", "riser-build"]
+    },
+    {
+      "slug": "bpm-grid-timing",
+      "name": "BPM grid timing",
+      "family": "sound",
+      "aka": [
+        "beat grid",
+        "tempo grid",
+        "bpm timing",
+        "musical timing for animation"
+      ],
+      "summary": "All motion durations are written in beats rather than seconds, so every move starts and ends on the song's tempo grid.",
+      "body": "Instead of timing an animation in arbitrary milliseconds, you derive every duration from the tempo. At 120 BPM a beat is 500 ms, half a beat 250 ms, a bar 2 s. A card that slides in over one beat and holds for three looks like it belongs to the song even when nothing is cutting.\n\nIt is the backbone of any beat-driven piece and also works for silent films: pick a tempo, build the grid, and the rhythm stays consistent across scenes.\n\nHow it reads well:\n\n- Start times snap to the grid; durations are whole or half beats.\n- Easing still matters. A move that lasts one beat should finish settling on the next beat, not halfway.\n- Leave small secondary motions off the grid so the piece breathes.\n\nCommon mistakes: snapping everything (it starts to feel mechanical), using a tempo that does not divide cleanly into your frame rate without accounting for rounding, and forgetting that the grid starts at the first downbeat, not at 0 s of the audio file.",
+      "goodFor": ["music-led motion", "silent loops", "UI promos"],
+      "examples": [
+        "yankis0x-97c584",
+        "diamai_-c01dfd",
+        "buildfastwithai-4389c4"
+      ],
+      "related": ["beat-synced-cuts", "kick-pulse"]
+    },
+    {
+      "slug": "kick-pulse",
+      "name": "Kick pulse",
+      "family": "sound",
+      "aka": [
+        "kick drum bounce",
+        "bass pulse",
+        "beat bounce scale",
+        "pulse on the beat"
+      ],
+      "summary": "An element punches up in scale on every kick drum and eases back before the next one, like it is being pushed by the bass.",
+      "body": "A logo, a shape or a whole layer jumps a few percent in size on each kick hit, then relaxes. The attack is instant and the release is slower, which is what makes it read as a hit rather than a wobble.\n\nUse it on drops, chorus sections and end cards, where the music is at full energy. It gives an otherwise static frame a heartbeat.\n\nWhat makes it work:\n\n- Fast attack, slow release. 1 to 2 frames up, 6 to 10 frames down.\n- Small amounts. 3 to 8 percent scale is plenty on a large element. More reads as a glitch.\n- Drive it from detected kicks, not from every beat. Many tracks skip kicks in fills and breakdowns, and the pulse should skip with them.\n\nCommon mistakes: pulsing text people need to read, scaling from the wrong anchor so the element appears to slide, and running the pulse through quiet sections where there is no kick to justify it. Pair with a brightness bump of a few percent for extra weight.",
+      "goodFor": ["drops", "logo end cards", "music videos"],
+      "examples": ["kloss_xyz-1747b4"],
+      "related": ["sidechain-pump", "bpm-grid-timing", "frequency-bars"]
+    },
+    {
+      "slug": "waveform-visualizer",
+      "name": "Waveform visualizer",
+      "family": "sound",
+      "aka": [
+        "audio waveform animation",
+        "oscilloscope animation",
+        "audiogram",
+        "sound wave line"
+      ],
+      "summary": "A line traces the actual shape of the audio, scrolling or redrawing each frame so the sound becomes visible.",
+      "body": "The waveform visualizer draws the audio signal as a line or a row of mirrored bars. It reads as \"this is the sound\" more literally than any other visual, which is why it shows up in podcast clips, audiograms and music cards.\n\nThere are two main styles:\n\n- **Oscilloscope**: a short window of samples around the current time, redrawn each frame. Lively and jittery.\n- **Overview**: the whole clip drawn as an amplitude envelope, with a playhead or fill showing progress. Calm and readable.\n\nWhen it works: anything where the audio is the product, a voice clip, a song preview, a sound-design reel. It is a weak choice as decoration on a film that is about something else.\n\nCommon mistakes: using a random sine wave instead of the real audio (viewers notice it ignores the voice), drawing raw samples without smoothing so it becomes noise at video resolution, and letting the line clip off the top on loud peaks. Normalize to the clip's peak and leave headroom.",
+      "goodFor": ["podcast clips", "audiograms", "music cards"],
+      "examples": ["rneayan-ea6129"],
+      "related": ["frequency-bars", "lyric-sync"]
+    },
+    {
+      "slug": "frequency-bars",
+      "name": "Frequency bars",
+      "family": "sound",
+      "aka": [
+        "audio spectrum bars",
+        "equalizer animation",
+        "spectrum analyzer",
+        "FFT visualizer"
+      ],
+      "summary": "A row of bars rises and falls with the music's frequency content, bass on one side and treble on the other.",
+      "body": "Frequency bars split the audio into bands and give each band a bar whose height follows its loudness. It is the classic equalizer look, and it reads instantly as music.\n\nIt works on music cards, beat-driven reels and anything where you want the track to feel present on screen. It can also be bent into rings, radial bursts or the outline of a logo.\n\nTo make it read as real:\n\n- Use a log frequency scale. A linear FFT puts almost all the action in the first few bars.\n- Fast rise, slower fall. Bars that jump up in 1 frame and fall over 6 to 10 feel musical; symmetric motion feels like noise.\n- Fewer, wider bars read better on video than 256 hairlines. 24 to 64 is a good range.\n\nCommon mistakes: fake random bars (they never match a kick, and people notice), no smoothing so bars flicker every frame, and letting the bass bars sit at maximum all the time because the low end was not normalized separately.",
+      "goodFor": ["music cards", "reels", "logo rings"],
+      "examples": ["ulyssexbt-cd08ca"],
+      "related": [
+        "waveform-visualizer",
+        "kick-pulse",
+        "sound-reactive-particles"
+      ]
+    },
+    {
+      "slug": "lyric-sync",
+      "name": "Lyric sync",
+      "family": "sound",
+      "aka": [
+        "synced lyrics animation",
+        "word-by-word lyrics",
+        "karaoke text animation",
+        "lyric video timing"
+      ],
+      "summary": "Each word of the lyrics appears or highlights exactly when it is sung, timed to the vocal rather than to a guess.",
+      "body": "Lyric sync puts the words on screen in step with the singer, word by word or syllable by syllable. Done well, the viewer reads along without effort and the type feels like it is singing.\n\nIt is the core of lyric videos and works for spoken word and voiceover captions too.\n\nHow to get it right:\n\n- Time from the vocal. Separate the vocal stem, run forced alignment or transcription with word timestamps, then correct by hand where the singer stretches a word.\n- Show the line early, highlight the word on time. Readers need the whole line about 300 ms before the first word.\n- Give long notes a visible sustain, such as a fill that runs across the word while it is held.\n\nCommon mistakes: timing lines off the beat grid instead of the voice (singers are rarely exactly on the beat), revealing words late so the text chases the vocal, and cramming effects through the letters so they stop being readable. Glow and trails belong behind the type.",
+      "goodFor": ["lyric videos", "spoken word", "captions"],
+      "examples": ["kloss_xyz-1747b4", "samaote-5e2fc2", "okazaky-ec5fed"],
+      "related": ["silence-hold", "waveform-visualizer"]
+    },
+    {
+      "slug": "sound-reactive-particles",
+      "name": "Sound-reactive particles",
+      "family": "sound",
+      "aka": [
+        "audio reactive particles",
+        "music reactive visuals",
+        "beat reactive particles",
+        "audio-driven particle system"
+      ],
+      "summary": "A particle field breathes with the music: bass pushes it outward, highs add sparkle, and the drop throws it apart.",
+      "body": "Here the music drives the parameters of a particle system. Instead of keyframing, you map audio features to forces: low-end energy to expansion, mids to speed or turbulence, high frequencies to brightness or spawn rate, and onsets to bursts.\n\nIt is the natural look for music visualizers, VJ-style loops and drop moments in a reel.\n\nWhat separates good from noisy:\n\n- Map a few features clearly. Three mappings the viewer can feel beat ten they cannot.\n- Smooth the inputs. Raw audio features jitter every frame; a short envelope makes the field move like a body.\n- Scale reactions by importance: a light nudge on every beat, a strong burst only on the drop or the biggest hits.\n\nCommon mistakes: everything reacting at full strength all the time so the frame turns to static, random seeds that change between renders, and reacting to the overall loudness only, which flattens kick, snare and vocal into one blur.",
+      "goodFor": ["music visualizers", "drops", "VJ loops"],
+      "examples": ["pluvio9yte-099d1d", "buildfastwithai-4389c4"],
+      "related": ["frequency-bars", "kick-pulse", "riser-build"]
+    },
+    {
+      "slug": "transient-hit-frames",
+      "name": "Hit frames on transients",
+      "family": "sound",
+      "aka": ["sound on contact frame", "impact sync", "SFX sync", "hit sync"],
+      "summary": "Every visible contact, landing or click shares its exact frame with the peak of its sound, so picture and audio feel like one event.",
+      "body": "A hit frame is the moment of contact: the ball touches the floor, the card lands, the cursor clicks. A transient is the sharp start of a sound. When the loudest sample of the sound sits on the contact frame, the viewer believes the sound came from the picture.\n\nThis matters most for sound effects on UI demos, physics pieces and anything with impacts.\n\nHow to place them:\n\n- Measure each sound file's peak offset once (the time from file start to its loudest sample) and schedule it at `contact time − peak offset`.\n- One sound per meaningful event. A group of five cards gets one sound, or a sound on the first and last.\n- If you cannot be exact, be late, not early. Audio a frame early reads as wrong much sooner than audio a frame late.\n\nCommon mistakes: aligning the file start rather than its peak, so every sound lags by its attack time; triggering sounds on animation start instead of contact; and stacking so many effects that none of them read.",
+      "goodFor": ["UI demos", "physics animations", "product films"],
+      "examples": ["rneayan-3ba57b", "kamstudiolabs-447565"],
+      "related": ["beat-synced-cuts", "stinger-sync"]
+    },
+    {
+      "slug": "silence-hold",
+      "name": "Silence before the drop",
+      "family": "sound",
+      "aka": [
+        "silence hold",
+        "dead air before drop",
+        "quiet before the drop",
+        "breath before the hit"
+      ],
+      "summary": "Sound cuts out and the picture freezes or empties for a beat or two, so the next hit lands twice as hard.",
+      "body": "A deliberate silence is the most powerful sound in a film. The music drops out, the picture holds still or goes nearly empty, and the viewer leans in. Whatever comes next, the drop or the product name, gets their full attention.\n\nUse it once or twice in a piece: before a drop, before a reveal, or after the final hit as a full stop.\n\nHow to make it work:\n\n- Match picture to sound. If audio stops but everything keeps moving, the silence feels like a glitch. Slow or freeze motion with it.\n- Keep it short. One or two beats (0.5 to 1 s at 120 BPM) is tension; four seconds is a mistake unless it is the concept.\n- Put one thing on screen. A single word, one dot, a cursor hovering.\n\nCommon mistakes: fading the music out slowly instead of cutting it (the tension leaks away), leaving room tone or reverb tails that blur the gap, and using the trick so often that it stops surprising.",
+      "goodFor": ["drops", "product name reveals", "endings"],
+      "examples": ["kisalay_-703010", "adrianduta96-0e315f"],
+      "related": ["riser-build", "stinger-sync", "lyric-sync"]
+    },
+    {
+      "slug": "riser-build",
+      "name": "Riser build",
+      "family": "sound",
+      "aka": [
+        "build up to the drop",
+        "tension build",
+        "riser sync",
+        "pre-drop build"
+      ],
+      "summary": "Over the bars leading into a drop, motion speeds up, the camera pushes in and the frame tightens until the drop releases it.",
+      "body": "A riser is the rising sweep or snare roll producers use to build into a drop. The visual version matches it: over the last 4 or 8 bars before the drop, everything accelerates toward one point.\n\nTypical tools: a slow camera push that speeds up, cuts that halve in length (every 2 beats, then every beat, then every half beat), a light or color that intensifies, and a shape that grows to fill the frame exactly on the drop.\n\nWhen it works: launch films and reels built on a track with a clear drop. It is the single best way to make the main reveal feel earned.\n\nCommon mistakes:\n\n- A linear build. Tension needs an accelerating curve; ease-in, not linear.\n- Overshooting the drop. If the build peaks before the drop frame, the drop lands flat. The maximum happens on the drop frame, then releases.\n- No release. The frame after the drop should open up, calmer or wider, so the contrast reads.",
+      "goodFor": ["launch films", "reveals", "reels"],
+      "examples": [
+        "ultimaxbt-2ddf1e",
+        "twoclipping-4ea78e",
+        "twoclipping-15d018"
+      ],
+      "related": [
+        "silence-hold",
+        "beat-synced-cuts",
+        "sound-reactive-particles"
+      ]
+    },
+    {
+      "slug": "sidechain-pump",
+      "name": "Sidechain pump",
+      "family": "sound",
+      "aka": [
+        "sidechain motion",
+        "ducking motion",
+        "pumping effect",
+        "sidechain compression visual"
+      ],
+      "summary": "Background layers dip in brightness or scale on every kick and swell back between them, mirroring the pumping sound of dance music.",
+      "body": "In dance music, sidechain compression makes the pads and bass duck on every kick and swell back in, creating that breathing pump. The visual version does the same thing to the picture: on each kick, background layers dip a little, and they recover before the next one.\n\nIt differs from a kick pulse. A pulse pushes the hero element up on the hit; the pump pulls the surroundings down. Used together, the subject seems to punch through the frame.\n\nBest for house, techno and EDM-driven pieces, club visuals and drops.\n\nWhat makes it convincing:\n\n- The dip is instant and the recovery follows a curve that fills most of the beat, so the frame breathes once per kick.\n- Apply it to the background, ambient light or secondary layers, never to text.\n- Match depth to the track. A heavily pumped mix can take a 30% brightness dip; a gentle one wants 10%.\n\nCommon mistakes: recovering too fast so it looks like a flicker, and pumping during sections without a steady four-on-the-floor kick.",
+      "goodFor": ["EDM drops", "club visuals", "music loops"],
+      "examples": [],
+      "related": ["kick-pulse", "bpm-grid-timing"]
+    },
+    {
+      "slug": "stinger-sync",
+      "name": "Stinger sync",
+      "family": "sound",
+      "aka": [
+        "logo sting",
+        "sonic logo animation",
+        "audio logo sync",
+        "end sting"
+      ],
+      "summary": "A short, distinct sound plays with a logo lockup so the final frame and the sound resolve together as one signature.",
+      "body": "A stinger is a short sound, usually under two seconds, that ends a film or marks a brand moment. The visual lockup and the sound are built as one gesture: the logo arrives on the sting's main hit, and the motion settles as its tail decays.\n\nIt works on end cards, channel intros, bumpers and transitions between segments of a series. Reused across videos, it becomes recognizable on its own.\n\nHow to build it:\n\n- Design the animation around the sound's envelope. The fastest moment of motion lands on the hit; the slow settle covers the ring-out.\n- Keep both short. 1 to 2 seconds total, with a clear final frame held after the sound ends.\n- Leave silence after it. A beat of quiet makes the sting read as an ending.\n\nCommon mistakes: a sting that peaks while the logo is still moving in, so the hit feels detached; a long tail with nothing on screen; and changing the sting every video so it never becomes a signature.",
+      "goodFor": ["end cards", "bumpers", "series intros"],
+      "examples": ["adrianduta96-0e315f"],
+      "related": ["transient-hit-frames", "silence-hold"]
+    }
+  ]
+}

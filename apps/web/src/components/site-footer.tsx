@@ -36,6 +36,7 @@ import {
   MOTION_MODEL_NAMES,
   motionModelSlug,
 } from "@/lib/motion-catalog";
+import { MOVE_FAMILIES } from "@/lib/move-families";
 import { cn } from "@/lib/utils";
 import { withUtm } from "@/lib/utm";
 
@@ -149,8 +150,7 @@ const ExternalLink = ({
 
 /**
  * Every page as plain, server-rendered links (nothing behind a menu but the
- * Shadcn Labs projects), so visitors and crawlers reach every gallery page
- * and directory: the brand
+ * Shadcn Labs projects), so visitors and crawlers reach them all: the brand
  * column, then four columns of link groups. On phones the brand sits on top
  * and the groups pair up.
  */
@@ -158,6 +158,21 @@ export const SiteFooter = () => {
   const content = useIntlayer("site-footer");
   const header = useIntlayer("site-header");
   const gallery = useIntlayer("motion-gallery");
+  const moves = useIntlayer("moves");
+  const product = [
+    [ROUTES.MOVES, header.moves],
+    [ROUTES.MOTIONVIDEO_SKILL, header.skill],
+    [ROUTES.MOTIONVIDEO_MCP, header.mcp],
+    [ROUTES.PRO, header.pricing],
+  ] as const;
+  const docs = [
+    [ROUTES.DOCS, content.quickstart],
+    [ROUTES.DOCS_MCP, content.mcpServer],
+    [ROUTES.DOCS_SKILL, content.agentSkill],
+    [ROUTES.DOCS_MOVES, content.usingMoves],
+    [ROUTES.DOCS_PLANS, content.plansBilling],
+    [ROUTES.DOCS_API, content.publicApi],
+  ] as const;
   const resources = [
     [ROUTES.HOME, header.discover],
     [ROUTES.TOOLS, header.tools],
@@ -189,7 +204,7 @@ export const SiteFooter = () => {
 
   return (
     <footer className="mx-auto mt-auto w-full max-w-[1800px] px-4 pt-16 text-sm sm:px-6">
-      <div className="grid gap-x-8 gap-y-12 lg:grid-cols-[minmax(0,1.4fr)_repeat(4,minmax(0,1fr))]">
+      <div className="grid gap-x-8 gap-y-12 lg:grid-cols-[minmax(0,1.4fr)_repeat(5,minmax(0,1fr))]">
         <div className="flex max-w-xs flex-col items-start gap-4">
           {/* text-base: the logo at the header's size (the footer is text-sm). */}
           <div className="text-base">
@@ -204,8 +219,18 @@ export const SiteFooter = () => {
         </div>
         <nav
           aria-label={content.footer.value}
-          className="grid grid-cols-2 gap-x-6 gap-y-10 md:grid-cols-4 lg:col-span-4"
+          className="grid grid-cols-2 gap-x-6 gap-y-10 md:grid-cols-3 lg:col-span-5 lg:grid-cols-5"
         >
+          <Column>
+            <LinkGroup heading={content.product}>{links(product)}</LinkGroup>
+            <LinkGroup heading={header.docs}>
+              {links(docs)}
+              {/* A server route serving markdown, not an app page. */}
+              <a href={ROUTES.SKILL_MD} className={linkClass}>
+                skill.md
+              </a>
+            </LinkGroup>
+          </Column>
           <Column>
             <LinkGroup heading={content.explore}>{links(resources)}</LinkGroup>
             <LinkGroup heading={content.byModel}>
@@ -256,6 +281,18 @@ export const SiteFooter = () => {
             <LinkGroup heading={content.legal}>{links(legal)}</LinkGroup>
           </Column>
           <Column>
+            <LinkGroup heading={header.moves}>
+              {MOVE_FAMILIES.map((family) => (
+                <Link
+                  key={family}
+                  to="/moves/$family"
+                  params={{ family }}
+                  className={linkClass}
+                >
+                  {moves.familyLabels[family]}
+                </Link>
+              ))}
+            </LinkGroup>
             <LinkGroup heading={content.otherProducts}>
               {OTHER_PRODUCTS.map((item) => (
                 <ExternalLink key={item.name} href={item.url}>

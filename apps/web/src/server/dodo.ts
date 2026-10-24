@@ -1,15 +1,10 @@
 import { env } from "cloudflare:workers";
-import DodoPayments, { APIError, NotFoundError } from "dodopayments";
+import DodoPayments, { NotFoundError } from "dodopayments";
 import type { CheckoutSessionCreateParams } from "dodopayments/resources/checkout-sessions";
 
 import { JOB_PLANS } from "@/constants/jobs";
 import type { JobPlan } from "@/constants/jobs";
-import {
-  BASE_PRICE_CENTS,
-  LAUNCH_LIMIT,
-  LAUNCH_PRICE_CENTS,
-} from "@/constants/pricing";
-import type { Offer } from "@/constants/pricing";
+import type { Plan, PlanBilling } from "@/constants/plans";
 import { ROUTES } from "@/constants/routes";
 import { SPONSOR_BILLINGS, SPONSOR_TIERS } from "@/constants/sponsors";
 import type { SponsorBilling, SponsorTier } from "@/constants/sponsors";
@@ -62,6 +57,27 @@ export const sponsorProductOf = (
   return undefined;
 };
 
+/**
+ * MotionVideo Pro and Business products, by plan and billing: subscriptions
+ * for monthly and annual, a one-time payment for lifetime. Business has no
+ * lifetime product (see PLAN_PRICE_CENTS).
+ */
+const PLAN_PRODUCT_IDS: Record<Plan, Partial<Record<PlanBilling, string>>> = {
+  pro: {
+    monthly: env.DODO_PRODUCT_PRO_MONTHLY,
+    annual: env.DODO_PRODUCT_PRO_ANNUAL,
+    lifetime: env.DODO_PRODUCT_PRO_LIFETIME,
+  },
+  business: {
+    monthly: env.DODO_PRODUCT_BUSINESS_MONTHLY,
+    annual: env.DODO_PRODUCT_BUSINESS_ANNUAL,
+  },
+};
+
+/** The Dodo product for a plan and billing; empty until `pnpm dodo:setup`. */
+export const planProductId = (plan: Plan, billing: PlanBilling): string =>
+  PLAN_PRODUCT_IDS[plan][billing] ?? "";
+
 /** One-time job listing products, by plan. */
 const JOB_PRODUCT_IDS: Record<JobPlan, string> = {
   featured: env.DODO_PRODUCT_JOB_FEATURED,
@@ -85,7 +101,13 @@ const customersFor = async (email: string) => {
   );
 };
 
+// The retired Skill Bundle: no longer sold, but its buyers keep their skill
+// repository access (Dodo's GitHub entitlement) and are told apart by it.
 const hasPaidSkill = async (customerId: string): Promise<boolean> => {
+  // Without a product ID the filter would match every payment.
+  if (!env.DODO_PRODUCT_SKILL) {
+    return false;
+  }
   const { items } = await getDodo().payments.list({
     customer_id: customerId,
     page_size: 100,
@@ -116,43 +138,6 @@ export const hasPurchased = async (email: string): Promise<boolean> => {
   return status.purchased;
 };
 
-const launchDiscount = async (): Promise<{ code: string; offer: Offer }> => {
-  const discount = await getDodo().discounts.retrieve(
-    env.DODO_LAUNCH_DISCOUNT_ID
-  );
-  const usd = discount.currency_options?.find(
-    (option) => option.currency === "USD"
-  );
-  if (
-    discount.type !== "flat" ||
-    usd?.max_amount_possible !== BASE_PRICE_CENTS - LAUNCH_PRICE_CENTS ||
-    discount.usage_limit !== LAUNCH_LIMIT ||
-    discount.restricted_to.length !== 1 ||
-    discount.restricted_to[0] !== env.DODO_PRODUCT_SKILL
-  ) {
-    throw new Error(
-      "Dodo launch discount must be $20 off the skill bundle, capped at 100"
-    );
-  }
-  const now = Date.now();
-  return {
-    code: discount.code,
-    offer: {
-      active:
-        discount.times_used < LAUNCH_LIMIT &&
-        (!discount.starts_at || Date.parse(discount.starts_at) <= now) &&
-        (!discount.expires_at || Date.parse(discount.expires_at) > now),
-      limit: LAUNCH_LIMIT,
-      sold: discount.times_used,
-    },
-  };
-};
-
-export const launchOffer = async (): Promise<Offer> => {
-  const { offer } = await launchDiscount();
-  return offer;
-};
-
 const checkoutUrl = async (
   params: CheckoutSessionCreateParams
 ): Promise<string> => {
@@ -169,49 +154,28 @@ export interface Buyer {
   userId: string;
 }
 
-/** Checkout for the skill bundle, with the launch code while it lasts. */
-export const createCheckoutUrl = async (
-  buyer: Buyer | null
+/**
+ * Checkout for MotionVideo Pro or Business. The metadata ties the
+ * subscription or lifetime payment to the account (src/server/plans.ts); Dodo
+ * returns to /dashboard/billing, appending `subscription_id` or `payment_id`.
+ */
+export const createPlanCheckoutUrl = (
+  plan: Plan,
+  billing: PlanBilling,
+  buyer: Buyer
 ): Promise<string> => {
-  const base = env.BETTER_AUTH_URL;
-  const params: CheckoutSessionCreateParams = {
-    cancel_url: `${base}${ROUTES.PRICING}`,
-    customer: buyer ? { email: buyer.email } : undefined,
-    // No code field at checkout: only the server applies the launch code.
+  const productId = planProductId(plan, billing);
+  if (!productId) {
+    throw new Error("Plan products are not set up; run pnpm dodo:setup");
+  }
+  return checkoutUrl({
+    cancel_url: `${env.BETTER_AUTH_URL}${ROUTES.PRO}`,
+    customer: { email: buyer.email },
     feature_flags: { allow_discount_code: false },
-    metadata: { product: "skill" },
-    product_cart: [{ product_id: env.DODO_PRODUCT_SKILL, quantity: 1 }],
-    // Dodo appends `payment_id`.
-    return_url: `${base}${ROUTES.WELCOME}`,
-  };
-  const { code, offer } = await launchDiscount();
-  if (!offer.active) {
-    return checkoutUrl(params);
-  }
-  try {
-    // Dodo rejects preset codes unless the code field is enabled, so the
-    // discounted session shows it with the launch code already applied.
-    return await checkoutUrl({
-      ...params,
-      discount_codes: [code],
-      feature_flags: { allow_discount_code: true },
-    });
-  } catch (error) {
-    // The code can run out between reading the offer and creating the
-    // session. Only then does a rejected session fall back to full price.
-    if (
-      !(error instanceof APIError) ||
-      error.status === undefined ||
-      error.status >= 500
-    ) {
-      throw error;
-    }
-    const current = await launchOffer();
-    if (current.active) {
-      throw error;
-    }
-    return checkoutUrl(params);
-  }
+    metadata: { plan, billing, user_id: buyer.userId },
+    product_cart: [{ product_id: productId, quantity: 1 }],
+    return_url: `${env.BETTER_AUTH_URL}${ROUTES.DASHBOARD_BILLING}?checkout=success`,
+  });
 };
 
 /**
@@ -253,7 +217,8 @@ export interface CompletedCheckout {
 
 /**
  * Null when Dodo has no skill bundle payment with this id (bad or tampered
- * link, or a payment for another product).
+ * link, or a payment for another product). Only old /welcome return links
+ * carry one now that the bundle is retired.
  */
 export const completedCheckout = async (
   paymentId: string
@@ -280,16 +245,24 @@ export const completedCheckout = async (
   };
 };
 
-export const customerPortalUrl = async (email: string): Promise<string> => {
+/** Dodo's billing portal for a plan owner, returning to /dashboard/billing. */
+export const planPortalUrl = async (customerId: string): Promise<string> => {
+  const session = await getDodo().customers.customerPortal.create(customerId, {
+    return_url: `${env.BETTER_AUTH_URL}${ROUTES.DASHBOARD_BILLING}`,
+  });
+  return session.link;
+};
+
+/**
+ * The portal for a retired Skill Bundle buyer (receipts, the GitHub
+ * connection for the repository invite), found by email.
+ */
+export const legacySkillPortalUrl = async (email: string): Promise<string> => {
   const customer = await skillCustomer(email);
   if (!customer) {
     throw new Error("No Dodo customer with a purchase for this email");
   }
-  const session = await getDodo().customers.customerPortal.create(
-    customer.customer_id,
-    { return_url: `${env.BETTER_AUTH_URL}${ROUTES.DASHBOARD_SKILL}` }
-  );
-  return session.link;
+  return planPortalUrl(customer.customer_id);
 };
 
 /** Dodo's billing portal for one sponsor, returning to /sponsorships. */

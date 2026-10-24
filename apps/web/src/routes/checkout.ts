@@ -1,31 +1,48 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { z } from "zod";
 
+import { PLAN_BILLINGS, PLANS, planOffers } from "@/constants/plans";
 import { ROUTES } from "@/constants/routes";
 import { auth } from "@/server/auth";
-import { createCheckoutUrl, hasPurchased } from "@/server/dodo";
+import { createPlanCheckoutUrl } from "@/server/dodo";
+import { liveOwnedRow } from "@/server/plans";
 
 const redirect = (location: string): Response =>
   new Response(null, { headers: { Location: location }, status: 303 });
 
-// Checkout for the skill bundle. Sponsorships check out from their form on
-// /sponsorships/new, so any other `?product=` goes to the sponsor plans
-// instead of silently selling the bundle. Existing buyers keep their access.
+// `/checkout?plan=pro&billing=annual`: the Pro page's buttons. Signs in
+// first (coming back here), sends accounts that already pay for a plan to
+// /dashboard/billing (changes go through Dodo's portal), and otherwise
+// redirects to Dodo. The retired `?product=skill` and anything invalid go to
+// /pro.
 export const Route = createFileRoute("/checkout")({
   server: {
     handlers: {
       GET: async ({ request }) => {
-        const product = new URL(request.url).searchParams.get("product");
-        if (product !== null && product !== "skill") {
-          return redirect(ROUTES.SPONSOR);
+        const url = new URL(request.url);
+        const plan = z.enum(PLANS).safeParse(url.searchParams.get("plan")).data;
+        const billing = z
+          .enum(PLAN_BILLINGS)
+          .safeParse(url.searchParams.get("billing")).data;
+        if (!plan || !billing || !planOffers(plan).includes(billing)) {
+          return redirect(ROUTES.PRO);
         }
         const session = await auth.api.getSession({ headers: request.headers });
-        const buyer = session
-          ? { email: session.user.email, userId: session.user.id }
-          : null;
-        if (buyer && (await hasPurchased(buyer.email))) {
-          return redirect(ROUTES.DASHBOARD_SKILL);
+        if (!session) {
+          const back = `${url.pathname}${url.search}`;
+          return redirect(
+            `${ROUTES.SIGN_IN}?redirect=${encodeURIComponent(back)}`
+          );
         }
-        return redirect(await createCheckoutUrl(buyer));
+        if (await liveOwnedRow(session.user)) {
+          return redirect(ROUTES.DASHBOARD_BILLING);
+        }
+        return redirect(
+          await createPlanCheckoutUrl(plan, billing, {
+            email: session.user.email,
+            userId: session.user.id,
+          })
+        );
       },
     },
   },

@@ -33,6 +33,14 @@ const Terms = () => {
         <p>{copy.text8}</p>
       </PageSection>
 
+      <PageSection title={copy.plansHeading.value}>
+        <PageList>
+          <li>{copy.plansPro}</li>
+          <li>{copy.plansBusiness}</li>
+        </PageList>
+        <p>{copy.plansIncluded}</p>
+      </PageSection>
+
       <PageSection title={copy.heading9.value}>
         <p>
           <a href={LINK.DODO_PAYMENTS} className={linkClass}>
@@ -49,6 +57,11 @@ const Terms = () => {
         </p>
       </PageSection>
 
+      <PageSection title={copy.renewalHeading.value}>
+        <p>{copy.renewalText1}</p>
+        <p>{copy.renewalText2}</p>
+      </PageSection>
+
       <PageSection title={copy.heading12.value}>
         <p>{copy.text13}</p>
         <p>
@@ -61,11 +74,12 @@ const Terms = () => {
         <p>{copy.text17}</p>
       </PageSection>
 
+      <PageSection title={copy.bundleHeading.value}>
+        <p>{copy.bundleText}</p>
+      </PageSection>
+
       <PageSection title={copy.heading18.value}>
-        <p>
-          {copy.text19} {SITE.NAME}
-          {copy.text20}
-        </p>
+        <p>{copy.text19}</p>
         <PageList>
           <li>{copy.text21}</li>
           <li>{copy.text22}</li>

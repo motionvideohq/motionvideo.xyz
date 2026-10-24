@@ -36,11 +36,9 @@ const Refunds = () => {
         </p>
       </PageSection>
 
-      <PageSection title={copy.heading7.value}>
-        <p>
-          {copy.text8} <SupportEmail />
-          {copy.text9}
-        </p>
+      <PageSection title={copy.renewalHeading.value}>
+        <p>{copy.renewalText1}</p>
+        <p>{copy.renewalText2}</p>
       </PageSection>
 
       <PageSection title={copy.heading10.value}>
@@ -55,6 +53,10 @@ const Refunds = () => {
           <li>{copy.text16}</li>
         </PageList>
         <p>{copy.text17}</p>
+      </PageSection>
+
+      <PageSection title={copy.bundleHeading.value}>
+        <p>{copy.bundleText}</p>
       </PageSection>
 
       <PageSection title={copy.heading18.value}>

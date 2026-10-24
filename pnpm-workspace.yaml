@@ -8,3 +8,4 @@ allowBuilds:
   msw: false
   workerd: true
   sharp: false
+

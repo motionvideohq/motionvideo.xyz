@@ -1,0 +1,1242 @@
+{
+  "prompts": [
+    {
+      "slug": "squash-and-stretch",
+      "prompt": "Animate [subject] with squash and stretch so it feels soft and weighted. Preserve volume: whenever scaleY changes, set scaleX = 1 / scaleY. Put the transform origin at the contact point, not the center. Before takeoff, squash to scaleY 0.8 over 4 frames (30 fps) on an ease-in. On release, stretch to scaleY 1.25 along the direction of travel, then relax to 1.0 by the top of the arc. Rotate the stretch axis to match the velocity vector every frame. On contact, squash to scaleY 0.7 for 2 frames, then spring back to 1.0 with mass 1, stiffness 300, damping 22, which gives one small overshoot. Never deform text or logos that must stay legible.",
+      "parameters": [
+        "Contact squash: scaleY 0.65–0.85",
+        "Stretch in flight: scaleY 1.15–1.35",
+        "Squash hold on contact: 2–4 frames",
+        "Recovery spring damping ratio: 0.5–0.7"
+      ]
+    },
+    {
+      "slug": "anticipation",
+      "prompt": "Before [subject] makes its main move, add an anticipation in the opposite direction. If it will move up, first dip it down by 8% of the main travel (for a 200 px jump, dip 16 px) and compress its scale to 0.96. The wind-up lasts 6 frames at 30 fps on an ease-in-out. Hold the lowest pose for 1 frame, then release into the main move on a fast ease-out, cubic-bezier(0.16, 1, 0.3, 1), over 10 to 14 frames, so the main move is at its highest speed on the first frame after the hold. Use anticipation only on the hero action of the scene, never on supporting elements or on text being read.",
+      "parameters": [
+        "Wind-up distance: 5–15% of the main travel",
+        "Wind-up duration: 4–10 frames",
+        "Hold at the extreme: 0–2 frames",
+        "Wind-up scale: 0.94–0.98"
+      ]
+    },
+    {
+      "slug": "overshoot-and-settle",
+      "prompt": "Bring [subject] to its resting position with a single controlled overshoot. Drive position with a spring of mass 1, stiffness 300, damping 22 (damping ratio about 0.64), which passes the target by roughly 7 to 8 percent and settles in about 0.6 s. If it also scales in, start the scale at 0.9, never 0, and use damping 30 on the scale spring so its overshoot stays under 2 percent. Fade opacity separately on an ease-out over 8 frames at 30 fps; never spring opacity. Give the overshoot only to the hero or the last item of a group. Everything else uses a critically damped spring (mass 1, stiffness 170, damping 26) with no overshoot.",
+      "parameters": [
+        "Overshoot amount: 0–17% (damping ratio 1.0 down to 0.5)",
+        "Settle time: 0.5–0.9 s",
+        "Scale start: 0.85–0.95",
+        "Who overshoots: the hero or the last item only"
+      ]
+    },
+    {
+      "slug": "follow-through",
+      "prompt": "Give [subject] follow-through by splitting it into a body and its loose parts (shadow, label, badge, limbs or trailing edge). Animate the body on the main curve, for example a spring with mass 1, stiffness 170, damping 26. Animate each attached part on the same curve delayed by 3 frames at 30 fps, and each part one step further out by another 2 frames. When the body stops, let the loose parts carry on: give them a softer spring (stiffness 120, damping 14) so they pass their rest pose by 4 to 6 px and settle back within 0.5 s. For a sliding indicator, drive the leading edge with the stiffer spring and the trailing edge with the softer one, so it stretches in travel and contracts on arrival.",
+      "parameters": [
+        "Lag per part: 2–6 frames",
+        "Trailing overshoot: 2–8 px",
+        "Trailing spring damping ratio: 0.55–0.8",
+        "Parts in the chain: 1–4"
+      ]
+    },
+    {
+      "slug": "spring-animation",
+      "prompt": "Drive the motion of [subject] with a damped spring instead of a duration-based curve. Start from these presets (mass / stiffness / damping): snap 1/400/38 for small UI reactions, settle 1/170/26 as the default entrance, heavy 3/200/48 for devices and large windows, pop 1/300/22 for a playful arrival with about 8% overshoot. Compute the damping ratio as damping / (2 × √(stiffness × mass)) and keep it between 0.9 and 1.05 unless overshoot is wanted. Use one spring family for the whole scene. When a target changes before the spring settles, add a new spring step for the difference instead of restarting from zero velocity. Compute each spring's settle time (within 0.1% of target) and start it that much before its cue.",
+      "parameters": [
+        "Damping ratio: 0.5–1.05",
+        "Stiffness: 90–400",
+        "Mass: 1 for UI, 2–3 for heavy objects",
+        "Settle threshold: within 0.1% of the target"
+      ]
+    },
+    {
+      "slug": "staggered-timing",
+      "prompt": "Reveal the items of [group] with a staggered entrance. Every item uses the identical animation: rise 32 px and fade from 0 to 1 over 18 frames at 30 fps on cubic-bezier(0.16, 1, 0.3, 1). Only the start time differs. Offset each item by 3 frames (100 ms) in reading order, and group items into phrases with an extra 2-frame gap between phrases (for 7 items: 2 + 3 + 2). Keep the total spread under 24 frames; for longer groups, shrink the offset or reveal in chunks. Never use an offset below 2 frames. Exit in the same order with half the offset, or all at once over 10 frames on an ease-in.",
+      "parameters": [
+        "Offset: 2–5 frames per item",
+        "Total spread: under 0.8 s",
+        "Order: reading order, importance or center-out",
+        "Phrase gap: 1–3 extra frames"
+      ]
+    },
+    {
+      "slug": "slow-in-slow-out",
+      "prompt": "Move [subject] from position A to position B with slow in and slow out. Use an ease-in-out curve: cubic-bezier(0.83, 0, 0.17, 1) for a decisive move, or cubic-bezier(0.37, 0, 0.63, 1) for a calm one. Base the duration on travel: 20 frames at 30 fps for a move of a quarter of the frame width, multiplied by about 1.3 each time the distance doubles. Spacing should be tight in the first and last 20% of the move and widest in the middle, with no constant-speed section. If you add motion blur, scale it with the instantaneous speed so it peaks mid-move. Use this only for on-screen-to-on-screen moves and camera moves, not for entrances or exits.",
+      "parameters": [
+        "Curve steepness: sine (calm) to quint (decisive)",
+        "Base duration: 15–30 frames for a quarter-frame move",
+        "Distance scaling: ×1.3 per doubling of travel",
+        "Camera moves: 1.2–3 s"
+      ]
+    },
+    {
+      "slug": "ease-out-entrance",
+      "prompt": "Bring [subject] in with an ease-out entrance and take it out with an ease-in exit. Entrance: move it up 40 px into place over 20 frames at 30 fps on cubic-bezier(0.16, 1, 0.3, 1), so it covers most of the distance in the first 6 frames and glides the rest. Fade opacity from 0 to 1 on a shorter 10-frame ease-out, so the element is solid while it is still settling. Exit: move it up 24 px and fade it out over 13 frames on cubic-bezier(0.7, 0, 0.84, 0). Exits take 60 to 75% of the entrance time and travel less than the entrance. If the scene cuts away right after, skip the exit entirely.",
+      "parameters": [
+        "Entrance duration: 12–27 frames",
+        "Entrance travel: 12–120 px by element size",
+        "Exit length: 60–75% of the entrance",
+        "Fade length: about half the move"
+      ]
+    },
+    {
+      "slug": "arc-motion",
+      "prompt": "Move [subject] along an arc, not a straight line. Animate x and y separately: x from start to end over 18 frames at 30 fps on a gentle ease-in-out, and y rising on an ease-out for the first half and falling on an ease-in for the second half, peaking 15 to 25% of the horizontal distance above the higher end point. For a cursor or a flying element without gravity, use a quadratic bezier path whose control point sits 10 to 20% of the distance off the straight line, bending to the same side on every move in the film, and advance along the path with an ease-in-out on progress. If the element has a clear front, rotate it up to 10° to follow the path tangent.",
+      "parameters": [
+        "Arc height: 10–25% of the travel",
+        "Duration: 12–24 frames",
+        "Tangent rotation: 0–15°",
+        "Bend side: consistent across the film"
+      ]
+    },
+    {
+      "slug": "moving-hold",
+      "prompt": "During every hold on [subject], keep a trace of motion so the frame never freezes. Once the element has fully settled, start a slow push-in on the camera or the container: scale from 1.00 to 1.02 across the whole hold (60 frames for a 2 s hold at 30 fps) at constant speed, and carry that speed straight into the next move instead of stopping. Optionally drift background layers 4 to 8 px over the same time. Keep text completely still relative to its container. Hold labels of one to three words for at least 24 frames and longer lines for max(30, 18 + 9 × words) frames. Put the longest hold right after the biggest reveal.",
+      "parameters": [
+        "Push amount: 1–3% scale over the hold",
+        "Background drift: 2–10 px",
+        "Curve: linear, continuous into the next move",
+        "Read floor: 0.8 s for short labels"
+      ]
+    },
+    {
+      "slug": "secondary-action",
+      "prompt": "When [subject] completes its main action, add one secondary action that reacts to it. Start the reaction on the contact frame or up to 3 frames after it, never before, and keep it smaller than the main move. Options: neighboring elements nudge 4 to 8 px away from the impact and settle back on a spring (mass 1, stiffness 200, damping 20) over about 0.5 s; or a ring expands from the contact point to 1.6× the subject's size over 15 frames at 30 fps while fading out. For characters, add a blink (eyes closed for 3 frames) or a glance toward the next point of interest. Limit reactions to the nearest elements and use the scene's existing spring family.",
+      "parameters": [
+        "Reaction delay: 0–3 frames after contact",
+        "Nudge distance: 4–8 px",
+        "Ring size: 1.3–2× the subject",
+        "Reacting elements: the 1–3 nearest"
+      ]
+    },
+    {
+      "slug": "animating-on-twos",
+      "prompt": "Give [subject] a stepped, hand-made cadence by animating on twos. Keep computing the animation smoothly, but quantize time before sampling it: t = floor(frame / 2) × 2 / fps, so each pose holds for 2 frames (12 poses per second at 24 fps, 15 at 30 fps). Switch to threes, holding each pose for 3 frames, for a rougher stop-motion feel. For hand-drawn lines, reseed the stroke jitter on every new pose and offset points by 1 to 2 px so the lines boil slightly. Step only the drawn elements and characters. Keep the camera, background drift and any text that must be read at the full frame rate.",
+      "parameters": [
+        "Step: 2 (twos), 3 (threes) or 4 frames",
+        "Line boil jitter: 0.5–2 px",
+        "Boil rate: one new seed per held pose",
+        "Stepped layers: characters and drawings only"
+      ]
+    },
+    {
+      "slug": "staggered-letter-reveal",
+      "prompt": "Animate [word] in letter by letter. Lay out the full word first at its final size and kerning, then split it into one element per character in its final slot. Each letter starts 32 px below its baseline at 0 opacity and moves to 0 px and full opacity over 14 frames (about 470 ms at 30 fps) with an ease-out curve like cubic-bezier(0.16, 1, 0.3, 1). Start each letter 2 frames (about 67 ms) after the previous one, left to right, so the whole word lands within about 600 ms for 6 to 8 letters. No rotation, no blur. Hold the finished word at least 1.5 seconds before anything else moves.",
+      "parameters": [
+        "Stagger: 33–67 ms between letters",
+        "Rise distance: 20–40 px",
+        "Per-letter duration: 350–550 ms",
+        "Total spread: 400–700 ms for the whole word"
+      ]
+    },
+    {
+      "slug": "word-by-word-reveal",
+      "prompt": "Build the line \"[sentence]\" one word at a time. Lay out the whole line invisibly first so no word ever shifts or re-centres. Each word enters by rising 18 px, going from 10 px blur to 0 and from 0 to full opacity over 10 frames (about 330 ms at 30 fps) with a smooth ease-out. Start words 3 frames (100 ms) apart, or on the exact word timestamps if there is a voiceover. Attach short words like \"a\", \"to\" and \"the\" to the word after them. Make [key word] the accent colour and give it an extra 150 ms before the next word starts. Hold the complete line for at least 2 seconds.",
+      "parameters": [
+        "Word gap: 60–120 ms, or voice timestamps",
+        "Rise: 12–30 px",
+        "Start blur: 0–12 px",
+        "Key word pause: 100–250 ms"
+      ]
+    },
+    {
+      "slug": "typewriter-text",
+      "prompt": "Type \"[text]\" into [the field or line] like a person typing. Left-align it so the start never moves. Compute visible characters from time rather than adding them per frame, at an average of 28 characters per second, with a 120 ms pause after each space, a 250 ms pause after punctuation, and a random (seeded) jitter of ±30 ms per keystroke. Characters appear instantly, with no fade. A 2 px wide caret sits right after the last character, stays solid while typing, and blinks at 530 ms on, 530 ms off once typing stops. If there is sound, trigger a soft key click on each character.",
+      "parameters": [
+        "Speed: 20–40 characters per second",
+        "Pause after space: 80–150 ms",
+        "Keystroke jitter: ±20–40 ms",
+        "Caret blink: 500–600 ms per phase"
+      ]
+    },
+    {
+      "slug": "text-scramble-decode",
+      "prompt": "Reveal [word or short line] with a decode effect. Use a monospace font or fixed-width character slots so the line never jitters. Every slot starts showing random glyphs from the set A–Z, 0–9 and #%&/<>, changing every 2 frames at 30 fps. Resolve slots left to right: slot n locks to its real character at frame 6 + 3n, then never changes again. Seed the random generator so every render is identical. Unresolved glyphs sit at 60% opacity in [muted colour]; a resolved letter snaps to full opacity in [main colour]. Total time for 10 characters is about 1.2 seconds.",
+      "parameters": [
+        "Glyph change rate: every 1–3 frames",
+        "Lock interval: 2–4 frames per slot",
+        "Initial scramble: 4–10 frames",
+        "Noise glyph set: letters only to full symbols"
+      ]
+    },
+    {
+      "slug": "line-mask-text-reveal",
+      "prompt": "Reveal [headline lines] with a line mask. Put each line in its own clipping box 1.15 times the line height, with the extra space below the baseline so descenders are never cut. Each line starts translated down by 100% of its own height, fully hidden, and rises to 0 over 18 frames (600 ms at 30 fps) with a strong ease-out like cubic-bezier(0.22, 1, 0.36, 1). Offset each line by 3 frames (100 ms). No opacity change and no blur; the mask edge does all the work. To exit, move each line up by 100% of its height in 12 frames with an ease-in, same order.",
+      "parameters": [
+        "Line duration: 500–750 ms",
+        "Line offset: 80–150 ms",
+        "Mask height: 1.1–1.25× line height",
+        "Exit: ease-in, 300–450 ms"
+      ]
+    },
+    {
+      "slug": "variable-font-weight-animation",
+      "prompt": "Animate the weight of [word] using a variable font that has a real wght axis, such as [font name]. The word starts at weight 100 and reaches 900 over 12 frames (400 ms at 30 fps) with an ease-out, holds for 15 frames, then eases back to 300 over 24 frames. Set the word in a fixed-width box anchored on its left edge so the growing weight never pushes neighbouring text. For a ripple, offset each letter's weight curve by 1 frame (about 33 ms) left to right. If a beat track exists, land the heaviest weight on the beat.",
+      "parameters": [
+        "Weight range: 100–900 (or the font's limits)",
+        "Swell time: 300–600 ms",
+        "Per-letter offset: 0–50 ms",
+        "Hold at peak: 200–800 ms"
+      ]
+    },
+    {
+      "slug": "text-on-a-path",
+      "prompt": "Set \"[phrase] •\" repeated around a circle of radius [r] px centred on [object], so the text fills the full circumference with no gap. Use uppercase, 28 to 40 px at 1080p, tracking +0.08 em so letters do not crowd on the curve. Rotate the text along the path at a constant speed of one full turn every 10 seconds, linear, clockwise. For a seamless loop, make the total offset across the loop duration exactly one path length. Keep the hero object static in the centre. Fade the ring in over 500 ms at the start; do not ease its rotation.",
+      "parameters": [
+        "Path: circle, arc, wave or custom outline",
+        "Speed: one turn per 8–14 s",
+        "Tracking on the curve: +0.04 to +0.12 em",
+        "Text size: 28–48 px at 1080p"
+      ]
+    },
+    {
+      "slug": "rotating-word-swap",
+      "prompt": "Show the headline \"[static part] [word slot]\" and cycle the slot through [word 1], [word 2], [word 3], ending on [final word]. The static part never moves. Put the slot in a clipping box and left-align it, or animate the box width with the same curve as the swap so the line never jumps. Each swap: the current word moves up 100% of the line height and out while the next word rises from 100% below to 0, both over 12 frames (400 ms at 30 fps) with an ease-in-out. Hold each word 24 frames (800 ms). Give the final word a 15-frame roll and hold it.",
+      "parameters": [
+        "Swap duration: 350–500 ms",
+        "Hold per word: 700–1200 ms",
+        "Word count: 3–6",
+        "Direction: vertical, constant"
+      ]
+    },
+    {
+      "slug": "split-flap-text",
+      "prompt": "Display [text, 6–16 characters] on a split-flap board. Each character is a dark tile split by a 2 px horizontal gap. To flip, the top half rotates down around the middle hinge over 2 frames (about 70 ms at 30 fps), accelerating, and darkens by 40% as it falls, revealing the next character. Characters step through the alphabet in order. Give each tile a seeded random start so it needs 6 to 14 flips to reach its target, so tiles land at different moments over about 1.2 seconds. Use a monospace font. If there is sound, play a short click per flip.",
+      "parameters": [
+        "Flip duration: 60–100 ms",
+        "Flips per tile: 4–16",
+        "Falling-half shade: 25–50% darker",
+        "Tile count: 6–16"
+      ]
+    },
+    {
+      "slug": "scale-punch-headline",
+      "prompt": "Punch [one to two words] onto the screen on [beat or timestamp]. The text appears at scale 1.35 and full opacity, then scales down to 0.96 over 4 frames (about 130 ms at 30 fps) with an ease-in, and springs back to 1.0 over the next 6 frames (stiffness about 400, damping about 22). The frame where it first reaches 0.96 lands exactly on the beat. Set the transform origin to the text's alignment point (centre for centred text, left edge for left-aligned). On the contact frame, add a single-frame [accent colour] flash at 20% opacity behind the text. Use this on at most one line per scene.",
+      "parameters": [
+        "Start scale: 1.2–1.5",
+        "Undershoot: 0.94–0.98",
+        "Hit time: 100–200 ms",
+        "Spring: stiffness 300–500, damping 18–28"
+      ]
+    },
+    {
+      "slug": "tracking-expand-title",
+      "prompt": "Bring in the title [TITLE] in uppercase, centred, as a slow cinematic open. Letter-spacing starts at -0.02 em and eases to 0.25 em over 90 frames (3 seconds at 30 fps) with a gentle ease-out such as cubic-bezier(0.25, 0.1, 0.25, 1). Opacity rises from 0 to 1 over the first 30 frames. The title grows outward from its centre; the centre point never moves. After the ease completes, keep tracking drifting linearly by another 0.03 em for the rest of the shot so it never freezes. Lay out the final width first and confirm it stays inside the title-safe area.",
+      "parameters": [
+        "Tracking range: -0.02 → 0.15–0.35 em",
+        "Duration: 2–5 s",
+        "Fade-in: 0.5–1.2 s",
+        "Residual drift: 0–0.05 em"
+      ]
+    },
+    {
+      "slug": "outline-to-fill-text",
+      "prompt": "Reveal [word or wordmark] by drawing its outline, then filling it. Convert the text to vector paths. Give every glyph a [colour] stroke of 3 px at 1080p and animate a dash offset from full path length to 0 over 24 frames (800 ms at 30 fps) with an ease-in-out, staggering glyphs by 2 frames left to right, each drawn from the same relative start point. Wait 4 frames after the last outline closes, then fill each glyph with the same colour, wiping upward from the baseline over 12 frames with an ease-out. Once filled, fade the stroke out so edges stay crisp.",
+      "parameters": [
+        "Draw time: 600–1000 ms",
+        "Glyph stagger: 0–70 ms",
+        "Stroke width: 2–4 px at 1080p",
+        "Gap before fill: 100–200 ms"
+      ]
+    },
+    {
+      "slug": "match-cut",
+      "prompt": "Create a match cut from [outgoing scene] to [incoming scene] using [shared shape] as the anchor. Place the shared shape at the exact same center position and size in the last frame of the outgoing scene and the first frame of the incoming one (measure both boxes from a rendered debug still; tolerance 2 px). Keep the shape moving through the cut: if it drifts 40 px/s upward before the cut, continue that drift for 10 frames after. Hard cut, no fade, on the beat at frame [beat frame] or up to 2 frames before it. Put a short hit sound on the cut frame. Render the frames before and after the cut as a side-by-side still so alignment can be checked.",
+      "parameters": [
+        "Alignment tolerance: 0–2 px",
+        "Cut offset: 0–2 frames before the beat",
+        "Carried motion after the cut: 6–12 frames",
+        "Matches per film: 2–4"
+      ]
+    },
+    {
+      "slug": "whip-pan-transition",
+      "prompt": "Transition from [outgoing scene] to [incoming scene] with a horizontal whip pan, total 9–10 frames at 30fps. Outgoing: translate the whole scene left with an ease-in curve (cubic-bezier(0.55,0,1,0.45)) over 4 frames, reaching about 120 px/frame, adding horizontal motion blur from 0 to 24 px during the last 2 frames. Cut on the fastest frame. Incoming: enter from the right moving left, starting at the same speed and blur, then decelerate with an ease-out (cubic-bezier(0,0.55,0.45,1)) over 6 frames to rest, blur dropping to 0 by frame 3. Keep the direction identical on both sides. Add a whoosh whose peak lands on the cut frame.",
+      "parameters": [
+        "Exit duration: 4–8 frames",
+        "Entry duration: 6–10 frames",
+        "Peak blur: 16–32 px",
+        "Direction: horizontal or vertical (whip tilt)"
+      ]
+    },
+    {
+      "slug": "wipe-transition",
+      "prompt": "Replace [outgoing scene] with [incoming scene] using a straight-edge mask wipe moving left to right over 600 ms (18 frames at 30fps) with an in-out curve (cubic-bezier(0.65,0,0.35,1)). The incoming scene sits underneath and is revealed by a rectangular mask whose right edge sweeps from x=0 to the full frame width. Lead the reveal with a 6 px [accent color] bar that runs 6 frames ahead of the mask edge and exits the frame first. Keep the edge crisp (no feather). Do not move the content of either scene during the wipe. Keep the same wipe direction for every wipe in the film.",
+      "parameters": [
+        "Duration: 400–800 ms",
+        "Leading bar: 4–12 px, 4–12 frames ahead",
+        "Edge angle: 0° or 15–30° diagonal",
+        "Curve: in-out (quint or cubic)"
+      ]
+    },
+    {
+      "slug": "iris-transition",
+      "prompt": "Transition from [outgoing scene] to [incoming scene] with an iris centered on [subject] at its on-screen position. Close: a circular mask shrinks from a radius that clears the farthest frame corner (hypot of the max distances to the frame edges, plus 20 px) down to 0 over 12 frames with an ease-in curve (cubic-bezier(0.7,0,0.84,0)). Hold black for 2 frames. Open: the incoming scene is revealed by a circle growing from the same point to full coverage over 10 frames with an ease-out curve (cubic-bezier(0.16,1,0.3,1)), landing on the beat. For a camera-aperture look, replace the circle with a six-blade polygon rotating 30° as it closes.",
+      "parameters": [
+        "Close: 8–15 frames",
+        "Black hold: 0–4 frames",
+        "Open: 8–12 frames",
+        "Shape: circle or 6-blade aperture"
+      ]
+    },
+    {
+      "slug": "morph-transition",
+      "prompt": "Make [shared element] morph from its box in [scene A] into its box in [scene B]. Measure both boxes (x, y, width, height, corner radius, fill color) from rendered stills; do not guess. Render a single traveller layer above both scenes: hide the source when the move starts, hide the destination until it lands. Interpolate position, size, radius and color together over 24 frames at 30fps with an in-out quint curve (cubic-bezier(0.83,0,0.17,1)). If it contains text, scale the traveller rather than animating font size and swap to the destination's real text on the landing frame. Scene B's other elements fade and rise 16 px in, staggered 3 frames apart, starting once the traveller is 60% of the way.",
+      "parameters": [
+        "Duration: 15–27 frames (0.5–0.9 s)",
+        "Curve: quint or cubic in-out",
+        "Supporting elements start: 50–70% through the move",
+        "Support stagger: 2–4 frames"
+      ]
+    },
+    {
+      "slug": "color-flood-transition",
+      "prompt": "When [trigger element] is clicked (or on the beat at frame [beat frame]), flood its color across the whole frame. Grow a copy of the element's shape from its center; the final radius is hypot(max(x, W−x), max(y, H−y)) + 40 px so all corners are covered. Grow over 10 frames at 30fps with a strong ease-in-out (cubic-bezier(0.7,0,0.2,1)). Optionally carry the element's label on top of the flood, scaling it up to become [next scene title]. Then either keep the flood as the next scene's background, or contract it with the reverse curve over 10 frames into [destination element]. Set explicit z-order so no outgoing layer renders above the flood.",
+      "parameters": [
+        "Grow duration: 9–11 frames (0.3–0.35 s)",
+        "Overshoot margin past corners: 20–60 px",
+        "Ending: hold as background or contract into an element",
+        "Floods per film: 1–3"
+      ]
+    },
+    {
+      "slug": "zoom-through-transition",
+      "prompt": "Zoom through [detail] in [outgoing scene] into [incoming scene]. Scale the outgoing scene around the detail's center from 1x to about 24x over 21 frames at 30fps, interpolating in log space (scale = exp(lerp(ln 1, ln 24, t))) with an ease-in-out on t so the speed feels even. Translate so the detail stays centered as it grows. When the detail fills the frame, cut (or dissolve over 3 frames) to the incoming scene, which starts at 1.15x and settles to 1x over 15 frames with an ease-out (cubic-bezier(0.16,1,0.3,1)). Render the detail as vector or at high resolution so it stays sharp at the deep end.",
+      "parameters": [
+        "Zoom duration: 18–30 frames",
+        "End scale: 10–40x",
+        "Incoming settle: 1.08–1.2x down to 1x",
+        "Handoff: hard cut or 2–4 frame dissolve"
+      ]
+    },
+    {
+      "slug": "push-transition",
+      "prompt": "Push from [outgoing scene] to [incoming scene], new content entering from the right. Both scenes move together as one strip: the outgoing one translates from x=0 to x=−W, the incoming one from x=W to x=0, over 16 frames at 30fps with an in-out quint curve (cubic-bezier(0.83,0,0.17,1)). Scale the outgoing scene from 1 to 0.98 during the move for depth. Add horizontal motion blur of up to 12 px only during the middle 40% of the move; first and last frames stay sharp. Budget the readable hold of each scene outside these 16 frames. Use the same push direction for every push in the film.",
+      "parameters": [
+        "Duration: 12–21 frames (0.4–0.7 s)",
+        "Outgoing scale-down: 1–2%",
+        "Mid-move blur: 8–16 px",
+        "Direction: fixed for the whole film"
+      ]
+    },
+    {
+      "slug": "cross-dissolve",
+      "prompt": "Dissolve from [outgoing scene] to [incoming scene] over 24 frames at 30fps. Fade the incoming scene's opacity 0 to 1 with an ease-in-out sine curve while the outgoing fades 1 to 0 on the same curve. For a blur-dissolve, ramp a Gaussian blur on both scenes from 0 to 6 px at the midpoint and back to 0, so the overlap never shows a sharp double image. Keep both scenes still or drifting slowly (under 10 px/s) during the overlap. No added scale, flash or color shift. For a chapter break, instead dip to [background color]: fade out over 9 frames, hold 4 frames, fade in over 9.",
+      "parameters": [
+        "Duration: 18–36 frames (0.6–1.2 s)",
+        "Midpoint blur: 0–8 px",
+        "Dip hold: 2–6 frames",
+        "Curve: sine or cubic in-out"
+      ]
+    },
+    {
+      "slug": "glitch-cut",
+      "prompt": "Add a glitch to the cut between [outgoing scene] and [incoming scene] at frame [cut frame]. Over 3 frames centered on the cut (one before, the cut frame, one after): split the red and blue channels horizontally by 8–14 px in opposite directions, slice the frame into 6–10 horizontal bands of random height and offset each by up to ±40 px, and add a 1-frame block-smear on the cut frame. Use a fixed seed per cut so every render is identical. Frames outside these 3 are completely clean; readable text gets at least 8 clean frames before and after. Sync a short digital click or crunch to the cut frame.",
+      "parameters": [
+        "Glitch length: 1–4 frames",
+        "Channel split: 6–20 px",
+        "Slice bands: 4–12",
+        "Seed: fixed per cut"
+      ]
+    },
+    {
+      "slug": "light-leak-transition",
+      "prompt": "Bridge [outgoing scene] and [incoming scene] with a light leak over 30 frames at 30fps, centered on the cut. Build the leak as 2–3 large soft radial gradients (warm orange #FF8A3D, red #FF4B2B, pale yellow #FFE6A8), each 60–90% of frame width, entering from the top-right edge and drifting 150–250 px diagonally across the frame. Blend with screen mode. Opacity ramps 0 to 0.85 over 14 frames (ease-in), peaks on the cut frame, then falls to 0 over 16 frames (ease-out). Let the gradients scale 10% and shift slightly against each other so the shape keeps changing. Never let the peak reach pure white.",
+      "parameters": [
+        "Duration: 20–40 frames",
+        "Peak opacity: 0.6–0.9",
+        "Drift: 100–300 px",
+        "Palette: warm oranges and reds"
+      ]
+    },
+    {
+      "slug": "j-cut-and-l-cut",
+      "prompt": "Offset the audio and picture at the cut from [scene A] to [scene B]. For a J-cut: start scene B's audio ([voiceover line / sound]) 8 frames at 30fps before the picture cuts to scene B, fading it in from −12 dB to full over those 8 frames while scene A's music ducks by 6 dB. For an L-cut: keep scene A's audio running 10 frames past the picture cut, fading it out with an ease-out over those frames. Keep the picture cut itself hard (no dissolve). Do not split cuts where a visual hit must sync with its sound, such as a click on a button; those stay frame-aligned.",
+      "parameters": [
+        "Lead/lag: 4–15 frames",
+        "Fade-in start level: −18 to −6 dB",
+        "Duck under overlap: 3–8 dB",
+        "Type: J (sound first) or L (sound carries)"
+      ]
+    },
+    {
+      "slug": "cursor-led-demo",
+      "prompt": "Animate a cursor that drives the demo of [interface]. Draw the pointer about 1.3x real size with a soft 8 px blur shadow at 25% opacity. Between targets, move it along a slight curve (control point offset 8-12% of the distance, perpendicular to the path), using ease-in-out cubic over 500-800 ms depending on distance. Decelerate into the target, then rest 6-8 frames at 30fps before clicking. On click, scale the cursor to 0.85 over 3 frames and back to 1 over 5 frames; the UI reacts on the press-down frame. Never move and click at the same time. Keep idle drift under 2 px so the cursor never looks frozen.",
+      "parameters": [
+        "Travel time: 500-800 ms per move",
+        "Path curvature: 8-12% of distance",
+        "Pre-click rest: 6-8 frames",
+        "Press scale: 0.85-0.9",
+        "Cursor size: 1.2-1.5x native"
+      ]
+    },
+    {
+      "slug": "click-ripple",
+      "prompt": "When [button] is clicked, scale the button to 0.96 over 80 ms (ease-out), then spring back to 1 (stiffness 400, damping 28). On the same frame, spawn a circle centered on the exact click point, starting at 0 radius and 35% opacity in [accent color]. Expand it to 1.6x the button's longest side over 450 ms with an ease-out quart, fading opacity to 0 along an ease-in curve so it holds visible early and vanishes late. Clip the ripple to the button's rounded rectangle. Start the click's result 150 ms after the press so it overlaps the fading ring.",
+      "parameters": [
+        "Press depth: 0.94-0.97 scale",
+        "Ripple duration: 350-550 ms",
+        "Start opacity: 25-40%",
+        "Max radius: 1.4-2x button size",
+        "Clip to button or let it spill"
+      ]
+    },
+    {
+      "slug": "auto-zoom-on-click",
+      "prompt": "Add screen-recording style zooms to [screen]. Before each cluster of actions, start zooming 200 ms before the cursor reaches its first target: scale the screen from 1x to 1.8x over 700 ms with an ease-in-out quint, centered on the action area. While zoomed, let the zoom center follow the cursor with heavy smoothing (lerp 0.08 per frame at 30fps) and clamp it so the screen edges never come into view. Hold the zoom across nearby clicks. Zoom back to 1x over 800 ms only when the next action is more than about 40% of the screen away. Never zoom in and out within 1.5 s.",
+      "parameters": [
+        "Zoom level: 1.5-2.2x",
+        "Zoom-in duration: 600-800 ms",
+        "Follow smoothing: lerp 0.05-0.12",
+        "Lead time before cursor: 150-250 ms",
+        "Minimum hold: 1.5 s"
+      ]
+    },
+    {
+      "slug": "card-stack",
+      "prompt": "Build a stack from [cards], one card every 12 frames at 30fps. Each new card enters from 120 px below with opacity 0 to 1, moving up with a spring (stiffness 180, damping 22) to the top position. As it lands, every card already in the stack steps back one level: translateY -14 px, scale -0.05, brightness -12%, over 300 ms ease-out. Show at most 3 layers behind the top card; the fourth fades to 0 as it steps back. Give the top card a 24 px shadow at 20% opacity and lower cards a tighter, lighter one. Hold the full stack 1 s before exiting.",
+      "parameters": [
+        "Card interval: 8-15 frames",
+        "Step offset: 10-18 px",
+        "Step scale: 0.04-0.06",
+        "Visible layers: 3-4",
+        "Entry spring: stiffness 150-220, damping 20-26"
+      ]
+    },
+    {
+      "slug": "modal-spring-in",
+      "prompt": "Open [modal] with a spring. Set its transform origin to the triggering button's position. Animate from scale 0.92 and opacity 0 to scale 1 and opacity 1 using a spring (stiffness 260, damping 24, mass 1), which overshoots by about 2%. Opacity reaches 1 within the first 150 ms. At the same time, dim the background to 40% black and add a 6 px blur over 250 ms ease-out. Inside the modal, stagger the title, body and buttons by 50 ms each, each rising 8 px while fading in. To close, reverse at 1.5x speed with no overshoot.",
+      "parameters": [
+        "Start scale: 0.88-0.95",
+        "Spring: stiffness 220-320, damping 20-28",
+        "Backdrop dim: 30-50%",
+        "Content stagger: 40-70 ms",
+        "Close speed: 1.3-1.8x open"
+      ]
+    },
+    {
+      "slug": "skeleton-to-content",
+      "prompt": "Show [screen] loading. First draw skeleton blocks that match the final layout exactly: rounded rectangles in a light grey 8% darker than the background. Sweep a highlight across them: a 20° angled gradient band 30% of the screen wide, peaking at 50% white, crossing in 900 ms ease-in-out. Run 1-2 sweeps. Then replace blocks in reading order with a 60 ms stagger: crossfade each block to its real content over 200 ms, while the content rises 4 px into place. Images fade in from a 10 px blur to sharp over 300 ms.",
+      "parameters": [
+        "Sweep duration: 700-1100 ms",
+        "Number of sweeps: 1-2",
+        "Reveal stagger: 40-90 ms",
+        "Crossfade: 150-250 ms",
+        "Highlight strength: 30-60% white"
+      ]
+    },
+    {
+      "slug": "toast-notification",
+      "prompt": "Bring in [toast message] from the top edge of the screen. Start 40 px above its rest position at opacity 0, and animate in with a spring (stiffness 300, damping 26) so it settles with a 2-3 px overshoot in about 350 ms. Fade opacity in over the first 120 ms. Hold it still for 250 ms per word plus 600 ms. Exit faster than it entered: move up 20 px and fade out over 200 ms ease-in. If another toast arrives, push the existing one down 8 px, scale it to 0.95 and drop it to 70% opacity over 250 ms.",
+      "parameters": [
+        "Entry offset: 30-60 px",
+        "Spring: stiffness 260-340, damping 22-30",
+        "Read time: 250 ms per word + 600 ms",
+        "Exit: 150-250 ms",
+        "Stack step: 6-10 px, scale 0.94-0.96"
+      ]
+    },
+    {
+      "slug": "tab-indicator-slide",
+      "prompt": "When the selected tab in [tab bar] changes, move the indicator by animating its left and right edges separately. The edge in the direction of travel uses a fast spring (stiffness 420, damping 32); the trailing edge uses a slower one (stiffness 220, damping 26). This stretches the indicator mid-travel and lets it contract on arrival. Change the old label to the inactive color and the new label to the active color over 150 ms, starting when the leading edge reaches the new tab. Slide the tab content 24 px in the travel direction with a 200 ms crossfade.",
+      "parameters": [
+        "Leading spring: stiffness 350-480",
+        "Trailing spring: stiffness 180-260",
+        "Label color change: 120-200 ms",
+        "Content slide: 16-32 px",
+        "Indicator shape: underline or full pill"
+      ]
+    },
+    {
+      "slug": "ui-number-ticker",
+      "prompt": "Animate [value] inside the interface from [start] to [end]. Use tabular figures so widths never shift. Style A, count up: interpolate the value over 1000 ms with an ease-out expo and round to the display precision each frame. Style B, digit roll: give each digit its own vertical strip of 0-9 that translates to the target digit, with the rightmost digit starting first and each column to the left delayed by 40 ms, each using a spring (stiffness 200, damping 24). On the final value, scale the number to 1.06 and back over 200 ms, and flash it to [accent color] for 150 ms.",
+      "parameters": [
+        "Duration: 700-1400 ms",
+        "Easing: ease-out expo or quart",
+        "Column delay: 30-60 ms",
+        "Landing bump: 1.04-1.08 scale",
+        "Style: count up or digit roll"
+      ]
+    },
+    {
+      "slug": "scroll-through-screen",
+      "prompt": "Scroll [page] inside its frame as a series of stops, not a constant crawl. Pick 3-5 sections to land on. Move between stops with an ease-in-out cubic, 600-900 ms per move scaled by distance, and overshoot each stop by 6 px before settling back over 150 ms, like real scroll momentum. Hold each stop 1-1.5 s. During moves faster than about 2000 px per second, add a 4-6 px vertical motion blur. Elements entering the viewport may rise 16 px and fade in over 300 ms with a 50 ms stagger. Keep the device or browser frame static throughout.",
+      "parameters": [
+        "Stops: 3-5 sections",
+        "Move duration: 600-900 ms",
+        "Settle overshoot: 4-10 px",
+        "Hold per stop: 1-1.5 s",
+        "Motion blur: 3-8 px on fast moves"
+      ]
+    },
+    {
+      "slug": "device-frame-reveal",
+      "prompt": "Start with [app screen] filling the frame edge to edge. Over 900 ms with an ease-in-out quint, scale the screen down to about 55% of frame height while a [device] bezel grows outward from the screen edge: bezel width from 0 to its final 12-16 px and outer corner radius matched to the real device. Treat screen and bezel as one object with a shared transform. Add a soft contact shadow under the device that fades in over the last 400 ms. Hold the revealed device still for at least 20 frames at 30fps before any other motion.",
+      "parameters": [
+        "Duration: 700-1100 ms",
+        "Final screen size: 45-65% of frame height",
+        "Bezel width: 10-18 px",
+        "Post-reveal hold: 15-30 frames",
+        "Direction: pull back or push in"
+      ]
+    },
+    {
+      "slug": "ui-state-morph",
+      "prompt": "Build a loop where a single shape morphs through [list of UI states], one change per beat at [BPM] BPM. Each transition reshapes the same element: animate width, height and corner radius on springs (stiffness 240, damping 20, about 4% overshoot), then fade labels and icons in 80 ms after the shape settles and out 80 ms before it changes. Do not crossfade between two shapes. Change color only through one accent element that moves between states. Make the last frame identical to the first so the loop is seamless, and compute every value from time so any frame renders on its own.",
+      "parameters": [
+        "Tempo: 100-128 BPM",
+        "Shape spring: stiffness 200-300, damping 18-24",
+        "Label offset: 60-120 ms",
+        "States: 8-12",
+        "Overshoot: 2-6%"
+      ]
+    },
+    {
+      "slug": "path-draw-on",
+      "prompt": "Draw [subject] on as a stroke-only path. Set the stroke dash length to the full path length and animate the visible length from 0% to 100% over 1200 ms (36 frames at 30fps) with a cubic-bezier(0.65, 0, 0.35, 1) ease, so it starts gently, moves fast through the middle and settles at the end. If [subject] has several paths, draw them in the order a person would draw them, staggering each by 120 ms, with each path's duration scaled to its length. Keep the stroke hidden until its progress is above 0 so round caps don't leave a dot. Once the last stroke finishes, fade in the fill from 0 to 100% opacity over 300 ms while the stroke fades to 40%. Hold the finished drawing for 1 second.",
+      "parameters": [
+        "Draw duration: 800–1800 ms per main path",
+        "Stagger between paths: 80–200 ms",
+        "Easing: ease-in-out cubic or quintic",
+        "Fill fade after draw: 200–400 ms",
+        "Stroke width: 2–6 px at 1080p"
+      ]
+    },
+    {
+      "slug": "shape-morph",
+      "prompt": "Morph [subject] through a sequence of shapes: [shape A] → [shape B] → [shape C]. Resample every outline to the same number of points (at least 64) and align the starting points so nothing twists. Each morph lasts 500 ms (15 frames at 30fps) on a spring with stiffness 180, damping 20 and mass 1, giving a slight overshoot of about 3% before it settles. Hold each shape for 400 ms before the next morph. Animate fill color on the same curve as the outline. For rounded rectangles and pills, animate width, height and corner radius directly instead of interpolating points. Keep the shape centered on one anchor point the whole time so the eye never has to search for it.",
+      "parameters": [
+        "Morph duration: 350–700 ms",
+        "Hold between shapes: 200–600 ms",
+        "Spring: stiffness 150–220, damping 16–26",
+        "Point count: 64–200 per outline"
+      ]
+    },
+    {
+      "slug": "vector-mask-reveal",
+      "prompt": "Reveal [content] through a vector mask shaped like [mask shape], growing from [origin point, e.g. the clicked button]. Start the mask at scale 0 at that point and grow it until it covers the farthest corner of the frame, over 700 ms (21 frames at 30fps) with an ease-in-out cubic. At the same time, scale [content] from 108% to 100% on an ease-out over 900 ms so it settles just after the mask finishes. Keep the mask edge anti-aliased. If the mask is a logo or letterform, hold it at the size where the shape is fully readable for 400 ms before it expands past the frame. After the reveal, remove the mask entirely so later layers render normally.",
+      "parameters": [
+        "Reveal duration: 500–1000 ms",
+        "Content settle scale: 104–112% to 100%",
+        "Mid-reveal hold for logo masks: 0–600 ms",
+        "Origin: point of the action that triggers the reveal"
+      ]
+    },
+    {
+      "slug": "gooey-split-merge",
+      "prompt": "Make [subject] behave like liquid as it splits into [n] blobs and later merges back. Render only the blob shapes into a separate layer, blur that layer by 12 px, then apply a hard alpha threshold (alpha × 20 − 9, clamped) so overlapping blurs fuse into one smooth shape. Draw icons and text on top, unfiltered. Split: the blobs move apart over 450 ms (about 14 frames at 30fps) on a spring with stiffness 200 and damping 14. Stretch each blob 15% along its direction of travel while it moves and return to round as it stops. Merge: approach slowly over 400 ms, then let the bridge snap shut in the last 80 ms, with a 5% scale wobble that settles in 250 ms.",
+      "parameters": [
+        "Blur radius: 8–20 px",
+        "Threshold sharpness: multiplier 15–30",
+        "Split spring: stiffness 160–240, damping 12–18",
+        "Stretch along travel: 8–20%"
+      ]
+    },
+    {
+      "slug": "trim-path-loop",
+      "prompt": "Animate a stroke segment that chases itself around [path, e.g. a circle or the outline of a logo]. Animate the trim start and trim end separately: the end moves from 0 to 1 over 1000 ms with ease-in-out, and the start follows the same move but delayed by 350 ms. Wrap both values with modulo 1 so the segment passes the path's starting point without a jump. Keep a minimum visible length of 4% of the path. For circular loaders, also rotate the whole path 360 degrees every 2000 ms at constant speed. Make the full cycle a whole fraction of the video length (for example, 2 s in a 6 s clip) so the last frame loops into the first.",
+      "parameters": [
+        "Cycle length: 800–2000 ms",
+        "Tail delay: 25–40% of cycle",
+        "Minimum segment: 2–8% of path",
+        "Extra rotation: one turn per 1.5–3 s",
+        "Stroke cap: round"
+      ]
+    },
+    {
+      "slug": "icon-morph",
+      "prompt": "Morph [icon A] into [icon B], for example menu into close or play into pause. Build both states from the same parts, so no part appears from nothing: reuse bars, rotate them around a shared center, and shrink to zero any part that isn't needed. Keep stroke width and line caps identical in both states. Run the whole change in 280 ms (about 8 frames at 30fps) on a spring with stiffness 300 and damping 26, allowing at most a 2% overshoot. If it is triggered by a click, start it on the click frame and add a 95% scale dip on the button over the first 100 ms. Rotate clockwise for forward actions and counterclockwise for back or close.",
+      "parameters": [
+        "Duration: 200–350 ms",
+        "Spring: stiffness 250–400, damping 22–30",
+        "Rotation per part: 45–180°",
+        "Click scale dip: 92–97%"
+      ]
+    },
+    {
+      "slug": "geometric-pattern-build",
+      "prompt": "Build [pattern, e.g. a six-fold circle pattern] step by step from one primitive. Start with a single circle drawn on as a stroke over 600 ms. Then add copies by a fixed rule: rotate by [angle] around the center, one copy every 200 ms, each drawing on over 400 ms with ease-out cubic. Compute every copy from the original shape, not from the previous copy, to avoid drift. Draw construction lines at 1 px and 30% opacity; draw final shapes at 3 px and full opacity. When the pattern is complete, fade the construction lines to 0 over 500 ms and fill the final regions with [color] in a 60 ms stagger from the center out. Hold the finished figure for 1.5 seconds.",
+      "parameters": [
+        "Copy interval: 120–300 ms (or one per beat)",
+        "Rotation step: 360°/n for n-fold symmetry",
+        "Guide opacity: 15–40%",
+        "Fill stagger: 30–80 ms"
+      ]
+    },
+    {
+      "slug": "isometric-build",
+      "prompt": "Assemble [scene] on an isometric grid, with axes at 30 degrees from horizontal and no perspective. Build bottom-up and back-to-front: each block drops 120 px from above over 350 ms (about 10 frames at 30fps) with ease-out back (overshoot 1.4), squashes to 92% height for 60 ms on landing, then returns to 100%. Stagger blocks by 60 ms in build order. Some pieces can extrude upward from their footprint instead of dropping. Shade every block with three fixed face tones: top lightest, left side mid, right side darkest. Snap all positions to the grid and sort drawing order by grid depth every frame. Once complete, hold for 1 second, then let one detail animate (a light, a fan, a moving dot) so the scene feels alive.",
+      "parameters": [
+        "Drop distance: 60–200 px",
+        "Drop duration: 250–450 ms",
+        "Stagger: 40–100 ms",
+        "Landing squash: 88–95% height"
+      ]
+    },
+    {
+      "slug": "radial-burst",
+      "prompt": "On the impact frame of [subject], fire a radial burst from the exact impact point. Use 10 short rays spaced evenly around the circle, with each angle jittered by ±6 degrees. Each ray starts 20 px from the center with a length of 30 px, travels out to 90 px, and trims from its inner end so it detaches and vanishes. Total duration 320 ms (about 10 frames at 30fps) with an ease-out expo, so most of the travel happens in the first 100 ms. Stroke width 4 px with round caps, in [accent color]. Optionally add a thin ring that expands from 0 to 70 px radius and fades out over the same time. Use the burst once per scene, not on every beat.",
+      "parameters": [
+        "Ray count: 8–16",
+        "Travel distance: 50–150 px",
+        "Duration: 250–450 ms",
+        "Angle jitter: 0–10°"
+      ]
+    },
+    {
+      "slug": "orbiting-shapes",
+      "prompt": "Place [center element] in the middle and send [n satellites, e.g. app icons] around it on tilted elliptical orbits. Make each orbit a circle squashed to 38% height, with radii from 220 to 420 px. Inner orbits move faster: one turn every 6 s for the innermost, 9 s and 12 s for the next two, at constant speed. Scale each satellite from 80% at the back of the ellipse to 110% at the front and dim it to 60% opacity at the back. Draw satellites behind the center element when they're on the back half. Draw the orbits as 1 px lines at 20% opacity. Keep labels upright. Make the loop length match the clip so the last frame meets the first.",
+      "parameters": [
+        "Orbit tilt (height ratio): 30–50%",
+        "Period per orbit: 4–15 s",
+        "Depth scale: 75–115%",
+        "Back-side opacity: 40–70%"
+      ]
+    },
+    {
+      "slug": "grid-tessellation",
+      "prompt": "Fill the frame with a [square / triangle / hexagon] tessellation of [subject or color]. Each tile runs the same animation: scale from 0 to 100% with a slight rotation from 30° to 0° over 300 ms (9 frames at 30fps) on ease-out back (overshoot 1.2). Delay each tile by its distance from [origin, e.g. the center], at 1.5 ms per pixel, plus up to 30 ms of noise so the wave looks organic but still structured. The whole sweep should finish in under 900 ms. Overlap tiles by 0.5 px to hide seams. To transition, flip each tile around its vertical axis in the same wave order, swapping to the next scene's content at the halfway point of each flip.",
+      "parameters": [
+        "Tile size: 40–140 px",
+        "Delay per pixel of distance: 0.8–2.5 ms",
+        "Tile animation: 200–450 ms",
+        "Noise jitter: 0–40 ms"
+      ]
+    },
+    {
+      "slug": "shard-assemble-logo",
+      "prompt": "Reveal [logo] by assembling it from faceted shards. First draw the logo outline as a 1.5 px wireframe over 600 ms. Then split the logo into 30 to 60 triangles, scatter each one 300 to 700 px outward from the logo center with a random rotation of up to 180°, and fly them back home. Each shard takes 600 ms (18 frames at 30fps) on ease-out quart, rotating to 0° as it lands, staggered by 25 ms in order of distance from the center. Shade each facet within ±8% brightness of the base color so the polygons read. When the last shard lands, crossfade to the clean vector logo over 150 ms to hide cracks, then fade out the wireframe.",
+      "parameters": [
+        "Shard count: 20–80",
+        "Scatter distance: 200–800 px",
+        "Flight duration: 400–800 ms",
+        "Stagger: 15–50 ms",
+        "Facet shade variance: ±5–12%"
+      ]
+    },
+    {
+      "slug": "particle-assemble",
+      "prompt": "Build a particle assemble for [subject]. Rasterize [subject] offscreen and sample its filled pixels on a 6 px grid to get about 4,000 targets. Start each particle at a seeded random position up to 1.5x the frame size from center, with 20 percent opacity. Each particle flies to its target over 36 frames at 30fps with a cubic ease-out, starting after a seeded delay of 0 to 24 frames. Add a slight sideways curve: offset the midpoint by up to 80 px perpendicular to the path. Ramp opacity to 100 percent over the first 12 frames. At frame 66, cross-fade over 8 frames to the real vector [subject]. Every position must be a pure function of frame and seed; no Math.random().",
+      "parameters": [
+        "Particle count: 2,000–8,000 (sample spacing 4–8 px)",
+        "Travel duration: 30–45 frames per particle",
+        "Start delay spread: 0–30 frames",
+        "Path curve: 40–120 px sideways bow",
+        "Scatter radius: 1.2–2x frame size"
+      ]
+    },
+    {
+      "slug": "flow-field",
+      "prompt": "Create a flow field background behind [subject]. Define direction from 3D simplex noise at scale 0.0015 per px, sampling z = frame × 0.004 so the currents evolve slowly, and use curl noise so particles circulate instead of clumping. Seed 3,000 particles uniformly. Move each 2.5 px per frame along the field. Draw the last 20 positions of each particle as a 1 px line, fading from 0 to 35 percent opacity toward the head. When a particle leaves the frame, respawn it at a seeded position. Integrate from frame 0 with a fixed step and cache positions, so seeking to any frame gives identical output. Keep contrast low: lines in one palette color, 25 percent over the background, never crossing [subject].",
+      "parameters": [
+        "Noise scale: 0.001–0.003 per px",
+        "Particle speed: 1.5–4 px per frame",
+        "Trail length: 10–40 steps",
+        "Field evolution: 0.002–0.008 noise units per frame",
+        "Particle count: 1,500–6,000"
+      ]
+    },
+    {
+      "slug": "noise-displacement",
+      "prompt": "Apply noise displacement to [subject]. Subdivide it into a dense mesh (at least 128 × 128 for a plane, or 64 segments for a sphere). Displace each vertex along its normal by two layers of 3D simplex noise: a base layer at frequency 1.2 with amplitude 40 px, plus a detail layer at frequency 4.0 with amplitude 10 px. Advance the noise time by 0.01 per frame for the base and 0.025 for the detail. Ramp total amplitude from 0 to 1 over 30 frames with ease-in-out at the start, hold, then back to 0 over 24 frames at the end, so [subject] settles into its clean form. Fix the noise seed so every render matches.",
+      "parameters": [
+        "Base amplitude: 20–80 px",
+        "Base frequency: 0.8–2.0",
+        "Detail layer: 15–35% of base amplitude",
+        "Noise speed: 0.005–0.02 per frame",
+        "Ramp in/out: 18–36 frames"
+      ]
+    },
+    {
+      "slug": "instanced-grid",
+      "prompt": "Make an instanced grid that forms [subject]. Lay out 64 × 36 circles on a 30 px pitch, each 6 px wide, in one accent color on a dark background. Drive every cell with a ripple: value = sin(distance_from_center × 0.045 − frame × 0.25), mapped to scale 0.4–1.4 and brightness 40–100 percent. Each cell's response lags by distance × 0.02 frames so the wave visibly travels. From frame 60, blend over 30 frames (ease-in-out) from the ripple to a target scale sampled from a 64 × 36 downscale of [subject], so the image resolves out of the field. Hold 45 frames. Use GPU instancing, and compute each cell from frame and position only.",
+      "parameters": [
+        "Grid: 40×22 to 96×54 cells",
+        "Ripple wavelength: 100–200 px",
+        "Wave speed: 0.15–0.4 radians per frame",
+        "Resolve blend: 20–40 frames",
+        "Cell scale range: 0.3–1.6"
+      ]
+    },
+    {
+      "slug": "l-system-growth",
+      "prompt": "Grow a branching structure from [subject]. Generate it once with seed 7: start with a trunk of 220 px, then split each branch into 2 children at ±22 degrees, plus seeded jitter of ±8 degrees, each child 0.72x the parent length, for 8 generations. Store each segment with its depth and start time = depth × 12 frames, so a child starts when its parent is half drawn. Draw each segment from base to tip over 18 frames with ease-out. Taper stroke width from 10 px at the trunk to 1 px at the tips. At the final generation, pop a 4 px dot on each tip with a 3-frame scale overshoot. Render from frame number only.",
+      "parameters": [
+        "Generations: 6–10",
+        "Branch angle: 15–35° plus 5–10° jitter",
+        "Length ratio: 0.65–0.8",
+        "Segment draw time: 12–24 frames",
+        "Generation offset: 8–16 frames"
+      ]
+    },
+    {
+      "slug": "flocking-boids",
+      "prompt": "Simulate a flock that ends by forming [subject]. Spawn 600 triangular agents, 10 × 5 px, at seeded positions. Each step, apply separation within 24 px (weight 1.6), alignment within 60 px (weight 1.0) and cohesion within 60 px (weight 0.8). Cap speed at 4 px per frame and turning at 8 degrees per frame. Rotate each agent to face its velocity. From frame 150, add a seek force toward an assigned point sampled from the outline of [subject], increasing from 0 to 2.5 over 45 frames, so the flock pours into the shape. Use a fixed timestep from frame 0 and bake all positions to an array, so any frame renders identically.",
+      "parameters": [
+        "Agent count: 300–1,500",
+        "Separation radius: 16–32 px",
+        "Neighbor radius: 40–90 px",
+        "Max speed: 2.5–6 px per frame",
+        "Seek ramp: 30–60 frames"
+      ]
+    },
+    {
+      "slug": "voronoi-cells",
+      "prompt": "Fill [subject] with animated Voronoi cells. Place 90 seed points with seeded positions, then run one pass of Lloyd relaxation for even sizes. Each frame, offset every seed by 2D noise: up to 25 px, at noise speed 0.006 per frame, so borders slide slowly. Fill cells from a three-color palette assigned by seed index, so colors stay with their cell. Draw borders at 2 px in the background color. Compute the diagram with a library that keeps cell order stable. For the exit, shatter: each cell drifts outward from center by 300 px with ease-in over 20 frames and rotates up to 25 degrees, staggered by distance from center at 0.5 frames per 10 px.",
+      "parameters": [
+        "Cell count: 40–200",
+        "Seed drift: 10–40 px",
+        "Border width: 1–4 px",
+        "Shatter travel: 200–500 px over 15–30 frames",
+        "Shatter stagger: 0.3–1 frame per 10 px"
+      ]
+    },
+    {
+      "slug": "reaction-diffusion",
+      "prompt": "Grow a reaction-diffusion pattern inside [subject]. Run Gray-Scott on a 512 × 512 GPU texture with diffusion A = 1.0, B = 0.5, feed 0.055, kill 0.062 for a coral-maze look. Seed chemical B in a few 6 px dots placed at seeded points inside a mask of [subject], and set feed to 0 outside the mask so growth stays inside. Run 24 simulation steps per frame at 30fps, so the shape fills in about 6 seconds. Map B through a hard threshold at 0.25 with 0.04 softness to two brand colors. Simulate from frame 0 with a fixed step count and cache every frame, so seeking gives the same image.",
+      "parameters": [
+        "Feed/kill: 0.035/0.065 spots, 0.055/0.062 mazes, 0.030/0.057 stripes",
+        "Steps per frame: 10–40",
+        "Grid size: 256–1024",
+        "Seed points: 3–12",
+        "Threshold softness: 0.02–0.08"
+      ]
+    },
+    {
+      "slug": "metaballs",
+      "prompt": "Animate [subject] as metaballs. Use 7 blobs with radii between 60 and 150 px that drift on seeded Lissajous paths, 200 to 400 px wide, completing one cycle every 240 frames so the loop closes. Render with a summed field: each blob contributes r² / d², and pixels above 1.0 are filled with a solid color and a 2 px antialiased edge. If using SVG, blur by 18 px and then clamp alpha with a feColorMatrix multiplier of 30 and offset of −12. At frame 180, pull all blobs into the center over 30 frames with ease-in-out so they merge into a single circle that resolves into [subject]. Necks should form over 8–12 frames.",
+      "parameters": [
+        "Blob count: 4–12",
+        "Radius range: 1x–2.5x between smallest and largest",
+        "Loop length: 180–360 frames",
+        "Merge duration: 20–40 frames",
+        "Edge softness: 1–3 px"
+      ]
+    },
+    {
+      "slug": "ordered-dither",
+      "prompt": "Render [subject] with an ordered dither. Draw the scene normally to an offscreen buffer at 1/4 resolution, convert to luminance, and compare each pixel to an 8 × 8 Bayer matrix fixed in screen space. Output one of two brand colors, dark below the threshold and light above. Upscale 4x with nearest-neighbor so every dither cell is a crisp 4 px square. Add a contrast curve before dithering (gamma 0.8) so midtones keep a visible pattern. Animate the underlying scene, not the matrix: the pattern stays locked while shading moves through it. Keep any text above 40 px and draw it after the dither pass, undithered.",
+      "parameters": [
+        "Pixel scale: 3–6 px per dither cell",
+        "Matrix: 4×4 (coarse) or 8×8 (smooth)",
+        "Colors: 2–4 levels",
+        "Pre-dither gamma: 0.7–1.2"
+      ]
+    },
+    {
+      "slug": "attractor-trails",
+      "prompt": "Draw a Lorenz attractor as the backdrop for [subject]. Use sigma 10, rho 28, beta 8/3, step dt 0.005. Seed 1,500 points in a 0.5-unit cube around (1, 1, 1) and discard the first 1,000 steps. Precompute each point's path, then draw the last 60 positions as a line fading from 0 to 70 percent opacity toward the head, colored from deep blue at the tail to warm white at the head. Advance 3 integration steps per frame at 30fps. Orbit the camera around the vertical axis at 12 degrees per second with slight tilt. Use additive blending capped at 85 percent brightness, so the dense core keeps visible structure.",
+      "parameters": [
+        "Point count: 500–3,000",
+        "Steps per frame: 2–6",
+        "Trail length: 30–120 steps",
+        "Camera orbit: 6–20° per second",
+        "Glow cap: 70–90% brightness"
+      ]
+    },
+    {
+      "slug": "infinite-fractal-zoom",
+      "prompt": "Create a seamless infinite zoom into [subject]. Build a recursion: [subject] contains a copy of itself at 1/8 scale, placed at a fixed point, and that copy contains another, drawing 4 levels at a time. Zoom toward the center of the child copy on a log scale: scale = 8 ^ (frame / 180), so each level takes 180 frames at 30fps. At frame 180 the child exactly fills the original framing; wrap time there for an invisible loop. Fade in the deepest level from 0 to 100 percent opacity across the first 40 percent of each cycle, so new detail never pops. Add a constant rotation of at most 10 degrees per cycle.",
+      "parameters": [
+        "Scale ratio per level: 4x–12x",
+        "Cycle length: 120–300 frames",
+        "Visible levels: 3–5",
+        "Rotation per cycle: 0–20°",
+        "Fade-in window: 25–50% of cycle"
+      ]
+    },
+    {
+      "slug": "dolly-in",
+      "prompt": "Wrap every scene element in a single world container and treat its transform as the camera. Keep captions, logo and grain layers outside it. Over [duration, default 60 frames at 30fps], dolly the camera in toward [subject]: scale the world from 1.0 to 1.2 and translate it so [subject]'s center lands on the frame center (or the thirds point named in [framing]). Interpolate scale in log space and use one move curve such as cubic-bezier(0.45, 0, 0.15, 1) for both scale and position so they arrive together. Start the push only after on-screen text has finished laying out. Hold at least 20 frames after the push before any other camera move, and never pull straight back out.",
+      "parameters": [
+        "End scale: 1.1–1.3",
+        "Duration: 36–75 frames at 30fps",
+        "Curve: cubic-bezier(0.45, 0, 0.15, 1) or a heavy spring (stiffness 80, damping 26)",
+        "Target: subject centered or on a thirds point"
+      ]
+    },
+    {
+      "slug": "breathing-push",
+      "prompt": "During every hold where content has stopped animating, add a breathing push to the camera (the world container, not individual layers). Scale the world from 1.00 to 1.03 linearly across the full length of the hold, anchored on [subject] or the frame center. Keep text and UI crisp: if text sits inside the world, render it at 2x and let the scale stay under 1.04. Carry the end scale into the next scene so there is no jump, unless the scenes are separated by a hard cut. Do not run any other camera move during a breathing push.",
+      "parameters": [
+        "Scale range: 1.00 → 1.02–1.04",
+        "Length: the whole hold, 2–6 s",
+        "Curve: linear or ease-in-out at 10% strength",
+        "Anchor: subject center or frame center"
+      ]
+    },
+    {
+      "slug": "camera-punch-in",
+      "prompt": "On [hit frame], punch the camera in on [subject]. The world container scales from its current value by an extra 8% over 5 frames at 30fps, with its translate adjusted so [subject] stays fixed on screen. Use an ease-out of cubic-bezier(0.2, 0.9, 0.3, 1) or a spring with stiffness 400, damping 40, mass 1 (no visible overshoot). The move must reach at least 80% of its distance on the hit frame. Hold the punched framing until the next cut or for at least 24 frames, then release over 18 frames with a soft ease. Use no more than one punch per 2 bars of music.",
+      "parameters": [
+        "Punch amount: 4–15% extra scale",
+        "Attack: 4–8 frames",
+        "Max frequency: one per 2 bars",
+        "Release: next cut or 18–30 frame ease"
+      ]
+    },
+    {
+      "slug": "crash-zoom",
+      "prompt": "Crash zoom on [subject]. Start from the wide frame and scale the world container from 1.0 to [end scale, default 2.4] over 9 frames at 30fps, interpolating scale in log space with an expo-in curve (cubic-bezier(0.7, 0, 0.84, 0)) so it accelerates into the target. Lock [subject]'s center to the frame center for the whole move. On frames 4 to 9 add a radial blur of 6 to 14 px centered on [subject], peaking on frame 8, then remove it. Land with a 3 frame settle: overshoot by 3% and return. Hold the tight frame at least 30 frames.",
+      "parameters": [
+        "End scale: 2–4x",
+        "Travel: 6–12 frames",
+        "Blur peak: 6–14 px radial",
+        "Overshoot: 0–4% over 3 frames"
+      ]
+    },
+    {
+      "slug": "pull-back-reveal",
+      "prompt": "Open tight on [detail] at a world scale of [start scale, default 1.35], centered in frame. After its read time (at least 45 frames at 30fps), pull the camera back to scale 1.0 over 66 frames, interpolating scale in log space with an ease-in-out of cubic-bezier(0.45, 0, 0.15, 1). Shift the translate so [detail] moves from frame center to its true position in [wider scene]. Stagger the surrounding elements in during the second half of the pull, 3 frames apart, fading and rising 12 px each. Finish with a 30 frame hold on the full scene. Do not push back in afterward.",
+      "parameters": [
+        "Start scale: 1.2–2.0 (more for epic reveals)",
+        "Duration: 45–90 frames at 30fps",
+        "Curve: cubic-bezier(0.45, 0, 0.15, 1)",
+        "Context arrivals: 2–4 frame stagger in the second half"
+      ]
+    },
+    {
+      "slug": "parallax-layers",
+      "prompt": "Build [scene] as [layer count, default 4] depth planes: background, far midground, subject, foreground. Give each plane a depth factor (0.2, 0.5, 1.0, 1.4) and drive all of them from a single camera x value. Over 90 frames at 30fps, move the camera x by [travel, default 240 px] with an ease-in-out of cubic-bezier(0.45, 0, 0.55, 1); each layer translates by -cameraX times its factor. Scale each plane by 1 + 0.04 per step toward the lens. Blur the background 6 px and the far midground 3 px, and tint them 20% and 10% toward the background color. Oversize each layer by its max travel plus 40 px.",
+      "parameters": [
+        "Depth factors: 0.2 / 0.5 / 1.0 / 1.4",
+        "Camera travel: 120–400 px",
+        "Duration: 60–150 frames at 30fps",
+        "Far blur: 2–8 px"
+      ]
+    },
+    {
+      "slug": "camera-orbit",
+      "prompt": "Orbit the camera around [subject]. Keep the look-at target on [subject]'s center and move the camera on a horizontal arc of [arc, default 30 degrees] (from -15 to +15) over 180 frames at 30fps, at a fixed distance and an elevation of 20 to 30 degrees. Use constant angular speed with a 20 frame ease-in and ease-out at the ends (or constant speed throughout if it loops). In 2.5D, rotate [subject] on Y by the opposite angle with perspective 1600 px, and move background layers at 0.3x the angle so they parallax. Keep any text facing the camera.",
+      "parameters": [
+        "Arc: 10–40° (360° for turntables)",
+        "Duration: 90–240 frames at 30fps",
+        "Elevation: 15–35°",
+        "Perspective (2.5D): 1200–2000 px"
+      ]
+    },
+    {
+      "slug": "rack-focus",
+      "prompt": "Set up [near subject] and [far subject] on separate layers with a clear depth gap. At the start, [near subject] is sharp and [far subject] has a 10 px gaussian blur. Over 20 frames at 30fps, blur [near subject] from 0 to 10 px and, starting 4 frames later, sharpen [far subject] from 10 px to 0 over 20 frames, both on cubic-bezier(0.45, 0, 0.15, 1). Add focus breathing: scale [far subject] from 1.0 to 1.015 during the pull. Darken the defocused layer by 8%. Keep any caption outside both layers and sharp at all times.",
+      "parameters": [
+        "Defocus blur: 6–12 px",
+        "Pull duration: 15–24 frames at 30fps",
+        "Incoming offset: 2–6 frames",
+        "Focus breathing: 0–2% scale"
+      ]
+    },
+    {
+      "slug": "camera-shake",
+      "prompt": "Add camera shake to the world container on [impact frame]. Use seeded 1D noise (one seed per axis) sampled at 18 Hz for x, y and rotation. Amplitude starts at 5 px for x and y and 0.4 degrees for rotation, then decays exponentially to zero over 5 frames at 30fps (multiply by 0.55 each frame). Do not shake captions, logo or grain. For a handheld variant instead, run continuous noise at 0.8 Hz with 2 px amplitude and 0.15 degrees rotation for the whole shot, and scale the world by 1.02 so edges never show.",
+      "parameters": [
+        "Impact amplitude: 2–6 px, ≤0.5° rotation",
+        "Impact decay: 3–6 frames",
+        "Handheld amplitude: 1–3 px at 0.5–1.5 Hz",
+        "Overscan: 1.02–1.04 scale"
+      ]
+    },
+    {
+      "slug": "dolly-zoom",
+      "prompt": "Perform a dolly zoom on [subject]. In 3D: over 90 frames at 30fps, move the camera from distance [d0, default 8 units] to [d1, default 3 units] while widening the field of view so that distance × tan(fov/2) stays constant (about 25 to 60 degrees here). Use ease-in-out cubic-bezier(0.65, 0, 0.35, 1). In 2.5D: keep [subject] at fixed scale and scale background layers from 1.0 to 0.6 (far) and 0.8 (mid) around the subject's center. The subject's on-screen size must stay within 1% the whole time. The background needs strong lines or texture so the stretch reads.",
+      "parameters": [
+        "Duration: 20–120 frames at 30fps",
+        "FOV range: e.g. 25° → 60°",
+        "Direction: in (background expands) or out (background compresses)",
+        "Subject size tolerance: ≤1%"
+      ]
+    },
+    {
+      "slug": "camera-projection-2-5d",
+      "prompt": "Turn [image] into a 2.5D shot. Either split it into 3 layers (background with the subject area inpainted, midground, subject cutout) or generate a depth map and displace a dense mesh by it. Place layers at depths 10, 6 and 3 units in front of a perspective camera with a 35 degree field of view. Over 150 frames at 30fps, move the camera forward by 5% of the subject distance and sideways by 2%, with cubic-bezier(0.45, 0, 0.55, 1). Blur the background layer 4 px. Check the last frame for stretched or torn edges and reduce travel if any appear.",
+      "parameters": [
+        "Layers: 3–5, or one depth-mapped mesh",
+        "Travel: 3–8% of subject distance",
+        "Duration: 90–240 frames at 30fps",
+        "Background blur: 2–6 px"
+      ]
+    },
+    {
+      "slug": "overhead-fly-over",
+      "prompt": "Lay [surface] flat on a ground plane and fly a perspective camera over it in one continuous take. Phase 1 (0 to 180 frames at 30fps): camera 55 degrees off straight-down, low over the start of [surface], gliding along it at constant speed with a 15 frame ease-in; shallow depth of field with near content blurred up to 8 px. Phase 2 (180 to 225 frames): rise and tilt to straight-down, scaling out in log space with ease-in-out so the full layout fits with 8% margin. Phase 3: hold the overhead 30 frames. No cuts.",
+      "parameters": [
+        "Low pass tilt: 45–65° off vertical",
+        "Glide: 4–8 s at constant speed",
+        "Rise: 30–60 frames, log-scale ease-in-out",
+        "Overhead hold: 20–45 frames"
+      ]
+    },
+    {
+      "slug": "film-grain",
+      "prompt": "Add a film grain layer over [subject]. Generate monochrome luminance noise at 2.5% strength (values offset around mid-gray, blended with overlay or soft light) and regenerate it every frame from a seeded random function keyed to the frame number, so every render is identical. Use a grain size of about 1 px at 1080p, slightly softened with a 0.5 px blur so it reads as film, not digital static. Place the grain above the background and imagery but below headline text; if it must cover text, drop it to 1.5% there. Keep the strength constant through the film except on fully dark frames, where it may rise to 3.5% to hide banding. Verify the grain is still visible in the final H.264 export.",
+      "parameters": [
+        "Strength: 1.5–4% luminance",
+        "Refresh: every frame or every 2nd frame",
+        "Grain size: 1–2 px at 1080p",
+        "Layer: below text or above all at lower strength"
+      ]
+    },
+    {
+      "slug": "chromatic-aberration",
+      "prompt": "Apply radial chromatic aberration to [subject]. Split the frame into R, G and B channels; scale the red channel outward from the frame center and the blue channel inward, so the offset is 0 px in the center and 1.5 px at the corners at 1080p. Clamp sampling at the frame edges so no colored border appears. On each impact moment, spike the corner offset to 5 px for 2 frames and ease it back to rest over 6 frames with an ease-out curve. Exclude body text under 32 px from the effect by rendering it in a separate layer above. Keep green as the reference channel so the image does not appear to shift.",
+      "parameters": [
+        "Rest offset: 1–2 px at corners",
+        "Hit spike: 4–8 px for 2–3 frames",
+        "Decay: 4–8 frames, ease-out",
+        "Falloff: radial from center"
+      ]
+    },
+    {
+      "slug": "halftone",
+      "prompt": "Render [subject] as an animated halftone. Lay a dot grid rotated 45 degrees with a cell size of 12 px at 1080p. For each cell, sample the brightness of the underlying image or gradient and set dot radius from 0 (white) to 0.7 of the cell size (black), so neighboring dots just touch in the darkest tones. Keep the grid fixed in screen space. To animate, change the sampled source: sweep a soft radial falloff across the frame over 900 ms with an ease-in-out curve, so dots grow from 0 to full size as the wave passes. Use one ink color on paper. Keep any text on a solid plate above the halftone layer.",
+      "parameters": [
+        "Cell size: 8–16 px at 1080p",
+        "Grid angle: 15° or 45°",
+        "Max dot radius: 0.6–0.75 of cell",
+        "Sweep duration: 600–1200 ms"
+      ]
+    },
+    {
+      "slug": "glow-and-bloom",
+      "prompt": "Add a bloom pass to [subject] only. Extract pixels above 85% luminance, blur them with a wide Gaussian (radius about 4% of frame width, two passes at different radii added together for a soft core and wide falloff), and add the result back with screen blending at 30% opacity. Tint the glow toward the subject's own color, not white. Fade the bloom in over 400 ms with an ease-out curve starting after the subject has landed, not during its entrance. Keep all other elements out of the bright threshold so they do not glow. On a dark background, reduce the subject's scale by about 10% to compensate for the glow making it look larger.",
+      "parameters": [
+        "Threshold: top 5–15% luminance",
+        "Blur radius: 2–6% of frame width",
+        "Opacity: 15–35%",
+        "Fade-in: 300–500 ms after landing"
+      ]
+    },
+    {
+      "slug": "paper-texture",
+      "prompt": "Put [subject] on a generated paper surface. Base color warm off-white (around #EFE8DA). Build the texture from two noise layers: low-frequency value noise at 4% contrast for uneven tone, and high-frequency noise at 6% contrast for tooth, plus a few faint fiber lines (1 px, 3% darker, random angles). Generate it once from a fixed seed and keep it still. Draw all artwork with multiply blending so the paper shows through fills, and reduce stroke opacity by 10–20% on the raised (lighter) tooth pixels so ink looks dry-brushed. If the line work is meant to feel hand-drawn, redraw it with a 0.5–1 px random wobble every 3 frames (at 30fps).",
+      "parameters": [
+        "Tone noise: 3–6% contrast",
+        "Tooth noise: 4–8% contrast",
+        "Blend: multiply",
+        "Line boil: every 2–4 frames, 0.5–1 px"
+      ]
+    },
+    {
+      "slug": "crt-scanlines",
+      "prompt": "Show [subject] through a CRT finish. Darken every other row band so the pattern repeats every 3 px at 1080p, with dark rows at 75% brightness. Apply barrel distortion of about 3% at the corners and a vignette that drops corner brightness to 70%. Add a soft glow (threshold 80%, radius 6 px, 25% opacity) and shift red and blue 1 px horizontally in opposite directions. Every 6 seconds, roll a brighter horizontal band (15% of frame height, +8% brightness) from top to bottom over 1.2 s, linear. Avoid frame-to-frame flicker above 2% brightness. Render the final logo frame without the CRT layer.",
+      "parameters": [
+        "Scanline period: 3–4 px at 1080p",
+        "Line darkening: 15–30%",
+        "Barrel distortion: 2–5% at corners",
+        "Roll band: every 4–8 s"
+      ]
+    },
+    {
+      "slug": "mesh-gradient",
+      "prompt": "Create an animated mesh gradient background behind [subject]. Use 4 color points taken from the brand palette, close in lightness. Each point moves on its own slow closed loop (a Lissajous path, 15–25% of the frame in size) with a period between 12 and 20 seconds, and all periods divide the film length so the end matches the start. Blend the points with smooth radial falloff, interpolating colors in OKLab. Add 2% monochrome grain over the result, regenerated every frame, to prevent banding. Keep the gradient's brightest area away from where text sits, and keep its total motion slow enough that it is noticed only when the viewer looks for it.",
+      "parameters": [
+        "Color points: 3–5",
+        "Loop period: 8–20 s per point",
+        "Color space: OKLab or OKLCH",
+        "Grain: 1–3%"
+      ]
+    },
+    {
+      "slug": "risograph-print",
+      "prompt": "Give [subject] a risograph print finish. Reduce all artwork to 2 spot inks (for example fluorescent pink and blue) on a warm paper color, with multiply blending so overlaps form a third color. Fill shapes with a fine stipple: per-pixel noise thresholded so fills read at about 85% coverage with visible gaps. Offset the second ink layer by 3 px on x and 2 px on y. On each major hit, jump that offset to a new random value between 2 and 4 px and hold it until the next hit; do not change it between hits. Keep text under 40 px in a single ink with no offset.",
+      "parameters": [
+        "Inks: 2–3 spot colors",
+        "Misregistration: 2–4 px",
+        "Fill coverage: 80–90% stipple",
+        "Offset changes: on hits only"
+      ]
+    },
+    {
+      "slug": "light-sweep",
+      "prompt": "After [subject] has fully settled, run a single light sweep across it. The highlight is a soft band 15% of the subject's width, angled 25 degrees from vertical, with a linear gradient falloff from transparent to white at 40% opacity in the center. Clip it to the subject's shape and blend with screen or add. Move it from fully off the left edge to fully off the right edge over 800 ms with the film's main ease (for example cubic-bezier(0.65, 0, 0.35, 1)). Start it 200 ms after the subject stops moving. Run it once; do not loop. Optionally lift the subject's brightness by 3% while the band crosses its center.",
+      "parameters": [
+        "Duration: 600–1000 ms",
+        "Band width: 10–20% of object",
+        "Angle: 20–30° from vertical",
+        "Peak opacity: 30–50%"
+      ]
+    },
+    {
+      "slug": "motion-blur",
+      "prompt": "Render [subject] with real motion blur. For each output frame at 30fps, render 8 subframes evenly spread across the first half of the frame interval (a 180-degree shutter) and average them. For the very fastest moves (anything crossing more than a third of the frame in under 200 ms), raise this to 16 subframes or slow the move. Do not average across a cut: reset accumulation on the first frame of every shot. Elements that are not moving must stay pixel-sharp. If subframe rendering is not possible, blur each moving element only along its velocity vector, with blur length equal to half its per-frame travel, falling to zero when it stops.",
+      "parameters": [
+        "Subframes: 4 (moderate) to 16 (whips)",
+        "Shutter: 180° (half frame)",
+        "Fallback blur length: 0.5× per-frame travel",
+        "Cuts: never blend across"
+      ]
+    },
+    {
+      "slug": "ink-bleed",
+      "prompt": "Reveal [subject] with an ink bleed. Start from a seed point and grow a mask outward; its radius follows an ease-out curve (fast first, slow last) reaching full coverage in 1200 ms. Distort the mask edge with two octaves of noise so the boundary is ragged and fibrous, with tendrils reaching 5–8% further than the main body. Inside the mask, darken a 6–10 px band along the edge by 15% to suggest pooled pigment, then let it fade as the mask stops. Multiply the ink over a paper texture so fibers show through. For multiple reveals, stagger seed points by 150–250 ms.",
+      "parameters": [
+        "Spread duration: 800–1500 ms, ease-out",
+        "Edge noise: 5–8% of radius",
+        "Edge darkening: 10–20%",
+        "Stagger: 150–250 ms between drops"
+      ]
+    },
+    {
+      "slug": "grainy-gradient",
+      "prompt": "Fill the background behind [subject] with a grainy gradient. Draw a soft gradient between two or three nearby palette colors (radial or linear, interpolated in OKLab). Before writing the 8-bit frame, add monochrome noise at 6% amplitude for a visible grainy texture, or 2% if the goal is only to stop banding. Regenerate the noise every frame from a seeded generator keyed to frame number. If the gradient's colors or position animate, move them slowly (one full shift over 6 seconds or more). Check the darkest part of the gradient in the exported video at its delivery bitrate and raise the noise by 1% if steps are visible.",
+      "parameters": [
+        "Noise: 1–3% (dither) or 5–10% (visible)",
+        "Colors: 2–3, close in value",
+        "Refresh: every frame, seeded",
+        "Drift: one shift per 6+ s"
+      ]
+    },
+    {
+      "slug": "bar-chart-race",
+      "prompt": "Build a bar chart race for [dataset] at 30fps. Show the top 10 entities as horizontal bars, each with a fixed color, a name label inside the left end and a value label just past the right end in tabular numerals. Advance one data period every 30 frames (1 s) and interpolate values linearly between periods every frame. When rank changes, animate each bar's vertical position over 12 frames with an ease-in-out cubic so bars glide past each other. Ease the x-axis maximum toward the current leader's value with a 20-frame ease-out, never snapping. Put the current period in large type in the bottom-right corner. Hold the final frame for 60 frames and give the leader a soft accent glow.",
+      "parameters": [
+        "Period length: 20–45 frames per data step",
+        "Rank swap: 10–16 frames, ease-in-out",
+        "Bars visible: 8–12",
+        "Axis rescale: 15–30 frames, ease-out",
+        "End hold: 45–90 frames"
+      ]
+    },
+    {
+      "slug": "line-chart-draw",
+      "prompt": "Animate a line chart of [metric over time] at 30fps. First fade in the axes and gridlines at 15% opacity over 10 frames. Then draw the line left to right over 60 frames by animating the stroke dash offset, eased with cubic-bezier(0.65, 0, 0.35, 1) so it accelerates into the middle and settles onto the last point. A 10 px dot with a soft glow rides the line's tip, and a value label in tabular numerals travels with it. Eight frames behind the tip, fill the area under the line with a gradient from 25% accent opacity to 0. When the line finishes, pulse the last point once (scale 1 to 1.4 to 1 over 12 frames) and hold.",
+      "parameters": [
+        "Draw duration: 45–90 frames",
+        "Curve: in-out cubic or ease-out quint",
+        "Area fill lag: 5–12 frames",
+        "Tip dot: 8–14 px with glow",
+        "End pulse: scale 1.2–1.5"
+      ]
+    },
+    {
+      "slug": "counter-roll-up",
+      "prompt": "Reveal [number] as a counter roll-up at 30fps. Lay out the final formatted value first (with thousands separators and unit) in tabular numerals, and reserve its width so nothing shifts. Count from 0 to the target over 40 frames, driving the value with an ease-out quint, cubic-bezier(0.22, 1, 0.36, 1), and rounding to display precision every frame. On the landing frame, punch the number to scale 1.06 and back to 1 with a spring (stiffness 400, damping 30), and switch its color from white to [accent]. Fade the label underneath up from 8 px below over 12 frames, starting 6 frames after landing. Hold at least 45 frames.",
+      "parameters": [
+        "Count duration: 30–50 frames",
+        "Easing: ease-out quint or expo",
+        "Landing punch: scale 1.04–1.10",
+        "Label delay: 4–10 frames",
+        "Hold: 45–90 frames"
+      ]
+    },
+    {
+      "slug": "donut-chart-sweep",
+      "prompt": "Animate a donut chart for [parts of a whole] at 30fps. Ring outer radius 180 px, stroke width 36 px, on a faint track at 10% opacity. Each segment starts at 12 o'clock or at the end of the previous one and sweeps clockwise; segment duration is proportional to its share, 45 frames for the full circle, eased with ease-out cubic. Start each next segment 4 frames before the previous one ends. Leave a 2-degree gap between segments. In the center, count the hero percentage up in sync with its segment using the same easing. After the build, push the hero segment outward 8 px and brighten it, dimming the others to 40% over 10 frames.",
+      "parameters": [
+        "Full sweep: 35–60 frames",
+        "Segment overlap: 2–6 frames",
+        "Gap: 1–3 degrees",
+        "Hero offset: 6–12 px",
+        "Dim others: 30–50% opacity"
+      ]
+    },
+    {
+      "slug": "map-route-draw",
+      "prompt": "Animate a route on a map for [journey] at 30fps. Use a muted base map with low-contrast land and few labels. Draw the route from origin to destination as a 4 px accent line over 90 frames, at near-constant ground speed, easing out over the last 15 frames. A marker icon rides the line's head and rotates to face its heading. When the line reaches each stop, pop a ring (scale 0 to 1.6, opacity 1 to 0 over 18 frames) and fade in the stop name. The camera follows the head with a slower in-out ease so it trails slightly, zooming from the whole-route view to 1.6x and back out at the end. Use great-circle arcs for flights.",
+      "parameters": [
+        "Draw duration: 60–150 frames",
+        "Line width: 3–6 px",
+        "Stop pulse: 14–24 frames",
+        "Camera zoom: 1.3x–2x",
+        "Camera lag: follows head by 4–10 frames"
+      ]
+    },
+    {
+      "slug": "dot-swarm-chart",
+      "prompt": "Build a unit chart for [quantity] at 30fps where one dot equals [unit]. Start with all dots scattered in a loose cloud drifting slowly. On the cue, move every dot to its slot in a grid grouped by [category], over 36 frames with ease-in-out cubic, along a slight curve (offset the midpoint 20–60 px perpendicular to the path). Give each dot a random delay of 0–10 frames from a seeded random so the swarm moves like a flock. Color the dots by category before they move. Hold the grid for 30 frames, then regroup the same dots into a second arrangement with the same rules. Show 'one dot = [unit]' as a small legend.",
+      "parameters": [
+        "Move duration: 24–45 frames",
+        "Per-dot delay: 0–12 frames, seeded",
+        "Curve offset: 20–60 px",
+        "Dot size: 4–10 px",
+        "Hold between layouts: 25–45 frames"
+      ]
+    },
+    {
+      "slug": "highlight-one-bar",
+      "prompt": "After a bar chart of [comparison] builds in neutral grey, hold it for 20 frames at 30fps. Then, over 12 frames with ease-out cubic, fade every bar except [subject] to 30% opacity and transition [subject] from grey to [accent]. At the same time, lift the highlighted bar's value label 6 px and scale it from 1 to 1.15. Do not change the bar's length or position. If there is a beat or a spoken word naming the subject, land the color change on that frame. Hold the highlighted state for at least 45 frames before moving on.",
+      "parameters": [
+        "Pre-highlight hold: 15–30 frames",
+        "Transition: 8–15 frames, ease-out",
+        "Dim level: 25–40% opacity",
+        "Label lift: 4–10 px",
+        "Highlight hold: 45–75 frames"
+      ]
+    },
+    {
+      "slug": "axis-and-grid-reveal",
+      "prompt": "Build the frame of a chart for [chart] before any data appears, at 30fps. From the origin corner, grow the x-axis rightward and the y-axis upward together over 14 frames with ease-out quint, 2 px stroke at full opacity. Then draw the horizontal gridlines left to right, 1 px at 15% opacity, each over 10 frames, staggered 3 frames apart from the baseline upward. Fade tick labels in with each gridline, offset 4 px and settling into place. Fade the axis titles and units in last over 8 frames. Wait 8 frames, then start the data animation. Nothing in the frame moves or rescales after this.",
+      "parameters": [
+        "Axis grow: 10–20 frames",
+        "Gridline stagger: 2–5 frames",
+        "Gridline opacity: 10–20%",
+        "Label offset: 3–6 px",
+        "Gap before data: 6–12 frames"
+      ]
+    },
+    {
+      "slug": "stacked-area-grow",
+      "prompt": "Animate a stacked area chart of [composition over time] at 30fps with 3–5 bands, steadiest band at the bottom. Grow the bands bottom to top: each band rises from the top edge of the band below it to its full height over 20 frames with ease-out cubic, the next band starting 8 frames later. Use one hue family with clear lightness steps. Label each band directly at the right edge, fading in as its band finishes. After the stack is complete, hold 20 frames, then dim all bands except [band] to 35% over 10 frames and add its share for the latest period as a label.",
+      "parameters": [
+        "Band grow: 15–30 frames",
+        "Band stagger: 5–12 frames",
+        "Band count: 3–5",
+        "Dim level: 30–40%",
+        "Hold before focus: 15–30 frames"
+      ]
+    },
+    {
+      "slug": "annotation-callout",
+      "prompt": "Add a callout to [data point] on an existing chart at 30fps. On frame 0, a 6 px ring appears on the point and pulses outward to 20 px while fading out over 16 frames. From frame 4, draw a 1.5 px leader line from the point out to a clear area over 10 frames, ease-out cubic, with a short horizontal elbow at the end. As the line finishes, spring in a label at its end (scale 0.85 to 1 and opacity 0 to 1, stiffness 300, damping 22) containing [value] and [2–4 words]. Hold still for at least 30 frames per line of text, then remove it by reversing in 8 frames.",
+      "parameters": [
+        "Pulse: 12–20 frames",
+        "Leader draw: 8–14 frames",
+        "Label spring: stiffness 250–400, damping 18–28",
+        "Hold: 30+ frames per text line",
+        "Exit: 6–10 frames"
+      ]
+    },
+    {
+      "slug": "sankey-flow",
+      "prompt": "Animate a Sankey diagram of [flows] at 30fps, built stage by stage from left to right. Fade and grow the first column of nodes vertically over 10 frames. Then reveal the bands leaving them by moving a clip mask from left to right over 24 frames with ease-in-out cubic, staggering each band by 3 frames from top to bottom. Color each band by its source at 60% opacity. When the bands reach the next column, grow those nodes over 8 frames and repeat. Label nodes outside the flow. After the full build, hold 20 frames, then raise one end-to-end path to full opacity and dim the rest to 20% over 12 frames.",
+      "parameters": [
+        "Band reveal: 18–36 frames per stage",
+        "Band stagger: 2–5 frames",
+        "Band opacity: 50–70%",
+        "Focus dim: 15–30%",
+        "Max bands per stage: about 8, group the rest as Other"
+      ]
+    },
+    {
+      "slug": "before-after-split",
+      "prompt": "Show [metric or chart] before and after [change] with a split reveal at 30fps. Render both states with identical layout, axes and scale; the after state sits underneath. A 2 px vertical divider with a small round handle starts at the left edge and travels to the right over 60 frames, eased cubic-bezier(0.83, 0, 0.17, 1), pausing 15 frames at the center. Clip the before state to the left of the divider. Fixed labels read 'Before' and 'After' at the top corners. Numbers in the after state count to their new values as the divider passes them. End by fading in the delta (e.g. '-62%') as one large figure.",
+      "parameters": [
+        "Divider travel: 45–90 frames",
+        "Center pause: 10–20 frames",
+        "Easing: in-out quint",
+        "Delta reveal: 10–15 frames after divider ends",
+        "Orientation: vertical or horizontal divider"
+      ]
+    },
+    {
+      "slug": "beat-synced-cuts",
+      "prompt": "Cut [subject] to the music. First measure the track: tempo and the time of the first downbeat. Compute beat(n) = firstDownbeat + n × 60 / bpm and convert each to the nearest frame at 30 fps. Put every scene change on a beat frame, never between. Use bar 1 of each 4-bar phrase for major changes (new scene, reveal, logo) and beats 2 or 4 for minor ones. Mix shot lengths: mostly 2 and 4 beats, an occasional 1-beat cut for energy, never more than 6 one-beat cuts in a row. Any shot with on-screen text lasts at least 2 beats. Start the music on a downbeat so frame 0 is beat 0.",
+      "parameters": [
+        "Shot length: 1, 2 or 4 beats, mostly 2–4",
+        "Major changes: bar 1 of each 4- or 8-bar phrase",
+        "Max consecutive 1-beat cuts: 4–6",
+        "Minimum text hold: 2 beats (about 1 s at 120 BPM)"
+      ]
+    },
+    {
+      "slug": "bpm-grid-timing",
+      "prompt": "Time all motion for [subject] on a beat grid. Use the track's measured tempo (or [bpm] if silent) and its first downbeat as t0. Define beat = 60 / bpm seconds; at 120 BPM that is 500 ms (15 frames at 30 fps). Every animation starts on a grid point (whole or half beats) and lasts 0.5, 1, 2 or 4 beats. Entrances use 1 beat with an ease-out (cubic-bezier 0.22, 1, 0.36, 1) so they settle on the next beat. Holds are 2 or 4 beats. Keep looping background motion (drift, rotation) free-running and off the grid. Store the grid as data and compute frame = round((t0 + beats × beat) × fps); never hardcode frames.",
+      "parameters": [
+        "Tempo: [bpm], typically 100–130",
+        "Allowed durations: 0.5, 1, 2, 4 beats",
+        "Entrance easing: ease-out, settles on next beat",
+        "Free-running layers: 1–2 ambient motions off grid"
+      ]
+    },
+    {
+      "slug": "kick-pulse",
+      "prompt": "Make [subject] pulse on the kick drum. Detect kick onsets from the low band (about 40–120 Hz) of the track, or from the drum stem if available. On each kick, scale [subject] from 1.0 to 1.06 over 2 frames (at 30 fps), then ease back to 1.0 over 9 frames with an exponential ease-out. Scale from the element's visual center. Add a matching brightness bump of +8% that decays with the same curve. If two kicks are closer than the release, restart from the current value instead of stacking. Only run the pulse in sections where kicks are present; when they stop, so does the pulse.",
+      "parameters": [
+        "Peak scale: 1.03–1.08",
+        "Attack: 1–2 frames",
+        "Release: 6–10 frames, exponential",
+        "Brightness bump: 0–10%"
+      ]
+    },
+    {
+      "slug": "waveform-visualizer",
+      "prompt": "Draw a waveform of the actual audio behind [subject]. Decode the track to mono samples. For each frame at time t, take a 40 ms window centered on t, downsample to 200 points by taking the peak per bucket, and draw them as a smooth line 2 px thick across 70% of the frame width. Scale so the loudest moment in the clip reaches 80% of the available height. Smooth each point between frames with a 0.6 lerp toward the new value to remove flicker. Behind it, show the whole-clip envelope at 20% opacity with a playhead that moves at real time. Never substitute a synthetic sine.",
+      "parameters": [
+        "Window: 20–60 ms of audio per frame",
+        "Points: 120–300 across the width",
+        "Frame-to-frame smoothing: 0.4–0.7 lerp",
+        "Headroom: peak reaches 75–85% height"
+      ]
+    },
+    {
+      "slug": "frequency-bars",
+      "prompt": "Build a frequency-bar visualizer for [subject] from the real track. For each frame, run an FFT (2048 samples) on the audio around time t. Group bins into 48 bands spaced logarithmically from 40 Hz to 16 kHz. Convert each band to dB, map −60 to 0 dB to 0–1, and normalize the lowest 8 bands separately so bass does not pin to the top. Bar height follows the value with a fast attack (reach it in 1 frame) and a slow release (fall at most 12% of max height per frame at 30 fps). Bars are 60% of their slot width with rounded tops. Lay them in a row or wrap them around [subject] as a ring.",
+      "parameters": [
+        "Bands: 24–64, log-spaced",
+        "Range mapped: −60 to 0 dB",
+        "Release: 8–15% height per frame",
+        "Layout: row, mirrored row, or ring"
+      ]
+    },
+    {
+      "slug": "lyric-sync",
+      "prompt": "Sync the lyrics of [song] word by word. Isolate the vocal stem, then get word-level start and end times by aligning the transcript to it; fix any word off by more than 2 frames by hand. Show each full line 300 ms before its first word, at 40% opacity. Each word goes to 100% opacity and scales 1.0 → 1.04 over 4 frames (30 fps) at its start time. For words held longer than 600 ms, run a left-to-right fill across the word for the held duration. Clear the line 200 ms after its last word ends, unless the next line starts within that gap. Keep every effect behind the text.",
+      "parameters": [
+        "Line lead-in: 200–400 ms",
+        "Word highlight: 3–5 frames",
+        "Sustain fill threshold: 500–800 ms",
+        "Alignment tolerance: ≤2 frames"
+      ]
+    },
+    {
+      "slug": "sound-reactive-particles",
+      "prompt": "Drive a particle field around [subject] from the track. Compute three smoothed features per frame: bass energy (40–150 Hz), mid energy (300 Hz–2 kHz) and high energy (4–12 kHz), each normalized to 0–1 over the song and smoothed with a 60 ms attack and 250 ms release. Map bass to radial push (0 to 30 px outward offset), mids to noise turbulence speed (0.2× to 1.5×), highs to particle brightness (60% to 100%). On detected onsets, give 10% of particles a 1.2× velocity kick decaying over 8 frames. On the drop, kick 60%. Seed the random generator so every render matches.",
+      "parameters": [
+        "Particles: 2,000–20,000",
+        "Bass push: 10–40 px",
+        "Feature smoothing: 30–80 ms attack, 200–400 ms release",
+        "Onset burst share: 5–15% normal, 50–80% on the drop"
+      ]
+    },
+    {
+      "slug": "transient-hit-frames",
+      "prompt": "Sync sound effects to [subject]'s contact frames. List every event where something visibly lands, collides or is clicked, with the exact frame of contact. For each sound file, find its peak offset (time of the highest absolute sample) once. Schedule each sound at contactTime − peakOffset so the peak sits on the contact frame at 30 fps. If two contacts fall within 80 ms, play only the louder one. Mix effects 6–12 dB under the music peaks. When an exact frame is ambiguous, shift the sound 1 frame late, never early. Export a table of event, frame and sound so it can be checked.",
+      "parameters": [
+        "Peak alignment tolerance: ±1 frame, bias late",
+        "Effects level: 6–12 dB under music peaks",
+        "Merge window: 60–120 ms",
+        "Sounds per group of items: 1–2"
+      ]
+    },
+    {
+      "slug": "silence-hold",
+      "prompt": "Before the big moment for [subject], hold silence. Cut the music to zero with a 10 ms fade exactly 1 beat before the drop (500 ms at 120 BPM). In the same frame, ease all motion to a stop over 4 frames at 30 fps and hold it still; leave only [subject] on screen, with everything else faded to 0 over the preceding 6 frames. During the gap, the only allowed motion is one small cue (a cursor settling, a dot breathing at 2% scale). On the drop frame, restore music at full level with no fade and start the reveal on that exact frame.",
+      "parameters": [
+        "Silence length: 1–2 beats",
+        "Music cut fade: 5–15 ms",
+        "Motion stop ease: 3–6 frames",
+        "Elements left on screen: 1"
+      ]
+    },
+    {
+      "slug": "riser-build",
+      "prompt": "Build into the drop for [subject]. Find the drop time in the track and work backward 8 bars. Over those bars, push the camera from 1.0× to 1.35× scale with an ease-in (cubic, t³) so most of the push happens in the last 2 bars. Halve cut length as you go: 2 beats per shot for bars 1–4, 1 beat for bars 5–6, half a beat for bars 7–8. Raise accent saturation and brightness by 20% on the same curve. On the drop frame exactly, release: cut to a wider, calmer composition and start the reveal. Optionally insert a 1-beat silence just before the drop.",
+      "parameters": [
+        "Build length: 4 or 8 bars",
+        "Push: 1.2×–1.5× scale, ease-in",
+        "Cut density: halves every 2–4 bars",
+        "Drop release: wider shot, calmer motion"
+      ]
+    },
+    {
+      "slug": "sidechain-pump",
+      "prompt": "Add a sidechain-style pump to the background behind [subject]. On every kick (detected from 40–120 Hz onsets, or every beat if the kick is four-on-the-floor), drop the background layers' brightness to 75% and scale to 0.985 within 1 frame at 30 fps. Recover to 100% and 1.0 over 80% of the beat length with a curve of 1 − (1 − t)², so at 120 BPM recovery takes 12 frames. Do not apply it to [subject] or to any text. Turn it off in breakdowns where the kick stops, fading the depth to zero over one bar instead of cutting.",
+      "parameters": [
+        "Brightness dip: 10–30%",
+        "Scale dip: 0–2%",
+        "Recovery: 60–90% of a beat",
+        "Fade-out in breakdowns: 1 bar"
+      ]
+    },
+    {
+      "slug": "stinger-sync",
+      "prompt": "Animate [logo] as a stinger synced to a short sound. Measure the sting's main hit (peak sample) and total length. Bring [logo] in so its fastest motion happens on the hit frame: a scale from 0.6 to 1.0 with a spring (stiffness 220, damping 18, mass 1) starting 4 frames before the hit at 30 fps. As the sting's tail decays, let secondary details (tagline, underline) settle over 12–18 frames. Hold the final lockup still for at least 1 s after the sound ends, followed by silence. Total length 1.5–2.5 s.",
+      "parameters": [
+        "Sting length: 0.8–2 s",
+        "Motion lead before hit: 3–6 frames",
+        "Settle during tail: 10–20 frames",
+        "Final hold after sound: 1–2 s"
+      ]
+    }
+  ]
+}

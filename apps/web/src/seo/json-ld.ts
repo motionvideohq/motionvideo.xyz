@@ -1,15 +1,13 @@
 import { FAQS } from "@/constants/faqs";
 import { LINK } from "@/constants/links";
-import {
-  BASE_PRICE_CENTS,
-  LAUNCH_PRICE_CENTS,
-  PRODUCT_NAME,
-} from "@/constants/pricing";
-import type { Offer } from "@/constants/pricing";
+import { PLAN_PRICE_CENTS, PLANS, planOffers } from "@/constants/plans";
+import type { Plan, PlanBilling } from "@/constants/plans";
 import { ROUTES } from "@/constants/routes";
 import { SITE } from "@/constants/site";
 import { absoluteUrl } from "@/constants/url";
 import type { MotionVideo } from "@/lib/motion-catalog";
+import { movePath } from "@/lib/moves";
+import type { Move } from "@/lib/moves";
 
 // Structured data, emitted as <script type="application/ld+json"> through a
 // route's `head().scripts`.
@@ -62,24 +60,48 @@ export const websiteJsonLd = () =>
 
 export const organizationJsonLd = () => jsonLdScript(organization);
 
-export const productJsonLd = (offer?: Offer) =>
-  jsonLdScript({
-    "@type": "Product",
-    brand: { "@type": "Brand", name: SITE.NAME },
-    description: SITE.DESCRIPTION.LONG,
-    image: absoluteUrl("/og.jpg"),
-    name: PRODUCT_NAME,
-    url: absoluteUrl(ROUTES.MOTIONVIDEO_SKILL),
-    offers: {
-      "@type": "Offer",
-      availability: "https://schema.org/InStock",
-      price: (
-        (offer?.active ? LAUNCH_PRICE_CENTS : BASE_PRICE_CENTS) / 100
-      ).toFixed(2),
-      priceCurrency: "USD",
-      url: absoluteUrl(ROUTES.PRICING),
-    },
-  });
+const PLAN_NAME: Record<Plan, string> = {
+  business: `${SITE.NAME} Business`,
+  pro: `${SITE.NAME} Pro`,
+};
+
+// ISO 8601 renewal period; lifetime has none.
+const BILLING_DURATION: Partial<Record<PlanBilling, string>> = {
+  annual: "P1Y",
+  monthly: "P1M",
+};
+
+// One Product per plan, with an Offer per billing option, for /pro.
+export const planJsonLd = () =>
+  PLANS.map((plan) =>
+    jsonLdScript({
+      "@type": "Product",
+      brand: { "@type": "Brand", name: SITE.NAME },
+      description: SITE.DESCRIPTION.LONG,
+      image: absoluteUrl("/og.jpg"),
+      name: PLAN_NAME[plan],
+      url: absoluteUrl(ROUTES.PRO),
+      offers: planOffers(plan).map((billing) => {
+        const price = ((PLAN_PRICE_CENTS[plan][billing] ?? 0) / 100).toFixed(2);
+        const duration = BILLING_DURATION[billing];
+        return {
+          "@type": "Offer",
+          availability: "https://schema.org/InStock",
+          price,
+          priceCurrency: "USD",
+          url: absoluteUrl(`${ROUTES.PRO}?billing=${billing}`),
+          ...(duration && {
+            priceSpecification: {
+              "@type": "UnitPriceSpecification",
+              billingDuration: duration,
+              price,
+              priceCurrency: "USD",
+            },
+          }),
+        };
+      }),
+    })
+  );
 
 export const faqJsonLd = () =>
   jsonLdScript({
@@ -113,14 +135,45 @@ export const videoJsonLd = (video: MotionVideo) =>
     uploadDate: video.date,
   });
 
-// Home › <page>, for pages one level below the home page.
-export const breadcrumbJsonLd = (current: BreadcrumbItem) =>
+// Home › <page> › …, from the page below the home page down to the current one.
+export const breadcrumbJsonLd = (...trail: BreadcrumbItem[]) =>
   jsonLdScript({
     "@type": "BreadcrumbList",
-    itemListElement: [HOME_BREADCRUMB, current].map((item, index) => ({
+    itemListElement: [HOME_BREADCRUMB, ...trail].map((item, index) => ({
       "@type": "ListItem",
       item: absoluteUrl(item.path),
       name: item.name,
       position: index + 1,
     })),
+  });
+
+// The Moves library is a glossary of motion design techniques: each move is a
+// DefinedTerm in one DefinedTermSet, so search engines read the names (and
+// their aliases) as terms with definitions.
+const MOVES_SET = {
+  "@type": "DefinedTermSet",
+  name: `${SITE.NAME} Moves`,
+  url: absoluteUrl(ROUTES.MOVES),
+};
+
+export const movesJsonLd = (moves: Move[]) =>
+  jsonLdScript({
+    ...MOVES_SET,
+    description: "Motion design techniques, named and explained.",
+    hasDefinedTerm: moves.map((move) => ({
+      "@type": "DefinedTerm",
+      name: move.name,
+      url: absoluteUrl(movePath(move)),
+    })),
+  });
+
+export const moveJsonLd = (move: Move) =>
+  jsonLdScript({
+    "@type": "DefinedTerm",
+    alternateName: move.aka,
+    description: move.summary,
+    inDefinedTermSet: MOVES_SET,
+    name: move.name,
+    termCode: move.slug,
+    url: absoluteUrl(movePath(move)),
   });

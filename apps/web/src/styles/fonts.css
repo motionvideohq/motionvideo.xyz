@@ -27,3 +27,14 @@
     "STYL" 0,
     "ital" 1;
 }
+
+/* Paper Mono (SIL Open Font License, see /fonts/paper-mono/OFL.txt): the
+   monospace face. Committed to the repo, unlike Timeless; keep the versioned
+   filename so the year-long immutable cache picks up a new release. */
+@font-face {
+  font-family: "Paper Mono";
+  src: url("/fonts/paper-mono/PaperMono-VF-1.000.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 100 800;
+  font-display: swap;
+}

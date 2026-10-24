@@ -1,0 +1,353 @@
+---
+title: MCP
+description: Search AI-made motion videos, pull their original prompts and browse motion tools and studios from any MCP client.
+---
+
+The MotionVideo MCP server brings the motionvideo.xyz catalog into any MCP client. Your agent can search AI-made motion videos, pull the original prompts behind them, and browse the motion tools and studios around them. The catalog tools are free and need no sign-in. With a Pro or Business plan, signing in with your motionvideo.xyz account also unlocks the [Pro tools](#pro-tools), which search Moves and pull their full prompts. The source is MIT-licensed on [GitHub](https://github.com/motionvideohq/motionvideo-mcp). For a short overview, see the [MotionVideo MCP page](/motionvideo-mcp).
+
+The server provides:
+
+- **Four free read-only tools:** `search-videos`, `get-video`, `list-categories` and `browse-directory`.
+- **Two Pro tools:** `search-moves` and `get-move-prompt`. They need you to sign in with an account that has Pro or Business.
+- **Two resources:** `motionvideo://catalog/overview` and `motionvideo://videos/{slug}`. They need a free sign-in.
+- **One prompt:** `remix-video`. It turns an entry's original prompt into a brief your agent can adapt. It needs a free sign-in.
+- **One skill:** `motionvideo`. It teaches agents the search → pull prompt → adapt → credit workflow. The plugin bundles include it.
+
+## Server
+
+```text title="Server URL"
+https://mcp.motionvideo.xyz/mcp
+```
+
+| Property | Value |
+| --- | --- |
+| Transport | Streamable HTTP |
+| Authentication | OAuth 2.1 sign-in with your motionvideo.xyz account, only where needed. The catalog tools work anonymously. The resources and the `remix-video` prompt need a free sign-in. The [Pro tools](#pro-tools) need a Pro or Business plan. |
+| Access | Read-only. Nothing on the site can be changed from chat. |
+| Data | Fetched live from the site's public [catalog endpoints](/docs/api). The Pro tools read the site's `/api/mcp/moves` endpoint with your sign-in. |
+| License | MIT. The MotionVideo brand and catalog content belong to motionvideo.xyz. |
+
+Every tool returns two things: a plain-text summary the model can read, and structured content that matches the fields listed below. `search-videos` and `get-video` also show interactive views in clients that display them.
+
+## Tools
+
+### search-videos
+
+Searches the catalog by keywords, content category, or both. Results are sorted by publish date. The tool shows an interactive **video-gallery** view with hover previews and an inline player.
+
+| Argument | Type | Description |
+| --- | --- | --- |
+| `query` | string, optional | Keywords. Every word must appear in the title, prompt, creator handle or content tags. Matching ignores case. |
+| `category` | string, optional | One content category id. The ids are listed under [categories](#categories). |
+| `type` | `prompt` or `skill`, optional | Only entries that shared a prompt, or only entries that shipped a skill. |
+| `sort` | `newest` or `oldest`, optional | Sort by publish date. Defaults to `newest`. |
+| `limit` | integer, optional | How many results to return, 1 to 30. Defaults to 12. |
+
+**Returns** `total` (matches before the limit), `shown` (results returned) and `videos`, a list of video summaries:
+
+| Field | Description |
+| --- | --- |
+| `slug` | Stable catalog id, for example `stephanlivera-df17a2` |
+| `title`, `description` | Entry title and description |
+| `handle`, `avatar` | The creator's X handle and avatar image URL |
+| `date` | Publish date, `YYYY-MM-DD` |
+| `contentTags` | Content categories |
+| `tags` | Entry tags, such as `prompt` and `skill` |
+| `promptShared` | Whether the original prompt is public |
+| `model`, `effort`, `iterations` | How the video was made, as the creator reported it. Effort is `medium`, `high` or `max`. Iterations is `one-shot`, `few-rounds` or `many-rounds`. |
+| `poster`, `preview`, `video` | Poster image, short looping preview MP4 and full video MP4 URLs |
+| `width`, `height` | Video size in pixels |
+| `pageUrl` | The entry's page on motionvideo.xyz |
+
+The text summary lists each match as title, creator, model and page URL. When there are more matches than results, it suggests raising the limit or narrowing the query.
+
+### get-video
+
+Gets one catalog entry: the original prompt, how it was made, media links and neighbouring entries. The tool shows a **video-detail** view with a player, the prompt, metadata, and copy and remix actions.
+
+| Argument | Type | Description |
+| --- | --- | --- |
+| `slug` | string, required | Catalog slug from `search-videos`, for example `twoclipping-5cba86` |
+
+**Returns** every `search-videos` summary field, plus:
+
+| Field | Description |
+| --- | --- |
+| `prompt` | The original prompt, as the creator shared it. Missing when no prompt was shared. |
+| `stack` | The tools the creator used, when reported |
+| `category`, `categoryUrl` | The primary content category and its page on motionvideo.xyz |
+| `neighbours` | `previous` and `next` slugs in the same category |
+| `tweetUrl` | The original post, when there is one |
+| `skillUrl` | The skill the creator shipped, when there is one |
+
+If no entry matches the slug, the tool returns an error that lists up to five entries with similar titles.
+
+### list-categories
+
+Lists the catalog's content categories with video counts and descriptions. Call it before `search-videos` to choose a `category` filter. It takes no arguments.
+
+**Returns** `categories`, a list of entries with `id`, `label`, `description`, `count` and `url` (the category's page on motionvideo.xyz).
+
+### browse-directory
+
+Browses the motionvideo.xyz directories. The `tools` section has motion tools, editors, AI generators and resource sites. The `studios` section has motion studios for hire.
+
+| Argument | Type | Description |
+| --- | --- | --- |
+| `section` | `tools` or `studios`, optional | Which directory to browse. Defaults to `tools`. |
+| `query` | string, optional | Keywords matched against name, description and category. Every word must match. |
+| `category` | string, optional | Exact category, for example `AI`, `Editor`, `Motion` or `Studio`. Matching ignores case. |
+| `limit` | integer, optional | How many entries to return, 1 to 120. Defaults to 24. |
+
+**Returns** `section`, `total`, `shown`, `categories` (every category in that section) and `entries`. Each entry has `id`, `name`, `description`, `category`, `url` and `cover`.
+
+## Pro tools
+
+With a Pro or Business plan, two more tools search the [Moves](/moves) library and return each move's full, copy-ready prompt. They use your motionvideo.xyz account, so there's no key to copy or paste. The free tools keep working with or without a sign-in.
+
+### Sign in with your account
+
+1. Ask your agent for a move, or call `search-moves` or `get-move-prompt`. The first time, your MCP client opens the motionvideo.xyz sign-in.
+2. Sign in with the email on your plan. On a Business plan, teammates sign in with the email they were invited with.
+3. Approve the connection on the consent page.
+
+Your client registers itself with motionvideo.xyz and keeps the sign-in, so you don't add anything to its config. Every client in [Connect your client](#connect-your-client) uses the same server URL.
+
+| What | Needs |
+| --- | --- |
+| `search-videos`, `get-video`, `list-categories`, `browse-directory` | Nothing. They work without signing in. |
+| Resources and the `remix-video` prompt | A free motionvideo.xyz sign-in |
+| `search-moves`, `get-move-prompt` | A sign-in with a Pro or Business plan, or a Business seat |
+
+The Pro tools work while the signed-in account has an active Pro or Business plan or holds a Business seat. Without one, they return an error that links to [plans](/pro). If your sign-in expires or is no longer valid, sign in again from your MCP client.
+
+### search-moves
+
+Searches the Moves library.
+
+| Argument | Type | Description |
+| --- | --- | --- |
+| `query` | string, optional | Keywords matched against the move's name, other names, summary and "good for" tags. Matching ignores case. |
+| `family` | string, optional | One move family: `timing`, `type`, `transitions`, `ui`, `vector`, `generative`, `camera`, `texture`, `data` or `sound`. |
+| `limit` | integer, optional | How many results to return, 1 to 30. Defaults to 12. |
+
+**Returns** `total`, `shown` and `moves`, a list with `slug`, `name`, `family`, `summary`, `aka`, `goodFor` and `pageUrl` (the move's page on motionvideo.xyz).
+
+### get-move-prompt
+
+Gets one move's copy-ready prompt.
+
+| Argument | Type             | Description                   |
+| -------- | ---------------- | ----------------------------- |
+| `slug`   | string, required | Move slug from `search-moves` |
+
+**Returns** `slug`, `name`, `family`, `summary`, `prompt` (the copy-ready prompt), `parameters` (the knobs worth naming in a prompt, such as stagger or easing values) and `pageUrl`.
+
+## Categories
+
+These ids work with the `category` argument of `search-videos`. `list-categories` returns them with current counts.
+
+| Id | Label | Covers |
+| --- | --- | --- |
+| `product-ui` | Product UI | Buttons, loaders, music players, menus, toasts and other product UI interactions |
+| `phone` | Phone | Phone mockups, app flows and screen-on-screen animations |
+| `charts` | Charts | Animated charts, dashboards and infographic motion |
+| `diagrams` | Diagrams | Flowcharts, system maps and process animations |
+| `kinetic-type` | Kinetic type | Type-led videos, text animation and lyric motion |
+| `shapes` | Shapes | Morphs, geometry and graphic shape animation |
+| `particles` | Particles | Physics-driven, generative and reactive effects |
+| `characters` | Characters | Animated mascots, figures and character-driven storytelling |
+| `photos` | Photos | Animated photos, collages and cutout videos |
+| `music` | Music | Audio-reactive visuals, lyric videos and beat-synced edits |
+| `code` | Code | Terminal, coding and software-style motion |
+
+## Resources
+
+| URI | Returns |
+| --- | --- |
+| `motionvideo://catalog/overview` | JSON summary of the catalog: `totalVideos`, `videosWithPrompt`, `categories` (the same entries as `list-categories`), `directories` (each section with its total and categories), `importedAt` and `site` |
+| `motionvideo://videos/{slug}` | JSON for one full catalog entry, with the same fields as `get-video`. The server completes slugs for clients that ask. |
+
+## Prompt: remix-video
+
+`remix-video` builds a brief from a catalog entry's original prompt, so your agent can adapt it.
+
+| Argument | Required | Description |
+| --- | --- | --- |
+| `slug` | Yes | Catalog video slug, for example `stephanlivera-df17a2`. The server completes slugs for clients that ask. |
+| `direction` | No | A new direction: brand, subject, palette, duration or platform changes |
+
+The brief contains:
+
+- The entry's title, creator and page, plus the original post when there is one.
+- How the video was made: model, effort, iterations and stack.
+- The original prompt. If the creator didn't share one, the brief says to use the video as a visual reference only.
+- Your direction. Without one, the brief tells the agent to ask for the brand, copy, palette, duration and aspect ratio before building.
+- What to deliver: keep the choreography, timing structure and constraints that make the original work, swap in your content, and build the video in your stack. It also asks the agent to credit the source page when it shares the result.
+
+## The motionvideo skill
+
+The plugin bundles include a short skill, `motionvideo`. Your agent uses it when you want motion design inspiration, ask for "a video like this", or want to adapt an existing motion video prompt. It follows five steps:
+
+1. Find references with `search-videos`. Use `list-categories` to understand the categories.
+2. Read the original prompt, model and media links with `get-video`.
+3. Adapt the prompt to your brief. Keep the choreography, timing structure and constraints that work. Swap in your brand, copy, palette, aspect ratio and audio.
+4. Build the video in your stack and ask before making brand-critical choices.
+5. Credit the source by linking the video's `pageUrl`.
+
+When you need production help, `browse-directory` lists tools and studios.
+
+## Connect your client
+
+Every client uses the same server URL. You don't set up any auth in the client: the catalog tools work right away, and when a resource, the prompt or a Pro tool needs a sign-in, your client opens the motionvideo.xyz sign-in.
+
+<Tabs items={["Claude", "Claude Code", "ChatGPT", "Cursor", "VS Code", "Grok", "More agents", "Any client"]}>
+<Tab value="Claude">
+
+Open **Settings → Connectors → Add custom connector** and paste the server URL. The catalog tools work without signing in.
+
+</Tab>
+<Tab value="Claude Code">
+
+Add the repository as a plugin marketplace:
+
+```bash title="Terminal"
+claude plugin marketplace add motionvideohq/motionvideo-mcp
+```
+
+Then install the plugin inside Claude Code:
+
+```text title="Claude Code"
+/plugin install motionvideo
+```
+
+The plugin adds the server and the `motionvideo` skill.
+
+</Tab>
+<Tab value="ChatGPT">
+
+Open **Settings → Apps → Advanced → Create app**, paste the server URL and choose **No Auth**.
+
+</Tab>
+<Tab value="Cursor">
+
+Use the one-click [Add to Cursor](https://cursor.com/install-mcp?name=motionvideo&config=eyJ1cmwiOiAiaHR0cHM6Ly9tY3AubW90aW9udmlkZW8ueHl6L21jcCJ9) link, or open **Customize → MCPs** and add the server URL.
+
+</Tab>
+<Tab value="VS Code">
+
+Use the one-click [Add to VS Code](vscode:mcp/install?%7B%22name%22%3A%22motionvideo%22%2C%22type%22%3A%22http%22%2C%22url%22%3A%22https%3A%2F%2Fmcp.motionvideo.xyz%2Fmcp%22%7D) link, or add the server URL as an HTTP server.
+
+</Tab>
+<Tab value="Grok">
+
+On [grok.com/connectors](https://grok.com/connectors), choose **New Connector → Custom** and paste the server URL. You don't need to set up any auth.
+
+In Grok CLI, run:
+
+```bash title="Terminal"
+grok mcp add --transport http motionvideo https://mcp.motionvideo.xyz/mcp
+```
+
+</Tab>
+<Tab value="More agents">
+
+These agents and ADEs need one line or one setting each. The [plugins README](https://github.com/motionvideohq/motionvideo-mcp/blob/main/plugins/README.md) has the details and config files.
+
+- **Amp:** `amp mcp add motionvideo https://mcp.motionvideo.xyz/mcp`. You can also copy `skills/motionvideo/` into `.agents/skills/`. Its sibling `mcp.json` declares the server, so Amp hides the tools until the skill loads.
+- **Droid (Factory):** `droid mcp add motionvideo https://mcp.motionvideo.xyz/mcp --type http` adds the server only. For the full plugin, run `droid plugin marketplace add motionvideohq/motionvideo-mcp`, then `droid plugin install motionvideo@motionvideo --scope user`.
+- **Gemini CLI:** `gemini extensions install https://github.com/motionvideohq/motionvideo-mcp`.
+- **Antigravity:** clone the repository and run `agy plugin install ./plugins/antigravity`. Without a clone, copy that folder to `.agents/plugins/` in a workspace, or to `~/.gemini/config/plugins/` for every workspace.
+- **Kimi Code:** `kimi plugin install https://github.com/motionvideohq/motionvideo-mcp`, or `/plugins install https://github.com/motionvideohq/motionvideo-mcp` in the CLI.
+- **Kiro:** open the Powers panel → **Add Custom Power** → **Import power from GitHub**, then paste `https://github.com/motionvideohq/motionvideo-mcp/tree/main/plugins/motionvideo`.
+- **ZCode:** open Settings → Plugins → Create → **Add marketplace**, add `motionvideohq/motionvideo-mcp`, then install MotionVideo. To add only the server, add the server URL on the MCP page.
+- **MiMo Code:** run `mimo mcp add`, or add a `remote` server with the server URL to `mimocode.json`.
+- **DeepSeek Harness:** add an `@deepseek-ai/dsh-mcp-client` row with `transport: streamable-http` and the server URL to your profile's `cordis.patch.yml`. The tools appear as `mcp__motionvideo__*`.
+- **Pi:** run `pi install npm:pi-mcp-adapter`, then `pi mcp add`.
+- **Devin:** `devin plugins install motionvideohq/motionvideo-mcp#plugins/motionvideo`.
+
+For the skill in agents without a plugin install (Amp, MiMo Code, Pi), copy `skills/motionvideo/` into `.agents/skills/`.
+
+</Tab>
+<Tab value="Any client">
+
+Any MCP client that supports remote servers can connect: add the server URL as a Streamable HTTP server, with no authentication settings.
+
+</Tab>
+</Tabs>
+
+## Plugin and bundles
+
+The repository is also a plugin marketplace. One [Agent Plugin](https://agent-plugins.org) folder, `plugins/motionvideo/`, works with ChatGPT, Claude, Cursor, Kiro, ZCode, Droid, Devin and Kimi Code. Gemini CLI and Antigravity get their own native bundles. Each one wires the same server and ships the `motionvideo` skill.
+
+```text title="plugins/motionvideo/"
+.claude-plugin/plugin.json   Claude manifest
+.mcp.json                    Claude MCP wiring
+plugin.json                  OpenAI portable manifest
+mcp.json                     portable MCP wiring (streamable-http, no auth)
+kimi.plugin.json             Kimi Code manifest
+skills/motionvideo/          the motionvideo skill
+assets/                      icon and screenshots
+README.md                    listing description
+```
+
+| File or folder | For |
+| --- | --- |
+| `.claude-plugin/marketplace.json` | Claude Code marketplace. Droid and ZCode also read it. |
+| `.agents/plugins/marketplace.json` | ChatGPT desktop and Codex repository marketplace |
+| `gemini-extension.json` | Gemini CLI extension, at the repository root |
+| `kimi.plugin.json` | Kimi Code, at the repository root |
+| `plugins/antigravity/` | Antigravity bundle: `plugin.json`, `mcp_config.json` and the skill |
+
+To test the plugin from a local clone of the repository in Claude Code, run `claude --plugin-dir ./plugins/motionvideo`. The skill appears as `/motionvideo:motionvideo`.
+
+## Caching
+
+The server doesn't store the catalog. It reads it from the site's public JSON endpoints: [`/api/catalog`](https://motionvideo.xyz/api/catalog) for videos and [`/api/catalog/directories`](https://motionvideo.xyz/api/catalog/directories) for tools and studios. It keeps each document in memory for 10 minutes, then checks it again with its ETag. New catalog entries can take up to 10 minutes to show up in MCP results.
+
+If the site can't be reached, the server keeps serving its last good copy and tries again after a minute. If it has no copy yet, tools return an error saying the catalog is temporarily unavailable. Retry in a moment.
+
+The Pro tools read moves from the site's `/api/mcp/moves` endpoint, passing along the access token from your sign-in. The site checks the account's plan and returns the moves only for Pro, Business or a Business seat. `search-moves` keeps the moves list in memory for 10 minutes per signed-in account. `get-move-prompt` fetches the move on every call. If the site can't reach its database, the Pro tools return an error. Retry in a moment.
+
+## Local development
+
+The server is a Node project managed with pnpm:
+
+```bash title="Terminal"
+git clone https://github.com/motionvideohq/motionvideo-mcp && cd motionvideo-mcp
+pnpm install
+pnpm dev        # dev server + Inspector at http://localhost:3000/mcp/inspector
+pnpm typecheck  # refresh view types and run tsc
+pnpm build      # production build in .mcp-use/build/
+```
+
+To test against a local checkout of the motionvideo.xyz site instead of the live site, set `MOTIONVIDEO_SITE_URL` to your site's URL:
+
+```bash title="Terminal"
+MOTIONVIDEO_SITE_URL=http://localhost:3000 pnpm dev
+```
+
+## Next
+
+<Cards>
+  <Card
+    title="MotionVideo MCP"
+    href="/motionvideo-mcp"
+    description="What the server does, at a glance."
+  />
+  <Card
+    title="Public API"
+    href="/docs/api"
+    description="The read-only JSON endpoints the server reads from."
+  />
+  <Card
+    title="Agent skill"
+    href="/docs/skill"
+    description="The Pro skill pack that teaches your agent motion design."
+  />
+  <Card
+    title="Plans and billing"
+    href="/docs/plans"
+    description="Pro and Business, and what they unlock."
+  />
+</Cards>

@@ -1,0 +1,15 @@
+{
+  "title": "Docs",
+  "pages": [
+    "---Get started---",
+    "index",
+    "---Use MotionVideo---",
+    "mcp",
+    "skill",
+    "moves",
+    "---Account---",
+    "plans",
+    "---Reference---",
+    "api"
+  ]
+}
