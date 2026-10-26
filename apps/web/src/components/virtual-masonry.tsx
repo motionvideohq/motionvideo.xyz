@@ -26,6 +26,10 @@ const OVERSCAN = 900;
 // The fallback is only used to choose the server's initial mounted window.
 const INITIAL_WIDTH = 1280;
 const INITIAL_VIEWPORT = { scrollY: 0, height: 1000 };
+// The server renders just past the first screen, not the full overscan: each
+// card costs Workers CPU, and the client mounts the rest right after
+// hydration.
+const INITIAL_OVERSCAN = 200;
 
 interface InitialLayout {
   width: number;
@@ -187,7 +191,7 @@ export const VirtualMasonry = ({ items }: { items: MasonryItem[] }) => {
         ? new Set(
             layoutMasonry(items, INITIAL_WIDTH, {})
               .placements.filter(
-                ({ top }) => top < INITIAL_VIEWPORT.height + OVERSCAN
+                ({ top }) => top < INITIAL_VIEWPORT.height + INITIAL_OVERSCAN
               )
               .map(({ item }) => item.key)
           )

@@ -35,6 +35,11 @@ export interface MotionVideo {
    * `pnpm catalog:refresh:colors`.
    */
   colors?: string[];
+  /**
+   * Slugs of the most similar videos, best first, precomputed by
+   * `pnpm catalog:derive` (see similarMotionVideos).
+   */
+  similar?: string[];
 }
 
 // Reasoning effort the model ran at, and how many rounds of feedback the
@@ -117,6 +122,13 @@ export const MOTION_COLORS = [
 export type MotionColor = (typeof MOTION_COLORS)[number];
 export const findMotionColor = (slug: string | undefined) =>
   MOTION_COLORS.find((color) => color.slug === slug);
+
+// A colour page with only a handful of videos is too thin to be worth a URL.
+// Which colours qualify is precomputed into the catalog's `colorPages`.
+export const MIN_COLOR_PAGE_VIDEOS = 6;
+
+/** How many similar videos each video lists (precomputed `similar`). */
+export const SIMILAR_VIDEOS = 6;
 
 // Discover's filters are search params (`?type=prompt&model=opus-5-5`); each
 // value also has its own page with that filter in the path.
@@ -251,7 +263,8 @@ const paletteDistance = (a: string[], b: string[]) =>
 /**
  * The videos most like `video`, best first: shared categories weigh most,
  * then a similar palette, the same model, type and creator. Ties keep the
- * catalog (featured) order.
+ * catalog (featured) order. Too slow to run per request on Workers: it runs in
+ * `pnpm catalog:derive`, which stores the result as each video's `similar`.
  */
 export const similarMotionVideos = (
   video: MotionVideo,

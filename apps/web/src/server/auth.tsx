@@ -5,6 +5,7 @@ import { drizzle } from "drizzle-orm/d1";
 import { renderEmail } from "../emails/_render";
 import SignInEmail, { signInSubject } from "../emails/sign-in";
 import WelcomeEmail, { welcomeSubject } from "../emails/welcome";
+import { hasSessionCookie } from "../lib/session-cookie";
 import { createAuth } from "./auth-config";
 import * as schema from "./db/schema";
 import { purchaseStatus } from "./dodo";
@@ -47,6 +48,13 @@ export const auth = createAuth(drizzle(env.DB, { schema }), {
   },
 });
 
-/** The signed-in session for the current request, or `null`. */
-export const getCurrentSession = () =>
-  auth.api.getSession({ headers: getRequest().headers });
+/**
+ * The signed-in session for the current request, or `null`. Visitors without
+ * a session cookie (most of them) are answered without touching Better Auth.
+ */
+export const getCurrentSession = () => {
+  const { headers } = getRequest();
+  return hasSessionCookie(headers)
+    ? auth.api.getSession({ headers })
+    : Promise.resolve(null);
+};

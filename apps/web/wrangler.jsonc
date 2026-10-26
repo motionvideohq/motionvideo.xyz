@@ -2,10 +2,24 @@
   "$schema": "node_modules/wrangler/config-schema.json",
   "name": "motionvideo",
   "compatibility_date": "2026-09-27",
+  // `ctx.exports` (the default entrypoint reaching the cached `Pages`
+  // entrypoint in src/server.ts) is on by default since 2025-11-17.
   "compatibility_flags": ["nodejs_compat"],
   "main": "src/server.ts",
   "observability": {
     "enabled": true,
+  },
+  // Workers Cache: Cloudflare answers from its edge cache before running the
+  // Worker, so a hit costs no CPU. Only `Pages` is cached; it renders the
+  // pages anonymous visitors read and marks them cacheable. The default
+  // entrypoint stays uncached: it runs on every request to send signed-in
+  // visitors, APIs and redirects around the cache.
+  "cache": {
+    "enabled": true,
+  },
+  "exports": {
+    "default": { "type": "worker", "cache": { "enabled": false } },
+    "Pages": { "type": "worker", "cache": { "enabled": true } },
   },
   // Branch previews: Workers Builds runs `wrangler preview`, which requires
   // this block (empty inherits the top-level settings).

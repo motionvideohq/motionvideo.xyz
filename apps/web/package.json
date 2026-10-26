@@ -22,6 +22,7 @@
     "email:dev": "email dev --dir src/emails --port 3001",
     "assets:mirror": "node scripts/mirror-assets.mjs",
     "catalog:discover": "node scripts/discover-x-posts.mjs",
+    "catalog:derive": "node scripts/derive-catalog.mjs",
     "catalog:duplicates": "node scripts/find-duplicates.mjs",
     "catalog:import:articles": "node scripts/import-x-articles.mjs",
     "catalog:import:videos": "node scripts/import-x-videos.mjs",

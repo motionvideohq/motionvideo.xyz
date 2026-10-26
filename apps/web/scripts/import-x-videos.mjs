@@ -27,6 +27,7 @@ import {
   MOTION_CATEGORIES,
   MOTION_MODELS,
 } from "../src/lib/motion-catalog.ts";
+import { deriveCatalog } from "./derive-catalog.mjs";
 import { paletteOf } from "./palette.mjs";
 
 const run = promisify(execFile);
@@ -307,7 +308,8 @@ videos.push(...added.slice(next));
 if (added.length > 0) {
   await writeFile(
     catalogPath,
-    `${JSON.stringify({ ...catalog, importedAt: new Date().toISOString(), videos }, null, 2)}\n`
+    // New videos change colour pages and similar-video lists.
+    `${JSON.stringify(deriveCatalog({ ...catalog, importedAt: new Date().toISOString(), videos }), null, 2)}\n`
   );
 }
 console.log(

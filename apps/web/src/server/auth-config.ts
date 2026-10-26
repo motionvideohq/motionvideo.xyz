@@ -53,10 +53,20 @@ export const createAuth = (
       customRules: {
         "/email-otp/send-verification-otp": { window: 60, max: 3 },
         "/sign-in/email-otp": { window: 60, max: 10 },
+        // Read-only and called on every page load: counting it would cost a
+        // D1 write per page view for nothing.
+        "/get-session": false,
       },
     },
     advanced: {
       ipAddress: { ipAddressHeaders: ["cf-connecting-ip"] },
+    },
+    // A signed, short-lived copy of the session in a cookie: most session
+    // checks verify it instead of reading D1, which on the Workers Free plan
+    // is CPU we can't spare. Sign-outs and revocations take effect within
+    // the 5 minutes.
+    session: {
+      cookieCache: { enabled: true, maxAge: 5 * 60 },
     },
     plugins: [
       // Six-digit email codes; the account is created on first sign-in.

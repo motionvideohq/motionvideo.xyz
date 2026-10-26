@@ -4,11 +4,10 @@ import type { FocusEvent, PointerEvent } from "react";
 import { useIntlayer } from "react-intlayer";
 
 import catalog from "@/data/motion-catalog.json";
-import { similarMotionVideos } from "@/lib/motion-catalog";
 import type { MotionVideo } from "@/lib/motion-catalog";
 
 const videos: MotionVideo[] = catalog.videos;
-const COUNT = 6;
+const bySlug = new Map(videos.map((entry) => [entry.slug, entry]));
 // The floating preview's largest size, and its gap to the viewport edges.
 const PREVIEW_MAX_WIDTH = 560;
 const PREVIEW_MAX_HEIGHT = 440;
@@ -72,8 +71,13 @@ export const SimilarVideos = ({
   onOpen: (slug: string) => void;
 }) => {
   const content = useIntlayer("motion-gallery");
+  // Precomputed by `pnpm catalog:derive`; ranking here cost too much CPU.
   const similar = useMemo(
-    () => similarMotionVideos(video, videos, COUNT),
+    () =>
+      (video.similar ?? []).flatMap((slug) => {
+        const other = bySlug.get(slug);
+        return other ? [other] : [];
+      }),
     [video]
   );
   const [preview, setPreview] = useState<Preview | null>(null);
