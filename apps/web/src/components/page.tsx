@@ -160,6 +160,49 @@ export const PageSection = ({
   </section>
 );
 
+/**
+ * Heading of a section on the marketing pages (Pro, Skill, MCP, Sponsor):
+ * one size everywhere, with an optional muted description below. Centred by
+ * default; `align="start"` for story sections that read best left-aligned.
+ * The hero keeps its own larger title; this is for every section after it.
+ */
+export const SectionHeader = ({
+  id,
+  title,
+  description,
+  align = "center",
+  className,
+}: {
+  id?: string;
+  title: ReactNode;
+  /** A line of text, or several `<p>`s for more than one paragraph. */
+  description?: ReactNode;
+  align?: "center" | "start";
+  className?: string;
+}) => (
+  <div
+    className={cn(
+      "flex flex-col gap-3",
+      align === "center" && "items-center text-center",
+      className
+    )}
+  >
+    <h2 id={id} className="text-2xl font-semibold tracking-tight text-balance">
+      {title}
+    </h2>
+    {description && (
+      <div
+        className={cn(
+          "text-muted-foreground flex flex-col gap-3 text-pretty",
+          align === "center" && "max-w-2xl"
+        )}
+      >
+        {description}
+      </div>
+    )}
+  </div>
+);
+
 export const PageList = ({ children }: { children: ReactNode }) => (
   <ul className="flex list-disc flex-col gap-2 pl-5">{children}</ul>
 );

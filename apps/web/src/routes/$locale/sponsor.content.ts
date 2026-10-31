@@ -610,15 +610,15 @@ export default {
       ru: "Написать в X",
     }),
     faq: t({
-      en: "Frequently asked questions",
+      en: "FAQs",
       es: "Preguntas frecuentes",
-      fr: "Questions fréquentes",
+      fr: "FAQ",
       zh: "常见问题",
       ko: "자주 묻는 질문",
       ja: "よくある質問",
-      de: "Häufige Fragen",
+      de: "FAQ",
       pt: "Perguntas frequentes",
-      ru: "Частые вопросы",
+      ru: "Вопросы и ответы",
     }),
     faqs: [
       {

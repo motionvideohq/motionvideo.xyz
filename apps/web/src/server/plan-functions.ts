@@ -1,4 +1,5 @@
 import { createServerFn } from "@tanstack/react-start";
+import { getRequest } from "@tanstack/react-start/server";
 import { env } from "cloudflare:workers";
 import { z } from "zod";
 
@@ -9,7 +10,7 @@ import {
   PLANS,
   planOffers,
 } from "@/constants/plans";
-import type { PlanAccess } from "@/constants/plans";
+import type { ParityOffer, PlanAccess } from "@/constants/plans";
 import { ROUTES } from "@/constants/routes";
 import { SITE } from "@/constants/site";
 
@@ -17,6 +18,7 @@ import { getCurrentSession } from "./auth";
 import {
   createPlanCheckoutUrl,
   legacySkillPortalUrl,
+  parityPercentOff,
   planPortalUrl,
 } from "./dodo";
 import { sendEmail } from "./email";
@@ -70,6 +72,39 @@ export const getMyPlan = createServerFn({ method: "GET" })
     }
     return planAccessFor(session.user);
   });
+
+// Percent off by country. Dodo's percentages change only when edited in its
+// dashboard, so one preview per country per isolate every few hours is plenty.
+const PARITY_TTL_MS = 6 * 60 * 60 * 1000;
+const parityCache = new Map<string, { at: number; percentOff: number }>();
+
+/**
+ * The visitor's purchasing power parity discount, for the banner under the
+ * plans: their country from Cloudflare (`cf-ipcountry`), the percent from a
+ * Dodo checkout preview. Null when nothing applies or anything fails; the
+ * banner then stays hidden and checkout prices are unaffected either way.
+ */
+export const getParityOffer = createServerFn({ method: "GET" }).handler(
+  async (): Promise<ParityOffer | null> => {
+    const country = getRequest().headers.get("cf-ipcountry")?.toUpperCase();
+    // XX is "unknown"; Tor's T1 already fails the letters-only pattern.
+    if (!country || !/^[A-Z]{2}$/u.test(country) || country === "XX") {
+      return null;
+    }
+    const cached = parityCache.get(country);
+    let percentOff = cached?.percentOff;
+    if (!cached || Date.now() - cached.at > PARITY_TTL_MS) {
+      try {
+        percentOff = await parityPercentOff(country);
+      } catch (error) {
+        console.error("Parity preview failed", country, error);
+        return null;
+      }
+      parityCache.set(country, { at: Date.now(), percentOff });
+    }
+    return percentOff ? { country, percentOff } : null;
+  }
+);
 
 /** A Dodo checkout URL for a plan; signed-in only (/checkout signs in first). */
 export const startPlanCheckout = createServerFn({ method: "POST" })

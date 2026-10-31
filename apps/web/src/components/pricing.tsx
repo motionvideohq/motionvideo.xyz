@@ -1,6 +1,7 @@
 import type { ReactNode } from "react";
 import { useIntlayer, useLocale } from "react-intlayer";
 import { TickCircle } from "reicon-react/icons/TickCircle";
+import { TextMorph } from "torph/react";
 
 import { LocalizedLink as Link } from "@/components/localized-link";
 import { Button, buttonVariants } from "@/components/ui/button";
@@ -13,9 +14,15 @@ import {
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { localizedPath } from "@/constants/locales";
 import { PLAN_BILLINGS, PLAN_PRICE_CENTS, PLANS } from "@/constants/plans";
-import type { Plan, PlanAccess, PlanBilling } from "@/constants/plans";
+import type {
+  ParityOffer,
+  Plan,
+  PlanAccess,
+  PlanBilling,
+} from "@/constants/plans";
 import { formatUsd } from "@/constants/pricing";
 import { ROUTES } from "@/constants/routes";
+import { fillTemplate } from "@/lib/motion-video-route";
 import { cn } from "@/lib/utils";
 
 /**
@@ -73,6 +80,28 @@ export const BillingToggle = ({ billing }: { billing: PlanBilling }) => {
     </div>
   );
 };
+
+// Prices and units morph between billing options instead of swapping:
+// numbers roll by place value, words cross-fade letter by letter.
+const MORPH = {
+  duration: 400,
+  ease: "cubic-bezier(0.19, 1, 0.22, 1)",
+} as const;
+
+/** A card's ticked list of what the plan includes. */
+const PerkList = ({ perks }: { perks: Record<string, ReactNode> }) => (
+  <ul className="flex flex-col gap-3 text-sm">
+    {Object.entries(perks).map(([key, perk]) => (
+      <li key={key} className="flex gap-2">
+        <TickCircle
+          aria-hidden="true"
+          className="text-primary mt-0.5 size-4 shrink-0"
+        />
+        <span>{perk}</span>
+      </li>
+    ))}
+  </ul>
+);
 
 const PlanCard = ({
   plan,
@@ -144,12 +173,21 @@ const PlanCard = ({
           <h2 className="text-base font-semibold">{copy.name}</h2>
           <div className="flex flex-col gap-1">
             <p className="flex items-baseline gap-1.5">
-              <span className="text-4xl font-semibold tracking-tight tabular-nums">
+              <TextMorph
+                as="span"
+                numbers
+                {...MORPH}
+                className="text-4xl font-semibold tracking-tight tabular-nums"
+              >
                 {formatUsd(PLAN_PRICE_CENTS[plan][shown] ?? 0)}
-              </span>
-              <span className="text-muted-foreground text-sm">
-                {content.unit[shown]}
-              </span>
+              </TextMorph>
+              <TextMorph
+                as="span"
+                {...MORPH}
+                className="text-muted-foreground text-sm"
+              >
+                {content.unit[shown].value}
+              </TextMorph>
             </p>
             <p className="text-muted-foreground text-sm">
               {offered ? content.billed[billing] : content.monthlyOrAnnualOnly}
@@ -158,32 +196,79 @@ const PlanCard = ({
         </div>
       </CardHeader>
       <CardContent className="flex-1">
-        <ul className="flex flex-col gap-3 text-sm">
-          {Object.entries(content.perks[plan]).map(([key, perk]) => (
-            <li key={key} className="flex gap-2">
-              <TickCircle
-                aria-hidden="true"
-                className="text-primary mt-0.5 size-4 shrink-0"
-              />
-              <span>{perk}</span>
-            </li>
-          ))}
-        </ul>
+        <PerkList perks={content.perks[plan]} />
       </CardContent>
       <CardFooter className="border-t-0 bg-transparent pt-0">{cta}</CardFooter>
     </Card>
   );
 };
 
-/** Pro and Business side by side (stacked on mobile) for one billing option. */
+/** The free tier: what anyone gets without a plan, at $0. */
+const FreeCard = ({
+  billing,
+  signedIn,
+}: {
+  billing: PlanBilling;
+  signedIn: boolean;
+}) => {
+  const content = useIntlayer("pricing");
+  return (
+    <Card size="lg" className="w-full">
+      <CardHeader>
+        <div className="flex flex-col gap-3">
+          <h2 className="text-base font-semibold">{content.free.name}</h2>
+          <div className="flex flex-col gap-1">
+            <p className="flex items-baseline gap-1.5">
+              <span className="text-4xl font-semibold tracking-tight tabular-nums">
+                {formatUsd(0)}
+              </span>
+              {/* "$0 once" would read oddly, so lifetime's unit morphs away. */}
+              <TextMorph
+                as="span"
+                {...MORPH}
+                className="text-muted-foreground text-sm"
+              >
+                {billing === "lifetime" ? "" : content.unit[billing].value}
+              </TextMorph>
+            </p>
+            <p className="text-muted-foreground text-sm">{content.free.note}</p>
+          </div>
+        </div>
+      </CardHeader>
+      <CardContent className="flex-1">
+        <PerkList perks={content.perks.free} />
+      </CardContent>
+      <CardFooter className="border-t-0 bg-transparent pt-0">
+        <Link
+          to={signedIn ? ROUTES.HOME : ROUTES.SIGN_IN}
+          data-track={signedIn ? undefined : "free_join"}
+          className={buttonVariants({
+            className: "w-full",
+            size: "xl",
+            variant: "secondary",
+          })}
+        >
+          {signedIn ? content.free.browse : content.free.join}
+        </Link>
+      </CardFooter>
+    </Card>
+  );
+};
+
+/** Free, Pro and Business side by side (stacked on mobile). */
 export const PlanCards = ({
   billing,
   access,
+  signedIn,
 }: {
   billing: PlanBilling;
   access: PlanAccess | null;
+  signedIn: boolean;
 }) => (
-  <ul className="grid w-full gap-4 md:grid-cols-2">
+  <ul className="grid w-full gap-4 md:grid-cols-3">
+    <li className="flex">
+      <FreeCard billing={billing} signedIn={signedIn} />
+    </li>
     {PLANS.map((plan) => (
       <li key={plan} className="flex">
         <PlanCard plan={plan} billing={billing} access={access} />
@@ -191,3 +276,20 @@ export const PlanCards = ({
     ))}
   </ul>
 );
+
+/** "We'll apply a 70% parity discount in India at checkout". */
+export const ParityBanner = ({ offer }: { offer: ParityOffer }) => {
+  const content = useIntlayer("pricing");
+  const { locale } = useLocale();
+  const country =
+    new Intl.DisplayNames([locale], { type: "region" }).of(offer.country) ??
+    offer.country;
+  return (
+    <p className="bg-muted text-muted-foreground rounded-full px-4 py-1.5 text-center text-sm text-pretty">
+      {fillTemplate(content.parity.value, {
+        country,
+        percent: String(offer.percentOff),
+      })}
+    </p>
+  );
+};

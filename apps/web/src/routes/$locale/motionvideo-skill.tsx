@@ -7,6 +7,7 @@ import { DemoFrame } from "@/components/demo-frame";
 import { FeatureArt } from "@/components/feature-art";
 import { GitHubIcon } from "@/components/icons";
 import { LocalizedLink as Link } from "@/components/localized-link";
+import { SectionHeader } from "@/components/page";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
 import {
@@ -25,8 +26,6 @@ import { getLandingData } from "@/server/functions";
 
 const routeApi = getRouteApi("/$locale/motionvideo-skill");
 
-const sectionTitle = "text-2xl font-semibold tracking-tight";
-
 const Landing = () => {
   const { signedIn } = routeApi.useLoaderData();
   const content = useIntlayer("landing");
@@ -42,7 +41,9 @@ const Landing = () => {
         className="flex flex-col gap-24 pt-12 pb-8 sm:pt-20"
       >
         <div className="mx-auto flex w-full max-w-5xl flex-col gap-12 px-6">
-          <section className="grid gap-8 md:grid-cols-[max-content_minmax(0,1fr)] md:gap-12">
+          {/* Equal halves, as on the MCP page, so both heroes split at the
+              same line whatever the heading's width. */}
+          <section className="grid gap-8 lg:grid-cols-2 lg:gap-12">
             <div className="flex flex-col justify-between gap-6">
               <h1 className="text-4xl font-semibold tracking-tight sm:text-5xl">
                 {content.heroStart}
@@ -89,11 +90,16 @@ const Landing = () => {
 
         <div className="mx-auto flex w-full max-w-3xl flex-col gap-24 px-6">
           <section className="flex flex-col gap-8">
-            <div className="flex flex-col gap-4">
-              <h2 className={sectionTitle}>{content.timeline}</h2>
-              <p className="text-muted-foreground">{content.judgment}</p>
-              <p className="text-muted-foreground">{content.code}</p>
-            </div>
+            <SectionHeader
+              align="start"
+              title={content.timeline}
+              description={
+                <>
+                  <p>{content.judgment}</p>
+                  <p>{content.code}</p>
+                </>
+              }
+            />
             <DemoFrame
               src={VIDEOS.showreel}
               variant="dashboard"
@@ -105,11 +111,16 @@ const Landing = () => {
           </section>
 
           <section className="flex flex-col gap-8">
-            <div className="flex flex-col gap-4">
-              <h2 className={sectionTitle}>{content.launchTitle}</h2>
-              <p className="text-muted-foreground">{content.launchBody}</p>
-              <p className="text-muted-foreground">{content.control}</p>
-            </div>
+            <SectionHeader
+              align="start"
+              title={content.launchTitle}
+              description={
+                <>
+                  <p>{content.launchBody}</p>
+                  <p>{content.control}</p>
+                </>
+              }
+            />
             <DemoFrame
               src={VIDEOS.launch}
               variant="palette"
@@ -124,7 +135,7 @@ const Landing = () => {
             id="how-it-works"
             className="flex scroll-mt-8 flex-col gap-6"
           >
-            <h2 className={sectionTitle}>{content.how}</h2>
+            <SectionHeader align="start" title={content.how} />
             <ol className="flex flex-col gap-3.5">
               {steps.map((step, i) => (
                 <li key={step.value} className="flex items-baseline gap-3.5">
@@ -138,10 +149,7 @@ const Landing = () => {
           </section>
 
           <section id="features" className="flex scroll-mt-8 flex-col gap-6">
-            <div className="flex flex-col gap-4">
-              <h2 className={sectionTitle}>{content.pack}</h2>
-              <p className="text-muted-foreground">{content.packIntro}</p>
-            </div>
+            <SectionHeader title={content.pack} />
             <div className="grid gap-4 sm:grid-cols-2">
               {features.map((item) => (
                 <div
@@ -159,7 +167,7 @@ const Landing = () => {
           </section>
 
           <section id="faq" className="flex scroll-mt-8 flex-col gap-6">
-            <h2 className={sectionTitle}>{content.faq}</h2>
+            <SectionHeader title={content.faq} />
             <Accordion>
               {faqs.map((faq) => (
                 <AccordionItem
@@ -187,14 +195,15 @@ const Landing = () => {
 
 export const Route = createFileRoute("/$locale/motionvideo-skill")({
   component: Landing,
-  head: ({ params }) => ({
-    ...createMetadata({
-      description: getIntlayer(
-        "directory-meta",
-        isLocale(params.locale) ? params.locale : DEFAULT_LOCALE
-      ).skill.description,
-    }),
-    scripts: [faqJsonLd(params.locale)],
-  }),
+  head: ({ params }) => {
+    const meta = getIntlayer(
+      "directory-meta",
+      isLocale(params.locale) ? params.locale : DEFAULT_LOCALE
+    ).skill;
+    return {
+      ...createMetadata({ title: meta.title, description: meta.description }),
+      scripts: [faqJsonLd(params.locale)],
+    };
+  },
   loader: () => getLandingData(),
 });

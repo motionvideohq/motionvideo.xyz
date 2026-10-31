@@ -31,6 +31,7 @@ const DOWNLOAD_TIMEOUT = 10 * 60_000;
 const catalogPath = path.join(root, "src/data/motion-catalog.json");
 const directoriesPath = path.join(root, "src/data/resource-directories.json");
 const articlesPath = path.join(root, "src/data/x-articles.json");
+const testimonialsPath = path.join(root, "src/data/testimonials.json");
 const wrangler = path.join(root, "node_modules/.bin/wrangler");
 const dryRun = process.argv.includes("--dry-run");
 
@@ -80,6 +81,7 @@ const hashOf = (url) =>
 const catalog = JSON.parse(await readFile(catalogPath, "utf-8"));
 const directories = JSON.parse(await readFile(directoriesPath, "utf-8"));
 const articles = JSON.parse(await readFile(articlesPath, "utf-8"));
+const testimonials = JSON.parse(await readFile(testimonialsPath, "utf-8"));
 
 // source URL → object key (first reference names it; duplicates share it).
 const jobs = new Map();
@@ -116,6 +118,9 @@ for (const [group, { entries }] of Object.entries({
 }
 for (const entry of articles.entries) {
   plan(entry.cover, `directories/articles/${slugPart(entry.id)}`);
+}
+for (const entry of testimonials.entries) {
+  plan(entry.avatar, `avatars/${slugPart(entry.handle)}`);
 }
 await Promise.all(
   unresolved.map(async ([url, prefix]) => {
@@ -242,9 +247,13 @@ for (const group of [directories.tools, directories.studios, articles]) {
     entry.cover = entry.cover ? swap(entry.cover) : entry.cover;
   }
 }
+for (const entry of testimonials.entries) {
+  entry.avatar = swap(entry.avatar);
+}
 await writeFile(catalogPath, `${JSON.stringify(catalog, null, 2)}\n`);
 await writeFile(directoriesPath, `${JSON.stringify(directories, null, 2)}\n`);
 await writeFile(articlesPath, `${JSON.stringify(articles, null, 2)}\n`);
+await writeFile(testimonialsPath, `${JSON.stringify(testimonials, null, 2)}\n`);
 
 console.log(
   `Mirrored ${mirrored.size}/${jobs.size}. Failed ${failures.length}.`

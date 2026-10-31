@@ -5,6 +5,7 @@ import { Crown } from "reicon-react/icons/Crown";
 
 import { GitHubIcon } from "@/components/icons";
 import { LocalizedLink as Link } from "@/components/localized-link";
+import { SectionHeader } from "@/components/page";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
 import {
@@ -50,8 +51,6 @@ const EXTRAS = [
 
 const routeApi = getRouteApi("/$locale/motionvideo-mcp");
 
-const sectionTitle = "text-2xl font-semibold tracking-tight";
-
 /** A tool call as the client shows it: server and tool, then its arguments. */
 const ToolCall = ({ name, args }: { name: string; args: string }) => (
   <p className="text-muted-foreground flex min-w-0 items-center gap-2 font-mono text-xs">
@@ -72,79 +71,74 @@ const Conversation = ({ demo }: { demo: McpDemo }) => {
   const content = useIntlayer("mcp-landing");
   const { detail } = demo;
   return (
-    <figure className="flex flex-col gap-3">
-      <div className="bg-muted/40 overflow-hidden rounded-xl border shadow-sm">
-        <div aria-hidden="true" className="flex gap-1.5 border-b px-4 py-3">
-          <span className="bg-foreground/15 size-2.5 rounded-full" />
-          <span className="bg-foreground/15 size-2.5 rounded-full" />
-          <span className="bg-foreground/15 size-2.5 rounded-full" />
-        </div>
-        <div className="flex flex-col gap-5 p-4 sm:p-6">
-          <p className="bg-background ml-auto max-w-[85%] rounded-2xl rounded-br-md px-4 py-2.5 text-sm shadow-xs">
-            {content.demo.user}
-          </p>
-          <ToolCall name="search-videos" args={JSON.stringify(demo.search)} />
-          <ul className="grid grid-cols-2 gap-3 sm:grid-cols-4">
-            {demo.videos.map((video) => (
-              <li key={video.slug} className="min-w-0">
+    <div className="bg-muted/40 overflow-hidden rounded-xl border shadow-sm">
+      <div aria-hidden="true" className="flex gap-1.5 border-b px-4 py-3">
+        <span className="bg-foreground/15 size-2.5 rounded-full" />
+        <span className="bg-foreground/15 size-2.5 rounded-full" />
+        <span className="bg-foreground/15 size-2.5 rounded-full" />
+      </div>
+      <div className="flex flex-col gap-5 p-4 sm:p-6">
+        <p className="bg-background ml-auto max-w-[85%] rounded-2xl rounded-br-md px-4 py-2.5 text-sm shadow-xs">
+          {content.demo.user}
+        </p>
+        <ToolCall name="search-videos" args={JSON.stringify(demo.search)} />
+        <ul className="grid grid-cols-2 gap-3 sm:grid-cols-4">
+          {demo.videos.map((video) => (
+            <li key={video.slug} className="min-w-0">
+              <Link
+                to="/videos/$slug"
+                params={{ slug: video.slug }}
+                className="bg-background flex flex-col overflow-hidden rounded-lg border shadow-xs transition-shadow hover:shadow-md"
+              >
+                <img
+                  src={video.poster}
+                  alt=""
+                  width={320}
+                  height={180}
+                  loading="lazy"
+                  className="bg-muted aspect-video w-full object-cover"
+                />
+                <span className="flex flex-col gap-0.5 p-2.5">
+                  <span className="truncate text-sm font-medium">
+                    {video.title}
+                  </span>
+                  <span className="text-muted-foreground truncate text-xs">
+                    @{video.handle}
+                  </span>
+                </span>
+              </Link>
+            </li>
+          ))}
+        </ul>
+        {detail && (
+          <>
+            <ToolCall
+              name="get-video"
+              args={JSON.stringify({ slug: detail.slug })}
+            />
+            <div className="bg-background flex flex-col gap-2 rounded-xl border p-4 shadow-xs">
+              <p className="text-muted-foreground flex min-w-0 flex-wrap gap-x-1.5 text-xs">
+                <span className="text-foreground font-medium">
+                  {content.demo.prompt}
+                </span>
+                <span aria-hidden="true">·</span>
                 <Link
                   to="/videos/$slug"
-                  params={{ slug: video.slug }}
-                  className="bg-background flex flex-col overflow-hidden rounded-lg border shadow-xs transition-shadow hover:shadow-md"
+                  params={{ slug: detail.slug }}
+                  className="hover:underline"
                 >
-                  <img
-                    src={video.poster}
-                    alt=""
-                    width={320}
-                    height={180}
-                    loading="lazy"
-                    className="bg-muted aspect-video w-full object-cover"
-                  />
-                  <span className="flex flex-col gap-0.5 p-2.5">
-                    <span className="truncate text-sm font-medium">
-                      {video.title}
-                    </span>
-                    <span className="text-muted-foreground truncate text-xs">
-                      @{video.handle}
-                    </span>
-                  </span>
+                  {detail.title}
                 </Link>
-              </li>
-            ))}
-          </ul>
-          {detail && (
-            <>
-              <ToolCall
-                name="get-video"
-                args={JSON.stringify({ slug: detail.slug })}
-              />
-              <div className="bg-background flex flex-col gap-2 rounded-xl border p-4 shadow-xs">
-                <p className="text-muted-foreground flex min-w-0 flex-wrap gap-x-1.5 text-xs">
-                  <span className="text-foreground font-medium">
-                    {content.demo.prompt}
-                  </span>
-                  <span aria-hidden="true">·</span>
-                  <Link
-                    to="/videos/$slug"
-                    params={{ slug: detail.slug }}
-                    className="hover:underline"
-                  >
-                    {detail.title}
-                  </Link>
-                  <span>@{detail.handle}</span>
-                </p>
-                <blockquote className="font-serif text-sm leading-relaxed">
-                  “{detail.excerpt}”
-                </blockquote>
-              </div>
-            </>
-          )}
-        </div>
+                <span>@{detail.handle}</span>
+              </p>
+              <blockquote className="font-serif text-sm leading-relaxed">
+                “{detail.excerpt}”
+              </blockquote>
+            </div>
+          </>
+        )}
       </div>
-      <figcaption className="text-muted-foreground text-sm">
-        {content.demo.caption}
-      </figcaption>
-    </figure>
+    </div>
   );
 };
 
@@ -160,7 +154,9 @@ const McpLanding = () => {
         className="flex flex-col gap-24 pt-12 pb-8 sm:pt-20"
       >
         <div className="mx-auto flex w-full max-w-5xl flex-col gap-12 px-6">
-          <section className="grid gap-8 md:grid-cols-[max-content_minmax(0,1fr)] md:gap-12">
+          {/* Equal halves, as on the Skill page, so both heroes split at the
+              same line whatever the heading's width. */}
+          <section className="grid gap-8 lg:grid-cols-2 lg:gap-12">
             <div className="flex flex-col justify-between gap-6">
               <h1 className="text-4xl font-semibold tracking-tight sm:text-5xl">
                 {content.heroStart}
@@ -207,10 +203,7 @@ const McpLanding = () => {
 
         <div className="mx-auto flex w-full max-w-3xl flex-col gap-24 px-6">
           <section id="tools" className="flex scroll-mt-8 flex-col gap-6">
-            <div className="flex flex-col gap-4">
-              <h2 className={sectionTitle}>{content.toolsTitle}</h2>
-              <p className="text-muted-foreground">{content.toolsIntro}</p>
-            </div>
+            <SectionHeader title={content.toolsTitle} />
             <ul className="grid gap-4 sm:grid-cols-2">
               {TOOLS.map((tool) => (
                 <li
@@ -263,7 +256,7 @@ const McpLanding = () => {
           </section>
 
           <section id="faq" className="flex scroll-mt-8 flex-col gap-6">
-            <h2 className={sectionTitle}>{content.faq}</h2>
+            <SectionHeader title={content.faq} />
             <Accordion>
               {content.faqs.map((faq) => (
                 <AccordionItem

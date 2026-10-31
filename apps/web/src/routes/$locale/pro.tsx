@@ -6,10 +6,11 @@ import { ArrowRight } from "reicon-react/icons/ArrowRight";
 import { LocalizedLink as Link } from "@/components/localized-link";
 import { LogoGroup } from "@/components/logo-group";
 import { MotionPreview } from "@/components/motion-video";
-import { HeroHeader, PageMain } from "@/components/page";
-import { BillingToggle, PlanCards } from "@/components/pricing";
+import { HeroHeader, PageMain, SectionHeader } from "@/components/page";
+import { BillingToggle, ParityBanner, PlanCards } from "@/components/pricing";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
+import { SocialProof } from "@/components/social-proof";
 import {
   Accordion,
   AccordionContent,
@@ -27,7 +28,7 @@ import { planJsonLd } from "@/seo/json-ld";
 import { createMetadata } from "@/seo/metadata";
 import { getLandingData } from "@/server/functions";
 import { getMoveCards } from "@/server/move-functions";
-import { getMyPlan } from "@/server/plan-functions";
+import { getMyPlan, getParityOffer } from "@/server/plan-functions";
 
 interface ProSearch {
   /** Omitted for monthly, the default tab. */
@@ -68,13 +69,23 @@ interface TileProps {
   link?: ReactNode;
   children?: ReactNode;
   className?: string;
+  /** Copy beside its media from lg, for tiles that span the whole row. */
+  horizontal?: boolean;
 }
 
-/** One "What you get" bento tile: copy on top, its media below. */
-const Tile = ({ title, body, link, children, className }: TileProps) => (
+/** One "What you get" bento tile: copy on top, its media below (or beside). */
+const Tile = ({
+  title,
+  body,
+  link,
+  children,
+  className,
+  horizontal,
+}: TileProps) => (
   <article
     className={cn(
       "bg-card shadow-outline flex flex-col gap-6 rounded-2xl p-6 sm:p-8",
+      horizontal && "lg:grid lg:grid-cols-2 lg:items-center lg:gap-10",
       className
     )}
   >
@@ -106,7 +117,7 @@ const Pro = () => {
   const content = useIntlayer("pricing-page");
   const landing = useIntlayer("landing");
   const pricing = useIntlayer("pricing");
-  const { signedIn, access, cards } = routeApi.useLoaderData();
+  const { signedIn, access, cards, parity } = routeApi.useLoaderData();
   const { billing = "monthly" } = routeApi.useSearch();
   const previews = Object.values(cards).slice(0, PREVIEW_COUNT);
 
@@ -128,32 +139,26 @@ const Pro = () => {
             </div>
           }
         />
-        {/* Toggle, cards and the note below them share one gap. */}
+        {/* Toggle, cards and the parity note below them share one gap. */}
         <section
           aria-label={content.plans.value}
-          className="flex w-full max-w-4xl flex-col items-center gap-8"
+          className="flex w-full max-w-5xl flex-col items-center gap-8"
         >
           <BillingToggle billing={billing} />
-          <PlanCards billing={billing} access={access} />
-          <p className="text-muted-foreground flex flex-wrap items-center justify-center gap-x-2 gap-y-1 text-center text-sm text-pretty">
-            {content.free}
-            <Link to={ROUTES.HOME} className={featureLinkClass}>
-              {content.browseGallery}
-              <ArrowRight aria-hidden="true" className="size-3.5" />
-            </Link>
-          </p>
+          <PlanCards billing={billing} access={access} signedIn={signedIn} />
+          {parity && <ParityBanner offer={parity} />}
         </section>
+        <SocialProof />
         <section
           aria-labelledby="what-you-get"
           className="flex w-full max-w-5xl flex-col gap-6"
         >
-          <h2
-            id="what-you-get"
-            className="text-2xl font-semibold tracking-tight"
-          >
-            {content.whatYouGet}
-          </h2>
-          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-6">
+          <SectionHeader id="what-you-get" title={content.whatYouGet} />
+          {/* Rows as tall as their content (no row spans, so no tile
+              stretches past its media): wide and narrow (4|2), then MCP and
+              the skill full width with their snippets beside the copy, then
+              wide and narrow again. One column below lg. */}
+          <div className="grid gap-4 lg:grid-cols-6">
             <Tile
               title={content.movesTitle}
               body={content.movesBody}
@@ -163,10 +168,10 @@ const Pro = () => {
                   <ArrowRight aria-hidden="true" className="size-3.5" />
                 </Link>
               }
-              className="sm:col-span-2 lg:col-span-4 lg:row-span-3"
+              className="lg:col-span-4"
             >
               {/* Clips from moves' gallery examples, cropped to one shape. */}
-              <ul className="mt-auto grid grid-cols-2 gap-2">
+              <ul className="mt-auto grid grid-cols-2 gap-2 sm:grid-cols-4">
                 {previews.map((media) => (
                   <li
                     key={media.preview}
@@ -186,7 +191,7 @@ const Pro = () => {
                   <ArrowRight aria-hidden="true" className="size-3.5" />
                 </Link>
               }
-              className="sm:col-span-2 lg:col-span-2"
+              className="lg:col-span-2"
             />
             <Tile
               title={content.mcpTitle}
@@ -202,7 +207,8 @@ const Pro = () => {
                   <ArrowRight aria-hidden="true" className="size-3.5" />
                 </Link>
               }
-              className="lg:col-span-2"
+              horizontal
+              className="lg:col-span-6"
             >
               <div aria-hidden="true" className={snippetClass}>
                 <pre className="overflow-hidden">
@@ -218,16 +224,42 @@ const Pro = () => {
               </div>
             </Tile>
             <Tile
-              title={content.updatesTitle}
-              body={content.updatesBody}
-              className="lg:col-span-2"
-            />
+              title={content.skillTitle}
+              body={content.skillBody}
+              link={
+                // ROUTES.DOCS_SKILL, through the docs' catch-all route.
+                <Link
+                  to="/docs/$"
+                  params={{ _splat: "skill" }}
+                  className={featureLinkClass}
+                >
+                  {content.installSteps}
+                  <ArrowRight aria-hidden="true" className="size-3.5" />
+                </Link>
+              }
+              horizontal
+              className="lg:col-span-6"
+            >
+              <div aria-hidden="true" className={snippetClass}>
+                <p className="truncate">
+                  <span className="text-muted-foreground select-none">$ </span>
+                  {INSTALL_COMMAND}
+                </p>
+                <ul className="text-muted-foreground grid grid-cols-2 gap-x-6 gap-y-1">
+                  {SKILLS.map((skill) => (
+                    <li key={skill} className="truncate">
+                      <span className="text-primary">✓</span> {skill}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </Tile>
             <Tile
               title={content.licenseTitle}
               body={content.licenseBody}
-              className="sm:col-span-2 lg:col-span-2"
+              className="lg:col-span-4"
             >
-              <dl className="mt-auto flex flex-col gap-3 text-sm">
+              <dl className="mt-auto grid gap-3 text-sm sm:grid-cols-2">
                 <div className="bg-muted flex flex-col gap-0.5 rounded-xl px-4 py-3">
                   <dt className="font-medium">{pricing.plans.pro.name}</dt>
                   <dd className="text-muted-foreground">
@@ -243,44 +275,17 @@ const Pro = () => {
               </dl>
             </Tile>
             <Tile
-              title={content.skillTitle}
-              body={content.skillBody}
-              link={
-                // ROUTES.DOCS_SKILL, through the docs' catch-all route.
-                <Link
-                  to="/docs/$"
-                  params={{ _splat: "skill" }}
-                  className={featureLinkClass}
-                >
-                  {content.installSteps}
-                  <ArrowRight aria-hidden="true" className="size-3.5" />
-                </Link>
-              }
-              className="sm:col-span-2 lg:col-span-4"
-            >
-              <div aria-hidden="true" className={snippetClass}>
-                <p className="truncate">
-                  <span className="text-muted-foreground select-none">$ </span>
-                  {INSTALL_COMMAND}
-                </p>
-                <ul className="text-muted-foreground grid grid-cols-2 gap-x-6 gap-y-1 sm:grid-cols-3">
-                  {SKILLS.map((skill) => (
-                    <li key={skill} className="truncate">
-                      <span className="text-primary">✓</span> {skill}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </Tile>
+              title={content.updatesTitle}
+              body={content.updatesBody}
+              className="lg:col-span-2"
+            />
           </div>
         </section>
         <section
           aria-labelledby="faq"
           className="flex w-full max-w-3xl flex-col gap-6"
         >
-          <h2 id="faq" className="text-xl font-semibold tracking-tight">
-            {content.faq}
-          </h2>
+          <SectionHeader id="faq" title={content.faq} />
           <Accordion>
             {content.faqs.map((faq) => (
               <FaqItem
@@ -315,12 +320,13 @@ export const Route = createFileRoute("/$locale/pro")({
     return { billing: billing === "monthly" ? undefined : billing };
   },
   loader: async () => {
-    const [landing, access, cards] = await Promise.all([
+    const [landing, access, cards, parity] = await Promise.all([
       getLandingData(),
       getMyPlan(),
       getMoveCards(),
+      getParityOffer(),
     ]);
-    return { ...landing, access, cards };
+    return { ...landing, access, cards, parity };
   },
   head: ({ params }: LocaleHeadContext) => ({
     ...createMetadata({

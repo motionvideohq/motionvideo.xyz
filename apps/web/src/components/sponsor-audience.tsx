@@ -2,6 +2,7 @@ import { Suspense, lazy, useEffect, useState } from "react";
 import type { ReactNode } from "react";
 import { useIntlayer } from "react-intlayer";
 
+import { SectionHeader } from "@/components/page";
 import { Skeleton } from "@/components/ui/skeleton";
 import type { AudienceStats } from "@/server/audience";
 import { getAudienceStats } from "@/server/sponsorship-functions";
@@ -131,14 +132,11 @@ export const SponsorAudienceSection = () => {
       aria-busy={stats === undefined}
       className="flex w-full max-w-4xl flex-col gap-6"
     >
-      <div className="flex flex-col items-center gap-2 text-center">
-        <h2 id="audience" className="text-xl font-semibold tracking-tight">
-          {content.audience}
-        </h2>
-        <p className="text-muted-foreground max-w-2xl text-sm text-pretty">
-          {content.audienceIntro}
-        </p>
-      </div>
+      <SectionHeader
+        id="audience"
+        title={content.audience}
+        description={content.audienceIntro}
+      />
       {stats === undefined ? (
         <>
           <output className="sr-only">{content.loadingAudience}</output>

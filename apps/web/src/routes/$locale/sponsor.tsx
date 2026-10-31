@@ -9,7 +9,7 @@ import { TickCircle } from "reicon-react/icons/TickCircle";
 
 import { XIcon } from "@/components/icons";
 import { LocalizedLink as Link } from "@/components/localized-link";
-import { HeroHeader, PageMain } from "@/components/page";
+import { HeroHeader, PageMain, SectionHeader } from "@/components/page";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
 import { SponsorAudienceSection } from "@/components/sponsor-audience";
@@ -43,9 +43,6 @@ import { withUtm } from "@/lib/utm";
 import { createMetadata } from "@/seo/metadata";
 import { getLandingData } from "@/server/functions";
 import { getSoldOutTiers } from "@/server/sponsorship-functions";
-
-// Matches PageSection headings on the other company pages.
-const sectionTitle = "text-xl font-semibold tracking-tight";
 
 const routeApi = getRouteApi("/$locale/sponsor");
 
@@ -124,9 +121,7 @@ const Sponsor = () => {
           aria-labelledby="placements"
           className="flex w-full max-w-4xl flex-col gap-6"
         >
-          <h2 id="placements" className={cn(sectionTitle, "text-center")}>
-            {content.placements}
-          </h2>
+          <SectionHeader id="placements" title={content.placements} />
           <SponsorPlacements />
         </section>
 
@@ -134,9 +129,7 @@ const Sponsor = () => {
           aria-labelledby="sponsors"
           className="flex w-full max-w-3xl flex-col gap-6"
         >
-          <h2 id="sponsors" className={cn(sectionTitle, "text-center")}>
-            {content.sponsors}
-          </h2>
+          <SectionHeader id="sponsors" title={content.sponsors} />
           <ul className="flex flex-col gap-3">
             {/* Curated partners from the start: listed on their own, not in
                 a paid tier. */}
@@ -217,9 +210,7 @@ const Sponsor = () => {
           aria-labelledby="plans"
           className="flex w-full max-w-4xl scroll-mt-24 flex-col gap-6"
         >
-          <h2 id="plans" className={cn(sectionTitle, "text-center")}>
-            {content.plans}
-          </h2>
+          <SectionHeader id="plans" title={content.plans} />
           <ul className="grid gap-4 md:grid-cols-3">
             {SPONSOR_TIERS.map((id) => {
               const tier = content.tiers[id];
@@ -336,9 +327,7 @@ const Sponsor = () => {
           aria-labelledby="faq"
           className="flex w-full max-w-3xl flex-col gap-6"
         >
-          <h2 id="faq" className={sectionTitle}>
-            {content.faq}
-          </h2>
+          <SectionHeader id="faq" title={content.faq} />
           <Accordion>
             {content.faqs.map((faq) => (
               <AccordionItem

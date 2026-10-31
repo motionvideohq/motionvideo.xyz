@@ -536,6 +536,19 @@ const directoryMeta = {
         pt: "Skills que ensinam motion design ao seu agente de código: timing, easing e coreografia, renderizados em código. Crie showreels, intros, vídeos de lançamento e novidades com um prompt.",
         ru: "Навыки, которые учат вашего ИИ-агента моушн-дизайну: тайминг, easing и хореография, отрендеренные из кода. Шоурилы, интро, ролики запуска и обзоры фич по одному промпту.",
       }),
+      // The product's name, kept in English like "MotionVideo MCP" and
+      // "MotionVideo Pro" on their pages.
+      title: t({
+        en: "MotionVideo Skill",
+        es: "MotionVideo Skill",
+        fr: "MotionVideo Skill",
+        zh: "MotionVideo Skill",
+        ko: "MotionVideo Skill",
+        ja: "MotionVideo Skill",
+        de: "MotionVideo Skill",
+        pt: "MotionVideo Skill",
+        ru: "MotionVideo Skill",
+      }),
     },
     about: {
       title: t({

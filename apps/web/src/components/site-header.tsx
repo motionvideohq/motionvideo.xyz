@@ -5,7 +5,6 @@ import { getPathWithoutLocale } from "intlayer";
 import { useState } from "react";
 import type { ComponentProps } from "react";
 import { useIntlayer } from "react-intlayer";
-import { ArrowRightUp } from "reicon-react/icons/ArrowRightUp";
 import { Briefcase } from "reicon-react/icons/Briefcase";
 import { ChevronDown } from "reicon-react/icons/ChevronDown";
 import { Designtools } from "reicon-react/icons/Designtools";
@@ -110,7 +109,6 @@ const GetProLink = ({
       className={buttonVariants({ variant, size })}
     >
       {content.getPro}
-      <ArrowRightUp aria-hidden="true" />
     </Link>
   );
 };

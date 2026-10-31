@@ -1,6 +1,7 @@
 import { env } from "cloudflare:workers";
 import DodoPayments, { NotFoundError } from "dodopayments";
 import type { CheckoutSessionCreateParams } from "dodopayments/resources/checkout-sessions";
+import type { CountryCode } from "dodopayments/resources/misc";
 
 import { JOB_PLANS } from "@/constants/jobs";
 import type { JobPlan } from "@/constants/jobs";
@@ -84,6 +85,41 @@ const PLAN_PRODUCT_IDS: Record<Plan, Partial<Record<PlanBilling, string>>> = {
 /** The Dodo product for a plan and billing; empty until `pnpm dodo:setup`. */
 export const planProductId = (plan: Plan, billing: PlanBilling): string =>
   PLAN_PRODUCT_IDS[plan][billing] ?? "";
+
+/**
+ * Percent off the list price Dodo's purchasing power parity gives a billing
+ * country, read from a checkout preview of Pro (annual). PPP is one
+ * business-wide percentage per country, the same for every opted-in product,
+ * so one plan stands for all. The preview is pinned to USD so the list and
+ * charged prices compare directly; anything else reads as no discount rather
+ * than a wrong one. Countries Dodo doesn't know throw (an API error).
+ */
+export const parityPercentOff = async (country: string): Promise<number> => {
+  const productId = planProductId("pro", "annual");
+  if (!productId) {
+    return 0;
+  }
+  const preview = await getDodo().checkoutSessions.preview({
+    // SAFETY: a two-letter code from Cloudflare's `cf-ipcountry`; Dodo
+    // validates it and rejects codes outside its list.
+    billing_address: { country: country as CountryCode },
+    billing_currency: "USD",
+    product_cart: [{ product_id: productId, quantity: 1 }],
+  });
+  const [item] = preview.product_cart;
+  if (
+    !item ||
+    item.currency !== "USD" ||
+    item.og_currency !== "USD" ||
+    item.og_price <= 0
+  ) {
+    return 0;
+  }
+  return Math.max(
+    0,
+    Math.round(100 - (item.discounted_price / item.og_price) * 100)
+  );
+};
 
 /** One-time job listing products, by plan. */
 const JOB_PRODUCT_IDS: Record<JobPlan, string> = {

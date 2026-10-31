@@ -36,23 +36,27 @@ const BRAND = {
 const ENTITLEMENT_NAME = "MotionVideo Skill repository";
 
 // A renewing subscription billed every `interval`. The subscription period is
-// longer than any billing cycle so it renews until cancelled.
-const recurringPrice = (cents, interval) => ({
+// longer than any billing cycle so it renews until cancelled. `ppp`: Dodo's
+// purchasing power parity lowers the price by billing country (business-wide
+// percentages, set in the dashboard). It needs Adaptive Currency on under
+// Settings → Business, or Dodo rejects the product with
+// `ppp_not_enabled_for_business`.
+const recurringPrice = (cents, interval, { ppp = false } = {}) => ({
   currency: "USD",
   payment_frequency_count: 1,
   payment_frequency_interval: interval,
   price: cents,
-  purchasing_power_parity: false,
+  purchasing_power_parity: ppp,
   subscription_period_count: 20,
   subscription_period_interval: "Year",
   tax_inclusive: false,
   type: "recurring_price",
 });
 
-const oneTimePrice = (cents) => ({
+const oneTimePrice = (cents, { ppp = false } = {}) => ({
   currency: "USD",
   price: cents,
-  purchasing_power_parity: false,
+  purchasing_power_parity: ppp,
   tax_inclusive: false,
   type: "one_time_price",
 });
@@ -70,37 +74,38 @@ const PRODUCTS = [
     name: "MotionVideo Skill Bundle",
     retired: true,
   },
-  // MotionVideo Pro and Business. Keep in sync with PLAN_PRICE_CENTS and
-  // BUSINESS_SEATS in src/constants/plans.ts.
+  // MotionVideo Pro and Business, with purchasing power parity (the /pro
+  // banner reads its discount from a checkout preview of Pro annual). Keep in
+  // sync with PLAN_PRICE_CENTS and BUSINESS_SEATS in src/constants/plans.ts.
   {
     envKey: "DODO_PRODUCT_PRO_MONTHLY",
     name: "MotionVideo Pro — Monthly",
     description: `${PRO_SUMMARY} Billed monthly; cancel anytime.`,
-    price: recurringPrice(900, "Month"),
+    price: recurringPrice(900, "Month", { ppp: true }),
   },
   {
     envKey: "DODO_PRODUCT_PRO_ANNUAL",
     name: "MotionVideo Pro — Annual",
     description: `${PRO_SUMMARY} Billed yearly; cancel anytime.`,
-    price: recurringPrice(7900, "Year"),
+    price: recurringPrice(7900, "Year", { ppp: true }),
   },
   {
     envKey: "DODO_PRODUCT_PRO_LIFETIME",
     name: "MotionVideo Pro — Lifetime",
     description: `${PRO_SUMMARY} One-time payment; nothing renews.`,
-    price: oneTimePrice(14_900),
+    price: oneTimePrice(14_900, { ppp: true }),
   },
   {
     envKey: "DODO_PRODUCT_BUSINESS_MONTHLY",
     name: "MotionVideo Business — Monthly",
     description: `${BUSINESS_SUMMARY} Billed monthly; cancel anytime.`,
-    price: recurringPrice(2900, "Month"),
+    price: recurringPrice(2900, "Month", { ppp: true }),
   },
   {
     envKey: "DODO_PRODUCT_BUSINESS_ANNUAL",
     name: "MotionVideo Business — Annual",
     description: `${BUSINESS_SUMMARY} Billed yearly; cancel anytime.`,
-    price: recurringPrice(24_900, "Year"),
+    price: recurringPrice(24_900, "Year", { ppp: true }),
   },
   // Sponsorships, per tier: monthly (a renewing subscription) or one 30-day
   // run, both at the same price. Keep in sync with SPONSOR_PRICE_USD.
@@ -244,6 +249,19 @@ const productEntries = await Promise.all(
         );
       }
       if (current.price.price === product.price.price) {
+        // Same amount: PPP can be switched on the product in place.
+        if (
+          Boolean(current.price.purchasing_power_parity) !==
+          product.price.purchasing_power_parity
+        ) {
+          await dodo.products.update(match.product_id, {
+            price: product.price,
+          });
+          log(
+            `product   updated  ${match.product_id}  ${product.name} (PPP ${product.price.purchasing_power_parity ? "on" : "off"})`
+          );
+          return [product.envKey, match.product_id];
+        }
         log(`product   found    ${match.product_id}  ${product.name}`);
         return [product.envKey, match.product_id];
       }

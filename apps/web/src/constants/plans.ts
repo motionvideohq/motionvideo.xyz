@@ -43,6 +43,17 @@ export interface PlanAccess {
   legacySkill: boolean;
 }
 
+/**
+ * What a visitor's country gets off at checkout through Dodo's purchasing
+ * power parity, read from a checkout preview; null when nothing applies.
+ */
+export interface ParityOffer {
+  /** ISO 3166-1 alpha-2 code of the visitor's country, from their IP. */
+  country: string;
+  /** Whole percent off the list price (Dodo allows up to 70). */
+  percentOff: number;
+}
+
 export const NO_ACCESS: PlanAccess = {
   plan: null,
   billing: null,
