@@ -38,6 +38,7 @@ import {
 import type { TooltipHandle } from "@/components/ui/tooltip";
 import { ROUTES } from "@/constants/routes";
 import { absoluteUrl } from "@/constants/url";
+import { useHydrated } from "@/hooks/use-hydrated";
 import { useTransientStatus } from "@/hooks/use-transient-status";
 import { track } from "@/lib/analytics";
 import {
@@ -407,6 +408,9 @@ export const MotionVideoCard = ({
     () => morphSlug === video.slug,
     () => false
   );
+  // The hover actions (copy, bookmark, source) are a third of a card's HTML;
+  // the server skips them (Workers CPU is scarce) and they mount on hydration.
+  const hydrated = useHydrated();
 
   return (
     <article className="group/card relative">
@@ -462,44 +466,46 @@ export const MotionVideoCard = ({
           bookmark stays visible on the Bookmarks page. */}
       {/* One provider for the card's actions, so their tooltips share
           open state and morph between labels instead of blinking. */}
-      <TooltipProvider>
-        <VideoActions
-          video={video}
-          size="icon-sm"
-          bookmarkAlwaysVisible={bookmarkAlwaysVisible}
-        />
-        {/* The creator's original post, like the top-right actions but pinned
+      {hydrated && (
+        <TooltipProvider>
+          <VideoActions
+            video={video}
+            size="icon-sm"
+            bookmarkAlwaysVisible={bookmarkAlwaysVisible}
+          />
+          {/* The creator's original post, like the top-right actions but pinned
             bottom-right; the same link as the detail view's "View source". */}
-        {video.tweetUrl && (
-          <Tooltip>
-            <TooltipTrigger
-              delay={TOOLTIP_DELAY}
-              render={
-                <a
-                  href={video.tweetUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label={content.viewSource.value}
-                  data-track="source_click"
-                  data-track-from="card"
-                  data-track-slug={video.slug}
-                />
-              }
-              // A real CTA (the card itself opens the detail view), so it
-              // matches the copy-prompt and bookmark buttons.
-              className={cn(
-                buttonVariants({ size: "icon-sm", variant: "outline" }),
-                "rounded-full",
-                HOVER_ACTION,
-                "right-2.5 bottom-2.5"
-              )}
-            >
-              <ArrowRightUp aria-hidden="true" />
-            </TooltipTrigger>
-            <TooltipContent>{content.viewSource.value}</TooltipContent>
-          </Tooltip>
-        )}
-      </TooltipProvider>
+          {video.tweetUrl && (
+            <Tooltip>
+              <TooltipTrigger
+                delay={TOOLTIP_DELAY}
+                render={
+                  <a
+                    href={video.tweetUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={content.viewSource.value}
+                    data-track="source_click"
+                    data-track-from="card"
+                    data-track-slug={video.slug}
+                  />
+                }
+                // A real CTA (the card itself opens the detail view), so it
+                // matches the copy-prompt and bookmark buttons.
+                className={cn(
+                  buttonVariants({ size: "icon-sm", variant: "outline" }),
+                  "rounded-full",
+                  HOVER_ACTION,
+                  "right-2.5 bottom-2.5"
+                )}
+              >
+                <ArrowRightUp aria-hidden="true" />
+              </TooltipTrigger>
+              <TooltipContent>{content.viewSource.value}</TooltipContent>
+            </Tooltip>
+          )}
+        </TooltipProvider>
+      )}
       <a
         href={`https://x.com/${video.handle}`}
         target="_blank"

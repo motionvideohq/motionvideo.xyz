@@ -9,6 +9,7 @@
 import { readFile, writeFile } from "node:fs/promises";
 import { fileURLToPath } from "node:url";
 
+import { deriveCatalog } from "./derive-catalog.mjs";
 import { paletteOf } from "./palette.mjs";
 
 const catalogPath = fileURLToPath(
@@ -34,6 +35,8 @@ const worker = async () => {
 };
 await Promise.all(Array.from({ length: CONCURRENCY }, worker));
 
+// Colour pages and similar videos depend on the palettes.
+deriveCatalog(catalog);
 await writeFile(catalogPath, `${JSON.stringify(catalog, null, 2)}\n`);
 console.log(`${total - failed.length}/${total} videos coloured.`);
 if (failed.length > 0) {

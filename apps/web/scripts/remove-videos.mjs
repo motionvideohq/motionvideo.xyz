@@ -20,6 +20,8 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { promisify } from "node:util";
 
+import { deriveCatalog } from "./derive-catalog.mjs";
+
 const run = promisify(execFile);
 const root = fileURLToPath(new URL("..", import.meta.url));
 const BUCKET = "motionvideo-assets";
@@ -125,6 +127,8 @@ catalog.removed = [
 const remainingTranslations = Object.fromEntries(
   Object.entries(translations).filter(([slug]) => !duplicateOf.has(slug))
 );
+// Similar-video lists and colour pages must not point at removed videos.
+deriveCatalog(catalog);
 await writeFile(catalogPath, `${JSON.stringify(catalog, null, 2)}\n`);
 await writeFile(
   translationsPath,

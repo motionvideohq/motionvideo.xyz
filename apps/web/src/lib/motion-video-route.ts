@@ -13,14 +13,13 @@ import { createMetadata } from "@/seo/metadata";
 // category page…) and which colours have a page of their own.
 const videos: MotionVideo[] = catalog.videos;
 
-// A colour page with only a handful of videos is too thin to be worth a URL.
-const MIN_COLOR_PAGE_VIDEOS = 6;
-
-/** The named colours with enough videos for a page, `/color/$color`. */
-export const COLOR_PAGES = MOTION_COLORS.filter(
-  (color) =>
-    filterMotionVideos(videos, { color: color.hex }).length >=
-    MIN_COLOR_PAGE_VIDEOS
+/**
+ * The named colours with enough videos for a page, `/color/$color`, as
+ * precomputed by `pnpm catalog:derive` (counting them here cost more CPU
+ * than a Workers Free request gets).
+ */
+export const COLOR_PAGES = MOTION_COLORS.filter((color) =>
+  catalog.colorPages.includes(color.slug)
 );
 
 // Duplicates removed by `pnpm catalog:remove`, each pointing at the video it
