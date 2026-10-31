@@ -15,6 +15,17 @@ export default {
       pt: "A biblioteca de motion",
       ru: "Библиотека моушна",
     }),
+    moreByCreator: t({
+      en: "More by this creator",
+      es: "Más de este creador",
+      fr: "Plus de ce créateur",
+      zh: "该创作者的更多作品",
+      ko: "이 크리에이터의 다른 작품",
+      ja: "このクリエイターの他の作品",
+      de: "Mehr von diesem Creator",
+      pt: "Mais deste criador",
+      ru: "Другие работы автора",
+    }),
     title: t({
       en: "Motion worth making.",
       es: "Motion que inspira.",

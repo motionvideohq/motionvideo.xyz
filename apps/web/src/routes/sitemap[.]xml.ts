@@ -7,12 +7,14 @@ import { absoluteUrl } from "@/constants/url";
 import catalog from "@/data/motion-catalog.json";
 import { CHANGELOG_ENTRIES } from "@/lib/changelog";
 import { DIRECTORY_CATEGORIES } from "@/lib/directories";
+import { INDEXABLE_DIRECTORY_FILTERS } from "@/lib/directory-discovery";
 import {
   MOTION_CATEGORIES,
   MOTION_MODELS,
   MOTION_TYPES,
   motionModelSlug,
 } from "@/lib/motion-catalog";
+import { MOTION_CREATORS } from "@/lib/motion-creators";
 import { COLOR_PAGES } from "@/lib/motion-video-route";
 import { MOVE_FAMILIES } from "@/lib/move-families";
 import { MOVES, movePath } from "@/lib/moves";
@@ -39,6 +41,10 @@ const PAGES: { lastmod?: string; path: string }[] = [
   ...COLOR_PAGES.map((color) => ({
     path: `${ROUTES.HOME}color/${color.slug}`,
   })),
+  { path: "/creators" },
+  ...MOTION_CREATORS.map((creator) => ({
+    path: `${ROUTES.HOME}creators/${creator.handle}`,
+  })),
   ...catalog.videos.map((video) => ({
     lastmod: video.date,
     path: `${ROUTES.HOME}videos/${video.slug}`,
@@ -52,17 +58,29 @@ const PAGES: { lastmod?: string; path: string }[] = [
   ...DIRECTORY_CATEGORIES.tool.map((category) => ({
     path: `${ROUTES.TOOLS}/${category.slug}`,
   })),
+  ...INDEXABLE_DIRECTORY_FILTERS.tool.map((facet) => ({
+    path: `${ROUTES.TOOLS}/${facet}`,
+  })),
   { path: ROUTES.CREATIVES },
   ...DIRECTORY_CATEGORIES.studio.map((category) => ({
     path: `${ROUTES.CREATIVES}/${category.slug}`,
+  })),
+  ...INDEXABLE_DIRECTORY_FILTERS.studio.map((facet) => ({
+    path: `${ROUTES.CREATIVES}/${facet}`,
   })),
   { path: ROUTES.SKILLS },
   ...DIRECTORY_CATEGORIES.skill.map((category) => ({
     path: `${ROUTES.SKILLS}/${category.slug}`,
   })),
+  ...INDEXABLE_DIRECTORY_FILTERS.skill.map((facet) => ({
+    path: `${ROUTES.SKILLS}/${facet}`,
+  })),
   { path: ROUTES.EXTRAS },
   ...DIRECTORY_CATEGORIES.extra.map((category) => ({
     path: `${ROUTES.EXTRAS}/${category.slug}`,
+  })),
+  ...INDEXABLE_DIRECTORY_FILTERS.extra.map((facet) => ({
+    path: `${ROUTES.EXTRAS}/${facet}`,
   })),
   { path: ROUTES.JOBS },
   ...JOB_TYPES.map((type) => ({ path: `${ROUTES.JOBS}/${type}` })),

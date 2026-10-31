@@ -7,7 +7,11 @@ import {
 import { ResourceDirectory } from "@/components/resource-directory";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
-import { directorySearch, findDirectoryCategory } from "@/lib/directories";
+import {
+  directorySearch,
+  findDirectoryCategory,
+  findDirectoryFilter,
+} from "@/lib/directories";
 import { getLandingData } from "@/server/functions";
 
 const routeApi = getRouteApi("/$locale/creatives");
@@ -22,14 +26,15 @@ const Creatives = () => {
       <ResourceDirectory
         kind="studio"
         category={findDirectoryCategory("studio", category)}
+        facet={findDirectoryFilter("studio", category)}
       />
       <SiteFooter />
     </>
   );
 };
 
-// Layout for `/creatives` and `/creatives/$category` (studios, designers): the
-// directory stays mounted while switching; the child routes own the head tags.
+// The directory stays mounted across category and facet paths; child routes
+// own their URLs, redirects and head tags.
 export const Route = createFileRoute("/$locale/creatives")({
   component: Creatives,
   loader: () => getLandingData(),

@@ -12,6 +12,11 @@ import {
   ogLocale,
 } from "@/constants/locales";
 import { absoluteUrl } from "@/constants/url";
+import { directorySearch } from "@/lib/directories";
+import {
+  DIRECTORY_SECTION_PATHS,
+  directoryPageNoIndex,
+} from "@/lib/directory-discovery";
 import { websiteJsonLd } from "@/seo/json-ld";
 
 export const Route = createFileRoute("/$locale")({
@@ -51,12 +56,27 @@ export const Route = createFileRoute("/$locale")({
         meta: [{ content: "noindex, nofollow", name: "robots" }, localeMeta],
       };
     }
-    // A video opens over whichever grid it was clicked in
-    // (`/category/x/videos/slug`, `/color/red/videos/slug`…); all of those
-    // show the same video, so they share the canonical `/videos/slug`.
-    const path = leaf.routeId.endsWith("/videos/$slug")
-      ? `/videos/${String(leaf.params.slug)}`
-      : getPathWithoutLocale(leaf.pathname);
+    const path = getPathWithoutLocale(leaf.pathname);
+    const directoryKind = (["tool", "studio", "skill", "extra"] as const).find(
+      (kind) =>
+        path === DIRECTORY_SECTION_PATHS[kind] ||
+        path.startsWith(`${DIRECTORY_SECTION_PATHS[kind]}/`)
+    );
+    if (
+      directoryKind &&
+      directoryPageNoIndex(
+        directoryKind,
+        path.split("/")[2],
+        directorySearch(directoryKind).parse(leaf.search)
+      )
+    ) {
+      // These are browsing utilities, not aliases of the unfiltered collection.
+      // Allow crawling so search engines can read the noindex directive.
+      return {
+        meta: [{ content: "noindex, follow", name: "robots" }, localeMeta],
+      };
+    }
+    // Sorting only changes order: canonical and alternates omit query params.
     const canonical = absoluteUrl(localizedPath(path, locale));
 
     return {

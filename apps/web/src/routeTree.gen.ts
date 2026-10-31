@@ -58,6 +58,7 @@ import { Route as LocaleBlogIndexRouteImport } from './routes/$locale/blog/index
 import { Route as LocaleBlogSlugRouteImport } from './routes/$locale/blog/$slug'
 import { Route as LocaleCreativesIndexRouteImport } from './routes/$locale/creatives/index'
 import { Route as LocaleCreativesCategoryRouteImport } from './routes/$locale/creatives/$category'
+import { Route as LocaleCreatorsIndexRouteImport } from './routes/$locale/creators.index'
 import { Route as LocaleCustomizeIndexRouteImport } from './routes/$locale/customize/index'
 import { Route as LocaleCustomizeSlugRouteImport } from './routes/$locale/customize/$slug'
 import { Route as LocaleDashboardIndexRouteImport } from './routes/$locale/dashboard/index'
@@ -93,6 +94,7 @@ import { Route as ApiMovesIndexRouteImport } from './routes/api/moves/index'
 import { Route as ApiWebhookDodoRouteImport } from './routes/api/webhook/dodo'
 import { Route as LocaleGalleryCategoryCategoryRouteImport } from './routes/$locale/_gallery/category.$category'
 import { Route as LocaleGalleryColorColorRouteImport } from './routes/$locale/_gallery/color.$color'
+import { Route as LocaleGalleryCreatorsCreatorRouteImport } from './routes/$locale/_gallery/creators.$creator'
 import { Route as LocaleGalleryModelModelRouteImport } from './routes/$locale/_gallery/model.$model'
 import { Route as LocaleGalleryTypeTypeRouteImport } from './routes/$locale/_gallery/type.$type'
 import { Route as LocaleGalleryVideosSlugRouteImport } from './routes/$locale/_gallery/videos.$slug'
@@ -109,6 +111,7 @@ import { Route as ApiMcpMovesIndexRouteImport } from './routes/api/mcp/moves/ind
 import { Route as ApiMcpMovesSlugRouteImport } from './routes/api/mcp/moves/$slug'
 import { Route as LocaleGalleryCategoryCategoryIndexRouteImport } from './routes/$locale/_gallery/category.$category.index'
 import { Route as LocaleGalleryColorColorIndexRouteImport } from './routes/$locale/_gallery/color.$color.index'
+import { Route as LocaleGalleryCreatorsCreatorIndexRouteImport } from './routes/$locale/_gallery/creators.$creator.index'
 import { Route as LocaleGalleryModelModelIndexRouteImport } from './routes/$locale/_gallery/model.$model.index'
 import { Route as LocaleGalleryTypeTypeIndexRouteImport } from './routes/$locale/_gallery/type.$type.index'
 import { Route as LocaleGalleryCategoryCategoryVideosSlugRouteImport } from './routes/$locale/_gallery/category.$category.videos.$slug'
@@ -359,6 +362,11 @@ const LocaleCreativesCategoryRoute = LocaleCreativesCategoryRouteImport.update({
   path: '/$category',
   getParentRoute: () => LocaleCreativesRoute,
 } as any)
+const LocaleCreatorsIndexRoute = LocaleCreatorsIndexRouteImport.update({
+  id: '/creators/',
+  path: '/creators/',
+  getParentRoute: () => LocaleRouteRoute,
+} as any)
 const LocaleCustomizeIndexRoute = LocaleCustomizeIndexRouteImport.update({
   id: '/',
   path: '/',
@@ -536,6 +544,12 @@ const LocaleGalleryColorColorRoute = LocaleGalleryColorColorRouteImport.update({
   path: '/color/$color',
   getParentRoute: () => LocaleGalleryRoute,
 } as any)
+const LocaleGalleryCreatorsCreatorRoute =
+  LocaleGalleryCreatorsCreatorRouteImport.update({
+    id: '/creators/$creator',
+    path: '/creators/$creator',
+    getParentRoute: () => LocaleGalleryRoute,
+  } as any)
 const LocaleGalleryModelModelRoute = LocaleGalleryModelModelRouteImport.update({
   id: '/model/$model',
   path: '/model/$model',
@@ -623,6 +637,12 @@ const LocaleGalleryColorColorIndexRoute =
     id: '/',
     path: '/',
     getParentRoute: () => LocaleGalleryColorColorRoute,
+  } as any)
+const LocaleGalleryCreatorsCreatorIndexRoute =
+  LocaleGalleryCreatorsCreatorIndexRouteImport.update({
+    id: '/',
+    path: '/',
+    getParentRoute: () => LocaleGalleryCreatorsCreatorRoute,
   } as any)
 const LocaleGalleryModelModelIndexRoute =
   LocaleGalleryModelModelIndexRouteImport.update({
@@ -730,6 +750,7 @@ export interface FileRoutesByFullPath {
   '/$locale/admin/': typeof LocaleAdminIndexRoute
   '/$locale/blog/': typeof LocaleBlogIndexRoute
   '/$locale/creatives/': typeof LocaleCreativesIndexRoute
+  '/$locale/creators/': typeof LocaleCreatorsIndexRoute
   '/$locale/customize/': typeof LocaleCustomizeIndexRoute
   '/$locale/dashboard/': typeof LocaleDashboardIndexRoute
   '/$locale/docs/': typeof LocaleDocsIndexRoute
@@ -744,6 +765,7 @@ export interface FileRoutesByFullPath {
   '/api/moves/': typeof ApiMovesIndexRoute
   '/$locale/category/$category': typeof LocaleGalleryCategoryCategoryRouteWithChildren
   '/$locale/color/$color': typeof LocaleGalleryColorColorRouteWithChildren
+  '/$locale/creators/$creator': typeof LocaleGalleryCreatorsCreatorRouteWithChildren
   '/$locale/model/$model': typeof LocaleGalleryModelModelRouteWithChildren
   '/$locale/type/$type': typeof LocaleGalleryTypeTypeRouteWithChildren
   '/$locale/videos/$slug': typeof LocaleGalleryVideosSlugRoute
@@ -760,6 +782,7 @@ export interface FileRoutesByFullPath {
   '/api/mcp/moves/': typeof ApiMcpMovesIndexRoute
   '/$locale/category/$category/': typeof LocaleGalleryCategoryCategoryIndexRoute
   '/$locale/color/$color/': typeof LocaleGalleryColorColorIndexRoute
+  '/$locale/creators/$creator/': typeof LocaleGalleryCreatorsCreatorIndexRoute
   '/$locale/model/$model/': typeof LocaleGalleryModelModelIndexRoute
   '/$locale/type/$type/': typeof LocaleGalleryTypeTypeIndexRoute
   '/$locale/category/$category/videos/$slug': typeof LocaleGalleryCategoryCategoryVideosSlugRoute
@@ -825,6 +848,7 @@ export interface FileRoutesByTo {
   '/$locale/admin': typeof LocaleAdminIndexRoute
   '/$locale/blog': typeof LocaleBlogIndexRoute
   '/$locale/creatives': typeof LocaleCreativesIndexRoute
+  '/$locale/creators': typeof LocaleCreatorsIndexRoute
   '/$locale/customize': typeof LocaleCustomizeIndexRoute
   '/$locale/dashboard': typeof LocaleDashboardIndexRoute
   '/$locale/docs': typeof LocaleDocsIndexRoute
@@ -851,6 +875,7 @@ export interface FileRoutesByTo {
   '/api/mcp/moves': typeof ApiMcpMovesIndexRoute
   '/$locale/category/$category': typeof LocaleGalleryCategoryCategoryIndexRoute
   '/$locale/color/$color': typeof LocaleGalleryColorColorIndexRoute
+  '/$locale/creators/$creator': typeof LocaleGalleryCreatorsCreatorIndexRoute
   '/$locale/model/$model': typeof LocaleGalleryModelModelIndexRoute
   '/$locale/type/$type': typeof LocaleGalleryTypeTypeIndexRoute
   '/$locale/category/$category/videos/$slug': typeof LocaleGalleryCategoryCategoryVideosSlugRoute
@@ -930,6 +955,7 @@ export interface FileRoutesById {
   '/$locale/admin/': typeof LocaleAdminIndexRoute
   '/$locale/blog/': typeof LocaleBlogIndexRoute
   '/$locale/creatives/': typeof LocaleCreativesIndexRoute
+  '/$locale/creators/': typeof LocaleCreatorsIndexRoute
   '/$locale/customize/': typeof LocaleCustomizeIndexRoute
   '/$locale/dashboard/': typeof LocaleDashboardIndexRoute
   '/$locale/docs/': typeof LocaleDocsIndexRoute
@@ -944,6 +970,7 @@ export interface FileRoutesById {
   '/api/moves/': typeof ApiMovesIndexRoute
   '/$locale/_gallery/category/$category': typeof LocaleGalleryCategoryCategoryRouteWithChildren
   '/$locale/_gallery/color/$color': typeof LocaleGalleryColorColorRouteWithChildren
+  '/$locale/_gallery/creators/$creator': typeof LocaleGalleryCreatorsCreatorRouteWithChildren
   '/$locale/_gallery/model/$model': typeof LocaleGalleryModelModelRouteWithChildren
   '/$locale/_gallery/type/$type': typeof LocaleGalleryTypeTypeRouteWithChildren
   '/$locale/_gallery/videos/$slug': typeof LocaleGalleryVideosSlugRoute
@@ -960,6 +987,7 @@ export interface FileRoutesById {
   '/api/mcp/moves/': typeof ApiMcpMovesIndexRoute
   '/$locale/_gallery/category/$category/': typeof LocaleGalleryCategoryCategoryIndexRoute
   '/$locale/_gallery/color/$color/': typeof LocaleGalleryColorColorIndexRoute
+  '/$locale/_gallery/creators/$creator/': typeof LocaleGalleryCreatorsCreatorIndexRoute
   '/$locale/_gallery/model/$model/': typeof LocaleGalleryModelModelIndexRoute
   '/$locale/_gallery/type/$type/': typeof LocaleGalleryTypeTypeIndexRoute
   '/$locale/_gallery/category/$category/videos/$slug': typeof LocaleGalleryCategoryCategoryVideosSlugRoute
@@ -1038,6 +1066,7 @@ export interface FileRouteTypes {
     | '/$locale/admin/'
     | '/$locale/blog/'
     | '/$locale/creatives/'
+    | '/$locale/creators/'
     | '/$locale/customize/'
     | '/$locale/dashboard/'
     | '/$locale/docs/'
@@ -1052,6 +1081,7 @@ export interface FileRouteTypes {
     | '/api/moves/'
     | '/$locale/category/$category'
     | '/$locale/color/$color'
+    | '/$locale/creators/$creator'
     | '/$locale/model/$model'
     | '/$locale/type/$type'
     | '/$locale/videos/$slug'
@@ -1068,6 +1098,7 @@ export interface FileRouteTypes {
     | '/api/mcp/moves/'
     | '/$locale/category/$category/'
     | '/$locale/color/$color/'
+    | '/$locale/creators/$creator/'
     | '/$locale/model/$model/'
     | '/$locale/type/$type/'
     | '/$locale/category/$category/videos/$slug'
@@ -1133,6 +1164,7 @@ export interface FileRouteTypes {
     | '/$locale/admin'
     | '/$locale/blog'
     | '/$locale/creatives'
+    | '/$locale/creators'
     | '/$locale/customize'
     | '/$locale/dashboard'
     | '/$locale/docs'
@@ -1159,6 +1191,7 @@ export interface FileRouteTypes {
     | '/api/mcp/moves'
     | '/$locale/category/$category'
     | '/$locale/color/$color'
+    | '/$locale/creators/$creator'
     | '/$locale/model/$model'
     | '/$locale/type/$type'
     | '/$locale/category/$category/videos/$slug'
@@ -1237,6 +1270,7 @@ export interface FileRouteTypes {
     | '/$locale/admin/'
     | '/$locale/blog/'
     | '/$locale/creatives/'
+    | '/$locale/creators/'
     | '/$locale/customize/'
     | '/$locale/dashboard/'
     | '/$locale/docs/'
@@ -1251,6 +1285,7 @@ export interface FileRouteTypes {
     | '/api/moves/'
     | '/$locale/_gallery/category/$category'
     | '/$locale/_gallery/color/$color'
+    | '/$locale/_gallery/creators/$creator'
     | '/$locale/_gallery/model/$model'
     | '/$locale/_gallery/type/$type'
     | '/$locale/_gallery/videos/$slug'
@@ -1267,6 +1302,7 @@ export interface FileRouteTypes {
     | '/api/mcp/moves/'
     | '/$locale/_gallery/category/$category/'
     | '/$locale/_gallery/color/$color/'
+    | '/$locale/_gallery/creators/$creator/'
     | '/$locale/_gallery/model/$model/'
     | '/$locale/_gallery/type/$type/'
     | '/$locale/_gallery/category/$category/videos/$slug'
@@ -1639,6 +1675,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LocaleCreativesCategoryRouteImport
       parentRoute: typeof LocaleCreativesRoute
     }
+    '/$locale/creators/': {
+      id: '/$locale/creators/'
+      path: '/creators'
+      fullPath: '/$locale/creators/'
+      preLoaderRoute: typeof LocaleCreatorsIndexRouteImport
+      parentRoute: typeof LocaleRouteRoute
+    }
     '/$locale/customize/': {
       id: '/$locale/customize/'
       path: '/'
@@ -1884,6 +1927,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LocaleGalleryColorColorRouteImport
       parentRoute: typeof LocaleGalleryRoute
     }
+    '/$locale/_gallery/creators/$creator': {
+      id: '/$locale/_gallery/creators/$creator'
+      path: '/creators/$creator'
+      fullPath: '/$locale/creators/$creator'
+      preLoaderRoute: typeof LocaleGalleryCreatorsCreatorRouteImport
+      parentRoute: typeof LocaleGalleryRoute
+    }
     '/$locale/_gallery/model/$model': {
       id: '/$locale/_gallery/model/$model'
       path: '/model/$model'
@@ -1996,6 +2046,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LocaleGalleryColorColorIndexRouteImport
       parentRoute: typeof LocaleGalleryColorColorRoute
     }
+    '/$locale/_gallery/creators/$creator/': {
+      id: '/$locale/_gallery/creators/$creator/'
+      path: '/'
+      fullPath: '/$locale/creators/$creator/'
+      preLoaderRoute: typeof LocaleGalleryCreatorsCreatorIndexRouteImport
+      parentRoute: typeof LocaleGalleryCreatorsCreatorRoute
+    }
     '/$locale/_gallery/model/$model/': {
       id: '/$locale/_gallery/model/$model/'
       path: '/'
@@ -2076,6 +2133,21 @@ const LocaleGalleryColorColorRouteWithChildren =
     LocaleGalleryColorColorRouteChildren,
   )
 
+interface LocaleGalleryCreatorsCreatorRouteChildren {
+  LocaleGalleryCreatorsCreatorIndexRoute: typeof LocaleGalleryCreatorsCreatorIndexRoute
+}
+
+const LocaleGalleryCreatorsCreatorRouteChildren: LocaleGalleryCreatorsCreatorRouteChildren =
+  {
+    LocaleGalleryCreatorsCreatorIndexRoute:
+      LocaleGalleryCreatorsCreatorIndexRoute,
+  }
+
+const LocaleGalleryCreatorsCreatorRouteWithChildren =
+  LocaleGalleryCreatorsCreatorRoute._addFileChildren(
+    LocaleGalleryCreatorsCreatorRouteChildren,
+  )
+
 interface LocaleGalleryModelModelRouteChildren {
   LocaleGalleryModelModelIndexRoute: typeof LocaleGalleryModelModelIndexRoute
   LocaleGalleryModelModelVideosSlugRoute: typeof LocaleGalleryModelModelVideosSlugRoute
@@ -2112,6 +2184,7 @@ interface LocaleGalleryRouteChildren {
   LocaleGalleryIndexRoute: typeof LocaleGalleryIndexRoute
   LocaleGalleryCategoryCategoryRoute: typeof LocaleGalleryCategoryCategoryRouteWithChildren
   LocaleGalleryColorColorRoute: typeof LocaleGalleryColorColorRouteWithChildren
+  LocaleGalleryCreatorsCreatorRoute: typeof LocaleGalleryCreatorsCreatorRouteWithChildren
   LocaleGalleryModelModelRoute: typeof LocaleGalleryModelModelRouteWithChildren
   LocaleGalleryTypeTypeRoute: typeof LocaleGalleryTypeTypeRouteWithChildren
   LocaleGalleryVideosSlugRoute: typeof LocaleGalleryVideosSlugRoute
@@ -2122,6 +2195,8 @@ const LocaleGalleryRouteChildren: LocaleGalleryRouteChildren = {
   LocaleGalleryCategoryCategoryRoute:
     LocaleGalleryCategoryCategoryRouteWithChildren,
   LocaleGalleryColorColorRoute: LocaleGalleryColorColorRouteWithChildren,
+  LocaleGalleryCreatorsCreatorRoute:
+    LocaleGalleryCreatorsCreatorRouteWithChildren,
   LocaleGalleryModelModelRoute: LocaleGalleryModelModelRouteWithChildren,
   LocaleGalleryTypeTypeRoute: LocaleGalleryTypeTypeRouteWithChildren,
   LocaleGalleryVideosSlugRoute: LocaleGalleryVideosSlugRoute,
@@ -2356,6 +2431,7 @@ interface LocaleRouteRouteChildren {
   LocaleJobsPostRoute: typeof LocaleJobsPostRoute
   LocaleSponsorshipsNewRoute: typeof LocaleSponsorshipsNewRoute
   LocaleBlogIndexRoute: typeof LocaleBlogIndexRoute
+  LocaleCreatorsIndexRoute: typeof LocaleCreatorsIndexRoute
   LocaleDocsIndexRoute: typeof LocaleDocsIndexRoute
   LocaleJobsIndexRoute: typeof LocaleJobsIndexRoute
   LocaleSponsorshipsIndexRoute: typeof LocaleSponsorshipsIndexRoute
@@ -2394,6 +2470,7 @@ const LocaleRouteRouteChildren: LocaleRouteRouteChildren = {
   LocaleJobsPostRoute: LocaleJobsPostRoute,
   LocaleSponsorshipsNewRoute: LocaleSponsorshipsNewRoute,
   LocaleBlogIndexRoute: LocaleBlogIndexRoute,
+  LocaleCreatorsIndexRoute: LocaleCreatorsIndexRoute,
   LocaleDocsIndexRoute: LocaleDocsIndexRoute,
   LocaleJobsIndexRoute: LocaleJobsIndexRoute,
   LocaleSponsorshipsIndexRoute: LocaleSponsorshipsIndexRoute,

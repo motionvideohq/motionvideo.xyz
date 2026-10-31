@@ -23,6 +23,22 @@
 
 ---
 
+## Browsing and video URLs
+
+Every video has one public URL: `/videos/<slug>` (with the site's locale prefix). Category, color, model, type, and creator cards all link there. The originating collection and its filters are stored in browser history state, so the gallery remains behind the player, previous/next follow that collection, and closing restores it. A direct or newly shared video link falls back to Discover. Old scoped video URLs permanently redirect to the canonical video URL.
+
+Directory categories and standalone filters have dedicated pages, including `/tools/freemium`, `/creatives/brand`, `/skills/blender`, and `/extras/prompts`. Selecting a standalone filter uses its page; combining a content category and filter keeps the category path with `?filter=`, while sort remains a query parameter. Legacy standalone filter queries permanently redirect to their dedicated pages, preserving sort.
+
+`apps/web/src/lib/directory-discovery.ts` defines the editorial filter landing pages promoted in contextual navigation, the footer, and the localized sitemap. A selected filter must have matching entries. Core category pages remain indexable; unselected or empty filter pages and category/filter combinations return `noindex, follow`, omit canonical/alternate links, and stay out of the sitemap. They remain crawlable so search engines can read the directive. Sort-only variants canonicalize to their collection without query parameters.
+
+### Creator collections
+
+Every creator in the video catalog has a collection at `/creators/<lowercase-x-handle>`, for example [`/creators/twoclipping`](https://motionvideo.xyz/creators/twoclipping). The video sidebar's outline “More by this creator” button opens the collection; creator names and avatars link to their X profile. Collections include all of the creator's catalog videos, shared prompts and skills, category/model/type/color filters, and sorting.
+
+Collections are generated from `apps/web/src/data/motion-catalog.json`; no separate creator records are needed. Unknown handles return 404, mixed-case handles redirect to lowercase, and collection URLs are included in the localized sitemap.
+
+The footer links to core public pages, directory categories, and selected filter landing pages. Six featured creators link to their collections; “Browse all creators” opens `/creators`, a localized, searchable directory with server-rendered links to every creator. Featured creators are selected by video count, with handles breaking ties.
+
 ## Tech stack
 
 | Area | Tools |

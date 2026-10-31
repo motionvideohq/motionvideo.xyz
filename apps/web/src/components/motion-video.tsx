@@ -45,7 +45,6 @@ import {
   findEffort,
   findIterations,
   findMotionCategory,
-  motionModelSlug,
 } from "@/lib/motion-catalog";
 import type {
   GalleryScope,
@@ -115,50 +114,17 @@ const VideoLink = ({
   slug: string;
   scope: GalleryScope | undefined;
   search: GallerySearch;
-}) => {
-  const shared = { search, resetScroll: false, viewTransition: true, ...props };
-  switch (scope?.kind) {
-    case "category": {
-      return (
-        <Link
-          to="/category/$category/videos/$slug"
-          params={{ category: scope.category, slug }}
-          {...shared}
-        />
-      );
-    }
-    case "color": {
-      return (
-        <Link
-          to="/color/$color/videos/$slug"
-          params={{ color: scope.color.slug, slug }}
-          {...shared}
-        />
-      );
-    }
-    case "model": {
-      return (
-        <Link
-          to="/model/$model/videos/$slug"
-          params={{ model: motionModelSlug(scope.model), slug }}
-          {...shared}
-        />
-      );
-    }
-    case "type": {
-      return (
-        <Link
-          to="/type/$type/videos/$slug"
-          params={{ type: scope.type, slug }}
-          {...shared}
-        />
-      );
-    }
-    default: {
-      return <Link to="/videos/$slug" params={{ slug }} {...shared} />;
-    }
-  }
-};
+}) => (
+  <Link
+    to="/videos/$slug"
+    params={{ slug }}
+    search={{}}
+    state={{ videoGallery: { scope, search } }}
+    resetScroll={false}
+    viewTransition
+    {...props}
+  />
+);
 
 /** A creator's photo, or the user glyph when there is none or it fails to load. */
 const CreatorAvatar = ({
@@ -1182,8 +1148,11 @@ export const MotionVideoOverlay = ({
             className="size-10 shrink-0 rounded-full"
           />
           <span className="flex h-10 min-w-0 flex-col justify-center text-sm leading-5">
-            <span className="truncate font-medium group-hover/creator:underline">
-              {video.creatorName ?? `@${video.handle}`}
+            <span className="flex min-w-0 items-center gap-1 font-medium group-hover/creator:underline">
+              <span className="truncate">
+                {video.creatorName ?? `@${video.handle}`}
+              </span>
+              <ArrowRightUp aria-hidden="true" className="size-3.5 shrink-0" />
             </span>
             <span className="text-muted-foreground truncate">
               @{video.handle}
@@ -1208,6 +1177,13 @@ export const MotionVideoOverlay = ({
         </p>
       )}
       <div className="flex flex-col gap-2">
+        <Link
+          to="/creators/$creator"
+          params={{ creator: video.handle.toLowerCase() }}
+          className={buttonVariants({ variant: "outline", size: "lg" })}
+        >
+          {content.moreByCreator}
+        </Link>
         {video.tweetUrl && (
           <a
             href={video.tweetUrl}

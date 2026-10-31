@@ -42,8 +42,8 @@ export const DIRECTORY_SORTS = {
 } as const satisfies Record<DirectoryKind, readonly string[]>;
 export type DirectorySort = (typeof DIRECTORY_SORTS)[DirectoryKind][number];
 
-// One facet per section, picked with `?filter=`: pricing on /tools, renderer
-// on /skills, specialty on /creatives, resource type on /extras.
+// Standalone facets have their own section paths; category + facet combinations
+// keep the category path and use `?filter=`. Sorting always uses `?sort=`.
 export const DIRECTORY_FILTERS = {
   tool: ["free", "freemium", "open-source", "paid"],
   studio: ["product-films", "explainers", "3d", "brand", "ui-motion"],
@@ -419,3 +419,12 @@ export const findDirectoryCategory = <Kind extends DirectoryKind>(
   (DIRECTORY_CATEGORIES[kind] as DirectoryCategory<Kind>[]).find(
     (category) => category.slug === slug
   );
+
+/** Category slugs take precedence; facets are resolved within their own section. */
+export const findDirectoryFilter = (
+  kind: DirectoryKind,
+  slug: string | undefined
+): DirectoryFilter | undefined =>
+  findDirectoryCategory(kind, slug)
+    ? undefined
+    : DIRECTORY_FILTERS[kind].find((filter) => filter === slug);

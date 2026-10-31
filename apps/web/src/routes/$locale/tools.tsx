@@ -7,7 +7,11 @@ import {
 import { ResourceDirectory } from "@/components/resource-directory";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
-import { directorySearch, findDirectoryCategory } from "@/lib/directories";
+import {
+  directorySearch,
+  findDirectoryCategory,
+  findDirectoryFilter,
+} from "@/lib/directories";
 import { getLandingData } from "@/server/functions";
 
 const routeApi = getRouteApi("/$locale/tools");
@@ -22,14 +26,15 @@ const Tools = () => {
       <ResourceDirectory
         kind="tool"
         category={findDirectoryCategory("tool", category)}
+        facet={findDirectoryFilter("tool", category)}
       />
       <SiteFooter />
     </>
   );
 };
 
-// Layout for `/tools` and `/tools/$category`: the directory stays mounted while
-// switching categories; the child routes own the URL and head tags.
+// The directory stays mounted across category and facet paths; child routes
+// own their URLs, redirects and head tags.
 export const Route = createFileRoute("/$locale/tools")({
   component: Tools,
   loader: () => getLandingData(),
