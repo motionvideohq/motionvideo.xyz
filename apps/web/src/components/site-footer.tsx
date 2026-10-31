@@ -26,16 +26,24 @@ import {
   createTooltipHandle,
 } from "@/components/ui/tooltip";
 import type { TooltipHandle } from "@/components/ui/tooltip";
+import { JOB_TYPES } from "@/constants/jobs";
 import { LINK } from "@/constants/links";
 import { OTHER_PRODUCTS, SHADCN_LABS_PROJECTS } from "@/constants/products";
 import { ROUTES } from "@/constants/routes";
 import { SITE } from "@/constants/site";
+import { DIRECTORY_CATEGORIES } from "@/lib/directories";
+import {
+  DIRECTORY_SECTION_PATHS,
+  INDEXABLE_DIRECTORY_FILTERS,
+} from "@/lib/directory-discovery";
 import {
   MOTION_CATEGORIES,
   MOTION_MODELS,
   MOTION_MODEL_NAMES,
   motionModelSlug,
 } from "@/lib/motion-catalog";
+import { FEATURED_MOTION_CREATORS } from "@/lib/motion-creators";
+import { COLOR_PAGES } from "@/lib/motion-video-route";
 import { MOVE_FAMILIES } from "@/lib/move-families";
 import { cn } from "@/lib/utils";
 import { withUtm } from "@/lib/utm";
@@ -149,16 +157,18 @@ const ExternalLink = ({
 );
 
 /**
- * Every page as plain, server-rendered links (nothing behind a menu but the
- * Shadcn Labs projects), so visitors and crawlers reach them all: the brand
- * column, then four columns of link groups. On phones the brand sits on top
- * and the groups pair up.
+ * Curated, server-rendered links to core collections, directory categories,
+ * selected facets and featured creators, with a directory for the full roster.
+ * The brand column leads four columns of link groups; on phones the brand
+ * sits on top and the groups pair up. Only Shadcn Labs projects use a menu.
  */
 export const SiteFooter = () => {
   const content = useIntlayer("site-footer");
   const header = useIntlayer("site-header");
   const gallery = useIntlayer("motion-gallery");
   const moves = useIntlayer("moves");
+  const directory = useIntlayer("resource-directory");
+  const jobs = useIntlayer("jobs-page");
   const product = [
     [ROUTES.MOVES, header.moves],
     [ROUTES.TEMPLATES, header.templates],
@@ -174,6 +184,12 @@ export const SiteFooter = () => {
     [ROUTES.DOCS_TEMPLATES, content.usingTemplates],
     [ROUTES.DOCS_PLANS, content.plansBilling],
     [ROUTES.DOCS_API, content.publicApi],
+  ] as const;
+  const directories = [
+    { kind: "tool", heading: header.tools },
+    { kind: "studio", heading: header.creatives },
+    { kind: "skill", heading: header.skills },
+    { kind: "extra", heading: header.extras },
   ] as const;
   const resources = [
     [ROUTES.HOME, header.discover],
@@ -332,6 +348,90 @@ export const SiteFooter = () => {
               </DropdownMenu>
             </LinkGroup>
           </Column>
+          {directories.map(({ kind, heading }) => {
+            const path = DIRECTORY_SECTION_PATHS[kind];
+            const categoryLabels: Partial<Record<string, ReactNode>> =
+              directory.labels[kind];
+            const filterLabels: Partial<Record<string, ReactNode>> =
+              directory.filters[kind];
+            const categories = DIRECTORY_CATEGORIES[kind];
+            return (
+              <Column key={kind}>
+                <LinkGroup heading={heading}>
+                  {categories.map(({ slug }) => (
+                    <Link
+                      key={slug}
+                      to={`${path}/${slug}`}
+                      className={linkClass}
+                    >
+                      {categoryLabels[slug]}
+                    </Link>
+                  ))}
+                  {INDEXABLE_DIRECTORY_FILTERS[kind]
+                    .filter(
+                      (slug) =>
+                        !categories.some((category) => category.slug === slug)
+                    )
+                    .map((slug) => (
+                      <Link
+                        key={slug}
+                        to={`${path}/${slug}`}
+                        className={linkClass}
+                      >
+                        {filterLabels[slug]}
+                      </Link>
+                    ))}
+                </LinkGroup>
+              </Column>
+            );
+          })}
+          <Column>
+            <LinkGroup heading={gallery.colors}>
+              {COLOR_PAGES.map((color) => (
+                <Link
+                  key={color.slug}
+                  to="/color/$color"
+                  params={{ color: color.slug }}
+                  className={linkClass}
+                >
+                  {gallery.colorTitles[color.slug]}
+                </Link>
+              ))}
+            </LinkGroup>
+          </Column>
+          <Column>
+            <LinkGroup heading={header.jobs}>
+              {JOB_TYPES.map((type) => (
+                <Link
+                  key={type}
+                  to="/jobs/$type"
+                  params={{ type }}
+                  className={linkClass}
+                >
+                  {jobs.types[type]}
+                </Link>
+              ))}
+            </LinkGroup>
+          </Column>
+          <div className="col-span-2 md:col-span-4">
+            <LinkGroup heading={content.featuredCreators}>
+              <div className="flex flex-wrap gap-x-6 gap-y-2.5">
+                {FEATURED_MOTION_CREATORS.map((creator) => (
+                  <Link
+                    key={creator.handle}
+                    to="/creators/$creator"
+                    params={{ creator: creator.handle }}
+                    className={linkClass}
+                  >
+                    {creator.name}
+                  </Link>
+                ))}
+                <Link to="/creators" className={linkClass}>
+                  {content.browseAllCreators}
+                </Link>
+              </div>
+            </LinkGroup>
+          </div>
         </nav>
       </div>
       {/* Credit left; language, theme and sound right. No rule above. */}

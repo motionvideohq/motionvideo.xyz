@@ -46,6 +46,7 @@ import {
   DirectoryCard,
 } from "@/components/directory-card";
 import { FadeScroller } from "@/components/fade-scroller";
+import { LocalizedLink as Link } from "@/components/localized-link";
 import { SponsoredCard, sponsoredTileIndex } from "@/components/sponsored-card";
 import { buttonVariants } from "@/components/ui/button";
 import {
@@ -71,12 +72,17 @@ import {
 import type {
   DirectoryCategory,
   DirectoryEntry,
+  DirectoryFilter,
   DirectoryKind,
   DirectorySearch,
 } from "@/lib/directories";
+import {
+  DIRECTORY_SECTION_PATHS,
+  INDEXABLE_DIRECTORY_FILTERS,
+} from "@/lib/directory-discovery";
 import { cn } from "@/lib/utils";
 
-// "All" and each category are their own pages: /tools, /tools/ai, /skills…
+// Category and standalone facet pages share each section's dynamic segment.
 const SECTION_ROUTES = {
   tool: { all: "/tools", category: "/tools/$category" },
   studio: { all: "/creatives", category: "/creatives/$category" },
@@ -263,10 +269,13 @@ const DirectoryFilters = ({
 export const ResourceDirectory = ({
   kind,
   category,
+  facet,
 }: {
   kind: DirectoryKind;
-  /** The category page being shown; `undefined` on the "All" page. */
+  /** Content category; absent on the section root and standalone facet pages. */
   category: DirectoryCategory | undefined;
+  /** Facet encoded in the pathname rather than `?filter=`. */
+  facet?: DirectoryFilter;
 }) => {
   const content = useIntlayer("resource-directory");
   const { locale } = useLocale();
@@ -279,11 +288,10 @@ export const ResourceDirectory = ({
     content.headings[kind];
   const descriptions: Partial<Record<string, IntlayerNode<string>>> =
     content.descriptions[kind];
-  // `?filter=` and `?sort=`, validated by each section's layout route; parsed
-  // again here because the loose hook types every route's search at once.
-  const search: DirectorySearch = directorySearch(kind).parse(
-    useSearch({ strict: false })
-  );
+  // The path facet wins over query filters. Queries remain useful when a
+  // category and facet are combined.
+  const query = directorySearch(kind).parse(useSearch({ strict: false }));
+  const search: DirectorySearch = { ...query, filter: facet ?? query.filter };
   const navigate = useNavigate();
   const inCategory = useMemo(
     () =>
@@ -301,6 +309,10 @@ export const ResourceDirectory = ({
     search.sort
   );
   const compact = new Intl.NumberFormat(locale, { notation: "compact" });
+  const facetLabels: Record<string, IntlayerNode<string>> = content.filters[
+    kind
+  ];
+  const facetLabel = facet ? facetLabels[facet]?.value : undefined;
 
   const surprise = () => {
     const entry = filtered[Math.floor(Math.random() * filtered.length)];
@@ -312,9 +324,15 @@ export const ResourceDirectory = ({
   const intro = (
     <CollectionIntro
       titleId="directory-intro-title"
-      title={(category && headings[category.slug]) ?? content.titles[kind]}
+      title={
+        facetLabel
+          ? `${facetLabel} · ${content.titles[kind].value}`
+          : ((category && headings[category.slug]) ?? content.titles[kind])
+      }
       description={
-        (category && descriptions[category.slug]) ?? content.intros[kind]
+        facetLabel
+          ? content.facetIntros[kind].value.replace("{filter}", facetLabel)
+          : ((category && descriptions[category.slug]) ?? content.intros[kind])
       }
       actions={
         <SurpriseAndSubmit
@@ -366,7 +384,7 @@ export const ResourceDirectory = ({
             className="-mx-1 -my-1 min-w-0 flex-1 px-1 py-1 lg:flex-none lg:basis-[65%]"
           >
             {[undefined, ...categories].map((value) => {
-              const selected = value?.slug === category?.slug;
+              const selected = value?.slug === category?.slug && !facet;
               const linkProps = value
                 ? {
                     to: SECTION_ROUTES[kind].category,
@@ -377,8 +395,11 @@ export const ResourceDirectory = ({
                 <CategoryChip
                   key={value?.slug ?? "all"}
                   {...linkProps}
-                  // The filter and order carry over to the other categories.
-                  search={{ filter: search.filter, sort: search.sort }}
+                  // Categories retain the facet; "All" clears it completely.
+                  search={{
+                    filter: value ? search.filter : undefined,
+                    sort: search.sort,
+                  }}
                   activeOptions={{ exact: true, includeSearch: false }}
                   active={selected}
                   label={value ? labels[value.slug] : content.all}
@@ -392,9 +413,20 @@ export const ResourceDirectory = ({
               search={search}
               inView={inCategory}
               onChange={(next) => {
+                const standaloneFacet = category ? undefined : next.filter;
                 void navigate({
-                  to: ".",
-                  search: next,
+                  to:
+                    category || standaloneFacet
+                      ? SECTION_ROUTES[kind].category
+                      : SECTION_ROUTES[kind].all,
+                  params:
+                    category || standaloneFacet
+                      ? { category: category?.slug ?? standaloneFacet }
+                      : undefined,
+                  search: {
+                    filter: category ? next.filter : undefined,
+                    sort: next.sort,
+                  },
                   replace: true,
                   resetScroll: false,
                 });
@@ -402,6 +434,27 @@ export const ResourceDirectory = ({
             />
           </div>
         </CollectionToolbar>
+      )}
+      {INDEXABLE_DIRECTORY_FILTERS[kind].length > 0 && (
+        <nav
+          aria-label={content.filterLabels[kind].value}
+          className="mx-auto flex w-full max-w-[1800px] flex-wrap items-center gap-x-4 gap-y-2 px-4 py-2 text-sm sm:px-6"
+        >
+          <span className="text-muted-foreground">
+            {content.filterLabels[kind]}
+          </span>
+          {INDEXABLE_DIRECTORY_FILTERS[kind].map((filter) => (
+            <Link
+              key={filter}
+              to={`${DIRECTORY_SECTION_PATHS[kind]}/${filter}`}
+              search={{}}
+              aria-current={facet === filter ? "page" : undefined}
+              className="hover:text-foreground text-muted-foreground aria-[current=page]:text-foreground underline-offset-4 hover:underline aria-[current=page]:underline"
+            >
+              {facetLabels[filter]}
+            </Link>
+          ))}
+        </nav>
       )}
       <CollectionGrid
         items={items}

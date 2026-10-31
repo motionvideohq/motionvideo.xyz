@@ -8,9 +8,7 @@ import type { MotionFilters, MotionVideo } from "@/lib/motion-catalog";
 import { videoJsonLd } from "@/seo/json-ld";
 import { createMetadata } from "@/seo/metadata";
 
-// Shared by the gallery routes: the video overlays' loader and head
-// (`/videos/$slug` over Discover, `/category/$category/videos/$slug` over a
-// category page…) and which colours have a page of their own.
+// The canonical video route's loader/head and named colour collection pages.
 const videos: MotionVideo[] = catalog.videos;
 
 // A colour page with only a handful of videos is too thin to be worth a URL.
@@ -52,6 +50,19 @@ export const loadMotionVideo = ({
   }
   throw notFound();
 };
+/** Old scoped video URLs are redirects, never separate video pages. */
+export const redirectMotionVideo = ({
+  params,
+}: {
+  params: { locale: string; slug: string };
+}) => {
+  throw redirect({
+    to: "/$locale/videos/$slug",
+    params: { locale: params.locale, slug: params.slug },
+    search: {},
+    statusCode: 301,
+  });
+};
 
 /** Fills a translated template's `{key}` placeholders. */
 export const fillTemplate = (
@@ -63,9 +74,7 @@ export const fillTemplate = (
     (match, key: string) => values[key] ?? match
   );
 
-// Every overlay URL of a video shares the canonical `/$locale/videos/$slug`
-// (set on the locale layout); structured data makes the video one citable
-// entity per page.
+// Structured data identifies the video at its canonical `/$locale/videos/$slug`.
 export const motionVideoHead = ({
   loaderData,
   params,

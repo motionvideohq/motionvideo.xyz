@@ -121,6 +121,7 @@ export const findMotionColor = (slug: string | undefined) =>
 // Discover's filters are search params (`?type=prompt&model=opus-5-5`); each
 // value also has its own page with that filter in the path.
 export interface GallerySearch {
+  category?: MotionCategory;
   type?: MotionType;
   /** A motionModelSlug. */
   model?: string;
@@ -134,26 +135,29 @@ export interface GallerySearch {
 }
 
 export interface MotionFilters extends GallerySearch {
-  category?: MotionCategory;
+  creator?: string;
   q?: string;
 }
 
 /**
  * The page a gallery grid shows: Discover (undefined), or one filter fixed by
- * the path: `/category/$category`, `/color/$color`, `/model/$model` or
- * `/type/$type`.
+ * the path: category, colour, model, type, or creator.
  */
 export type GalleryScope =
   | { kind: "category"; category: MotionCategory }
   | { kind: "color"; color: MotionColor }
   | { kind: "model"; model: MotionModel }
-  | { kind: "type"; type: MotionType };
+  | { kind: "type"; type: MotionType }
+  | { kind: "creator"; creator: string };
 
 /** The filters a scope fixes, as MotionFilters. */
 export const scopeFilters = (
   scope: GalleryScope | undefined
 ): MotionFilters => {
   switch (scope?.kind) {
+    case "creator": {
+      return { creator: scope.creator };
+    }
     case "category": {
       return { category: scope.category };
     }
@@ -204,6 +208,12 @@ export const filterMotionVideos = (
   const words = search.q?.trim().toLowerCase().split(/\s+/u) ?? [];
   const colors = parseFilterColors(search.color);
   const filtered = videos.filter((video) => {
+    if (
+      search.creator &&
+      video.handle.toLowerCase() !== search.creator.toLowerCase()
+    ) {
+      return false;
+    }
     if (search.type && !video.tags.includes(search.type)) {
       return false;
     }

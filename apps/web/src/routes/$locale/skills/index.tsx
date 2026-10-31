@@ -2,10 +2,20 @@ import { createFileRoute } from "@tanstack/react-router";
 import { getIntlayer } from "intlayer";
 
 import { DEFAULT_LOCALE, isLocale } from "@/constants/locales";
+import { localizedRedirect } from "@/lib/localized-redirect";
 import { createMetadata } from "@/seo/metadata";
 
 // The directory renders in the `/skills` layout; this route only owns `/skills`.
 export const Route = createFileRoute("/$locale/skills/")({
+  beforeLoad: ({ params, search }) => {
+    if (search.filter) {
+      throw localizedRedirect(`/skills/${search.filter}`, params.locale, {
+        search: { sort: search.sort },
+        replace: true,
+        statusCode: 301,
+      });
+    }
+  },
   head: ({ params }) => {
     const meta = getIntlayer(
       "directory-meta",

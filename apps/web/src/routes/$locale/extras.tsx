@@ -7,7 +7,11 @@ import {
 import { ResourceDirectory } from "@/components/resource-directory";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
-import { directorySearch, findDirectoryCategory } from "@/lib/directories";
+import {
+  directorySearch,
+  findDirectoryCategory,
+  findDirectoryFilter,
+} from "@/lib/directories";
 import { getLandingData } from "@/server/functions";
 
 const routeApi = getRouteApi("/$locale/extras");
@@ -22,15 +26,16 @@ const Extras = () => {
       <ResourceDirectory
         kind="extra"
         category={findDirectoryCategory("extra", category)}
+        facet={findDirectoryFilter("extra", category)}
       />
       <SiteFooter />
     </>
   );
 };
 
-// Layout for `/extras` and `/extras/$category`: X articles and resources that
-// fit no other section (`/tools/resources` redirects here). The directory stays
-// mounted while switching categories; the child routes own the URL and head tags.
+// X articles and resources (`/tools/resources` redirects here). The directory
+// stays mounted across category and facet paths; child routes own the URLs,
+// redirects and head tags.
 export const Route = createFileRoute("/$locale/extras")({
   component: Extras,
   loader: () => getLandingData(),
