@@ -9,6 +9,7 @@ videos:
   - daniel-haida-8691d4
   - nft-chen-5f8bb0
 ---
+
 Ask a coding agent for a motion graphics video and it will often build a web page that animates in a browser. That is a fine way to preview, and a bad way to deliver. Played in real time, the animation depends on the machine: a slow frame drops, a timer drifts, the capture tool adds its own stutter. The fix is the same in every serious tool: make time an input, compute each frame from it, and render the frames offline.
 
 ## Make every frame a function of time
@@ -26,7 +27,12 @@ In practice the agent writes small helpers, a clamp, an interpolate and a few ea
 
 Once each frame is a function of time, rendering is a loop: for frame 0 to N, set `t = frame / fps`, draw, save the image. A headless browser driven by Playwright works well for anything built on HTML, SVG, canvas or WebGL: load the page, call the render function, take a screenshot, repeat. Then ffmpeg turns the numbered images into a video. Only one prompt in the gallery mentions screen recording, while 14 mention Playwright and 11 mention ffmpeg.
 
-<Prompt caption={"A render contract to paste into a prompt"} prompt={"Build the video as a single page that exposes window.renderFrame(t), where t is seconds. renderFrame must draw the complete frame for that time and depend on nothing else: no timers, no CSS transitions, no Math.random (use a seeded generator). Render offline with Playwright at 1920x1080, 60 fps: for each frame call renderFrame(frame / 60), wait for fonts and images, and screenshot. Encode the frames with ffmpeg to H.264, yuv420p, CRF 18."} />
+<Prompt
+  caption={"A render contract to paste into a prompt"}
+  prompt={
+    "Build the video as a single page that exposes window.renderFrame(t), where t is seconds. renderFrame must draw the complete frame for that time and depend on nothing else: no timers, no CSS transitions, no Math.random (use a seeded generator). Render offline with Playwright at 1920x1080, 60 fps: for each frame call renderFrame(frame / 60), wait for fonts and images, and screenshot. Encode the frames with ffmpeg to H.264, yuv420p, CRF 18."
+  }
+/>
 
 ### Motion blur from subframes
 
@@ -51,8 +57,19 @@ Whatever the stack, the prompt should say it outright, along with size, frame ra
 
 The last advantage of a seekable video is review. Ask the agent to render a contact sheet, a still at every second or at every scene boundary, and look at it before rendering the full video. It will catch text running off the frame, elements overlapping and scenes that end before their content is readable, and it can jump to the exact moment to fix them. A screen recording offers none of this: the only way to check it is to watch it.
 
-<Videos caption={"Rendered frame by frame: HTML with Playwright, Remotion and three.js"} slugs={["xelandre-363f00","rossaxbt-3085b7","daniel-haida-8691d4","nft-chen-5f8bb0"]} />
+<Videos
+  caption={
+    "Rendered frame by frame: HTML with Playwright, Remotion and three.js"
+  }
+  slugs={[
+    "xelandre-363f00",
+    "rossaxbt-3085b7",
+    "daniel-haida-8691d4",
+    "nft-chen-5f8bb0",
+  ]}
+/>
 
 <Callout href={"/customize"} label={"Customize a prompt"}>
-  Add your stack, size and length to any gallery prompt, and set how polished the render should be, in the prompt customizer.
+  Add your stack, size and length to any gallery prompt, and set how polished
+  the render should be, in the prompt customizer.
 </Callout>

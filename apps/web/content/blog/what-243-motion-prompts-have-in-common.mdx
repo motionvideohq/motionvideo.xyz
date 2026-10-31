@@ -8,6 +8,7 @@ videos:
   - shneural-2abdfa
   - ajith-io-b5626e
 ---
+
 MotionVideo collects motion videos made with AI coding agents, along with the prompt or skill behind each one. When this was written the gallery held 247 videos from 221 creators, posted between 23 September and 14 October 2026. 243 of them come with the full prompt. That makes a small but honest dataset: these are the words people actually typed, not cleaned-up examples. We read all of them and counted.
 
 ## Most prompts are short
@@ -26,13 +27,21 @@ So there are two groups and very little in between: a large pile of one- or two-
 
 78 prompts, almost a third, contain the phrase "incredible motion designer". They all descend from one request that spread widely, and 24 videos use it word for word (ignoring capitalisation and spacing):
 
-<Prompt caption={"The most reused prompt in the gallery, verbatim in 24 videos"} prompt={"Make a dynamic 15-second motion graphics video that shows what an incredible motion designer you are, like it's your showreel for a résumé. Go all out."} />
+<Prompt
+  caption={"The most reused prompt in the gallery, verbatim in 24 videos"}
+  prompt={
+    "Make a dynamic 15-second motion graphics video that shows what an incredible motion designer you are, like it's your showreel for a résumé. Go all out."
+  }
+/>
 
 The variants mostly change the length. 56 of the 78 keep 15 seconds, 6 ask for 20, 4 for 40, 3 for 30, 2 for 10 and 1 for 25, and 6 give no length. The original is 26 words; 17 of the variants run past 30, so their creators added at least a sentence of their own. Its closing words travelled further than the prompt itself: "go all out" appears in 89 prompts.
 
 The prompt works because it asks for nothing in particular. The model picks the subject, the palette, the type and the story, and it shows: 52 of the 78 videos are tagged kinetic type and 34 shapes, the things a model reaches for when nobody tells it otherwise. That makes it a good test of what a model can do and a poor brief for a video you need. Below are three results from the identical prompt.
 
-<Videos caption={"Three videos from the exact same prompt"} slugs={["stephanlivera-df17a2","shneural-2abdfa","ajith-io-b5626e"]} />
+<Videos
+  caption={"Three videos from the exact same prompt"}
+  slugs={["stephanlivera-df17a2", "shneural-2abdfa", "ajith-io-b5626e"]}
+/>
 
 ## Long prompts converge on one structure
 
@@ -86,5 +95,6 @@ Read the one-shot figure with care. People are more likely to post, and label, a
 [The anatomy of a motion prompt](/blog/anatomy-of-a-motion-prompt) turns these into a structure with example lines, and the [prompt customizer](/customize) adds your details to any prompt in the gallery.
 
 <Callout href={"/templates/showreel"} label={"Open the showreel template"}>
-  The showreel template rewrites the viral prompt with a slot for every detail it leaves to chance.
+  The showreel template rewrites the viral prompt with a slot for every detail
+  it leaves to chance.
 </Callout>
