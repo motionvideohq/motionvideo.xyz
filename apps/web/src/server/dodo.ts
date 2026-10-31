@@ -6,6 +6,7 @@ import type { CountryCode } from "dodopayments/resources/misc";
 import { JOB_PLANS } from "@/constants/jobs";
 import type { JobPlan } from "@/constants/jobs";
 import { DEFAULT_LOCALE, isLocale, localizedPath } from "@/constants/locales";
+import { PLAN_PRICE_CENTS } from "@/constants/plans";
 import type { Plan, PlanBilling } from "@/constants/plans";
 import { ROUTES } from "@/constants/routes";
 import { SPONSOR_BILLINGS, SPONSOR_TIERS } from "@/constants/sponsors";
@@ -90,13 +91,16 @@ export const planProductId = (plan: Plan, billing: PlanBilling): string =>
  * Percent off the list price Dodo's purchasing power parity gives a billing
  * country, read from a checkout preview of Pro (annual). PPP is one
  * business-wide percentage per country, the same for every opted-in product,
- * so one plan stands for all. The preview is pinned to USD so the list and
- * charged prices compare directly; anything else reads as no discount rather
- * than a wrong one. Countries Dodo doesn't know throw (an API error).
+ * so one plan stands for all. Dodo applies PPP to the product's price itself
+ * (`og_price` already comes back reduced), so the preview's price is compared
+ * with our list price, not with `og_price`. The preview is pinned to USD so
+ * the two compare directly; anything else reads as no discount rather than a
+ * wrong one. Countries Dodo doesn't know throw (an API error).
  */
 export const parityPercentOff = async (country: string): Promise<number> => {
   const productId = planProductId("pro", "annual");
-  if (!productId) {
+  const listCents = PLAN_PRICE_CENTS.pro.annual;
+  if (!productId || !listCents) {
     return 0;
   }
   const preview = await getDodo().checkoutSessions.preview({
@@ -107,17 +111,12 @@ export const parityPercentOff = async (country: string): Promise<number> => {
     product_cart: [{ product_id: productId, quantity: 1 }],
   });
   const [item] = preview.product_cart;
-  if (
-    !item ||
-    item.currency !== "USD" ||
-    item.og_currency !== "USD" ||
-    item.og_price <= 0
-  ) {
+  if (!item || item.currency !== "USD") {
     return 0;
   }
   return Math.max(
     0,
-    Math.round(100 - (item.discounted_price / item.og_price) * 100)
+    Math.round(100 - (item.discounted_price / listCents) * 100)
   );
 };
 
