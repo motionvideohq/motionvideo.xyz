@@ -225,10 +225,15 @@ if (brand) {
 }
 const brandId = brand.brand_id;
 
-// Products (searched only within the MotionVideo brand)
+// Products (searched only within the MotionVideo brand). One page: across
+// pages Dodo's order isn't stable when products share a creation time, so a
+// product could be skipped and created again as a duplicate.
 const existingProducts = await collect(
-  dodo.products.list({ archived: false, brand_id: brandId })
+  dodo.products.list({ archived: false, brand_id: brandId, page_size: 100 })
 );
+if (existingProducts.length >= 100) {
+  throw new Error("100+ products in the brand: page the lookup by name");
+}
 const productEntries = await Promise.all(
   PRODUCTS.map(async (product) => {
     const match = existingProducts.find((item) => item.name === product.name);
