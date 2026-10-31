@@ -39,7 +39,6 @@ const CustomizeTemplate = () => {
       {prompt.locked ? (
         <LockedPrompt
           title={content.lockedTitle}
-          body={content.lockedBody}
           signInReason={content.signInReason}
           signedIn={signedIn}
           redirect={`${path}/customize`}

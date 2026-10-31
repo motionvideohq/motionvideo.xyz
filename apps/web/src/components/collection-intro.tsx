@@ -1,5 +1,4 @@
 import type { ReactNode } from "react";
-import { ArrowRightUp } from "reicon-react/icons/ArrowRightUp";
 import { Ufo } from "reicon-react/icons/Ufo";
 
 import { LocalizedLink as Link } from "@/components/localized-link";
@@ -43,7 +42,6 @@ export const SurpriseAndSubmit = ({
       className={buttonVariants({ variant: "gradient", size: "lg" })}
     >
       {submitLabel}
-      <ArrowRightUp aria-hidden="true" />
     </Link>
   </>
 );

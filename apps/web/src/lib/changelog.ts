@@ -12,6 +12,8 @@ const entries = defineCollections({
   async: true,
   dir: "content/changelog",
   schema: z.object({
+    /** Slug of the gallery video whose poster is the entry's card cover. */
+    cover: z.string(),
     /** Release day, `YYYY-MM-DD`; entries are listed newest first. */
     date: z.iso.date(),
     /** One line for the index, the meta description and link previews. */

@@ -10,21 +10,22 @@ import { SiteHeader } from "@/components/site-header";
 import { buttonVariants } from "@/components/ui/button";
 import { ROUTES } from "@/constants/routes";
 import catalog from "@/data/motion-catalog.json";
-import {
-  BLOG_POSTS,
-  blogPostVideos,
-  findBlogPost,
-  formatPostDate,
-} from "@/lib/blog";
+import { BLOG_POSTS, findBlogPost, formatPostDate } from "@/lib/blog";
 import { cn } from "@/lib/utils";
+import { pickVideos } from "@/lib/video-picks";
 import { blogPostingJsonLd } from "@/seo/json-ld";
 import { createMetadata } from "@/seo/metadata";
 
 const BlogPostPage = () => {
-  const { post, videos } = Route.useLoaderData();
+  const { slug, videos } = Route.useLoaderData();
   const content = useIntlayer("blog");
   const { locale } = useLocale();
-  const others = BLOG_POSTS.filter((entry) => entry.slug !== post.slug);
+  // The loader already threw notFound() for unknown slugs.
+  const post = findBlogPost(slug);
+  if (!post) {
+    return null;
+  }
+  const others = BLOG_POSTS.filter((entry) => entry.url !== post.url);
   return (
     <>
       <SiteHeader signedIn={false} />
@@ -42,19 +43,19 @@ const BlogPostPage = () => {
               {content.back}
             </Link>
             <h1 className="text-4xl font-semibold tracking-tight text-balance">
-              {post.title}
+              {post.data.title}
             </h1>
             <p className="text-muted-foreground text-lg text-pretty">
-              {post.description}
+              {post.data.description}
             </p>
             <time
-              dateTime={post.date}
+              dateTime={post.data.date}
               className="text-muted-foreground text-sm"
             >
-              {formatPostDate(post.date, locale)}
+              {formatPostDate(post.data.date, locale)}
             </time>
           </header>
-          <BlogContent blocks={post.body} videos={videos} />
+          <BlogContent Body={post.data.body} videos={videos} />
         </article>
         <nav
           aria-label={content.morePosts.value}
@@ -63,17 +64,17 @@ const BlogPostPage = () => {
           <h2 className="text-sm font-medium">{content.morePosts}</h2>
           <ul className="flex flex-col gap-4">
             {others.map((entry) => (
-              <li key={entry.slug}>
+              <li key={entry.url}>
                 <Link
                   to="/blog/$slug"
-                  params={{ slug: entry.slug }}
+                  params={{ slug: entry.slugs.join("/") }}
                   className="group flex flex-col gap-0.5"
                 >
                   <span className="font-medium group-hover:underline group-hover:underline-offset-4">
-                    {entry.title}
+                    {entry.data.title}
                   </span>
                   <span className="text-muted-foreground line-clamp-2 text-sm">
-                    {entry.description}
+                    {entry.data.description}
                   </span>
                 </Link>
               </li>
@@ -88,22 +89,35 @@ const BlogPostPage = () => {
 
 export const Route = createFileRoute("/$locale/blog/$slug")({
   component: BlogPostPage,
-  loader: ({ params }) => {
+  // Bodies load lazily (`async` in src/lib/blog.ts); fetch this one before
+  // rendering so the page never suspends. Only the poster-card fields of the
+  // videos the post shows ship, not the catalog.
+  loader: async ({ params }) => {
     const post = findBlogPost(params.slug);
     if (!post) {
       throw notFound();
     }
-    // Only the poster-card fields of the videos the post shows, not the catalog.
-    return { post, videos: blogPostVideos(post, catalog.videos) };
+    await post.data.preload();
+    return {
+      slug: params.slug,
+      videos: pickVideos(post.data.videos, catalog.videos),
+    };
   },
-  head: ({ loaderData, params }) =>
-    loaderData
+  head: ({ params }) => {
+    const post = findBlogPost(params.slug);
+    return post
       ? {
           ...createMetadata({
-            description: loaderData.post.description,
-            title: loaderData.post.title,
+            description: post.data.description,
+            title: post.data.title,
           }),
-          scripts: [blogPostingJsonLd(loaderData.post, params.locale)],
+          scripts: [
+            blogPostingJsonLd(
+              { ...post.data, slug: params.slug },
+              params.locale
+            ),
+          ],
         }
-      : createMetadata({ title: "Post not found" }),
+      : createMetadata({ title: "Post not found" });
+  },
 });

@@ -1,5 +1,6 @@
 import { TOCItem } from "fumadocs-core/toc";
 import type { TOCItemType } from "fumadocs-core/toc";
+import type { ReactNode } from "react";
 import { useIntlayer } from "react-intlayer";
 import { ChevronDown } from "reicon-react/icons/ChevronDown";
 
@@ -30,22 +31,38 @@ const TocList = ({ toc }: { toc: TOCItemType[] }) => (
   </ol>
 );
 
-/** Right-hand "On this page" column (xl and up). */
+/** "On this page" in the right-hand column (xl and up). */
 export const DocsToc = ({ toc }: { toc: TOCItemType[] }) => {
   const content = useIntlayer("docs-layout");
   return (
-    <nav aria-label={content.onThisPage.value} className="flex flex-col gap-3">
-      <p className="text-sm font-medium">{content.onThisPage}</p>
-      <TocList toc={toc} />
+    <nav
+      aria-label={content.onThisPage.value}
+      className="flex min-h-0 flex-col gap-3"
+    >
+      <p className="shrink-0 text-sm font-medium">{content.onThisPage}</p>
+      {/* Only the headings scroll, without a scrollbar; the title above and
+          the page actions below stay put. */}
+      <div className="no-scrollbar min-h-0 overflow-y-auto">
+        <TocList toc={toc} />
+      </div>
     </nav>
   );
 };
 
-/** "On this page" folded above the content below xl. */
-export const DocsTocCollapsible = ({ toc }: { toc: TOCItemType[] }) => {
+/**
+ * "On this page" folded above the content below xl: the headings (if any)
+ * and the page actions.
+ */
+export const DocsTocCollapsible = ({
+  toc,
+  actions,
+}: {
+  toc: TOCItemType[];
+  actions: ReactNode;
+}) => {
   const content = useIntlayer("docs-layout");
   return (
-    <Collapsible className="bg-card shadow-outline rounded-xl">
+    <Collapsible className="bg-card shadow-outline rounded-xl print:hidden">
       <CollapsibleTrigger className="focus-visible:ring-ring flex w-full items-center justify-between gap-2 rounded-xl px-4 py-2.5 text-sm font-medium outline-none focus-visible:ring-2">
         {content.onThisPage}
         <ChevronDown
@@ -54,9 +71,16 @@ export const DocsTocCollapsible = ({ toc }: { toc: TOCItemType[] }) => {
         />
       </CollapsibleTrigger>
       <CollapsibleContent>
-        <nav aria-label={content.onThisPage.value} className="px-4 pb-3">
-          <TocList toc={toc} />
-        </nav>
+        <div className="flex flex-col gap-3 px-2 pb-2">
+          {toc.length > 0 ? (
+            <nav aria-label={content.onThisPage.value} className="px-2">
+              <TocList toc={toc} />
+            </nav>
+          ) : null}
+          <div className={cn("px-2", toc.length > 0 && "border-t pt-2")}>
+            {actions}
+          </div>
+        </div>
       </CollapsibleContent>
     </Collapsible>
   );

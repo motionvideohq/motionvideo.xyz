@@ -1,17 +1,22 @@
-import { Link, createFileRoute } from "@tanstack/react-router";
+import { createFileRoute } from "@tanstack/react-router";
 import { getIntlayer } from "intlayer";
 import { useIntlayer, useLocale } from "react-intlayer";
 
+import { EntryCard } from "@/components/entry-card";
 import { PageHeader } from "@/components/page";
 import { DEFAULT_LOCALE, isLocale } from "@/constants/locales";
 import { ROUTES } from "@/constants/routes";
+import catalog from "@/data/motion-catalog.json";
 import { CHANGELOG_ENTRIES, formatChangelogDate } from "@/lib/changelog";
+import { pickVideos } from "@/lib/video-picks";
 import { breadcrumbJsonLd } from "@/seo/json-ld";
 import { createMetadata } from "@/seo/metadata";
 
+// Cards match /blog and /templates: cover poster, title, description, date.
 const Changelog = () => {
   const content = useIntlayer("changelog");
   const { locale } = useLocale();
+  const { covers } = Route.useLoaderData();
   return (
     <>
       <PageHeader
@@ -22,32 +27,21 @@ const Changelog = () => {
             : `${content.intro.value} ${content.englishOnly.value}`
         }
       />
-      <ol className="flex flex-col">
+      <ol className="flex flex-col gap-4">
         {CHANGELOG_ENTRIES.map((entry) => (
-          <li
-            key={entry.url}
-            className="grid gap-1 border-t py-6 sm:grid-cols-[10rem_minmax(0,1fr)] sm:gap-6"
-          >
-            <time
-              dateTime={entry.data.date}
-              className="text-muted-foreground text-sm sm:pt-0.5"
-            >
-              {formatChangelogDate(entry.data.date, locale)}
-            </time>
-            <div className="flex flex-col gap-1">
-              <h2 className="text-lg font-semibold tracking-tight">
-                <Link
-                  to="/$locale/changelog/$slug"
-                  params={{ locale, slug: entry.slugs.join("/") }}
-                  className="hover:underline hover:underline-offset-4"
-                >
-                  {entry.data.title}
-                </Link>
-              </h2>
-              <p className="text-muted-foreground text-pretty">
-                {entry.data.description}
-              </p>
-            </div>
+          <li key={entry.url}>
+            <EntryCard
+              to="/changelog/$slug"
+              params={{ slug: entry.slugs.join("/") }}
+              cover={covers[entry.data.cover]}
+              title={entry.data.title}
+              description={entry.data.description}
+              meta={
+                <time dateTime={entry.data.date}>
+                  {formatChangelogDate(entry.data.date, locale)}
+                </time>
+              }
+            />
           </li>
         ))}
       </ol>
@@ -57,6 +51,13 @@ const Changelog = () => {
 
 export const Route = createFileRoute("/$locale/_pages/changelog/")({
   component: Changelog,
+  // Only the cover posters' fields, not the catalog.
+  loader: () => ({
+    covers: pickVideos(
+      CHANGELOG_ENTRIES.map((entry) => entry.data.cover),
+      catalog.videos
+    ),
+  }),
   head: ({ params }) => {
     const content = getIntlayer(
       "changelog",

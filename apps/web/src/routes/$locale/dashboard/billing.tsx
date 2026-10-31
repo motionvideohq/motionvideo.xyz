@@ -331,7 +331,7 @@ const idSchema = z.string().min(1).max(100);
 
 export const Route = createFileRoute("/$locale/dashboard/billing")({
   component: Billing,
-  head: () => createMetadata({ title: "Plan and billing" }),
+  head: () => createMetadata({ title: "Usage and billing" }),
   validateSearch: (search): BillingSearch => ({
     checkout: search.checkout === "success" ? "success" : undefined,
     subscription_id: idSchema.safeParse(search.subscription_id).data,

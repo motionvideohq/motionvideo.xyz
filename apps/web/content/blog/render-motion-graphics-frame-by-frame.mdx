@@ -1,0 +1,58 @@
+---
+title: "Render motion graphics frame by frame"
+description: "Why an agent should compute every frame from a pure render(t) function and render offline instead of screen recording, and how Remotion, HyperFrames, plain HTML with Playwright and three.js fit that model."
+date: 2026-10-15
+cover: xelandre-363f00
+videos:
+  - xelandre-363f00
+  - rossaxbt-3085b7
+  - daniel-haida-8691d4
+  - nft-chen-5f8bb0
+---
+Ask a coding agent for a motion graphics video and it will often build a web page that animates in a browser. That is a fine way to preview, and a bad way to deliver. Played in real time, the animation depends on the machine: a slow frame drops, a timer drifts, the capture tool adds its own stutter. The fix is the same in every serious tool: make time an input, compute each frame from it, and render the frames offline.
+
+## Make every frame a function of time
+
+The core idea is a pure function: `render(t)` takes a time in seconds and draws exactly what the video shows at that moment, with no memory of earlier frames. Position, opacity, colour and the text on screen are all computed from `t`. Nothing advances on its own: no `setInterval`, no CSS transitions running on the wall clock, no physics stepped by however much time happened to pass.
+
+- **Seekable.** You can jump to 7.4 seconds and see that exact frame, which is how both you and the agent review the video.
+- **Deterministic.** Rendering twice gives the same file. Use a seeded random generator instead of `Math.random()`, so particles land in the same place every time.
+- **Speed-independent.** A frame that takes a second to draw still lands at the right time in the output. Heavy effects stop being a problem.
+- **Easy to retime.** A scene is a time window and every animation is an eased interpolation inside it, so moving a scene is changing two numbers.
+
+In practice the agent writes small helpers, a clamp, an interpolate and a few easing curves, and every element reads like this: progress for this element is the time since its start divided by its duration, eased, then mapped to a position. Springs work too, as long as they are computed in closed form or simulated from zero each frame, not carried over from the previous one.
+
+## Render offline, then encode
+
+Once each frame is a function of time, rendering is a loop: for frame 0 to N, set `t = frame / fps`, draw, save the image. A headless browser driven by Playwright works well for anything built on HTML, SVG, canvas or WebGL: load the page, call the render function, take a screenshot, repeat. Then ffmpeg turns the numbered images into a video. Only one prompt in the gallery mentions screen recording, while 14 mention Playwright and 11 mention ffmpeg.
+
+<Prompt caption={"A render contract to paste into a prompt"} prompt={"Build the video as a single page that exposes window.renderFrame(t), where t is seconds. renderFrame must draw the complete frame for that time and depend on nothing else: no timers, no CSS transitions, no Math.random (use a seeded generator). Render offline with Playwright at 1920x1080, 60 fps: for each frame call renderFrame(frame / 60), wait for fonts and images, and screenshot. Encode the frames with ffmpeg to H.264, yuv420p, CRF 18."} />
+
+### Motion blur from subframes
+
+Offline rendering makes real motion blur cheap to add. A camera shutter is open for part of each frame, so fast objects smear. You get the same effect by rendering several subframes spread across that shutter interval and averaging them: at 60 fps with eight samples, draw at `t`, `t + 1/480`, and so on, then blend. You can accumulate in a canvas, or render at the higher rate and let ffmpeg average groups of frames (`tmix` followed by `framestep`). 11 prompts in the gallery ask for motion blur. It is the single change that makes fast moves look filmed rather than computed.
+
+### Audio generated from the same timeline
+
+Sound effects drift out of sync when they are placed by hand afterwards. If the video already has a list of events (a card lands at 3.2 s, a click at 7.8 s), the agent can render audio from the same list: synthesize short sounds in code, for example with an `OfflineAudioContext`, write a WAV, and mux it in with ffmpeg. Change the timing and the sound follows. For music, do it the other way round: give the agent the track's tempo and let it place cuts on beats.
+
+## Choosing a stack
+
+56 videos in the gallery report the stack they were made with. 18 are plain HTML, JavaScript or canvas, 12 use Remotion, 10 HyperFrames, 6 describe an HTML page captured with Playwright, and 5 use Three.js. The rest are Python (3, including Manim), Blender and OpenEdit (1 each). All of the main options can follow the frame-by-frame model; they differ in how much of the loop they write for you.
+
+- **Remotion** expresses the video as React components that read the current frame. It handles the seek, render and encode loop, previews in a browser and composes scenes as sequences. A good fit when you already think in React, and it rewards agents because the frame is always explicit. Check its license if you render for a company.
+- **HyperFrames** describes a video as HTML with timing attributes and drives animation through seekable timelines, often GSAP, then renders by stepping through time. Close to how agents already write web pages, with the frame-by-frame discipline built in.
+- **Plain HTML with Playwright** is the minimal version: one page, one `renderFrame(t)`, a short capture script and ffmpeg. No framework to learn and complete control, at the cost of writing the loop, font loading and encoding yourself. Several of the more ambitious launch films in the gallery are built this way.
+- **three.js** is for real 3D: cameras, lights, models. It fits the model as long as the scene is updated from `t` rather than from a clock delta, and the renderer is drawn once per captured frame. Pair it with the Playwright loop to render.
+
+Whatever the stack, the prompt should say it outright, along with size, frame rate and length. The agent will otherwise pick whatever it reaches for first, and switching later means rewriting every scene.
+
+## Make the agent check its own frames
+
+The last advantage of a seekable video is review. Ask the agent to render a contact sheet, a still at every second or at every scene boundary, and look at it before rendering the full video. It will catch text running off the frame, elements overlapping and scenes that end before their content is readable, and it can jump to the exact moment to fix them. A screen recording offers none of this: the only way to check it is to watch it.
+
+<Videos caption={"Rendered frame by frame: HTML with Playwright, Remotion and three.js"} slugs={["xelandre-363f00","rossaxbt-3085b7","daniel-haida-8691d4","nft-chen-5f8bb0"]} />
+
+<Callout href={"/customize"} label={"Customize a prompt"}>
+  Add your stack, size and length to any gallery prompt, and set how polished the render should be, in the prompt customizer.
+</Callout>

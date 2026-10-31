@@ -119,17 +119,6 @@ export default {
       pt: "O prompt completo deste modelo faz parte do Pro",
       ru: "Полный промпт этого шаблона входит в Pro",
     }),
-    lockedBody: t({
-      en: "Pro unlocks the full prompt of every template, ready to copy or to customize with your details, plus the Moves library, the Pro agent skill and every future update.",
-      es: "Pro desbloquea el prompt completo de cada plantilla, listo para copiar o personalizar con tus datos, además de la biblioteca Moves, la skill Pro para agentes y todas las actualizaciones futuras.",
-      fr: "Pro débloque le prompt complet de chaque modèle, prêt à copier ou à personnaliser avec vos informations, ainsi que la bibliothèque Moves, le skill Pro pour agents et toutes les mises à jour à venir.",
-      zh: "Pro 解锁每个模板的完整提示词，可直接复制，也可填入你的信息进行自定义，另含 Moves 技法库、Pro 智能体技能以及之后的每一次更新。",
-      ko: "Pro는 모든 템플릿의 전체 프롬프트를 잠금 해제합니다. 바로 복사하거나 내 정보로 맞춤 설정할 수 있고, Moves 라이브러리, Pro 에이전트 스킬, 앞으로의 모든 업데이트도 포함됩니다.",
-      ja: "Pro では、すべてのテンプレートの完全なプロンプトが使えます。そのままコピーすることも、自分の情報でカスタマイズすることもできます。Moves ライブラリ、Pro エージェントスキル、今後のすべてのアップデートも含まれます。",
-      de: "Pro schaltet den vollständigen Prompt jeder Vorlage frei, kopierfertig oder mit deinen Angaben anpassbar, dazu die Moves-Bibliothek, den Pro-Agent-Skill und alle künftigen Updates.",
-      pt: "O Pro desbloqueia o prompt completo de cada modelo, pronto a copiar ou a personalizar com os teus dados, além da biblioteca Moves, da skill Pro para agentes e de todas as atualizações futuras.",
-      ru: "Pro открывает полный промпт каждого шаблона — его можно скопировать или настроить под себя, — а также библиотеку Moves, Pro-навык для агента и все будущие обновления.",
-    }),
     signInReason: t({
       en: "Already on Pro? Sign in to see this template’s prompt.",
       es: "¿Ya tienes Pro? Inicia sesión para ver el prompt de esta plantilla.",

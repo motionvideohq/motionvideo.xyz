@@ -1,0 +1,65 @@
+---
+title: "The anatomy of a motion prompt"
+description: "A practical structure for prompts that produce motion graphics with coding agents: goal, style, scenes and timing, build, review and handoff, with example lines for each part."
+date: 2026-10-13
+cover: twoclipping-5cba86
+---
+The median prompt in the MotionVideo gallery is 26 words. That is enough to get a video, but not enough to get the video you had in mind: everything you leave out, the model decides for you. The prompts behind the most controlled results are longer, and they tend to cover the same six things in the same order. Here is that structure, with short example lines you can adapt.
+
+None of the parts needs to be long. A complete prompt can fit in 150 words. What matters is that each question has an answer, so the agent spends its effort on craft instead of guessing.
+
+## 1. Goal
+
+Say what the video is for, who will watch it and where. A homepage hero loop, a product launch post and a conference talk opener need different pacing, length and framing. Then give the hard numbers: length, size and frame rate. In the gallery, at least 131 of 243 prompts give a length in seconds, but only 29 give a size or aspect ratio and 9 a frame rate.
+
+<Prompt caption={"Goal"} prompt={"A 20-second video announcing our new offline mode, posted on X and LinkedIn. 1080x1350 (4:5), 30 fps, plays muted by default, so it has to work without sound."} />
+
+## 2. Style
+
+Describe the look with things the agent can implement, not adjectives. "Premium" and "dynamic" mean nothing to code; a palette, a typeface and a few motion rules do. Name what is banned as well: it is the fastest way to steer away from the effects every model reaches for first.
+
+- **Palette:** two or three colours with hex values, and which one is the accent.
+- **Type:** the typeface, weights and the largest and smallest sizes on screen.
+- **Motion rules:** the easing family, how long a typical move takes, how much overlap between elements.
+- **Banned:** for example lens flares, glitch transitions, rotating 3D text, stock particle bursts.
+
+<Prompt caption={"Style"} prompt={"Off-white background (#F6F4EF), near-black text (#141414), one accent (#2F6BFF) used only for the thing that changes. Inter Tight, 600 for headlines, 400 for UI. Moves take 400 to 700 ms with a strong ease-out; elements enter in 60 ms staggers. No glows, no particles, no camera shake."} />
+
+## 3. Scenes and timing
+
+Write the video as beats with timings. This is the part people skip most, and the part that most changes the result: without it the agent invents a story and usually overfills it. Give each beat one job and a time window, and say how scenes connect. A transition that grows out of the previous scene reads as designed; a crossfade between unrelated scenes reads as a slideshow.
+
+<Prompt caption={"Scenes and timing"} prompt={"0 to 3 s: the words \"No signal?\" type in, centred. 3 to 8 s: a phone screen slides up; its status bar loses signal, and the app keeps working as a note saves with a small check. 8 to 15 s: three cards fan out, one per feature, each held 2 s. 15 to 20 s: the cards collapse into the logo, tagline below, hold 2 s."} />
+
+## 4. Build
+
+Tell the agent how to make it: the stack, how to render, and where the material comes from. If the video shows your product, point at the code or the site and ask for the screens to be rebuilt as elements rather than screenshots. If you care that it renders cleanly, ask for every frame to be computed from the time and captured offline; [rendering frame by frame](/blog/render-motion-graphics-frame-by-frame) explains why.
+
+<Prompt caption={"Build"} prompt={"Use Remotion. Rebuild the note editor from src/components/editor as simplified, animatable components; use sample notes, not real data. Every animation is computed from the current frame. Render to MP4, H.264."} />
+
+## 5. Review
+
+Agents are good at checking their own work when asked. Ask for a pass over rendered stills before the final render, with specific things to look for. Only 10 prompts in the gallery mention screenshots at all, so most leave the model to judge its work from the code alone.
+
+<Prompt caption={"Review"} prompt={"Before the final render, export a still every half second and look at them. Fix any text that is clipped, overlapping or on screen for less than 1.5 s, any element that touches the frame edge, and any scene where nothing moves for more than a second."} />
+
+## 6. Handoff
+
+Say what you want back. A video file, yes, but also the source, so you can change a word next week without starting over, and a short note on what to edit where. If any facts are missing, this is also where you tell the agent to ask instead of inventing them.
+
+<Prompt caption={"Handoff"} prompt={"Deliver the MP4, the project, and a short README listing every on-screen string and the file it lives in. If anything above is unclear or missing, ask me before you start."} />
+
+## Putting it together
+
+Stack the six parts in order. Longer prompts in the gallery often wrap each part in an XML-style tag such as `<direction>` or `<structure>`, which helps the model find the constraints again later in a long session. Plain headings work just as well. Keep the order: what it is, how it looks, what happens when, how to build it, how to check it, what to hand back.
+
+- Fill in the numbers first: length, size, frame rate. They constrain everything else.
+- Write the beats before the style. A clear story survives a bland style; the reverse rarely holds.
+- Cut adjectives that don't map to code. If you can't say how the agent would implement "elegant", replace it with the rule you mean.
+- Reuse what works. A good structure with new facts beats a new prompt from scratch.
+
+If you would rather start from a working prompt, the [prompt customizer](/customize) takes any prompt from the gallery and adds your subject, size, length, colours and typeface as a brief at the end, so the original stays intact.
+
+<Callout href={"/templates/showreel"} label={"Open the showreel template"}>
+  The showreel template is this structure applied to the gallery's most popular prompt, with a field for every part.
+</Callout>

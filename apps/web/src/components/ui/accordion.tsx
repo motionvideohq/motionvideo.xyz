@@ -1,6 +1,7 @@
 import { Accordion as AccordionPrimitive } from "@base-ui/react/accordion";
 import { ChevronDown } from "reicon-react/icons/ChevronDown";
 import { ChevronUp } from "reicon-react/icons/ChevronUp";
+import { Plus } from "reicon-react/icons/Plus";
 
 import { cn } from "@/lib/utils";
 
@@ -26,8 +27,12 @@ const AccordionItem = ({
 const AccordionTrigger = ({
   className,
   children,
+  icon = "chevron",
   ...props
-}: AccordionPrimitive.Trigger.Props) => (
+}: AccordionPrimitive.Trigger.Props & {
+  /** `plus` turns 45° into a close mark when open (the site's FAQs). */
+  icon?: "chevron" | "plus";
+}) => (
   <AccordionPrimitive.Header className="flex">
     <AccordionPrimitive.Trigger
       data-slot="accordion-trigger"
@@ -38,14 +43,23 @@ const AccordionTrigger = ({
       {...props}
     >
       {children}
-      <ChevronDown
-        data-slot="accordion-trigger-icon"
-        className="pointer-events-none shrink-0 group-aria-expanded/accordion-trigger:hidden"
-      />
-      <ChevronUp
-        data-slot="accordion-trigger-icon"
-        className="pointer-events-none hidden shrink-0 group-aria-expanded/accordion-trigger:inline"
-      />
+      {icon === "plus" ? (
+        <Plus
+          data-slot="accordion-trigger-icon"
+          className="pointer-events-none shrink-0 transition-transform duration-200 group-aria-expanded/accordion-trigger:rotate-45 motion-reduce:transition-none"
+        />
+      ) : (
+        <>
+          <ChevronDown
+            data-slot="accordion-trigger-icon"
+            className="pointer-events-none shrink-0 group-aria-expanded/accordion-trigger:hidden"
+          />
+          <ChevronUp
+            data-slot="accordion-trigger-icon"
+            className="pointer-events-none hidden shrink-0 group-aria-expanded/accordion-trigger:inline"
+          />
+        </>
+      )}
     </AccordionPrimitive.Trigger>
   </AccordionPrimitive.Header>
 );

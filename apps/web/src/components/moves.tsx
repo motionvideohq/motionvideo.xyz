@@ -2,8 +2,10 @@ import { Dialog } from "@base-ui/react/dialog";
 import { createContext, use, useId, useState } from "react";
 import type { ComponentPropsWithRef, ReactNode } from "react";
 import { useIntlayer } from "react-intlayer";
+import { Check } from "reicon-react/icons/Check";
 import { ChevronLeft } from "reicon-react/icons/ChevronLeft";
 import { ChevronRight } from "reicon-react/icons/ChevronRight";
+import { Xmark } from "reicon-react/icons/Xmark";
 
 import { CopyIcon } from "@/components/copy-icon";
 import { LocalizedLink as Link } from "@/components/localized-link";
@@ -47,30 +49,100 @@ const inline = (text: string): ReactNode[] =>
     return part;
   });
 
+// How a labelled list in a move's body reads: what to avoid (red cross),
+// what makes it work (green check), or where to use it, which the sidebar's
+// "Good for" row already says, so those lists are left out.
+type ListKind = "avoid" | "do" | "uses" | "plain";
+
+const listKind = (label: string): ListKind => {
+  if (/mistake|avoid|pitfall|don[’']t/iu.test(label)) {
+    return "avoid";
+  }
+  if (
+    /^(?:it (?:works|reads|is a good fit)|use it|good (?:uses|places|for)|where it (?:matters|works))/iu.test(
+      label
+    )
+  ) {
+    return "uses";
+  }
+  if (
+    /work|practice|how to|rule|help|readab|read well|matter|subtle|good choices/iu.test(
+      label
+    )
+  ) {
+    return "do";
+  }
+  return "plain";
+};
+
+const isList = (lines: string[]) =>
+  lines.every((line) => line.startsWith("- "));
+
+// Items are sentence fragments ("scaling from the center…"); capitalised so
+// each reads as its own point.
+const capitalize = (text: string) =>
+  text.charAt(0).toLocaleUpperCase("en") + text.slice(1);
+
+const MarkedList = ({ lines, kind }: { lines: string[]; kind: ListKind }) => (
+  <ul className="text-muted-foreground flex flex-col gap-2">
+    {lines.map((line) => (
+      <li key={line} className="flex gap-2.5">
+        {/* One line tall, so the mark centres on the item's first line. */}
+        <span
+          aria-hidden="true"
+          className="flex h-lh w-3.5 shrink-0 items-center justify-center"
+        >
+          {kind === "avoid" && <Xmark className="text-destructive size-3.5" />}
+          {kind === "do" && (
+            <Check className="size-3.5 text-green-600 dark:text-green-400" />
+          )}
+          {kind === "plain" && (
+            <span className="bg-muted-foreground size-1 rounded-full" />
+          )}
+        </span>
+        <span>{inline(capitalize(line.slice(2)))}</span>
+      </li>
+    ))}
+  </ul>
+);
+
 /**
  * A move's body: blank-line separated paragraphs and `- ` lists, with bold
  * and inline code. Written by us (src/data/moves.json), rendered as React
- * elements, never as HTML.
+ * elements, never as HTML. A one-line paragraph ending in ":" labels the
+ * list after it; the label sets how the list is marked (see `listKind`).
  */
-export const MoveBody = ({ body }: { body: string }) => (
-  <div className="flex flex-col gap-3 text-sm leading-relaxed text-pretty">
-    {body.split(/\n{2,}/u).map((block, index) => {
-      const lines = block.split("\n");
-      if (lines.every((line) => line.startsWith("- "))) {
-        return (
-          // oxlint-disable-next-line no-array-index-key
-          <ul key={index} className="flex list-disc flex-col gap-1.5 pl-5">
-            {lines.map((line) => (
-              <li key={line}>{inline(line.slice(2))}</li>
-            ))}
-          </ul>
+export const MoveBody = ({ body }: { body: string }) => {
+  const blocks = body.split(/\n{2,}/u).map((block) => block.split("\n"));
+  const nodes: ReactNode[] = [];
+  for (let index = 0; index < blocks.length; index += 1) {
+    const lines = blocks[index];
+    const next = blocks[index + 1];
+    const label =
+      lines.length === 1 && lines[0].endsWith(":") ? lines[0] : null;
+    if (label && next && isList(next)) {
+      const kind = listKind(label);
+      index += 1;
+      if (kind !== "uses") {
+        nodes.push(
+          <div key={index} className="flex flex-col gap-2">
+            <h3 className="font-medium">{label.slice(0, -1)}</h3>
+            <MarkedList lines={next} kind={kind} />
+          </div>
         );
       }
-      // oxlint-disable-next-line no-array-index-key
-      return <p key={index}>{inline(block)}</p>;
-    })}
-  </div>
-);
+    } else if (isList(lines)) {
+      nodes.push(<MarkedList key={index} lines={lines} kind="plain" />);
+    } else {
+      nodes.push(<p key={index}>{inline(lines.join("\n"))}</p>);
+    }
+  }
+  return (
+    <div className="flex flex-col gap-4 text-sm leading-relaxed text-pretty">
+      {nodes}
+    </div>
+  );
+};
 
 /**
  * The grid behind an open move: every move (`undefined`) or one family's.
@@ -148,7 +220,9 @@ export const MoveCard = ({
   );
 };
 
-const sectionClass = "flex flex-col gap-3 border-t border-dashed pt-4";
+// Sections are set apart by the sidebar's gap alone, as in the video
+// sidebar; dashed lines are only for the detail rows.
+const sectionClass = "flex flex-col gap-3";
 
 /** Pro: the copy-ready prompt, its parameters and a copy button. */
 const PromptSection = ({ prompt }: { prompt: MovePrompt }) => {
@@ -216,7 +290,6 @@ const LockedPromptSection = ({
       </h2>
       <LockedPrompt
         title={content.lockedTitle}
-        body={content.lockedBody}
         signInReason={content.signInReason}
         signedIn={signedIn}
         redirect={movePath(move)}

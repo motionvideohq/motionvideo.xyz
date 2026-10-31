@@ -2,8 +2,8 @@ import { Link, createFileRoute, notFound } from "@tanstack/react-router";
 import { useIntlayer, useLocale } from "react-intlayer";
 import { ArrowLeft } from "reicon-react/icons/ArrowLeft";
 
-import { ChangelogBody } from "@/components/changelog-mdx";
 import { PageHeader } from "@/components/page";
+import { ProseBody } from "@/components/prose-mdx";
 import { DEFAULT_LOCALE, isLocale } from "@/constants/locales";
 import { ROUTES } from "@/constants/routes";
 import { changelog, formatChangelogDate } from "@/lib/changelog";
@@ -38,7 +38,7 @@ const ChangelogEntry = () => {
             </time>
           }
         />
-        <ChangelogBody Body={entry.data.body} />
+        <ProseBody Body={entry.data.body} />
       </article>
     </>
   );

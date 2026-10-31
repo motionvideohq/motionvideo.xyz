@@ -1,5 +1,4 @@
 import { useIntlayer } from "react-intlayer";
-import { ArrowRightUp } from "reicon-react/icons/ArrowRightUp";
 
 import { CollectionGrid } from "@/components/collection-grid";
 import { CollectionIntro } from "@/components/collection-intro";
@@ -51,7 +50,6 @@ export const JobsBoard = ({
           className={buttonVariants({ variant: "gradient", size: "lg" })}
         >
           {content.postJob}
-          <ArrowRightUp aria-hidden="true" />
         </Link>
       }
     />

@@ -5,20 +5,19 @@ import { deserializePageTree } from "fumadocs-core/source/client";
 import { AnchorProvider } from "fumadocs-core/toc";
 import type { TOCItemType } from "fumadocs-core/toc";
 import type { MDXProps } from "mdx/types";
-import { Suspense, useMemo } from "react";
+import { Suspense, useMemo, useRef } from "react";
 import type { FC } from "react";
 import { useIntlayer, useLocale } from "react-intlayer";
 import { ArrowLeft } from "reicon-react/icons/ArrowLeft";
 import { ArrowRight } from "reicon-react/icons/ArrowRight";
-import { Edit } from "reicon-react/icons/Edit";
 
+import { DocsActions } from "@/components/docs/docs-actions";
 import { DocsSidebar } from "@/components/docs/docs-sidebar";
 import { DocsToc, DocsTocCollapsible } from "@/components/docs/docs-toc";
 import { docsMdxComponents } from "@/components/docs/mdx-components";
 import { LocalizedLink as Link } from "@/components/localized-link";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
-import { LINK } from "@/constants/links";
 import { cn } from "@/lib/utils";
 import { createMetadata } from "@/seo/metadata";
 import { getDocsPage } from "@/server/docs-functions";
@@ -38,9 +37,9 @@ interface ArticleProps {
   url: string;
   /** Content path of the MDX file, for the edit link. */
   path: string;
+  /** Language of the shown file: the URL's locale, or `en` as fallback. */
+  lang: string;
 }
-
-const EDIT_BASE = `${LINK.GITHUB_REPO}/edit/main/apps/web/content/docs`;
 
 const neighbourClass =
   "group/neighbour bg-card shadow-outline hover:bg-muted/50 focus-visible:ring-ring flex flex-col gap-1 rounded-xl p-4 text-sm transition-colors outline-none focus-visible:ring-2";
@@ -53,6 +52,7 @@ const DocsArticle = ({
   tree,
   url,
   path,
+  lang,
 }: ArticleProps & {
   body: FC<MDXProps>;
   title: string;
@@ -62,19 +62,29 @@ const DocsArticle = ({
   const content = useIntlayer("docs-layout");
   const { previous, next } = findNeighbour(tree, url);
   const hasToc = toc.length > 0;
+  const body = useRef<HTMLDivElement>(null);
+  const actions = (
+    <DocsActions
+      title={title}
+      description={description}
+      url={url}
+      path={path}
+      lang={lang}
+      getArticle={() => body.current}
+    />
+  );
   return (
     <AnchorProvider toc={toc} single>
       <main
         id="main-content"
         className="mx-auto flex w-full max-w-180 min-w-0 flex-col gap-8 pt-6 pb-16 lg:pt-10"
       >
-        {/* Below xl the contents fold above the article. Below lg the docs
-            pages are in the site's menu (the header's Docs section). */}
-        {hasToc ? (
-          <div className="xl:hidden">
-            <DocsTocCollapsible toc={toc} />
-          </div>
-        ) : null}
+        {/* Below xl the contents and actions fold above the article. Below
+            lg the docs pages are in the site's menu (the header's Docs
+            section). */}
+        <div className="xl:hidden">
+          <DocsTocCollapsible toc={toc} actions={actions} />
+        </div>
         <header className="flex flex-col gap-3">
           <h1 className="text-3xl font-semibold tracking-tight text-balance sm:text-4xl">
             {title}
@@ -83,21 +93,14 @@ const DocsArticle = ({
             {description}
           </p>
         </header>
-        <div className="text-muted-foreground flex min-w-0 flex-col gap-5 leading-7">
+        <div
+          ref={body}
+          className="text-muted-foreground flex min-w-0 flex-col gap-5 leading-7"
+        >
           <Body components={docsMdxComponents} />
         </div>
-        <footer className="border-border mt-4 flex flex-col gap-6 border-t pt-6">
-          <a
-            href={`${EDIT_BASE}/${path}`}
-            target="_blank"
-            rel="noreferrer"
-            className="text-muted-foreground hover:text-foreground inline-flex w-fit items-center gap-1.5 text-sm transition-colors"
-          >
-            <Edit aria-hidden="true" className="size-3.5" />
-            {content.editPage}
-            <span className="sr-only"> {content.opensInNewTab}</span>
-          </a>
-          {previous || next ? (
+        {previous || next ? (
+          <footer className="border-border mt-4 border-t pt-6 print:hidden">
             <nav
               aria-label={content.pagination.value}
               className="grid gap-3 sm:grid-cols-2"
@@ -137,14 +140,20 @@ const DocsArticle = ({
                 </Link>
               ) : null}
             </nav>
-          ) : null}
-        </footer>
+          </footer>
+        ) : null}
       </main>
-      {hasToc ? (
-        <aside className="sticky top-0 max-h-svh self-start overflow-y-auto pt-10 pb-8 max-xl:hidden">
-          <DocsToc toc={toc} />
-        </aside>
-      ) : null}
+      {/* As tall as its contents, with the actions right under them, up to
+          one viewport minus the site header (3.5rem from lg, not sticky);
+          then only the contents between the heading and the actions scroll.
+          The bottom padding (5rem) keeps the actions clear of the page's
+          bottom blur (4.5rem, ProgressiveBlur). */}
+      <aside className="sticky top-0 flex max-h-[calc(100svh-3.5rem)] flex-col gap-4 self-start pt-10 pb-20 max-xl:hidden print:hidden">
+        {hasToc ? <DocsToc toc={toc} /> : null}
+        <div className={cn("shrink-0", hasToc && "border-t pt-3")}>
+          {actions}
+        </div>
+      </aside>
     </AnchorProvider>
   );
 };
@@ -188,9 +197,10 @@ export const docsHead = (data: DocsLoaderData | undefined) =>
     description: data?.english.description,
   });
 
-// Three columns from lg (sidebar, article, and from xl the table of
-// contents); below lg the pages are listed in the site menu and the contents
-// fold above the article. The locale comes from the URL's `/$locale` prefix;
+// Full width, three columns from lg (sidebar, article, and from xl the table
+// of contents with the page actions); below lg the pages are listed in the
+// site menu and the contents and actions fold above the article. Printing
+// (Export → PDF) keeps only the article. The locale comes from the URL's `/$locale` prefix;
 // pages without a translation show the English file.
 export const DocsPage = ({ data }: { data: DocsLoaderData }) => {
   const { locale } = useLocale();
@@ -200,17 +210,22 @@ export const DocsPage = ({ data }: { data: DocsLoaderData }) => {
     tree,
     url: data.url,
     path: variant.path,
+    lang: data.translations[locale] ? locale : "en",
   });
   return (
     <>
-      <SiteHeader signedIn={data.signedIn} />
-      <div className="mx-auto grid w-full max-w-7xl flex-1 px-4 sm:px-6 lg:grid-cols-[14rem_minmax(0,1fr)] lg:gap-x-10 xl:grid-cols-[14rem_minmax(0,1fr)_13rem]">
-        <aside className="sticky top-0 max-h-svh self-start overflow-y-auto pt-10 pb-8 max-lg:hidden">
+      <div className="contents print:hidden">
+        <SiteHeader signedIn={data.signedIn} />
+      </div>
+      <div className="grid w-full flex-1 px-4 sm:px-6 lg:grid-cols-[15rem_minmax(0,1fr)] lg:gap-x-10 xl:grid-cols-[15rem_minmax(0,1fr)_15rem]">
+        <aside className="no-scrollbar sticky top-0 max-h-svh self-start overflow-y-auto pt-10 pb-8 max-lg:hidden print:hidden">
           <DocsSidebar tree={tree} />
         </aside>
         <Suspense>{article}</Suspense>
       </div>
-      <SiteFooter />
+      <div className="contents print:hidden">
+        <SiteFooter />
+      </div>
     </>
   );
 };

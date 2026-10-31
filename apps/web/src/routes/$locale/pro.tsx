@@ -108,7 +108,9 @@ const FaqItem = ({ value, question, children }: FaqItemProps) => (
   <AccordionItem value={value}>
     {/* Roomier rows here only; the shared trigger keeps its default padding. */}
     {/* oxlint-disable-next-line shadcn/no-restyle */}
-    <AccordionTrigger className="py-4">{question}</AccordionTrigger>
+    <AccordionTrigger icon="plus" className="py-4">
+      {question}
+    </AccordionTrigger>
     <AccordionContent>{children}</AccordionContent>
   </AccordionItem>
 );
@@ -116,7 +118,6 @@ const FaqItem = ({ value, question, children }: FaqItemProps) => (
 const Pro = () => {
   const content = useIntlayer("pricing-page");
   const landing = useIntlayer("landing");
-  const pricing = useIntlayer("pricing");
   const { signedIn, access, cards, parity } = routeApi.useLoaderData();
   const { billing = "monthly" } = routeApi.useSearch();
   const previews = Object.values(cards).slice(0, PREVIEW_COUNT);
@@ -142,7 +143,7 @@ const Pro = () => {
         {/* Toggle, cards and the parity note below them share one gap. */}
         <section
           aria-label={content.plans.value}
-          className="flex w-full max-w-5xl flex-col items-center gap-8"
+          className="flex w-full max-w-5xl flex-col items-center gap-6"
         >
           <BillingToggle billing={billing} />
           <PlanCards billing={billing} access={access} signedIn={signedIn} />
@@ -154,10 +155,9 @@ const Pro = () => {
           className="flex w-full max-w-5xl flex-col gap-6"
         >
           <SectionHeader id="what-you-get" title={content.whatYouGet} />
-          {/* Rows as tall as their content (no row spans, so no tile
-              stretches past its media): wide and narrow (4|2), then MCP and
-              the skill full width with their snippets beside the copy, then
-              wide and narrow again. One column below lg. */}
+          {/* What your agent gets, nothing else: Moves beside Templates (4|2),
+              then MCP and the skill full width with their snippets beside the
+              copy. Rows are as tall as their content. One column below lg. */}
           <div className="grid gap-4 lg:grid-cols-6">
             <Tile
               title={content.movesTitle}
@@ -254,31 +254,6 @@ const Pro = () => {
                 </ul>
               </div>
             </Tile>
-            <Tile
-              title={content.licenseTitle}
-              body={content.licenseBody}
-              className="lg:col-span-4"
-            >
-              <dl className="mt-auto grid gap-3 text-sm sm:grid-cols-2">
-                <div className="bg-muted flex flex-col gap-0.5 rounded-xl px-4 py-3">
-                  <dt className="font-medium">{pricing.plans.pro.name}</dt>
-                  <dd className="text-muted-foreground">
-                    {content.licensePro}
-                  </dd>
-                </div>
-                <div className="bg-muted flex flex-col gap-0.5 rounded-xl px-4 py-3">
-                  <dt className="font-medium">{pricing.plans.business.name}</dt>
-                  <dd className="text-muted-foreground">
-                    {content.licenseBusiness}
-                  </dd>
-                </div>
-              </dl>
-            </Tile>
-            <Tile
-              title={content.updatesTitle}
-              body={content.updatesBody}
-              className="lg:col-span-2"
-            />
           </div>
         </section>
         <section

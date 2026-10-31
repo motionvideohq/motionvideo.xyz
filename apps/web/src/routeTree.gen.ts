@@ -91,6 +91,7 @@ import { Route as ApiMcpBookmarksRouteImport } from './routes/api/mcp/bookmarks'
 import { Route as ApiMcpFeaturedRouteImport } from './routes/api/mcp/featured'
 import { Route as ApiMovesIndexRouteImport } from './routes/api/moves/index'
 import { Route as ApiWebhookDodoRouteImport } from './routes/api/webhook/dodo'
+import { Route as LlmsDotmdxDocsSplatRouteImport } from './routes/llms[.]mdx.docs.$'
 import { Route as LocaleGalleryCategoryCategoryRouteImport } from './routes/$locale/_gallery/category.$category'
 import { Route as LocaleGalleryColorColorRouteImport } from './routes/$locale/_gallery/color.$color'
 import { Route as LocaleGalleryModelModelRouteImport } from './routes/$locale/_gallery/model.$model'
@@ -525,6 +526,11 @@ const ApiWebhookDodoRoute = ApiWebhookDodoRouteImport.update({
   path: '/api/webhook/dodo',
   getParentRoute: () => rootRouteImport,
 } as any)
+const LlmsDotmdxDocsSplatRoute = LlmsDotmdxDocsSplatRouteImport.update({
+  id: '/llms.mdx/docs/$',
+  path: '/llms.mdx/docs/$',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const LocaleGalleryCategoryCategoryRoute =
   LocaleGalleryCategoryCategoryRouteImport.update({
     id: '/category/$category',
@@ -726,6 +732,7 @@ export interface FileRoutesByFullPath {
   '/api/mcp/bookmarks': typeof ApiMcpBookmarksRoute
   '/api/mcp/featured': typeof ApiMcpFeaturedRoute
   '/api/webhook/dodo': typeof ApiWebhookDodoRoute
+  '/llms.mdx/docs/$': typeof LlmsDotmdxDocsSplatRoute
   '/$locale/': typeof LocaleGalleryIndexRoute
   '/$locale/admin/': typeof LocaleAdminIndexRoute
   '/$locale/blog/': typeof LocaleBlogIndexRoute
@@ -822,6 +829,7 @@ export interface FileRoutesByTo {
   '/api/mcp/bookmarks': typeof ApiMcpBookmarksRoute
   '/api/mcp/featured': typeof ApiMcpFeaturedRoute
   '/api/webhook/dodo': typeof ApiWebhookDodoRoute
+  '/llms.mdx/docs/$': typeof LlmsDotmdxDocsSplatRoute
   '/$locale/admin': typeof LocaleAdminIndexRoute
   '/$locale/blog': typeof LocaleBlogIndexRoute
   '/$locale/creatives': typeof LocaleCreativesIndexRoute
@@ -926,6 +934,7 @@ export interface FileRoutesById {
   '/api/mcp/bookmarks': typeof ApiMcpBookmarksRoute
   '/api/mcp/featured': typeof ApiMcpFeaturedRoute
   '/api/webhook/dodo': typeof ApiWebhookDodoRoute
+  '/llms.mdx/docs/$': typeof LlmsDotmdxDocsSplatRoute
   '/$locale/_gallery/': typeof LocaleGalleryIndexRoute
   '/$locale/admin/': typeof LocaleAdminIndexRoute
   '/$locale/blog/': typeof LocaleBlogIndexRoute
@@ -1034,6 +1043,7 @@ export interface FileRouteTypes {
     | '/api/mcp/bookmarks'
     | '/api/mcp/featured'
     | '/api/webhook/dodo'
+    | '/llms.mdx/docs/$'
     | '/$locale/'
     | '/$locale/admin/'
     | '/$locale/blog/'
@@ -1130,6 +1140,7 @@ export interface FileRouteTypes {
     | '/api/mcp/bookmarks'
     | '/api/mcp/featured'
     | '/api/webhook/dodo'
+    | '/llms.mdx/docs/$'
     | '/$locale/admin'
     | '/$locale/blog'
     | '/$locale/creatives'
@@ -1233,6 +1244,7 @@ export interface FileRouteTypes {
     | '/api/mcp/bookmarks'
     | '/api/mcp/featured'
     | '/api/webhook/dodo'
+    | '/llms.mdx/docs/$'
     | '/$locale/_gallery/'
     | '/$locale/admin/'
     | '/$locale/blog/'
@@ -1288,6 +1300,7 @@ export interface RootRouteChildren {
   ApiMcpBookmarksRoute: typeof ApiMcpBookmarksRoute
   ApiMcpFeaturedRoute: typeof ApiMcpFeaturedRoute
   ApiWebhookDodoRoute: typeof ApiWebhookDodoRoute
+  LlmsDotmdxDocsSplatRoute: typeof LlmsDotmdxDocsSplatRoute
   ApiCatalogIndexRoute: typeof ApiCatalogIndexRoute
   ApiMovesIndexRoute: typeof ApiMovesIndexRoute
   ApiMcpMovesSlugRoute: typeof ApiMcpMovesSlugRoute
@@ -1870,6 +1883,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ApiWebhookDodoRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/llms.mdx/docs/$': {
+      id: '/llms.mdx/docs/$'
+      path: '/llms.mdx/docs/$'
+      fullPath: '/llms.mdx/docs/$'
+      preLoaderRoute: typeof LlmsDotmdxDocsSplatRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/$locale/_gallery/category/$category': {
       id: '/$locale/_gallery/category/$category'
       path: '/category/$category'
@@ -2416,6 +2436,7 @@ const rootRouteChildren: RootRouteChildren = {
   ApiMcpBookmarksRoute: ApiMcpBookmarksRoute,
   ApiMcpFeaturedRoute: ApiMcpFeaturedRoute,
   ApiWebhookDodoRoute: ApiWebhookDodoRoute,
+  LlmsDotmdxDocsSplatRoute: LlmsDotmdxDocsSplatRoute,
   ApiCatalogIndexRoute: ApiCatalogIndexRoute,
   ApiMovesIndexRoute: ApiMovesIndexRoute,
   ApiMcpMovesSlugRoute: ApiMcpMovesSlugRoute,

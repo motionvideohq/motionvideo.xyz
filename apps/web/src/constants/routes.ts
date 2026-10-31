@@ -30,6 +30,8 @@ export const ROUTES = {
   DOCS_PLANS: "/docs/plans",
   DOCS_SKILL: "/docs/skill",
   DOCS_TEMPLATES: "/docs/templates",
+  /** Prefix of each docs page's Markdown: `${DOCS_MARKDOWN}/mcp`. */
+  DOCS_MARKDOWN: "/llms.mdx/docs",
   EXTRAS: "/extras",
   HOME: "/",
   JOBS: "/jobs",

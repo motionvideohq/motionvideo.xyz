@@ -6,6 +6,7 @@ import {
 } from "@tanstack/react-router";
 import { useState } from "react";
 import { useIntlayer } from "react-intlayer";
+import { HelpCircle } from "reicon-react/icons/HelpCircle";
 
 import { CollectionGrid } from "@/components/collection-grid";
 import { CollectionIntro } from "@/components/collection-intro";
@@ -22,7 +23,7 @@ import { buttonVariants } from "@/components/ui/button";
 import type { MasonryItem } from "@/components/virtual-masonry";
 import { ROUTES } from "@/constants/routes";
 import { MOVE_FAMILIES, findMoveFamily } from "@/lib/move-families";
-import { MOVES, movesIn } from "@/lib/moves";
+import { movesIn } from "@/lib/moves";
 import { getLandingData } from "@/server/functions";
 import { getMoveCards } from "@/server/move-functions";
 
@@ -61,6 +62,7 @@ const Moves = () => {
             params={{ _splat: "moves" }}
             className={buttonVariants({ variant: "outline", size: "lg" })}
           >
+            <HelpCircle aria-hidden="true" />
             {content.howToUse}
           </Link>
           <Link
@@ -120,9 +122,6 @@ const Moves = () => {
             )
           )}
         </FadeScroller>
-        <span className="text-muted-foreground shrink-0 text-sm tabular-nums max-sm:hidden">
-          {MOVES.length} {content.movesInLibrary}
-        </span>
       </CollectionToolbar>
       <CollectionGrid items={items} />
       <MovesGridContext value={family}>

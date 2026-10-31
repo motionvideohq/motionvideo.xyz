@@ -10,6 +10,9 @@ export const docs = defineDocs({
   docs: {
     // Server code only needs frontmatter and the page tree; bodies load lazily.
     async: true,
+    // Each page's Markdown, served at /llms.mdx/docs/<slug> for "Copy as
+    // Markdown" and "Open in chat" (src/routes/llms[.]mdx.docs.$.ts).
+    postprocess: { includeProcessedMarkdown: true },
     schema: pageSchema.extend({ description: z.string() }),
   },
   meta: {

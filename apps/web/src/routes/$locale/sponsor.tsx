@@ -336,7 +336,7 @@ const Sponsor = () => {
               >
                 {/* Roomier rows here only; the shared trigger keeps its default padding. */}
                 {/* oxlint-disable-next-line shadcn/no-restyle */}
-                <AccordionTrigger className="py-4">
+                <AccordionTrigger icon="plus" className="py-4">
                   {faq.question}
                 </AccordionTrigger>
                 <AccordionContent>

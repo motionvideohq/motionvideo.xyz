@@ -13,8 +13,15 @@ import {
   setLiveCursorsEnabled,
   useLiveCursorsEnabled,
 } from "@/components/live-presence";
-import { FormSection, HeroHeader, PageMain } from "@/components/page";
+import { AccountPageHeader, PageMain } from "@/components/page";
 import { Button } from "@/components/ui/button";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import {
@@ -43,6 +50,25 @@ import { getSubmitter } from "@/server/community-functions";
 
 const helpClass = "text-muted-foreground text-xs leading-relaxed";
 const NAME_MAX = 80;
+
+/** One group of settings, as a card like the other signed-in pages. */
+const SettingsCard = ({
+  title,
+  description,
+  children,
+}: {
+  title: ReactNode;
+  description: ReactNode;
+  children: ReactNode;
+}) => (
+  <Card size="lg">
+    <CardHeader>
+      <CardTitle>{title}</CardTitle>
+      <CardDescription>{description}</CardDescription>
+    </CardHeader>
+    <CardContent className="flex flex-col gap-5">{children}</CardContent>
+  </Card>
+);
 
 /** One settings row: label (and help) on the left, its control on the right. */
 const Row = ({
@@ -227,10 +253,10 @@ const Settings = () => {
 
   return (
     <>
-      <PageMain width="narrow" className="gap-16">
-        <HeroHeader title={content.title} intro={content.intro} />
-        <div className="flex flex-col gap-14">
-          <FormSection
+      <PageMain width="narrow">
+        <AccountPageHeader title={content.title} intro={content.intro} />
+        <div className="flex flex-col gap-4">
+          <SettingsCard
             title={content.account}
             description={content.accountBody}
           >
@@ -246,16 +272,16 @@ const Settings = () => {
                 {email}
               </span>
             </Row>
-          </FormSection>
+          </SettingsCard>
 
-          <FormSection
+          <SettingsCard
             title={content.connections}
             description={content.connectionsBody}
           >
             <Connections />
-          </FormSection>
+          </SettingsCard>
 
-          <FormSection
+          <SettingsCard
             title={content.preferences}
             description={content.preferencesBody}
           >
@@ -296,9 +322,9 @@ const Settings = () => {
                 onCheckedChange={setLiveCursorsEnabled}
               />
             </Row>
-          </FormSection>
+          </SettingsCard>
 
-          <FormSection title={content.emails} description={content.emailsBody}>
+          <SettingsCard title={content.emails} description={content.emailsBody}>
             <Row
               label={content.updates}
               help={content.updatesDescription}
@@ -310,9 +336,9 @@ const Settings = () => {
                 onCheckedChange={setEmailUpdates}
               />
             </Row>
-          </FormSection>
+          </SettingsCard>
 
-          <FormSection title={content.danger} description={content.dangerBody}>
+          <SettingsCard title={content.danger} description={content.dangerBody}>
             <Row label={content.deleteAccount} help={content.deleteNote}>
               <Button
                 variant="destructive"
@@ -322,7 +348,7 @@ const Settings = () => {
                 {content.delete}
               </Button>
             </Row>
-          </FormSection>
+          </SettingsCard>
         </div>
       </PageMain>
       <DeleteAccountDialog open={deleteOpen} onOpenChange={setDeleteOpen} />
