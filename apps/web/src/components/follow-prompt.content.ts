@@ -1,0 +1,63 @@
+import { t } from "intlayer";
+import type { Dictionary } from "intlayer";
+
+export default {
+  key: "follow-prompt",
+  content: {
+    title: t({
+      en: "Liking MotionVideo so far?",
+      es: "¿Te gusta MotionVideo?",
+      fr: "MotionVideo vous plaît ?",
+      zh: "喜欢 MotionVideo 吗？",
+      ko: "MotionVideo가 마음에 드시나요?",
+      ja: "MotionVideoは気に入りましたか？",
+      de: "Gefällt dir MotionVideo?",
+      pt: "Estás a gostar do MotionVideo?",
+      ru: "Нравится MotionVideo?",
+    }),
+    body: t({
+      en: "Star the repo and follow along on X/Twitter for new videos, moves and templates.",
+      es: "Dale una estrella al repositorio y síguenos en X/Twitter para ver nuevos vídeos, moves y plantillas.",
+      fr: "Ajoutez une étoile au dépôt et suivez-nous sur X/Twitter pour les nouvelles vidéos, moves et modèles.",
+      zh: "给仓库点个星，并在 X/Twitter 上关注我们，获取新视频、手法和模板。",
+      ko: "저장소에 별을 주고 X/Twitter에서 팔로우해 새 동영상, 무브, 템플릿 소식을 받아보세요.",
+      ja: "リポジトリにスターを付けて、X/Twitterで新しい動画、技法、テンプレートの情報を追いかけましょう。",
+      de: "Gib dem Repo einen Stern und folge uns auf X/Twitter für neue Videos, Moves und Vorlagen.",
+      pt: "Dá uma estrela ao repositório e segue-nos no X/Twitter para novos vídeos, moves e modelos.",
+      ru: "Поставьте звезду репозиторию и следите за нами в X/Twitter: новые видео, приёмы и шаблоны.",
+    }),
+    follow: t({
+      en: "Follow",
+      es: "Seguir",
+      fr: "Suivre",
+      zh: "关注",
+      ko: "팔로우",
+      ja: "フォロー",
+      de: "Folgen",
+      pt: "Seguir",
+      ru: "Подписаться",
+    }),
+    star: t({
+      en: "Star",
+      es: "Estrella",
+      fr: "Étoile",
+      zh: "点星",
+      ko: "스타",
+      ja: "スター",
+      de: "Stern",
+      pt: "Estrela",
+      ru: "Звезда",
+    }),
+    close: t({
+      en: "Close",
+      es: "Cerrar",
+      fr: "Fermer",
+      zh: "关闭",
+      ko: "닫기",
+      ja: "閉じる",
+      de: "Schließen",
+      pt: "Fechar",
+      ru: "Закрыть",
+    }),
+  },
+} satisfies Dictionary;

@@ -115,8 +115,10 @@ const ThemeAndSound = () => {
 };
 
 const headingClass = "text-foreground font-medium";
+// `hyphens-auto`: long single words (German "Rückerstattungsrichtlinie")
+// break inside the narrow two-column grid on phones instead of overflowing.
 const linkClass =
-  "text-muted-foreground hover:text-foreground focus-visible:ring-ring w-fit rounded-sm transition-colors outline-none focus-visible:ring-2";
+  "text-muted-foreground hover:text-foreground focus-visible:ring-ring w-fit max-w-full rounded-sm hyphens-auto transition-colors outline-none focus-visible:ring-2";
 
 /** One titled list of links; columns stack several. */
 const LinkGroup = ({
@@ -231,7 +233,7 @@ export const SiteFooter = () => {
               {links(docs)}
               {/* A server route serving markdown, not an app page. */}
               <a href={ROUTES.SKILL_MD} className={linkClass}>
-                skill.md
+                SKILL.md
               </a>
             </LinkGroup>
           </Column>

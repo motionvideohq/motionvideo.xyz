@@ -11,7 +11,10 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as SplatRouteImport } from './routes/$'
 import { Route as LocaleRouteRouteImport } from './routes/$locale/route'
+import { Route as DocsDotmdRouteImport } from './routes/docs[.]md'
+import { Route as LlmsFullDottxtRouteImport } from './routes/llms-full[.]txt'
 import { Route as LlmsDottxtRouteImport } from './routes/llms[.]txt'
+import { Route as PricingDotmdRouteImport } from './routes/pricing[.]md'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as SkillDotmdRouteImport } from './routes/skill[.]md'
 import { Route as LocaleSplatRouteImport } from './routes/$locale/$'
@@ -42,6 +45,7 @@ import { Route as LocaleToolsRouteImport } from './routes/$locale/tools'
 import { Route as LocaleWelcomeRouteImport } from './routes/$locale/welcome'
 import { Route as DotwellKnownSplatRouteImport } from './routes/[.]well-known.$'
 import { Route as ApiUploadRouteImport } from './routes/api/upload'
+import { Route as DocsSplatRouteImport } from './routes/docs.$'
 import { Route as LocaleGalleryIndexRouteImport } from './routes/$locale/_gallery/index'
 import { Route as LocalePagesAboutRouteImport } from './routes/$locale/_pages/about'
 import { Route as LocalePagesBrandRouteImport } from './routes/$locale/_pages/brand'
@@ -91,7 +95,6 @@ import { Route as ApiMcpBookmarksRouteImport } from './routes/api/mcp/bookmarks'
 import { Route as ApiMcpFeaturedRouteImport } from './routes/api/mcp/featured'
 import { Route as ApiMovesIndexRouteImport } from './routes/api/moves/index'
 import { Route as ApiWebhookDodoRouteImport } from './routes/api/webhook/dodo'
-import { Route as LlmsDotmdxDocsSplatRouteImport } from './routes/llms[.]mdx.docs.$'
 import { Route as LocaleGalleryCategoryCategoryRouteImport } from './routes/$locale/_gallery/category.$category'
 import { Route as LocaleGalleryColorColorRouteImport } from './routes/$locale/_gallery/color.$color'
 import { Route as LocaleGalleryModelModelRouteImport } from './routes/$locale/_gallery/model.$model'
@@ -127,9 +130,24 @@ const LocaleRouteRoute = LocaleRouteRouteImport.update({
   path: '/$locale',
   getParentRoute: () => rootRouteImport,
 } as any)
+const DocsDotmdRoute = DocsDotmdRouteImport.update({
+  id: '/docs.md',
+  path: '/docs.md',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LlmsFullDottxtRoute = LlmsFullDottxtRouteImport.update({
+  id: '/llms-full.txt',
+  path: '/llms-full.txt',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const LlmsDottxtRoute = LlmsDottxtRouteImport.update({
   id: '/llms.txt',
   path: '/llms.txt',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PricingDotmdRoute = PricingDotmdRouteImport.update({
+  id: '/pricing.md',
+  path: '/pricing.md',
   getParentRoute: () => rootRouteImport,
 } as any)
 const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
@@ -278,6 +296,11 @@ const DotwellKnownSplatRoute = DotwellKnownSplatRouteImport.update({
 const ApiUploadRoute = ApiUploadRouteImport.update({
   id: '/api/upload',
   path: '/api/upload',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DocsSplatRoute = DocsSplatRouteImport.update({
+  id: '/docs/$',
+  path: '/docs/$',
   getParentRoute: () => rootRouteImport,
 } as any)
 const LocaleGalleryIndexRoute = LocaleGalleryIndexRouteImport.update({
@@ -526,11 +549,6 @@ const ApiWebhookDodoRoute = ApiWebhookDodoRouteImport.update({
   path: '/api/webhook/dodo',
   getParentRoute: () => rootRouteImport,
 } as any)
-const LlmsDotmdxDocsSplatRoute = LlmsDotmdxDocsSplatRouteImport.update({
-  id: '/llms.mdx/docs/$',
-  path: '/llms.mdx/docs/$',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const LocaleGalleryCategoryCategoryRoute =
   LocaleGalleryCategoryCategoryRouteImport.update({
     id: '/category/$category',
@@ -670,7 +688,10 @@ const LocaleGalleryTypeTypeVideosSlugRoute =
 export interface FileRoutesByFullPath {
   '/$locale': typeof LocaleRouteRouteWithChildren
   '/$': typeof SplatRoute
+  '/docs.md': typeof DocsDotmdRoute
+  '/llms-full.txt': typeof LlmsFullDottxtRoute
   '/llms.txt': typeof LlmsDottxtRoute
+  '/pricing.md': typeof PricingDotmdRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/skill.md': typeof SkillDotmdRoute
   '/$locale/$': typeof LocaleSplatRoute
@@ -699,6 +720,7 @@ export interface FileRoutesByFullPath {
   '/$locale/welcome': typeof LocaleWelcomeRoute
   '/.well-known/$': typeof DotwellKnownSplatRoute
   '/api/upload': typeof ApiUploadRoute
+  '/docs/$': typeof DocsSplatRoute
   '/$locale/about': typeof LocalePagesAboutRoute
   '/$locale/brand': typeof LocalePagesBrandRoute
   '/$locale/contact': typeof LocalePagesContactRoute
@@ -732,7 +754,6 @@ export interface FileRoutesByFullPath {
   '/api/mcp/bookmarks': typeof ApiMcpBookmarksRoute
   '/api/mcp/featured': typeof ApiMcpFeaturedRoute
   '/api/webhook/dodo': typeof ApiWebhookDodoRoute
-  '/llms.mdx/docs/$': typeof LlmsDotmdxDocsSplatRoute
   '/$locale/': typeof LocaleGalleryIndexRoute
   '/$locale/admin/': typeof LocaleAdminIndexRoute
   '/$locale/blog/': typeof LocaleBlogIndexRoute
@@ -777,7 +798,10 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/$locale': typeof LocaleGalleryIndexRoute
   '/$': typeof SplatRoute
+  '/docs.md': typeof DocsDotmdRoute
+  '/llms-full.txt': typeof LlmsFullDottxtRoute
   '/llms.txt': typeof LlmsDottxtRoute
+  '/pricing.md': typeof PricingDotmdRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/skill.md': typeof SkillDotmdRoute
   '/$locale/$': typeof LocaleSplatRoute
@@ -797,6 +821,7 @@ export interface FileRoutesByTo {
   '/$locale/welcome': typeof LocaleWelcomeRoute
   '/.well-known/$': typeof DotwellKnownSplatRoute
   '/api/upload': typeof ApiUploadRoute
+  '/docs/$': typeof DocsSplatRoute
   '/$locale/about': typeof LocalePagesAboutRoute
   '/$locale/brand': typeof LocalePagesBrandRoute
   '/$locale/contact': typeof LocalePagesContactRoute
@@ -829,7 +854,6 @@ export interface FileRoutesByTo {
   '/api/mcp/bookmarks': typeof ApiMcpBookmarksRoute
   '/api/mcp/featured': typeof ApiMcpFeaturedRoute
   '/api/webhook/dodo': typeof ApiWebhookDodoRoute
-  '/llms.mdx/docs/$': typeof LlmsDotmdxDocsSplatRoute
   '/$locale/admin': typeof LocaleAdminIndexRoute
   '/$locale/blog': typeof LocaleBlogIndexRoute
   '/$locale/creatives': typeof LocaleCreativesIndexRoute
@@ -870,7 +894,10 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/$locale': typeof LocaleRouteRouteWithChildren
   '/$': typeof SplatRoute
+  '/docs.md': typeof DocsDotmdRoute
+  '/llms-full.txt': typeof LlmsFullDottxtRoute
   '/llms.txt': typeof LlmsDottxtRoute
+  '/pricing.md': typeof PricingDotmdRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/skill.md': typeof SkillDotmdRoute
   '/$locale/$': typeof LocaleSplatRoute
@@ -901,6 +928,7 @@ export interface FileRoutesById {
   '/$locale/welcome': typeof LocaleWelcomeRoute
   '/.well-known/$': typeof DotwellKnownSplatRoute
   '/api/upload': typeof ApiUploadRoute
+  '/docs/$': typeof DocsSplatRoute
   '/$locale/_pages/about': typeof LocalePagesAboutRoute
   '/$locale/_pages/brand': typeof LocalePagesBrandRoute
   '/$locale/_pages/contact': typeof LocalePagesContactRoute
@@ -934,7 +962,6 @@ export interface FileRoutesById {
   '/api/mcp/bookmarks': typeof ApiMcpBookmarksRoute
   '/api/mcp/featured': typeof ApiMcpFeaturedRoute
   '/api/webhook/dodo': typeof ApiWebhookDodoRoute
-  '/llms.mdx/docs/$': typeof LlmsDotmdxDocsSplatRoute
   '/$locale/_gallery/': typeof LocaleGalleryIndexRoute
   '/$locale/admin/': typeof LocaleAdminIndexRoute
   '/$locale/blog/': typeof LocaleBlogIndexRoute
@@ -981,7 +1008,10 @@ export interface FileRouteTypes {
   fullPaths:
     | '/$locale'
     | '/$'
+    | '/docs.md'
+    | '/llms-full.txt'
     | '/llms.txt'
+    | '/pricing.md'
     | '/sitemap.xml'
     | '/skill.md'
     | '/$locale/$'
@@ -1010,6 +1040,7 @@ export interface FileRouteTypes {
     | '/$locale/welcome'
     | '/.well-known/$'
     | '/api/upload'
+    | '/docs/$'
     | '/$locale/about'
     | '/$locale/brand'
     | '/$locale/contact'
@@ -1043,7 +1074,6 @@ export interface FileRouteTypes {
     | '/api/mcp/bookmarks'
     | '/api/mcp/featured'
     | '/api/webhook/dodo'
-    | '/llms.mdx/docs/$'
     | '/$locale/'
     | '/$locale/admin/'
     | '/$locale/blog/'
@@ -1088,7 +1118,10 @@ export interface FileRouteTypes {
   to:
     | '/$locale'
     | '/$'
+    | '/docs.md'
+    | '/llms-full.txt'
     | '/llms.txt'
+    | '/pricing.md'
     | '/sitemap.xml'
     | '/skill.md'
     | '/$locale/$'
@@ -1108,6 +1141,7 @@ export interface FileRouteTypes {
     | '/$locale/welcome'
     | '/.well-known/$'
     | '/api/upload'
+    | '/docs/$'
     | '/$locale/about'
     | '/$locale/brand'
     | '/$locale/contact'
@@ -1140,7 +1174,6 @@ export interface FileRouteTypes {
     | '/api/mcp/bookmarks'
     | '/api/mcp/featured'
     | '/api/webhook/dodo'
-    | '/llms.mdx/docs/$'
     | '/$locale/admin'
     | '/$locale/blog'
     | '/$locale/creatives'
@@ -1180,7 +1213,10 @@ export interface FileRouteTypes {
     | '__root__'
     | '/$locale'
     | '/$'
+    | '/docs.md'
+    | '/llms-full.txt'
     | '/llms.txt'
+    | '/pricing.md'
     | '/sitemap.xml'
     | '/skill.md'
     | '/$locale/$'
@@ -1211,6 +1247,7 @@ export interface FileRouteTypes {
     | '/$locale/welcome'
     | '/.well-known/$'
     | '/api/upload'
+    | '/docs/$'
     | '/$locale/_pages/about'
     | '/$locale/_pages/brand'
     | '/$locale/_pages/contact'
@@ -1244,7 +1281,6 @@ export interface FileRouteTypes {
     | '/api/mcp/bookmarks'
     | '/api/mcp/featured'
     | '/api/webhook/dodo'
-    | '/llms.mdx/docs/$'
     | '/$locale/_gallery/'
     | '/$locale/admin/'
     | '/$locale/blog/'
@@ -1290,17 +1326,20 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   LocaleRouteRoute: typeof LocaleRouteRouteWithChildren
   SplatRoute: typeof SplatRoute
+  DocsDotmdRoute: typeof DocsDotmdRoute
+  LlmsFullDottxtRoute: typeof LlmsFullDottxtRoute
   LlmsDottxtRoute: typeof LlmsDottxtRoute
+  PricingDotmdRoute: typeof PricingDotmdRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   SkillDotmdRoute: typeof SkillDotmdRoute
   DotwellKnownSplatRoute: typeof DotwellKnownSplatRoute
   ApiUploadRoute: typeof ApiUploadRoute
+  DocsSplatRoute: typeof DocsSplatRoute
   ApiAuthSplatRoute: typeof ApiAuthSplatRoute
   ApiCatalogDirectoriesRoute: typeof ApiCatalogDirectoriesRoute
   ApiMcpBookmarksRoute: typeof ApiMcpBookmarksRoute
   ApiMcpFeaturedRoute: typeof ApiMcpFeaturedRoute
   ApiWebhookDodoRoute: typeof ApiWebhookDodoRoute
-  LlmsDotmdxDocsSplatRoute: typeof LlmsDotmdxDocsSplatRoute
   ApiCatalogIndexRoute: typeof ApiCatalogIndexRoute
   ApiMovesIndexRoute: typeof ApiMovesIndexRoute
   ApiMcpMovesSlugRoute: typeof ApiMcpMovesSlugRoute
@@ -1323,11 +1362,32 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LocaleRouteRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/docs.md': {
+      id: '/docs.md'
+      path: '/docs.md'
+      fullPath: '/docs.md'
+      preLoaderRoute: typeof DocsDotmdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/llms-full.txt': {
+      id: '/llms-full.txt'
+      path: '/llms-full.txt'
+      fullPath: '/llms-full.txt'
+      preLoaderRoute: typeof LlmsFullDottxtRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/llms.txt': {
       id: '/llms.txt'
       path: '/llms.txt'
       fullPath: '/llms.txt'
       preLoaderRoute: typeof LlmsDottxtRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/pricing.md': {
+      id: '/pricing.md'
+      path: '/pricing.md'
+      fullPath: '/pricing.md'
+      preLoaderRoute: typeof PricingDotmdRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/sitemap.xml': {
@@ -1538,6 +1598,13 @@ declare module '@tanstack/react-router' {
       path: '/api/upload'
       fullPath: '/api/upload'
       preLoaderRoute: typeof ApiUploadRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/docs/$': {
+      id: '/docs/$'
+      path: '/docs/$'
+      fullPath: '/docs/$'
+      preLoaderRoute: typeof DocsSplatRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/$locale/_gallery/': {
@@ -1881,13 +1948,6 @@ declare module '@tanstack/react-router' {
       path: '/api/webhook/dodo'
       fullPath: '/api/webhook/dodo'
       preLoaderRoute: typeof ApiWebhookDodoRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/llms.mdx/docs/$': {
-      id: '/llms.mdx/docs/$'
-      path: '/llms.mdx/docs/$'
-      fullPath: '/llms.mdx/docs/$'
-      preLoaderRoute: typeof LlmsDotmdxDocsSplatRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/$locale/_gallery/category/$category': {
@@ -2426,17 +2486,20 @@ const LocaleRouteRouteWithChildren = LocaleRouteRoute._addFileChildren(
 const rootRouteChildren: RootRouteChildren = {
   LocaleRouteRoute: LocaleRouteRouteWithChildren,
   SplatRoute: SplatRoute,
+  DocsDotmdRoute: DocsDotmdRoute,
+  LlmsFullDottxtRoute: LlmsFullDottxtRoute,
   LlmsDottxtRoute: LlmsDottxtRoute,
+  PricingDotmdRoute: PricingDotmdRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   SkillDotmdRoute: SkillDotmdRoute,
   DotwellKnownSplatRoute: DotwellKnownSplatRoute,
   ApiUploadRoute: ApiUploadRoute,
+  DocsSplatRoute: DocsSplatRoute,
   ApiAuthSplatRoute: ApiAuthSplatRoute,
   ApiCatalogDirectoriesRoute: ApiCatalogDirectoriesRoute,
   ApiMcpBookmarksRoute: ApiMcpBookmarksRoute,
   ApiMcpFeaturedRoute: ApiMcpFeaturedRoute,
   ApiWebhookDodoRoute: ApiWebhookDodoRoute,
-  LlmsDotmdxDocsSplatRoute: LlmsDotmdxDocsSplatRoute,
   ApiCatalogIndexRoute: ApiCatalogIndexRoute,
   ApiMovesIndexRoute: ApiMovesIndexRoute,
   ApiMcpMovesSlugRoute: ApiMcpMovesSlugRoute,

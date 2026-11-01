@@ -1,4 +1,4 @@
-import { t } from "intlayer";
+import { insert, t } from "intlayer";
 import type { Dictionary } from "intlayer";
 
 export default {
@@ -157,6 +157,39 @@ export default {
       de: "Exportieren",
       pt: "Exportar",
       ru: "Экспорт",
+    }),
+    exportPdf: t({
+      en: "Export as PDF",
+      es: "Exportar como PDF",
+      fr: "Exporter en PDF",
+      zh: "导出为 PDF",
+      ko: "PDF로 내보내기",
+      ja: "PDFとしてエクスポート",
+      de: "Als PDF exportieren",
+      pt: "Exportar como PDF",
+      ru: "Экспорт в PDF",
+    }),
+    exportEpub: t({
+      en: "Export as EPUB",
+      es: "Exportar como EPUB",
+      fr: "Exporter en EPUB",
+      zh: "导出为 EPUB",
+      ko: "EPUB로 내보내기",
+      ja: "EPUBとしてエクスポート",
+      de: "Als EPUB exportieren",
+      pt: "Exportar como EPUB",
+      ru: "Экспорт в EPUB",
+    }),
+    openIn: t({
+      en: insert("Open in {{name}}"),
+      es: insert("Abrir en {{name}}"),
+      fr: insert("Ouvrir dans {{name}}"),
+      zh: insert("在 {{name}} 中打开"),
+      ko: insert("{{name}}에서 열기"),
+      ja: insert("{{name}}で開く"),
+      de: insert("In {{name}} öffnen"),
+      pt: insert("Abrir no {{name}}"),
+      ru: insert("Открыть в {{name}}"),
     }),
     openInChat: t({
       en: "Open in chat",

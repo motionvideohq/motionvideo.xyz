@@ -157,8 +157,9 @@ const Pro = () => {
           <SectionHeader id="what-you-get" title={content.whatYouGet} />
           {/* What your agent gets, nothing else: Moves beside Templates (4|2),
               then MCP and the skill full width with their snippets beside the
-              copy. Rows are as tall as their content. One column below lg. */}
-          <div className="grid gap-4 lg:grid-cols-6">
+              copy. Rows are as tall as their content. One column below lg,
+              `minmax(0,1fr)` so the truncated snippets can't widen it. */}
+          <div className="grid grid-cols-1 gap-4 lg:grid-cols-6">
             <Tile
               title={content.movesTitle}
               body={content.movesBody}
@@ -203,7 +204,7 @@ const Pro = () => {
                   params={{ _splat: "mcp" }}
                   className={featureLinkClass}
                 >
-                  {content.mcpSetup}
+                  {content.mcpDocs}
                   <ArrowRight aria-hidden="true" className="size-3.5" />
                 </Link>
               }
@@ -233,7 +234,7 @@ const Pro = () => {
                   params={{ _splat: "skill" }}
                   className={featureLinkClass}
                 >
-                  {content.installSteps}
+                  {content.skillDocs}
                   <ArrowRight aria-hidden="true" className="size-3.5" />
                 </Link>
               }

@@ -1,9 +1,10 @@
 import { createFileRoute } from "@tanstack/react-router";
 
 import { DEFAULT_LOCALE, localizedPath } from "@/constants/locales";
-import { ROUTES, STATIC_PAGES } from "@/constants/routes";
+import { ROUTES, STATIC_PAGES, docsMarkdownPath } from "@/constants/routes";
 import { SITE } from "@/constants/site";
 import { absoluteUrl } from "@/constants/url";
+import { englishDocsPages } from "@/server/docs-markdown";
 
 // The file is per-site, so its page links point at the default locale.
 const pageUrl = (path: string) =>
@@ -12,7 +13,7 @@ const pageUrl = (path: string) =>
 // A map of the public site for LLM agents (https://llmstxt.org). Signed-in
 // pages are intentionally absent; the JSON catalog endpoints below are the
 // machine-readable way in.
-const body = `# ${SITE.NAME}
+const body = () => `# ${SITE.NAME}
 
 > ${SITE.TAGLINE} ${SITE.DESCRIPTION.LONG}
 
@@ -25,7 +26,7 @@ const body = `# ${SITE.NAME}
 - [MotionVideo Skill](${pageUrl(ROUTES.MOTIONVIDEO_SKILL)}): The motion design skill pack included in Pro and Business. Install reference: ${pageUrl(ROUTES.DOCS_SKILL)}
 - [Moves](${pageUrl(ROUTES.MOVES)}): Named motion design techniques with gallery examples; each move's copy-ready prompt is in Pro.
 - [Templates](${pageUrl(ROUTES.TEMPLATES)}): Prompt templates with fill-in fields (concept, palette, length, size); each template's full prompt is in Pro.
-- [MotionVideo Pro](${pageUrl(ROUTES.PRO)}): Pro and Business plans: what they include and what they cost.
+- [MotionVideo Pro](${pageUrl(ROUTES.PRO)}): Pro and Business plans: what they include and what they cost. As Markdown: ${absoluteUrl(ROUTES.PRICING_MD)}
 - [Tools](${pageUrl(ROUTES.TOOLS)}): Agent tools and plugins for motion design, by category.
 - [Creatives](${pageUrl(ROUTES.CREATIVES)}): Studios, designers, and agencies that make motion work.
 - [Skills](${pageUrl(ROUTES.SKILLS)}): Agent skills for motion design, by category.
@@ -37,6 +38,17 @@ ${STATIC_PAGES.map(
     `- [${page.slice(1).replace(/^./u, (letter) => letter.toUpperCase())}](${pageUrl(page)})`
 ).join("\n")}
 
+## Docs
+
+Each page as Markdown; all of them in one file: ${absoluteUrl(ROUTES.LLMS_FULL_TXT)}
+
+${englishDocsPages()
+  .map(
+    (page) =>
+      `- [${page.data.title}](${absoluteUrl(docsMarkdownPath(page.url))}): ${page.data.description}`
+  )
+  .join("\n")}
+
 ## Data
 
 - [Motion catalog](${absoluteUrl("/api/catalog/")}): JSON of every gallery video with its prompt, model, stack, effort, and media URLs.
@@ -45,6 +57,8 @@ ${STATIC_PAGES.map(
 
 ## Optional
 
+- [Pricing](${absoluteUrl(ROUTES.PRICING_MD)}): Plans and prices as Markdown.
+- [Full docs](${absoluteUrl(ROUTES.LLMS_FULL_TXT)}): Every docs page in one Markdown file.
 - [Sitemap](${absoluteUrl("/sitemap.xml")})
 `;
 
@@ -52,7 +66,7 @@ export const Route = createFileRoute("/llms.txt")({
   server: {
     handlers: {
       GET: () =>
-        new Response(body, {
+        new Response(body(), {
           headers: {
             "Cache-Control": "public, max-age=3600",
             "Content-Type": "text/plain; charset=utf-8",

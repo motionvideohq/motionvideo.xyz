@@ -109,7 +109,7 @@ export const Route = createFileRoute("/$locale/customize/")({
   }),
   head: () =>
     createMetadata({
-      title: "Customize a prompt",
+      title: "Prompt customizer",
       description:
         "Make any motion video prompt from the gallery yours: add your subject, colors, size and typeface, and set creativity, pace and polish. Free, in the browser.",
     }),

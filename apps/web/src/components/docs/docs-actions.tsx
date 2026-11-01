@@ -1,38 +1,81 @@
+import { Fragment } from "react";
 import type { ReactNode } from "react";
 import { useIntlayer } from "react-intlayer";
-import { ArrowUp } from "reicon-react/icons/ArrowUp";
+import { ArrowUpCircle } from "reicon-react/icons/ArrowUpCircle";
+import { BookOpen } from "reicon-react/icons/BookOpen";
 import { ChatRoundDots } from "reicon-react/icons/ChatRoundDots";
 import { ChevronDown } from "reicon-react/icons/ChevronDown";
 import { Copy3 } from "reicon-react/icons/Copy3";
+import { DocumentDownload } from "reicon-react/icons/DocumentDownload";
 import { Edit } from "reicon-react/icons/Edit";
 import { Export } from "reicon-react/icons/Export";
 import { Plug } from "reicon-react/icons/Plug";
 
 import {
+  ChatGptIcon,
+  ClaudeCodeIcon,
+  ClaudeIcon,
+  CodexIcon,
+  CursorIcon,
+  GeminiIcon,
+  GrokIcon,
+  PerplexityIcon,
+  SciraIcon,
+  T3ChatIcon,
+  V0Icon,
+  VsCodeIcon,
+} from "@/components/docs/brand-icons";
+import {
+  Collapsible,
+  CollapsibleContent,
+  CollapsibleTrigger,
+} from "@/components/ui/collapsible";
+import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuLinkItem,
+  DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { LINK } from "@/constants/links";
 import { MCP_RESOURCE } from "@/constants/oauth";
-import { ROUTES } from "@/constants/routes";
+import { docsMarkdownPath } from "@/constants/routes";
 import { absoluteUrl } from "@/constants/url";
 import { useTransientStatus } from "@/hooks/use-transient-status";
 import { buildDocsEpub } from "@/lib/docs-epub";
+import { cn } from "@/lib/utils";
 
 const EDIT_BASE = `${LINK.GITHUB_REPO}/edit/main/apps/web/content/docs`;
 const MCP_NAME = "motionvideo";
 
 // Assistants that open a new chat with a prompt from the URL.
 const CHATS = [
-  { name: "v0", url: "https://v0.dev/chat?q=" },
-  { name: "ChatGPT", url: "https://chatgpt.com/?hints=search&q=" },
-  { name: "Claude", url: "https://claude.ai/new?q=" },
-  { name: "T3 Chat", url: "https://t3.chat/new?q=" },
-  { name: "Scira", url: "https://scira.ai/?q=" },
-  { name: "Cursor", url: "https://cursor.com/link/prompt?text=" },
+  { name: "v0", url: "https://v0.dev/chat?q=", Icon: V0Icon },
+  {
+    name: "Cursor",
+    url: "https://cursor.com/link/prompt?text=",
+    Icon: CursorIcon,
+  },
+  {
+    name: "ChatGPT",
+    url: "https://chatgpt.com/?hints=search&q=",
+    Icon: ChatGptIcon,
+  },
+  { name: "Claude", url: "https://claude.ai/new?q=", Icon: ClaudeIcon },
+  {
+    name: "Perplexity",
+    url: "https://www.perplexity.ai/search?q=",
+    Icon: PerplexityIcon,
+  },
+  {
+    name: "Gemini",
+    url: "https://gemini.google.com/app?q=",
+    Icon: GeminiIcon,
+  },
+  { name: "Grok", url: "https://grok.com/?q=", Icon: GrokIcon },
+  { name: "T3 Chat", url: "https://t3.chat/new?q=", Icon: T3ChatIcon },
+  { name: "Scira", url: "https://scira.ai/?q=", Icon: SciraIcon },
 ] as const;
 
 const CURSOR_INSTALL = `https://cursor.com/install-mcp?name=${MCP_NAME}&config=${btoa(
@@ -49,29 +92,116 @@ const CODEX_COMMAND = `codex mcp add ${MCP_NAME} --url ${MCP_RESOURCE}`;
 const actionClass =
   "text-muted-foreground hover:text-foreground data-popup-open:text-foreground focus-visible:ring-ring flex h-8 w-full items-center gap-2 rounded-sm text-left text-sm transition-colors outline-none focus-visible:ring-2 [&_svg]:size-4 [&_svg]:shrink-0";
 
+interface MenuEntry {
+  key: string;
+  icon: ReactNode;
+  label: ReactNode;
+  /** A link (opened in a new tab unless `sameTab`), or else `handleSelect`. */
+  href?: string;
+  sameTab?: boolean;
+  handleSelect?: () => void;
+  /** A rule above this entry, starting a new group. */
+  separated?: boolean;
+}
+
+/**
+ * One action with a submenu (Export, Open in chat, Connect to MCP). A
+ * dropdown in the desktop column; `inline` (the mobile "On this page") opens
+ * the entries in the flow below it, indented behind a left rule.
+ */
 const MenuAction = ({
   icon,
   label,
-  children,
+  entries,
+  inline,
 }: {
   icon: ReactNode;
   label: ReactNode;
-  children: ReactNode;
-}) => (
-  <DropdownMenu>
-    <DropdownMenuTrigger className={actionClass}>
+  entries: MenuEntry[];
+  inline: boolean;
+}) => {
+  const trigger = (
+    <>
       {icon}
       {label}
       <ChevronDown
         aria-hidden="true"
-        className="ml-auto transition-transform in-data-popup-open:rotate-180"
+        className="ml-auto transition-transform in-aria-expanded:rotate-180 in-data-popup-open:rotate-180"
       />
-    </DropdownMenuTrigger>
-    <DropdownMenuContent align="start" className="w-56">
-      {children}
-    </DropdownMenuContent>
-  </DropdownMenu>
-);
+    </>
+  );
+  if (inline) {
+    return (
+      <Collapsible>
+        <CollapsibleTrigger className={actionClass}>
+          {trigger}
+        </CollapsibleTrigger>
+        <CollapsibleContent>
+          <ul className="ml-2 flex flex-col gap-0.5 border-l py-1 pl-3">
+            {entries.map((entry) => (
+              <li
+                key={entry.key}
+                className={cn(entry.separated && "mt-1 border-t pt-1")}
+              >
+                {entry.href ? (
+                  <a
+                    href={entry.href}
+                    {...(entry.sameTab
+                      ? {}
+                      : { target: "_blank", rel: "noreferrer" })}
+                    className={actionClass}
+                  >
+                    {entry.icon}
+                    {entry.label}
+                  </a>
+                ) : (
+                  <button
+                    type="button"
+                    className={actionClass}
+                    onClick={entry.handleSelect}
+                  >
+                    {entry.icon}
+                    {entry.label}
+                  </button>
+                )}
+              </li>
+            ))}
+          </ul>
+        </CollapsibleContent>
+      </Collapsible>
+    );
+  }
+  return (
+    <DropdownMenu>
+      <DropdownMenuTrigger className={actionClass}>
+        {trigger}
+      </DropdownMenuTrigger>
+      <DropdownMenuContent align="start">
+        {entries.map((entry) => (
+          <Fragment key={entry.key}>
+            {entry.separated && <DropdownMenuSeparator />}
+            {entry.href ? (
+              <DropdownMenuLinkItem
+                href={entry.href}
+                {...(entry.sameTab
+                  ? {}
+                  : { target: "_blank", rel: "noreferrer" })}
+              >
+                {entry.icon}
+                {entry.label}
+              </DropdownMenuLinkItem>
+            ) : (
+              <DropdownMenuItem onClick={entry.handleSelect}>
+                {entry.icon}
+                {entry.label}
+              </DropdownMenuItem>
+            )}
+          </Fragment>
+        ))}
+      </DropdownMenuContent>
+    </DropdownMenu>
+  );
+};
 
 type CopyStatus = "idle" | "copied" | "failed";
 
@@ -86,6 +216,8 @@ export interface DocsActionsProps {
   lang: string;
   /** The rendered article body, for the EPUB. */
   getArticle: () => HTMLElement | null;
+  /** Submenus open in the flow instead of as dropdowns (mobile panel). */
+  inline?: boolean;
 }
 
 /**
@@ -100,6 +232,7 @@ export const DocsActions = ({
   path,
   lang,
   getArticle,
+  inline = false,
 }: DocsActionsProps) => {
   const content = useIntlayer("docs-layout");
   const [markdownStatus, flashMarkdown] =
@@ -112,27 +245,35 @@ export const DocsActions = ({
     return status === "failed" ? content.copyFailed : idle;
   };
 
-  const markdownUrl = absoluteUrl(
-    `${ROUTES.DOCS_MARKDOWN}${url.slice(ROUTES.DOCS.length)}`
-  );
+  // Copied from this origin (localhost, previews and the live site alike);
+  // assistants get the public URL.
+  const markdownPath = docsMarkdownPath(url);
   const chatPrompt = encodeURIComponent(
-    `Read ${markdownUrl}, I want to ask questions about it.`
+    `Read ${absoluteUrl(markdownPath)}, I want to ask questions about it.`
   );
+
+  const fetchMarkdown = async () => {
+    const response = await fetch(markdownPath);
+    if (!response.ok) {
+      throw new Error(`Markdown ${response.status}`);
+    }
+    return response.text();
+  };
 
   const copyMarkdown = async () => {
     try {
       // A ClipboardItem with a pending blob keeps the click's user activation
-      // through the fetch (Safari drops it after an await).
-      await navigator.clipboard.write([
-        new ClipboardItem({
-          "text/plain": fetch(markdownUrl).then(async (response) => {
-            if (!response.ok) {
-              throw new Error(`Markdown ${response.status}`);
-            }
-            return new Blob([await response.text()], { type: "text/plain" });
-          }),
-        }),
-      ]);
+      // through the fetch (Safari drops it after an await); without
+      // ClipboardItem, write the text once it arrives.
+      await (typeof ClipboardItem === "undefined"
+        ? fetchMarkdown().then((text) => navigator.clipboard.writeText(text))
+        : navigator.clipboard.write([
+            new ClipboardItem({
+              "text/plain": fetchMarkdown().then(
+                (text) => new Blob([text], { type: "text/plain" })
+              ),
+            }),
+          ]));
       flashMarkdown("copied");
     } catch {
       flashMarkdown("failed");
@@ -196,7 +337,7 @@ export const DocsActions = ({
           })
         }
       >
-        <ArrowUp aria-hidden="true" />
+        <ArrowUpCircle aria-hidden="true" />
         {content.scrollToTop}
       </button>
       <button type="button" className={actionClass} onClick={copyMarkdown}>
@@ -206,55 +347,78 @@ export const DocsActions = ({
         </span>
       </button>
       <MenuAction
+        inline={inline}
         icon={<Export aria-hidden="true" />}
         label={content.exportPage}
-      >
-        <DropdownMenuItem onClick={() => window.print()}>PDF</DropdownMenuItem>
-        <DropdownMenuItem onClick={exportEpub}>EPUB</DropdownMenuItem>
-      </MenuAction>
+        entries={[
+          {
+            key: "pdf",
+            icon: <DocumentDownload aria-hidden="true" />,
+            label: content.exportPdf,
+            handleSelect: () => window.print(),
+          },
+          {
+            key: "epub",
+            icon: <BookOpen aria-hidden="true" />,
+            label: content.exportEpub,
+            handleSelect: exportEpub,
+          },
+        ]}
+      />
       <MenuAction
+        inline={inline}
         icon={<ChatRoundDots aria-hidden="true" />}
         label={content.openInChat}
-      >
-        {CHATS.map((chat) => (
-          <DropdownMenuLinkItem
-            key={chat.name}
-            href={`${chat.url}${chatPrompt}`}
-            target="_blank"
-            rel="noreferrer"
-          >
-            {chat.name}
-          </DropdownMenuLinkItem>
-        ))}
-      </MenuAction>
+        entries={CHATS.map((chat) => ({
+          key: chat.name,
+          icon: <chat.Icon />,
+          label: content.openIn({ name: chat.name }),
+          href: `${chat.url}${chatPrompt}`,
+        }))}
+      />
       <MenuAction
+        inline={inline}
         icon={<Plug aria-hidden="true" />}
         label={
           <span aria-live="polite">
             {statusLabel(mcpStatus, content.connectMcp)}
           </span>
         }
-      >
-        <DropdownMenuItem onClick={() => copyMcp(MCP_RESOURCE)}>
-          {content.copyServerUrl}
-        </DropdownMenuItem>
-        <DropdownMenuItem onClick={() => copyMcp(CLAUDE_CODE_COMMAND)}>
-          {content.copyClaudeCode}
-        </DropdownMenuItem>
-        <DropdownMenuItem onClick={() => copyMcp(CODEX_COMMAND)}>
-          {content.copyCodex}
-        </DropdownMenuItem>
-        <DropdownMenuLinkItem
-          href={CURSOR_INSTALL}
-          target="_blank"
-          rel="noreferrer"
-        >
-          {content.addToCursor}
-        </DropdownMenuLinkItem>
-        <DropdownMenuLinkItem href={VS_CODE_INSTALL}>
-          {content.addToVsCode}
-        </DropdownMenuLinkItem>
-      </MenuAction>
+        entries={[
+          {
+            key: "url",
+            icon: <Copy3 aria-hidden="true" />,
+            label: content.copyServerUrl,
+            handleSelect: () => copyMcp(MCP_RESOURCE),
+          },
+          {
+            key: "claude-code",
+            icon: <ClaudeCodeIcon />,
+            label: content.copyClaudeCode,
+            handleSelect: () => copyMcp(CLAUDE_CODE_COMMAND),
+          },
+          {
+            key: "codex",
+            icon: <CodexIcon />,
+            label: content.copyCodex,
+            handleSelect: () => copyMcp(CODEX_COMMAND),
+          },
+          {
+            key: "cursor",
+            icon: <CursorIcon />,
+            label: content.addToCursor,
+            href: CURSOR_INSTALL,
+            separated: true,
+          },
+          {
+            key: "vscode",
+            icon: <VsCodeIcon />,
+            label: content.addToVsCode,
+            href: VS_CODE_INSTALL,
+            sameTab: true,
+          },
+        ]}
+      />
     </nav>
   );
 };

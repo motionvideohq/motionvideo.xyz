@@ -92,7 +92,7 @@ export const Route = createFileRoute("/$locale/customize/$slug")({
     createMetadata({
       title: loaderData
         ? `Customize: ${loaderData.video.title}`
-        : "Customize a prompt",
+        : "Prompt customizer",
       description: loaderData
         ? `Make the prompt behind “${loaderData.video.title}” by @${loaderData.video.handle} yours: your subject, colors, size and dials. Free, in the browser.`
         : undefined,

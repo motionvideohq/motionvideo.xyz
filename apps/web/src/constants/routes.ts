@@ -30,8 +30,6 @@ export const ROUTES = {
   DOCS_PLANS: "/docs/plans",
   DOCS_SKILL: "/docs/skill",
   DOCS_TEMPLATES: "/docs/templates",
-  /** Prefix of each docs page's Markdown: `${DOCS_MARKDOWN}/mcp`. */
-  DOCS_MARKDOWN: "/llms.mdx/docs",
   EXTRAS: "/extras",
   HOME: "/",
   JOBS: "/jobs",
@@ -42,6 +40,9 @@ export const ROUTES = {
   PRIVACY: "/privacy",
   REFUNDS: "/refunds",
   SIGN_IN: "/sign-in",
+  LLMS_FULL_TXT: "/llms-full.txt",
+  LLMS_TXT: "/llms.txt",
+  PRICING_MD: "/pricing.md",
   SKILL_MD: "/skill.md",
   SKILLS: "/skills",
   SPONSOR: "/sponsor",
@@ -81,3 +82,10 @@ export const STATIC_PAGES: readonly string[] = [
   ROUTES.REFUNDS,
   ROUTES.TERMS,
 ];
+
+/**
+ * A docs page's Markdown (for agents and "Copy as Markdown"): /docs →
+ * /docs.md, /docs/mcp → /docs/mcp.md. Unprefixed, and the file extension
+ * keeps the server from redirecting it to a locale.
+ */
+export const docsMarkdownPath = (docsPath: string) => `${docsPath}.md`;

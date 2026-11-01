@@ -37,11 +37,13 @@ export const LockedPrompt = ({
   const { locale } = useLocale();
   return (
     // One grid cell for both layers: the placeholder fills whatever height
-    // the content needs.
+    // the content needs. Its opacity and blur paint it above non-positioned
+    // siblings, so the content is `relative` (later in the DOM, on top) and
+    // the placeholder ignores the pointer.
     <div className="bg-muted grid overflow-hidden rounded-xl *:col-start-1 *:row-start-1">
       <div
         aria-hidden="true"
-        className="flex flex-col gap-2.5 p-4 opacity-50 blur-[2px]"
+        className="pointer-events-none flex flex-col gap-2.5 p-4 opacity-50 blur-[2px]"
       >
         {PLACEHOLDER_LINES.map((width) => (
           <span
@@ -51,7 +53,7 @@ export const LockedPrompt = ({
           />
         ))}
       </div>
-      <div className="from-muted via-muted/90 to-muted/60 flex flex-col items-center gap-3 bg-linear-to-t px-4 py-6 text-center">
+      <div className="from-muted via-muted/90 to-muted/60 relative flex flex-col items-center gap-3 bg-linear-to-t px-4 py-6 text-center">
         <span className="bg-background shadow-outline flex size-9 items-center justify-center rounded-full">
           <Lock aria-hidden="true" className="size-4" />
         </span>

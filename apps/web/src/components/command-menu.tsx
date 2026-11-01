@@ -6,6 +6,7 @@ import { Briefcase } from "reicon-react/icons/Briefcase";
 import { Code } from "reicon-react/icons/Code";
 import { Designtools } from "reicon-react/icons/Designtools";
 import { Docs } from "reicon-react/icons/Docs";
+import { DocumentCode } from "reicon-react/icons/DocumentCode";
 import { DocumentText } from "reicon-react/icons/DocumentText";
 import { Envelope } from "reicon-react/icons/Envelope";
 import { HandHeart } from "reicon-react/icons/HandHeart";
@@ -17,11 +18,13 @@ import { Office } from "reicon-react/icons/Office";
 import { Play } from "reicon-react/icons/Play";
 import { Plug } from "reicon-react/icons/Plug";
 import { Plus } from "reicon-react/icons/Plus";
+import { Reply } from "reicon-react/icons/Reply";
 import { Scroll } from "reicon-react/icons/Scroll";
 import { Search } from "reicon-react/icons/Search";
 import { Sliders } from "reicon-react/icons/Sliders";
 import { Sparkles } from "reicon-react/icons/Sparkles";
 import { Sun } from "reicon-react/icons/Sun";
+import { Ufo } from "reicon-react/icons/Ufo";
 import { Undo } from "reicon-react/icons/Undo";
 import { User2 } from "reicon-react/icons/User2";
 import { VideoLib } from "reicon-react/icons/VideoLib";
@@ -31,6 +34,7 @@ import {
   Command,
   CommandDialog,
   CommandEmpty,
+  CommandFooter,
   CommandGroup,
   CommandInput,
   CommandItem,
@@ -39,6 +43,7 @@ import {
 } from "@/components/ui/command";
 import { Kbd, KbdGroup } from "@/components/ui/kbd";
 import { LINK } from "@/constants/links";
+import { ROUTES } from "@/constants/routes";
 import { useHotkey } from "@/hooks/use-hotkey";
 import { useLocalizedNavigate as useNavigate } from "@/hooks/use-localized-navigate";
 import { useIsMac } from "@/hooks/use-mac";
@@ -180,6 +185,7 @@ export const CommandMenu = () => {
     return () => window.removeEventListener("keydown", onKeyDown);
   }, []);
 
+  const hasQuery = query.trim().length > 0;
   const groups = useMemo<PaletteGroup[]>(() => {
     // PagePath limits `page()` to real pages; the localized navigate adds the
     // locale prefix.
@@ -223,13 +229,34 @@ export const CommandMenu = () => {
     });
     // Always visible: Pages, Theme, Socials. Videos + directory entries stay
     // hidden until the user types, but remain searchable via cmdk filtering.
-    const hasQuery = query.trim().length > 0;
     const visible: PaletteGroup[] = [
       {
-        id: "pages",
-        heading: content.pages.value,
+        // The header's Explore sections, after a random video.
+        id: "go-to",
+        heading: content.goTo.value,
         items: [
-          page("/", content.discover.value, <VideoLib aria-hidden="true" />),
+          {
+            id: "go-to:surprise",
+            label: content.surpriseMe.value,
+            keywords: ["random", "surprise", "shuffle", "video"],
+            icon: <Ufo aria-hidden="true" />,
+            hint: content.randomVideo.value,
+            action: () => {
+              const video =
+                data.videos[Math.floor(Math.random() * data.videos.length)];
+              if (video) {
+                navigate({
+                  to: "/videos/$slug",
+                  params: { slug: video.slug },
+                  viewTransition: true,
+                });
+              }
+            },
+          },
+          page("/", content.videos.value, <VideoLib aria-hidden="true" />, [
+            "gallery",
+            "discover",
+          ]),
           page(
             "/tools",
             content.tools.value,
@@ -246,17 +273,47 @@ export const CommandMenu = () => {
             <Sparkles aria-hidden="true" />
           ),
           page("/extras", content.extras.value, <Plus aria-hidden="true" />),
-          page(
-            "/customize",
-            content.customize.value,
-            <Sliders aria-hidden="true" />,
-            ["prompt", "customize", "personalize"]
-          ),
           page("/jobs", content.jobs.value, <Briefcase aria-hidden="true" />, [
             "hiring",
             "career",
             "work",
           ]),
+        ],
+      },
+      {
+        // What coding agents use: the MCP server, the skill, and the site
+        // map written for them.
+        id: "agents",
+        heading: content.agents.value,
+        items: [
+          page(
+            "/motionvideo-mcp",
+            content.mcp.value,
+            <Plug aria-hidden="true" />,
+            ["mcp", "claude", "cursor", "server"]
+          ),
+          page(
+            "/motionvideo-skill",
+            content.skill.value,
+            <Code aria-hidden="true" />,
+            ["skill", "SKILL.md", "agent", "pro"]
+          ),
+          {
+            id: "agents:llms-txt",
+            label: "llms.txt",
+            keywords: ["llms", "llms.txt", "agents", "markdown", "ai"],
+            icon: <DocumentCode aria-hidden="true" />,
+            // A server route, not an app page: a full document load.
+            action: () => {
+              window.location.assign(ROUTES.LLMS_TXT);
+            },
+          },
+        ],
+      },
+      {
+        id: "pages",
+        heading: content.pages.value,
+        items: [
           page("/moves", content.moves.value, <Bezier aria-hidden="true" />, [
             "techniques",
             "prompts",
@@ -269,16 +326,10 @@ export const CommandMenu = () => {
             ["prompt", "template", "pro"]
           ),
           page(
-            "/motionvideo-mcp",
-            content.mcp.value,
-            <Plug aria-hidden="true" />,
-            ["mcp", "claude", "cursor", "server"]
-          ),
-          page(
-            "/motionvideo-skill",
-            content.skill.value,
-            <Code aria-hidden="true" />,
-            ["skill", "SKILL.md", "agent", "pro"]
+            "/customize",
+            content.customize.value,
+            <Sliders aria-hidden="true" />,
+            ["prompt", "customize", "personalize"]
           ),
           page("/docs", content.docs.value, <Docs aria-hidden="true" />, [
             "documentation",
@@ -374,7 +425,7 @@ export const CommandMenu = () => {
           },
           {
             id: "other:x",
-            label: "X",
+            label: "X/Twitter",
             keywords: ["x", "twitter", "follow"],
             icon: <XIcon className="size-4" />,
             action: () => {
@@ -440,7 +491,7 @@ export const CommandMenu = () => {
         items: linkItems(data.directories.extra),
       },
     ];
-  }, [data, content, navigate, query, setLocale]);
+  }, [data, content, navigate, hasQuery, setLocale]);
 
   return (
     <>
@@ -483,10 +534,16 @@ export const CommandMenu = () => {
             value={query}
             onValueChange={setQuery}
           />
-          <CommandList>
+          <CommandList className="scroll-fade-y">
             <CommandEmpty>{content.empty.value}</CommandEmpty>
             {groups.map((group) => (
-              <CommandGroup key={group.id} heading={group.heading}>
+              // cmdk sorts matches by moving their DOM nodes and doesn't move
+              // them back when the query is cleared; a new key on clearing
+              // rebuilds the groups in their own order (Surprise me first).
+              <CommandGroup
+                key={`${group.id}:${hasQuery}`}
+                heading={group.heading}
+              >
                 {group.items.map((entry) => (
                   <CommandItem
                     key={entry.id}
@@ -512,6 +569,26 @@ export const CommandMenu = () => {
               </CommandGroup>
             ))}
           </CommandList>
+          {/* Keyboard hints; touch screens have no keys to hint at. */}
+          <CommandFooter aria-hidden="true" className="max-sm:hidden">
+            <span className="flex items-center gap-1.5">
+              <KbdGroup>
+                <Kbd>↑</Kbd>
+                <Kbd>↓</Kbd>
+              </KbdGroup>
+              {content.hintMove}
+            </span>
+            <span className="flex items-center gap-1.5">
+              <Kbd>
+                <Reply aria-hidden="true" />
+              </Kbd>
+              {content.hintOpen}
+            </span>
+            <span className="ml-auto flex items-center gap-1.5">
+              <Kbd>esc</Kbd>
+              {content.hintClose}
+            </span>
+          </CommandFooter>
         </Command>
       </CommandDialog>
     </>

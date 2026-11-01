@@ -18,6 +18,7 @@ import { ArrowRightUp } from "reicon-react/icons/ArrowRightUp";
 import { ChevronDown } from "reicon-react/icons/ChevronDown";
 import { ChevronLeft } from "reicon-react/icons/ChevronLeft";
 import { ChevronRight } from "reicon-react/icons/ChevronRight";
+import { Layout } from "reicon-react/icons/Layout";
 import { Sliders } from "reicon-react/icons/Sliders";
 import { User } from "reicon-react/icons/User";
 import { Xmark } from "reicon-react/icons/Xmark";
@@ -25,6 +26,7 @@ import { Xmark } from "reicon-react/icons/Xmark";
 import { BookmarkButton } from "@/components/bookmark-button";
 import { CopyIcon } from "@/components/copy-icon";
 import { CopyPromptButton } from "@/components/copy-prompt-button";
+import { GitHubIcon, XIcon } from "@/components/icons";
 import { LocalizedLink as Link } from "@/components/localized-link";
 import { SimilarVideos } from "@/components/similar-videos";
 import { SponsoredCard } from "@/components/sponsored-card";
@@ -566,7 +568,7 @@ const PROMPT_LINK =
   "text-foreground focus-visible:ring-ring/50 inline-flex items-center gap-1 rounded-sm text-xs font-medium outline-none hover:underline focus-visible:ring-3";
 
 /**
- * The detail view's prompt. Long prompts fold to a fixed height with a fade
+ * The detail view's prompt. Long prompts fold to six lines with a fade
  * and a Show all link, so the details below stay in reach without a scroll
  * box inside the scrolling panel. `aside` sits on the same row, at the end
  * (the translation switch). Key it by video: each prompt starts folded and
@@ -601,7 +603,8 @@ const PromptText = ({
           lang={lang}
           className={cn(
             "bg-muted rounded-xl p-4 font-serif text-sm leading-relaxed whitespace-pre-wrap",
-            !expanded && "max-h-72 overflow-hidden"
+            // Folded to six lines (plus the padding).
+            !expanded && "max-h-[calc(6lh+2rem)] overflow-hidden"
           )}
         >
           {prompt}
@@ -870,22 +873,10 @@ const PromptSection = ({ video }: { video: MotionVideo }) => {
       <div className="flex items-center justify-between gap-3">
         <h2 className="text-sm font-medium">{content.prompt}</h2>
         {prompt && (
-          <div className="flex gap-2">
-            <Link
-              to="/customize/$slug"
-              params={{ slug: video.slug }}
-              data-track="customize_click"
-              data-track-slug={video.slug}
-              className={buttonVariants({ variant: "outline", size: "sm" })}
-            >
-              <Sliders aria-hidden="true" />
-              {content.customize}
-            </Link>
-            <Button variant="outline" size="sm" onClick={copyPrompt}>
-              <CopyIcon copied={copyStatus === "copied"} />
-              {copyStatus === "copied" ? content.copied : content.copyShort}
-            </Button>
-          </div>
+          <Button variant="outline" size="sm" onClick={copyPrompt}>
+            <CopyIcon copied={copyStatus === "copied"} />
+            {copyStatus === "copied" ? content.copied : content.copyShort}
+          </Button>
         )}
       </div>
       {prompt ? (
@@ -894,31 +885,12 @@ const PromptSection = ({ video }: { video: MotionVideo }) => {
           prompt={prompt.text}
           lang={prompt.translatedFrom ? "en" : translated?.translatedFrom}
           aside={
-            (translated?.translatedFrom || template) && (
-              <div className="flex flex-wrap items-center gap-x-4 gap-y-1">
-                {translated?.translatedFrom && (
-                  <TranslationToggle
-                    language={translated.translatedFrom}
-                    showOriginal={showOriginal}
-                    onToggle={() => setShowOriginal(!showOriginal)}
-                  />
-                )}
-                {/* Made with the prompt a template grew from: link to it. */}
-                {template && (
-                  <Link
-                    to="/templates/$templateId"
-                    params={{ templateId: template.id }}
-                    title={template.name}
-                    data-track="template_link_click"
-                    data-track-template={template.id}
-                    data-track-slug={video.slug}
-                    className={PROMPT_LINK}
-                  >
-                    {content.template}
-                    <ArrowRightUp aria-hidden="true" className="size-3.5" />
-                  </Link>
-                )}
-              </div>
+            translated?.translatedFrom && (
+              <TranslationToggle
+                language={translated.translatedFrom}
+                showOriginal={showOriginal}
+                onToggle={() => setShowOriginal(!showOriginal)}
+              />
             )
           }
         />
@@ -930,6 +902,37 @@ const PromptSection = ({ video }: { video: MotionVideo }) => {
       <output className="text-muted-foreground text-xs">
         {copyStatus === "failed" && content.copyError}
       </output>
+      {/* The page's actions, right after the prompt they act on. Template is
+          the one yellow action (only where one exists); Customize is always
+          outline, so it looks the same on every video. */}
+      {prompt && (
+        <div className="flex flex-col gap-2">
+          {template && (
+            <Link
+              to="/templates/$templateId"
+              params={{ templateId: template.id }}
+              title={template.name}
+              data-track="template_link_click"
+              data-track-template={template.id}
+              data-track-slug={video.slug}
+              className={buttonVariants({ variant: "gradient", size: "lg" })}
+            >
+              <Layout aria-hidden="true" />
+              {content.useTemplate}
+            </Link>
+          )}
+          <Link
+            to="/customize/$slug"
+            params={{ slug: video.slug }}
+            data-track="customize_click"
+            data-track-slug={video.slug}
+            className={buttonVariants({ variant: "outline", size: "lg" })}
+          >
+            <Sliders aria-hidden="true" />
+            {content.customizePrompt}
+          </Link>
+        </div>
+      )}
     </section>
   );
 };
@@ -1090,6 +1093,44 @@ const SkillSection = ({ video }: { video: MotionVideo }) => {
   );
 };
 
+/** The original post, as a round icon button with a tooltip naming where. */
+const SourceButton = ({ url, slug }: { url: string; slug: string }) => {
+  const content = useIntlayer("motion-gallery");
+  const action = sourceAction(url);
+  const label = content[action].value;
+  let icon = <ArrowRightUp aria-hidden="true" />;
+  if (action === "openOnX") {
+    icon = <XIcon aria-hidden="true" className="size-4" />;
+  } else if (action === "viewOnGitHub") {
+    icon = <GitHubIcon aria-hidden="true" className="size-4" />;
+  }
+  return (
+    <Tooltip>
+      <TooltipTrigger
+        delay={TOOLTIP_DELAY}
+        render={
+          <a
+            href={url}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label={label}
+            data-track="source_click"
+            data-track-from="detail"
+            data-track-slug={slug}
+            className={cn(
+              buttonVariants({ variant: "secondary", size: "icon-lg" }),
+              "shrink-0 rounded-full"
+            )}
+          />
+        }
+      >
+        {icon}
+      </TooltipTrigger>
+      <TooltipContent>{label}</TooltipContent>
+    </Tooltip>
+  );
+};
+
 /**
  * Route overlay for `/videos/$slug`: the player floats over the blurred
  * gallery with details beside it. The player shares a view-transition name
@@ -1168,34 +1209,35 @@ export const MotionVideoOverlay = ({
         <Dialog.Title className="text-xl leading-tight font-semibold tracking-tight text-balance">
           {video.title}
         </Dialog.Title>
-        {/* Avatar, then name over @handle: the two lines match the
-            avatar's 40px height. */}
-        <a
-          href={`https://x.com/${video.handle}`}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="group/creator flex items-center gap-3 self-start"
-        >
-          <CreatorAvatar
-            src={video.avatar}
-            size={40}
-            className="size-10 shrink-0 rounded-full"
-          />
-          <span className="flex h-10 min-w-0 flex-col justify-center text-sm leading-5">
-            <span className="truncate font-medium group-hover/creator:underline">
-              {video.creatorName ?? `@${video.handle}`}
+        {/* The creator on the left; the original post as an icon button on
+            the right, labelled by where it lives (X, GitHub, YouTube…). */}
+        <div className="flex items-center justify-between gap-3">
+          <a
+            href={`https://x.com/${video.handle}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group/creator flex min-w-0 items-center gap-3"
+          >
+            <CreatorAvatar
+              src={video.avatar}
+              size={40}
+              className="size-10 shrink-0 rounded-full"
+            />
+            {/* Name over @handle: the two lines match the avatar's height. */}
+            <span className="flex h-10 min-w-0 flex-col justify-center text-sm leading-5">
+              <span className="truncate font-medium group-hover/creator:underline">
+                {video.creatorName ?? `@${video.handle}`}
+              </span>
+              <span className="text-muted-foreground truncate">
+                @{video.handle}
+              </span>
             </span>
-            <span className="text-muted-foreground truncate">
-              @{video.handle}
-            </span>
-          </span>
-        </a>
+          </a>
+          {video.tweetUrl && (
+            <SourceButton url={video.tweetUrl} slug={video.slug} />
+          )}
+        </div>
       </div>
-      {video.description && (
-        <Dialog.Description className="text-sm leading-relaxed text-pretty">
-          {video.description}
-        </Dialog.Description>
-      )}
       <time
         dateTime={video.date}
         className="text-muted-foreground -mt-2 text-sm"
@@ -1207,25 +1249,13 @@ export const MotionVideoOverlay = ({
           {content.videoError}
         </p>
       )}
-      <div className="flex flex-col gap-2">
-        {video.tweetUrl && (
-          <a
-            href={video.tweetUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            data-track="source_click"
-            data-track-from="detail"
-            data-track-slug={video.slug}
-            className={buttonVariants({
-              variant: "gradient",
-              size: "lg",
-            })}
-          >
-            {content[sourceAction(video.tweetUrl)]}
-            <ArrowRightUp aria-hidden="true" />
-          </a>
-        )}
-      </div>
+      {/* A skill video without a prompt shows only the skill. */}
+      {(video.prompt || !video.skillUrl) && (
+        <PromptSection key={video.slug} video={video} />
+      )}
+      {video.skillUrl && (
+        <SkillSection key={`${video.slug}-skill`} video={video} />
+      )}
       <dl>
         {/* Diamond's third placement: the first details row, beside
             every video. Renders nothing until a Diamond is live. */}
@@ -1263,13 +1293,6 @@ export const MotionVideoOverlay = ({
           <ColorsRow colors={video.colors} />
         )}
       </dl>
-      {/* A skill video without a prompt shows only the skill. */}
-      {(video.prompt || !video.skillUrl) && (
-        <PromptSection key={video.slug} video={video} />
-      )}
-      {video.skillUrl && (
-        <SkillSection key={`${video.slug}-skill`} video={video} />
-      )}
       {openVideo && (
         <SimilarVideos
           key={`${video.slug}-similar`}

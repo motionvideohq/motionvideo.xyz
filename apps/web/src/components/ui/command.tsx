@@ -164,8 +164,24 @@ const CommandShortcut = ({
   />
 );
 
+/** A row of hints or actions under the list, inside `Command`. */
+const CommandFooter = ({
+  className,
+  ...props
+}: React.ComponentProps<"div">) => (
+  <div
+    data-slot="command-footer"
+    className={cn(
+      "text-muted-foreground -mx-1 mt-1 -mb-1 flex items-center gap-4 border-t px-3 py-2 text-xs",
+      className
+    )}
+    {...props}
+  />
+);
+
 export {
   Command,
+  CommandFooter,
   CommandDialog,
   CommandInput,
   CommandList,

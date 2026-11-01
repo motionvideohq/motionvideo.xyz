@@ -18,6 +18,8 @@ import { docsMdxComponents } from "@/components/docs/mdx-components";
 import { LocalizedLink as Link } from "@/components/localized-link";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
+import { docsMarkdownPath } from "@/constants/routes";
+import { absoluteUrl } from "@/constants/url";
 import { cn } from "@/lib/utils";
 import { createMetadata } from "@/seo/metadata";
 import { getDocsPage } from "@/server/docs-functions";
@@ -63,7 +65,7 @@ const DocsArticle = ({
   const { previous, next } = findNeighbour(tree, url);
   const hasToc = toc.length > 0;
   const body = useRef<HTMLDivElement>(null);
-  const actions = (
+  const actions = (inline: boolean) => (
     <DocsActions
       title={title}
       description={description}
@@ -71,6 +73,7 @@ const DocsArticle = ({
       path={path}
       lang={lang}
       getArticle={() => body.current}
+      inline={inline}
     />
   );
   return (
@@ -83,7 +86,7 @@ const DocsArticle = ({
             lg the docs pages are in the site's menu (the header's Docs
             section). */}
         <div className="xl:hidden">
-          <DocsTocCollapsible toc={toc} actions={actions} />
+          <DocsTocCollapsible toc={toc} actions={actions(true)} />
         </div>
         <header className="flex flex-col gap-3">
           <h1 className="text-3xl font-semibold tracking-tight text-balance sm:text-4xl">
@@ -151,7 +154,7 @@ const DocsArticle = ({
       <aside className="sticky top-0 flex max-h-[calc(100svh-3.5rem)] flex-col gap-4 self-start pt-10 pb-20 max-xl:hidden print:hidden">
         {hasToc ? <DocsToc toc={toc} /> : null}
         <div className={cn("shrink-0", hasToc && "border-t pt-3")}>
-          {actions}
+          {actions(false)}
         </div>
       </aside>
     </AnchorProvider>
@@ -191,11 +194,25 @@ export const loadDocsPage = async (
   return { signedIn, ...page };
 };
 
-export const docsHead = (data: DocsLoaderData | undefined) =>
-  createMetadata({
+export const docsHead = (data: DocsLoaderData | undefined) => {
+  const metadata = createMetadata({
     title: data?.english.title ?? "Docs",
     description: data?.english.description,
   });
+  return data
+    ? {
+        ...metadata,
+        // The page as Markdown, for agents that look for an alternate.
+        links: [
+          {
+            rel: "alternate",
+            type: "text/markdown",
+            href: absoluteUrl(docsMarkdownPath(data.url)),
+          },
+        ],
+      }
+    : metadata;
+};
 
 // Full width, three columns from lg (sidebar, article, and from xl the table
 // of contents with the page actions); below lg the pages are listed in the

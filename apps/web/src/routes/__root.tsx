@@ -10,6 +10,7 @@ import { getHTMLTextDir } from "intlayer";
 
 import { ClickTracking } from "@/components/click-tracking";
 import { FeedbackDialogProvider } from "@/components/feedback-dialog";
+import { FollowPrompt } from "@/components/follow-prompt";
 import { KeyboardShortcutsProvider } from "@/components/keyboard-shortcuts";
 import { LivePresenceProvider } from "@/components/live-presence";
 import { LocaleProvider } from "@/components/locale-provider";
@@ -50,6 +51,7 @@ const RootDocument = ({ children }: { children: React.ReactNode }) => {
               </KeyboardShortcutsProvider>
             </FeedbackDialogProvider>
           </SignInDialogProvider>
+          <FollowPrompt />
         </LocaleProvider>
         <ProgressiveBlur />
         <ClickTracking />

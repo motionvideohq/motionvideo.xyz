@@ -355,7 +355,7 @@ export const AccountMenu = ({
                 href={LINK.X}
                 target="_blank"
                 rel="noopener noreferrer"
-                aria-label="X"
+                aria-label="X/Twitter"
                 className={iconButtonClass}
               >
                 <XIcon className="size-4" />

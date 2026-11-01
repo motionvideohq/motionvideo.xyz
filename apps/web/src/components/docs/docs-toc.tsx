@@ -51,7 +51,7 @@ export const DocsToc = ({ toc }: { toc: TOCItemType[] }) => {
 
 /**
  * "On this page" folded above the content below xl: the headings (if any)
- * and the page actions.
+ * and the page actions, whose submenus open inline in the card.
  */
 export const DocsTocCollapsible = ({
   toc,
@@ -71,15 +71,13 @@ export const DocsTocCollapsible = ({
         />
       </CollapsibleTrigger>
       <CollapsibleContent>
-        <div className="flex flex-col gap-3 px-2 pb-2">
+        <div className="flex flex-col gap-3 px-4 pb-3">
           {toc.length > 0 ? (
-            <nav aria-label={content.onThisPage.value} className="px-2">
+            <nav aria-label={content.onThisPage.value}>
               <TocList toc={toc} />
             </nav>
           ) : null}
-          <div className={cn("px-2", toc.length > 0 && "border-t pt-2")}>
-            {actions}
-          </div>
+          <div className={cn(toc.length > 0 && "border-t pt-2")}>{actions}</div>
         </div>
       </CollapsibleContent>
     </Collapsible>
