@@ -214,7 +214,8 @@ export const createPlanCheckoutUrl = (
   return checkoutUrl({
     cancel_url: appUrl(ROUTES.PRO, locale),
     customer: { email: buyer.email },
-    feature_flags: { allow_discount_code: false },
+    // Shows the code field (e.g. MOTIONVIDEOLAUNCH, 20% off every plan).
+    feature_flags: { allow_discount_code: true },
     metadata: { plan, billing, user_id: buyer.userId },
     product_cart: [{ product_id: productId, quantity: 1 }],
     return_url: `${appUrl(ROUTES.DASHBOARD_BILLING, locale)}?checkout=success`,
