@@ -13,6 +13,7 @@ import {
   MOTION_TYPES,
   motionModelSlug,
 } from "@/lib/motion-catalog";
+import { INDEXED_MOTION_CREATORS } from "@/lib/motion-creators";
 import { COLOR_PAGES } from "@/lib/motion-video-route";
 import { MOVE_FAMILIES } from "@/lib/move-families";
 import { MOVES, movePath } from "@/lib/moves";
@@ -38,6 +39,10 @@ const PAGES: { lastmod?: string; path: string }[] = [
   // Colour pages already leave out colours too rare to have one.
   ...COLOR_PAGES.map((color) => ({
     path: `${ROUTES.HOME}color/${color.slug}`,
+  })),
+  { path: ROUTES.CREATORS },
+  ...INDEXED_MOTION_CREATORS.map((creator) => ({
+    path: `${ROUTES.HOME}creators/${creator.handle}`,
   })),
   ...catalog.videos.map((video) => ({
     lastmod: video.date,

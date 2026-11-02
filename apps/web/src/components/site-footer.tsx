@@ -30,13 +30,6 @@ import { LINK } from "@/constants/links";
 import { OTHER_PRODUCTS, SHADCN_LABS_PROJECTS } from "@/constants/products";
 import { ROUTES } from "@/constants/routes";
 import { SITE } from "@/constants/site";
-import {
-  MOTION_CATEGORIES,
-  MOTION_MODELS,
-  MOTION_MODEL_NAMES,
-  motionModelSlug,
-} from "@/lib/motion-catalog";
-import { MOVE_FAMILIES } from "@/lib/move-families";
 import { cn } from "@/lib/utils";
 import { withUtm } from "@/lib/utm";
 
@@ -134,10 +127,6 @@ const LinkGroup = ({
   </div>
 );
 
-const Column = ({ children }: { children: ReactNode }) => (
-  <div className="flex flex-col gap-8">{children}</div>
-);
-
 const ExternalLink = ({
   href,
   children,
@@ -151,39 +140,23 @@ const ExternalLink = ({
 );
 
 /**
- * Every page as plain, server-rendered links (nothing behind a menu but the
- * Shadcn Labs projects), so visitors and crawlers reach them all: the brand
- * column, then four columns of link groups. On phones the brand sits on top
- * and the groups pair up.
+ * The brand column, then four link groups: product, company, legal and the
+ * other products. Crawlers find every other page through the sitemap. On
+ * phones the brand sits on top and the groups pair up.
  */
 export const SiteFooter = () => {
   const content = useIntlayer("site-footer");
   const header = useIntlayer("site-header");
-  const gallery = useIntlayer("motion-gallery");
-  const moves = useIntlayer("moves");
+  // The main pages only; collections and the rest are in the header, the
+  // command menu and the sitemap.
   const product = [
+    [ROUTES.HOME, header.discover],
     [ROUTES.MOVES, header.moves],
     [ROUTES.TEMPLATES, header.templates],
-    [ROUTES.MOTIONVIDEO_SKILL, header.skill],
     [ROUTES.MOTIONVIDEO_MCP, header.mcp],
+    [ROUTES.MOTIONVIDEO_SKILL, header.skill],
+    [ROUTES.DOCS, header.docs],
     [ROUTES.PRO, header.pricing],
-  ] as const;
-  const docs = [
-    [ROUTES.DOCS, content.quickstart],
-    [ROUTES.DOCS_MCP, content.mcpServer],
-    [ROUTES.DOCS_SKILL, content.agentSkill],
-    [ROUTES.DOCS_MOVES, content.usingMoves],
-    [ROUTES.DOCS_TEMPLATES, content.usingTemplates],
-    [ROUTES.DOCS_PLANS, content.plansBilling],
-    [ROUTES.DOCS_API, content.publicApi],
-  ] as const;
-  const resources = [
-    [ROUTES.HOME, header.discover],
-    [ROUTES.TOOLS, header.tools],
-    [ROUTES.CREATIVES, header.creatives],
-    [ROUTES.SKILLS, header.skills],
-    [ROUTES.EXTRAS, header.extras],
-    [ROUTES.JOBS, header.jobs],
   ] as const;
   const company = [
     [ROUTES.ABOUT, content.about],
@@ -210,7 +183,7 @@ export const SiteFooter = () => {
 
   return (
     <footer className="mx-auto mt-auto w-full max-w-[1800px] px-4 pt-16 text-sm sm:px-6">
-      <div className="grid gap-x-8 gap-y-12 lg:grid-cols-[minmax(0,1.4fr)_repeat(5,minmax(0,1fr))]">
+      <div className="grid gap-x-8 gap-y-12 lg:grid-cols-[minmax(0,1.4fr)_repeat(4,minmax(0,1fr))]">
         <div className="flex max-w-xs flex-col items-start gap-4">
           {/* text-base: the logo at the header's size (the footer is text-sm). */}
           <div className="text-base">
@@ -225,115 +198,43 @@ export const SiteFooter = () => {
         </div>
         <nav
           aria-label={content.footer.value}
-          className="grid grid-cols-2 gap-x-6 gap-y-10 md:grid-cols-3 lg:col-span-5 lg:grid-cols-5"
+          className="grid grid-cols-2 gap-x-6 gap-y-10 md:grid-cols-4 lg:col-span-4"
         >
-          <Column>
-            <LinkGroup heading={content.product}>{links(product)}</LinkGroup>
-            <LinkGroup heading={header.docs}>
-              {links(docs)}
-              {/* A server route serving markdown, not an app page. */}
-              <a href={ROUTES.SKILL_MD} className={linkClass}>
-                SKILL.md
-              </a>
-            </LinkGroup>
-          </Column>
-          <Column>
-            <LinkGroup heading={content.explore}>{links(resources)}</LinkGroup>
-            <LinkGroup heading={content.byModel}>
-              {MOTION_MODELS.map((model) => (
-                <Link
-                  key={model}
-                  to="/model/$model"
-                  params={{ model: motionModelSlug(model) }}
-                  className={linkClass}
-                >
-                  {MOTION_MODEL_NAMES[model]}
-                </Link>
-              ))}
-            </LinkGroup>
-          </Column>
-          <Column>
-            <LinkGroup heading={content.categories}>
-              {MOTION_CATEGORIES.map((category) => (
-                <Link
-                  key={category}
-                  to="/category/$category"
-                  params={{ category }}
-                  className={linkClass}
-                >
-                  {gallery.categories[category]}
-                </Link>
-              ))}
-            </LinkGroup>
-            <LinkGroup heading={content.byType}>
-              <Link
-                to="/type/$type"
-                params={{ type: "prompt" }}
-                className={linkClass}
+          <LinkGroup heading={content.product}>{links(product)}</LinkGroup>
+          <LinkGroup heading={content.company}>{links(company)}</LinkGroup>
+          <LinkGroup heading={content.legal}>{links(legal)}</LinkGroup>
+          <LinkGroup heading={content.otherProducts}>
+            {OTHER_PRODUCTS.map((item) => (
+              <ExternalLink key={item.name} href={item.url}>
+                {item.name}
+              </ExternalLink>
+            ))}
+            {/* Reads as one more product link; the chevron marks the menu. */}
+            <DropdownMenu>
+              <DropdownMenuTrigger
+                className={cn(linkClass, "flex items-center gap-1 text-left")}
               >
-                {content.prompts}
-              </Link>
-              <Link
-                to="/type/$type"
-                params={{ type: "skill" }}
-                className={linkClass}
-              >
-                {content.skillVideos}
-              </Link>
-            </LinkGroup>
-          </Column>
-          <Column>
-            <LinkGroup heading={content.company}>{links(company)}</LinkGroup>
-            <LinkGroup heading={content.legal}>{links(legal)}</LinkGroup>
-          </Column>
-          <Column>
-            <LinkGroup heading={header.moves}>
-              {MOVE_FAMILIES.map((family) => (
-                <Link
-                  key={family}
-                  to="/moves/$family"
-                  params={{ family }}
-                  className={linkClass}
-                >
-                  {moves.familyLabels[family]}
-                </Link>
-              ))}
-            </LinkGroup>
-            <LinkGroup heading={content.otherProducts}>
-              {OTHER_PRODUCTS.map((item) => (
-                <ExternalLink key={item.name} href={item.url}>
-                  {item.name}
-                </ExternalLink>
-              ))}
-              {/* Reads as one more product link; the chevron marks the menu. */}
-              <DropdownMenu>
-                <DropdownMenuTrigger
-                  className={cn(linkClass, "flex items-center gap-1 text-left")}
-                >
-                  {content.andMore}
-                  <ChevronDown
-                    aria-hidden="true"
-                    className="size-3.5 shrink-0 transition-transform in-data-popup-open:rotate-180"
-                  />
-                </DropdownMenuTrigger>
-                <DropdownMenuContent side="top" align="start" className="w-48">
-                  <DropdownMenuGroup>
-                    <DropdownMenuLabel>
-                      {content.labsProjects}
-                    </DropdownMenuLabel>
-                    {SHADCN_LABS_PROJECTS.map((project) => (
-                      <DropdownMenuLinkItem
-                        key={project.name}
-                        href={withUtm(project.url, "footer")}
-                      >
-                        {project.name}
-                      </DropdownMenuLinkItem>
-                    ))}
-                  </DropdownMenuGroup>
-                </DropdownMenuContent>
-              </DropdownMenu>
-            </LinkGroup>
-          </Column>
+                {content.andMore}
+                <ChevronDown
+                  aria-hidden="true"
+                  className="size-3.5 shrink-0 transition-transform in-data-popup-open:rotate-180"
+                />
+              </DropdownMenuTrigger>
+              <DropdownMenuContent side="top" align="start" className="w-48">
+                <DropdownMenuGroup>
+                  <DropdownMenuLabel>{content.labsProjects}</DropdownMenuLabel>
+                  {SHADCN_LABS_PROJECTS.map((project) => (
+                    <DropdownMenuLinkItem
+                      key={project.name}
+                      href={withUtm(project.url, "footer")}
+                    >
+                      {project.name}
+                    </DropdownMenuLinkItem>
+                  ))}
+                </DropdownMenuGroup>
+              </DropdownMenuContent>
+            </DropdownMenu>
+          </LinkGroup>
         </nav>
       </div>
       {/* Credit left; language, theme and sound right. No rule above. */}

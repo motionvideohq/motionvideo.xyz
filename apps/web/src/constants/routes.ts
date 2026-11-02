@@ -12,6 +12,7 @@ export const ROUTES = {
   CONSENT: "/consent",
   CONTACT: "/contact",
   CREATIVES: "/creatives",
+  CREATORS: "/creators",
   CUSTOMIZE: "/customize",
   DASHBOARD: "/dashboard",
   DASHBOARD_BILLING: "/dashboard/billing",

@@ -3,6 +3,11 @@ import { createFileRoute } from "@tanstack/react-router";
 import { MotionVideoOverlay } from "@/components/motion-video";
 import { useLocalizedNavigate } from "@/hooks/use-localized-navigate";
 import {
+  galleryDestination,
+  useVideoGalleryContext,
+} from "@/lib/gallery-navigation";
+import { scopeFilters } from "@/lib/motion-catalog";
+import {
   loadMotionVideo,
   motionVideoHead,
   videoNeighbours,
@@ -10,15 +15,20 @@ import {
 
 const VideoRoute = () => {
   const { video } = Route.useLoaderData();
-  const search = Route.useSearch();
+  const videoGallery = useVideoGalleryContext();
+  const search = videoGallery?.search ?? {};
   const navigate = useLocalizedNavigate();
-  const { previous, next } = videoNeighbours(video.slug, search);
+  const { previous, next } = videoNeighbours(video.slug, {
+    ...search,
+    ...scopeFilters(videoGallery?.scope),
+  });
   // Stepping replaces the entry, so Back still leaves the overlay.
   const open = (slug: string) =>
     navigate({
       to: "/videos/$slug",
       params: { slug },
-      search,
+      search: {},
+      state: { videoGallery },
       replace: true,
       resetScroll: false,
     });
@@ -30,7 +40,7 @@ const VideoRoute = () => {
       next={next ? () => open(next) : undefined}
       onClose={() =>
         navigate({
-          to: "/",
+          ...galleryDestination(videoGallery?.scope),
           search,
           resetScroll: false,
           viewTransition: true,

@@ -47,7 +47,6 @@ import {
   findEffort,
   findIterations,
   findMotionCategory,
-  motionModelSlug,
 } from "@/lib/motion-catalog";
 import type {
   GalleryScope,
@@ -117,50 +116,19 @@ const VideoLink = ({
   slug: string;
   scope: GalleryScope | undefined;
   search: GallerySearch;
-}) => {
-  const shared = { search, resetScroll: false, viewTransition: true, ...props };
-  switch (scope?.kind) {
-    case "category": {
-      return (
-        <Link
-          to="/category/$category/videos/$slug"
-          params={{ category: scope.category, slug }}
-          {...shared}
-        />
-      );
-    }
-    case "color": {
-      return (
-        <Link
-          to="/color/$color/videos/$slug"
-          params={{ color: scope.color.slug, slug }}
-          {...shared}
-        />
-      );
-    }
-    case "model": {
-      return (
-        <Link
-          to="/model/$model/videos/$slug"
-          params={{ model: motionModelSlug(scope.model), slug }}
-          {...shared}
-        />
-      );
-    }
-    case "type": {
-      return (
-        <Link
-          to="/type/$type/videos/$slug"
-          params={{ type: scope.type, slug }}
-          {...shared}
-        />
-      );
-    }
-    default: {
-      return <Link to="/videos/$slug" params={{ slug }} {...shared} />;
-    }
-  }
-};
+}) => (
+  // One URL per video; the grid it was opened from rides in history state
+  // (lib/gallery-navigation.ts).
+  <Link
+    to="/videos/$slug"
+    params={{ slug }}
+    search={{}}
+    state={{ videoGallery: { scope, search } }}
+    resetScroll={false}
+    viewTransition
+    {...props}
+  />
+);
 
 /** A creator's photo, or the user glyph when there is none or it fails to load. */
 const CreatorAvatar = ({
@@ -899,9 +867,12 @@ const PromptSection = ({ video }: { video: MotionVideo }) => {
           {content.unavailablePrompt}
         </p>
       )}
-      <output className="text-muted-foreground text-xs">
-        {copyStatus === "failed" && content.copyError}
-      </output>
+      {/* Only when copying fails: an empty element would still take a gap. */}
+      {copyStatus === "failed" && (
+        <p role="alert" className="text-muted-foreground text-xs">
+          {content.copyError}
+        </p>
+      )}
       {/* The page's actions, right after the prompt they act on. Template is
           the one yellow action (only where one exists); Customize is always
           outline, so it looks the same on every video. */}
@@ -1086,9 +1057,12 @@ const SkillSection = ({ video }: { video: MotionVideo }) => {
           </Tooltip>
         </div>
       )}
-      <output className="text-muted-foreground text-xs">
-        {copyStatus === "failed" && content.copyError}
-      </output>
+      {/* Only when copying fails: an empty element would still take a gap. */}
+      {copyStatus === "failed" && (
+        <p role="alert" className="text-muted-foreground text-xs">
+          {content.copyError}
+        </p>
+      )}
     </section>
   );
 };
@@ -1209,13 +1183,13 @@ export const MotionVideoOverlay = ({
         <Dialog.Title className="text-xl leading-tight font-semibold tracking-tight text-balance">
           {video.title}
         </Dialog.Title>
-        {/* The creator on the left; the original post as an icon button on
-            the right, labelled by where it lives (X, GitHub, YouTube…). */}
+        {/* The creator (their page) on the left; the original post as an
+            icon button on the right, labelled by where it lives. */}
         <div className="flex items-center justify-between gap-3">
-          <a
-            href={`https://x.com/${video.handle}`}
-            target="_blank"
-            rel="noopener noreferrer"
+          {/* The creator's page here; their X profile is linked from it. */}
+          <Link
+            to="/creators/$creator"
+            params={{ creator: video.handle.toLowerCase() }}
             className="group/creator flex min-w-0 items-center gap-3"
           >
             <CreatorAvatar
@@ -1232,7 +1206,7 @@ export const MotionVideoOverlay = ({
                 @{video.handle}
               </span>
             </span>
-          </a>
+          </Link>
           {video.tweetUrl && (
             <SourceButton url={video.tweetUrl} slug={video.slug} />
           )}

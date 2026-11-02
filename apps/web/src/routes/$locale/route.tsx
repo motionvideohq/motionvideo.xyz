@@ -12,6 +12,10 @@ import {
   ogLocale,
 } from "@/constants/locales";
 import { absoluteUrl } from "@/constants/url";
+import {
+  MIN_INDEXED_CREATOR_VIDEOS,
+  findMotionCreator,
+} from "@/lib/motion-creators";
 import { websiteJsonLd } from "@/seo/json-ld";
 
 export const Route = createFileRoute("/$locale")({
@@ -51,9 +55,19 @@ export const Route = createFileRoute("/$locale")({
         meta: [{ content: "noindex, nofollow", name: "robots" }, localeMeta],
       };
     }
-    // A video opens over whichever grid it was clicked in
-    // (`/category/x/videos/slug`, `/color/red/videos/slug`…); all of those
-    // show the same video, so they share the canonical `/videos/slug`.
+    // Creators with only a video or two: the page works (the video sidebar
+    // links every creator) but stays out of search, crawlable so the
+    // directive is read. See MIN_INDEXED_CREATOR_VIDEOS.
+    if (leaf.routeId.startsWith("/$locale/_gallery/creators/$creator")) {
+      const creator = findMotionCreator(String(leaf.params.creator));
+      if (!creator || creator.count < MIN_INDEXED_CREATOR_VIDEOS) {
+        return {
+          meta: [{ content: "noindex, follow", name: "robots" }, localeMeta],
+        };
+      }
+    }
+    // Scoped video URLs (`/category/x/videos/slug`…) redirect to
+    // `/videos/slug`; any that still render share its canonical.
     const path = leaf.routeId.endsWith("/videos/$slug")
       ? `/videos/${String(leaf.params.slug)}`
       : getPathWithoutLocale(leaf.pathname);

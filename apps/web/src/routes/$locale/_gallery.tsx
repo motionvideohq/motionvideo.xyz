@@ -29,7 +29,7 @@ import {
 } from "@/components/collection-toolbar";
 import { ColorPicker } from "@/components/color-picker";
 import { FadeScroller } from "@/components/fade-scroller";
-import { Claude, Codex, ColorDots, Gemini } from "@/components/icons";
+import { Claude, Codex, ColorDots, Gemini, XIcon } from "@/components/icons";
 import { JobsWidget } from "@/components/jobs-widget";
 import { MotionVideoCard, setMorphCard } from "@/components/motion-video";
 import { SiteFooter } from "@/components/site-footer";
@@ -56,6 +56,10 @@ import { useLaneCount } from "@/hooks/use-lane-count";
 import { useLocalizedNavigate as useNavigate } from "@/hooks/use-localized-navigate";
 import type { LocalizedNavigate } from "@/hooks/use-localized-navigate";
 import {
+  galleryDestination,
+  useVideoGalleryContext,
+} from "@/lib/gallery-navigation";
+import {
   MAX_FILTER_COLORS,
   MOTION_CATEGORIES,
   MOTION_MODELS,
@@ -76,7 +80,8 @@ import type {
   MotionModel,
   MotionVideo,
 } from "@/lib/motion-catalog";
-import { COLOR_PAGES } from "@/lib/motion-video-route";
+import { findMotionCreator } from "@/lib/motion-creators";
+import { COLOR_PAGES, fillTemplate } from "@/lib/motion-video-route";
 import { cn } from "@/lib/utils";
 import { getLandingData } from "@/server/functions";
 import { getJobs } from "@/server/job-functions";
@@ -96,7 +101,12 @@ const scopeOf = (params: {
   color?: string;
   model?: string;
   type?: string;
+  creator?: string;
 }): GalleryScope | undefined => {
+  const creator = findMotionCreator(params.creator);
+  if (creator) {
+    return { kind: "creator", creator: creator.handle };
+  }
   const category = findMotionCategory(params.category);
   if (category) {
     return { kind: "category", category };
@@ -118,42 +128,12 @@ const goToPage = (
   navigate: Navigate,
   scope: GalleryScope | undefined,
   search: GallerySearch
-) => {
-  const options = { search, resetScroll: false };
-  switch (scope?.kind) {
-    case "category": {
-      return navigate({
-        to: "/category/$category",
-        params: { category: scope.category },
-        ...options,
-      });
-    }
-    case "color": {
-      return navigate({
-        to: "/color/$color",
-        params: { color: scope.color.slug },
-        ...options,
-      });
-    }
-    case "model": {
-      return navigate({
-        to: "/model/$model",
-        params: { model: motionModelSlug(scope.model) },
-        ...options,
-      });
-    }
-    case "type": {
-      return navigate({
-        to: "/type/$type",
-        params: { type: scope.type },
-        ...options,
-      });
-    }
-    default: {
-      return navigate({ to: "/", ...options });
-    }
-  }
-};
+) =>
+  navigate({
+    ...galleryDestination(scope),
+    search,
+    resetScroll: false,
+  });
 
 /** Opens a video's overlay over a gallery page. */
 const goToVideo = (
@@ -161,42 +141,15 @@ const goToVideo = (
   scope: GalleryScope | undefined,
   search: GallerySearch,
   slug: string
-) => {
-  const options = { search, resetScroll: false, viewTransition: true };
-  switch (scope?.kind) {
-    case "category": {
-      return navigate({
-        to: "/category/$category/videos/$slug",
-        params: { category: scope.category, slug },
-        ...options,
-      });
-    }
-    case "color": {
-      return navigate({
-        to: "/color/$color/videos/$slug",
-        params: { color: scope.color.slug, slug },
-        ...options,
-      });
-    }
-    case "model": {
-      return navigate({
-        to: "/model/$model/videos/$slug",
-        params: { model: motionModelSlug(scope.model), slug },
-        ...options,
-      });
-    }
-    case "type": {
-      return navigate({
-        to: "/type/$type/videos/$slug",
-        params: { type: scope.type, slug },
-        ...options,
-      });
-    }
-    default: {
-      return navigate({ to: "/videos/$slug", params: { slug }, ...options });
-    }
-  }
-};
+) =>
+  navigate({
+    to: "/videos/$slug",
+    params: { slug },
+    search: {},
+    state: { videoGallery: { scope, search } },
+    resetScroll: false,
+    viewTransition: true,
+  });
 
 /**
  * Where a Type/Model menu or colour pick goes. On Discover and category pages
@@ -493,6 +446,7 @@ const GalleryIntro = ({
   actions: ReactNode;
 }) => {
   const content = useIntlayer("motion-gallery");
+  const creatorContent = useIntlayer("motion-creator");
   let title: ReactNode = content.title;
   let description: ReactNode = content.intro;
   if (scope?.kind === "category") {
@@ -507,6 +461,14 @@ const GalleryIntro = ({
   } else if (scope?.kind === "type") {
     title = content.typeTitles[scope.type];
     description = content.typeIntros[scope.type];
+  } else if (scope?.kind === "creator") {
+    const creator = findMotionCreator(scope.creator);
+    if (creator) {
+      title = fillTemplate(creatorContent.title.value, { name: creator.name });
+      description = fillTemplate(creatorContent.description.value, {
+        name: creator.name,
+      });
+    }
   }
   return (
     <CollectionIntro
@@ -520,17 +482,20 @@ const GalleryIntro = ({
 
 const Gallery = () => {
   const content = useIntlayer("motion-gallery");
+  const creatorContent = useIntlayer("motion-creator");
   const { signedIn, jobs } = routeApi.useLoaderData();
-  const search = routeApi.useSearch();
+  const routeSearch = routeApi.useSearch();
+  const videoGallery = useVideoGalleryContext();
   const navigate = useNavigate();
-  // The open video renders as a child route overlay on top of this gallery.
-  // A category, colour, model or type page fixes that filter in the path
-  // (`scope`); the rest are search params, merged under it.
+  // The gallery stays mounted while a canonical video route opens over it.
+  // Its source collection and filters travel in history state, not the URL.
   const params = useParams({ strict: false });
   const openSlug = params.slug;
-  const scope = scopeOf(params);
-  const category = scope?.kind === "category" ? scope.category : undefined;
-  const filters: GallerySearch = { ...search, ...scopeFilters(scope) };
+  const scope = openSlug ? videoGallery?.scope : scopeOf(params);
+  const search = openSlug ? (videoGallery?.search ?? {}) : routeSearch;
+  const category =
+    scope?.kind === "category" ? scope.category : search.category;
+  const filters = { ...search, ...scopeFilters(scope) };
 
   const filtered = useMemo(
     () =>
@@ -539,9 +504,17 @@ const Gallery = () => {
         model: filters.model,
         color: filters.color,
         category,
+        creator: filters.creator,
         sort: search.sort,
       }),
-    [filters.type, filters.model, filters.color, category, search.sort]
+    [
+      filters.type,
+      filters.model,
+      filters.color,
+      filters.creator,
+      category,
+      search.sort,
+    ]
   );
   // Previews pause while a video's overlay covers the grid.
   const previewsPaused = Boolean(openSlug);
@@ -576,13 +549,28 @@ const Gallery = () => {
     <GalleryIntro
       scope={scope}
       actions={
-        <SurpriseAndSubmit
-          onSurprise={surprise}
-          surpriseDisabled={filtered.length === 0}
-          surpriseLabel={content.surprise}
-          submitLabel={content.submitVideo}
-          submitSearch={{ kind: "video", category }}
-        />
+        <>
+          {/* A creator's page links out to their profile; the sidebar's
+              creator row links here. */}
+          {scope?.kind === "creator" && (
+            <a
+              href={`https://x.com/${scope.creator}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={buttonVariants({ variant: "outline", size: "lg" })}
+            >
+              <XIcon aria-hidden="true" className="size-4" />
+              {creatorContent.followOnX}
+            </a>
+          )}
+          <SurpriseAndSubmit
+            onSurprise={surprise}
+            surpriseDisabled={filtered.length === 0}
+            surpriseLabel={content.surprise}
+            submitLabel={content.submitVideo}
+            submitSearch={{ kind: "video", category }}
+          />
+        </>
       }
     />
   );
@@ -633,12 +621,30 @@ const Gallery = () => {
           className="-mx-1 -my-1 min-w-0 flex-1 px-1 py-1 lg:flex-none lg:basis-[65%]"
         >
           <CategoryChip
-            to="/"
-            search={chipSearch}
+            to={scope?.kind === "creator" ? "/creators/$creator" : "/"}
+            params={
+              scope?.kind === "creator" ? { creator: scope.creator } : undefined
+            }
+            search={{ ...chipSearch, category: undefined }}
             active={!category}
             label={content.all}
           />
           {MOTION_CATEGORIES.map((id) => {
+            if (scope?.kind === "creator") {
+              return (
+                <CategoryChip
+                  key={id}
+                  to="/creators/$creator"
+                  params={{ creator: scope.creator }}
+                  search={{
+                    ...chipSearch,
+                    category: category === id ? undefined : id,
+                  }}
+                  active={category === id}
+                  label={content.categories[id]}
+                />
+              );
+            }
             const active = category === id;
             return active ? (
               <CategoryChip
@@ -693,9 +699,8 @@ const Gallery = () => {
   );
 };
 
-// Pathless layout: `/`, the category, colour, model and type pages, and their
-// `videos/$slug` overlays share the gallery, so a video opens as an overlay
-// route while the grid (and its scroll position) stays mounted.
+// Collection pages and the canonical `/videos/$slug` overlay share this
+// pathless layout, keeping the grid and its scroll position mounted.
 export const Route = createFileRoute("/$locale/_gallery")({
   component: Gallery,
   loader: async () => {
@@ -705,6 +710,7 @@ export const Route = createFileRoute("/$locale/_gallery")({
   validateSearch: (search): GallerySearch => {
     const colors = parseFilterColors(z.string().safeParse(search.color).data);
     return {
+      category: findMotionCategory(z.string().safeParse(search.category).data),
       type: findMotionType(z.string().safeParse(search.type).data),
       model: MODELS.map(motionModelSlug).find((slug) => slug === search.model),
       sort: z.enum(["newest", "oldest"]).safeParse(search.sort).data,
