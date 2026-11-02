@@ -13,6 +13,7 @@ import { Code } from "reicon-react/icons/Code";
 import { Layers } from "reicon-react/icons/Layers";
 import { Search } from "reicon-react/icons/Search";
 import { Text } from "reicon-react/icons/Text";
+import { Ufo } from "reicon-react/icons/Ufo";
 import { z } from "zod";
 
 import {
@@ -35,7 +36,7 @@ import { MotionVideoCard, setMorphCard } from "@/components/motion-video";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
 import { SponsoredCard, sponsoredTileIndex } from "@/components/sponsored-card";
-import { buttonVariants } from "@/components/ui/button";
+import { Button, buttonVariants } from "@/components/ui/button";
 import { ButtonGroup } from "@/components/ui/button-group";
 import {
   DropdownMenu,
@@ -549,10 +550,10 @@ const Gallery = () => {
     <GalleryIntro
       scope={scope}
       actions={
-        <>
-          {/* A creator's page links out to their profile; the sidebar's
-              creator row links here. */}
-          {scope?.kind === "creator" && (
+        scope?.kind === "creator" ? (
+          // A creator's page: their profile, and a random one of their
+          // videos as the main action. Submitting isn't about them.
+          <>
             <a
               href={`https://x.com/${scope.creator}`}
               target="_blank"
@@ -562,7 +563,19 @@ const Gallery = () => {
               <XIcon aria-hidden="true" className="size-4" />
               {creatorContent.followOnX}
             </a>
-          )}
+            <Button
+              variant="gradient"
+              size="lg"
+              disabled={filtered.length === 0}
+              onClick={surprise}
+              data-track="surprise_me"
+              data-track-kind="video"
+            >
+              <Ufo aria-hidden="true" />
+              {content.surprise}
+            </Button>
+          </>
+        ) : (
           <SurpriseAndSubmit
             onSurprise={surprise}
             surpriseDisabled={filtered.length === 0}
@@ -570,7 +583,7 @@ const Gallery = () => {
             submitLabel={content.submitVideo}
             submitSearch={{ kind: "video", category }}
           />
-        </>
+        )
       }
     />
   );
