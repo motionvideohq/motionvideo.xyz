@@ -176,7 +176,13 @@ export const SiteFooter = () => {
   ): ReactNode[] =>
     group.map(([to, label]) => (
       // SAFETY: every `to` above is a ROUTES constant of a real page.
-      <Link key={to} to={to as never} className={linkClass}>
+      <Link
+        key={to}
+        to={to as never}
+        // Videos points home; without `exact` it reads as current on every route.
+        activeOptions={to === ROUTES.HOME ? { exact: true } : undefined}
+        className={linkClass}
+      >
         {label}
       </Link>
     ));

@@ -310,9 +310,12 @@ const MobileMenu = () => {
                 className={cn(mobileLinkClass, "group w-full justify-between")}
               >
                 {content.explore}
+                {/* Centred on the close button's icon: the trigger ends at the
+                    popup's padding, and the 36px round button centres its icon
+                    18px in, so the 20px chevron gets an 8px inset. */}
                 <ChevronDown
                   aria-hidden="true"
-                  className="size-5 transition-transform group-data-panel-open:rotate-180"
+                  className="me-2 size-5 transition-transform group-data-panel-open:rotate-180"
                 />
               </CollapsibleTrigger>
               <CollapsibleContent className="flex flex-col">
@@ -320,6 +323,11 @@ const MobileMenu = () => {
                   <Link
                     key={key}
                     to={to}
+                    // Videos points home, which fuzzy-matches every route; it
+                    // is the current page only on the home page itself.
+                    activeOptions={
+                      to === ROUTES.HOME ? { exact: true } : undefined
+                    }
                     onClick={close}
                     className={mobileSubLinkClass}
                   >
@@ -347,7 +355,7 @@ const MobileMenu = () => {
                 {content.docs}
                 <ChevronDown
                   aria-hidden="true"
-                  className="size-5 transition-transform group-data-panel-open:rotate-180"
+                  className="me-2 size-5 transition-transform group-data-panel-open:rotate-180"
                 />
               </CollapsibleTrigger>
               <CollapsibleContent className="flex flex-col">
