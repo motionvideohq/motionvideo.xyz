@@ -22,19 +22,55 @@
 
 ---
 
-## 技术栈
+## 功能
 
-| 领域 | 工具 |
-| --- | --- |
-| 框架 | [TanStack Start](https://tanstack.com/start)（React 19、基于文件的路由、服务器函数） |
-| UI | [shadcn/ui](https://ui.shadcn.com) 基于 [Base UI](https://base-ui.com)，[Tailwind CSS v4](https://tailwindcss.com)，[intlayer](https://intlayer.org) |
-| 托管 | [Cloudflare Workers](https://workers.cloudflare.com) 与 Durable Objects（实时在线状态），使用 [Wrangler](https://developers.cloudflare.com/workers/wrangler/) 和 Workers Builds 部署 |
-| 数据 | [Cloudflare D1](https://developers.cloudflare.com/d1/)（SQLite）配合 [Drizzle ORM](https://orm.drizzle.team)，[R2](https://developers.cloudflare.com/r2/) 用于视频资源和上传 |
-| 身份验证 | [Better Auth](https://www.better-auth.com)（邮件登录码），[Cloudflare Turnstile](https://www.cloudflare.com/products/turnstile/) |
-| 电子邮件 | [Resend](https://resend.com)，Cloudflare Email Routing（入站） |
-| 支付 | [Dodo Payments](https://dodopayments.com) 作为记录商户（技能包、赞助、职位发布） |
-| 分析 | [PostHog](https://posthog.com) |
-| 工具 | [pnpm](https://pnpm.io)，[Vite](https://vite.dev)，通过 [Ultracite](https://www.ultracite.ai) 使用的 [Oxlint](https://oxc.rs) + [Oxfmt](https://oxc.rs)，[Lefthook](https://lefthook.dev) |
+- 🎬 **动态视频库** — 收录用 AI 制作的动态视频，每个视频都附带原始提示词和背后的技能。
+- 🧩 **智能体技能** — 教你的编程智能体掌握动效设计：节奏、缓动、弹簧、过渡和编排。
+- 🎞️ **由代码渲染** — 视频用代码编写，而不是时间线，因此每一帧都可编辑、可复现，并可进行版本管理。
+- 🤖 **兼容任意智能体** — 为 Claude Code、Codex、Cursor、GitHub Copilot 等编程智能体打造。
+- 🛰️ **MCP 服务器** — 在任意 MCP 客户端中搜索视频、获取提示词，并浏览动效工具和工作室。
+- 🎛️ **Moves** — 收录每一种具名动效手法，附带可直接复制的提示词和可调参数。
+- 🔖 **收藏与书签** — 保存视频、关注创作者，把你的参考资料集中在一处。
+- 🌍 **多语言** — 英语、中文、日本語、한국어、Español、Français、Português、Deutsch、Русский。
+
+## 社区
+
+MotionVideo 社区在 [GitHub](https://github.com/motionvideohq/motionvideo.xyz) 上：你可以提问、分享想法，并在 [Discussions](https://github.com/motionvideohq/motionvideo.xyz/discussions) 中展示你的作品。关注 [X 上的 @motionvideohq](https://x.com/motionvideohq)，获取新视频、技能和版本动态。
+
+## 赞助商
+
+<!-- sponsors:start -->
+<table>
+  <tbody>
+    <tr>
+      <td colspan="3" align="center"><strong>钻石赞助商</strong></td>
+    </tr>
+    <tr>
+      <td align="center"><a href="https://motionvideo.xyz/sponsor">在此放置你的 Logo</a></td>
+      <td align="center"><a href="https://motionvideo.xyz/sponsor">在此放置你的 Logo</a></td>
+      <td align="center"><a href="https://motionvideo.xyz/sponsor">在此放置你的 Logo</a></td>
+    </tr>
+    <tr>
+      <td colspan="3" align="center"><strong>黄金赞助商</strong></td>
+    </tr>
+    <tr>
+      <td align="center"><a href="https://motionvideo.xyz/sponsor">在此放置你的 Logo</a></td>
+      <td align="center"><a href="https://motionvideo.xyz/sponsor">在此放置你的 Logo</a></td>
+      <td align="center"><a href="https://motionvideo.xyz/sponsor">在此放置你的 Logo</a></td>
+    </tr>
+    <tr>
+      <td colspan="3" align="center"><strong>白银赞助商</strong></td>
+    </tr>
+    <tr>
+      <td align="center"><a href="https://motionvideo.xyz/sponsor">在此放置你的 Logo</a></td>
+      <td align="center"><a href="https://motionvideo.xyz/sponsor">在此放置你的 Logo</a></td>
+      <td align="center"><a href="https://motionvideo.xyz/sponsor">在此放置你的 Logo</a></td>
+    </tr>
+  </tbody>
+</table>
+<!-- sponsors:end -->
+
+> 觉得 MotionVideo 有用？[成为赞助商](https://motionvideo.xyz/sponsor)，支持项目维护，并让你的 Logo 出现在这里和网站上，展示位置取决于你的赞助档位。
 
 ## 贡献
 
@@ -52,6 +88,8 @@
 
 网站源代码以 [MIT 许可证](../../LICENSE) 发布。MotionVideo 技能包、品牌名称和标志不在本许可证范围内；技能包依据其自身的[条款](https://motionvideo.xyz/terms)单独销售。
 
-## 作者
-
-[Aniket Pawar](https://www.aniketpawar.com)（[@alaymanguy](https://x.com/alaymanguy)），同时经营 [Shadcn Labs](https://www.shadcn-labs.com)。
+<div align="center">
+<br />
+<img src="../../apps/web/public/brand/motionvideo-logomark-yellow.svg" alt="" width="28" />
+<p><sub>由 <a href="https://www.aniketpawar.com">Aniket Pawar</a>（<a href="https://x.com/alaymanguy">@alaymanguy</a>）制作，同时经营 <a href="https://www.shadcn-labs.com">Shadcn Labs</a>。</sub></p>
+</div>

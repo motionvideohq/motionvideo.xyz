@@ -22,19 +22,55 @@ AI와 코드로 만든 모션 비디오 디렉터리로, 각 영상의 프롬프
 
 ---
 
-## 기술 스택
+## 주요 기능
 
-| 영역 | 도구 |
-| --- | --- |
-| 프레임워크 | [TanStack Start](https://tanstack.com/start) (React 19, 파일 기반 라우팅, 서버 함수) |
-| UI | [Base UI](https://base-ui.com) 기반 [shadcn/ui](https://ui.shadcn.com), [Tailwind CSS v4](https://tailwindcss.com), [intlayer](https://intlayer.org) |
-| 호스팅 | [Cloudflare Workers](https://workers.cloudflare.com)와 Durable Objects(실시간 접속 상태), [Wrangler](https://developers.cloudflare.com/workers/wrangler/) 및 Workers Builds로 배포 |
-| 데이터 | [Cloudflare D1](https://developers.cloudflare.com/d1/)(SQLite)과 [Drizzle ORM](https://orm.drizzle.team), 동영상 에셋 및 업로드용 [R2](https://developers.cloudflare.com/r2/) |
-| 인증 | [Better Auth](https://www.better-auth.com)(이메일 로그인 코드), [Cloudflare Turnstile](https://www.cloudflare.com/products/turnstile/) |
-| 이메일 | [Resend](https://resend.com), Cloudflare Email Routing(수신) |
-| 결제 | [Dodo Payments](https://dodopayments.com)(merchant of record: 스킬 번들, 스폰서십, 채용 공고) |
-| 분석 | [PostHog](https://posthog.com) |
-| 도구 | [pnpm](https://pnpm.io), [Vite](https://vite.dev), [Ultracite](https://www.ultracite.ai)를 통한 [Oxlint](https://oxc.rs) + [Oxfmt](https://oxc.rs), [Lefthook](https://lefthook.dev) |
+- 🎬 **모션 라이브러리** — AI로 만든 모션 영상 디렉터리로, 각 영상의 원본 프롬프트와 그 뒤의 스킬을 함께 소개합니다.
+- 🧩 **에이전트 스킬** — 코딩 에이전트에게 모션 디자인(타이밍, 이징, 스프링, 전환, 안무)을 가르치는 스킬입니다.
+- 🎞️ **코드로 렌더링** — 영상은 타임라인이 아니라 코드로 작성되므로 모든 프레임이 편집 가능하고 재현 가능하며 버전 관리됩니다.
+- 🤖 **모든 에이전트와 호환** — Claude Code, Codex, Cursor, GitHub Copilot 및 기타 코딩 에이전트를 위해 만들어졌습니다.
+- 🛰️ **MCP 서버** — 어떤 MCP 클라이언트에서든 영상을 검색하고 프롬프트를 가져오며 모션 도구와 스튜디오를 둘러보세요.
+- 🎛️ **Moves** — 이름이 붙은 모든 모션 기법을 복사 가능한 프롬프트와 조정할 파라미터와 함께 제공합니다.
+- 🔖 **컬렉션과 북마크** — 영상을 저장하고 크리에이터를 팔로우하며 참고 자료를 한곳에 모아 보세요.
+- 🌍 **다국어 지원** — 영어, 中文, 日本語, 한국어, Español, Français, Português, Deutsch, Русский.
+
+## 커뮤니티
+
+MotionVideo 커뮤니티는 [GitHub](https://github.com/motionvideohq/motionvideo.xyz)에 있습니다. 질문하고 아이디어를 나누며 [Discussions](https://github.com/motionvideohq/motionvideo.xyz/discussions)에서 만든 것을 공유해 보세요. 새로운 영상, 스킬, 릴리스 소식은 [X의 @motionvideohq](https://x.com/motionvideohq)를 팔로우하세요.
+
+## 스폰서
+
+<!-- sponsors:start -->
+<table>
+  <tbody>
+    <tr>
+      <td colspan="3" align="center"><strong>다이아몬드 스폰서</strong></td>
+    </tr>
+    <tr>
+      <td align="center"><a href="https://motionvideo.xyz/sponsor">여기에 로고를 게재하세요</a></td>
+      <td align="center"><a href="https://motionvideo.xyz/sponsor">여기에 로고를 게재하세요</a></td>
+      <td align="center"><a href="https://motionvideo.xyz/sponsor">여기에 로고를 게재하세요</a></td>
+    </tr>
+    <tr>
+      <td colspan="3" align="center"><strong>골드 스폰서</strong></td>
+    </tr>
+    <tr>
+      <td align="center"><a href="https://motionvideo.xyz/sponsor">여기에 로고를 게재하세요</a></td>
+      <td align="center"><a href="https://motionvideo.xyz/sponsor">여기에 로고를 게재하세요</a></td>
+      <td align="center"><a href="https://motionvideo.xyz/sponsor">여기에 로고를 게재하세요</a></td>
+    </tr>
+    <tr>
+      <td colspan="3" align="center"><strong>실버 스폰서</strong></td>
+    </tr>
+    <tr>
+      <td align="center"><a href="https://motionvideo.xyz/sponsor">여기에 로고를 게재하세요</a></td>
+      <td align="center"><a href="https://motionvideo.xyz/sponsor">여기에 로고를 게재하세요</a></td>
+      <td align="center"><a href="https://motionvideo.xyz/sponsor">여기에 로고를 게재하세요</a></td>
+    </tr>
+  </tbody>
+</table>
+<!-- sponsors:end -->
+
+> MotionVideo가 유용했다면 [스폰서가 되어 주세요](https://motionvideo.xyz/sponsor). 유지 관리를 지원하고 여기와 사이트에 로고를 게재할 수 있습니다(노출 위치는 티어에 따라 다릅니다).
 
 ## 기여
 
@@ -52,6 +88,8 @@ AI와 코드로 만든 모션 비디오 디렉터리로, 각 영상의 프롬프
 
 웹사이트 소스 코드는 [MIT 라이선스](../../LICENSE)로 배포됩니다. MotionVideo 스킬 팩, 브랜드 이름, 로고마크는 이 라이선스에 포함되지 않으며, 스킬 팩은 자체 [약관](https://motionvideo.xyz/terms)에 따라 별도로 판매됩니다.
 
-## 제작
-
-[Aniket Pawar](https://www.aniketpawar.com)([@alaymanguy](https://x.com/alaymanguy)), [Shadcn Labs](https://www.shadcn-labs.com)도 운영하고 있습니다.
+<div align="center">
+<br />
+<img src="../../apps/web/public/brand/motionvideo-logomark-yellow.svg" alt="" width="28" />
+<p><sub><a href="https://www.aniketpawar.com">Aniket Pawar</a>(<a href="https://x.com/alaymanguy">@alaymanguy</a>)가 제작했으며, <a href="https://www.shadcn-labs.com">Shadcn Labs</a>도 운영하고 있습니다.</sub></p>
+</div>

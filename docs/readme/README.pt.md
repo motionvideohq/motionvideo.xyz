@@ -22,19 +22,55 @@ Um diretório de vídeos de motion design criados com IA e código, com os promp
 
 ---
 
-## Stack de tecnologia
+## Funcionalidades
 
-| Área | Ferramentas |
-| --- | --- |
-| Framework | [TanStack Start](https://tanstack.com/start) (React 19, roteamento baseado em arquivos, funções de servidor) |
-| UI | [shadcn/ui](https://ui.shadcn.com) sobre [Base UI](https://base-ui.com), [Tailwind CSS v4](https://tailwindcss.com), [intlayer](https://intlayer.org) |
-| Hospedagem | [Cloudflare Workers](https://workers.cloudflare.com) com Durable Objects (presença ao vivo), implantado com [Wrangler](https://developers.cloudflare.com/workers/wrangler/) e Workers Builds |
-| Dados | [Cloudflare D1](https://developers.cloudflare.com/d1/) (SQLite) com [Drizzle ORM](https://orm.drizzle.team), [R2](https://developers.cloudflare.com/r2/) para assets de vídeo e uploads |
-| Autenticação | [Better Auth](https://www.better-auth.com) (códigos de acesso por e-mail), [Cloudflare Turnstile](https://www.cloudflare.com/products/turnstile/) |
-| E-mail | [Resend](https://resend.com), Cloudflare Email Routing (entrada) |
-| Pagamentos | [Dodo Payments](https://dodopayments.com) como merchant of record (pacote de skills, patrocínios, vagas de emprego) |
-| Análise | [PostHog](https://posthog.com) |
-| Ferramentas | [pnpm](https://pnpm.io), [Vite](https://vite.dev), [Oxlint](https://oxc.rs) + [Oxfmt](https://oxc.rs) via [Ultracite](https://www.ultracite.ai), [Lefthook](https://lefthook.dev) |
+- 🎬 **Biblioteca de motion** — Um diretório de vídeos de motion feitos com IA, cada um com o prompt original e a skill por trás dele.
+- 🧩 **Skills de agente** — Skills que ensinam ao seu agente de programação motion design: timing, easing, molas, transições e coreografia.
+- 🎞️ **Renderizado a partir de código** — Os vídeos são escritos em código, não em timelines, por isso cada frame permanece editável, reproduzível e versionado.
+- 🤖 **Funciona com qualquer agente** — Criado para Claude Code, Codex, Cursor, GitHub Copilot e outros agentes de programação.
+- 🛰️ **Servidor MCP** — Pesquise vídeos, obtenha prompts e explore ferramentas e estúdios de motion a partir de qualquer cliente MCP.
+- 🎛️ **Moves** — Cada técnica de motion com nome, com um prompt pronto a copiar e os parâmetros para ajustar.
+- 🔖 **Coleções e marcadores** — Guarde vídeos, siga criadores e mantenha as suas referências num só lugar.
+- 🌍 **Localizado** — Inglês, 中文, 日本語, 한국어, Español, Français, Português, Deutsch e Русский.
+
+## Comunidade
+
+A comunidade MotionVideo vive no [GitHub](https://github.com/motionvideohq/motionvideo.xyz), onde pode fazer perguntas, partilhar ideias e mostrar o que criou em [Discussions](https://github.com/motionvideohq/motionvideo.xyz/discussions). Siga [@motionvideohq no X](https://x.com/motionvideohq) para ver novos vídeos, skills e lançamentos.
+
+## Patrocinadores
+
+<!-- sponsors:start -->
+<table>
+  <tbody>
+    <tr>
+      <td colspan="3" align="center"><strong>Patrocinadores Diamante</strong></td>
+    </tr>
+    <tr>
+      <td align="center"><a href="https://motionvideo.xyz/sponsor">O seu logo aqui</a></td>
+      <td align="center"><a href="https://motionvideo.xyz/sponsor">O seu logo aqui</a></td>
+      <td align="center"><a href="https://motionvideo.xyz/sponsor">O seu logo aqui</a></td>
+    </tr>
+    <tr>
+      <td colspan="3" align="center"><strong>Patrocinadores Ouro</strong></td>
+    </tr>
+    <tr>
+      <td align="center"><a href="https://motionvideo.xyz/sponsor">O seu logo aqui</a></td>
+      <td align="center"><a href="https://motionvideo.xyz/sponsor">O seu logo aqui</a></td>
+      <td align="center"><a href="https://motionvideo.xyz/sponsor">O seu logo aqui</a></td>
+    </tr>
+    <tr>
+      <td colspan="3" align="center"><strong>Patrocinadores Prata</strong></td>
+    </tr>
+    <tr>
+      <td align="center"><a href="https://motionvideo.xyz/sponsor">O seu logo aqui</a></td>
+      <td align="center"><a href="https://motionvideo.xyz/sponsor">O seu logo aqui</a></td>
+      <td align="center"><a href="https://motionvideo.xyz/sponsor">O seu logo aqui</a></td>
+    </tr>
+  </tbody>
+</table>
+<!-- sponsors:end -->
+
+> O MotionVideo foi útil? [Torne-se patrocinador](https://motionvideo.xyz/sponsor) para apoiar a manutenção e ter o seu logo aqui e no site, com colocação conforme o seu nível.
 
 ## Contribuição
 
@@ -52,6 +88,8 @@ Não abra issues públicas para vulnerabilidades de segurança. Siga o [SECURITY
 
 O código-fonte do site é distribuído sob a [Licença MIT](../../LICENSE). O pacote de skills do MotionVideo, o nome da marca e o logotipo não são cobertos por esta licença; o pacote de skills é vendido separadamente sob seus próprios [termos](https://motionvideo.xyz/terms).
 
-## Feito por
-
-[Aniket Pawar](https://www.aniketpawar.com) ([@alaymanguy](https://x.com/alaymanguy)), que também dirige o [Shadcn Labs](https://www.shadcn-labs.com).
+<div align="center">
+<br />
+<img src="../../apps/web/public/brand/motionvideo-logomark-yellow.svg" alt="" width="28" />
+<p><sub>Feito por <a href="https://www.aniketpawar.com">Aniket Pawar</a> (<a href="https://x.com/alaymanguy">@alaymanguy</a>), que também dirige o <a href="https://www.shadcn-labs.com">Shadcn Labs</a>.</sub></p>
+</div>

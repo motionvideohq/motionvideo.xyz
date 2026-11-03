@@ -23,19 +23,55 @@
 
 ---
 
-## Tech stack
+## Features
 
-| Area | Tools |
-| --- | --- |
-| Framework | [TanStack Start](https://tanstack.com/start) (React 19, file-based routing, server functions) |
-| UI | [shadcn/ui](https://ui.shadcn.com) on [Base UI](https://base-ui.com), [Tailwind CSS v4](https://tailwindcss.com), [intlayer](https://intlayer.org) |
-| Hosting | [Cloudflare Workers](https://workers.cloudflare.com) with Durable Objects (live presence), deployed with [Wrangler](https://developers.cloudflare.com/workers/wrangler/) and Workers Builds |
-| Data | [Cloudflare D1](https://developers.cloudflare.com/d1/) (SQLite) with [Drizzle ORM](https://orm.drizzle.team), [R2](https://developers.cloudflare.com/r2/) for video assets and uploads |
-| Auth | [Better Auth](https://www.better-auth.com) (email sign-in codes), [Cloudflare Turnstile](https://www.cloudflare.com/products/turnstile/) |
-| Email | [Resend](https://resend.com), Cloudflare Email Routing (inbound) |
-| Payments | [Dodo Payments](https://dodopayments.com) as merchant of record (skill bundle, sponsorships, job posts) |
-| Analytics | [PostHog](https://posthog.com) |
-| Tooling | [pnpm](https://pnpm.io), [Vite](https://vite.dev), [Oxlint](https://oxc.rs) + [Oxfmt](https://oxc.rs) via [Ultracite](https://www.ultracite.ai), [Lefthook](https://lefthook.dev) |
+- 🎬 **Motion library** — A directory of AI-made motion videos, each with the original prompt and the skill behind it.
+- 🧩 **Agent skills** — Skills that teach your coding agent motion design: timing, easing, springs, transitions, and choreography.
+- 🎞️ **Rendered from code** — Videos are written in code, not timelines, so every frame stays editable, repeatable, and version-controlled.
+- 🤖 **Works with any agent** — Built for Claude Code, Codex, Cursor, GitHub Copilot, and other coding agents.
+- 🛰️ **MCP server** — Search videos, pull prompts, and browse motion tools and studios from any MCP client.
+- 🎛️ **Moves** — Every named motion technique with a copy-ready prompt and the parameters to tune it.
+- 🔖 **Collections and bookmarks** — Save videos, follow creators, and keep your references in one place.
+- 🌍 **Localized** — English, 中文, 日本語, 한국어, Español, Français, Português, Deutsch, and Русский.
+
+## Community
+
+The MotionVideo community lives on [GitHub](https://github.com/motionvideohq/motionvideo.xyz), where you can ask questions, share ideas, and show what you've built in [Discussions](https://github.com/motionvideohq/motionvideo.xyz/discussions). Follow [@motionvideohq on X](https://x.com/motionvideohq) for new videos, skills, and releases.
+
+## Sponsors
+
+<!-- sponsors:start -->
+<table>
+  <tbody>
+    <tr>
+      <td colspan="3" align="center"><strong>Diamond Sponsors</strong></td>
+    </tr>
+    <tr>
+      <td align="center"><a href="https://motionvideo.xyz/sponsor">Your logo here</a></td>
+      <td align="center"><a href="https://motionvideo.xyz/sponsor">Your logo here</a></td>
+      <td align="center"><a href="https://motionvideo.xyz/sponsor">Your logo here</a></td>
+    </tr>
+    <tr>
+      <td colspan="3" align="center"><strong>Gold Sponsors</strong></td>
+    </tr>
+    <tr>
+      <td align="center"><a href="https://motionvideo.xyz/sponsor">Your logo here</a></td>
+      <td align="center"><a href="https://motionvideo.xyz/sponsor">Your logo here</a></td>
+      <td align="center"><a href="https://motionvideo.xyz/sponsor">Your logo here</a></td>
+    </tr>
+    <tr>
+      <td colspan="3" align="center"><strong>Silver Sponsors</strong></td>
+    </tr>
+    <tr>
+      <td align="center"><a href="https://motionvideo.xyz/sponsor">Your logo here</a></td>
+      <td align="center"><a href="https://motionvideo.xyz/sponsor">Your logo here</a></td>
+      <td align="center"><a href="https://motionvideo.xyz/sponsor">Your logo here</a></td>
+    </tr>
+  </tbody>
+</table>
+<!-- sponsors:end -->
+
+> Found MotionVideo useful? [Become a sponsor](https://motionvideo.xyz/sponsor) to support maintenance and get your logo here and on the site, with placement based on your tier.
 
 ## Contributing
 
@@ -53,6 +89,8 @@ Please do not open public issues for security vulnerabilities. Follow [SECURITY.
 
 The website source code is released under the [MIT License](LICENSE). The MotionVideo skill pack, brand name, and logomark are not covered by this license; the skill pack is sold separately under its own [terms](https://motionvideo.xyz/terms).
 
-## Made by
-
-[Aniket Pawar](https://www.aniketpawar.com) ([@alaymanguy](https://x.com/alaymanguy)), who also runs [Shadcn Labs](https://www.shadcn-labs.com).
+<div align="center">
+<br />
+<img src="apps/web/public/brand/motionvideo-logomark-yellow.svg" alt="" width="28" />
+<p><sub>Built by <a href="https://www.aniketpawar.com">Aniket Pawar</a> (<a href="https://x.com/alaymanguy">@alaymanguy</a>), who also runs <a href="https://www.shadcn-labs.com">Shadcn Labs</a>.</sub></p>
+</div>

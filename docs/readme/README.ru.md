@@ -22,19 +22,55 @@
 
 ---
 
-## Технологический стек
+## Возможности
 
-| Область | Инструменты |
-| --- | --- |
-| Фреймворк | [TanStack Start](https://tanstack.com/start) (React 19, файловая маршрутизация, серверные функции) |
-| UI | [shadcn/ui](https://ui.shadcn.com) на [Base UI](https://base-ui.com), [Tailwind CSS v4](https://tailwindcss.com), [intlayer](https://intlayer.org) |
-| Хостинг | [Cloudflare Workers](https://workers.cloudflare.com) с Durable Objects (присутствие в реальном времени), развёртывание через [Wrangler](https://developers.cloudflare.com/workers/wrangler/) и Workers Builds |
-| Данные | [Cloudflare D1](https://developers.cloudflare.com/d1/) (SQLite) с [Drizzle ORM](https://orm.drizzle.team), [R2](https://developers.cloudflare.com/r2/) для видеоресурсов и загрузок |
-| Аутентификация | [Better Auth](https://www.better-auth.com) (коды входа по электронной почте), [Cloudflare Turnstile](https://www.cloudflare.com/products/turnstile/) |
-| Электронная почта | [Resend](https://resend.com), Cloudflare Email Routing (входящие) |
-| Платежи | [Dodo Payments](https://dodopayments.com) как merchant of record (набор навыков, спонсорство, вакансии) |
-| Аналитика | [PostHog](https://posthog.com) |
-| Инструменты | [pnpm](https://pnpm.io), [Vite](https://vite.dev), [Oxlint](https://oxc.rs) + [Oxfmt](https://oxc.rs) через [Ultracite](https://www.ultracite.ai), [Lefthook](https://lefthook.dev) |
+- 🎬 **Библиотека моушна** — Каталог моушн-видео, созданных с помощью ИИ, каждое с исходным промптом и навыком, стоящим за ним.
+- 🧩 **Навыки агентов** — Навыки, которые учат вашего агента-программиста моушн-дизайну: таймингу, easing, пружинам, переходам и хореографии.
+- 🎞️ **Рендеринг из кода** — Видео пишется кодом, а не на таймлайне, поэтому каждый кадр остаётся редактируемым, воспроизводимым и версионируемым.
+- 🤖 **Работает с любым агентом** — Создан для Claude Code, Codex, Cursor, GitHub Copilot и других агентов-программистов.
+- 🛰️ **MCP-сервер** — Ищите видео, получайте промпты и просматривайте моушн-инструменты и студии из любого MCP-клиента.
+- 🎛️ **Moves** — Каждая именованная моушн-техника с готовым к копированию промптом и параметрами для настройки.
+- 🔖 **Коллекции и закладки** — Сохраняйте видео, следите за авторами и держите референсы в одном месте.
+- 🌍 **Локализация** — английский, 中文, 日本語, 한국어, Español, Français, Português, Deutsch и Русский.
+
+## Сообщество
+
+Сообщество MotionVideo живёт на [GitHub](https://github.com/motionvideohq/motionvideo.xyz): задавайте вопросы, делитесь идеями и показывайте свои работы в [Discussions](https://github.com/motionvideohq/motionvideo.xyz/discussions). Подписывайтесь на [@motionvideohq в X](https://x.com/motionvideohq), чтобы не пропустить новые видео, навыки и релизы.
+
+## Спонсоры
+
+<!-- sponsors:start -->
+<table>
+  <tbody>
+    <tr>
+      <td colspan="3" align="center"><strong>Бриллиантовые спонсоры</strong></td>
+    </tr>
+    <tr>
+      <td align="center"><a href="https://motionvideo.xyz/sponsor">Здесь может быть ваш логотип</a></td>
+      <td align="center"><a href="https://motionvideo.xyz/sponsor">Здесь может быть ваш логотип</a></td>
+      <td align="center"><a href="https://motionvideo.xyz/sponsor">Здесь может быть ваш логотип</a></td>
+    </tr>
+    <tr>
+      <td colspan="3" align="center"><strong>Золотые спонсоры</strong></td>
+    </tr>
+    <tr>
+      <td align="center"><a href="https://motionvideo.xyz/sponsor">Здесь может быть ваш логотип</a></td>
+      <td align="center"><a href="https://motionvideo.xyz/sponsor">Здесь может быть ваш логотип</a></td>
+      <td align="center"><a href="https://motionvideo.xyz/sponsor">Здесь может быть ваш логотип</a></td>
+    </tr>
+    <tr>
+      <td colspan="3" align="center"><strong>Серебряные спонсоры</strong></td>
+    </tr>
+    <tr>
+      <td align="center"><a href="https://motionvideo.xyz/sponsor">Здесь может быть ваш логотип</a></td>
+      <td align="center"><a href="https://motionvideo.xyz/sponsor">Здесь может быть ваш логотип</a></td>
+      <td align="center"><a href="https://motionvideo.xyz/sponsor">Здесь может быть ваш логотип</a></td>
+    </tr>
+  </tbody>
+</table>
+<!-- sponsors:end -->
+
+> MotionVideo оказался полезен? [Станьте спонсором](https://motionvideo.xyz/sponsor), чтобы поддержать развитие и разместить свой логотип здесь и на сайте — место зависит от вашего уровня.
 
 ## Участие в проекте
 
@@ -52,6 +88,8 @@
 
 Исходный код сайта распространяется по [лицензии MIT](../../LICENSE). Набор навыков MotionVideo, название бренда и логотип не подпадают под действие этой лицензии; набор навыков продаётся отдельно на собственных [условиях](https://motionvideo.xyz/terms).
 
-## Автор
-
-[Aniket Pawar](https://www.aniketpawar.com) ([@alaymanguy](https://x.com/alaymanguy)), также руководит [Shadcn Labs](https://www.shadcn-labs.com).
+<div align="center">
+<br />
+<img src="../../apps/web/public/brand/motionvideo-logomark-yellow.svg" alt="" width="28" />
+<p><sub>Автор — <a href="https://www.aniketpawar.com">Aniket Pawar</a> (<a href="https://x.com/alaymanguy">@alaymanguy</a>), также руководит <a href="https://www.shadcn-labs.com">Shadcn Labs</a>.</sub></p>
+</div>
