@@ -31,17 +31,6 @@ export default {
       pt: `Estruturas de prompt testadas, escritas pelo ${SITE.NAME} para que o resultado se aguente. Cada parte que mudarias é um campo: preenche-os e o prompt é teu.`,
       ru: `Проверенные структуры промптов от ${SITE.NAME}, чтобы результат держал уровень. Каждая часть, которую вы захотели бы изменить, — это поле: заполните их, и промпт станет вашим.`,
     }),
-    proNote: t({
-      en: "Every template’s full prompt and the customizer are in Pro.",
-      es: "El prompt completo de cada plantilla y el personalizador están en Pro.",
-      fr: "Le prompt complet de chaque modèle et l’outil de personnalisation sont inclus dans Pro.",
-      zh: "每个模板的完整提示词和自定义工具都包含在 Pro 中。",
-      ko: "모든 템플릿의 전체 프롬프트와 맞춤 설정 도구는 Pro에 포함됩니다.",
-      ja: "各テンプレートの完全なプロンプトとカスタマイズ機能は Pro に含まれます。",
-      de: "Der vollständige Prompt jeder Vorlage und der Anpassungs-Editor sind in Pro enthalten.",
-      pt: "O prompt completo de cada modelo e o personalizador estão no Pro.",
-      ru: "Полный промпт каждого шаблона и редактор настройки — в Pro.",
-    }),
     howToUse: t({
       en: "How templates work",
       es: "Cómo funcionan las plantillas",

@@ -3,6 +3,8 @@ import { defineCollections } from "fumadocs-mdx/macro";
 import { z } from "zod";
 
 import { ROUTES } from "@/constants/routes";
+import { SITE } from "@/constants/site";
+import { defineFeeds } from "@/lib/feeds";
 
 // One MDX file per release in content/changelog; the file name is the slug
 // (/changelog/<slug>). `async`: only the frontmatter ships with the bundle, so
@@ -39,3 +41,10 @@ export const formatChangelogDate = (date: string, locale: string) =>
     dateStyle: "long",
     timeZone: "UTC",
   }).format(new Date(`${date}T00:00:00Z`));
+
+/** The changelog's feeds, in English like the entries. */
+export const CHANGELOG_FEEDS = defineFeeds(`${SITE.NAME} Changelog`, {
+  atom: ROUTES.CHANGELOG_ATOM,
+  json: ROUTES.CHANGELOG_JSON_FEED,
+  rss: ROUTES.CHANGELOG_RSS,
+});

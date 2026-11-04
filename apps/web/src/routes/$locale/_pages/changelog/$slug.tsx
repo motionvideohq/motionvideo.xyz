@@ -6,7 +6,11 @@ import { PageHeader } from "@/components/page";
 import { ProseBody } from "@/components/prose-mdx";
 import { DEFAULT_LOCALE, isLocale } from "@/constants/locales";
 import { ROUTES } from "@/constants/routes";
-import { changelog, formatChangelogDate } from "@/lib/changelog";
+import {
+  CHANGELOG_FEEDS,
+  changelog,
+  formatChangelogDate,
+} from "@/lib/changelog";
 import { breadcrumbJsonLd, changelogEntryJsonLd } from "@/seo/json-ld";
 import { createMetadata } from "@/seo/metadata";
 
@@ -56,6 +60,7 @@ export const Route = createFileRoute("/$locale/_pages/changelog/$slug")({
         description: entry.data.description,
         title: entry.data.title,
       }),
+      links: CHANGELOG_FEEDS.links,
       scripts: [
         breadcrumbJsonLd(
           [

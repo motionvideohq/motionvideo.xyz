@@ -5,6 +5,7 @@ import { ROUTES, STATIC_PAGES, docsMarkdownPath } from "@/constants/routes";
 import { SITE } from "@/constants/site";
 import { absoluteUrl } from "@/constants/url";
 import { englishDocsPages } from "@/server/docs-markdown";
+import type { DocsPage } from "@/server/docs-source";
 
 // The file is per-site, so its page links point at the default locale.
 const pageUrl = (path: string) =>
@@ -13,7 +14,7 @@ const pageUrl = (path: string) =>
 // A map of the public site for LLM agents (https://llmstxt.org). Signed-in
 // pages are intentionally absent; the JSON catalog endpoints below are the
 // machine-readable way in.
-const body = () => `# ${SITE.NAME}
+const body = (docsPages: DocsPage[]) => `# ${SITE.NAME}
 
 > ${SITE.TAGLINE} ${SITE.DESCRIPTION.LONG}
 
@@ -42,7 +43,7 @@ ${STATIC_PAGES.map(
 
 Each page as Markdown; all of them in one file: ${absoluteUrl(ROUTES.LLMS_FULL_TXT)}
 
-${englishDocsPages()
+${docsPages
   .map(
     (page) =>
       `- [${page.data.title}](${absoluteUrl(docsMarkdownPath(page.url))}): ${page.data.description}`
@@ -54,6 +55,9 @@ ${englishDocsPages()
 - [Motion catalog](${absoluteUrl("/api/catalog/")}): JSON of every gallery video with its prompt, model, stack, effort, and media URLs.
 - [Directories](${absoluteUrl("/api/catalog/directories")}): JSON of the tools, studios, skills, and extras directories.
 - [Moves](${absoluteUrl("/api/moves/")}): JSON of every move's public fields (no prompts).
+- [OpenAPI](${absoluteUrl(ROUTES.OPENAPI_JSON)}): OpenAPI 3.1 document of the three JSON endpoints above.
+- [Changelog feed](${absoluteUrl(ROUTES.CHANGELOG_JSON_FEED)}): JSON Feed of every release with its notes as HTML; also as RSS (${absoluteUrl(ROUTES.CHANGELOG_RSS)}) and Atom (${absoluteUrl(ROUTES.CHANGELOG_ATOM)}).
+- [Blog feed](${absoluteUrl(ROUTES.BLOG_JSON_FEED)}): JSON Feed of every blog post with its text as HTML; also as RSS (${absoluteUrl(ROUTES.BLOG_RSS)}) and Atom (${absoluteUrl(ROUTES.BLOG_ATOM)}).
 
 ## Optional
 
@@ -65,8 +69,8 @@ ${englishDocsPages()
 export const Route = createFileRoute("/llms.txt")({
   server: {
     handlers: {
-      GET: () =>
-        new Response(body(), {
+      GET: async () =>
+        new Response(body(await englishDocsPages()), {
           headers: {
             "Cache-Control": "public, max-age=3600",
             "Content-Type": "text/plain; charset=utf-8",

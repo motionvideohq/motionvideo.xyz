@@ -293,7 +293,7 @@ const Billing = () => {
   const { checkout } = routeApi.useSearch();
 
   return (
-    <PageMain width="narrow">
+    <PageMain layout="app" width="narrow">
       <AccountPageHeader title={content.title} intro={content.intro} />
       {checkout === "success" && (
         <output className="bg-primary/10 text-foreground rounded-xl px-4 py-3 text-sm">

@@ -61,7 +61,7 @@ const CustomizeIndex = () => {
     : promptVideos;
 
   return (
-    <PageMain width="full" className="gap-6">
+    <PageMain layout="app" width="full">
       <PageHeader title={content.title.value} intro={content.intro} />
       <nav
         aria-label={content.filterCategory.value}

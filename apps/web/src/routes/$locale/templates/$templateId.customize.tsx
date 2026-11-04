@@ -18,7 +18,11 @@ const CustomizeTemplate = () => {
   const path = templatePath(template);
 
   return (
-    <PageMain width={prompt.locked ? "narrow" : "full"} className="gap-8">
+    <PageMain
+      layout="app"
+      width={prompt.locked ? "narrow" : "full"}
+      className="gap-8"
+    >
       <Link
         to="/templates/$templateId"
         params={{ templateId: template.id }}

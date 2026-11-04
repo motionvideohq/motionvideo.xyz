@@ -14,6 +14,7 @@ import { Route as LocaleRouteRouteImport } from './routes/$locale/route'
 import { Route as DocsDotmdRouteImport } from './routes/docs[.]md'
 import { Route as LlmsFullDottxtRouteImport } from './routes/llms-full[.]txt'
 import { Route as LlmsDottxtRouteImport } from './routes/llms[.]txt'
+import { Route as OpenapiDotjsonRouteImport } from './routes/openapi[.]json'
 import { Route as PricingDotmdRouteImport } from './routes/pricing[.]md'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as SkillDotmdRouteImport } from './routes/skill[.]md'
@@ -45,6 +46,12 @@ import { Route as LocaleToolsRouteImport } from './routes/$locale/tools'
 import { Route as LocaleWelcomeRouteImport } from './routes/$locale/welcome'
 import { Route as DotwellKnownSplatRouteImport } from './routes/[.]well-known.$'
 import { Route as ApiUploadRouteImport } from './routes/api/upload'
+import { Route as BlogAtomDotxmlRouteImport } from './routes/blog.atom[.]xml'
+import { Route as BlogFeedDotjsonRouteImport } from './routes/blog.feed[.]json'
+import { Route as BlogRssDotxmlRouteImport } from './routes/blog.rss[.]xml'
+import { Route as ChangelogAtomDotxmlRouteImport } from './routes/changelog.atom[.]xml'
+import { Route as ChangelogFeedDotjsonRouteImport } from './routes/changelog.feed[.]json'
+import { Route as ChangelogRssDotxmlRouteImport } from './routes/changelog.rss[.]xml'
 import { Route as DocsSplatRouteImport } from './routes/docs.$'
 import { Route as LocaleGalleryIndexRouteImport } from './routes/$locale/_gallery/index'
 import { Route as LocalePagesAboutRouteImport } from './routes/$locale/_pages/about'
@@ -146,6 +153,11 @@ const LlmsFullDottxtRoute = LlmsFullDottxtRouteImport.update({
 const LlmsDottxtRoute = LlmsDottxtRouteImport.update({
   id: '/llms.txt',
   path: '/llms.txt',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const OpenapiDotjsonRoute = OpenapiDotjsonRouteImport.update({
+  id: '/openapi.json',
+  path: '/openapi.json',
   getParentRoute: () => rootRouteImport,
 } as any)
 const PricingDotmdRoute = PricingDotmdRouteImport.update({
@@ -299,6 +311,36 @@ const DotwellKnownSplatRoute = DotwellKnownSplatRouteImport.update({
 const ApiUploadRoute = ApiUploadRouteImport.update({
   id: '/api/upload',
   path: '/api/upload',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BlogAtomDotxmlRoute = BlogAtomDotxmlRouteImport.update({
+  id: '/blog/atom.xml',
+  path: '/blog/atom.xml',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BlogFeedDotjsonRoute = BlogFeedDotjsonRouteImport.update({
+  id: '/blog/feed.json',
+  path: '/blog/feed.json',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BlogRssDotxmlRoute = BlogRssDotxmlRouteImport.update({
+  id: '/blog/rss.xml',
+  path: '/blog/rss.xml',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ChangelogAtomDotxmlRoute = ChangelogAtomDotxmlRouteImport.update({
+  id: '/changelog/atom.xml',
+  path: '/changelog/atom.xml',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ChangelogFeedDotjsonRoute = ChangelogFeedDotjsonRouteImport.update({
+  id: '/changelog/feed.json',
+  path: '/changelog/feed.json',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ChangelogRssDotxmlRoute = ChangelogRssDotxmlRouteImport.update({
+  id: '/changelog/rss.xml',
+  path: '/changelog/rss.xml',
   getParentRoute: () => rootRouteImport,
 } as any)
 const DocsSplatRoute = DocsSplatRouteImport.update({
@@ -711,6 +753,7 @@ export interface FileRoutesByFullPath {
   '/docs.md': typeof DocsDotmdRoute
   '/llms-full.txt': typeof LlmsFullDottxtRoute
   '/llms.txt': typeof LlmsDottxtRoute
+  '/openapi.json': typeof OpenapiDotjsonRoute
   '/pricing.md': typeof PricingDotmdRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/skill.md': typeof SkillDotmdRoute
@@ -740,6 +783,12 @@ export interface FileRoutesByFullPath {
   '/$locale/welcome': typeof LocaleWelcomeRoute
   '/.well-known/$': typeof DotwellKnownSplatRoute
   '/api/upload': typeof ApiUploadRoute
+  '/blog/atom.xml': typeof BlogAtomDotxmlRoute
+  '/blog/feed.json': typeof BlogFeedDotjsonRoute
+  '/blog/rss.xml': typeof BlogRssDotxmlRoute
+  '/changelog/atom.xml': typeof ChangelogAtomDotxmlRoute
+  '/changelog/feed.json': typeof ChangelogFeedDotjsonRoute
+  '/changelog/rss.xml': typeof ChangelogRssDotxmlRoute
   '/docs/$': typeof DocsSplatRoute
   '/$locale/about': typeof LocalePagesAboutRoute
   '/$locale/brand': typeof LocalePagesBrandRoute
@@ -824,6 +873,7 @@ export interface FileRoutesByTo {
   '/docs.md': typeof DocsDotmdRoute
   '/llms-full.txt': typeof LlmsFullDottxtRoute
   '/llms.txt': typeof LlmsDottxtRoute
+  '/openapi.json': typeof OpenapiDotjsonRoute
   '/pricing.md': typeof PricingDotmdRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/skill.md': typeof SkillDotmdRoute
@@ -844,6 +894,12 @@ export interface FileRoutesByTo {
   '/$locale/welcome': typeof LocaleWelcomeRoute
   '/.well-known/$': typeof DotwellKnownSplatRoute
   '/api/upload': typeof ApiUploadRoute
+  '/blog/atom.xml': typeof BlogAtomDotxmlRoute
+  '/blog/feed.json': typeof BlogFeedDotjsonRoute
+  '/blog/rss.xml': typeof BlogRssDotxmlRoute
+  '/changelog/atom.xml': typeof ChangelogAtomDotxmlRoute
+  '/changelog/feed.json': typeof ChangelogFeedDotjsonRoute
+  '/changelog/rss.xml': typeof ChangelogRssDotxmlRoute
   '/docs/$': typeof DocsSplatRoute
   '/$locale/about': typeof LocalePagesAboutRoute
   '/$locale/brand': typeof LocalePagesBrandRoute
@@ -922,6 +978,7 @@ export interface FileRoutesById {
   '/docs.md': typeof DocsDotmdRoute
   '/llms-full.txt': typeof LlmsFullDottxtRoute
   '/llms.txt': typeof LlmsDottxtRoute
+  '/openapi.json': typeof OpenapiDotjsonRoute
   '/pricing.md': typeof PricingDotmdRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/skill.md': typeof SkillDotmdRoute
@@ -953,6 +1010,12 @@ export interface FileRoutesById {
   '/$locale/welcome': typeof LocaleWelcomeRoute
   '/.well-known/$': typeof DotwellKnownSplatRoute
   '/api/upload': typeof ApiUploadRoute
+  '/blog/atom.xml': typeof BlogAtomDotxmlRoute
+  '/blog/feed.json': typeof BlogFeedDotjsonRoute
+  '/blog/rss.xml': typeof BlogRssDotxmlRoute
+  '/changelog/atom.xml': typeof ChangelogAtomDotxmlRoute
+  '/changelog/feed.json': typeof ChangelogFeedDotjsonRoute
+  '/changelog/rss.xml': typeof ChangelogRssDotxmlRoute
   '/docs/$': typeof DocsSplatRoute
   '/$locale/_pages/about': typeof LocalePagesAboutRoute
   '/$locale/_pages/brand': typeof LocalePagesBrandRoute
@@ -1039,6 +1102,7 @@ export interface FileRouteTypes {
     | '/docs.md'
     | '/llms-full.txt'
     | '/llms.txt'
+    | '/openapi.json'
     | '/pricing.md'
     | '/sitemap.xml'
     | '/skill.md'
@@ -1068,6 +1132,12 @@ export interface FileRouteTypes {
     | '/$locale/welcome'
     | '/.well-known/$'
     | '/api/upload'
+    | '/blog/atom.xml'
+    | '/blog/feed.json'
+    | '/blog/rss.xml'
+    | '/changelog/atom.xml'
+    | '/changelog/feed.json'
+    | '/changelog/rss.xml'
     | '/docs/$'
     | '/$locale/about'
     | '/$locale/brand'
@@ -1152,6 +1222,7 @@ export interface FileRouteTypes {
     | '/docs.md'
     | '/llms-full.txt'
     | '/llms.txt'
+    | '/openapi.json'
     | '/pricing.md'
     | '/sitemap.xml'
     | '/skill.md'
@@ -1172,6 +1243,12 @@ export interface FileRouteTypes {
     | '/$locale/welcome'
     | '/.well-known/$'
     | '/api/upload'
+    | '/blog/atom.xml'
+    | '/blog/feed.json'
+    | '/blog/rss.xml'
+    | '/changelog/atom.xml'
+    | '/changelog/feed.json'
+    | '/changelog/rss.xml'
     | '/docs/$'
     | '/$locale/about'
     | '/$locale/brand'
@@ -1249,6 +1326,7 @@ export interface FileRouteTypes {
     | '/docs.md'
     | '/llms-full.txt'
     | '/llms.txt'
+    | '/openapi.json'
     | '/pricing.md'
     | '/sitemap.xml'
     | '/skill.md'
@@ -1280,6 +1358,12 @@ export interface FileRouteTypes {
     | '/$locale/welcome'
     | '/.well-known/$'
     | '/api/upload'
+    | '/blog/atom.xml'
+    | '/blog/feed.json'
+    | '/blog/rss.xml'
+    | '/changelog/atom.xml'
+    | '/changelog/feed.json'
+    | '/changelog/rss.xml'
     | '/docs/$'
     | '/$locale/_pages/about'
     | '/$locale/_pages/brand'
@@ -1365,11 +1449,18 @@ export interface RootRouteChildren {
   DocsDotmdRoute: typeof DocsDotmdRoute
   LlmsFullDottxtRoute: typeof LlmsFullDottxtRoute
   LlmsDottxtRoute: typeof LlmsDottxtRoute
+  OpenapiDotjsonRoute: typeof OpenapiDotjsonRoute
   PricingDotmdRoute: typeof PricingDotmdRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   SkillDotmdRoute: typeof SkillDotmdRoute
   DotwellKnownSplatRoute: typeof DotwellKnownSplatRoute
   ApiUploadRoute: typeof ApiUploadRoute
+  BlogAtomDotxmlRoute: typeof BlogAtomDotxmlRoute
+  BlogFeedDotjsonRoute: typeof BlogFeedDotjsonRoute
+  BlogRssDotxmlRoute: typeof BlogRssDotxmlRoute
+  ChangelogAtomDotxmlRoute: typeof ChangelogAtomDotxmlRoute
+  ChangelogFeedDotjsonRoute: typeof ChangelogFeedDotjsonRoute
+  ChangelogRssDotxmlRoute: typeof ChangelogRssDotxmlRoute
   DocsSplatRoute: typeof DocsSplatRoute
   ApiAuthSplatRoute: typeof ApiAuthSplatRoute
   ApiCatalogDirectoriesRoute: typeof ApiCatalogDirectoriesRoute
@@ -1417,6 +1508,13 @@ declare module '@tanstack/react-router' {
       path: '/llms.txt'
       fullPath: '/llms.txt'
       preLoaderRoute: typeof LlmsDottxtRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/openapi.json': {
+      id: '/openapi.json'
+      path: '/openapi.json'
+      fullPath: '/openapi.json'
+      preLoaderRoute: typeof OpenapiDotjsonRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/pricing.md': {
@@ -1634,6 +1732,48 @@ declare module '@tanstack/react-router' {
       path: '/api/upload'
       fullPath: '/api/upload'
       preLoaderRoute: typeof ApiUploadRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/blog/atom.xml': {
+      id: '/blog/atom.xml'
+      path: '/blog/atom.xml'
+      fullPath: '/blog/atom.xml'
+      preLoaderRoute: typeof BlogAtomDotxmlRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/blog/feed.json': {
+      id: '/blog/feed.json'
+      path: '/blog/feed.json'
+      fullPath: '/blog/feed.json'
+      preLoaderRoute: typeof BlogFeedDotjsonRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/blog/rss.xml': {
+      id: '/blog/rss.xml'
+      path: '/blog/rss.xml'
+      fullPath: '/blog/rss.xml'
+      preLoaderRoute: typeof BlogRssDotxmlRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/changelog/atom.xml': {
+      id: '/changelog/atom.xml'
+      path: '/changelog/atom.xml'
+      fullPath: '/changelog/atom.xml'
+      preLoaderRoute: typeof ChangelogAtomDotxmlRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/changelog/feed.json': {
+      id: '/changelog/feed.json'
+      path: '/changelog/feed.json'
+      fullPath: '/changelog/feed.json'
+      preLoaderRoute: typeof ChangelogFeedDotjsonRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/changelog/rss.xml': {
+      id: '/changelog/rss.xml'
+      path: '/changelog/rss.xml'
+      fullPath: '/changelog/rss.xml'
+      preLoaderRoute: typeof ChangelogRssDotxmlRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/docs/$': {
@@ -2566,11 +2706,18 @@ const rootRouteChildren: RootRouteChildren = {
   DocsDotmdRoute: DocsDotmdRoute,
   LlmsFullDottxtRoute: LlmsFullDottxtRoute,
   LlmsDottxtRoute: LlmsDottxtRoute,
+  OpenapiDotjsonRoute: OpenapiDotjsonRoute,
   PricingDotmdRoute: PricingDotmdRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   SkillDotmdRoute: SkillDotmdRoute,
   DotwellKnownSplatRoute: DotwellKnownSplatRoute,
   ApiUploadRoute: ApiUploadRoute,
+  BlogAtomDotxmlRoute: BlogAtomDotxmlRoute,
+  BlogFeedDotjsonRoute: BlogFeedDotjsonRoute,
+  BlogRssDotxmlRoute: BlogRssDotxmlRoute,
+  ChangelogAtomDotxmlRoute: ChangelogAtomDotxmlRoute,
+  ChangelogFeedDotjsonRoute: ChangelogFeedDotjsonRoute,
+  ChangelogRssDotxmlRoute: ChangelogRssDotxmlRoute,
   DocsSplatRoute: DocsSplatRoute,
   ApiAuthSplatRoute: ApiAuthSplatRoute,
   ApiCatalogDirectoriesRoute: ApiCatalogDirectoriesRoute,

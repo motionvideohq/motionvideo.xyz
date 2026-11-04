@@ -66,10 +66,9 @@ const Templates = () => {
   const locked = useIntlayer("locked-prompt");
   const { covers } = Route.useLoaderData();
   return (
-    <PageMain width="narrow" className="gap-10">
+    <PageMain layout="document" width="narrow">
       <div className="flex flex-col gap-5">
         <PageHeader title={content.title.value} intro={content.intro} />
-        <p className="text-muted-foreground text-sm">{content.proNote}</p>
         <div className="flex flex-wrap gap-3">
           <Link
             to={ROUTES.PRO}

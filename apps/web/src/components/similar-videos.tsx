@@ -108,7 +108,7 @@ export const SimilarVideos = ({
 
   return (
     <section className="flex flex-col gap-3" aria-label={content.similar.value}>
-      <h2 className="text-sm font-medium">{content.similar}</h2>
+      <h2 className="text-base font-medium">{content.similar}</h2>
       <ul onPointerLeave={hide} className="grid grid-cols-2 gap-2">
         {similar.map((other) => (
           <li key={other.slug}>

@@ -6,8 +6,16 @@ export const ROUTES = {
   ADMIN_SPONSORSHIPS: "/admin/sponsorships",
   ADMIN_SUBMISSIONS: "/admin/submissions",
   BLOG: "/blog",
+  // The blog's and changelog's feeds. Unprefixed; the file extension keeps
+  // the server from redirecting them to a locale.
+  BLOG_ATOM: "/blog/atom.xml",
+  BLOG_JSON_FEED: "/blog/feed.json",
+  BLOG_RSS: "/blog/rss.xml",
   BRAND: "/brand",
   CHANGELOG: "/changelog",
+  CHANGELOG_ATOM: "/changelog/atom.xml",
+  CHANGELOG_JSON_FEED: "/changelog/feed.json",
+  CHANGELOG_RSS: "/changelog/rss.xml",
   CHECKOUT: "/checkout",
   CONSENT: "/consent",
   CONTACT: "/contact",
@@ -43,6 +51,8 @@ export const ROUTES = {
   SIGN_IN: "/sign-in",
   LLMS_FULL_TXT: "/llms-full.txt",
   LLMS_TXT: "/llms.txt",
+  // The public API's OpenAPI document, at a fixed unprefixed URL.
+  OPENAPI_JSON: "/openapi.json",
   PRICING_MD: "/pricing.md",
   SKILL_MD: "/skill.md",
   SKILLS: "/skills",

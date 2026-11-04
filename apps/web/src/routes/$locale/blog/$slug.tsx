@@ -10,7 +10,12 @@ import { SiteHeader } from "@/components/site-header";
 import { buttonVariants } from "@/components/ui/button";
 import { ROUTES } from "@/constants/routes";
 import catalog from "@/data/motion-catalog.json";
-import { BLOG_POSTS, findBlogPost, formatPostDate } from "@/lib/blog";
+import {
+  BLOG_FEEDS,
+  BLOG_POSTS,
+  findBlogPost,
+  formatPostDate,
+} from "@/lib/blog";
 import { cn } from "@/lib/utils";
 import { pickVideos } from "@/lib/video-picks";
 import { blogPostingJsonLd } from "@/seo/json-ld";
@@ -29,7 +34,7 @@ const BlogPostPage = () => {
   return (
     <>
       <SiteHeader signedIn={false} />
-      <PageMain width="narrow" className="gap-10">
+      <PageMain layout="document" width="narrow">
         <article className="flex flex-col gap-8">
           <header className="flex flex-col gap-4">
             <Link
@@ -111,6 +116,7 @@ export const Route = createFileRoute("/$locale/blog/$slug")({
             description: post.data.description,
             title: post.data.title,
           }),
+          links: BLOG_FEEDS.links,
           scripts: [
             blogPostingJsonLd(
               { ...post.data, slug: params.slug },

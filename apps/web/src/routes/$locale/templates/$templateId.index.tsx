@@ -8,7 +8,7 @@ import { CopyPromptButton } from "@/components/copy-prompt-button";
 import { LocalizedLink as Link } from "@/components/localized-link";
 import { LockedPrompt } from "@/components/locked-prompt";
 import { MotionVideoCard } from "@/components/motion-video";
-import { pageContainerClass } from "@/components/page";
+import { PAGE_TOP, pageContainerClass } from "@/components/page";
 import { buttonVariants } from "@/components/ui/button";
 import { VirtualMasonry } from "@/components/virtual-masonry";
 import { ROUTES } from "@/constants/routes";
@@ -117,7 +117,10 @@ const TemplateDetail = () => {
   const promptId = useId();
 
   return (
-    <main id="main-content" className="flex flex-1 flex-col gap-14 pt-6 pb-16">
+    <main
+      id="main-content"
+      className={cn("flex flex-1 flex-col gap-14 pb-16", PAGE_TOP.document)}
+    >
       <div className={cn(pageContainerClass("narrow"), "flex flex-col gap-10")}>
         <Link
           to={ROUTES.TEMPLATES}

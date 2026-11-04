@@ -90,3 +90,21 @@ export const ColorDots = (props: SVGProps<SVGSVGElement>) => (
     <circle cx="4.87" cy="9.68" r="2.75" fill="#3b82f6" />
   </svg>
 );
+
+// The feed mark (reicon has none): a dot and two arcs, stroked like reicon.
+export const RssIcon = (props: SVGProps<SVGSVGElement>) => (
+  <svg
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth={2}
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    aria-hidden
+    {...props}
+  >
+    <path d="M4 11a9 9 0 0 1 9 9" />
+    <path d="M4 4a16 16 0 0 1 16 16" />
+    <circle cx="5" cy="19" r="1" />
+  </svg>
+);

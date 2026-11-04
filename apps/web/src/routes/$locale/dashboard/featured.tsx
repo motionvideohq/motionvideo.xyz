@@ -186,7 +186,7 @@ const Featured = () => {
 
   return (
     <>
-      <PageMain width="full">
+      <PageMain layout="app" width="full">
         <AccountPageHeader title={content.title} intro={content.intro} />
         {submissions.length > 0 ? (
           <>

@@ -3,6 +3,8 @@ import { defineCollections } from "fumadocs-mdx/macro";
 import { z } from "zod";
 
 import { ROUTES } from "@/constants/routes";
+import { SITE } from "@/constants/site";
+import { defineFeeds } from "@/lib/feeds";
 
 // Blog posts, written for MotionVideo: one MDX file per post in content/blog,
 // the file name is the slug (/blog/<slug>). Post text stays in English in
@@ -41,6 +43,13 @@ export const blog = loader({
 export const BLOG_POSTS = blog
   .getPages()
   .toSorted((a, b) => b.data.date.localeCompare(a.data.date));
+
+/** The blog's feeds, in English like the posts. */
+export const BLOG_FEEDS = defineFeeds(`${SITE.NAME} Blog`, {
+  atom: ROUTES.BLOG_ATOM,
+  json: ROUTES.BLOG_JSON_FEED,
+  rss: ROUTES.BLOG_RSS,
+});
 
 export const findBlogPost = (slug: string | undefined) =>
   slug ? blog.getPage([slug]) : undefined;

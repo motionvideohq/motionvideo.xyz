@@ -5,7 +5,7 @@ import { Crown } from "reicon-react/icons/Crown";
 
 import { GitHubIcon } from "@/components/icons";
 import { LocalizedLink as Link } from "@/components/localized-link";
-import { SectionHeader } from "@/components/page";
+import { PageMain, SectionHeader } from "@/components/page";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
 import {
@@ -149,11 +149,8 @@ const McpLanding = () => {
   return (
     <>
       <SiteHeader signedIn={signedIn} />
-      <main
-        id="main-content"
-        className="flex flex-col gap-24 pt-12 pb-8 sm:pt-20"
-      >
-        <div className="mx-auto flex w-full max-w-5xl flex-col gap-12 px-6">
+      <PageMain layout="landing" width="full">
+        <div className="mx-auto flex w-full max-w-5xl flex-col gap-12">
           {/* Equal halves, as on the Skill page, so both heroes split at the
               same line whatever the heading's width. */}
           <section className="grid gap-8 lg:grid-cols-2 lg:gap-12">
@@ -201,7 +198,7 @@ const McpLanding = () => {
           <Conversation demo={demo} />
         </div>
 
-        <div className="mx-auto flex w-full max-w-3xl flex-col gap-24 px-6">
+        <div className="mx-auto flex w-full max-w-3xl flex-col gap-20">
           <section id="tools" className="flex scroll-mt-8 flex-col gap-6">
             <SectionHeader title={content.toolsTitle} />
             <ul className="grid gap-4 sm:grid-cols-2">
@@ -276,7 +273,7 @@ const McpLanding = () => {
             </Accordion>
           </section>
         </div>
-      </main>
+      </PageMain>
       <SiteFooter />
     </>
   );

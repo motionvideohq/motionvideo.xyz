@@ -91,9 +91,8 @@ const Sponsor = () => {
   return (
     <>
       <SiteHeader signedIn={signedIn} />
-      {/* Same shell and heading scale as the other company pages (About,
-          Brand, Contact). */}
-      <PageMain width="full" className="items-center gap-20">
+      {/* Landing layout, like the MCP, Skill and Pro pages. */}
+      <PageMain layout="landing" width="full" className="items-center">
         <HeroHeader
           title={content.pitch}
           intro={content.note}

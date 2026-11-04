@@ -125,7 +125,7 @@ const Pro = () => {
   return (
     <>
       <SiteHeader signedIn={signedIn} />
-      <PageMain width="full" className="items-center gap-16">
+      <PageMain layout="landing" width="full" className="items-center">
         <HeroHeader
           title={
             <>

@@ -368,7 +368,7 @@ const Submit = () => {
   const { email } = Route.useLoaderData();
   const search = Route.useSearch();
   return (
-    <PageMain width="narrow" className="gap-16">
+    <PageMain layout="landing" width="narrow" className="gap-16">
       <HeroHeader title={content.title} intro={content.intro} />
       <SubmissionForm
         key={`${search.kind ?? "video"}:${search.category ?? ""}`}

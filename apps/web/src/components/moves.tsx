@@ -234,7 +234,7 @@ const PromptSection = ({ prompt }: { prompt: MovePrompt }) => {
   return (
     <section aria-labelledby={id} className={sectionClass}>
       <div className="flex items-center justify-between gap-3">
-        <h2 id={id} className="text-sm font-medium">
+        <h2 id={id} className="text-base font-medium">
           {content.prompt}
         </h2>
         <Button
@@ -285,7 +285,7 @@ const LockedPromptSection = ({
   const id = useId();
   return (
     <section aria-labelledby={id} className={sectionClass}>
-      <h2 id={id} className="text-sm font-medium">
+      <h2 id={id} className="text-base font-medium">
         {content.prompt}
       </h2>
       <LockedPrompt
@@ -391,7 +391,9 @@ export const MoveOverlay = ({
           {move.name}
         </Dialog.Title>
       </div>
-      <Dialog.Description className="text-sm leading-relaxed text-pretty">
+      {/* The summary repeats the opening of "About this move"; screen
+          readers still get it as the dialog's description. */}
+      <Dialog.Description className="sr-only">
         {move.summary}
       </Dialog.Description>
       {example && failed === example.slug && (
@@ -421,6 +423,11 @@ export const MoveOverlay = ({
             </button>
           ))}
         </div>
+      )}
+      {prompt.locked ? (
+        <LockedPromptSection signedIn={signedIn} move={move} />
+      ) : (
+        <PromptSection prompt={prompt.prompt} />
       )}
       <dl>
         <DetailRow label={content.family}>
@@ -454,18 +461,13 @@ export const MoveOverlay = ({
           </DetailRow>
         )}
       </dl>
-      {prompt.locked ? (
-        <LockedPromptSection signedIn={signedIn} move={move} />
-      ) : (
-        <PromptSection prompt={prompt.prompt} />
-      )}
       <section aria-label={content.about.value} className={sectionClass}>
-        <h2 className="text-sm font-medium">{content.about}</h2>
+        <h2 className="text-base font-medium">{content.about}</h2>
         <MoveBody body={move.body} />
       </section>
       {related.length > 0 && (
         <section aria-label={content.related.value} className={sectionClass}>
-          <h2 className="text-sm font-medium">{content.related}</h2>
+          <h2 className="text-base font-medium">{content.related}</h2>
           <ul className="-mx-2 flex flex-col">
             {related.map((item) => (
               <li key={item.slug}>

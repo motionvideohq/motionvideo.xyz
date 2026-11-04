@@ -177,7 +177,7 @@ const NewSponsorship = () => {
   };
 
   return (
-    <PageMain width="narrow" className="gap-16">
+    <PageMain layout="landing" width="narrow" className="gap-16">
       <HeroHeader
         title={content.checkout.heroTitle}
         intro={content.checkout.heroIntro}

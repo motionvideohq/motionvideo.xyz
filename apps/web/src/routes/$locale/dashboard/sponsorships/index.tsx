@@ -346,7 +346,7 @@ const Sponsorships = () => {
   };
 
   return (
-    <PageMain width="narrow">
+    <PageMain layout="app" width="narrow">
       <AccountPageHeader
         title={content.title}
         intro={content.intro}

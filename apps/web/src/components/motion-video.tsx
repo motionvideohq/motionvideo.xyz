@@ -839,7 +839,7 @@ const PromptSection = ({ video }: { video: MotionVideo }) => {
   return (
     <section className="flex flex-col gap-3" aria-label={content.prompt.value}>
       <div className="flex items-center justify-between gap-3">
-        <h2 className="text-sm font-medium">{content.prompt}</h2>
+        <h2 className="text-base font-medium">{content.prompt}</h2>
         {prompt && (
           <Button variant="outline" size="sm" onClick={copyPrompt}>
             <CopyIcon copied={copyStatus === "copied"} />
@@ -1013,7 +1013,7 @@ const SkillSection = ({ video }: { video: MotionVideo }) => {
     <section className="flex flex-col gap-3" aria-label={content.skill.value}>
       {/* Same header row as the prompt: View repo where Copy sits there. */}
       <div className="flex items-center justify-between gap-3">
-        <h2 className="text-sm font-medium">{content.skill}</h2>
+        <h2 className="text-base font-medium">{content.skill}</h2>
         <a
           href={video.skillUrl}
           target="_blank"

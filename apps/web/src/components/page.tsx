@@ -6,23 +6,43 @@ import { LINK } from "@/constants/links";
 import { SITE } from "@/constants/site";
 import { cn } from "@/lib/utils";
 
-// Shared page shell. Every page outside the gallery and directory grids uses
-// the same side and top padding; only the width differs: `full` matches the
-// header (collections such as bookmarks), `narrow` centres a reading or form
-// column (settings, sponsorships, legal and company pages).
+// Shared page shell. Every page outside the gallery and directory grids is one
+// of three layouts, each with one top padding and section gap:
+// - `landing`: marketing pages with a hero (MCP, Skill, Sponsor, Pro) and the
+//   hero-headed forms, so every hero title sits at the same height.
+// - `document`: reading pages under a left-aligned `PageHeader` (about, brand,
+//   contact, legal, changelog, blog, templates); the same top as /docs.
+// - `app`: dense collection and account pages, where the title is chrome.
+// The width is separate: `full` matches the header (collections such as
+// bookmarks), `narrow` centres a reading or form column.
 const PAGE_WIDTH = {
   full: "max-w-[1800px]",
   narrow: "max-w-3xl",
+} as const;
+
+/** Top padding per layout; /docs uses `document` (docs-page.tsx). */
+export const PAGE_TOP = {
+  landing: "pt-12 sm:pt-20",
+  document: "pt-6 lg:pt-10",
+  app: "pt-6",
+} as const;
+
+const PAGE_GAP = {
+  landing: "gap-20",
+  document: "gap-10",
+  app: "gap-6",
 } as const;
 
 export const pageContainerClass = (width: keyof typeof PAGE_WIDTH) =>
   cn("mx-auto w-full px-4 sm:px-6", PAGE_WIDTH[width]);
 
 export const PageMain = ({
+  layout,
   width,
   className,
   children,
 }: {
+  layout: keyof typeof PAGE_TOP;
   width: keyof typeof PAGE_WIDTH;
   className?: string;
   children: ReactNode;
@@ -31,7 +51,9 @@ export const PageMain = ({
     id="main-content"
     className={cn(
       pageContainerClass(width),
-      "flex flex-1 flex-col gap-6 pt-6 pb-16",
+      "flex flex-1 flex-col pb-16",
+      PAGE_TOP[layout],
+      PAGE_GAP[layout],
       className
     )}
   >
@@ -65,8 +87,9 @@ export const AccountPageHeader = ({
 );
 
 /**
- * Centred hero for the marketing pages (Jobs, Post a job, Sponsor): a large
- * title, one muted line, then optional actions and a small note.
+ * Centred hero for `landing` pages (Sponsor, Pro) and the hero-headed forms: a
+ * large title, one muted line, then optional actions and a small note. The
+ * page's layout sets the space above it.
  */
 export const HeroHeader = ({
   title,
@@ -79,7 +102,7 @@ export const HeroHeader = ({
   actions?: ReactNode;
   note?: ReactNode;
 }) => (
-  <header className="mx-auto flex max-w-2xl flex-col items-center gap-4 pt-6 text-center sm:pt-10">
+  <header className="mx-auto flex max-w-2xl flex-col items-center gap-4 text-center">
     <h1 className="text-4xl font-semibold tracking-tight text-balance sm:text-5xl">
       {title}
     </h1>
@@ -113,19 +136,24 @@ export const FormSection = ({
   </section>
 );
 
-// Building blocks for the text pages (legal and company) rendered inside the
-// `_pages` layout.
+// Building blocks for the `document` pages.
 
+/** Title and intro, with optional actions (e.g. feed links) on the right. */
 export const PageHeader = ({
   title,
   intro,
+  actions,
 }: {
   title: string;
   intro: ReactNode;
+  actions?: ReactNode;
 }) => (
-  <header className="flex flex-col gap-3">
-    <h1 className="text-4xl font-semibold tracking-tight">{title}</h1>
-    <p className="text-muted-foreground">{intro}</p>
+  <header className="flex items-start justify-between gap-4">
+    <div className="flex min-w-0 flex-col gap-3">
+      <h1 className="text-4xl font-semibold tracking-tight">{title}</h1>
+      <p className="text-muted-foreground">{intro}</p>
+    </div>
+    {actions && <div className="flex shrink-0 pt-1.5">{actions}</div>}
   </header>
 );
 

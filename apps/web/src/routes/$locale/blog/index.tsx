@@ -2,12 +2,13 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useIntlayer, useLocale } from "react-intlayer";
 
 import { EntryCard } from "@/components/entry-card";
+import { FeedButtons } from "@/components/feed-buttons";
 import { PageHeader, PageMain } from "@/components/page";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
 import { ROUTES } from "@/constants/routes";
 import catalog from "@/data/motion-catalog.json";
-import { BLOG_POSTS, formatPostDate } from "@/lib/blog";
+import { BLOG_FEEDS, BLOG_POSTS, formatPostDate } from "@/lib/blog";
 import { pickVideos } from "@/lib/video-picks";
 import { breadcrumbJsonLd } from "@/seo/json-ld";
 import { createMetadata } from "@/seo/metadata";
@@ -20,7 +21,7 @@ const Blog = () => {
   return (
     <>
       <SiteHeader signedIn={false} />
-      <PageMain width="narrow" className="gap-10">
+      <PageMain layout="document" width="narrow">
         <PageHeader
           title={content.title.value}
           intro={
@@ -28,6 +29,7 @@ const Blog = () => {
               ? content.intro.value
               : `${content.intro.value} ${content.englishOnly.value}`
           }
+          actions={<FeedButtons feeds={BLOG_FEEDS} />}
         />
         <ol className="flex flex-col gap-4">
           {BLOG_POSTS.map((post) => (
@@ -68,6 +70,7 @@ export const Route = createFileRoute("/$locale/blog/")({
         "Notes on making motion graphics with AI coding agents: prompt structure, rendering, launch films, and what the prompts in the gallery have in common.",
       title: "Blog",
     }),
+    links: BLOG_FEEDS.links,
     scripts: [
       breadcrumbJsonLd({ page: "blog", path: ROUTES.BLOG }, params.locale),
     ],

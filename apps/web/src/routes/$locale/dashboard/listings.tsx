@@ -110,7 +110,7 @@ const Listings = () => {
   );
 
   return (
-    <PageMain width="narrow">
+    <PageMain layout="app" width="narrow">
       <AccountPageHeader
         title={content.listingsTitle}
         intro={content.listingsIntro}

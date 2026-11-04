@@ -78,7 +78,7 @@ const Dashboard = () => {
   };
 
   return (
-    <PageMain width="narrow">
+    <PageMain layout="app" width="narrow">
       <AccountPageHeader
         title={content.title}
         intro={email}

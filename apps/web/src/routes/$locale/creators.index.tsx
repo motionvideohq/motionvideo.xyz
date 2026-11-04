@@ -57,7 +57,7 @@ const Creators = () => {
   return (
     <>
       <SiteHeader signedIn={signedIn} />
-      <PageMain width="full">
+      <PageMain layout="app" width="full">
         <PageHeader title={content.title.value} intro={content.description} />
         <div className="max-w-sm">
           <label htmlFor="creator-search" className="sr-only">

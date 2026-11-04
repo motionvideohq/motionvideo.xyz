@@ -3,11 +3,16 @@ import { getIntlayer } from "intlayer";
 import { useIntlayer, useLocale } from "react-intlayer";
 
 import { EntryCard } from "@/components/entry-card";
+import { FeedButtons } from "@/components/feed-buttons";
 import { PageHeader } from "@/components/page";
 import { DEFAULT_LOCALE, isLocale } from "@/constants/locales";
 import { ROUTES } from "@/constants/routes";
 import catalog from "@/data/motion-catalog.json";
-import { CHANGELOG_ENTRIES, formatChangelogDate } from "@/lib/changelog";
+import {
+  CHANGELOG_ENTRIES,
+  CHANGELOG_FEEDS,
+  formatChangelogDate,
+} from "@/lib/changelog";
 import { pickVideos } from "@/lib/video-picks";
 import { breadcrumbJsonLd } from "@/seo/json-ld";
 import { createMetadata } from "@/seo/metadata";
@@ -26,6 +31,7 @@ const Changelog = () => {
             ? content.intro
             : `${content.intro.value} ${content.englishOnly.value}`
         }
+        actions={<FeedButtons feeds={CHANGELOG_FEEDS} />}
       />
       <ol className="flex flex-col gap-4">
         {CHANGELOG_ENTRIES.map((entry) => (
@@ -68,6 +74,7 @@ export const Route = createFileRoute("/$locale/_pages/changelog/")({
         description: content.intro,
         title: content.title,
       }),
+      links: CHANGELOG_FEEDS.links,
       scripts: [
         breadcrumbJsonLd(
           { page: "changelog", path: ROUTES.CHANGELOG },

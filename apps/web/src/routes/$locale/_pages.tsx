@@ -9,7 +9,7 @@ import { SiteHeader } from "@/components/site-header";
 const PagesLayout = () => (
   <>
     <SiteHeader signedIn={false} />
-    <PageMain width="narrow" className="gap-10">
+    <PageMain layout="document" width="narrow">
       <Outlet />
     </PageMain>
     <SiteFooter />

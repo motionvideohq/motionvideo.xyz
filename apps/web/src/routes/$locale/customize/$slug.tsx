@@ -24,7 +24,7 @@ const CustomizeVideo = () => {
   const creator = video.creatorName ?? `@${video.handle}`;
 
   return (
-    <PageMain width="full" className="gap-8">
+    <PageMain layout="app" width="full" className="gap-8">
       <Link
         to={ROUTES.CUSTOMIZE}
         className="text-muted-foreground hover:text-foreground w-fit text-sm underline-offset-4 transition-colors hover:underline"
