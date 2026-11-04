@@ -10,6 +10,7 @@ import { DocumentCode } from "reicon-react/icons/DocumentCode";
 import { DocumentText } from "reicon-react/icons/DocumentText";
 import { Envelope } from "reicon-react/icons/Envelope";
 import { HandHeart } from "reicon-react/icons/HandHeart";
+import { History } from "reicon-react/icons/History";
 import { Layout } from "reicon-react/icons/Layout";
 import { Lock } from "reicon-react/icons/Lock";
 import { Monitor } from "reicon-react/icons/Monitor";
@@ -18,6 +19,7 @@ import { Office } from "reicon-react/icons/Office";
 import { Play } from "reicon-react/icons/Play";
 import { Plug } from "reicon-react/icons/Plug";
 import { Plus } from "reicon-react/icons/Plus";
+import { ProfileCircle } from "reicon-react/icons/ProfileCircle";
 import { Reply2 } from "reicon-react/icons/Reply2";
 import { Scroll } from "reicon-react/icons/Scroll";
 import { Search } from "reicon-react/icons/Search";
@@ -50,7 +52,10 @@ import { useIsMac } from "@/hooks/use-mac";
 import { track } from "@/lib/analytics";
 import type { DirectoryEntry, DirectoryKind } from "@/lib/directories";
 import type { MotionVideo } from "@/lib/motion-catalog";
+import type { MOTION_CREATORS } from "@/lib/motion-creators";
 import { setTheme } from "@/lib/theme";
+import { getSearchIndex } from "@/server/search-functions";
+import type { SearchIndex } from "@/server/search-functions";
 
 // Public pages only: account pages need sign-in and live in the account menu.
 type PagePath =
@@ -77,21 +82,26 @@ type PagePath =
 
 interface SearchData {
   videos: MotionVideo[];
+  creators: typeof MOTION_CREATORS;
   directories: Record<DirectoryKind, DirectoryEntry[]>;
 }
 
 const EMPTY_DATA: SearchData = {
   videos: [],
+  creators: [],
   directories: { tool: [], studio: [], skill: [], extra: [] },
 };
 
 const importSearchData = async (): Promise<SearchData> => {
-  const [catalog, directories] = await Promise.all([
+  // motion-creators reads the same catalog JSON: one chunk for both.
+  const [catalog, creators, directories] = await Promise.all([
     import("@/data/motion-catalog.json"),
+    import("@/lib/motion-creators"),
     import("@/lib/directories"),
   ]);
   return {
     videos: catalog.default.videos,
+    creators: creators.MOTION_CREATORS,
     directories: directories.DIRECTORY_ENTRIES,
   };
 };
@@ -106,6 +116,29 @@ const loadSearchData = async (): Promise<SearchData> => {
     // The palette stays usable; the next open retries the chunk.
     dataPromise = undefined;
     return EMPTY_DATA;
+  }
+};
+
+const EMPTY_INDEX: SearchIndex = {
+  moves: [],
+  templates: [],
+  blog: [],
+  changelog: [],
+  docs: [],
+};
+
+// Moves, templates, posts, changelog and docs come from the server, which
+// keeps move bodies and prompts out of the browser. Docs titles depend on the
+// locale, so each locale loads once; a failed load retries on the next open.
+const indexPromises = new Map<string, Promise<SearchIndex>>();
+const loadSearchIndex = async (locale: string): Promise<SearchIndex> => {
+  const promise = indexPromises.get(locale) ?? getSearchIndex({ data: locale });
+  indexPromises.set(locale, promise);
+  try {
+    return await promise;
+  } catch {
+    indexPromises.delete(locale);
+    return EMPTY_INDEX;
   }
 };
 
@@ -144,15 +177,19 @@ interface PaletteGroup {
 
 export const CommandMenu = () => {
   const content = useIntlayer("command-menu");
-  const { setLocale } = useLocale();
+  const { locale, setLocale } = useLocale();
   const navigate = useNavigate();
   const [open, setOpen] = useState(false);
   const [query, setQuery] = useState("");
   const [data, setData] = useState(EMPTY_DATA);
+  const [index, setIndex] = useState(EMPTY_INDEX);
   const modifier = useIsMac() ? "⌘" : "Ctrl";
 
+  // Both load in parallel; the palette shows its data as soon as it arrives.
   const ensureData = async () => {
+    const indexLoad = loadSearchIndex(locale);
     setData(await loadSearchData());
+    setIndex(await indexLoad);
   };
 
   // One event per opening, however it was opened (click, ⌘K, /).
@@ -178,12 +215,14 @@ export const CommandMenu = () => {
         return;
       }
       event.preventDefault();
+      const indexLoad = loadSearchIndex(locale);
       setData(await loadSearchData());
       setOpen((wasOpen) => !wasOpen);
+      setIndex(await indexLoad);
     };
     window.addEventListener("keydown", onKeyDown);
     return () => window.removeEventListener("keydown", onKeyDown);
-  }, []);
+  }, [locale]);
 
   const hasQuery = query.trim().length > 0;
   const groups = useMemo<PaletteGroup[]>(() => {
@@ -223,12 +262,92 @@ export const CommandMenu = () => {
           window.open(entry.url, "_blank", "noopener,noreferrer");
         },
       }));
+    const creators: PaletteItem[] = data.creators.map((creator) => ({
+      id: `creator:${creator.handle}`,
+      label: creator.name,
+      keywords: [creator.name, `@${creator.handle}`, creator.handle],
+      hint: `@${creator.handle}`,
+      action: () =>
+        navigate({
+          to: "/creators/$creator",
+          params: { creator: creator.handle },
+        }),
+    }));
+    const moves: PaletteItem[] = index.moves.map((move) => ({
+      id: `move:${move.slug}`,
+      label: move.name,
+      keywords: [
+        move.name,
+        ...move.aka,
+        move.summary,
+        ...move.goodFor,
+        move.family,
+      ],
+      hint: move.summary,
+      action: () =>
+        navigate({
+          to: "/moves/$family/$slug",
+          params: { family: move.family, slug: move.slug },
+        }),
+    }));
+    const templates: PaletteItem[] = index.templates.map((template) => ({
+      id: `template:${template.id}`,
+      label: template.name,
+      keywords: [template.name, template.summary, "template"],
+      hint: template.summary,
+      action: () =>
+        navigate({
+          to: "/templates/$templateId",
+          params: { templateId: template.id },
+        }),
+    }));
+    const blogPosts: PaletteItem[] = index.blog.map((post) => ({
+      id: `blog:${post.slug}`,
+      label: post.title,
+      keywords: [post.title, post.description],
+      hint: post.description,
+      action: () =>
+        navigate({ to: "/blog/$slug", params: { slug: post.slug } }),
+    }));
+    const changelog: PaletteItem[] = index.changelog.map((entry) => ({
+      id: `changelog:${entry.slug}`,
+      label: entry.title,
+      keywords: [entry.title, entry.description],
+      hint: entry.description,
+      action: () =>
+        navigate({ to: "/changelog/$slug", params: { slug: entry.slug } }),
+    }));
+    // Each docs page, then each of its headings as a deep link into it.
+    const docs = index.docs.flatMap((docsPage): PaletteItem[] => {
+      const splat = docsPage.slugs.join("/");
+      const openDocs = (hash?: string) =>
+        splat
+          ? navigate({ to: "/docs/$", params: { _splat: splat }, hash })
+          : navigate({ to: "/docs", hash });
+      return [
+        {
+          id: `docs:/${splat}`,
+          label: docsPage.title,
+          keywords: [docsPage.title, docsPage.description],
+          hint: docsPage.description,
+          action: () => openDocs(),
+        },
+        ...docsPage.headings.map((heading) => ({
+          id: `docs:/${splat}#${heading.id}`,
+          label: heading.title,
+          keywords: [heading.title, docsPage.title],
+          hint: docsPage.title,
+          action: () => openDocs(heading.id),
+        })),
+      ];
+    });
     const item = (entry: Omit<PaletteItem, "action">, action: () => void) => ({
       ...entry,
       action,
     });
-    // Always visible: Pages, Theme, Socials. Videos + directory entries stay
-    // hidden until the user types, but remain searchable via cmdk filtering.
+    // Always visible: Pages, Theme, Socials. Videos, content and directory
+    // entries stay hidden until the user types, but remain searchable via cmdk
+    // filtering.
     const visible: PaletteGroup[] = [
       {
         // The header's Explore sections, after a random video.
@@ -451,6 +570,66 @@ export const CommandMenu = () => {
         items: videos,
       },
       {
+        id: "creators",
+        heading: (
+          <span className="flex items-center gap-1.5">
+            <ProfileCircle aria-hidden="true" className="size-3" />
+            {content.creators.value}
+          </span>
+        ),
+        items: creators,
+      },
+      {
+        id: "moves",
+        heading: (
+          <span className="flex items-center gap-1.5">
+            <Bezier aria-hidden="true" className="size-3" />
+            {content.moves.value}
+          </span>
+        ),
+        items: moves,
+      },
+      {
+        id: "templates",
+        heading: (
+          <span className="flex items-center gap-1.5">
+            <Layout aria-hidden="true" className="size-3" />
+            {content.templates.value}
+          </span>
+        ),
+        items: templates,
+      },
+      {
+        id: "docs",
+        heading: (
+          <span className="flex items-center gap-1.5">
+            <Docs aria-hidden="true" className="size-3" />
+            {content.docs.value}
+          </span>
+        ),
+        items: docs,
+      },
+      {
+        id: "blog",
+        heading: (
+          <span className="flex items-center gap-1.5">
+            <DocumentText aria-hidden="true" className="size-3" />
+            {content.blog.value}
+          </span>
+        ),
+        items: blogPosts,
+      },
+      {
+        id: "changelog",
+        heading: (
+          <span className="flex items-center gap-1.5">
+            <History aria-hidden="true" className="size-3" />
+            {content.changelog.value}
+          </span>
+        ),
+        items: changelog,
+      },
+      {
         id: "tools",
         heading: (
           <span className="flex items-center gap-1.5">
@@ -491,7 +670,7 @@ export const CommandMenu = () => {
         items: linkItems(data.directories.extra),
       },
     ];
-  }, [data, content, navigate, hasQuery, setLocale]);
+  }, [data, index, content, navigate, hasQuery, setLocale]);
 
   return (
     <>
