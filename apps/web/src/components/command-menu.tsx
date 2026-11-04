@@ -18,7 +18,7 @@ import { Office } from "reicon-react/icons/Office";
 import { Play } from "reicon-react/icons/Play";
 import { Plug } from "reicon-react/icons/Plug";
 import { Plus } from "reicon-react/icons/Plus";
-import { Reply } from "reicon-react/icons/Reply";
+import { Reply2 } from "reicon-react/icons/Reply2";
 import { Scroll } from "reicon-react/icons/Scroll";
 import { Search } from "reicon-react/icons/Search";
 import { Sliders } from "reicon-react/icons/Sliders";
@@ -580,7 +580,7 @@ export const CommandMenu = () => {
             </span>
             <span className="flex items-center gap-1.5">
               <Kbd>
-                <Reply aria-hidden="true" />
+                <Reply2 aria-hidden="true" />
               </Kbd>
               {content.hintOpen}
             </span>
