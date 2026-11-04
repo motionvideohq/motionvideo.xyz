@@ -1,0 +1,1594 @@
+{
+  "schema": 1,
+  "duration_s": 50,
+  "sample_rate": 48000,
+  "channels": 2,
+  "format": "WAV PCM_24",
+  "effects_only": true,
+  "music_included": false,
+  "source": {
+    "site": "https://leonxlnx.github.io/earshot-site/",
+    "repository": "https://github.com/Leonxlnx/earshot",
+    "version": "0.4.0",
+    "revision": "591fa3e028032e6dce56620a20e932e35667e8d8",
+    "bank_version": "forge_v2r6+forge04r1+fit1+pluck1",
+    "bank_files": [
+      "forge_v2.json",
+      "forge04.json"
+    ],
+    "synthesis": "Fresh seeded original-code forge bank takes; no fit-derived entries or recorded samples.",
+    "license": "MIT",
+    "license_url": "https://github.com/Leonxlnx/earshot/blob/v0.4.0/LICENSE",
+    "license_notice": "MIT License\n\nCopyright (c) 2026 Leon Lin\n\nPermission is hereby granted, free of charge, to any person obtaining a copy\nof this software and associated documentation files (the \"Software\"), to deal\nin the Software without restriction, including without limitation the rights\nto use, copy, modify, merge, publish, distribute, sublicense, and/or sell\ncopies of the Software, and to permit persons to whom the Software is\nfurnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all\ncopies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR\nIMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,\nFITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE\nAUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER\nLIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,\nOUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\nSOFTWARE.\n"
+  },
+  "reproduction": {
+    "command": "node scripts/cinematic-foley.mjs",
+    "working_directory": "apps/videos",
+    "interpreter": "out/earshot-0.4.0/.venv/bin/python (3.12.5)",
+    "dependencies": {
+      "numpy": "2.5.4",
+      "scipy": "1.18.1",
+      "soundfile": "0.14.0",
+      "pyloudnorm": "0.2.0"
+    },
+    "setup": "The generator clones tag v0.4.0 into out/earshot-0.4.0, verifies its pinned revision, creates an isolated Python >=3.12 venv, installs numpy==2.5.4 scipy==1.18.1 soundfile==0.14.0 pyloudnorm==0.2.0 with --no-cache-dir, then installs Earshot editable with --no-deps. Model-free bank rendering and light measurements need no torch, transformers, librosa, models, or optional JIT acceleration. Set PYTHON to select the bootstrap interpreter. User installation is untouched.",
+    "prerequisites": [
+      "Node.js",
+      "Python >=3.12 with venv",
+      "git",
+      "ffmpeg",
+      "ffprobe",
+      "network on first setup only"
+    ],
+    "seed_policy": "Each planned seed is fresh; deterministic +1000 rerolls are allowed only until the Earshot artifact audit passes; all attempts are recorded."
+  },
+  "timing": {
+    "fps": 30,
+    "units": "seconds",
+    "key_text": "launch film",
+    "key_timer_start_s": 9.58,
+    "key_timer_interval_s": 0.08,
+    "key_frame_formula": "270 + ceil((0.5 + (i+1)/12.5)*30), i=0..10",
+    "method": "Earshot bank.measure on decoded 24-bit takes: onset = first 1 ms RMS frame within 30 dB of maximum (0.25 ms hop); peak = loudest 5 ms frame (1 ms hop). File start is rounded to the nearest 48 kHz sample to align that measured feature with the visual cue.",
+    "max_abs_sync_error_ms": 0.008333
+  },
+  "audit": {
+    "method": "Earshot 0.4.0 model-free sfx.check on every decoded take, plus features.measure(light=True) on decoded mix",
+    "clean_takes": 17,
+    "total_takes": 17,
+    "limits": "Artifact heuristics and objective meters only; no human listening, semantic-model description, aesthetic approval, or realness comparison is claimed. Sparse effects silence is intentional; whole-stem single-effect tail audits are not applicable."
+  },
+  "cues": [
+    {
+      "name": "category-click",
+      "file": "public/cinematic/sfx/category-click.wav",
+      "bank_id": "pro_click/soft",
+      "recipe": "click",
+      "bank_type": "forge",
+      "planned_seed": 531101,
+      "seed": 531101,
+      "character": null,
+      "edits": {},
+      "sample_peak_target_dbfs": -20,
+      "source_entry_sha256": "5c71b3304619722fe9298a86076c1d1c0487e6b156a71cca76213782b7bbf42d",
+      "sha256": "131a78e3fdc8978d24f7c514cc882d01939c19d1159455a279052146c63c78a7",
+      "cue_s": 6.533333333333333,
+      "align": "onset",
+      "cue_frame": 196,
+      "start_sample": 313542,
+      "start_s": 6.532125,
+      "measured_sync_s": 6.533325,
+      "sync_error_ms": -0.008333,
+      "measured_onset_s": 6.533325,
+      "measured_peak_s": 6.536625,
+      "measured_end_s": 6.556125,
+      "take_measurements": {
+        "onset_s": 0.0012,
+        "peak_s": 0.0045,
+        "end_s": 0.024,
+        "dur_s": 0.0532,
+        "peak_db": -20.0,
+        "lufs_m_max": -42.88
+      },
+      "attempts": [
+        {
+          "seed": 531101,
+          "ok": true,
+          "warnings": []
+        }
+      ],
+      "audit": {
+        "ok": true,
+        "warnings": [],
+        "notes": [],
+        "summary": "pro_click/soft: clean",
+        "measures": {
+          "clicks": 0,
+          "edge_db": -240.0,
+          "clip_runs": 0,
+          "overs": 0,
+          "dc_db": -85.1,
+          "ring_z": null,
+          "trunc_db": null,
+          "silence_ms": 0.0,
+          "bump_db": 0.0,
+          "attack_ms": 0.75,
+          "t40_ms": 20.0,
+          "crest_db": 16.2,
+          "res_db": 19.8,
+          "res_hz": 5539,
+          "peak_dbfs": -20.0,
+          "live_ms": 15.0
+        },
+        "glide": {
+          "tonal_share": 0.67,
+          "rise_st": 0.0,
+          "from_s": null,
+          "to_s": null
+        },
+        "layers": {
+          "attacks": [
+            0.013
+          ],
+          "count": 1,
+          "pre_swell_ms": 0.0
+        },
+        "context": {
+          "category": "pro_click",
+          "sound": "pro_click/soft"
+        }
+      }
+    },
+    {
+      "name": "key-01",
+      "file": "public/cinematic/sfx/key-01.wav",
+      "bank_id": "typing_key/light",
+      "recipe": "keypress",
+      "bank_type": "forge",
+      "planned_seed": 531201,
+      "seed": 531201,
+      "character": "l",
+      "edits": {},
+      "sample_peak_target_dbfs": -28.0,
+      "source_entry_sha256": "ae291df24ccbf3228c4a3ecf097e4584cd6874c9488d2b9cb5a168d223533201",
+      "sha256": "b97ec6b28f5c0464ad75c21175ecf022c880a50025b51359bbfd6fd97cd9dbe6",
+      "cue_s": 9.6,
+      "align": "onset",
+      "cue_frame": 288,
+      "start_sample": 460426,
+      "start_s": 9.592208333333334,
+      "measured_sync_s": 9.600008333333333,
+      "sync_error_ms": 0.008333,
+      "measured_onset_s": 9.600008333333333,
+      "measured_peak_s": 9.604708333333333,
+      "measured_end_s": 9.743208333333333,
+      "take_measurements": {
+        "onset_s": 0.0078,
+        "peak_s": 0.0125,
+        "end_s": 0.151,
+        "dur_s": 0.1583,
+        "peak_db": -28.0,
+        "lufs_m_max": -52.51
+      },
+      "attempts": [
+        {
+          "seed": 531201,
+          "ok": true,
+          "warnings": []
+        }
+      ],
+      "audit": {
+        "ok": true,
+        "warnings": [],
+        "notes": [],
+        "summary": "typing_key/light: clean",
+        "measures": {
+          "clicks": 0,
+          "edge_db": -240.0,
+          "clip_runs": 0,
+          "overs": 0,
+          "dc_db": -134.0,
+          "ring_z": null,
+          "trunc_db": null,
+          "silence_ms": 0.0,
+          "bump_db": 3.8,
+          "attack_ms": 0.75,
+          "t40_ms": 130.0,
+          "crest_db": 17.6,
+          "res_db": 7.7,
+          "res_hz": 3247,
+          "peak_dbfs": -28.0,
+          "live_ms": 101.75
+        },
+        "glide": {
+          "tonal_share": 0.62,
+          "rise_st": 0.0,
+          "from_s": null,
+          "to_s": null
+        },
+        "layers": {
+          "attacks": [
+            0.022
+          ],
+          "count": 1,
+          "pre_swell_ms": 0.0
+        },
+        "context": {
+          "category": "typing_key",
+          "sound": "typing_key/light"
+        }
+      }
+    },
+    {
+      "name": "key-02",
+      "file": "public/cinematic/sfx/key-02.wav",
+      "bank_id": "typing_key/light",
+      "recipe": "keypress",
+      "bank_type": "forge",
+      "planned_seed": 531202,
+      "seed": 531202,
+      "character": "a",
+      "edits": {},
+      "sample_peak_target_dbfs": -27.35,
+      "source_entry_sha256": "ae291df24ccbf3228c4a3ecf097e4584cd6874c9488d2b9cb5a168d223533201",
+      "sha256": "f73ba1653a3a5ea644e30e8b76c3a54a062cde97790dacf2441a7650d0ec9c3e",
+      "cue_s": 9.666666666666666,
+      "align": "onset",
+      "cue_frame": 290,
+      "start_sample": 463640,
+      "start_s": 9.659166666666666,
+      "measured_sync_s": 9.666666666666666,
+      "sync_error_ms": 0.0,
+      "measured_onset_s": 9.666666666666666,
+      "measured_peak_s": 9.671666666666665,
+      "measured_end_s": 9.821166666666667,
+      "take_measurements": {
+        "onset_s": 0.0075,
+        "peak_s": 0.0125,
+        "end_s": 0.162,
+        "dur_s": 0.1737,
+        "peak_db": -27.35,
+        "lufs_m_max": -51.35
+      },
+      "attempts": [
+        {
+          "seed": 531202,
+          "ok": true,
+          "warnings": []
+        }
+      ],
+      "audit": {
+        "ok": true,
+        "warnings": [],
+        "notes": [],
+        "summary": "typing_key/light: clean",
+        "measures": {
+          "clicks": 0,
+          "edge_db": -240.0,
+          "clip_runs": 0,
+          "overs": 0,
+          "dc_db": -114.4,
+          "ring_z": 9.6,
+          "trunc_db": null,
+          "silence_ms": 0.0,
+          "bump_db": 2.4,
+          "attack_ms": 2.25,
+          "t40_ms": 140.0,
+          "crest_db": 17.3,
+          "res_db": 7.1,
+          "res_hz": 8300,
+          "peak_dbfs": -27.35,
+          "live_ms": 103.75
+        },
+        "glide": {
+          "tonal_share": 0.61,
+          "rise_st": 0.0,
+          "from_s": null,
+          "to_s": null
+        },
+        "layers": {
+          "attacks": [
+            0.022
+          ],
+          "count": 1,
+          "pre_swell_ms": 0.0
+        },
+        "context": {
+          "category": "typing_key",
+          "sound": "typing_key/light"
+        }
+      }
+    },
+    {
+      "name": "key-03",
+      "file": "public/cinematic/sfx/key-03.wav",
+      "bank_id": "typing_key/light",
+      "recipe": "keypress",
+      "bank_type": "forge",
+      "planned_seed": 531203,
+      "seed": 531203,
+      "character": "u",
+      "edits": {},
+      "sample_peak_target_dbfs": -26.7,
+      "source_entry_sha256": "ae291df24ccbf3228c4a3ecf097e4584cd6874c9488d2b9cb5a168d223533201",
+      "sha256": "41dcf5d1e7efad0f33f887bdfc201bfa716b00eb33c26dec2046c8cbd7a0bea2",
+      "cue_s": 9.766666666666667,
+      "align": "onset",
+      "cue_frame": 293,
+      "start_sample": 468464,
+      "start_s": 9.759666666666666,
+      "measured_sync_s": 9.766666666666666,
+      "sync_error_ms": -0.0,
+      "measured_onset_s": 9.766666666666666,
+      "measured_peak_s": 9.772166666666665,
+      "measured_end_s": 9.906666666666666,
+      "take_measurements": {
+        "onset_s": 0.007,
+        "peak_s": 0.0125,
+        "end_s": 0.147,
+        "dur_s": 0.1663,
+        "peak_db": -26.7,
+        "lufs_m_max": -49.83
+      },
+      "attempts": [
+        {
+          "seed": 531203,
+          "ok": true,
+          "warnings": []
+        }
+      ],
+      "audit": {
+        "ok": true,
+        "warnings": [],
+        "notes": [],
+        "summary": "typing_key/light: clean",
+        "measures": {
+          "clicks": 0,
+          "edge_db": -240.0,
+          "clip_runs": 0,
+          "overs": 0,
+          "dc_db": -125.1,
+          "ring_z": 13.1,
+          "trunc_db": null,
+          "silence_ms": 0.0,
+          "bump_db": 5.4,
+          "attack_ms": 0.5,
+          "t40_ms": 130.0,
+          "crest_db": 16.5,
+          "res_db": 12.9,
+          "res_hz": 8300,
+          "peak_dbfs": -26.7,
+          "live_ms": 102.25
+        },
+        "glide": {
+          "tonal_share": 0.62,
+          "rise_st": 0.0,
+          "from_s": null,
+          "to_s": null
+        },
+        "layers": {
+          "attacks": [
+            0.022
+          ],
+          "count": 1,
+          "pre_swell_ms": 0.0
+        },
+        "context": {
+          "category": "typing_key",
+          "sound": "typing_key/light"
+        }
+      }
+    },
+    {
+      "name": "key-04",
+      "file": "public/cinematic/sfx/key-04.wav",
+      "bank_id": "typing_key/light",
+      "recipe": "keypress",
+      "bank_type": "forge",
+      "planned_seed": 531204,
+      "seed": 533204,
+      "character": "n",
+      "edits": {},
+      "sample_peak_target_dbfs": -28.0,
+      "source_entry_sha256": "ae291df24ccbf3228c4a3ecf097e4584cd6874c9488d2b9cb5a168d223533201",
+      "sha256": "e5e65940d3531b328c1927e09ea80233fdbd1b6f759f25afdf0ebb1fea1cf013",
+      "cue_s": 9.833333333333334,
+      "align": "onset",
+      "cue_frame": 295,
+      "start_sample": 471616,
+      "start_s": 9.825333333333333,
+      "measured_sync_s": 9.833333333333332,
+      "sync_error_ms": -0.0,
+      "measured_onset_s": 9.833333333333332,
+      "measured_peak_s": 9.836833333333333,
+      "measured_end_s": 9.983333333333333,
+      "take_measurements": {
+        "onset_s": 0.008,
+        "peak_s": 0.0115,
+        "end_s": 0.158,
+        "dur_s": 0.1699,
+        "peak_db": -28.0,
+        "lufs_m_max": -54.56
+      },
+      "attempts": [
+        {
+          "seed": 531204,
+          "ok": false,
+          "warnings": [
+            {
+              "code": "ring",
+              "msg": "metallic comb ring in the tail every 6.5 ms (z 22)"
+            }
+          ]
+        },
+        {
+          "seed": 532204,
+          "ok": false,
+          "warnings": [
+            {
+              "code": "ring",
+              "msg": "metallic comb ring in the tail every 17.5 ms (z 16)"
+            }
+          ]
+        },
+        {
+          "seed": 533204,
+          "ok": true,
+          "warnings": []
+        }
+      ],
+      "audit": {
+        "ok": true,
+        "warnings": [],
+        "notes": [
+          {
+            "code": "tail",
+            "msg": "the tail rises again by 7 dB (a second event, a roll or a double member)"
+          }
+        ],
+        "summary": "typing_key/light: clean (the tail rises again by 7 dB (a second event, a roll or a double member))",
+        "measures": {
+          "clicks": 0,
+          "edge_db": -240.0,
+          "clip_runs": 0,
+          "overs": 0,
+          "dc_db": -116.6,
+          "ring_z": 8.7,
+          "trunc_db": null,
+          "silence_ms": 0.0,
+          "bump_db": 7.4,
+          "attack_ms": 0.75,
+          "t40_ms": 150.0,
+          "crest_db": 20.0,
+          "res_db": 11.5,
+          "res_hz": 8300,
+          "peak_dbfs": -28.0,
+          "live_ms": 114.5
+        },
+        "glide": {
+          "tonal_share": 0.65,
+          "rise_st": 1.2,
+          "from_s": 0.061,
+          "to_s": 0.076
+        },
+        "layers": {
+          "attacks": [
+            0.018
+          ],
+          "count": 1,
+          "pre_swell_ms": 0.0
+        },
+        "context": {
+          "category": "typing_key",
+          "sound": "typing_key/light"
+        }
+      }
+    },
+    {
+      "name": "key-05",
+      "file": "public/cinematic/sfx/key-05.wav",
+      "bank_id": "typing_key/light",
+      "recipe": "keypress",
+      "bank_type": "forge",
+      "planned_seed": 531205,
+      "seed": 533205,
+      "character": "c",
+      "edits": {},
+      "sample_peak_target_dbfs": -27.35,
+      "source_entry_sha256": "ae291df24ccbf3228c4a3ecf097e4584cd6874c9488d2b9cb5a168d223533201",
+      "sha256": "f235df01eb40fe79893f70ddf52650de197954093066e2422c823f5d7809591d",
+      "cue_s": 9.9,
+      "align": "onset",
+      "cue_frame": 297,
+      "start_sample": 474744,
+      "start_s": 9.8905,
+      "measured_sync_s": 9.899999999999999,
+      "sync_error_ms": -0.0,
+      "measured_onset_s": 9.899999999999999,
+      "measured_peak_s": 9.902999999999999,
+      "measured_end_s": 10.0345,
+      "take_measurements": {
+        "onset_s": 0.0095,
+        "peak_s": 0.0125,
+        "end_s": 0.144,
+        "dur_s": 0.1505,
+        "peak_db": -27.35,
+        "lufs_m_max": -52.09
+      },
+      "attempts": [
+        {
+          "seed": 531205,
+          "ok": false,
+          "warnings": [
+            {
+              "code": "ring",
+              "msg": "metallic comb ring in the tail every 6.9 ms (z 18)"
+            }
+          ]
+        },
+        {
+          "seed": 532205,
+          "ok": false,
+          "warnings": [
+            {
+              "code": "ring",
+              "msg": "metallic comb ring in the tail every 9.7 ms (z 16)"
+            }
+          ]
+        },
+        {
+          "seed": 533205,
+          "ok": true,
+          "warnings": []
+        }
+      ],
+      "audit": {
+        "ok": true,
+        "warnings": [],
+        "notes": [],
+        "summary": "typing_key/light: clean",
+        "measures": {
+          "clicks": 0,
+          "edge_db": -240.0,
+          "clip_runs": 0,
+          "overs": 0,
+          "dc_db": -111.6,
+          "ring_z": 4.0,
+          "trunc_db": null,
+          "silence_ms": 0.0,
+          "bump_db": 0.0,
+          "attack_ms": 0.75,
+          "t40_ms": 130.0,
+          "crest_db": 17.9,
+          "res_db": 13.7,
+          "res_hz": 5382,
+          "peak_dbfs": -27.35,
+          "live_ms": 92.0
+        },
+        "glide": {
+          "tonal_share": 0.78,
+          "rise_st": 1.2,
+          "from_s": 0.066,
+          "to_s": 0.076
+        },
+        "layers": {
+          "attacks": [
+            0.022
+          ],
+          "count": 1,
+          "pre_swell_ms": 0.0
+        },
+        "context": {
+          "category": "typing_key",
+          "sound": "typing_key/light"
+        }
+      }
+    },
+    {
+      "name": "key-06",
+      "file": "public/cinematic/sfx/key-06.wav",
+      "bank_id": "typing_key/light",
+      "recipe": "keypress",
+      "bank_type": "forge",
+      "planned_seed": 531206,
+      "seed": 533206,
+      "character": "h",
+      "edits": {},
+      "sample_peak_target_dbfs": -26.7,
+      "source_entry_sha256": "ae291df24ccbf3228c4a3ecf097e4584cd6874c9488d2b9cb5a168d223533201",
+      "sha256": "0f8aab98e1890e5eac3ca0b68611eeef352e8714ad283e536a52a9db6cfa8624",
+      "cue_s": 10.0,
+      "align": "onset",
+      "cue_frame": 300,
+      "start_sample": 479616,
+      "start_s": 9.992,
+      "measured_sync_s": 10.0,
+      "sync_error_ms": 0.0,
+      "measured_onset_s": 10.0,
+      "measured_peak_s": 10.0045,
+      "measured_end_s": 10.148000000000001,
+      "take_measurements": {
+        "onset_s": 0.008,
+        "peak_s": 0.0125,
+        "end_s": 0.156,
+        "dur_s": 0.1666,
+        "peak_db": -26.7,
+        "lufs_m_max": -51.04
+      },
+      "attempts": [
+        {
+          "seed": 531206,
+          "ok": false,
+          "warnings": [
+            {
+              "code": "ring",
+              "msg": "metallic comb ring in the tail every 4.1 ms (z 25)"
+            }
+          ]
+        },
+        {
+          "seed": 532206,
+          "ok": false,
+          "warnings": [
+            {
+              "code": "ring",
+              "msg": "metallic comb ring in the tail every 4.2 ms (z 28)"
+            }
+          ]
+        },
+        {
+          "seed": 533206,
+          "ok": true,
+          "warnings": []
+        }
+      ],
+      "audit": {
+        "ok": true,
+        "warnings": [],
+        "notes": [],
+        "summary": "typing_key/light: clean",
+        "measures": {
+          "clicks": 0,
+          "edge_db": -240.0,
+          "clip_runs": 0,
+          "overs": 0,
+          "dc_db": -117.0,
+          "ring_z": 13.4,
+          "trunc_db": null,
+          "silence_ms": 0.0,
+          "bump_db": 5.5,
+          "attack_ms": 0.75,
+          "t40_ms": 140.0,
+          "crest_db": 17.7,
+          "res_db": 9.1,
+          "res_hz": 8300,
+          "peak_dbfs": -26.7,
+          "live_ms": 91.75
+        },
+        "glide": {
+          "tonal_share": 0.6,
+          "rise_st": 0.0,
+          "from_s": null,
+          "to_s": null
+        },
+        "layers": {
+          "attacks": [
+            0.022
+          ],
+          "count": 1,
+          "pre_swell_ms": 0.0
+        },
+        "context": {
+          "category": "typing_key",
+          "sound": "typing_key/light"
+        }
+      }
+    },
+    {
+      "name": "key-07",
+      "file": "public/cinematic/sfx/key-07.wav",
+      "bank_id": "typing_key/light",
+      "recipe": "keypress",
+      "bank_type": "forge",
+      "planned_seed": 531207,
+      "seed": 531207,
+      "character": " ",
+      "edits": {},
+      "sample_peak_target_dbfs": -28.0,
+      "source_entry_sha256": "ae291df24ccbf3228c4a3ecf097e4584cd6874c9488d2b9cb5a168d223533201",
+      "sha256": "db975ca4fb230f090fd42b00e5b9a260fcdf8cb0da541dfcecbbe0df7c9cbe59",
+      "cue_s": 10.066666666666666,
+      "align": "onset",
+      "cue_frame": 302,
+      "start_sample": 482792,
+      "start_s": 10.058166666666667,
+      "measured_sync_s": 10.066666666666666,
+      "sync_error_ms": 0.0,
+      "measured_onset_s": 10.066666666666666,
+      "measured_peak_s": 10.070666666666666,
+      "measured_end_s": 10.201166666666667,
+      "take_measurements": {
+        "onset_s": 0.0085,
+        "peak_s": 0.0125,
+        "end_s": 0.143,
+        "dur_s": 0.1554,
+        "peak_db": -28.0,
+        "lufs_m_max": -51.69
+      },
+      "attempts": [
+        {
+          "seed": 531207,
+          "ok": true,
+          "warnings": []
+        }
+      ],
+      "audit": {
+        "ok": true,
+        "warnings": [],
+        "notes": [],
+        "summary": "typing_key/light: clean",
+        "measures": {
+          "clicks": 0,
+          "edge_db": -240.0,
+          "clip_runs": 0,
+          "overs": 0,
+          "dc_db": -112.1,
+          "ring_z": 13.3,
+          "trunc_db": null,
+          "silence_ms": 0.0,
+          "bump_db": 4.0,
+          "attack_ms": 0.75,
+          "t40_ms": 130.0,
+          "crest_db": 16.9,
+          "res_db": 11.9,
+          "res_hz": 8300,
+          "peak_dbfs": -28.0,
+          "live_ms": 91.0
+        },
+        "glide": {
+          "tonal_share": 0.6,
+          "rise_st": 0.0,
+          "from_s": null,
+          "to_s": null
+        },
+        "layers": {
+          "attacks": [
+            0.018
+          ],
+          "count": 1,
+          "pre_swell_ms": 0.0
+        },
+        "context": {
+          "category": "typing_key",
+          "sound": "typing_key/light"
+        }
+      }
+    },
+    {
+      "name": "key-08",
+      "file": "public/cinematic/sfx/key-08.wav",
+      "bank_id": "typing_key/light",
+      "recipe": "keypress",
+      "bank_type": "forge",
+      "planned_seed": 531208,
+      "seed": 531208,
+      "character": "f",
+      "edits": {},
+      "sample_peak_target_dbfs": -27.35,
+      "source_entry_sha256": "ae291df24ccbf3228c4a3ecf097e4584cd6874c9488d2b9cb5a168d223533201",
+      "sha256": "facde4f38df58b7007496091cf8b6fb3f52a15ba5357a7d9cbbe97715976b973",
+      "cue_s": 10.166666666666666,
+      "align": "onset",
+      "cue_frame": 305,
+      "start_sample": 487578,
+      "start_s": 10.157875,
+      "measured_sync_s": 10.166675000000001,
+      "sync_error_ms": 0.008333,
+      "measured_onset_s": 10.166675000000001,
+      "measured_peak_s": 10.170375,
+      "measured_end_s": 10.313875000000001,
+      "take_measurements": {
+        "onset_s": 0.0088,
+        "peak_s": 0.0125,
+        "end_s": 0.156,
+        "dur_s": 0.1647,
+        "peak_db": -27.35,
+        "lufs_m_max": -49.96
+      },
+      "attempts": [
+        {
+          "seed": 531208,
+          "ok": true,
+          "warnings": []
+        }
+      ],
+      "audit": {
+        "ok": true,
+        "warnings": [],
+        "notes": [],
+        "summary": "typing_key/light: clean",
+        "measures": {
+          "clicks": 0,
+          "edge_db": -240.0,
+          "clip_runs": 0,
+          "overs": 0,
+          "dc_db": -124.4,
+          "ring_z": 10.1,
+          "trunc_db": null,
+          "silence_ms": 0.0,
+          "bump_db": 4.5,
+          "attack_ms": 0.75,
+          "t40_ms": 140.0,
+          "crest_db": 15.9,
+          "res_db": 8.5,
+          "res_hz": 2652,
+          "peak_dbfs": -27.35,
+          "live_ms": 114.75
+        },
+        "glide": {
+          "tonal_share": 0.58,
+          "rise_st": 1.2,
+          "from_s": 0.066,
+          "to_s": 0.076
+        },
+        "layers": {
+          "attacks": [
+            0.022
+          ],
+          "count": 1,
+          "pre_swell_ms": 0.0
+        },
+        "context": {
+          "category": "typing_key",
+          "sound": "typing_key/light"
+        }
+      }
+    },
+    {
+      "name": "key-09",
+      "file": "public/cinematic/sfx/key-09.wav",
+      "bank_id": "typing_key/light",
+      "recipe": "keypress",
+      "bank_type": "forge",
+      "planned_seed": 531209,
+      "seed": 531209,
+      "character": "i",
+      "edits": {},
+      "sample_peak_target_dbfs": -26.7,
+      "source_entry_sha256": "ae291df24ccbf3228c4a3ecf097e4584cd6874c9488d2b9cb5a168d223533201",
+      "sha256": "df58f7d1c9b6679a8f18142dbbcc38b30d67c4ca518becb9c2cd7b6643a56aaa",
+      "cue_s": 10.233333333333333,
+      "align": "onset",
+      "cue_frame": 307,
+      "start_sample": 490758,
+      "start_s": 10.224125,
+      "measured_sync_s": 10.233325,
+      "sync_error_ms": -0.008333,
+      "measured_onset_s": 10.233325,
+      "measured_peak_s": 10.236625,
+      "measured_end_s": 10.370125000000002,
+      "take_measurements": {
+        "onset_s": 0.0092,
+        "peak_s": 0.0125,
+        "end_s": 0.146,
+        "dur_s": 0.157,
+        "peak_db": -26.7,
+        "lufs_m_max": -50.59
+      },
+      "attempts": [
+        {
+          "seed": 531209,
+          "ok": true,
+          "warnings": []
+        }
+      ],
+      "audit": {
+        "ok": true,
+        "warnings": [],
+        "notes": [],
+        "summary": "typing_key/light: clean",
+        "measures": {
+          "clicks": 0,
+          "edge_db": -240.0,
+          "clip_runs": 0,
+          "overs": 0,
+          "dc_db": -115.3,
+          "ring_z": 11.5,
+          "trunc_db": null,
+          "silence_ms": 0.0,
+          "bump_db": 5.9,
+          "attack_ms": 0.5,
+          "t40_ms": 130.0,
+          "crest_db": 17.2,
+          "res_db": 8.1,
+          "res_hz": 8300,
+          "peak_dbfs": -26.7,
+          "live_ms": 85.75
+        },
+        "glide": {
+          "tonal_share": 0.5,
+          "rise_st": 0.0,
+          "from_s": null,
+          "to_s": null
+        },
+        "layers": {
+          "attacks": [
+            0.022
+          ],
+          "count": 1,
+          "pre_swell_ms": 0.0
+        },
+        "context": {
+          "category": "typing_key",
+          "sound": "typing_key/light"
+        }
+      }
+    },
+    {
+      "name": "key-10",
+      "file": "public/cinematic/sfx/key-10.wav",
+      "bank_id": "typing_key/light",
+      "recipe": "keypress",
+      "bank_type": "forge",
+      "planned_seed": 531210,
+      "seed": 534210,
+      "character": "l",
+      "edits": {},
+      "sample_peak_target_dbfs": -28.0,
+      "source_entry_sha256": "ae291df24ccbf3228c4a3ecf097e4584cd6874c9488d2b9cb5a168d223533201",
+      "sha256": "8293240af0992f5438b24eefb8069ee323fc6f9c6238b86f43634e3ef65ba4e1",
+      "cue_s": 10.3,
+      "align": "onset",
+      "cue_frame": 309,
+      "start_sample": 494006,
+      "start_s": 10.291791666666667,
+      "measured_sync_s": 10.299991666666667,
+      "sync_error_ms": -0.008333,
+      "measured_onset_s": 10.299991666666667,
+      "measured_peak_s": 10.304291666666666,
+      "measured_end_s": 10.438791666666667,
+      "take_measurements": {
+        "onset_s": 0.0082,
+        "peak_s": 0.0125,
+        "end_s": 0.147,
+        "dur_s": 0.162,
+        "peak_db": -28.0,
+        "lufs_m_max": -53.03
+      },
+      "attempts": [
+        {
+          "seed": 531210,
+          "ok": false,
+          "warnings": [
+            {
+              "code": "ring",
+              "msg": "metallic comb ring in the tail every 16.7 ms (z 15)"
+            }
+          ]
+        },
+        {
+          "seed": 532210,
+          "ok": false,
+          "warnings": [
+            {
+              "code": "ring",
+              "msg": "metallic comb ring in the tail every 8.9 ms (z 17)"
+            }
+          ]
+        },
+        {
+          "seed": 533210,
+          "ok": false,
+          "warnings": [
+            {
+              "code": "ring",
+              "msg": "metallic comb ring in the tail every 8.3 ms (z 22)"
+            }
+          ]
+        },
+        {
+          "seed": 534210,
+          "ok": true,
+          "warnings": []
+        }
+      ],
+      "audit": {
+        "ok": true,
+        "warnings": [],
+        "notes": [],
+        "summary": "typing_key/light: clean",
+        "measures": {
+          "clicks": 0,
+          "edge_db": -240.0,
+          "clip_runs": 0,
+          "overs": 0,
+          "dc_db": -112.3,
+          "ring_z": 7.9,
+          "trunc_db": null,
+          "silence_ms": 0.0,
+          "bump_db": 5.6,
+          "attack_ms": 1.0,
+          "t40_ms": 130.0,
+          "crest_db": 18.3,
+          "res_db": 9.5,
+          "res_hz": 8300,
+          "peak_dbfs": -28.0,
+          "live_ms": 100.0
+        },
+        "glide": {
+          "tonal_share": 0.56,
+          "rise_st": 0.0,
+          "from_s": null,
+          "to_s": null
+        },
+        "layers": {
+          "attacks": [
+            0.022
+          ],
+          "count": 1,
+          "pre_swell_ms": 0.0
+        },
+        "context": {
+          "category": "typing_key",
+          "sound": "typing_key/light"
+        }
+      }
+    },
+    {
+      "name": "key-11",
+      "file": "public/cinematic/sfx/key-11.wav",
+      "bank_id": "typing_key/light",
+      "recipe": "keypress",
+      "bank_type": "forge",
+      "planned_seed": 531211,
+      "seed": 531211,
+      "character": "m",
+      "edits": {},
+      "sample_peak_target_dbfs": -27.35,
+      "source_entry_sha256": "ae291df24ccbf3228c4a3ecf097e4584cd6874c9488d2b9cb5a168d223533201",
+      "sha256": "0c74817c00ea8441b6ab89f266bfeae1516f6e89eaf55fb3aacbbee3b3a276ac",
+      "cue_s": 10.4,
+      "align": "onset",
+      "cue_frame": 312,
+      "start_sample": 498768,
+      "start_s": 10.391,
+      "measured_sync_s": 10.4,
+      "sync_error_ms": 0.0,
+      "measured_onset_s": 10.4,
+      "measured_peak_s": 10.4035,
+      "measured_end_s": 10.537,
+      "take_measurements": {
+        "onset_s": 0.009,
+        "peak_s": 0.0125,
+        "end_s": 0.146,
+        "dur_s": 0.1581,
+        "peak_db": -27.35,
+        "lufs_m_max": -53.0
+      },
+      "attempts": [
+        {
+          "seed": 531211,
+          "ok": true,
+          "warnings": []
+        }
+      ],
+      "audit": {
+        "ok": true,
+        "warnings": [],
+        "notes": [],
+        "summary": "typing_key/light: clean",
+        "measures": {
+          "clicks": 0,
+          "edge_db": -240.0,
+          "clip_runs": 0,
+          "overs": 0,
+          "dc_db": -114.2,
+          "ring_z": 12.3,
+          "trunc_db": null,
+          "silence_ms": 0.0,
+          "bump_db": 4.2,
+          "attack_ms": 1.0,
+          "t40_ms": 130.0,
+          "crest_db": 18.7,
+          "res_db": 12.9,
+          "res_hz": 8300,
+          "peak_dbfs": -27.35,
+          "live_ms": 96.0
+        },
+        "glide": {
+          "tonal_share": 0.56,
+          "rise_st": 0.0,
+          "from_s": null,
+          "to_s": null
+        },
+        "layers": {
+          "attacks": [
+            0.022
+          ],
+          "count": 1,
+          "pre_swell_ms": 0.0
+        },
+        "context": {
+          "category": "typing_key",
+          "sound": "typing_key/light"
+        }
+      }
+    },
+    {
+      "name": "result-air",
+      "file": "public/cinematic/sfx/result-air.wav",
+      "bank_id": "whoosh_fast/crisp",
+      "recipe": "whoosh",
+      "bank_type": "forge",
+      "planned_seed": 531401,
+      "seed": 531401,
+      "character": null,
+      "edits": {
+        "apex": {
+          "target": 0.105,
+          "measured": 0.1055,
+          "err_ms": 0.5,
+          "search_err_ms": -0.5,
+          "rise": 0.09112,
+          "renders": 3,
+          "fit": "head pad 1.0 ms",
+          "ok": true
+        },
+        "dur": {
+          "target": 0.32,
+          "method": "shape",
+          "post_scale": 0.2323,
+          "renders": 3,
+          "fit": "trim 247 ms (fade 80 ms)"
+        }
+      },
+      "sample_peak_target_dbfs": -30,
+      "source_entry_sha256": "8034c54884ea65bfac669bde5783fa11a21fb6c105354c8dea3fbd249f1f8160",
+      "sha256": "90ac5229052a039149a089d3f7c47e9c4ab7630a71e6dab2993fcf652dfb4869",
+      "cue_s": 17.533333333333335,
+      "align": "peak",
+      "cue_frame": 526,
+      "start_sample": 836536,
+      "start_s": 17.427833333333332,
+      "measured_sync_s": 17.53333333333333,
+      "sync_error_ms": -0.0,
+      "measured_onset_s": 17.42963333333333,
+      "measured_peak_s": 17.53333333333333,
+      "measured_end_s": 17.713833333333334,
+      "take_measurements": {
+        "onset_s": 0.0018,
+        "peak_s": 0.1055,
+        "end_s": 0.286,
+        "dur_s": 0.32,
+        "peak_db": -30.0,
+        "lufs_m_max": -46.96
+      },
+      "attempts": [
+        {
+          "seed": 531401,
+          "ok": true,
+          "warnings": []
+        }
+      ],
+      "audit": {
+        "ok": true,
+        "warnings": [],
+        "notes": [],
+        "summary": "whoosh_fast/crisp: clean",
+        "measures": {
+          "clicks": 0,
+          "edge_db": -240.0,
+          "clip_runs": 0,
+          "overs": 0,
+          "dc_db": -91.5,
+          "ring_z": 3.6,
+          "trunc_db": null,
+          "silence_ms": 0.0,
+          "bump_db": 0.3,
+          "attack_ms": 6.0,
+          "t40_ms": 170.0,
+          "crest_db": 10.8,
+          "res_db": 8.7,
+          "res_hz": 2230,
+          "peak_dbfs": -30.0,
+          "live_ms": 234.25
+        },
+        "glide": {
+          "tonal_share": 0.51,
+          "rise_st": 0.0,
+          "from_s": null,
+          "to_s": null
+        },
+        "layers": {
+          "attacks": [
+            0.107
+          ],
+          "count": 1,
+          "pre_swell_ms": 80.0
+        },
+        "context": {
+          "category": "whoosh_fast",
+          "sound": "whoosh_fast/crisp"
+        }
+      }
+    },
+    {
+      "name": "result-click",
+      "file": "public/cinematic/sfx/result-click.wav",
+      "bank_id": "pro_click/soft",
+      "recipe": "click",
+      "bank_type": "forge",
+      "planned_seed": 531102,
+      "seed": 531102,
+      "character": null,
+      "edits": {},
+      "sample_peak_target_dbfs": -22,
+      "source_entry_sha256": "5c71b3304619722fe9298a86076c1d1c0487e6b156a71cca76213782b7bbf42d",
+      "sha256": "1163a52f855e949e698329706aaa5b3ffda242d27ea40dc5f8029a012fed0695",
+      "cue_s": 17.533333333333335,
+      "align": "onset",
+      "cue_frame": 526,
+      "start_sample": 841542,
+      "start_s": 17.532125,
+      "measured_sync_s": 17.533325,
+      "sync_error_ms": -0.008333,
+      "measured_onset_s": 17.533325,
+      "measured_peak_s": 17.536625,
+      "measured_end_s": 17.558125,
+      "take_measurements": {
+        "onset_s": 0.0012,
+        "peak_s": 0.0045,
+        "end_s": 0.026,
+        "dur_s": 0.0532,
+        "peak_db": -22.0,
+        "lufs_m_max": -46.33
+      },
+      "attempts": [
+        {
+          "seed": 531102,
+          "ok": true,
+          "warnings": []
+        }
+      ],
+      "audit": {
+        "ok": true,
+        "warnings": [],
+        "notes": [],
+        "summary": "pro_click/soft: clean",
+        "measures": {
+          "clicks": 0,
+          "edge_db": -240.0,
+          "clip_runs": 0,
+          "overs": 0,
+          "dc_db": -79.8,
+          "ring_z": null,
+          "trunc_db": null,
+          "silence_ms": 0.0,
+          "bump_db": 0.0,
+          "attack_ms": 0.75,
+          "t40_ms": 20.0,
+          "crest_db": 17.6,
+          "res_db": 12.8,
+          "res_hz": 5460,
+          "peak_dbfs": -22.0,
+          "live_ms": 16.5
+        },
+        "glide": {
+          "tonal_share": 1.0,
+          "rise_st": 0.0,
+          "from_s": null,
+          "to_s": null
+        },
+        "layers": {
+          "attacks": [
+            0.013
+          ],
+          "count": 1,
+          "pre_swell_ms": 0.0
+        },
+        "context": {
+          "category": "pro_click",
+          "sound": "pro_click/soft"
+        }
+      }
+    },
+    {
+      "name": "copy-click",
+      "file": "public/cinematic/sfx/copy-click.wav",
+      "bank_id": "pro_click/soft",
+      "recipe": "click",
+      "bank_type": "forge",
+      "planned_seed": 531103,
+      "seed": 531103,
+      "character": null,
+      "edits": {},
+      "sample_peak_target_dbfs": -20,
+      "source_entry_sha256": "5c71b3304619722fe9298a86076c1d1c0487e6b156a71cca76213782b7bbf42d",
+      "sha256": "75bd41a560834408237af99e153a016e8115d9ca50be8564f03d444f65e78afd",
+      "cue_s": 36.666666666666664,
+      "align": "onset",
+      "cue_frame": 1100,
+      "start_sample": 1759942,
+      "start_s": 36.66545833333333,
+      "measured_sync_s": 36.66665833333333,
+      "sync_error_ms": -0.008333,
+      "measured_onset_s": 36.66665833333333,
+      "measured_peak_s": 36.669958333333334,
+      "measured_end_s": 36.69045833333333,
+      "take_measurements": {
+        "onset_s": 0.0012,
+        "peak_s": 0.0045,
+        "end_s": 0.025,
+        "dur_s": 0.0532,
+        "peak_db": -20.0,
+        "lufs_m_max": -42.77
+      },
+      "attempts": [
+        {
+          "seed": 531103,
+          "ok": true,
+          "warnings": []
+        }
+      ],
+      "audit": {
+        "ok": true,
+        "warnings": [],
+        "notes": [],
+        "summary": "pro_click/soft: clean",
+        "measures": {
+          "clicks": 0,
+          "edge_db": -240.0,
+          "clip_runs": 0,
+          "overs": 0,
+          "dc_db": -65.3,
+          "ring_z": null,
+          "trunc_db": null,
+          "silence_ms": 0.0,
+          "bump_db": 0.0,
+          "attack_ms": 1.0,
+          "t40_ms": 20.0,
+          "crest_db": 16.1,
+          "res_db": 22.5,
+          "res_hz": 5460,
+          "peak_dbfs": -20.0,
+          "live_ms": 15.75
+        },
+        "glide": {
+          "tonal_share": 0.33,
+          "rise_st": 0.0,
+          "from_s": null,
+          "to_s": null
+        },
+        "layers": {
+          "attacks": [
+            0.013
+          ],
+          "count": 1,
+          "pre_swell_ms": 0.0
+        },
+        "context": {
+          "category": "pro_click",
+          "sound": "pro_click/soft"
+        }
+      }
+    },
+    {
+      "name": "copy-confirm",
+      "file": "public/cinematic/sfx/copy-confirm.wav",
+      "bank_id": "ui_pop/soft",
+      "recipe": "ui_pop",
+      "bank_type": "forge",
+      "planned_seed": 531301,
+      "seed": 531301,
+      "character": null,
+      "edits": {},
+      "sample_peak_target_dbfs": -25,
+      "source_entry_sha256": "082b50894b8bfb3619f7ceba4f9079058fb001b1864333f2f4026123b24f0fbf",
+      "sha256": "bfb13cabbfa66fcbe0b54a5787842b0a5bc2317fe8e6df3de76cb0fc02e7fc8d",
+      "cue_s": 36.8,
+      "align": "onset",
+      "cue_frame": 1104,
+      "start_sample": 1766280,
+      "start_s": 36.7975,
+      "measured_sync_s": 36.8,
+      "sync_error_ms": 0.0,
+      "measured_onset_s": 36.8,
+      "measured_peak_s": 36.835,
+      "measured_end_s": 36.954499999999996,
+      "take_measurements": {
+        "onset_s": 0.0025,
+        "peak_s": 0.0375,
+        "end_s": 0.157,
+        "dur_s": 0.1825,
+        "peak_db": -25.0,
+        "lufs_m_max": -38.94
+      },
+      "attempts": [
+        {
+          "seed": 531301,
+          "ok": true,
+          "warnings": []
+        }
+      ],
+      "audit": {
+        "ok": true,
+        "warnings": [],
+        "notes": [],
+        "summary": "ui_pop/soft: clean",
+        "measures": {
+          "clicks": 0,
+          "edge_db": -240.0,
+          "clip_runs": 0,
+          "overs": 0,
+          "dc_db": -128.5,
+          "ring_z": 5.3,
+          "trunc_db": null,
+          "silence_ms": 0.0,
+          "bump_db": 0.0,
+          "attack_ms": 9.25,
+          "t40_ms": 120.0,
+          "crest_db": 7.6,
+          "res_db": 20.9,
+          "res_hz": 1131,
+          "peak_dbfs": -25.0,
+          "live_ms": 133.25
+        },
+        "glide": {
+          "tonal_share": 0.87,
+          "rise_st": 0.5,
+          "from_s": 0.096,
+          "to_s": 0.121
+        },
+        "layers": {
+          "attacks": [
+            0.037
+          ],
+          "count": 1,
+          "pre_swell_ms": 0.0
+        },
+        "context": {
+          "category": "ui_pop",
+          "sound": "ui_pop/soft"
+        }
+      }
+    },
+    {
+      "name": "ending-air",
+      "file": "public/cinematic/sfx/ending-air.wav",
+      "bank_id": "whoosh_fast/crisp",
+      "recipe": "whoosh",
+      "bank_type": "forge",
+      "planned_seed": 531402,
+      "seed": 531402,
+      "character": null,
+      "edits": {
+        "apex": {
+          "target": 0.105,
+          "measured": 0.1045,
+          "err_ms": -0.5,
+          "search_err_ms": 1.5,
+          "rise": 0.09112,
+          "renders": 3,
+          "fit": "head trim 2.0 ms",
+          "ok": true
+        },
+        "dur": {
+          "target": 0.32,
+          "method": "shape",
+          "post_scale": 0.2323,
+          "renders": 3,
+          "fit": "trim 254 ms (fade 80 ms)"
+        }
+      },
+      "sample_peak_target_dbfs": -32,
+      "source_entry_sha256": "8034c54884ea65bfac669bde5783fa11a21fb6c105354c8dea3fbd249f1f8160",
+      "sha256": "4f8facdd053264a464870b3d6ef007dd22df910454629b6bd768fc632b9ff433",
+      "cue_s": 41.0,
+      "align": "peak",
+      "cue_frame": 1230,
+      "start_sample": 1962984,
+      "start_s": 40.8955,
+      "measured_sync_s": 41.0,
+      "sync_error_ms": 0.0,
+      "measured_onset_s": 40.9013,
+      "measured_peak_s": 41.0,
+      "measured_end_s": 41.1855,
+      "take_measurements": {
+        "onset_s": 0.0058,
+        "peak_s": 0.1045,
+        "end_s": 0.29,
+        "dur_s": 0.32,
+        "peak_db": -32.0,
+        "lufs_m_max": -50.16
+      },
+      "attempts": [
+        {
+          "seed": 531402,
+          "ok": true,
+          "warnings": []
+        }
+      ],
+      "audit": {
+        "ok": true,
+        "warnings": [],
+        "notes": [],
+        "summary": "whoosh_fast/crisp: clean",
+        "measures": {
+          "clicks": 0,
+          "edge_db": -240.0,
+          "clip_runs": 0,
+          "overs": 0,
+          "dc_db": -91.2,
+          "ring_z": 4.5,
+          "trunc_db": null,
+          "silence_ms": 0.0,
+          "bump_db": 0.0,
+          "attack_ms": 5.0,
+          "t40_ms": 180.0,
+          "crest_db": 11.8,
+          "res_db": 5.2,
+          "res_hz": 2230,
+          "peak_dbfs": -32.0,
+          "live_ms": 231.0
+        },
+        "glide": {
+          "tonal_share": 0.46,
+          "rise_st": 0.0,
+          "from_s": null,
+          "to_s": null
+        },
+        "layers": {
+          "attacks": [
+            0.102
+          ],
+          "count": 1,
+          "pre_swell_ms": 70.0
+        },
+        "context": {
+          "category": "whoosh_fast",
+          "sound": "whoosh_fast/crisp"
+        }
+      }
+    }
+  ],
+  "output": {
+    "file": "public/cinematic/foley.wav",
+    "sha256": "1642544e8e8ab4cfdee5f0516c80b0d391c1ee57653e173096e9d60b2f015292",
+    "frames": 2400000,
+    "measurements": {
+      "duration": 50.0,
+      "peak_dbfs": -20.0,
+      "true_peak_dbtp": -19.9,
+      "rms_dbfs": -59.2,
+      "lufs": -43.2,
+      "short_term_max_lufs": -46.2,
+      "lra_lu": 12.7,
+      "clipped_samples": 0,
+      "dc": -0.0,
+      "noise_floor_dbfs": -200.0,
+      "dynamic_range_db": 168.3,
+      "digital_silence_frac": 0.9635,
+      "side_to_mid_db": -21.0,
+      "correlation": 0.985,
+      "attack_at": 6.532,
+      "peak_at": 36.822,
+      "attack_ms": 2.0,
+      "decay_ms": 96.0,
+      "centroid_hz": 1551,
+      "rolloff95_hz": 5704,
+      "bands_db": {
+        "sub": -26.6,
+        "low": -13.6,
+        "lowmid": -1.7,
+        "mid": -9.2,
+        "presence": -8.4,
+        "air": -20.2,
+        "top": -31.9
+      },
+      "bandwidth_hz": 20480,
+      "flatness": 0.0178,
+      "brightness_hz": 3957,
+      "tonal_peak_ratio_db": 44.2
+    }
+  }
+}

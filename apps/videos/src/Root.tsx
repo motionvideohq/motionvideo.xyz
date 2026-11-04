@@ -1,6 +1,7 @@
 import "./index.css";
 import { Composition, Folder } from "remotion";
 import { DURATION, FPS, MotionVideoLaunch } from "./launch/MotionVideoLaunch";
+import { CINEMATIC_DURATION, CINEMATIC_FPS, CinematicLaunch } from "./cinematic/CinematicLaunch";
 import {
   OG_DURATION,
   OG_FPS,
@@ -16,6 +17,17 @@ import {
  */
 export const RemotionRoot = () => (
   <>
+    <Folder name="cinematic">
+      <Composition
+        id="CinematicLaunch"
+        component={CinematicLaunch}
+        durationInFrames={CINEMATIC_DURATION}
+        fps={CINEMATIC_FPS}
+        width={3840}
+        height={2160}
+        defaultProps={{ samples: 2 }}
+      />
+    </Folder>
     <Folder name="launch">
       <Composition
         id="MotionVideoLaunch"

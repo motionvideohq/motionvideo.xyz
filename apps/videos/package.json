@@ -7,6 +7,12 @@
     "prestudio": "pnpm fonts",
     "studio": "remotion studio",
     "typecheck": "node scripts/typecheck.mjs",
+    "cinematic:capture": "node scripts/capture-cinematic.mjs",
+    "cinematic:music": "node scripts/cinematic-music.mjs",
+    "cinematic:effects": "node scripts/cinematic-foley.mjs",
+    "cinematic:audio": "pnpm cinematic:music && pnpm cinematic:effects && node scripts/cinematic-soundtrack.mjs",
+    "cinematic:preview": "pnpm fonts && remotion render CinematicLaunch out/cinematic-preview.mp4 --scale=0.25 --concurrency=1 --crf=18",
+    "cinematic:render": "pnpm fonts && remotion render CinematicLaunch out/cinematic-launch-4k.mp4 --concurrency=2 --crf=15 --x264-preset=veryfast",
     "launch:render": "pnpm fonts && remotion render MotionVideoLaunch out/picture.mp4 --scale=1.5 --crf=16 --muted",
     "launch:audio:cues": "node --experimental-strip-types --no-warnings audio/write-cues.ts",
     "launch:audio:forge": "${EARSHOT:-$HOME/.local/share/earshot}/.venv/bin/python audio/forge_sfx.py",
@@ -30,6 +36,7 @@
   "devDependencies": {
     "@types/culori": "^4.0.1",
     "@types/react": "^19",
+    "playwright": "^1.64.1",
     "typescript": "^5.9"
   }
 }

@@ -7,6 +7,7 @@ public/fonts
 public/rec
 public/shots
 public/frames
+public/cinematic
 # The Mixkit licence forbids redistributing the raw track; the CC0 references
 # only steer earshot forge (audio/forge_sfx.py) and are re-fetchable via Openverse.
 audio/assets/music
