@@ -16,7 +16,11 @@ const STATIC_ROUTES = LOCALES.flatMap((locale) =>
   STATIC_PAGES.map((page) => localizedPath(page, locale))
 );
 
-const config = defineConfig({
+// Dev-only pages: dropped from the route tree in `vite build`, so neither the
+// route nor its code ships to production.
+const DEV_ONLY_ROUTES = ["showcase"];
+
+const config = defineConfig(({ command }) => ({
   resolve: { tsconfigPaths: true },
   // vite-intlayer keeps its generated dictionary entries out of the client's
   // dependency prebundle, but not the Workers (ssr) environment's: there they
@@ -51,7 +55,11 @@ const config = defineConfig({
     tailwindcss(),
     tanstackStart({
       router: {
-        routeFileIgnorePattern: "\\.content\\.",
+        // `.content.` files are intlayer dictionaries, not routes.
+        routeFileIgnorePattern:
+          command === "build"
+            ? String.raw`\.content\.|^(?:${DEV_ONLY_ROUTES.join("|")})\.tsx$`
+            : String.raw`\.content\.`,
       },
       pages: STATIC_ROUTES.map((path) => ({ path })),
       prerender: {
@@ -66,6 +74,6 @@ const config = defineConfig({
     }),
     viteReact(),
   ],
-});
+}));
 
 export default config;

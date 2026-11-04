@@ -36,6 +36,7 @@ import { Route as LocaleMotionvideoSkillRouteImport } from './routes/$locale/mot
 import { Route as LocaleMovesRouteImport } from './routes/$locale/moves'
 import { Route as LocaleProRouteImport } from './routes/$locale/pro'
 import { Route as LocaleSettingsRouteImport } from './routes/$locale/settings'
+import { Route as LocaleShowcaseRouteImport } from './routes/$locale/showcase'
 import { Route as LocaleSignInRouteImport } from './routes/$locale/sign-in'
 import { Route as LocaleSkillsRouteImport } from './routes/$locale/skills'
 import { Route as LocaleSponsorRouteImport } from './routes/$locale/sponsor'
@@ -261,6 +262,11 @@ const LocaleProRoute = LocaleProRouteImport.update({
 const LocaleSettingsRoute = LocaleSettingsRouteImport.update({
   id: '/settings',
   path: '/settings',
+  getParentRoute: () => LocaleRouteRoute,
+} as any)
+const LocaleShowcaseRoute = LocaleShowcaseRouteImport.update({
+  id: '/showcase',
+  path: '/showcase',
   getParentRoute: () => LocaleRouteRoute,
 } as any)
 const LocaleSignInRoute = LocaleSignInRouteImport.update({
@@ -773,6 +779,7 @@ export interface FileRoutesByFullPath {
   '/$locale/moves': typeof LocaleMovesRouteWithChildren
   '/$locale/pro': typeof LocaleProRoute
   '/$locale/settings': typeof LocaleSettingsRoute
+  '/$locale/showcase': typeof LocaleShowcaseRoute
   '/$locale/sign-in': typeof LocaleSignInRoute
   '/$locale/skills': typeof LocaleSkillsRouteWithChildren
   '/$locale/sponsor': typeof LocaleSponsorRoute
@@ -887,6 +894,7 @@ export interface FileRoutesByTo {
   '/$locale/motionvideo-skill': typeof LocaleMotionvideoSkillRoute
   '/$locale/pro': typeof LocaleProRoute
   '/$locale/settings': typeof LocaleSettingsRoute
+  '/$locale/showcase': typeof LocaleShowcaseRoute
   '/$locale/sign-in': typeof LocaleSignInRoute
   '/$locale/sponsor': typeof LocaleSponsorRoute
   '/$locale/studios': typeof LocaleStudiosRoute
@@ -1000,6 +1008,7 @@ export interface FileRoutesById {
   '/$locale/moves': typeof LocaleMovesRouteWithChildren
   '/$locale/pro': typeof LocaleProRoute
   '/$locale/settings': typeof LocaleSettingsRoute
+  '/$locale/showcase': typeof LocaleShowcaseRoute
   '/$locale/sign-in': typeof LocaleSignInRoute
   '/$locale/skills': typeof LocaleSkillsRouteWithChildren
   '/$locale/sponsor': typeof LocaleSponsorRoute
@@ -1122,6 +1131,7 @@ export interface FileRouteTypes {
     | '/$locale/moves'
     | '/$locale/pro'
     | '/$locale/settings'
+    | '/$locale/showcase'
     | '/$locale/sign-in'
     | '/$locale/skills'
     | '/$locale/sponsor'
@@ -1236,6 +1246,7 @@ export interface FileRouteTypes {
     | '/$locale/motionvideo-skill'
     | '/$locale/pro'
     | '/$locale/settings'
+    | '/$locale/showcase'
     | '/$locale/sign-in'
     | '/$locale/sponsor'
     | '/$locale/studios'
@@ -1348,6 +1359,7 @@ export interface FileRouteTypes {
     | '/$locale/moves'
     | '/$locale/pro'
     | '/$locale/settings'
+    | '/$locale/showcase'
     | '/$locale/sign-in'
     | '/$locale/skills'
     | '/$locale/sponsor'
@@ -1662,6 +1674,13 @@ declare module '@tanstack/react-router' {
       path: '/settings'
       fullPath: '/$locale/settings'
       preLoaderRoute: typeof LocaleSettingsRouteImport
+      parentRoute: typeof LocaleRouteRoute
+    }
+    '/$locale/showcase': {
+      id: '/$locale/showcase'
+      path: '/showcase'
+      fullPath: '/$locale/showcase'
+      preLoaderRoute: typeof LocaleShowcaseRouteImport
       parentRoute: typeof LocaleRouteRoute
     }
     '/$locale/sign-in': {
@@ -2637,6 +2656,7 @@ interface LocaleRouteRouteChildren {
   LocaleMovesRoute: typeof LocaleMovesRouteWithChildren
   LocaleProRoute: typeof LocaleProRoute
   LocaleSettingsRoute: typeof LocaleSettingsRoute
+  LocaleShowcaseRoute: typeof LocaleShowcaseRoute
   LocaleSignInRoute: typeof LocaleSignInRoute
   LocaleSkillsRoute: typeof LocaleSkillsRouteWithChildren
   LocaleSponsorRoute: typeof LocaleSponsorRoute
@@ -2676,6 +2696,7 @@ const LocaleRouteRouteChildren: LocaleRouteRouteChildren = {
   LocaleMovesRoute: LocaleMovesRouteWithChildren,
   LocaleProRoute: LocaleProRoute,
   LocaleSettingsRoute: LocaleSettingsRoute,
+  LocaleShowcaseRoute: LocaleShowcaseRoute,
   LocaleSignInRoute: LocaleSignInRoute,
   LocaleSkillsRoute: LocaleSkillsRouteWithChildren,
   LocaleSponsorRoute: LocaleSponsorRoute,
