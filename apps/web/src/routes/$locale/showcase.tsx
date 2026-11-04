@@ -6,6 +6,7 @@ import { z } from "zod";
 import { CommandMenu } from "@/components/command-menu";
 import { LocalizedLink as Link } from "@/components/localized-link";
 import { buttonVariants } from "@/components/ui/button";
+import { ROUTES } from "@/constants/routes";
 import { cn } from "@/lib/utils";
 import { createMetadata } from "@/seo/metadata";
 
@@ -31,7 +32,7 @@ const Showcase = () => {
     return (
       <main className="bg-background relative flex min-h-svh items-center justify-center p-6">
         <Link
-          to="/showcase"
+          to={ROUTES.SHOWCASE}
           className={cn(
             buttonVariants({ variant: "ghost", size: "sm" }),
             "absolute top-4 left-4"
@@ -55,7 +56,7 @@ const Showcase = () => {
       {SHOWCASE.map((item) => (
         <Link
           key={item.id}
-          to="/showcase"
+          to={ROUTES.SHOWCASE}
           search={{ c: item.id }}
           className="focus-visible:bg-muted hover:bg-muted/50 relative flex aspect-square items-center justify-center border-r border-b px-6 outline-none"
         >

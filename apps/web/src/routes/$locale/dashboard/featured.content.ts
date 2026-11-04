@@ -4,17 +4,6 @@ import type { Dictionary } from "intlayer";
 export default {
   key: "featured-page",
   content: {
-    title: t({
-      en: "Featured",
-      es: "Destacados",
-      fr: "À l’honneur",
-      zh: "精选",
-      ko: "추천",
-      ja: "掲載",
-      de: "Vorgestellt",
-      pt: "Destaques",
-      ru: "Избранное",
-    }),
     intro: t({
       en: "Work you submitted, credited to you.",
       es: "Trabajo que has enviado, acreditado a ti.",

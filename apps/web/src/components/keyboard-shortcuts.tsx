@@ -71,7 +71,7 @@ export const KeyboardShortcutsProvider = ({
   const modifier = useIsMac() ? "⌘" : "Ctrl";
 
   const routes = [
-    [SHORTCUT_KEYS.discover, ROUTES.HOME, header.discover],
+    [SHORTCUT_KEYS.discover, ROUTES.HOME, header.videos],
     [SHORTCUT_KEYS.tools, ROUTES.TOOLS, header.tools],
     [SHORTCUT_KEYS.creatives, ROUTES.CREATIVES, header.creatives],
     [SHORTCUT_KEYS.skills, ROUTES.SKILLS, header.skills],

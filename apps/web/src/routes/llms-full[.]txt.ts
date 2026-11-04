@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 
+import { CACHE_CONTROL } from "@/constants/cache-control";
 import { docsMarkdownPath } from "@/constants/routes";
 import { SITE } from "@/constants/site";
 import { absoluteUrl } from "@/constants/url";
@@ -22,7 +23,7 @@ export const Route = createFileRoute("/llms-full.txt")({
           `# ${SITE.NAME} docs\n\n> ${SITE.TAGLINE}\n\n${pages.join("\n\n---\n\n")}\n`,
           {
             headers: {
-              "Cache-Control": "public, max-age=3600",
+              "Cache-Control": CACHE_CONTROL.PUBLIC_HOUR,
               "Content-Type": "text/plain; charset=utf-8",
             },
           }

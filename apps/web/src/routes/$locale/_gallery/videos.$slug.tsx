@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 
 import { MotionVideoOverlay } from "@/components/motion-video";
+import { ROUTES } from "@/constants/routes";
 import { useLocalizedNavigate } from "@/hooks/use-localized-navigate";
 import {
   galleryDestination,
@@ -25,7 +26,7 @@ const VideoRoute = () => {
   // Stepping replaces the entry, so Back still leaves the overlay.
   const open = (slug: string) =>
     navigate({
-      to: "/videos/$slug",
+      to: ROUTES.VIDEO,
       params: { slug },
       search: {},
       state: { videoGallery },

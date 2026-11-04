@@ -4,17 +4,6 @@ import type { Dictionary } from "intlayer";
 export default {
   key: "settings-page",
   content: {
-    title: t({
-      en: "Settings",
-      es: "Ajustes",
-      fr: "Réglages",
-      zh: "设置",
-      ko: "설정",
-      ja: "設定",
-      de: "Einstellungen",
-      pt: "Definições",
-      ru: "Настройки",
-    }),
     intro: t({
       en: "Your account preferences.",
       es: "Tus preferencias de cuenta.",

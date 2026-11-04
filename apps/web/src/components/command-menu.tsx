@@ -1,38 +1,18 @@
+import type { LocalesValues } from "intlayer";
 import { useEffect, useMemo, useRef, useState } from "react";
 import type { ReactNode } from "react";
 import { useIntlayer, useLocale } from "react-intlayer";
-import { Bezier } from "reicon-react/icons/Bezier";
-import { BookOpen } from "reicon-react/icons/BookOpen";
-import { Briefcase } from "reicon-react/icons/Briefcase";
-import { Code } from "reicon-react/icons/Code";
-import { Designtools } from "reicon-react/icons/Designtools";
-import { Docs } from "reicon-react/icons/Docs";
 import { DocumentCode } from "reicon-react/icons/DocumentCode";
-import { DocumentText } from "reicon-react/icons/DocumentText";
-import { Envelope } from "reicon-react/icons/Envelope";
-import { HandHeart } from "reicon-react/icons/HandHeart";
-import { History } from "reicon-react/icons/History";
-import { Layout } from "reicon-react/icons/Layout";
-import { Lock } from "reicon-react/icons/Lock";
 import { Monitor } from "reicon-react/icons/Monitor";
 import { Moon } from "reicon-react/icons/Moon";
 import { MoreH } from "reicon-react/icons/MoreH";
-import { Office } from "reicon-react/icons/Office";
-import { Play } from "reicon-react/icons/Play";
-import { Plug } from "reicon-react/icons/Plug";
-import { ProfileCircle } from "reicon-react/icons/ProfileCircle";
 import { Reply2 } from "reicon-react/icons/Reply2";
-import { Scroll } from "reicon-react/icons/Scroll";
 import { Search } from "reicon-react/icons/Search";
-import { Sliders } from "reicon-react/icons/Sliders";
-import { Sparkles } from "reicon-react/icons/Sparkles";
 import { Sun } from "reicon-react/icons/Sun";
 import { Ufo } from "reicon-react/icons/Ufo";
-import { Undo } from "reicon-react/icons/Undo";
-import { User2 } from "reicon-react/icons/User2";
-import { VideoLib } from "reicon-react/icons/VideoLib";
 
 import { GitHubIcon, XIcon } from "@/components/icons";
+import { SectionIcon } from "@/components/section-icon";
 import {
   Command,
   CommandDialog,
@@ -55,7 +35,9 @@ import {
 import { InputGroupButton } from "@/components/ui/input-group";
 import { Kbd, KbdGroup } from "@/components/ui/kbd";
 import { LINK } from "@/constants/links";
+import { LOCALES, LOCALE_NAMES } from "@/constants/locales";
 import { ROUTES } from "@/constants/routes";
+import type { Section } from "@/constants/section-icons";
 import { useHotkey } from "@/hooks/use-hotkey";
 import { useLocalizedNavigate as useNavigate } from "@/hooks/use-localized-navigate";
 import { useIsMac } from "@/hooks/use-mac";
@@ -68,27 +50,27 @@ import { getSearchIndex } from "@/server/search-functions";
 import type { SearchIndex } from "@/server/search-functions";
 
 // Public pages only: account pages need sign-in and live in the account menu.
-type PagePath =
-  | "/"
-  | "/tools"
-  | "/creatives"
-  | "/skills"
-  | "/extras"
-  | "/customize"
-  | "/jobs"
-  | "/sponsor"
-  | "/moves"
-  | "/templates"
-  | "/docs"
-  | "/motionvideo-mcp"
-  | "/motionvideo-skill"
-  | "/about"
-  | "/blog"
-  | "/brand"
-  | "/contact"
-  | "/privacy"
-  | "/terms"
-  | "/refunds";
+type PagePath = (typeof ROUTES)[
+  | "HOME"
+  | "TOOLS"
+  | "CREATIVES"
+  | "SKILLS"
+  | "EXTRAS"
+  | "CUSTOMIZE"
+  | "JOBS"
+  | "SPONSOR"
+  | "MOVES"
+  | "TEMPLATES"
+  | "DOCS"
+  | "MOTIONVIDEO_MCP"
+  | "MOTIONVIDEO_SKILL"
+  | "ABOUT"
+  | "BLOG"
+  | "BRAND"
+  | "CONTACT"
+  | "PRIVACY"
+  | "TERMS"
+  | "REFUNDS"];
 
 interface SearchData {
   videos: MotionVideo[];
@@ -152,21 +134,18 @@ const loadSearchIndex = async (locale: string): Promise<SearchIndex> => {
   }
 };
 
-const LANGUAGE_OPTIONS: {
-  code: "en" | "es" | "fr" | "zh" | "ko" | "ja" | "de" | "pt" | "ru";
-  label: string;
-  keywords: string;
-}[] = [
-  { code: "en", label: "English", keywords: "english" },
-  { code: "es", label: "Español", keywords: "spanish español" },
-  { code: "fr", label: "Français", keywords: "french français" },
-  { code: "zh", label: "简体中文", keywords: "chinese simplified 中文 简体" },
-  { code: "ko", label: "한국어", keywords: "korean 한국어" },
-  { code: "ja", label: "日本語", keywords: "japanese 日本語" },
-  { code: "de", label: "Deutsch", keywords: "german deutsch" },
-  { code: "pt", label: "Português", keywords: "portuguese português" },
-  { code: "ru", label: "Русский", keywords: "russian русский" },
-];
+// English names to search by, beside each language's own name (LOCALE_NAMES).
+const LANGUAGE_KEYWORDS: Record<LocalesValues, string> = {
+  en: "english",
+  es: "spanish",
+  fr: "french",
+  zh: "chinese simplified 中文 简体",
+  ko: "korean",
+  ja: "japanese",
+  de: "german",
+  pt: "portuguese",
+  ru: "russian",
+};
 
 interface PaletteItem {
   id: string;
@@ -186,25 +165,28 @@ interface PaletteGroup {
 }
 
 // Sections the search can be narrowed to (the scope menu beside the input).
-// Each one's id is also its label key in command-menu.content.ts.
+// Each id is also its label key in command-menu.content.ts and its key in
+// SECTION_ICONS.
 const SEARCH_SCOPES = [
-  { id: "videos", Icon: Play },
-  { id: "creators", Icon: ProfileCircle },
-  { id: "moves", Icon: Bezier },
-  { id: "templates", Icon: Layout },
-  { id: "docs", Icon: Docs },
-  { id: "blog", Icon: DocumentText },
-  { id: "changelog", Icon: History },
-  { id: "tools", Icon: Designtools },
-  { id: "creatives", Icon: User2 },
-  { id: "skills", Icon: Sparkles },
-  { id: "extras", Icon: BookOpen },
-] as const;
+  "videos",
+  "creators",
+  "moves",
+  "templates",
+  "docs",
+  "blog",
+  "changelog",
+  "tools",
+  "creatives",
+  "skills",
+  "extras",
+] as const satisfies readonly Section[];
 
-type SearchScope = (typeof SEARCH_SCOPES)[number]["id"];
+type SearchScope = (typeof SEARCH_SCOPES)[number];
 
 export const CommandMenu = () => {
   const content = useIntlayer("command-menu");
+  const header = useIntlayer("site-header");
+  const footer = useIntlayer("site-footer");
   const { locale, setLocale } = useLocale();
   const navigate = useNavigate();
   const [open, setOpen] = useState(false);
@@ -263,13 +245,13 @@ export const CommandMenu = () => {
     const page = (
       to: PagePath,
       label: string,
-      icon: ReactNode,
+      section: Section,
       keywords: string[] = []
     ): PaletteItem => ({
       id: `page:${to}`,
       label,
       keywords: [to, ...keywords],
-      icon,
+      icon: <SectionIcon section={section} />,
       action: () => navigate({ to }),
     });
     const videos: PaletteItem[] = data.videos.map((video) => ({
@@ -279,7 +261,7 @@ export const CommandMenu = () => {
       hint: `@${video.handle}`,
       action: () =>
         navigate({
-          to: "/videos/$slug",
+          to: ROUTES.VIDEO,
           params: { slug: video.slug },
           viewTransition: true,
         }),
@@ -301,7 +283,7 @@ export const CommandMenu = () => {
       hint: `@${creator.handle}`,
       action: () =>
         navigate({
-          to: "/creators/$creator",
+          to: ROUTES.CREATOR,
           params: { creator: creator.handle },
         }),
     }));
@@ -318,7 +300,7 @@ export const CommandMenu = () => {
       hint: move.summary,
       action: () =>
         navigate({
-          to: "/moves/$family/$slug",
+          to: ROUTES.MOVE,
           params: { family: move.family, slug: move.slug },
         }),
     }));
@@ -329,7 +311,7 @@ export const CommandMenu = () => {
       hint: template.summary,
       action: () =>
         navigate({
-          to: "/templates/$templateId",
+          to: ROUTES.TEMPLATE,
           params: { templateId: template.id },
         }),
     }));
@@ -339,7 +321,7 @@ export const CommandMenu = () => {
       keywords: [post.title, post.description],
       hint: post.description,
       action: () =>
-        navigate({ to: "/blog/$slug", params: { slug: post.slug } }),
+        navigate({ to: ROUTES.BLOG_POST, params: { slug: post.slug } }),
     }));
     const changelog: PaletteItem[] = index.changelog.map((entry) => ({
       id: `changelog:${entry.slug}`,
@@ -347,15 +329,15 @@ export const CommandMenu = () => {
       keywords: [entry.title, entry.description],
       hint: entry.description,
       action: () =>
-        navigate({ to: "/changelog/$slug", params: { slug: entry.slug } }),
+        navigate({ to: ROUTES.CHANGELOG_ENTRY, params: { slug: entry.slug } }),
     }));
     // Each docs page, then each of its headings as a deep link into it.
     const docs = index.docs.flatMap((docsPage): PaletteItem[] => {
       const splat = docsPage.slugs.join("/");
       const openDocs = (hash?: string) =>
         splat
-          ? navigate({ to: "/docs/$", params: { _splat: splat }, hash })
-          : navigate({ to: "/docs", hash });
+          ? navigate({ to: ROUTES.DOCS_PAGE, params: { _splat: splat }, hash })
+          : navigate({ to: ROUTES.DOCS, hash });
       return [
         {
           id: `docs:/${splat}`,
@@ -397,38 +379,22 @@ export const CommandMenu = () => {
                 data.videos[Math.floor(Math.random() * data.videos.length)];
               if (video) {
                 navigate({
-                  to: "/videos/$slug",
+                  to: ROUTES.VIDEO,
                   params: { slug: video.slug },
                   viewTransition: true,
                 });
               }
             },
           },
-          page("/", content.videos.value, <VideoLib aria-hidden="true" />, [
+          page(ROUTES.HOME, header.videos.value, "videos", [
             "gallery",
             "discover",
           ]),
-          page(
-            "/tools",
-            content.tools.value,
-            <Designtools aria-hidden="true" />
-          ),
-          page(
-            "/creatives",
-            content.creatives.value,
-            <User2 aria-hidden="true" />
-          ),
-          page(
-            "/skills",
-            content.skills.value,
-            <Sparkles aria-hidden="true" />
-          ),
-          page(
-            "/extras",
-            content.extras.value,
-            <BookOpen aria-hidden="true" />
-          ),
-          page("/jobs", content.jobs.value, <Briefcase aria-hidden="true" />, [
+          page(ROUTES.TOOLS, header.tools.value, "tools"),
+          page(ROUTES.CREATIVES, header.creatives.value, "creatives"),
+          page(ROUTES.SKILLS, header.skills.value, "skills"),
+          page(ROUTES.EXTRAS, header.extras.value, "extras"),
+          page(ROUTES.JOBS, header.jobs.value, "jobs", [
             "hiring",
             "career",
             "work",
@@ -441,18 +407,18 @@ export const CommandMenu = () => {
         id: "agents",
         heading: content.agents.value,
         items: [
-          page(
-            "/motionvideo-mcp",
-            content.mcp.value,
-            <Plug aria-hidden="true" />,
-            ["mcp", "claude", "cursor", "server"]
-          ),
-          page(
-            "/motionvideo-skill",
-            content.skill.value,
-            <Code aria-hidden="true" />,
-            ["skill", "SKILL.md", "agent", "pro"]
-          ),
+          page(ROUTES.MOTIONVIDEO_MCP, content.mcp.value, "mcp", [
+            "mcp",
+            "claude",
+            "cursor",
+            "server",
+          ]),
+          page(ROUTES.MOTIONVIDEO_SKILL, content.skill.value, "skill", [
+            "skill",
+            "SKILL.md",
+            "agent",
+            "pro",
+          ]),
           {
             id: "agents:llms-txt",
             label: "llms.txt",
@@ -469,49 +435,34 @@ export const CommandMenu = () => {
         id: "pages",
         heading: content.pages.value,
         items: [
-          page("/moves", content.moves.value, <Bezier aria-hidden="true" />, [
+          page(ROUTES.MOVES, header.moves.value, "moves", [
             "techniques",
             "prompts",
             "easing",
           ]),
-          page(
-            "/templates",
-            content.templates.value,
-            <Layout aria-hidden="true" />,
-            ["prompt", "template", "pro"]
-          ),
-          page(
-            "/customize",
-            content.customize.value,
-            <Sliders aria-hidden="true" />,
-            ["prompt", "customize", "personalize"]
-          ),
-          page("/docs", content.docs.value, <Docs aria-hidden="true" />, [
+          page(ROUTES.TEMPLATES, header.templates.value, "templates", [
+            "prompt",
+            "template",
+            "pro",
+          ]),
+          page(ROUTES.CUSTOMIZE, content.customize.value, "customize", [
+            "prompt",
+            "customize",
+            "personalize",
+          ]),
+          page(ROUTES.DOCS, header.docs.value, "docs", [
             "documentation",
             "quickstart",
             "api",
             "skill.md",
           ]),
-          page("/about", content.about.value, <Office aria-hidden="true" />),
-          page(
-            "/blog",
-            content.blog.value,
-            <DocumentText aria-hidden="true" />,
-            ["articles", "guides"]
-          ),
-          page(
-            "/contact",
-            content.contact.value,
-            <Envelope aria-hidden="true" />
-          ),
-          page(
-            "/sponsor",
-            content.sponsor.value,
-            <HandHeart aria-hidden="true" />
-          ),
-          page("/terms", content.terms.value, <Scroll aria-hidden="true" />),
-          page("/privacy", content.privacy.value, <Lock aria-hidden="true" />),
-          page("/refunds", content.refunds.value, <Undo aria-hidden="true" />),
+          page(ROUTES.ABOUT, footer.about.value, "about"),
+          page(ROUTES.BLOG, header.blog.value, "blog", ["articles", "guides"]),
+          page(ROUTES.CONTACT, footer.contact.value, "contact"),
+          page(ROUTES.SPONSOR, footer.sponsor.value, "sponsor"),
+          page(ROUTES.TERMS, footer.terms.value, "terms"),
+          page(ROUTES.PRIVACY, footer.privacy.value, "privacy"),
+          page(ROUTES.REFUNDS, footer.refunds.value, "refunds"),
         ],
       },
       {
@@ -550,19 +501,25 @@ export const CommandMenu = () => {
       {
         id: "language",
         heading: content.language.value,
-        items: LANGUAGE_OPTIONS.map((language): PaletteItem => ({
-          id: `language:${language.code}`,
-          label: language.label,
-          keywords: ["language", "locale", "translate", language.keywords],
+        items: LOCALES.map((code): PaletteItem => ({
+          id: `language:${code}`,
+          label: LOCALE_NAMES[code],
+          keywords: [
+            "language",
+            "locale",
+            "translate",
+            LOCALE_NAMES[code],
+            LANGUAGE_KEYWORDS[code],
+          ],
           icon: (
             <span
               aria-hidden="true"
               className="text-muted-foreground w-4 shrink-0 text-center text-[11px] font-semibold tracking-wide"
             >
-              {language.code.toUpperCase()}
+              {code.toUpperCase()}
             </span>
           ),
-          action: () => setLocale(language.code),
+          action: () => setLocale(code),
         })),
       },
       {
@@ -607,22 +564,31 @@ export const CommandMenu = () => {
       extras: linkItems(data.directories.extra),
     };
     const searchGroups = SEARCH_SCOPES.filter(
-      ({ id }) => scope === "all" || scope === id
-    ).map(({ id, Icon }): PaletteGroup => ({
+      (id) => scope === "all" || scope === id
+    ).map((id): PaletteGroup => ({
       id,
       heading: (
         <span className="flex items-center gap-1.5">
-          <Icon aria-hidden="true" className="size-3" />
-          {content[id].value}
+          <SectionIcon section={id} className="size-3" />
+          {header[id].value}
         </span>
       ),
       items: searchItems[id],
     }));
     return scope === "all" ? [...visible, ...searchGroups] : searchGroups;
-  }, [data, index, content, navigate, hasQuery, scope, setLocale]);
+  }, [
+    data,
+    index,
+    content,
+    header,
+    footer,
+    navigate,
+    hasQuery,
+    scope,
+    setLocale,
+  ]);
 
-  const ScopeIcon = SEARCH_SCOPES.find(({ id }) => id === scope)?.Icon;
-  const scopeName = scope === "all" ? content.scopeAll : content[scope];
+  const scopeName = scope === "all" ? content.scopeAll : header[scope];
 
   return (
     <>
@@ -691,13 +657,13 @@ export const CommandMenu = () => {
                     />
                   }
                 >
-                  {ScopeIcon ? (
+                  {scope === "all" ? (
+                    <MoreH aria-hidden="true" />
+                  ) : (
                     <>
-                      <ScopeIcon aria-hidden="true" />
+                      <SectionIcon section={scope} />
                       {scopeName}
                     </>
-                  ) : (
-                    <MoreH aria-hidden="true" />
                   )}
                 </DropdownMenuTrigger>
                 {/* About half the palette's height; the rest scrolls. */}
@@ -716,8 +682,7 @@ export const CommandMenu = () => {
                     onValueChange={(value) => {
                       // Anything but a section id (i.e. "all") searches everything.
                       const next =
-                        SEARCH_SCOPES.find(({ id }) => id === value)?.id ??
-                        "all";
+                        SEARCH_SCOPES.find((id) => id === value) ?? "all";
                       setScope(next);
                       track("search_scope", { scope: next });
                     }}
@@ -727,10 +692,10 @@ export const CommandMenu = () => {
                       {content.scopeAll}
                     </DropdownMenuRadioItem>
                     <DropdownMenuSeparator />
-                    {SEARCH_SCOPES.map(({ id, Icon }) => (
+                    {SEARCH_SCOPES.map((id) => (
                       <DropdownMenuRadioItem key={id} value={id}>
-                        <Icon aria-hidden="true" />
-                        {content[id]}
+                        <SectionIcon section={id} />
+                        {header[id]}
                       </DropdownMenuRadioItem>
                     ))}
                   </DropdownMenuRadioGroup>

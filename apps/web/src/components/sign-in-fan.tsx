@@ -1,8 +1,10 @@
 import { motion, useReducedMotion } from "motion/react";
 
+import { ASSETS_URL } from "@/constants/links";
+
 // Five gallery posters, copied from src/data/motion-catalog.json so the
 // dialog (mounted on every page) doesn't ship the catalog.
-const ASSETS = "https://assets.motionvideo.xyz/motion";
+const ASSETS = `${ASSETS_URL}/motion`;
 const POSTERS = [
   `${ASSETS}/antseed-3a1534/poster-161dc42cc9.jpg`,
   `${ASSETS}/twoclipping-5cba86/poster-9a98945de1.webp`,

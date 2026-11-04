@@ -6,6 +6,7 @@ import { drizzle } from "drizzle-orm/d1";
 
 import { DEFAULT_LOCALE, localizedPath } from "@/constants/locales";
 import { MCP_RESOURCE, MCP_SCOPE } from "@/constants/oauth";
+import { videoPath } from "@/constants/routes";
 import { absoluteUrl } from "@/constants/url";
 import { findBookmarkItem } from "@/lib/bookmark-catalog";
 import { getAuth } from "@/server/auth";
@@ -41,7 +42,7 @@ const handleBookmarks = (request: Request) =>
                 kind: item.kind,
                 title: item.video.title,
                 url: absoluteUrl(
-                  localizedPath(`/videos/${item.video.slug}`, DEFAULT_LOCALE)
+                  localizedPath(videoPath(item.video.slug), DEFAULT_LOCALE)
                 ),
               }
             : {

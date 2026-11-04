@@ -4,17 +4,6 @@ import type { Dictionary } from "intlayer";
 export default {
   key: "billing-page",
   content: {
-    title: t({
-      en: "Usage and billing",
-      es: "Uso y facturación",
-      fr: "Utilisation et facturation",
-      zh: "用量与账单",
-      ko: "사용량 및 결제",
-      ja: "利用状況と請求",
-      de: "Nutzung und Abrechnung",
-      pt: "Utilização e faturação",
-      ru: "Использование и оплата",
-    }),
     intro: t({
       en: "Your plan, invoices and, on Business, who has a seat.",
       es: "Tu plan, tus facturas y, en Business, quién tiene un puesto.",

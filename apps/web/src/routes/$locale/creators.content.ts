@@ -4,17 +4,6 @@ import type { Dictionary } from "intlayer";
 export default {
   key: "creator-directory",
   content: {
-    title: t({
-      en: "Creators",
-      es: "Creadores",
-      fr: "Créateurs",
-      zh: "创作者",
-      ko: "크리에이터",
-      ja: "クリエイター",
-      de: "Creator",
-      pt: "Criadores",
-      ru: "Авторы",
-    }),
     description: t({
       en: "Meet the creators behind the videos. Explore their work and the prompts and skills behind it.",
       es: "Conoce a los creadores de los vídeos. Explora su trabajo y los prompts y skills que lo hacen posible.",

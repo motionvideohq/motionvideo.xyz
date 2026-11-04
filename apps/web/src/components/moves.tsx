@@ -20,6 +20,7 @@ import {
   useArrowSteps,
 } from "@/components/motion-video";
 import { Button } from "@/components/ui/button";
+import { ROUTES } from "@/constants/routes";
 import { useTransientStatus } from "@/hooks/use-transient-status";
 import type { MotionVideo } from "@/lib/motion-catalog";
 import type { MoveFamily } from "@/lib/move-families";
@@ -164,7 +165,7 @@ export const MoveLink = ({
   replace?: boolean;
 }) => (
   <Link
-    to="/moves/$family/$slug"
+    to={ROUTES.MOVE}
     params={{ family: move.family, slug: move.slug }}
     resetScroll={false}
     {...props}
@@ -432,7 +433,7 @@ export const MoveOverlay = ({
       <dl>
         <DetailRow label={content.family}>
           <Link
-            to="/moves/$family"
+            to={ROUTES.MOVE_FAMILY}
             params={{ family: move.family }}
             className="hover:underline"
           >
@@ -452,7 +453,7 @@ export const MoveOverlay = ({
         {example && (
           <DetailRow label={content.example}>
             <Link
-              to="/videos/$slug"
+              to={ROUTES.VIDEO}
               params={{ slug: example.slug }}
               className="hover:underline"
             >

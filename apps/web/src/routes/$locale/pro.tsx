@@ -18,10 +18,12 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import type { LocaleHeadContext } from "@/constants/locales";
+import { MCP_RESOURCE } from "@/constants/oauth";
 import { PLAN_BILLINGS } from "@/constants/plans";
 import type { PlanBilling } from "@/constants/plans";
 import { ROUTES } from "@/constants/routes";
 import { SITE } from "@/constants/site";
+import { SKILL } from "@/constants/skill";
 import { AGENTS, RENDERERS } from "@/constants/stack";
 import { cn } from "@/lib/utils";
 import { planJsonLd } from "@/seo/json-ld";
@@ -37,9 +39,7 @@ interface ProSearch {
 
 const routeApi = getRouteApi("/$locale/pro");
 
-// The private skill repository's install command and its skills.
-const INSTALL_COMMAND =
-  "npx skills add git@github.com:motionvideohq/motionvideo-skill.git";
+// The private skill repository's skills.
 const SKILLS = [
   "motion-video",
   "motion-storyboard",
@@ -200,7 +200,7 @@ const Pro = () => {
               link={
                 // ROUTES.DOCS_MCP, through the docs' catch-all route.
                 <Link
-                  to="/docs/$"
+                  to={ROUTES.DOCS_PAGE}
                   params={{ _splat: "mcp" }}
                   className={featureLinkClass}
                 >
@@ -213,7 +213,7 @@ const Pro = () => {
             >
               <div aria-hidden="true" className={snippetClass}>
                 <pre className="overflow-hidden">
-                  {`"motionvideo": {\n  "url": "https://mcp.motionvideo.xyz/mcp"\n}`}
+                  {`"motionvideo": {\n  "url": "${MCP_RESOURCE}"\n}`}
                 </pre>
                 <ul className="text-muted-foreground flex flex-col gap-1">
                   {PRO_MCP_TOOLS.map((tool) => (
@@ -230,7 +230,7 @@ const Pro = () => {
               link={
                 // ROUTES.DOCS_SKILL, through the docs' catch-all route.
                 <Link
-                  to="/docs/$"
+                  to={ROUTES.DOCS_PAGE}
                   params={{ _splat: "skill" }}
                   className={featureLinkClass}
                 >
@@ -244,7 +244,7 @@ const Pro = () => {
               <div aria-hidden="true" className={snippetClass}>
                 <p className="truncate">
                   <span className="text-muted-foreground select-none">$ </span>
-                  {INSTALL_COMMAND}
+                  {SKILL.INSTALL_COMMAND_SSH}
                 </p>
                 <ul className="text-muted-foreground grid grid-cols-2 gap-x-6 gap-y-1">
                   {SKILLS.map((skill) => (
@@ -306,7 +306,7 @@ export const Route = createFileRoute("/$locale/pro")({
   },
   head: ({ params }: LocaleHeadContext) => ({
     ...createMetadata({
-      title: "MotionVideo Pro",
+      title: `${SITE.NAME} Pro`,
       description: `${SITE.NAME} Pro and Business: the full Moves library with every prompt, every prompt template with its customizer, the Pro agent skill and every update. Pro from $9 a month, $79 a year or $149 once; Business with 3 seats from $29 a month.`,
     }),
     scripts: planJsonLd(params.locale),

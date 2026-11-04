@@ -6,17 +6,6 @@ import { LINK } from "@/constants/links";
 export default {
   key: "contact",
   content: {
-    title: t({
-      en: "Contact",
-      es: "Contacto",
-      fr: "Contact",
-      zh: "联系我们",
-      ko: "문의",
-      ja: "お問い合わせ",
-      de: "Kontakt",
-      pt: "Contacto",
-      ru: "Контакты",
-    }),
     intro: t({
       en: "Questions about the pack, a purchase, or a partnership? Send a message and we’ll reply by email.",
       es: "¿Preguntas sobre el paquete, una compra o una colaboración? Envía un mensaje y responderemos por correo electrónico.",

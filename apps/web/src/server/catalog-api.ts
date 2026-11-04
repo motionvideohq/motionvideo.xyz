@@ -1,12 +1,10 @@
+import { CACHE_CONTROL } from "@/constants/cache-control";
+
 // Public JSON of the catalog data (`/api/catalog`,
 // `/api/catalog/directories`). MCP servers, scripts, and other integrations
 // read the repo's data over HTTP, so `src/data` stays the single source of
 // truth. Responses carry an ETag of the exact bytes, so frequent pollers
 // mostly get cheap 304s.
-
-/** Browsers keep a response 5 minutes, shared caches an hour. */
-export const CATALOG_CACHE_CONTROL =
-  "public, max-age=300, s-maxage=3600, stale-while-revalidate=86400";
 
 /** Serves `data` as cached JSON with conditional requests. */
 export const jsonEndpoint = <T>(data: T) => {
@@ -33,7 +31,7 @@ export const jsonEndpoint = <T>(data: T) => {
     return new Response(body, {
       headers: {
         "Content-Type": "application/json; charset=utf-8",
-        "Cache-Control": CATALOG_CACHE_CONTROL,
+        "Cache-Control": CACHE_CONTROL.CATALOG,
         ETag: etag,
       },
     });

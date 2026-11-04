@@ -1,3 +1,5 @@
+import { LINK } from "@/constants/links";
+
 // Other things Aniket builds, linked from the footer. Shadcn Labs goes last
 // because the "Shadcn Labs projects" menu right below it lists its projects.
 export const OTHER_PRODUCTS = [
@@ -5,7 +7,7 @@ export const OTHER_PRODUCTS = [
   { name: "OSS Perks", url: "https://www.ossperks.com" },
   { name: "Vercel Doctor", url: "https://www.vercel-doctor.com" },
   { name: "Shadcn Weekly", url: "https://www.shadcnweekly.com" },
-  { name: "Shadcn Labs", url: "https://www.shadcn-labs.com" },
+  { name: "Shadcn Labs", url: LINK.SHADCN_LABS },
 ] as const;
 
 // Projects listed on shadcn-labs.com.

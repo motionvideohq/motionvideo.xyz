@@ -119,7 +119,7 @@ export const Brand = () => {
       <ContextMenuTrigger
         render={
           <Link
-            to="/"
+            to={ROUTES.HOME}
             className="flex items-center font-semibold tracking-tight whitespace-nowrap"
           />
         }

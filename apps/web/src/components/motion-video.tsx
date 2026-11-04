@@ -39,7 +39,8 @@ import {
   SharedTooltip,
   createTooltipHandle,
 } from "@/components/ui/tooltip";
-import { ROUTES } from "@/constants/routes";
+import { xProfileUrl } from "@/constants/links";
+import { ROUTES, videoPath } from "@/constants/routes";
 import { absoluteUrl } from "@/constants/url";
 import { useTransientStatus } from "@/hooks/use-transient-status";
 import { track } from "@/lib/analytics";
@@ -120,7 +121,7 @@ const VideoLink = ({
   // One URL per video; the grid it was opened from rides in history state
   // (lib/gallery-navigation.ts).
   <Link
-    to="/videos/$slug"
+    to={ROUTES.VIDEO}
     params={{ slug }}
     search={{}}
     state={{ videoGallery: { scope, search } }}
@@ -439,7 +440,7 @@ export const MotionVideoCard = ({
         )}
       </TooltipProvider>
       <a
-        href={`https://x.com/${video.handle}`}
+        href={xProfileUrl(video.handle)}
         target="_blank"
         rel="noopener noreferrer"
         aria-label={`@${video.handle}`}
@@ -512,7 +513,7 @@ const ColorsRow = ({ colors }: { colors: string[] }) => {
               payload={`#${hex.toUpperCase()}`}
               render={
                 <Link
-                  to="/"
+                  to={ROUTES.HOME}
                   search={{ color: hex }}
                   aria-label={`${content.showColor.value} #${hex.toUpperCase()}`}
                   // The inset ring edges the swatch so black reads on a dark
@@ -880,7 +881,7 @@ const PromptSection = ({ video }: { video: MotionVideo }) => {
         <div className="flex flex-col gap-2">
           {template && (
             <Link
-              to="/templates/$templateId"
+              to={ROUTES.TEMPLATE}
               params={{ templateId: template.id }}
               title={template.name}
               data-track="template_link_click"
@@ -893,7 +894,7 @@ const PromptSection = ({ video }: { video: MotionVideo }) => {
             </Link>
           )}
           <Link
-            to="/customize/$slug"
+            to={ROUTES.CUSTOMIZE_PROMPT}
             params={{ slug: video.slug }}
             data-track="customize_click"
             data-track-slug={video.slug}
@@ -1188,7 +1189,7 @@ export const MotionVideoOverlay = ({
         <div className="flex items-center justify-between gap-3">
           {/* The creator's page here; their X profile is linked from it. */}
           <Link
-            to="/creators/$creator"
+            to={ROUTES.CREATOR}
             params={{ creator: video.handle.toLowerCase() }}
             className="group/creator flex min-w-0 items-center gap-3"
           >
@@ -1241,7 +1242,7 @@ export const MotionVideoOverlay = ({
               return category ? (
                 <Link
                   key={tag}
-                  to="/category/$category"
+                  to={ROUTES.CATEGORY}
                   params={{ category }}
                   className="hover:underline"
                 >
@@ -1282,7 +1283,7 @@ export const MotionVideoOverlay = ({
           to={ROUTES.CONTACT}
           search={{
             inquiry: "removal",
-            ref: absoluteUrl(`/videos/${video.slug}`),
+            ref: absoluteUrl(videoPath(video.slug)),
           }}
           className="hover:text-foreground underline underline-offset-4 transition-colors"
         >

@@ -4,17 +4,6 @@ import type { Dictionary } from "intlayer";
 const refundsContent = {
   key: "legal-refunds",
   content: {
-    heading0: t({
-      en: "Refund policy",
-      es: "Política de reembolsos",
-      fr: "Politique de remboursement",
-      zh: "退款政策",
-      ko: "환불 정책",
-      ja: "返金ポリシー",
-      de: "Rückerstattungsrichtlinie",
-      pt: "Política de reembolso",
-      ru: "Политика возврата",
-    }),
     text1: t({
       en: "This policy covers the Pro and Business plans of",
       es: "Esta política cubre los planes Pro y Business de",

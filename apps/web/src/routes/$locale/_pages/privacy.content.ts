@@ -4,17 +4,6 @@ import type { Dictionary } from "intlayer";
 const privacyContent = {
   key: "legal-privacy",
   content: {
-    heading0: t({
-      en: "Privacy policy",
-      es: "Política de privacidad",
-      fr: "Politique de confidentialité",
-      zh: "隐私政策",
-      ko: "개인정보 처리방침",
-      ja: "プライバシーポリシー",
-      de: "Datenschutzerklärung",
-      pt: "Política de privacidade",
-      ru: "Политика конфиденциальности",
-    }),
     text1: t({
       en: "This policy describes what",
       es: "Esta política describe lo que",

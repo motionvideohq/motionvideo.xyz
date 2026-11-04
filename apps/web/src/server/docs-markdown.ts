@@ -1,5 +1,7 @@
 import type * as PageTree from "fumadocs-core/page-tree";
 
+import { CACHE_CONTROL } from "@/constants/cache-control";
+
 import { getDocsSource } from "./docs-source";
 import type { DocsPage } from "./docs-source";
 import { openApiPageMarkdown } from "./openapi-markdown";
@@ -45,7 +47,7 @@ export const englishDocsPages = async () => {
 export const markdownResponse = (body: string) =>
   new Response(body, {
     headers: {
-      "Cache-Control": "public, max-age=3600",
+      "Cache-Control": CACHE_CONTROL.PUBLIC_HOUR,
       "Content-Type": "text/markdown; charset=utf-8",
     },
   });

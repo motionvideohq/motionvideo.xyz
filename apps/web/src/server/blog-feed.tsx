@@ -3,7 +3,7 @@ import type { MDXComponents } from "mdx/types";
 import type { ReactNode } from "react";
 
 import { DEFAULT_LOCALE } from "@/constants/locales";
-import { ROUTES } from "@/constants/routes";
+import { ROUTES, videoPath } from "@/constants/routes";
 import { absoluteUrl } from "@/constants/url";
 import catalog from "@/data/motion-catalog.json";
 import { BLOG_FEEDS, BLOG_POSTS } from "@/lib/blog";
@@ -54,7 +54,7 @@ const postComponents = (videos: Record<string, VideoPick>): MDXComponents => ({
       <figure>
         {found.map((video) => (
           <p key={video.slug}>
-            <a href={pageUrl(`/videos/${video.slug}`)}>
+            <a href={pageUrl(videoPath(video.slug))}>
               <img
                 loading="lazy"
                 src={absoluteUrl(video.poster)}

@@ -6,6 +6,7 @@ import { drizzle } from "drizzle-orm/d1";
 
 import { DEFAULT_LOCALE, localizedPath } from "@/constants/locales";
 import { MCP_RESOURCE, MCP_SCOPE } from "@/constants/oauth";
+import { videoPath } from "@/constants/routes";
 import { absoluteUrl } from "@/constants/url";
 import { findBookmarkItem } from "@/lib/bookmark-catalog";
 import type { SubmissionKind } from "@/lib/community";
@@ -30,7 +31,7 @@ const featuredUrlOf = (row: {
     return undefined;
   }
   return item.kind === "video"
-    ? absoluteUrl(localizedPath(`/videos/${item.video.slug}`, DEFAULT_LOCALE))
+    ? absoluteUrl(localizedPath(videoPath(item.video.slug), DEFAULT_LOCALE))
     : item.entry.url;
 };
 

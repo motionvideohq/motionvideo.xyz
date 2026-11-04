@@ -3,6 +3,7 @@ import { env } from "cloudflare:workers";
 import { eq } from "drizzle-orm";
 import { drizzle } from "drizzle-orm/d1";
 
+import { CACHE_CONTROL } from "@/constants/cache-control";
 import { MCP_RESOURCE, MCP_SCOPE } from "@/constants/oauth";
 import { MOVES } from "@/lib/moves";
 import type { Move, MovePrompt } from "@/lib/moves";
@@ -58,7 +59,7 @@ interface ProMovesError {
 const json = (body: ProMovesList | ProMoveOne | ProMovesError, status = 200) =>
   Response.json(body, {
     status,
-    headers: { "Cache-Control": "private, no-store" },
+    headers: { "Cache-Control": CACHE_CONTROL.PRIVATE },
   });
 
 /** Whether the account behind a token's `sub` has a live Pro/Business plan. */

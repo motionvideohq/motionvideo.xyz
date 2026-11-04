@@ -2,7 +2,8 @@ import { Fragment } from "react";
 import type { ReactNode } from "react";
 import { useIntlayer } from "react-intlayer";
 import { ArrowUpCircle } from "reicon-react/icons/ArrowUpCircle";
-import { BookOpen } from "reicon-react/icons/BookOpen";
+// A closed book: the open book is Extras' icon (SECTION_ICONS).
+import { Book } from "reicon-react/icons/Book";
 import { ChatRoundDots } from "reicon-react/icons/ChatRoundDots";
 import { ChevronDown } from "reicon-react/icons/ChevronDown";
 import { Copy3 } from "reicon-react/icons/Copy3";
@@ -362,7 +363,7 @@ export const DocsActions = ({
           },
           {
             key: "epub",
-            icon: <BookOpen aria-hidden="true" />,
+            icon: <Book aria-hidden="true" />,
             label: content.exportEpub,
             handleSelect: exportEpub,
           },

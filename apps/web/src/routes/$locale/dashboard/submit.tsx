@@ -145,7 +145,10 @@ const SubmissionForm = ({
             </p>
           </div>
         </div>
-        <Link to="/" className="w-fit text-sm underline underline-offset-4">
+        <Link
+          to={ROUTES.HOME}
+          className="w-fit text-sm underline underline-offset-4"
+        >
           {content.back}
         </Link>
       </section>

@@ -6,17 +6,6 @@ import { SITE } from "@/constants/site";
 export default {
   key: "brand",
   content: {
-    title: t({
-      en: "Brand",
-      es: "Marca",
-      fr: "Marque",
-      zh: "品牌",
-      ko: "브랜드",
-      ja: "ブランド",
-      de: "Marke",
-      pt: "Marca",
-      ru: "Бренд",
-    }),
     intro: t({
       en: `Logos and colors for writing about ${SITE.NAME}. There is a logomark only; set the name in plain text next to it.`,
       es: `Logotipos y colores para escribir sobre ${SITE.NAME}. Solo hay un símbolo; coloca el nombre en texto a su lado.`,

@@ -12,6 +12,7 @@ import { SponsorSlots } from "@/components/sponsor-slots";
 import { SponsoredCard } from "@/components/sponsored-card";
 import { Badge } from "@/components/ui/badge";
 import { buttonVariants } from "@/components/ui/button";
+import { ASSETS_URL } from "@/constants/links";
 import type { SponsorTier } from "@/constants/sponsors";
 import type { MotionCategory } from "@/lib/motion-catalog";
 import { cn } from "@/lib/utils";
@@ -30,7 +31,7 @@ interface PreviewVideo {
 // A handful of real gallery entries (copied from src/data/motion-catalog.json
 // so the sponsor page doesn't ship the whole catalog) to fill the previews
 // around the live sponsor components.
-const ASSETS = "https://assets.motionvideo.xyz";
+const ASSETS = ASSETS_URL;
 const VIDEOS = {
   showreel: {
     title: "Claude motion designer showreel",

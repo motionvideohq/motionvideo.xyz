@@ -71,7 +71,7 @@ const BlogPostPage = () => {
             {others.map((entry) => (
               <li key={entry.url}>
                 <Link
-                  to="/blog/$slug"
+                  to={ROUTES.BLOG_POST}
                   params={{ slug: entry.slugs.join("/") }}
                   className="group flex flex-col gap-0.5"
                 >

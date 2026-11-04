@@ -5,14 +5,8 @@ import { getPathWithoutLocale } from "intlayer";
 import { useState } from "react";
 import type { ComponentProps } from "react";
 import { useIntlayer } from "react-intlayer";
-import { Briefcase } from "reicon-react/icons/Briefcase";
 import { ChevronDown } from "reicon-react/icons/ChevronDown";
-import { Designtools } from "reicon-react/icons/Designtools";
 import { Menu } from "reicon-react/icons/Menu";
-import { Plus } from "reicon-react/icons/Plus";
-import { Sparkles } from "reicon-react/icons/Sparkles";
-import { User2 } from "reicon-react/icons/User2";
-import { VideoLib } from "reicon-react/icons/VideoLib";
 import { Xmark } from "reicon-react/icons/Xmark";
 
 import { AccountMenu } from "@/components/account-avatar";
@@ -25,6 +19,7 @@ import type {
   NavPreviewItem,
   NavPreviewsPromise,
 } from "@/components/nav-previews";
+import { SectionIcon } from "@/components/section-icon";
 import { buttonVariants } from "@/components/ui/button";
 import {
   Collapsible,
@@ -43,14 +38,15 @@ import {
 import { ROUTES } from "@/constants/routes";
 import { cn } from "@/lib/utils";
 
-// Explore's sections, each with the icon the command menu uses for it.
+// Explore's sections: key (nav preview data), path and section (its name and
+// icon, shared with the command menu).
 const EXPLORE_ROUTES = [
-  ["discover", ROUTES.HOME, <VideoLib key="icon" aria-hidden="true" />],
-  ["tools", ROUTES.TOOLS, <Designtools key="icon" aria-hidden="true" />],
-  ["creatives", ROUTES.CREATIVES, <User2 key="icon" aria-hidden="true" />],
-  ["skills", ROUTES.SKILLS, <Sparkles key="icon" aria-hidden="true" />],
-  ["extras", ROUTES.EXTRAS, <Plus key="icon" aria-hidden="true" />],
-  ["jobs", ROUTES.JOBS, <Briefcase key="icon" aria-hidden="true" />],
+  ["discover", ROUTES.HOME, "videos"],
+  ["tools", ROUTES.TOOLS, "tools"],
+  ["creatives", ROUTES.CREATIVES, "creatives"],
+  ["skills", ROUTES.SKILLS, "skills"],
+  ["extras", ROUTES.EXTRAS, "extras"],
+  ["jobs", ROUTES.JOBS, "jobs"],
 ] as const;
 
 // The docs pages, listed under Docs in the mobile menu (content/docs).
@@ -170,7 +166,7 @@ const TopLink = ({
     return <Link to={ROUTES.MOTIONVIDEO_SKILL} {...props} />;
   }
   if (name === "mcp") {
-    return <Link to="/motionvideo-mcp" {...props} />;
+    return <Link to={ROUTES.MOTIONVIDEO_MCP} {...props} />;
   }
   return (
     <Link
@@ -194,11 +190,11 @@ const DesktopNav = () => {
   };
 
   const exploreItems = EXPLORE_ROUTES.map(
-    ([key, to, icon]): NavPreviewItem => ({
+    ([key, to, name]): NavPreviewItem => ({
       key,
       link: <Link to={to} />,
-      title: content[key],
-      icon,
+      title: content[name],
+      icon: <SectionIcon section={name} />,
       count: (data) => data[key].count,
       detail: () => content.resourceNotes[key],
       media: (data) => {
@@ -319,7 +315,7 @@ const MobileMenu = () => {
                 />
               </CollapsibleTrigger>
               <CollapsibleContent className="flex flex-col">
-                {EXPLORE_ROUTES.map(([key, to, icon]) => (
+                {EXPLORE_ROUTES.map(([key, to, name]) => (
                   <Link
                     key={key}
                     to={to}
@@ -331,8 +327,8 @@ const MobileMenu = () => {
                     onClick={close}
                     className={mobileSubLinkClass}
                   >
-                    {icon}
-                    {content[key]}
+                    <SectionIcon section={name} />
+                    {content[name]}
                   </Link>
                 ))}
               </CollapsibleContent>
@@ -363,7 +359,7 @@ const MobileMenu = () => {
                   splat ? (
                     <Link
                       key={splat}
-                      to="/docs/$"
+                      to={ROUTES.DOCS_PAGE}
                       params={{ _splat: splat }}
                       onClick={close}
                       className={mobileSubLinkClass}

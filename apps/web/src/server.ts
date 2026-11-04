@@ -1,6 +1,7 @@
 import handler from "@tanstack/react-start/server-entry";
 import { env } from "cloudflare:workers";
 
+import { CACHE_CONTROL } from "@/constants/cache-control";
 import {
   DEFAULT_LOCALE,
   LOCALE_COOKIE,
@@ -84,7 +85,7 @@ const localeRedirect = (request: Request): Response | null => {
     // directly to add cache negotiation hints.
     return new Response(null, {
       headers: {
-        "Cache-Control": "private, no-store",
+        "Cache-Control": CACHE_CONTROL.PRIVATE,
         Location: url.toString(),
         Vary: "Accept-Language, Cookie",
       },

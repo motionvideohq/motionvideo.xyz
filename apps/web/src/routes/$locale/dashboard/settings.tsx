@@ -243,6 +243,7 @@ const Connections = () => {
 
 const Settings = () => {
   const content = useIntlayer("settings-page");
+  const sections = useIntlayer("site-header");
   const [emailUpdates, setEmailUpdates] = useEmailUpdates();
   const cursors = useLiveCursorsEnabled();
   const { locale, setLocale } = useLocale();
@@ -254,7 +255,7 @@ const Settings = () => {
   return (
     <>
       <PageMain layout="app" width="narrow">
-        <AccountPageHeader title={content.title} intro={content.intro} />
+        <AccountPageHeader title={sections.settings} intro={content.intro} />
         <div className="flex flex-col gap-4">
           <SettingsCard
             title={content.account}
@@ -361,9 +362,9 @@ export const Route = createFileRoute("/$locale/dashboard/settings")({
   head: ({ params }: LocaleHeadContext) =>
     createMetadata({
       title: getIntlayer(
-        "account-meta",
+        "site-header",
         isLocale(params.locale) ? params.locale : DEFAULT_LOCALE
-      ).settingsTitle,
+      ).settings,
     }),
   loader: async ({ params }) => {
     const submitter = await getSubmitter();

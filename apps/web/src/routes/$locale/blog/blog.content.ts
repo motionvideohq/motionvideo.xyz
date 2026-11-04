@@ -6,17 +6,6 @@ import type { Dictionary } from "intlayer";
 export default {
   key: "blog",
   content: {
-    title: t({
-      en: "Blog",
-      es: "Blog",
-      fr: "Blog",
-      zh: "博客",
-      ko: "블로그",
-      ja: "ブログ",
-      de: "Blog",
-      pt: "Blog",
-      ru: "Блог",
-    }),
     intro: t({
       en: "Notes on making motion graphics with AI coding agents, drawn from the prompts in the gallery.",
       es: "Notas sobre cómo crear motion graphics con agentes de programación, a partir de los prompts de la galería.",

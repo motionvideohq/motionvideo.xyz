@@ -10,6 +10,7 @@ import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
 import { Input } from "@/components/ui/input";
 import { DEFAULT_LOCALE, isLocale } from "@/constants/locales";
+import { ROUTES } from "@/constants/routes";
 import { MOTION_CREATORS } from "@/lib/motion-creators";
 import { fillTemplate } from "@/lib/motion-video-route";
 import { createMetadata } from "@/seo/metadata";
@@ -40,6 +41,7 @@ const CreatorAvatar = ({ src }: { src: string }) => {
 const Creators = () => {
   const { signedIn } = Route.useLoaderData();
   const content = useIntlayer("creator-directory");
+  const sections = useIntlayer("site-header");
   const { locale } = useLocale();
   const [search, setSearch] = useState("");
   const formatter = useMemo(() => new Intl.NumberFormat(locale), [locale]);
@@ -58,7 +60,10 @@ const Creators = () => {
     <>
       <SiteHeader signedIn={signedIn} />
       <PageMain layout="app" width="full">
-        <PageHeader title={content.title.value} intro={content.description} />
+        <PageHeader
+          title={sections.creators.value}
+          intro={content.description}
+        />
         <div className="max-w-sm">
           <label htmlFor="creator-search" className="sr-only">
             {content.search}
@@ -81,7 +86,7 @@ const Creators = () => {
           {creators.map((creator) => (
             <li key={creator.handle} className="min-w-0">
               <Link
-                to="/creators/$creator"
+                to={ROUTES.CREATOR}
                 params={{ creator: creator.handle }}
                 className="border-border hover:bg-muted/50 focus-visible:ring-ring flex h-full items-center gap-3 rounded-xl border p-4 transition-colors outline-none focus-visible:ring-2"
               >

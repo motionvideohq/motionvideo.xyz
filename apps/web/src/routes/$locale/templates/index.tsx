@@ -25,7 +25,7 @@ const TemplateCard = ({
   return (
     <li>
       <Link
-        to="/templates/$templateId"
+        to={ROUTES.TEMPLATE}
         params={{ templateId: template.id }}
         className="group bg-card shadow-outline hover:bg-muted/60 flex flex-col gap-4 overflow-hidden rounded-xl p-3 transition-colors sm:flex-row"
       >
@@ -63,12 +63,13 @@ const TemplateCard = ({
 
 const Templates = () => {
   const content = useIntlayer("templates-page");
+  const sections = useIntlayer("site-header");
   const locked = useIntlayer("locked-prompt");
   const { covers } = Route.useLoaderData();
   return (
     <PageMain layout="document" width="narrow">
       <div className="flex flex-col gap-5">
-        <PageHeader title={content.title.value} intro={content.intro} />
+        <PageHeader title={sections.templates.value} intro={content.intro} />
         <div className="flex flex-wrap gap-3">
           <Link
             to={ROUTES.PRO}
@@ -80,7 +81,7 @@ const Templates = () => {
           </Link>
           {/* ROUTES.DOCS_TEMPLATES, through the docs' catch-all route. */}
           <Link
-            to="/docs/$"
+            to={ROUTES.DOCS_PAGE}
             params={{ _splat: "templates" }}
             className={buttonVariants({ variant: "outline", size: "lg" })}
           >

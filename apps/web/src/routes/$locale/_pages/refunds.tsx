@@ -19,15 +19,16 @@ const linkClass = "text-foreground underline underline-offset-4";
 
 const Refunds = () => {
   const copy = useIntlayer("legal-refunds");
+  const sections = useIntlayer("site-footer");
 
   return (
     <>
-      <LegalPageHeader title={copy.heading0.value} />
+      <LegalPageHeader title={sections.refunds.value} />
       <p className="text-muted-foreground leading-7">
         {copy.text1} {SITE.NAME}
         {copy.text2} {SITE.LEGAL.OPERATOR}
         {copy.text3}{" "}
-        <Link to="/terms" className={linkClass}>
+        <Link to={ROUTES.TERMS} className={linkClass}>
           {copy.text4}
         </Link>
         .

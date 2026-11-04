@@ -146,17 +146,16 @@ const ExternalLink = ({
  */
 export const SiteFooter = () => {
   const content = useIntlayer("site-footer");
-  const header = useIntlayer("site-header");
   // The main pages only; collections and the rest are in the header, the
   // command menu and the sitemap.
   const product = [
-    [ROUTES.HOME, header.discover],
-    [ROUTES.MOVES, header.moves],
-    [ROUTES.TEMPLATES, header.templates],
-    [ROUTES.MOTIONVIDEO_MCP, header.mcp],
-    [ROUTES.MOTIONVIDEO_SKILL, header.skill],
-    [ROUTES.DOCS, header.docs],
-    [ROUTES.PRO, header.pricing],
+    [ROUTES.HOME, content.videos],
+    [ROUTES.MOVES, content.moves],
+    [ROUTES.TEMPLATES, content.templates],
+    [ROUTES.MOTIONVIDEO_MCP, content.mcp],
+    [ROUTES.MOTIONVIDEO_SKILL, content.skill],
+    [ROUTES.DOCS, content.docs],
+    [ROUTES.PRO, content.pricing],
   ] as const;
   const company = [
     [ROUTES.ABOUT, content.about],

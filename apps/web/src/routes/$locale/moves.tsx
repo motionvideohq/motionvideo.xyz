@@ -58,7 +58,7 @@ const Moves = () => {
         <>
           {/* ROUTES.DOCS_MOVES, through the docs' catch-all route. */}
           <Link
-            to="/docs/$"
+            to={ROUTES.DOCS_PAGE}
             params={{ _splat: "moves" }}
             className={buttonVariants({ variant: "outline", size: "lg" })}
           >
@@ -114,7 +114,7 @@ const Moves = () => {
             ) : (
               <CategoryChip
                 key={id}
-                to="/moves/$family"
+                to={ROUTES.MOVE_FAMILY}
                 params={{ family: id }}
                 active={false}
                 label={content.familyLabels[id]}

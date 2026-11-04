@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 
+import { CACHE_CONTROL } from "@/constants/cache-control";
 import { DEFAULT_LOCALE, localizedPath } from "@/constants/locales";
 import {
   BUSINESS_SEATS,
@@ -65,7 +66,7 @@ export const Route = createFileRoute("/pricing.md")({
       GET: () =>
         new Response(body, {
           headers: {
-            "Cache-Control": "public, max-age=3600",
+            "Cache-Control": CACHE_CONTROL.PUBLIC_HOUR,
             "Content-Type": "text/markdown; charset=utf-8",
           },
         }),

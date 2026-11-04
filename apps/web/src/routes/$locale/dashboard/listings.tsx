@@ -2,13 +2,13 @@ import { createFileRoute, getRouteApi } from "@tanstack/react-router";
 import { getIntlayer } from "intlayer";
 import { useState } from "react";
 import { useIntlayer, useLocale } from "react-intlayer";
-import { Briefcase } from "reicon-react/icons/Briefcase";
 import { CheckCircle } from "reicon-react/icons/CheckCircle";
 import { z } from "zod";
 
 import { CompanyLogo } from "@/components/company-logo";
 import { LocalizedLink as Link } from "@/components/localized-link";
 import { AccountPageHeader, PageMain } from "@/components/page";
+import { SectionIcon } from "@/components/section-icon";
 import { Badge } from "@/components/ui/badge";
 import { Button, buttonVariants } from "@/components/ui/button";
 import {
@@ -145,8 +145,8 @@ const Listings = () => {
         <Empty className="bg-muted/40 rounded-2xl">
           <EmptyHeader>
             <EmptyMedia>
-              <Briefcase
-                aria-hidden="true"
+              <SectionIcon
+                section="listings"
                 className="text-muted-foreground size-7"
               />
             </EmptyMedia>
@@ -176,9 +176,9 @@ export const Route = createFileRoute("/$locale/dashboard/listings")({
   head: ({ params }: LocaleHeadContext) =>
     createMetadata({
       title: getIntlayer(
-        "account-meta",
+        "site-header",
         isLocale(params.locale) ? params.locale : DEFAULT_LOCALE
-      ).listingsTitle,
+      ).listings,
     }),
   // Dodo appends `payment_id` (and its own `status`, re-read from the API).
   validateSearch: (search): ListingsSearch => ({

@@ -1,5 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 
+import { CACHE_CONTROL } from "@/constants/cache-control";
+
 import skill from "../../content/skill.md?raw";
 
 // The free onboarding skill: a coding agent reads it to set itself up with
@@ -11,7 +13,7 @@ export const Route = createFileRoute("/skill.md")({
       GET: () =>
         new Response(skill, {
           headers: {
-            "Cache-Control": "public, max-age=3600",
+            "Cache-Control": CACHE_CONTROL.PUBLIC_HOUR,
             "Content-Type": "text/markdown; charset=utf-8",
           },
         }),

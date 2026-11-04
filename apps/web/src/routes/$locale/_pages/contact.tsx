@@ -47,6 +47,7 @@ const noSubscribe = () => () => {
 
 const Contact = () => {
   const content = useIntlayer("contact");
+  const sections = useIntlayer("site-footer");
   const formRef = useRef<HTMLFormElement>(null);
   const [status, setStatus] = useState<"idle" | "sending" | "sent">("idle");
   const [error, setError] = useState<"validation" | "send" | null>(null);
@@ -142,7 +143,7 @@ const Contact = () => {
 
   return (
     <>
-      <PageHeader title={content.title.value} intro={content.intro.value} />
+      <PageHeader title={sections.contact.value} intro={content.intro.value} />
       {status === "sent" ? (
         <div className="bg-muted/50 flex items-start gap-3 rounded-xl p-5">
           <Check aria-hidden className="text-primary mt-0.5 size-5" />

@@ -4,17 +4,6 @@ import type { Dictionary } from "intlayer";
 export default {
   key: "sponsorships-page",
   content: {
-    title: t({
-      en: "Sponsorships",
-      es: "Patrocinios",
-      fr: "Parrainages",
-      zh: "赞助合作",
-      ko: "스폰서십",
-      ja: "スポンサーシップ",
-      de: "Sponsorings",
-      pt: "Patrocínios",
-      ru: "Спонсорство",
-    }),
     intro: t({
       en: "Your sponsor plans and the placements they show. Every change goes live after a quick review.",
       es: "Tus planes de patrocinio y los espacios que muestran. Cada cambio se publica tras una revisión rápida.",

@@ -4,17 +4,6 @@ import type { Dictionary } from "intlayer";
 const termsContent = {
   key: "legal-terms",
   content: {
-    heading0: t({
-      en: "Terms of service",
-      es: "Condiciones de servicio",
-      fr: "Conditions d’utilisation",
-      zh: "服务条款",
-      ko: "서비스 약관",
-      ja: "利用規約",
-      de: "Nutzungsbedingungen",
-      pt: "Termos de serviço",
-      ru: "Условия использования",
-    }),
     text1: t({
       en: "These terms govern your use of",
       es: "Estas condiciones rigen el uso de",

@@ -20,12 +20,13 @@ import { createMetadata } from "@/seo/metadata";
 // Cards match /blog and /templates: cover poster, title, description, date.
 const Changelog = () => {
   const content = useIntlayer("changelog");
+  const sections = useIntlayer("site-footer");
   const { locale } = useLocale();
   const { covers } = Route.useLoaderData();
   return (
     <>
       <PageHeader
-        title={content.title.value}
+        title={sections.changelog.value}
         intro={
           locale === DEFAULT_LOCALE
             ? content.intro
@@ -37,7 +38,7 @@ const Changelog = () => {
         {CHANGELOG_ENTRIES.map((entry) => (
           <li key={entry.url}>
             <EntryCard
-              to="/changelog/$slug"
+              to={ROUTES.CHANGELOG_ENTRY}
               params={{ slug: entry.slugs.join("/") }}
               cover={covers[entry.data.cover]}
               title={entry.data.title}
@@ -69,10 +70,14 @@ export const Route = createFileRoute("/$locale/_pages/changelog/")({
       "changelog",
       isLocale(params.locale) ? params.locale : DEFAULT_LOCALE
     );
+    const sections = getIntlayer(
+      "site-footer",
+      isLocale(params.locale) ? params.locale : DEFAULT_LOCALE
+    );
     return {
       ...createMetadata({
         description: content.intro,
-        title: content.title,
+        title: sections.changelog,
       }),
       links: CHANGELOG_FEEDS.links,
       scripts: [

@@ -20,6 +20,8 @@ import {
   TooltipContent,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
+import { LINK } from "@/constants/links";
+import { ROUTES } from "@/constants/routes";
 import { SITE } from "@/constants/site";
 import { createMetadata } from "@/seo/metadata";
 import { getLandingData } from "@/server/functions";
@@ -27,7 +29,6 @@ import { getMcpDemo } from "@/server/mcp-landing-functions";
 import type { McpDemo } from "@/server/mcp-landing-functions";
 
 // The server's source; setup lives in the docs (/docs/mcp).
-const MCP_REPO = "https://github.com/motionvideohq/motionvideo-mcp";
 
 // `pro`: needs a Pro or Business plan on the signed-in account (see /docs/mcp).
 const TOOLS = [
@@ -86,7 +87,7 @@ const Conversation = ({ demo }: { demo: McpDemo }) => {
           {demo.videos.map((video) => (
             <li key={video.slug} className="min-w-0">
               <Link
-                to="/videos/$slug"
+                to={ROUTES.VIDEO}
                 params={{ slug: video.slug }}
                 className="bg-background flex flex-col overflow-hidden rounded-lg border shadow-xs transition-shadow hover:shadow-md"
               >
@@ -123,7 +124,7 @@ const Conversation = ({ demo }: { demo: McpDemo }) => {
                 </span>
                 <span aria-hidden="true">·</span>
                 <Link
-                  to="/videos/$slug"
+                  to={ROUTES.VIDEO}
                   params={{ slug: detail.slug }}
                   className="hover:underline"
                 >
@@ -170,7 +171,7 @@ const McpLanding = () => {
               <div className="flex flex-wrap gap-2">
                 {/* ROUTES.DOCS_MCP, through the docs' catch-all route. */}
                 <Link
-                  to="/docs/$"
+                  to={ROUTES.DOCS_PAGE}
                   params={{ _splat: "mcp" }}
                   className={buttonVariants({
                     size: "xl",
@@ -181,7 +182,7 @@ const McpLanding = () => {
                   <ArrowRight aria-hidden="true" />
                 </Link>
                 <a
-                  href={MCP_REPO}
+                  href={LINK.MCP_REPO}
                   target="_blank"
                   rel="noopener noreferrer"
                   className={buttonVariants({
@@ -283,7 +284,7 @@ export const Route = createFileRoute("/$locale/motionvideo-mcp")({
   component: McpLanding,
   head: () =>
     createMetadata({
-      title: "MotionVideo MCP",
+      title: `${SITE.NAME} MCP`,
       description: `Connect ${SITE.NAME} to Claude, ChatGPT, Cursor, VS Code and other MCP clients. Search AI-made motion videos, pull their original prompts, and browse motion tools and studios. The catalog tools are free and need no sign-in.`,
     }),
   loader: async () => {

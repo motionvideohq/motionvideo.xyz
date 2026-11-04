@@ -1,5 +1,6 @@
 import type { OpenAPIV3_1 } from "fumadocs-openapi";
 
+import { CACHE_CONTROL } from "@/constants/cache-control";
 import { DEFAULT_LOCALE, localizedPath } from "@/constants/locales";
 import { ROUTES } from "@/constants/routes";
 import { SITE } from "@/constants/site";
@@ -16,7 +17,6 @@ import {
 } from "@/lib/motion-catalog";
 import { MOVE_FAMILIES } from "@/lib/move-families";
 import { MOVES } from "@/lib/moves";
-import { CATALOG_CACHE_CONTROL } from "@/server/catalog-api";
 
 // Server only: the OpenAPI document of the public JSON endpoints
 // (src/routes/api/catalog/*, src/routes/api/moves), served at /openapi.json
@@ -169,7 +169,7 @@ export const openApiDocument: OpenAPIV3_1.Document = {
       CacheControl: {
         description:
           "Browsers reuse a response for 5 minutes and shared caches for an hour, then may serve it stale for up to a day while they revalidate.",
-        schema: { type: "string", enum: [CATALOG_CACHE_CONTROL] },
+        schema: { type: "string", enum: [CACHE_CONTROL.CATALOG] },
       },
     },
     responses: {

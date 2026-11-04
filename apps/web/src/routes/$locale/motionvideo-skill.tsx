@@ -18,6 +18,7 @@ import {
 } from "@/components/ui/accordion";
 import { buttonVariants } from "@/components/ui/button";
 import { DEFAULT_LOCALE, isLocale } from "@/constants/locales";
+import { ROUTES } from "@/constants/routes";
 import { SKILL } from "@/constants/skill";
 import { VIDEOS } from "@/constants/videos";
 import { faqJsonLd } from "@/seo/json-ld";
@@ -57,7 +58,7 @@ const Landing = () => {
               <div className="flex flex-wrap gap-2">
                 {/* ROUTES.DOCS_SKILL, through the docs' catch-all route. */}
                 <Link
-                  to="/docs/$"
+                  to={ROUTES.DOCS_PAGE}
                   params={{ _splat: "skill" }}
                   className={buttonVariants({
                     size: "xl",

@@ -23,8 +23,8 @@ export const Route = createFileRoute("/$locale/dashboard")({
   head: ({ params }) =>
     createMetadata({
       title: getIntlayer(
-        "account-meta",
+        "site-header",
         isLocale(params.locale) ? params.locale : DEFAULT_LOCALE
-      ).dashboardTitle,
+      ).dashboard,
     }),
 });

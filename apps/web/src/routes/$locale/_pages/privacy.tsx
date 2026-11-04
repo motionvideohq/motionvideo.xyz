@@ -19,10 +19,11 @@ const linkClass = "text-foreground underline underline-offset-4";
 
 const Privacy = () => {
   const copy = useIntlayer("legal-privacy");
+  const sections = useIntlayer("site-footer");
 
   return (
     <>
-      <LegalPageHeader title={copy.heading0.value} />
+      <LegalPageHeader title={sections.privacy.value} />
       <p className="text-muted-foreground leading-7">
         {copy.text1} {SITE.LEGAL.OPERATOR} {copy.text2} {SITE.DOMAIN}
         {copy.text3} {SITE.NAME}

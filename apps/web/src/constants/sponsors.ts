@@ -1,3 +1,5 @@
+import { ASSETS_URL, LINK } from "@/constants/links";
+
 export const SPONSOR_TIERS = ["diamond", "gold", "silver"] as const;
 
 export type SponsorTier = (typeof SPONSOR_TIERS)[number];
@@ -45,16 +47,16 @@ export type FoundingSponsor = Pick<
 export const FOUNDING_SPONSORS: readonly FoundingSponsor[] = [
   {
     name: "Shadcn Labs",
-    url: "https://www.shadcn-labs.com",
+    url: LINK.SHADCN_LABS,
     logo: "/sponsors/shadcn-labs.svg",
-    cover: "https://assets.motionvideo.xyz/sponsors/shadcn-537fcb5230.png",
+    cover: `${ASSETS_URL}/sponsors/shadcn-537fcb5230.png`,
     darkInvert: true,
   },
   {
     name: "Kobra",
     url: "https://kobra.systems/",
     logo: "/sponsors/kobra.png",
-    cover: "https://assets.motionvideo.xyz/sponsors/kobra-49303ab0dc.png",
+    cover: `${ASSETS_URL}/sponsors/kobra-49303ab0dc.png`,
     darkInvert: true,
   },
   {

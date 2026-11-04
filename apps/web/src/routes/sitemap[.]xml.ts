@@ -1,8 +1,18 @@
 import { createFileRoute } from "@tanstack/react-router";
 
+import { CACHE_CONTROL } from "@/constants/cache-control";
 import { JOB_TYPES } from "@/constants/jobs";
 import { DEFAULT_LOCALE, LOCALES, localizedPath } from "@/constants/locales";
-import { ROUTES, STATIC_PAGES } from "@/constants/routes";
+import {
+  categoryPath,
+  colorPath,
+  creatorPath,
+  modelPath,
+  ROUTES,
+  STATIC_PAGES,
+  typePath,
+  videoPath,
+} from "@/constants/routes";
 import { absoluteUrl } from "@/constants/url";
 import catalog from "@/data/motion-catalog.json";
 import { CHANGELOG_ENTRIES } from "@/lib/changelog";
@@ -26,28 +36,28 @@ import { API_REFERENCE_PATHS } from "@/server/openapi";
 const PAGES: { lastmod?: string; path: string }[] = [
   { path: ROUTES.HOME },
   ...MOTION_CATEGORIES.map((category) => ({
-    path: `${ROUTES.HOME}category/${category}`,
+    path: categoryPath(category),
   })),
   // One page per model and per type, for those with videos.
   ...MOTION_MODELS.filter((model) =>
     catalog.videos.some((video) => video.model === model)
   ).map((model) => ({
-    path: `${ROUTES.HOME}model/${motionModelSlug(model)}`,
+    path: modelPath(motionModelSlug(model)),
   })),
   ...MOTION_TYPES.filter((type) =>
     catalog.videos.some((video) => video.tags.includes(type))
-  ).map((type) => ({ path: `${ROUTES.HOME}type/${type}` })),
+  ).map((type) => ({ path: typePath(type) })),
   // Colour pages already leave out colours too rare to have one.
   ...COLOR_PAGES.map((color) => ({
-    path: `${ROUTES.HOME}color/${color.slug}`,
+    path: colorPath(color.slug),
   })),
   { path: ROUTES.CREATORS },
   ...INDEXED_MOTION_CREATORS.map((creator) => ({
-    path: `${ROUTES.HOME}creators/${creator.handle}`,
+    path: creatorPath(creator.handle),
   })),
   ...catalog.videos.map((video) => ({
     lastmod: video.date,
-    path: `${ROUTES.HOME}videos/${video.slug}`,
+    path: videoPath(video.slug),
   })),
   // The customizer, and one page per video with a prompt.
   { path: ROUTES.CUSTOMIZE },
@@ -136,7 +146,7 @@ export const Route = createFileRoute("/sitemap.xml")({
         ].join("\n");
         return new Response(body, {
           headers: {
-            "Cache-Control": "public, max-age=3600",
+            "Cache-Control": CACHE_CONTROL.PUBLIC_HOUR,
             "Content-Type": "application/xml; charset=utf-8",
           },
         });

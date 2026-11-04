@@ -3,15 +3,10 @@ import { getIntlayer } from "intlayer";
 import type { ReactNode } from "react";
 import { useIntlayer } from "react-intlayer";
 import { ArrowRight } from "reicon-react/icons/ArrowRight";
-import { Bookmark } from "reicon-react/icons/Bookmark";
-import { Briefcase } from "reicon-react/icons/Briefcase";
-import { Card2 } from "reicon-react/icons/Card2";
-import { HandHeart } from "reicon-react/icons/HandHeart";
-import { Settings } from "reicon-react/icons/Settings";
-import { Sparkles } from "reicon-react/icons/Sparkles";
 
 import { LocalizedLink as Link } from "@/components/localized-link";
 import { AccountPageHeader, PageMain } from "@/components/page";
+import { SectionIcon } from "@/components/section-icon";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { DEFAULT_LOCALE, isLocale, localizedPath } from "@/constants/locales";
@@ -66,6 +61,7 @@ const HubCard = ({
 
 const Dashboard = () => {
   const content = useIntlayer("dashboard-page");
+  const sections = useIntlayer("site-header");
   const account = useIntlayer("account");
   const { email, purchased } = routeApi.useLoaderData();
   const { preview: previewSearch } = routeApi.useSearch();
@@ -97,8 +93,8 @@ const Dashboard = () => {
       <section aria-label={content.sections.value} className="grid gap-3">
         <HubCard
           to={ROUTES.DASHBOARD_BILLING}
-          icon={<Card2 aria-hidden="true" />}
-          title={content.billing}
+          icon={<SectionIcon section="billing" />}
+          title={sections.billing}
           description={content.billingBody}
           badge={
             <Badge variant={purchased ? "default" : "secondary"}>
@@ -108,32 +104,32 @@ const Dashboard = () => {
         />
         <HubCard
           to={ROUTES.DASHBOARD_FEATURED}
-          icon={<Sparkles aria-hidden="true" />}
-          title={content.featured}
+          icon={<SectionIcon section="featured" />}
+          title={sections.featured}
           description={content.featuredBody}
         />
         <HubCard
           to={ROUTES.DASHBOARD_BOOKMARKS}
-          icon={<Bookmark aria-hidden="true" />}
-          title={content.bookmarks}
+          icon={<SectionIcon section="bookmarks" />}
+          title={sections.bookmarks}
           description={content.bookmarksBody}
         />
         <HubCard
           to={ROUTES.DASHBOARD_LISTINGS}
-          icon={<Briefcase aria-hidden="true" />}
-          title={content.listings}
+          icon={<SectionIcon section="listings" />}
+          title={sections.listings}
           description={content.listingsBody}
         />
         <HubCard
           to={ROUTES.DASHBOARD_SPONSORSHIPS}
-          icon={<HandHeart aria-hidden="true" />}
-          title={content.sponsorships}
+          icon={<SectionIcon section="sponsorships" />}
+          title={sections.sponsorships}
           description={content.sponsorshipsBody}
         />
         <HubCard
           to={ROUTES.DASHBOARD_SETTINGS}
-          icon={<Settings aria-hidden="true" />}
-          title={content.settings}
+          icon={<SectionIcon section="settings" />}
+          title={sections.settings}
           description={content.settingsBody}
         />
       </section>
@@ -146,9 +142,9 @@ export const Route = createFileRoute("/$locale/dashboard/")({
   head: ({ params }: LocaleHeadContext) =>
     createMetadata({
       title: getIntlayer(
-        "account-meta",
+        "site-header",
         isLocale(params.locale) ? params.locale : DEFAULT_LOCALE
-      ).dashboardTitle,
+      ).dashboard,
     }),
   validateSearch: (search): HubSearch => ({
     preview: search.preview === "purchased" ? "purchased" : undefined,

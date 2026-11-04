@@ -215,7 +215,7 @@ const McpCard = () => {
       </CardHeader>
       <CardFooter>
         <Link
-          to="/docs/$"
+          to={ROUTES.DOCS_PAGE}
           params={{ _splat: "mcp" }}
           hash="pro-tools"
           className={buttonVariants({ size: "lg", variant: "outline" })}
@@ -289,12 +289,13 @@ const SkillCard = () => {
 
 const Billing = () => {
   const content = useIntlayer("billing-page");
+  const sections = useIntlayer("site-header");
   const { access, seats } = routeApi.useLoaderData();
   const { checkout } = routeApi.useSearch();
 
   return (
     <PageMain layout="app" width="narrow">
-      <AccountPageHeader title={content.title} intro={content.intro} />
+      <AccountPageHeader title={sections.billing} intro={content.intro} />
       {checkout === "success" && (
         <output className="bg-primary/10 text-foreground rounded-xl px-4 py-3 text-sm">
           {content.checkoutSuccess}

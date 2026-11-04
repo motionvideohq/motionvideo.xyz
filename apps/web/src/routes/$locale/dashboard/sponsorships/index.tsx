@@ -7,11 +7,11 @@ import { getIntlayer } from "intlayer";
 import { useState } from "react";
 import type { FormEvent } from "react";
 import { useIntlayer, useLocale } from "react-intlayer";
-import { HandHeart } from "reicon-react/icons/HandHeart";
 import { z } from "zod";
 
 import { LocalizedLink as Link } from "@/components/localized-link";
 import { AccountPageHeader, FormSection, PageMain } from "@/components/page";
+import { SectionIcon } from "@/components/section-icon";
 import {
   CreativePreview,
   CreativeSections,
@@ -324,6 +324,7 @@ const idSchema = z.string().min(1).max(100);
 
 const Sponsorships = () => {
   const content = useIntlayer("sponsorships-page");
+  const sections = useIntlayer("site-header");
   const { sponsorships } = routeApi.useLoaderData();
   const search = routeApi.useSearch();
   const router = useRouter();
@@ -348,7 +349,7 @@ const Sponsorships = () => {
   return (
     <PageMain layout="app" width="narrow">
       <AccountPageHeader
-        title={content.title}
+        title={sections.sponsorships}
         intro={content.intro}
         actions={
           sponsorships.length > 0 && (
@@ -389,7 +390,10 @@ const Sponsorships = () => {
           aria-live="polite"
           className="bg-card shadow-outline flex items-start gap-3 rounded-2xl p-5"
         >
-          <HandHeart aria-hidden="true" className="mt-0.5 size-6 shrink-0" />
+          <SectionIcon
+            section="sponsorships"
+            className="mt-0.5 size-6 shrink-0"
+          />
           <div className="flex flex-col gap-1">
             <h2 className="text-base font-semibold">{content.activeTitle}</h2>
             <p className="text-muted-foreground text-sm">
@@ -410,8 +414,8 @@ const Sponsorships = () => {
         <Empty className="bg-muted/40 rounded-2xl">
           <EmptyHeader>
             <EmptyMedia>
-              <HandHeart
-                aria-hidden="true"
+              <SectionIcon
+                section="sponsorships"
                 className="text-muted-foreground size-7"
               />
             </EmptyMedia>
@@ -437,9 +441,9 @@ export const Route = createFileRoute("/$locale/dashboard/sponsorships/")({
   head: ({ params }: LocaleHeadContext) =>
     createMetadata({
       title: getIntlayer(
-        "account-meta",
+        "site-header",
         isLocale(params.locale) ? params.locale : DEFAULT_LOCALE
-      ).sponsorshipsTitle,
+      ).sponsorships,
     }),
   validateSearch: (search): SponsorshipsSearch => ({
     sponsorship: idSchema.safeParse(search.sponsorship).data,

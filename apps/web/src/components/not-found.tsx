@@ -30,7 +30,7 @@ export const NotFound = () => {
         </div>
         <div className="flex flex-wrap items-center justify-center gap-3">
           <Link
-            to="/"
+            to={ROUTES.HOME}
             className={buttonVariants({ size: "lg", variant: "gradient" })}
           >
             {content.backHome}

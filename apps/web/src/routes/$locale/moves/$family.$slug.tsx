@@ -20,7 +20,7 @@ const MoveRoute = () => {
     const target = MOVES.find((item) => item.slug === slug);
     if (target) {
       void navigate({
-        to: "/moves/$family/$slug",
+        to: ROUTES.MOVE,
         params: { family: target.family, slug: target.slug },
         replace: true,
         resetScroll: false,
@@ -39,7 +39,7 @@ const MoveRoute = () => {
       onClose={() =>
         grid
           ? navigate({
-              to: "/moves/$family",
+              to: ROUTES.MOVE_FAMILY,
               params: { family: grid },
               resetScroll: false,
             })

@@ -16,6 +16,7 @@ import { createMetadata } from "@/seo/metadata";
 // Cards match /templates: cover poster, title, description, then the date.
 const Blog = () => {
   const content = useIntlayer("blog");
+  const sections = useIntlayer("site-footer");
   const { locale } = useLocale();
   const { covers } = Route.useLoaderData();
   return (
@@ -23,7 +24,7 @@ const Blog = () => {
       <SiteHeader signedIn={false} />
       <PageMain layout="document" width="narrow">
         <PageHeader
-          title={content.title.value}
+          title={sections.blog.value}
           intro={
             locale === "en"
               ? content.intro.value
@@ -35,7 +36,7 @@ const Blog = () => {
           {BLOG_POSTS.map((post) => (
             <li key={post.url}>
               <EntryCard
-                to="/blog/$slug"
+                to={ROUTES.BLOG_POST}
                 params={{ slug: post.slugs.join("/") }}
                 cover={covers[post.data.cover]}
                 title={post.data.title}

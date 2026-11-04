@@ -11,6 +11,7 @@ import {
   localizedPath,
   ogLocale,
 } from "@/constants/locales";
+import { videoPath } from "@/constants/routes";
 import { absoluteUrl } from "@/constants/url";
 import {
   MIN_INDEXED_CREATOR_VIDEOS,
@@ -69,7 +70,7 @@ export const Route = createFileRoute("/$locale")({
     // Scoped video URLs (`/category/x/videos/slug`…) redirect to
     // `/videos/slug`; any that still render share its canonical.
     const path = leaf.routeId.endsWith("/videos/$slug")
-      ? `/videos/${String(leaf.params.slug)}`
+      ? videoPath(String(leaf.params.slug))
       : getPathWithoutLocale(leaf.pathname);
     const canonical = absoluteUrl(localizedPath(path, locale));
 

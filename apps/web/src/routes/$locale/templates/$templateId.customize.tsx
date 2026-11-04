@@ -5,6 +5,7 @@ import { LocalizedLink as Link } from "@/components/localized-link";
 import { LockedPrompt } from "@/components/locked-prompt";
 import { PageMain } from "@/components/page";
 import { PromptCustomizer } from "@/components/prompt-customizer";
+import { ROUTES } from "@/constants/routes";
 import { findPromptTemplate, templatePath } from "@/lib/prompt-templates";
 import { createMetadata } from "@/seo/metadata";
 import { getTemplatePrompt } from "@/server/template-functions";
@@ -24,7 +25,7 @@ const CustomizeTemplate = () => {
       className="gap-8"
     >
       <Link
-        to="/templates/$templateId"
+        to={ROUTES.TEMPLATE}
         params={{ templateId: template.id }}
         className="text-muted-foreground hover:text-foreground w-fit text-sm underline-offset-4 transition-colors hover:underline"
       >

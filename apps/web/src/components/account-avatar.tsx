@@ -3,16 +3,10 @@ import { getPathWithoutLocale } from "intlayer";
 import { useMemo, useState } from "react";
 import type { ReactNode } from "react";
 import { useIntlayer } from "react-intlayer";
-import { Bookmark } from "reicon-react/icons/Bookmark";
-import { Briefcase } from "reicon-react/icons/Briefcase";
-import { Card2 } from "reicon-react/icons/Card2";
 import { ChatRoundDots } from "reicon-react/icons/ChatRoundDots";
 import { Exit } from "reicon-react/icons/Exit";
-import { HandHeart } from "reicon-react/icons/HandHeart";
 import { Keyboard } from "reicon-react/icons/Keyboard";
 import { Moon } from "reicon-react/icons/Moon";
-import { Settings } from "reicon-react/icons/Settings";
-import { Sparkles } from "reicon-react/icons/Sparkles";
 import { Sun } from "reicon-react/icons/Sun";
 import { User } from "reicon-react/icons/User";
 import { VolumeCross } from "reicon-react/icons/VolumeCross";
@@ -22,6 +16,7 @@ import { useFeedbackDialog } from "@/components/feedback-dialog";
 import { GitHubIcon, XIcon } from "@/components/icons";
 import { useKeyboardShortcuts } from "@/components/keyboard-shortcuts";
 import { LocalizedLink as Link } from "@/components/localized-link";
+import { SectionIcon } from "@/components/section-icon";
 import { useSignInDialog } from "@/components/sign-in-dialog";
 import { toggleTheme } from "@/components/theme-toggle";
 import { buttonVariants } from "@/components/ui/button";
@@ -244,8 +239,8 @@ export const AccountMenu = ({
             className="group py-1.5"
           >
             {content.featured}
-            <Sparkles
-              aria-hidden="true"
+            <SectionIcon
+              section="featured"
               className="text-muted-foreground group-hover:text-foreground group-focus:text-accent-foreground ml-auto transition-colors"
             />
           </DropdownMenuLinkItem>
@@ -255,8 +250,8 @@ export const AccountMenu = ({
             className="group py-1.5"
           >
             {content.bookmarks}
-            <Bookmark
-              aria-hidden="true"
+            <SectionIcon
+              section="bookmarks"
               className="text-muted-foreground group-hover:text-foreground group-focus:text-accent-foreground ml-auto transition-colors"
             />
           </DropdownMenuLinkItem>
@@ -265,8 +260,8 @@ export const AccountMenu = ({
             className="group py-1.5"
           >
             {content.billing}
-            <Card2
-              aria-hidden="true"
+            <SectionIcon
+              section="billing"
               className="text-muted-foreground group-hover:text-foreground group-focus:text-accent-foreground ml-auto transition-colors"
             />
           </DropdownMenuLinkItem>
@@ -276,8 +271,8 @@ export const AccountMenu = ({
             className="group py-1.5"
           >
             {content.listings}
-            <Briefcase
-              aria-hidden="true"
+            <SectionIcon
+              section="listings"
               className="text-muted-foreground group-hover:text-foreground group-focus:text-accent-foreground ml-auto transition-colors"
             />
           </DropdownMenuLinkItem>
@@ -286,8 +281,8 @@ export const AccountMenu = ({
             className="group py-1.5"
           >
             {content.sponsorships}
-            <HandHeart
-              aria-hidden="true"
+            <SectionIcon
+              section="sponsorships"
               className="text-muted-foreground group-hover:text-foreground group-focus:text-accent-foreground ml-auto transition-colors"
             />
           </DropdownMenuLinkItem>
@@ -297,8 +292,8 @@ export const AccountMenu = ({
             className="group py-1.5"
           >
             {content.settings}
-            <Settings
-              aria-hidden="true"
+            <SectionIcon
+              section="settings"
               className="text-muted-foreground group-hover:text-foreground group-focus:text-accent-foreground ml-auto transition-colors"
             />
           </DropdownMenuLinkItem>

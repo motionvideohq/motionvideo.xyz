@@ -1,10 +1,10 @@
 import { getIntlayer } from "intlayer";
 
-import { LINK } from "@/constants/links";
+import { LINK, xProfileUrl } from "@/constants/links";
 import { DEFAULT_LOCALE, isLocale, localizedPath } from "@/constants/locales";
 import { PLAN_PRICE_CENTS, PLANS, planOffers } from "@/constants/plans";
 import type { Plan, PlanBilling } from "@/constants/plans";
-import { ROUTES } from "@/constants/routes";
+import { ROUTES, videoPath } from "@/constants/routes";
 import { SITE } from "@/constants/site";
 import { absoluteUrl } from "@/constants/url";
 import type { MotionVideo } from "@/lib/motion-catalog";
@@ -195,7 +195,7 @@ export const videoJsonLd = (
     creator: {
       "@type": "Person",
       name: video.creatorName ?? `@${video.handle}`,
-      url: `https://x.com/${video.handle}`,
+      url: xProfileUrl(video.handle),
     },
     description: video.description ?? description,
     keywords: video.contentTags.join(", "),
@@ -204,7 +204,7 @@ export const videoJsonLd = (
     thumbnailUrl: absoluteUrl(video.poster),
     uploadDate: video.date,
     url: absoluteUrl(
-      localizedPath(`/videos/${video.slug}`, resolveLocale(locale))
+      localizedPath(videoPath(video.slug), resolveLocale(locale))
     ),
   });
 

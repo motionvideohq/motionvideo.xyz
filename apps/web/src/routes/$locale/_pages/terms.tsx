@@ -20,10 +20,11 @@ const linkClass = "text-foreground underline underline-offset-4";
 
 const Terms = () => {
   const copy = useIntlayer("legal-terms");
+  const sections = useIntlayer("site-footer");
 
   return (
     <>
-      <LegalPageHeader title={copy.heading0.value} />
+      <LegalPageHeader title={sections.terms.value} />
       <p className="text-muted-foreground leading-7">
         {copy.text1} {SITE.DOMAIN} {copy.text2} {SITE.NAME} {copy.text3}{" "}
         {SITE.LEGAL.OPERATOR} {copy.text4} {SITE.NAME} {copy.text5}
@@ -69,7 +70,7 @@ const Terms = () => {
         <p>{copy.text13}</p>
         <p>
           {copy.text14}{" "}
-          <Link to="/sign-in" className={linkClass}>
+          <Link to={ROUTES.SIGN_IN} className={linkClass}>
             {copy.text15}
           </Link>
           {copy.text16}
@@ -94,7 +95,7 @@ const Terms = () => {
       <PageSection title={copy.heading25.value}>
         <p>
           {copy.text26}{" "}
-          <Link to="/refunds" className={linkClass}>
+          <Link to={ROUTES.REFUNDS} className={linkClass}>
             {copy.text27}
           </Link>
           {copy.text28}
@@ -111,7 +112,7 @@ const Terms = () => {
         <p>{copy.worksText1} assets.motionvideo.xyz.</p>
         <p>
           {copy.worksText2}{" "}
-          <Link to="/contact" className={linkClass}>
+          <Link to={ROUTES.CONTACT} className={linkClass}>
             {copy.worksContact}
           </Link>{" "}
           {copy.worksText3} <SupportEmail />.

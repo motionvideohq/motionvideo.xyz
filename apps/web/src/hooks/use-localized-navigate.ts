@@ -10,7 +10,7 @@ export type LocalizedRouteValue = string | number | boolean | undefined;
 
 /**
  * Navigation options for app paths: `to` is written without the locale segment
- * (`to: "/dashboard"`), and the wrapper inserts `/$locale`.
+ * (`to: ROUTES.DASHBOARD`), and the wrapper inserts `/$locale`.
  *
  * These are intentionally loose. The generated router types only know the
  * `/$locale/...` routes, so typing callers against them would force every page
@@ -40,7 +40,7 @@ export type LocalizedNavigate = (
 
 /**
  * `useNavigate` for locale-prefixed routes: callers keep passing the app path
- * (`to: "/dashboard"`) and the wrapper inserts the current locale.
+ * (`to: ROUTES.DASHBOARD`) and the wrapper inserts the current locale.
  */
 export const useLocalizedNavigate = (): LocalizedNavigate => {
   const navigate = useNavigate();

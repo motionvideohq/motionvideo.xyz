@@ -1,5 +1,7 @@
 import { strToU8, zipSync } from "fflate";
 
+import { SITE } from "@/constants/site";
+
 // One docs page as an EPUB 3 book, built in the browser from the rendered
 // article.
 
@@ -65,7 +67,7 @@ export const buildDocsEpub = ({
     <dc:identifier id="id">${escapeXml(url)}</dc:identifier>
     <dc:title>${escapeXml(title)}</dc:title>
     <dc:language>${lang}</dc:language>
-    <dc:publisher>MotionVideo</dc:publisher>
+    <dc:publisher>${escapeXml(SITE.NAME)}</dc:publisher>
     <meta property="dcterms:modified">${modified}</meta>
   </metadata>
   <manifest>

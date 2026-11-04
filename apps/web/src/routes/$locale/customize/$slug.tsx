@@ -64,7 +64,7 @@ const CustomizeVideo = () => {
             )}
             .{" "}
             <Link
-              to="/videos/$slug"
+              to={ROUTES.VIDEO}
               params={{ slug: video.slug }}
               className={link}
             >

@@ -2,6 +2,7 @@ import type { MDXComponents } from "mdx/types";
 import type { ComponentProps, ReactNode } from "react";
 import { renderToStaticMarkup } from "react-dom/server";
 
+import { CACHE_CONTROL } from "@/constants/cache-control";
 import { DEFAULT_LOCALE, localizedPath } from "@/constants/locales";
 import { SITE } from "@/constants/site";
 import { absoluteUrl } from "@/constants/url";
@@ -113,7 +114,7 @@ const thumbnail = (cover: VideoPick | undefined) =>
 const feedResponse = (feed: FeedFormat, body: string) =>
   new Response(body, {
     headers: {
-      "Cache-Control": "public, max-age=3600",
+      "Cache-Control": CACHE_CONTROL.PUBLIC_HOUR,
       "Content-Type": `${feed.type}; charset=utf-8`,
     },
   });

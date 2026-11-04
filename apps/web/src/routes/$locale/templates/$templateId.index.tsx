@@ -51,7 +51,7 @@ const PromptSection = ({
     <>
       <div className="flex flex-wrap items-center gap-3">
         <Link
-          to="/templates/$templateId/customize"
+          to={ROUTES.TEMPLATE_CUSTOMIZE}
           params={{ templateId: template.id }}
           data-track="template_customize_click"
           data-track-template={template.id}
@@ -95,7 +95,7 @@ const Inspiration = ({ source }: { source: MotionVideo }) => {
       <p className="text-muted-foreground text-sm text-pretty">
         {content.inspiredBy}{" "}
         <Link
-          to="/videos/$slug"
+          to={ROUTES.VIDEO}
           params={{ slug: source.slug }}
           data-track="template_source_click"
           data-track-slug={source.slug}

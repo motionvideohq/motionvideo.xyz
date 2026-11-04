@@ -48,9 +48,10 @@ const colors = [
 
 const Brand = () => {
   const content = useIntlayer("brand");
+  const sections = useIntlayer("site-footer");
   return (
     <>
-      <PageHeader title={content.title.value} intro={content.intro.value} />
+      <PageHeader title={sections.brand.value} intro={content.intro.value} />
       <PageSection title={content.logomark.value}>
         <div className="grid gap-4 sm:grid-cols-3">
           {assets.map((asset, index) => (

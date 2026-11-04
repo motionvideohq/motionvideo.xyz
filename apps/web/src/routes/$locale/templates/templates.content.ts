@@ -9,17 +9,6 @@ import { SITE } from "@/constants/site";
 export default {
   key: "templates-page",
   content: {
-    title: t({
-      en: "Templates",
-      es: "Plantillas",
-      fr: "Modèles",
-      zh: "模板",
-      ko: "템플릿",
-      ja: "テンプレート",
-      de: "Vorlagen",
-      pt: "Modelos",
-      ru: "Шаблоны",
-    }),
     intro: t({
       en: `Tested prompt structures written by ${SITE.NAME}, so the output holds up. Every part you would change is a field: fill them in and the prompt is yours.`,
       es: `Estructuras de prompt probadas y escritas por ${SITE.NAME} para que el resultado aguante. Cada parte que cambiarías es un campo: rellénalos y el prompt es tuyo.`,

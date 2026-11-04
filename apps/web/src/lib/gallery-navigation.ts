@@ -1,5 +1,6 @@
 import { useLocation } from "@tanstack/react-router";
 
+import { ROUTES } from "@/constants/routes";
 import { motionModelSlug } from "@/lib/motion-catalog";
 import type { GalleryScope, GallerySearch } from "@/lib/motion-catalog";
 
@@ -22,27 +23,27 @@ export const galleryDestination = (scope: GalleryScope | undefined) => {
   switch (scope?.kind) {
     case "category": {
       return {
-        to: "/category/$category",
+        to: ROUTES.CATEGORY,
         params: { category: scope.category },
       };
     }
     case "color": {
-      return { to: "/color/$color", params: { color: scope.color.slug } };
+      return { to: ROUTES.COLOR, params: { color: scope.color.slug } };
     }
     case "model": {
       return {
-        to: "/model/$model",
+        to: ROUTES.MODEL,
         params: { model: motionModelSlug(scope.model) },
       };
     }
     case "type": {
-      return { to: "/type/$type", params: { type: scope.type } };
+      return { to: ROUTES.TYPE, params: { type: scope.type } };
     }
     case "creator": {
-      return { to: "/creators/$creator", params: { creator: scope.creator } };
+      return { to: ROUTES.CREATOR, params: { creator: scope.creator } };
     }
     default: {
-      return { to: "/" };
+      return { to: ROUTES.HOME };
     }
   }
 };

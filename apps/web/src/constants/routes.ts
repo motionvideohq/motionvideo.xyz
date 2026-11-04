@@ -1,3 +1,5 @@
+// Every app path, unprefixed; links add the `/$locale` prefix. `$name`
+// segments are router params (`to={ROUTES.VIDEO} params={{ slug }}`).
 export const ROUTES = {
   ABOUT: "/about",
   ADMIN: "/admin",
@@ -11,17 +13,23 @@ export const ROUTES = {
   BLOG_ATOM: "/blog/atom.xml",
   BLOG_JSON_FEED: "/blog/feed.json",
   BLOG_RSS: "/blog/rss.xml",
+  BLOG_POST: "/blog/$slug",
   BRAND: "/brand",
+  CATEGORY: "/category/$category",
   CHANGELOG: "/changelog",
   CHANGELOG_ATOM: "/changelog/atom.xml",
   CHANGELOG_JSON_FEED: "/changelog/feed.json",
   CHANGELOG_RSS: "/changelog/rss.xml",
+  CHANGELOG_ENTRY: "/changelog/$slug",
+  COLOR: "/color/$color",
   CHECKOUT: "/checkout",
   CONSENT: "/consent",
   CONTACT: "/contact",
   CREATIVES: "/creatives",
+  CREATOR: "/creators/$creator",
   CREATORS: "/creators",
   CUSTOMIZE: "/customize",
+  CUSTOMIZE_PROMPT: "/customize/$slug",
   DASHBOARD: "/dashboard",
   DASHBOARD_BILLING: "/dashboard/billing",
   DASHBOARD_BOOKMARKS: "/dashboard/bookmarks",
@@ -34,6 +42,8 @@ export const ROUTES = {
   DASHBOARD_SUBMIT: "/dashboard/submit",
   DOCS: "/docs",
   DOCS_API: "/docs/api",
+  /** Any docs page: `params={{ _splat: "mcp" }}`. */
+  DOCS_PAGE: "/docs/$",
   DOCS_MCP: "/docs/mcp",
   DOCS_MOVES: "/docs/moves",
   DOCS_PLANS: "/docs/plans",
@@ -42,13 +52,19 @@ export const ROUTES = {
   EXTRAS: "/extras",
   HOME: "/",
   JOBS: "/jobs",
+  JOBS_TYPE: "/jobs/$type",
+  MODEL: "/model/$model",
   MOTIONVIDEO_MCP: "/motionvideo-mcp",
   MOTIONVIDEO_SKILL: "/motionvideo-skill",
   MOVES: "/moves",
+  MOVE: "/moves/$family/$slug",
+  MOVE_FAMILY: "/moves/$family",
   PRO: "/pro",
   PRIVACY: "/privacy",
   REFUNDS: "/refunds",
   SIGN_IN: "/sign-in",
+  // Dev only (vite.config.ts drops it from production builds).
+  SHOWCASE: "/showcase",
   LLMS_FULL_TXT: "/llms-full.txt",
   LLMS_TXT: "/llms.txt",
   // The public API's OpenAPI document, at a fixed unprefixed URL.
@@ -58,8 +74,12 @@ export const ROUTES = {
   SKILLS: "/skills",
   SPONSOR: "/sponsor",
   TEMPLATES: "/templates",
+  TEMPLATE: "/templates/$templateId",
+  TEMPLATE_CUSTOMIZE: "/templates/$templateId/customize",
   TERMS: "/terms",
   TOOLS: "/tools",
+  TYPE: "/type/$type",
+  VIDEO: "/videos/$slug",
   WELCOME: "/welcome",
 } as const;
 
@@ -100,3 +120,11 @@ export const STATIC_PAGES: readonly string[] = [
  * keeps the server from redirecting it to a locale.
  */
 export const docsMarkdownPath = (docsPath: string) => `${docsPath}.md`;
+
+/** A gallery video's page, e.g. for feeds, JSON-LD and the sitemap. */
+export const videoPath = (slug: string) => `/videos/${slug}`;
+export const categoryPath = (category: string) => `/category/${category}`;
+export const modelPath = (model: string) => `/model/${model}`;
+export const typePath = (type: string) => `/type/${type}`;
+export const colorPath = (color: string) => `/color/${color}`;
+export const creatorPath = (handle: string) => `/creators/${handle}`;

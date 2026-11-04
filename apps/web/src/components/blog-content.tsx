@@ -8,6 +8,7 @@ import { CopyPromptButton } from "@/components/copy-prompt-button";
 import { LocalizedLink as Link } from "@/components/localized-link";
 import { ProseBody } from "@/components/prose-mdx";
 import { buttonVariants } from "@/components/ui/button";
+import { ROUTES } from "@/constants/routes";
 import { cn } from "@/lib/utils";
 import type { VideoPick } from "@/lib/video-picks";
 
@@ -41,7 +42,7 @@ const VideoCards = ({
         {videos.map((video) => (
           <li key={video.slug}>
             <Link
-              to="/videos/$slug"
+              to={ROUTES.VIDEO}
               params={{ slug: video.slug }}
               className="group flex flex-col gap-1.5"
             >

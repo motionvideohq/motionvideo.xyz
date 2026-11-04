@@ -2,7 +2,6 @@ import { createFileRoute, getRouteApi } from "@tanstack/react-router";
 import { getIntlayer } from "intlayer";
 import { useIntlayer } from "react-intlayer";
 import type { IntlayerNode } from "react-intlayer";
-import { Bookmark } from "reicon-react/icons/Bookmark";
 import { z } from "zod";
 
 import {
@@ -17,6 +16,7 @@ import { FadeScroller } from "@/components/fade-scroller";
 import { LocalizedLink as Link } from "@/components/localized-link";
 import { MotionVideoCard, MotionVideoOverlay } from "@/components/motion-video";
 import { AccountPageHeader, pageContainerClass } from "@/components/page";
+import { SectionIcon } from "@/components/section-icon";
 import { buttonVariants } from "@/components/ui/button";
 import {
   Empty,
@@ -31,6 +31,7 @@ import type { MasonryItem } from "@/components/virtual-masonry";
 import { DEFAULT_LOCALE, isLocale, localizedPath } from "@/constants/locales";
 import type { LocaleHeadContext } from "@/constants/locales";
 import { ROUTES } from "@/constants/routes";
+import type { Section } from "@/constants/section-icons";
 import { findBookmarkItem } from "@/lib/bookmark-catalog";
 import { BOOKMARK_KINDS, bookmarkKey } from "@/lib/bookmark-items";
 import type { BookmarkKind } from "@/lib/bookmark-items";
@@ -51,8 +52,18 @@ interface BookmarksSearch {
 
 const routeApi = getRouteApi("/$locale/dashboard/bookmarks");
 
+// Each bookmark kind's chip is named after its section.
+const BOOKMARK_KIND_SECTION = {
+  video: "videos",
+  tool: "tools",
+  studio: "creatives",
+  skill: "skills",
+  extra: "extras",
+} as const satisfies Record<BookmarkKind, Section>;
+
 const Bookmarks = () => {
   const content = useIntlayer("bookmarks-page");
+  const sections = useIntlayer("site-header");
   const directory = useIntlayer("resource-directory");
   const { saved } = routeApi.useLoaderData();
   const search = routeApi.useSearch();
@@ -136,7 +147,7 @@ const Bookmarks = () => {
     <>
       <main id="main-content" className="flex flex-1 flex-col">
         <AccountPageHeader
-          title={content.title}
+          title={sections.bookmarks}
           intro={content.intro}
           className={cn(pageContainerClass("full"), "pt-6 pb-3.5")}
         />
@@ -153,7 +164,11 @@ const Bookmarks = () => {
                     to={ROUTES.DASHBOARD_BOOKMARKS}
                     search={{ kind: value }}
                     active={value === kind}
-                    label={value ? content.kinds[value] : content.all}
+                    label={
+                      value
+                        ? sections[BOOKMARK_KIND_SECTION[value]]
+                        : content.all
+                    }
                   />
                 )
               )}
@@ -167,8 +182,8 @@ const Bookmarks = () => {
             <Empty className="bg-muted/40 rounded-2xl">
               <EmptyHeader>
                 <EmptyMedia>
-                  <Bookmark
-                    aria-hidden="true"
+                  <SectionIcon
+                    section="bookmarks"
                     className="text-muted-foreground size-7"
                   />
                 </EmptyMedia>
@@ -209,9 +224,9 @@ export const Route = createFileRoute("/$locale/dashboard/bookmarks")({
   head: ({ params }: LocaleHeadContext) =>
     createMetadata({
       title: getIntlayer(
-        "account-meta",
+        "site-header",
         isLocale(params.locale) ? params.locale : DEFAULT_LOCALE
-      ).bookmarksTitle,
+      ).bookmarks,
     }),
   validateSearch: (search): BookmarksSearch => ({
     kind: z.enum(BOOKMARK_KINDS).safeParse(search.kind).data,

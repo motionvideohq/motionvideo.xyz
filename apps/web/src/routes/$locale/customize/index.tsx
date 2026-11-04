@@ -29,7 +29,7 @@ const CustomizeCard = ({ video }: { video: MotionVideo }) => {
   const gallery = useIntlayer("motion-gallery");
   return (
     <Link
-      to="/customize/$slug"
+      to={ROUTES.CUSTOMIZE_PROMPT}
       params={{ slug: video.slug }}
       className="group focus-visible:ring-ring relative block overflow-hidden rounded-xl outline-none focus-visible:ring-2"
     >

@@ -92,7 +92,7 @@ export const JobsBoard = ({
             <CategoryChip
               key={value ?? "all"}
               {...(value
-                ? { to: "/jobs/$type", params: { type: value } }
+                ? { to: ROUTES.JOBS_TYPE, params: { type: value } }
                 : { to: ROUTES.JOBS })}
               activeOptions={{ exact: true, includeSearch: false }}
               active={value === type}

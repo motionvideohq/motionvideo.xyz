@@ -16,7 +16,7 @@ export const LOCALE_ROUTE = "$locale" as const;
 /**
  * `Link` props with the app-facing `to` (no locale prefix). The router's route
  * ids include `$locale`, so the wrapper adds it for the caller:
- * `to="/tools"` renders `/fr/tools`.
+ * `to={ROUTES.TOOLS}` renders `/fr/tools`.
  */
 type LocalizedLinkProps = Omit<LinkComponentProps, "params" | "to"> & {
   to: string;

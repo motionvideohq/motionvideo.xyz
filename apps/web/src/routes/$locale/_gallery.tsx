@@ -52,6 +52,8 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover";
 import type { MasonryItem } from "@/components/virtual-masonry";
+import { xProfileUrl } from "@/constants/links";
+import { ROUTES } from "@/constants/routes";
 import catalog from "@/data/motion-catalog.json";
 import { useLaneCount } from "@/hooks/use-lane-count";
 import { useLocalizedNavigate as useNavigate } from "@/hooks/use-localized-navigate";
@@ -144,7 +146,7 @@ const goToVideo = (
   slug: string
 ) =>
   navigate({
-    to: "/videos/$slug",
+    to: ROUTES.VIDEO,
     params: { slug },
     search: {},
     state: { videoGallery: { scope, search } },
@@ -555,7 +557,7 @@ const Gallery = () => {
           // videos as the main action. Submitting isn't about them.
           <>
             <a
-              href={`https://x.com/${scope.creator}`}
+              href={xProfileUrl(scope.creator)}
               target="_blank"
               rel="noopener noreferrer"
               className={buttonVariants({ variant: "outline", size: "lg" })}
@@ -647,7 +649,7 @@ const Gallery = () => {
               return (
                 <CategoryChip
                   key={id}
-                  to="/creators/$creator"
+                  to={ROUTES.CREATOR}
                   params={{ creator: scope.creator }}
                   search={{
                     ...chipSearch,
@@ -662,7 +664,7 @@ const Gallery = () => {
             return active ? (
               <CategoryChip
                 key={id}
-                to="/"
+                to={ROUTES.HOME}
                 search={chipSearch}
                 active
                 label={content.categories[id]}
@@ -670,7 +672,7 @@ const Gallery = () => {
             ) : (
               <CategoryChip
                 key={id}
-                to="/category/$category"
+                to={ROUTES.CATEGORY}
                 params={{ category: id }}
                 search={chipSearch}
                 active={false}

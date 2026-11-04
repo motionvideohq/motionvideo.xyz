@@ -2,7 +2,6 @@ import { createFileRoute, getRouteApi } from "@tanstack/react-router";
 import { getIntlayer } from "intlayer";
 import { useIntlayer, useLocale } from "react-intlayer";
 import { ArrowRightUp } from "reicon-react/icons/ArrowRightUp";
-import { Sparkles } from "reicon-react/icons/Sparkles";
 import { z } from "zod";
 
 import {
@@ -12,6 +11,7 @@ import {
 import { LocalizedLink as Link } from "@/components/localized-link";
 import { MotionVideoCard, MotionVideoOverlay } from "@/components/motion-video";
 import { PageMain, AccountPageHeader } from "@/components/page";
+import { SectionIcon } from "@/components/section-icon";
 import { Badge } from "@/components/ui/badge";
 import { buttonVariants } from "@/components/ui/button";
 import {
@@ -134,6 +134,7 @@ const SubmissionCard = ({
 
 const Featured = () => {
   const content = useIntlayer("featured-page");
+  const sections = useIntlayer("site-header");
   const { locale } = useLocale();
   const { submissions } = routeApi.useLoaderData();
   const search = routeApi.useSearch();
@@ -187,7 +188,7 @@ const Featured = () => {
   return (
     <>
       <PageMain layout="app" width="full">
-        <AccountPageHeader title={content.title} intro={content.intro} />
+        <AccountPageHeader title={sections.featured} intro={content.intro} />
         {submissions.length > 0 ? (
           <>
             <section
@@ -233,8 +234,8 @@ const Featured = () => {
           <Empty className="bg-muted/40 rounded-2xl">
             <EmptyHeader>
               <EmptyMedia>
-                <Sparkles
-                  aria-hidden="true"
+                <SectionIcon
+                  section="featured"
                   className="text-muted-foreground size-7"
                 />
               </EmptyMedia>
@@ -280,9 +281,9 @@ export const Route = createFileRoute("/$locale/dashboard/featured")({
   head: ({ params }: LocaleHeadContext) =>
     createMetadata({
       title: getIntlayer(
-        "account-meta",
+        "site-header",
         isLocale(params.locale) ? params.locale : DEFAULT_LOCALE
-      ).featuredTitle,
+      ).featured,
     }),
   // `sponsors` feeds the video overlay's Diamond sidebar row (useSponsors).
   loader: async ({ params }) => {
