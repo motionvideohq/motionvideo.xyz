@@ -785,6 +785,35 @@ media-theme-sutro {
   }
 }
 
+/* shadcn's scroll-fade (shadcn/tailwind.css) masks a scroller's edges by
+   min(12%, 40px), overridable per edge (`scroll-fade-t-8`, …) or for all
+   (`scroll-fade-8`). Its docs leave scrolling into view to the app, so items
+   scrolled to by keyboard (cmdk, menus) would stop half under the fade. Scroll
+   padding of the same size keeps them clear. Unlayered, so it wins over
+   `scroll-py-*` utilities. */
+.scroll-fade,
+.scroll-fade-y {
+  scroll-padding-top: var(
+    --scroll-fade-t-size,
+    var(--scroll-fade-size, min(12%, calc(var(--spacing) * 10)))
+  );
+  scroll-padding-bottom: var(
+    --scroll-fade-b-size,
+    var(--scroll-fade-size, min(12%, calc(var(--spacing) * 10)))
+  );
+}
+
+.scroll-fade-x {
+  scroll-padding-inline-start: var(
+    --scroll-fade-s-size,
+    var(--scroll-fade-size, min(12%, calc(var(--spacing) * 10)))
+  );
+  scroll-padding-inline-end: var(
+    --scroll-fade-e-size,
+    var(--scroll-fade-size, min(12%, calc(var(--spacing) * 10)))
+  );
+}
+
 /* Fade widths for `FadeScroller`; registered so they can transition. */
 @property --fade-start {
   syntax: "<length>";
