@@ -60,8 +60,12 @@ const CommandDialog = ({
 
 const CommandInput = ({
   className,
+  addon,
   ...props
-}: React.ComponentProps<typeof CommandPrimitive.Input>) => (
+}: React.ComponentProps<typeof CommandPrimitive.Input> & {
+  /** Controls at the input's end, inside the same field (e.g. a menu). */
+  addon?: React.ReactNode;
+}) => (
   <div data-slot="command-input-wrapper" className="p-1 pb-0">
     <InputGroup className="border-input/30 bg-input/30 h-8! rounded-lg! shadow-none! *:data-[slot=input-group-addon]:pl-2!">
       <CommandPrimitive.Input
@@ -75,6 +79,7 @@ const CommandInput = ({
       <InputGroupAddon>
         <Search aria-hidden="true" className="size-4 shrink-0 opacity-50" />
       </InputGroupAddon>
+      {addon && <InputGroupAddon align="inline-end">{addon}</InputGroupAddon>}
     </InputGroup>
   </div>
 );

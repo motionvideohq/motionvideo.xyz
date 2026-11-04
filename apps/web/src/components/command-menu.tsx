@@ -1,7 +1,8 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import type { ReactNode } from "react";
 import { useIntlayer, useLocale } from "react-intlayer";
 import { Bezier } from "reicon-react/icons/Bezier";
+import { BookOpen } from "reicon-react/icons/BookOpen";
 import { Briefcase } from "reicon-react/icons/Briefcase";
 import { Code } from "reicon-react/icons/Code";
 import { Designtools } from "reicon-react/icons/Designtools";
@@ -15,10 +16,10 @@ import { Layout } from "reicon-react/icons/Layout";
 import { Lock } from "reicon-react/icons/Lock";
 import { Monitor } from "reicon-react/icons/Monitor";
 import { Moon } from "reicon-react/icons/Moon";
+import { MoreH } from "reicon-react/icons/MoreH";
 import { Office } from "reicon-react/icons/Office";
 import { Play } from "reicon-react/icons/Play";
 import { Plug } from "reicon-react/icons/Plug";
-import { Plus } from "reicon-react/icons/Plus";
 import { ProfileCircle } from "reicon-react/icons/ProfileCircle";
 import { Reply2 } from "reicon-react/icons/Reply2";
 import { Scroll } from "reicon-react/icons/Scroll";
@@ -43,6 +44,15 @@ import {
   CommandList,
   CommandShortcut,
 } from "@/components/ui/command";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuRadioGroup,
+  DropdownMenuRadioItem,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import { InputGroupButton } from "@/components/ui/input-group";
 import { Kbd, KbdGroup } from "@/components/ui/kbd";
 import { LINK } from "@/constants/links";
 import { ROUTES } from "@/constants/routes";
@@ -175,12 +185,34 @@ interface PaletteGroup {
   items: PaletteItem[];
 }
 
+// Sections the search can be narrowed to (the scope menu beside the input).
+// Each one's id is also its label key in command-menu.content.ts.
+const SEARCH_SCOPES = [
+  { id: "videos", Icon: Play },
+  { id: "creators", Icon: ProfileCircle },
+  { id: "moves", Icon: Bezier },
+  { id: "templates", Icon: Layout },
+  { id: "docs", Icon: Docs },
+  { id: "blog", Icon: DocumentText },
+  { id: "changelog", Icon: History },
+  { id: "tools", Icon: Designtools },
+  { id: "creatives", Icon: User2 },
+  { id: "skills", Icon: Sparkles },
+  { id: "extras", Icon: BookOpen },
+] as const;
+
+type SearchScope = (typeof SEARCH_SCOPES)[number]["id"];
+
 export const CommandMenu = () => {
   const content = useIntlayer("command-menu");
   const { locale, setLocale } = useLocale();
   const navigate = useNavigate();
   const [open, setOpen] = useState(false);
   const [query, setQuery] = useState("");
+  // "all": the default palette; a section: only its entries, listed even
+  // before anything is typed.
+  const [scope, setScope] = useState<SearchScope | "all">("all");
+  const inputRef = useRef<HTMLInputElement>(null);
   const [data, setData] = useState(EMPTY_DATA);
   const [index, setIndex] = useState(EMPTY_INDEX);
   const modifier = useIsMac() ? "⌘" : "Ctrl";
@@ -391,7 +423,11 @@ export const CommandMenu = () => {
             content.skills.value,
             <Sparkles aria-hidden="true" />
           ),
-          page("/extras", content.extras.value, <Plus aria-hidden="true" />),
+          page(
+            "/extras",
+            content.extras.value,
+            <BookOpen aria-hidden="true" />
+          ),
           page("/jobs", content.jobs.value, <Briefcase aria-hidden="true" />, [
             "hiring",
             "career",
@@ -554,123 +590,39 @@ export const CommandMenu = () => {
         ],
       },
     ];
-    if (!hasQuery) {
+    if (scope === "all" && !hasQuery) {
       return visible;
     }
-    return [
-      ...visible,
-      {
-        id: "videos",
-        heading: (
-          <span className="flex items-center gap-1.5">
-            <Play aria-hidden="true" className="size-3" />
-            {content.videos.value}
-          </span>
-        ),
-        items: videos,
-      },
-      {
-        id: "creators",
-        heading: (
-          <span className="flex items-center gap-1.5">
-            <ProfileCircle aria-hidden="true" className="size-3" />
-            {content.creators.value}
-          </span>
-        ),
-        items: creators,
-      },
-      {
-        id: "moves",
-        heading: (
-          <span className="flex items-center gap-1.5">
-            <Bezier aria-hidden="true" className="size-3" />
-            {content.moves.value}
-          </span>
-        ),
-        items: moves,
-      },
-      {
-        id: "templates",
-        heading: (
-          <span className="flex items-center gap-1.5">
-            <Layout aria-hidden="true" className="size-3" />
-            {content.templates.value}
-          </span>
-        ),
-        items: templates,
-      },
-      {
-        id: "docs",
-        heading: (
-          <span className="flex items-center gap-1.5">
-            <Docs aria-hidden="true" className="size-3" />
-            {content.docs.value}
-          </span>
-        ),
-        items: docs,
-      },
-      {
-        id: "blog",
-        heading: (
-          <span className="flex items-center gap-1.5">
-            <DocumentText aria-hidden="true" className="size-3" />
-            {content.blog.value}
-          </span>
-        ),
-        items: blogPosts,
-      },
-      {
-        id: "changelog",
-        heading: (
-          <span className="flex items-center gap-1.5">
-            <History aria-hidden="true" className="size-3" />
-            {content.changelog.value}
-          </span>
-        ),
-        items: changelog,
-      },
-      {
-        id: "tools",
-        heading: (
-          <span className="flex items-center gap-1.5">
-            <Designtools aria-hidden="true" className="size-3" />
-            {content.tools.value}
-          </span>
-        ),
-        items: linkItems(data.directories.tool),
-      },
-      {
-        id: "creatives",
-        heading: (
-          <span className="flex items-center gap-1.5">
-            <User2 aria-hidden="true" className="size-3" />
-            {content.creatives.value}
-          </span>
-        ),
-        items: linkItems(data.directories.studio),
-      },
-      {
-        id: "skills",
-        heading: (
-          <span className="flex items-center gap-1.5">
-            <Sparkles aria-hidden="true" className="size-3" />
-            {content.skills.value}
-          </span>
-        ),
-        items: linkItems(data.directories.skill),
-      },
-      {
-        id: "extras",
-        heading: (
-          <span className="flex items-center gap-1.5">
-            <Plus aria-hidden="true" className="size-3" />
-            {content.extras.value}
-          </span>
-        ),
-        items: linkItems(data.directories.extra),
-      },
-    ];
-  }, [data, index, content, navigate, hasQuery, setLocale]);
+    const searchItems: Record<SearchScope, PaletteItem[]> = {
+      videos,
+      creators,
+      moves,
+      templates,
+      docs,
+      blog: blogPosts,
+      changelog,
+      tools: linkItems(data.directories.tool),
+      creatives: linkItems(data.directories.studio),
+      skills: linkItems(data.directories.skill),
+      extras: linkItems(data.directories.extra),
+    };
+    const searchGroups = SEARCH_SCOPES.filter(
+      ({ id }) => scope === "all" || scope === id
+    ).map(({ id, Icon }): PaletteGroup => ({
+      id,
+      heading: (
+        <span className="flex items-center gap-1.5">
+          <Icon aria-hidden="true" className="size-3" />
+          {content[id].value}
+        </span>
+      ),
+      items: searchItems[id],
+    }));
+    return scope === "all" ? [...visible, ...searchGroups] : searchGroups;
+  }, [data, index, content, navigate, hasQuery, scope, setLocale]);
+
+  const ScopeIcon = SEARCH_SCOPES.find(({ id }) => id === scope)?.Icon;
+  const scopeName = scope === "all" ? content.scopeAll : content[scope];
 
   return (
     <>
@@ -702,16 +654,89 @@ export const CommandMenu = () => {
           setOpen(next);
           if (!next) {
             setQuery("");
+            setScope("all");
           }
         }}
         title={content.open.value}
         description={content.placeholder.value}
       >
-        <Command loop>
+        <Command>
           <CommandInput
-            placeholder={content.placeholder.value}
+            ref={inputRef}
+            placeholder={
+              scope === "all"
+                ? content.placeholder.value
+                : content.scopePlaceholder({ section: scopeName.value }).value
+            }
             value={query}
             onValueChange={setQuery}
+            onKeyDown={(event) => {
+              // Backspace in an empty input widens the search back to all.
+              if (
+                event.key === "Backspace" &&
+                query === "" &&
+                scope !== "all"
+              ) {
+                setScope("all");
+              }
+            }}
+            addon={
+              <DropdownMenu>
+                {/* "All" is just the ellipsis; a section shows its name. */}
+                <DropdownMenuTrigger
+                  aria-label={`${content.scopeLabel.value}: ${scopeName.value}`}
+                  render={
+                    <InputGroupButton
+                      size={scope === "all" ? "icon-xs" : "xs"}
+                    />
+                  }
+                >
+                  {ScopeIcon ? (
+                    <>
+                      <ScopeIcon aria-hidden="true" />
+                      {scopeName}
+                    </>
+                  ) : (
+                    <MoreH aria-hidden="true" />
+                  )}
+                </DropdownMenuTrigger>
+                {/* About half the palette's height; the rest scrolls. */}
+                <DropdownMenuContent
+                  align="end"
+                  className="w-44"
+                  finalFocus={inputRef}
+                >
+                  {/* Scrolls inside the popup: the fade is a mask, which on
+                      the popup itself would clip its shadow. `-mx-1 px-1`
+                      spans the popup's padding so the separator reaches its
+                      edges without overflowing. */}
+                  <DropdownMenuRadioGroup
+                    className="scroll-fade-y no-scrollbar -mx-1 max-h-44 overflow-y-auto px-1"
+                    value={scope}
+                    onValueChange={(value) => {
+                      // Anything but a section id (i.e. "all") searches everything.
+                      const next =
+                        SEARCH_SCOPES.find(({ id }) => id === value)?.id ??
+                        "all";
+                      setScope(next);
+                      track("search_scope", { scope: next });
+                    }}
+                  >
+                    <DropdownMenuRadioItem value="all">
+                      <Search aria-hidden="true" />
+                      {content.scopeAll}
+                    </DropdownMenuRadioItem>
+                    <DropdownMenuSeparator />
+                    {SEARCH_SCOPES.map(({ id, Icon }) => (
+                      <DropdownMenuRadioItem key={id} value={id}>
+                        <Icon aria-hidden="true" />
+                        {content[id]}
+                      </DropdownMenuRadioItem>
+                    ))}
+                  </DropdownMenuRadioGroup>
+                </DropdownMenuContent>
+              </DropdownMenu>
+            }
           />
           <CommandList className="scroll-fade-y">
             <CommandEmpty>{content.empty.value}</CommandEmpty>

@@ -1,4 +1,4 @@
-import { t } from "intlayer";
+import { insert, t } from "intlayer";
 import type { Dictionary } from "intlayer";
 
 export default {
@@ -663,6 +663,41 @@ export default {
       de: "schließen",
       pt: "fechar",
       ru: "закрыть",
+    }),
+    // The scope menu beside the search input: everything, or one section.
+    scopeAll: t({
+      en: "All",
+      es: "Todo",
+      fr: "Tout",
+      zh: "全部",
+      ko: "전체",
+      ja: "すべて",
+      de: "Alle",
+      pt: "Tudo",
+      ru: "Всё",
+    }),
+    scopeLabel: t({
+      en: "Search in",
+      es: "Buscar en",
+      fr: "Rechercher dans",
+      zh: "搜索范围",
+      ko: "검색 범위",
+      ja: "検索対象",
+      de: "Suchen in",
+      pt: "Pesquisar em",
+      ru: "Искать в",
+    }),
+    // The input's placeholder once a section is picked, e.g. "Search Moves…".
+    scopePlaceholder: t({
+      en: insert("Search {{section}}…"),
+      es: insert("Buscar en {{section}}…"),
+      fr: insert("Rechercher dans {{section}}…"),
+      zh: insert("搜索{{section}}…"),
+      ko: insert("{{section}} 검색…"),
+      ja: insert("{{section}}を検索…"),
+      de: insert("{{section}} durchsuchen…"),
+      pt: insert("Pesquisar em {{section}}…"),
+      ru: insert("Поиск: {{section}}…"),
     }),
   },
 } satisfies Dictionary;
