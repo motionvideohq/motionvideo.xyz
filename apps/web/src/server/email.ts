@@ -39,3 +39,23 @@ export const sendEmail = async (email: Email): Promise<void> => {
     throw new Error(`Resend responded ${res.status}: ${await res.text()}`);
   }
 };
+
+/**
+ * Removes an email from Resend Contacts (Broadcast lists, unsubscribe state).
+ * A missing Contact is fine: most accounts were never added.
+ */
+export const deleteContact = async (email: string): Promise<void> => {
+  if (!env.RESEND_API_KEY) {
+    return;
+  }
+  const res = await fetch(
+    `https://api.resend.com/contacts/${encodeURIComponent(email)}`,
+    {
+      method: "DELETE",
+      headers: { Authorization: `Bearer ${env.RESEND_API_KEY}` },
+    }
+  );
+  if (!res.ok && res.status !== 404) {
+    throw new Error(`Resend responded ${res.status}: ${await res.text()}`);
+  }
+};

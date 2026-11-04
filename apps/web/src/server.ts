@@ -11,6 +11,7 @@ import {
 import { STATIC_PAGES } from "@/constants/routes";
 import { SITE } from "@/constants/site";
 import { UPLOAD_PATH_PREFIX } from "@/lib/uploads";
+import { deleteExpiredAuthRows } from "@/server/cleanup";
 import { oauthPreflight, withOAuthCors } from "@/server/oauth-cors";
 
 // Durable Object classes must be exported from the Worker entry.
@@ -178,5 +179,9 @@ export default {
       return preflight;
     }
     return withSecurityHeaders(withOAuthCors(request, await route(request)));
+  },
+  // Daily Cron Trigger (wrangler.jsonc `triggers`).
+  async scheduled() {
+    await deleteExpiredAuthRows();
   },
 };

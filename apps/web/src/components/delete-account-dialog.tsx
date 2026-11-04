@@ -1,6 +1,7 @@
+import { useState } from "react";
 import { useIntlayer } from "react-intlayer";
 
-import { buttonVariants } from "@/components/ui/button";
+import { Button, buttonVariants } from "@/components/ui/button";
 import {
   Dialog,
   DialogClose,
@@ -10,11 +11,10 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
-import { LINK } from "@/constants/links";
+import { ROUTES } from "@/constants/routes";
 import { cn } from "@/lib/utils";
+import { deleteMyAccount } from "@/server/account-functions";
 
-// Stub until the account backend lands: explains the manual path instead of
-// deleting anything.
 export const DeleteAccountDialog = ({
   open,
   onOpenChange,
@@ -23,23 +23,61 @@ export const DeleteAccountDialog = ({
   onOpenChange: (open: boolean) => void;
 }) => {
   const content = useIntlayer("site-header");
+  const [deleting, setDeleting] = useState(false);
+  const [error, setError] = useState<"active-subscription" | "failed" | null>(
+    null
+  );
+
+  const onDelete = async () => {
+    setDeleting(true);
+    setError(null);
+    try {
+      const result = await deleteMyAccount();
+      if (!result.ok) {
+        setError(result.error);
+        setDeleting(false);
+        return;
+      }
+      // Full reload: the session is gone, so every cached view resets.
+      window.location.assign(ROUTES.HOME);
+    } catch {
+      setError("failed");
+      setDeleting(false);
+    }
+  };
+
   return (
-    <Dialog open={open} onOpenChange={onOpenChange}>
+    <Dialog
+      open={open}
+      onOpenChange={(next) => {
+        if (!deleting) {
+          setError(null);
+          onOpenChange(next);
+        }
+      }}
+    >
       <DialogContent>
         <DialogHeader>
           <DialogTitle>{content.deleteTitle}</DialogTitle>
           <DialogDescription>{content.deleteDescription}</DialogDescription>
         </DialogHeader>
+        {error ? (
+          <p role="alert" className="text-destructive text-sm">
+            {error === "active-subscription"
+              ? content.deleteActiveSubscription
+              : content.deleteFailed}
+          </p>
+        ) : null}
         <DialogFooter>
-          <DialogClose className={cn(buttonVariants({ variant: "outline" }))}>
+          <DialogClose
+            disabled={deleting}
+            className={cn(buttonVariants({ variant: "outline" }))}
+          >
             {content.cancel}
           </DialogClose>
-          <a
-            href={`mailto:${LINK.EMAIL}?subject=${encodeURIComponent("Delete my MotionVideo account")}`}
-            className={cn(buttonVariants({ variant: "destructive" }))}
-          >
-            {content.deleteContact}
-          </a>
+          <Button variant="destructive" disabled={deleting} onClick={onDelete}>
+            {deleting ? content.deleting : content.deleteConfirm}
+          </Button>
         </DialogFooter>
       </DialogContent>
     </Dialog>

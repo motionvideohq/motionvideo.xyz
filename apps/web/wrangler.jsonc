@@ -7,6 +7,9 @@
   "observability": {
     "enabled": true,
   },
+  // Daily at 03:00 UTC: deletes expired sessions and sign-in codes
+  // (src/server/cleanup.ts). Runs inside this Worker; no build or CI job.
+  "triggers": { "crons": ["0 3 * * *"] },
   // Branch previews: Workers Builds runs `wrangler preview`, which requires
   // this block (empty inherits the top-level settings).
   "previews": {},
