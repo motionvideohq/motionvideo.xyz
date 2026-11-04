@@ -11,8 +11,9 @@ export const Route = createFileRoute("/llms-full.txt")({
   server: {
     handlers: {
       GET: async () => {
+        const docsPages = await englishDocsPages();
         const pages = await Promise.all(
-          englishDocsPages().map(
+          docsPages.map(
             async (page) =>
               `<!-- ${absoluteUrl(docsMarkdownPath(page.url))} -->\n\n${await docsPageMarkdown(page)}`
           )

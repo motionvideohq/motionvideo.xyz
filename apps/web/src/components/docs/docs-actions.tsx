@@ -46,7 +46,7 @@ import { useTransientStatus } from "@/hooks/use-transient-status";
 import { buildDocsEpub } from "@/lib/docs-epub";
 import { cn } from "@/lib/utils";
 
-const EDIT_BASE = `${LINK.GITHUB_REPO}/edit/main/apps/web/content/docs`;
+const EDIT_BASE = `${LINK.GITHUB_REPO}/edit/main/apps/web`;
 const MCP_NAME = "motionvideo";
 
 // Assistants that open a new chat with a prompt from the URL.
@@ -210,7 +210,10 @@ export interface DocsActionsProps {
   description: string;
   /** Page path, e.g. /docs/mcp. */
   url: string;
-  /** Content path of the MDX file, e.g. `mcp.mdx`, for the edit link. */
+  /**
+   * The file the page is built from, relative to apps/web, for the edit
+   * link, e.g. `content/docs/mcp.mdx`.
+   */
   path: string;
   /** Language of the shown page, for the EPUB. */
   lang: string;

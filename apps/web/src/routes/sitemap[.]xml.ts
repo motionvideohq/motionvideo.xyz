@@ -18,6 +18,7 @@ import { COLOR_PAGES } from "@/lib/motion-video-route";
 import { MOVE_FAMILIES } from "@/lib/move-families";
 import { MOVES, movePath } from "@/lib/moves";
 import { PROMPT_TEMPLATES, templatePath } from "@/lib/prompt-templates";
+import { API_REFERENCE_PATHS } from "@/server/openapi";
 
 // Public, canonical pages only: signed-in pages (/dashboard/…), redirects
 // (/studios, /tools/skills), and utility pages (/checkout, /welcome) stay out.
@@ -82,7 +83,8 @@ const PAGES: { lastmod?: string; path: string }[] = [
   ...MOVES.map((move) => ({ path: movePath(move) })),
   { path: ROUTES.TEMPLATES },
   ...PROMPT_TEMPLATES.map((template) => ({ path: templatePath(template) })),
-  // Docs pages (content/docs/*.mdx).
+  // Docs pages (content/docs/*.mdx) and the API reference generated from
+  // src/server/openapi.ts.
   ...[
     ROUTES.DOCS,
     ROUTES.DOCS_MCP,
@@ -91,6 +93,7 @@ const PAGES: { lastmod?: string; path: string }[] = [
     ROUTES.DOCS_TEMPLATES,
     ROUTES.DOCS_PLANS,
     ROUTES.DOCS_API,
+    ...API_REFERENCE_PATHS,
   ].map((path) => ({ path })),
   ...STATIC_PAGES.map((page) => ({ path: page })),
   ...CHANGELOG_ENTRIES.map((entry) => ({

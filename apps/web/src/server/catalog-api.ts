@@ -4,6 +4,10 @@
 // truth. Responses carry an ETag of the exact bytes, so frequent pollers
 // mostly get cheap 304s.
 
+/** Browsers keep a response 5 minutes, shared caches an hour. */
+export const CATALOG_CACHE_CONTROL =
+  "public, max-age=300, s-maxage=3600, stale-while-revalidate=86400";
+
 /** Serves `data` as cached JSON with conditional requests. */
 export const jsonEndpoint = <T>(data: T) => {
   // Serialized and hashed once per isolate, on the first request.
@@ -29,8 +33,7 @@ export const jsonEndpoint = <T>(data: T) => {
     return new Response(body, {
       headers: {
         "Content-Type": "application/json; charset=utf-8",
-        "Cache-Control":
-          "public, max-age=300, s-maxage=3600, stale-while-revalidate=86400",
+        "Cache-Control": CATALOG_CACHE_CONTROL,
         ETag: etag,
       },
     });

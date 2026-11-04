@@ -4,18 +4,20 @@ import type * as PageTree from "fumadocs-core/page-tree";
 import { deserializePageTree } from "fumadocs-core/source/client";
 import { AnchorProvider } from "fumadocs-core/toc";
 import type { TOCItemType } from "fumadocs-core/toc";
-import type { MDXProps } from "mdx/types";
 import { Suspense, useMemo, useRef } from "react";
-import type { FC } from "react";
+import type { ReactNode } from "react";
 import { useIntlayer, useLocale } from "react-intlayer";
 import { ArrowLeft } from "reicon-react/icons/ArrowLeft";
 import { ArrowRight } from "reicon-react/icons/ArrowRight";
 
+import { ApiPage, apiPageToc } from "@/components/docs/api-page";
+import type { ApiPageProps } from "@/components/docs/api-page";
 import { DocsActions } from "@/components/docs/docs-actions";
 import { DocsSidebar } from "@/components/docs/docs-sidebar";
 import { DocsToc, DocsTocCollapsible } from "@/components/docs/docs-toc";
 import { docsMdxComponents } from "@/components/docs/mdx-components";
 import { LocalizedLink as Link } from "@/components/localized-link";
+import { PAGE_TOP } from "@/components/page";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
 import { docsMarkdownPath } from "@/constants/routes";
@@ -32,13 +34,15 @@ export interface DocsLoaderData {
   url: string;
   english: DocsPageVariant;
   translations: Partial<Record<string, DocsPageVariant>>;
+  /** Render props of an API reference page, the same in every locale. */
+  openapi?: ApiPageProps;
 }
 
 interface ArticleProps {
   tree: PageTree.Root;
   url: string;
-  /** Content path of the MDX file, for the edit link. */
-  path: string;
+  /** The file the page is built from, relative to apps/web, for the edit link. */
+  source: string;
   /** Language of the shown file: the URL's locale, or `en` as fallback. */
   lang: string;
 }
@@ -47,19 +51,19 @@ const neighbourClass =
   "group/neighbour bg-card shadow-outline hover:bg-muted/50 focus-visible:ring-ring flex flex-col gap-1 rounded-xl p-4 text-sm transition-colors outline-none focus-visible:ring-2";
 
 const DocsArticle = ({
-  body: Body,
   title,
   description,
   toc,
   tree,
   url,
-  path,
+  source,
   lang,
+  children,
 }: ArticleProps & {
-  body: FC<MDXProps>;
   title: string;
   description: string;
   toc: TOCItemType[];
+  children: ReactNode;
 }) => {
   const content = useIntlayer("docs-layout");
   const { previous, next } = findNeighbour(tree, url);
@@ -70,7 +74,7 @@ const DocsArticle = ({
       title={title}
       description={description}
       url={url}
-      path={path}
+      path={source}
       lang={lang}
       getArticle={() => body.current}
       inline={inline}
@@ -80,7 +84,10 @@ const DocsArticle = ({
     <AnchorProvider toc={toc} single>
       <main
         id="main-content"
-        className="mx-auto flex w-full max-w-180 min-w-0 flex-col gap-8 pt-6 pb-16 lg:pt-10"
+        className={cn(
+          "mx-auto flex w-full max-w-180 min-w-0 flex-col gap-8 pb-16",
+          PAGE_TOP.document
+        )}
       >
         {/* Below xl the contents and actions fold above the article. Below
             lg the docs pages are in the site's menu (the header's Docs
@@ -100,7 +107,7 @@ const DocsArticle = ({
           ref={body}
           className="text-muted-foreground flex min-w-0 flex-col gap-5 leading-7"
         >
-          <Body components={docsMdxComponents} />
+          {children}
         </div>
         {previous || next ? (
           <footer className="border-border mt-4 border-t pt-6 print:hidden">
@@ -165,16 +172,42 @@ const DocsArticle = ({
 // preloaded by the route loader so SSR and navigation render synchronously.
 const docsContent = browserCollections.docs.createClientLoader<ArticleProps>({
   id: "docs",
-  component: ({ default: body, frontmatter, toc }, props) => (
+  component: ({ default: Body, frontmatter, toc }, props) => (
     <DocsArticle
-      body={body}
       title={frontmatter.title}
       description={frontmatter.description}
       toc={toc}
       {...props}
-    />
+    >
+      <Body components={docsMdxComponents} />
+    </DocsArticle>
   ),
 });
+
+const MdxArticle = ({ path, ...props }: ArticleProps & { path: string }) => (
+  <Suspense>{docsContent.useContent(path, props)}</Suspense>
+);
+
+// API reference pages (fumadocs-openapi) have no MDX: the operations render
+// from the OpenAPI document in their props.
+const ApiArticle = ({
+  page,
+  title,
+  description,
+  ...props
+}: ArticleProps & {
+  page: ApiPageProps;
+  title: string;
+  description: string;
+}) => {
+  const content = useIntlayer("docs-layout");
+  const toc = useMemo(() => apiPageToc(page, content.api), [page, content]);
+  return (
+    <DocsArticle title={title} description={description} toc={toc} {...props}>
+      <ApiPage {...page} />
+    </DocsArticle>
+  );
+};
 
 /** Loader shared by /docs and /docs/$: the page in every locale, preloaded. */
 export const loadDocsPage = async (
@@ -184,13 +217,16 @@ export const loadDocsPage = async (
     getLandingData(),
     getDocsPage({ data: slugs }),
   ]);
-  const paths = new Set([page.english.path]);
-  for (const variant of Object.values(page.translations)) {
-    if (variant) {
-      paths.add(variant.path);
+  // API reference pages have no compiled MDX to preload.
+  if (!page.openapi) {
+    const paths = new Set([page.english.path]);
+    for (const variant of Object.values(page.translations)) {
+      if (variant) {
+        paths.add(variant.path);
+      }
     }
+    await Promise.all([...paths].map((path) => docsContent.preload(path)));
   }
-  await Promise.all([...paths].map((path) => docsContent.preload(path)));
   return { signedIn, ...page };
 };
 
@@ -223,12 +259,12 @@ export const DocsPage = ({ data }: { data: DocsLoaderData }) => {
   const { locale } = useLocale();
   const variant = data.translations[locale] ?? data.english;
   const tree = useMemo(() => deserializePageTree(variant.tree), [variant.tree]);
-  const article = docsContent.useContent(variant.path, {
+  const article: ArticleProps = {
     tree,
     url: data.url,
-    path: variant.path,
+    source: variant.source,
     lang: data.translations[locale] ? locale : "en",
-  });
+  };
   return (
     <>
       <div className="contents print:hidden">
@@ -238,7 +274,16 @@ export const DocsPage = ({ data }: { data: DocsLoaderData }) => {
         <aside className="no-scrollbar sticky top-0 max-h-svh self-start overflow-y-auto pt-10 pb-8 max-lg:hidden print:hidden">
           <DocsSidebar tree={tree} />
         </aside>
-        <Suspense>{article}</Suspense>
+        {data.openapi ? (
+          <ApiArticle
+            page={data.openapi}
+            title={variant.title}
+            description={variant.description}
+            {...article}
+          />
+        ) : (
+          <MdxArticle path={variant.path} {...article} />
+        )}
       </div>
       <div className="contents print:hidden">
         <SiteFooter />

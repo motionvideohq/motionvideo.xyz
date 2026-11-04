@@ -1,0 +1,58 @@
+---
+title: Public API
+description: Read-only JSON endpoints for the catalog, directories and moves.
+---
+
+Read-only JSON over HTTPS from `https://motionvideo.xyz`. The endpoints need no key or sign-in. Move prompts are part of Pro: the [Pro MCP tools](/docs/mcp#pro-tools) return them when you sign in with a Pro or Business account.
+
+The whole API is described in an OpenAPI 3.1 document at [`/openapi.json`](/openapi.json). Load it into an API client or a code generator.
+
+## Endpoints
+
+<Cards>
+  <Card
+    title="Get the catalog"
+    href="/docs/api/get-catalog"
+    description="GET /api/catalog: every gallery video with its prompt, model, stack, effort and media URLs."
+  />
+  <Card
+    title="Get the directories"
+    href="/docs/api/get-directories"
+    description="GET /api/catalog/directories: the tools, skills, extras and creatives directories."
+  />
+  <Card
+    title="Get the moves"
+    href="/docs/api/get-moves"
+    description="GET /api/moves: the public part of every move. No prompts."
+  />
+</Cards>
+
+Two plain-text files sit next to them:
+
+| File | Returns |
+| --- | --- |
+| `GET /llms.txt` | A plain-text map of the public site for LLM agents. |
+| `GET /skill.md` | An agent skill that tells a coding agent how to use MotionVideo. |
+
+```bash title="Terminal"
+curl https://motionvideo.xyz/api/catalog
+curl https://motionvideo.xyz/api/moves
+```
+
+## Caching
+
+Every JSON response carries an `ETag`: a quoted hash of the body. Send it back in `If-None-Match` and you get an empty `304 Not Modified` while nothing changed.
+
+Only download the catalog when it changed:
+
+```bash title="Terminal"
+curl -i https://motionvideo.xyz/api/catalog -H 'If-None-Match: "<etag>"'
+```
+
+Send the value exactly as you got it. Lists of ETags, weak `W/` validators and `*` always get the full response.
+
+Responses send `Cache-Control: public, max-age=300, s-maxage=3600, stale-while-revalidate=86400`: a browser may reuse a response for 5 minutes and a shared cache for an hour, so through a cache, new data can take that long to show up.
+
+## From a browser
+
+The endpoints don't send CORS headers, so a web page on another origin can't read them. Call them from a server, a script or an agent.

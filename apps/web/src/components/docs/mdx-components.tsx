@@ -61,7 +61,7 @@ export const DocsLink = ({
 };
 
 /** h2–h4 with the id from remark-heading and a hover anchor link. */
-const Heading = ({
+export const Heading = ({
   as: Tag,
   id,
   className,
