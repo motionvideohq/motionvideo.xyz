@@ -30,6 +30,7 @@ import { Route as LocaleCustomizeRouteImport } from './routes/$locale/customize'
 import { Route as LocaleDashboardRouteImport } from './routes/$locale/dashboard'
 import { Route as LocaleExtrasRouteImport } from './routes/$locale/extras'
 import { Route as LocaleFeaturedRouteImport } from './routes/$locale/featured'
+import { Route as LocaleFilmRouteImport } from './routes/$locale/film'
 import { Route as LocaleListingsRouteImport } from './routes/$locale/listings'
 import { Route as LocaleMotionvideoMcpRouteImport } from './routes/$locale/motionvideo-mcp'
 import { Route as LocaleMotionvideoSkillRouteImport } from './routes/$locale/motionvideo-skill'
@@ -232,6 +233,11 @@ const LocaleExtrasRoute = LocaleExtrasRouteImport.update({
 const LocaleFeaturedRoute = LocaleFeaturedRouteImport.update({
   id: '/featured',
   path: '/featured',
+  getParentRoute: () => LocaleRouteRoute,
+} as any)
+const LocaleFilmRoute = LocaleFilmRouteImport.update({
+  id: '/film',
+  path: '/film',
   getParentRoute: () => LocaleRouteRoute,
 } as any)
 const LocaleListingsRoute = LocaleListingsRouteImport.update({
@@ -773,6 +779,7 @@ export interface FileRoutesByFullPath {
   '/$locale/dashboard': typeof LocaleDashboardRouteWithChildren
   '/$locale/extras': typeof LocaleExtrasRouteWithChildren
   '/$locale/featured': typeof LocaleFeaturedRoute
+  '/$locale/film': typeof LocaleFilmRoute
   '/$locale/listings': typeof LocaleListingsRoute
   '/$locale/motionvideo-mcp': typeof LocaleMotionvideoMcpRoute
   '/$locale/motionvideo-skill': typeof LocaleMotionvideoSkillRoute
@@ -889,6 +896,7 @@ export interface FileRoutesByTo {
   '/$locale/checkout': typeof LocaleCheckoutRoute
   '/$locale/consent': typeof LocaleConsentRoute
   '/$locale/featured': typeof LocaleFeaturedRoute
+  '/$locale/film': typeof LocaleFilmRoute
   '/$locale/listings': typeof LocaleListingsRoute
   '/$locale/motionvideo-mcp': typeof LocaleMotionvideoMcpRoute
   '/$locale/motionvideo-skill': typeof LocaleMotionvideoSkillRoute
@@ -1002,6 +1010,7 @@ export interface FileRoutesById {
   '/$locale/dashboard': typeof LocaleDashboardRouteWithChildren
   '/$locale/extras': typeof LocaleExtrasRouteWithChildren
   '/$locale/featured': typeof LocaleFeaturedRoute
+  '/$locale/film': typeof LocaleFilmRoute
   '/$locale/listings': typeof LocaleListingsRoute
   '/$locale/motionvideo-mcp': typeof LocaleMotionvideoMcpRoute
   '/$locale/motionvideo-skill': typeof LocaleMotionvideoSkillRoute
@@ -1125,6 +1134,7 @@ export interface FileRouteTypes {
     | '/$locale/dashboard'
     | '/$locale/extras'
     | '/$locale/featured'
+    | '/$locale/film'
     | '/$locale/listings'
     | '/$locale/motionvideo-mcp'
     | '/$locale/motionvideo-skill'
@@ -1241,6 +1251,7 @@ export interface FileRouteTypes {
     | '/$locale/checkout'
     | '/$locale/consent'
     | '/$locale/featured'
+    | '/$locale/film'
     | '/$locale/listings'
     | '/$locale/motionvideo-mcp'
     | '/$locale/motionvideo-skill'
@@ -1353,6 +1364,7 @@ export interface FileRouteTypes {
     | '/$locale/dashboard'
     | '/$locale/extras'
     | '/$locale/featured'
+    | '/$locale/film'
     | '/$locale/listings'
     | '/$locale/motionvideo-mcp'
     | '/$locale/motionvideo-skill'
@@ -1632,6 +1644,13 @@ declare module '@tanstack/react-router' {
       path: '/featured'
       fullPath: '/$locale/featured'
       preLoaderRoute: typeof LocaleFeaturedRouteImport
+      parentRoute: typeof LocaleRouteRoute
+    }
+    '/$locale/film': {
+      id: '/$locale/film'
+      path: '/film'
+      fullPath: '/$locale/film'
+      preLoaderRoute: typeof LocaleFilmRouteImport
       parentRoute: typeof LocaleRouteRoute
     }
     '/$locale/listings': {
@@ -2650,6 +2669,7 @@ interface LocaleRouteRouteChildren {
   LocaleDashboardRoute: typeof LocaleDashboardRouteWithChildren
   LocaleExtrasRoute: typeof LocaleExtrasRouteWithChildren
   LocaleFeaturedRoute: typeof LocaleFeaturedRoute
+  LocaleFilmRoute: typeof LocaleFilmRoute
   LocaleListingsRoute: typeof LocaleListingsRoute
   LocaleMotionvideoMcpRoute: typeof LocaleMotionvideoMcpRoute
   LocaleMotionvideoSkillRoute: typeof LocaleMotionvideoSkillRoute
@@ -2690,6 +2710,7 @@ const LocaleRouteRouteChildren: LocaleRouteRouteChildren = {
   LocaleDashboardRoute: LocaleDashboardRouteWithChildren,
   LocaleExtrasRoute: LocaleExtrasRouteWithChildren,
   LocaleFeaturedRoute: LocaleFeaturedRoute,
+  LocaleFilmRoute: LocaleFilmRoute,
   LocaleListingsRoute: LocaleListingsRoute,
   LocaleMotionvideoMcpRoute: LocaleMotionvideoMcpRoute,
   LocaleMotionvideoSkillRoute: LocaleMotionvideoSkillRoute,

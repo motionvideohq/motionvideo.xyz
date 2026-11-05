@@ -62,7 +62,7 @@ Local Cloudflare bindings (D1, R2, Durable Objects, rate limiters) are emulated 
 | Path | What it is |
 | --- | --- |
 | `apps/web` | The MotionVideo site: TanStack Start on Cloudflare Workers, with D1, R2, and Durable Objects |
-| `apps/videos` | Remotion project for the launch and promo videos |
+| `apps/videos` | Remotion project for the launch videos and the OG video |
 | `docs` | Internal planning notes and migration docs |
 
 ### Commands
@@ -108,6 +108,15 @@ If Studio fails because the licensed Timeless font is missing, pull the website 
 
 ```bash
 pnpm --filter @motionvideo/web fonts:pull
+```
+
+The launch film (`src/film`) records the site's real components from the dev-only `/en/film` page. Start `pnpm dev` in `apps/web`, then, in `apps/videos`:
+
+```bash
+pnpm film:capture   # record the 30 fps, half-scale takes
+pnpm film:foley     # render the sound effects (sets up Earshot on first run)
+pnpm film:preview   # out/launch-film-preview.mp4, 960×540
+pnpm film:render    # re-record at 60 fps, then out/launch-film.mp4, 1920×1080
 ```
 
 The video commands are separate from the website build.

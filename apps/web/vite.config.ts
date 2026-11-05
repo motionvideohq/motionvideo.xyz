@@ -18,7 +18,7 @@ const STATIC_ROUTES = LOCALES.flatMap((locale) =>
 
 // Dev-only pages: dropped from the route tree in `vite build`, so neither the
 // route nor its code ships to production.
-const DEV_ONLY_ROUTES = ["showcase"];
+const DEV_ONLY_ROUTES = ["showcase", "film"];
 
 const config = defineConfig(({ command }) => ({
   resolve: { tsconfigPaths: true },

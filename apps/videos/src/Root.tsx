@@ -1,7 +1,8 @@
 import "./index.css";
 import { Composition, Folder } from "remotion";
 import { DURATION, FPS, MotionVideoLaunch } from "./launch/MotionVideoLaunch";
-import { CINEMATIC_DURATION, CINEMATIC_FPS, CinematicLaunch } from "./cinematic/CinematicLaunch";
+import { LaunchFilm, calculateLaunchFilmMetadata } from "./film/LaunchFilm";
+import film from "./film/shots.json";
 import {
   OG_DURATION,
   OG_FPS,
@@ -17,15 +18,26 @@ import {
  */
 export const RemotionRoot = () => (
   <>
-    <Folder name="cinematic">
+    <Folder name="film">
       <Composition
-        id="CinematicLaunch"
-        component={CinematicLaunch}
-        durationInFrames={CINEMATIC_DURATION}
-        fps={CINEMATIC_FPS}
-        width={3840}
-        height={2160}
-        defaultProps={{ samples: 2 }}
+        id="LaunchFilmPreview"
+        component={LaunchFilm}
+        durationInFrames={film.duration * 30}
+        fps={30}
+        width={960}
+        height={540}
+        defaultProps={{ mode: "preview" as const, samples: 2, capture: null }}
+        calculateMetadata={calculateLaunchFilmMetadata}
+      />
+      <Composition
+        id="LaunchFilm"
+        component={LaunchFilm}
+        durationInFrames={film.duration * 60}
+        fps={60}
+        width={1920}
+        height={1080}
+        defaultProps={{ mode: "final" as const, samples: 4, capture: null }}
+        calculateMetadata={calculateLaunchFilmMetadata}
       />
     </Folder>
     <Folder name="launch">

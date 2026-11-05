@@ -1,0 +1,109 @@
+{
+  "duration": 30,
+  "ui": { "width": 1440, "height": 900 },
+  "outro": { "copyAt": 23.6, "logoAt": 26.6, "exit": 0.4 },
+  "shots": [
+    {
+      "id": "gallery",
+      "start": 0,
+      "seconds": 4,
+      "scale": "medium",
+      "mag": 2.2,
+      "push": 0.02,
+      "pitch": 32,
+      "roll": -11,
+      "yaw": 8,
+      "perspective": 1350,
+      "aim": [-0.1, 0.06],
+      "drift": [0.06, -0.012],
+      "turn": 1.2,
+      "focus": [{ "at": 0, "text": "Motion worth making." }]
+    },
+    {
+      "id": "chip",
+      "start": 4,
+      "seconds": 2.5,
+      "scale": "extreme",
+      "mag": 5.5,
+      "push": 0.02,
+      "pitch": 44,
+      "roll": 15,
+      "yaw": -8,
+      "perspective": 1200,
+      "aim": [0.04, 0.04],
+      "drift": [0.04, 0],
+      "turn": -0.8,
+      "focus": [{ "at": 0, "text": "Kinetic type" }]
+    },
+    {
+      "id": "search",
+      "start": 6.5,
+      "seconds": 5.5,
+      "scale": "macro",
+      "mag": 3,
+      "push": 0.02,
+      "pitch": 38,
+      "roll": -13,
+      "yaw": 6,
+      "perspective": 1300,
+      "aim": [-0.08, -0.1],
+      "drift": [0.03, -0.07],
+      "turn": 1,
+      "focus": [
+        { "at": 0, "selector": "[cmdk-input]", "align": "start" },
+        { "at": 3.3, "text": "Motion techniques showreel" }
+      ]
+    },
+    {
+      "id": "prompt",
+      "start": 12,
+      "seconds": 4.5,
+      "scale": "medium",
+      "mag": 2.2,
+      "push": 0.02,
+      "pitch": 33,
+      "roll": 11,
+      "yaw": -9,
+      "perspective": 1400,
+      "aim": [0.02, -0.14],
+      "drift": [-0.02, -0.1],
+      "turn": -1,
+      "focus": [
+        { "at": 0, "text": "Motion techniques showreel" },
+        { "at": 1, "contains": "Create a bold, dynamic" }
+      ]
+    },
+    {
+      "id": "copy",
+      "start": 16.5,
+      "seconds": 2.5,
+      "scale": "extreme",
+      "mag": 6.2,
+      "push": 0.02,
+      "pitch": 47,
+      "roll": -17,
+      "yaw": 11,
+      "perspective": 1150,
+      "aim": [-0.03, 0.03],
+      "drift": [0.03, 0],
+      "turn": 0.6,
+      "focus": [{ "at": 0, "text": "Copy" }]
+    },
+    {
+      "id": "wide",
+      "start": 19,
+      "seconds": 4.6,
+      "scale": "wide",
+      "mag": 1,
+      "push": 0.05,
+      "pitch": 10,
+      "roll": 0,
+      "yaw": 2,
+      "perspective": 2000,
+      "aim": [0, 0.04],
+      "drift": [0, -0.03],
+      "turn": 0.4,
+      "focus": [{ "at": 0, "point": [720, 470] }]
+    }
+  ]
+}

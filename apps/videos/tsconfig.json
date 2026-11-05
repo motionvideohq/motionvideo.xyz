@@ -14,6 +14,14 @@
     ],
     "baseUrl": ".",
     "paths": {
+      "@/components/snap-cn/manifesto": [
+        "./src/components/snap-cn/manifesto.tsx",
+        "./src/launch/licensed-fallback.tsx"
+      ],
+      "@/components/snap-cn/lockup-reveal": [
+        "./src/components/snap-cn/lockup-reveal.tsx",
+        "./src/launch/licensed-fallback.tsx"
+      ],
       "@/*": [
         "./src/*"
       ]
