@@ -1,3 +1,4 @@
+import { ASSETS } from "@/constants/links";
 import { SITE } from "@/constants/site";
 import { absoluteUrl } from "@/constants/url";
 
@@ -10,14 +11,14 @@ const OG_IMAGE = {
   width: "1200",
 } as const;
 
-// Its moving twin (public/og.mp4, rendered by `pnpm og:render` in
+// Its moving twin (ASSETS.VIDEO_OG on R2, rendered by `pnpm og:render` in
 // apps/videos): the same centre with the posters revolving around it, a
 // 12-second silent loop. Platforms that play og:video (Facebook, LinkedIn,
 // Discord, Slack, iMessage…) show it; the rest keep the image.
 const OG_VIDEO = {
   height: "630",
   type: "video/mp4",
-  url: absoluteUrl("/og.mp4"),
+  url: ASSETS.VIDEO_OG,
   width: "1200",
 } as const;
 

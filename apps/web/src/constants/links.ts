@@ -32,5 +32,7 @@ export const ASSETS = {
   // Content-hashed key: R2 serves these immutable, so a new cut gets a new name.
   VIDEO_HERO: `${ASSETS_URL}/videos/motionvideo-launch-4ccff6ecea.mp4`,
   VIDEO_LAUNCH: `${ASSETS_URL}/videos/shadercn-launch.mp4`,
+  // The share video (og:video), rendered by `pnpm og:render` in apps/videos.
+  VIDEO_OG: `${ASSETS_URL}/videos/og-7dfae62675.mp4`,
   VIDEO_SHOWREEL: `${ASSETS_URL}/videos/aniketpawar-reel.mp4`,
 } as const;
