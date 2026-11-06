@@ -603,7 +603,7 @@ export const CommandMenu = () => {
           void ensureData();
           setOpen(true);
         }}
-        className="bg-secondary text-muted-foreground hover:text-foreground focus-visible:ring-ring/50 flex h-8 w-full min-w-0 items-center gap-2 rounded-lg px-3 text-sm transition-colors outline-none hover:bg-[color-mix(in_oklch,var(--secondary),var(--foreground)_5%)] focus-visible:ring-3 max-lg:size-9 max-lg:justify-center max-lg:rounded-full max-lg:px-0 lg:w-56 xl:w-64"
+        className="bg-secondary text-muted-foreground hover:text-foreground focus-visible:ring-ring/50 flex h-8 w-8 min-w-0 shrink-0 items-center gap-2 rounded-lg px-3 text-sm transition-colors outline-none hover:bg-[color-mix(in_oklch,var(--secondary),var(--foreground)_5%)] focus-visible:ring-3 max-lg:justify-center max-lg:rounded-full max-lg:px-0 lg:w-56 xl:w-64"
       >
         <Search aria-hidden="true" className="size-4" />
         <span className="hidden flex-1 truncate text-left lg:inline">

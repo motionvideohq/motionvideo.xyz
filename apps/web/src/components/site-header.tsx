@@ -86,7 +86,7 @@ const mobileLinkClass =
   "text-muted-foreground hover:text-foreground [&[aria-current=page]]:text-foreground focus-visible:ring-ring flex items-center gap-3 rounded-md py-2 text-2xl font-semibold tracking-tight transition-colors outline-none focus-visible:ring-2";
 const mobileSubLinkClass = cn(mobileLinkClass, "pl-5 [&>svg]:size-5");
 const roundIconClass =
-  "bg-secondary text-muted-foreground hover:text-foreground focus-visible:ring-ring/50 flex size-9 items-center justify-center rounded-full transition-colors outline-none hover:bg-[color-mix(in_oklch,var(--secondary),var(--foreground)_5%)] focus-visible:ring-3";
+  "bg-secondary text-muted-foreground hover:text-foreground focus-visible:ring-ring/50 flex size-8 items-center justify-center rounded-full transition-colors outline-none hover:bg-[color-mix(in_oklch,var(--secondary),var(--foreground)_5%)] focus-visible:ring-3";
 
 /** The header's CTA: the Pro page, with plans and prices. */
 const GetProLink = ({
@@ -288,7 +288,9 @@ const MobileMenu = () => {
           aria-label={content.navigation.value}
           className="bg-background text-foreground fixed inset-0 z-50 flex flex-col overflow-y-auto px-4 pt-3 pb-[max(1.5rem,env(safe-area-inset-bottom))] transition-opacity duration-200 outline-none data-ending-style:opacity-0 data-starting-style:opacity-0"
         >
-          <div className="flex items-center justify-between">
+          {/* 36px tall bar (the old 36px button's box), so the 32px close
+              button does not pull the nav up by 4px. */}
+          <div className="flex h-9 items-center justify-between">
             <Brand />
             <Dialog.Close
               aria-label={content.closeMenu.value}
@@ -307,11 +309,11 @@ const MobileMenu = () => {
               >
                 {content.explore}
                 {/* Centred on the close button's icon: the trigger ends at the
-                    popup's padding, and the 36px round button centres its icon
-                    18px in, so the 20px chevron gets an 8px inset. */}
+                    popup's padding, and the 32px round button centres its icon
+                    16px in, so the 16px chevron gets an 8px inset. */}
                 <ChevronDown
                   aria-hidden="true"
-                  className="me-2 size-5 transition-transform group-data-panel-open:rotate-180"
+                  className="me-2 size-4 transition-transform group-data-panel-open:rotate-180"
                 />
               </CollapsibleTrigger>
               <CollapsibleContent className="flex flex-col">
@@ -351,7 +353,7 @@ const MobileMenu = () => {
                 {content.docs}
                 <ChevronDown
                   aria-hidden="true"
-                  className="me-2 size-5 transition-transform group-data-panel-open:rotate-180"
+                  className="me-2 size-4 transition-transform group-data-panel-open:rotate-180"
                 />
               </CollapsibleTrigger>
               <CollapsibleContent className="flex flex-col">
@@ -393,11 +395,10 @@ const MobileMenu = () => {
 // The header's frame, shared with BrandHeader so the logo lands on the same
 // spot on every page.
 const headerFrameClass = "mx-auto w-full max-w-[1800px] px-4 py-3 sm:px-6";
-// The header's row height: below lg the 36px menu button sets it, from lg the
-// 32px controls do. A fixed grid row (not left to the tallest control), so
-// BrandHeader can match it exactly at every width.
-const headerRowClass =
-  "grid grid-rows-[2.25rem] items-center lg:grid-rows-[2rem]";
+// The header's row height: every control is 32px, so the row is too at every
+// width. A fixed grid row (not left to the tallest control), so BrandHeader
+// can match it exactly.
+const headerRowClass = "grid grid-rows-[2rem] items-center";
 
 // One header for every page. Left: brand + navigation menu. Right: search,
 // Get Pro, and account. Mobile: brand left; search, avatar, menu right.
