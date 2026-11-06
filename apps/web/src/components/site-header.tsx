@@ -288,12 +288,11 @@ const MobileMenu = () => {
           aria-label={content.navigation.value}
           className="bg-background text-foreground fixed inset-0 z-50 flex flex-col overflow-y-auto px-4 pt-3 pb-[max(1.5rem,env(safe-area-inset-bottom))] transition-opacity duration-200 outline-none data-ending-style:opacity-0 data-starting-style:opacity-0"
         >
-          {/* 36px tall bar (the old 36px button's box), so the 32px close
-              button does not pull the nav up by 4px. shrink-0 keeps the
-              dialog's flex column from squeezing the bar to 32px when the
-              list overflows (Explore open), which shifted the nav between
-              pages. */}
-          <div className="flex h-9 shrink-0 items-center justify-between">
+          {/* 32px, same as the header's controls, so the close button lands on
+              the menu button it replaces. shrink-0 keeps the dialog's flex
+              column from squeezing this bar when the list overflows, and the
+              nav's mt-9 holds the list at the same 80px as the 36px bar did. */}
+          <div className="flex h-8 shrink-0 items-center justify-between">
             <Brand />
             <Dialog.Close
               aria-label={content.closeMenu.value}
@@ -304,7 +303,7 @@ const MobileMenu = () => {
           </div>
           <nav
             aria-label={content.navigation.value}
-            className="mt-8 flex flex-col"
+            className="mt-9 flex flex-col"
           >
             <Collapsible defaultOpen={section === "explore"}>
               <CollapsibleTrigger
