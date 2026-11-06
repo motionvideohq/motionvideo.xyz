@@ -486,7 +486,7 @@ const GalleryIntro = ({
 const Gallery = () => {
   const content = useIntlayer("motion-gallery");
   const creatorContent = useIntlayer("motion-creator");
-  const { signedIn, jobs } = routeApi.useLoaderData();
+  const { jobs } = routeApi.useLoaderData();
   const routeSearch = routeApi.useSearch();
   const videoGallery = useVideoGalleryContext();
   const navigate = useNavigate();
@@ -629,7 +629,7 @@ const Gallery = () => {
 
   return (
     <>
-      <SiteHeader signedIn={signedIn} />
+      <SiteHeader />
       <CollectionToolbar label={content.browse.value}>
         <FadeScroller
           label={content.filterCategory.value}

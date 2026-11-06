@@ -86,11 +86,11 @@ const SponsorLink = ({ sponsor }: { sponsor: FoundingSponsor }) => (
 
 const Sponsor = () => {
   const content = useIntlayer("sponsor");
-  const { signedIn, sponsors, soldOutTiers } = routeApi.useLoaderData();
+  const { sponsors, soldOutTiers } = routeApi.useLoaderData();
 
   return (
     <>
-      <SiteHeader signedIn={signedIn} />
+      <SiteHeader />
       {/* Landing layout, like the MCP, Skill and Pro pages. */}
       <PageMain layout="landing" width="full" className="items-center">
         <HeroHeader

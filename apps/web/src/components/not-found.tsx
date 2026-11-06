@@ -14,7 +14,7 @@ export const NotFound = () => {
   const { locale } = useLocale();
   return (
     <>
-      <SiteHeader signedIn={false} />
+      <SiteHeader />
       <main
         id="main-content"
         className="mx-auto flex w-full max-w-3xl flex-1 flex-col items-center justify-center gap-10 px-6 py-16 text-center sm:py-24"

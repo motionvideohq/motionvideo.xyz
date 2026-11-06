@@ -8,7 +8,7 @@ import { SiteHeader } from "@/components/site-header";
 // child routes keep their own URLs, e.g. /terms.
 const PagesLayout = () => (
   <>
-    <SiteHeader signedIn={false} />
+    <SiteHeader />
     <PageMain layout="document" width="narrow">
       <Outlet />
     </PageMain>

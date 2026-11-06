@@ -142,15 +142,16 @@ const SoundItem = ({ label }: { label: ReactNode }) => {
 
 /**
  * Session, theme, and sign-out shared by the desktop account
- * popover and the mobile site menu. `initialSignedIn` (from the page loader)
- * is only used until the client session has loaded.
+ * popover and the mobile site menu. The session is read on the client, so the
+ * header never waits on a loader (or a page) for it.
  */
-export const useAccount = (initialSignedIn = false) => {
+export const useAccount = () => {
   const session = useSession();
   const router = useRouter();
   const navigate = useNavigate();
   const user = session.isPending ? undefined : session.data?.user;
-  const signedIn = session.isPending ? initialSignedIn : Boolean(user);
+  const signedIn = !session.isPending && Boolean(user);
+  const pending = session.isPending;
   // Menus remount on every open, so lazy init resyncs without effects.
   const [dark, setDark] = useState(
     () =>
@@ -173,31 +174,27 @@ export const useAccount = (initialSignedIn = false) => {
     }
   };
 
-  return { signedIn, user, dark, onToggleTheme, signOut };
+  return { pending, signedIn, user, dark, onToggleTheme, signOut };
 };
 
 /**
  * Header avatar. Always opens the account popover: featured + bookmarks,
  * sponsorships, a settings page link, theme, sounds, and socials in labeled
  * rows; a gradient sign-in button (log out at the same spot when signed in)
- * closes the menu. `signedIn` from the page loader is only used until the
- * client session has loaded.
+ * closes the menu. It reads the session itself, so it never blocks on a page
+ * loader; a skeleton stands in until the session answers.
  */
-export const AccountMenu = ({
-  signedIn: initialSignedIn = false,
-}: {
-  signedIn?: boolean;
-}) => {
+export const AccountMenu = () => {
   const content = useIntlayer("site-header");
-  const { signedIn, user, dark, onToggleTheme, signOut } =
-    useAccount(initialSignedIn);
+  const { pending, signedIn, user, dark, onToggleTheme, signOut } =
+    useAccount();
   const signInDialog = useSignInDialog();
   const feedbackDialog = useFeedbackDialog();
   const feedbackContent = useIntlayer("feedback-dialog");
   const keyboardShortcuts = useKeyboardShortcuts();
   const avatar = (
     <ClientOnly fallback={avatarLoading}>
-      <AvatarImage photo={user?.image} />
+      {pending ? avatarLoading : <AvatarImage photo={user?.image} />}
     </ClientOnly>
   );
 

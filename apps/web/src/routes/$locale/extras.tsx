@@ -1,8 +1,4 @@
-import {
-  createFileRoute,
-  getRouteApi,
-  useParams,
-} from "@tanstack/react-router";
+import { createFileRoute, useParams } from "@tanstack/react-router";
 
 import { ResourceDirectory } from "@/components/resource-directory";
 import { SiteFooter } from "@/components/site-footer";
@@ -10,15 +6,12 @@ import { SiteHeader } from "@/components/site-header";
 import { directorySearch, findDirectoryCategory } from "@/lib/directories";
 import { getLandingData } from "@/server/functions";
 
-const routeApi = getRouteApi("/$locale/extras");
-
 const Extras = () => {
-  const { signedIn } = routeApi.useLoaderData();
   const { category } = useParams({ strict: false });
 
   return (
     <>
-      <SiteHeader signedIn={signedIn} />
+      <SiteHeader />
       <ResourceDirectory
         kind="extra"
         category={findDirectoryCategory("extra", category)}

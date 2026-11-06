@@ -39,7 +39,6 @@ const CreatorAvatar = ({ src }: { src: string }) => {
 };
 
 const Creators = () => {
-  const { signedIn } = Route.useLoaderData();
   const content = useIntlayer("creator-directory");
   const sections = useIntlayer("site-header");
   const { locale } = useLocale();
@@ -58,7 +57,7 @@ const Creators = () => {
 
   return (
     <>
-      <SiteHeader signedIn={signedIn} />
+      <SiteHeader />
       <PageMain layout="app" width="full">
         <PageHeader
           title={sections.creators.value}

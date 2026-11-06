@@ -28,7 +28,7 @@ import { AGENTS, RENDERERS } from "@/constants/stack";
 import { cn } from "@/lib/utils";
 import { planJsonLd } from "@/seo/json-ld";
 import { createMetadata } from "@/seo/metadata";
-import { getLandingData } from "@/server/functions";
+import { getLandingData, getSessionFlag } from "@/server/functions";
 import { getMoveCards } from "@/server/move-functions";
 import { getMyPlan, getParityOffer } from "@/server/plan-functions";
 
@@ -124,7 +124,7 @@ const Pro = () => {
 
   return (
     <>
-      <SiteHeader signedIn={signedIn} />
+      <SiteHeader />
       <PageMain layout="landing" width="full" className="items-center">
         <HeroHeader
           title={
@@ -296,13 +296,14 @@ export const Route = createFileRoute("/$locale/pro")({
     return { billing: billing === "monthly" ? undefined : billing };
   },
   loader: async () => {
-    const [landing, access, cards, parity] = await Promise.all([
+    const [landing, access, cards, parity, signedIn] = await Promise.all([
       getLandingData(),
       getMyPlan(),
       getMoveCards(),
       getParityOffer(),
+      getSessionFlag(),
     ]);
-    return { ...landing, access, cards, parity };
+    return { ...landing, access, cards, parity, signedIn };
   },
   head: ({ params }: LocaleHeadContext) => ({
     ...createMetadata({

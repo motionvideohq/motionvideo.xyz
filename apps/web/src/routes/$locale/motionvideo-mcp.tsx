@@ -144,12 +144,12 @@ const Conversation = ({ demo }: { demo: McpDemo }) => {
 };
 
 const McpLanding = () => {
-  const { signedIn, demo } = routeApi.useLoaderData();
+  const { demo } = routeApi.useLoaderData();
   const content = useIntlayer("mcp-landing");
 
   return (
     <>
-      <SiteHeader signedIn={signedIn} />
+      <SiteHeader />
       <PageMain layout="landing" width="full">
         <div className="mx-auto flex w-full max-w-5xl flex-col gap-12">
           {/* Equal halves, as on the Skill page, so both heroes split at the

@@ -38,7 +38,7 @@ const Admin = () => {
 
   return (
     <>
-      <SiteHeader signedIn />
+      <SiteHeader />
       <main
         id="main-content"
         className="mx-auto flex w-full max-w-5xl flex-1 flex-col gap-6 px-4 pt-6 pb-16 sm:px-6"

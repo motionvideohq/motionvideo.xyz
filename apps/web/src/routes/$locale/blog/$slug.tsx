@@ -33,7 +33,7 @@ const BlogPostPage = () => {
   const others = BLOG_POSTS.filter((entry) => entry.url !== post.url);
   return (
     <>
-      <SiteHeader signedIn={false} />
+      <SiteHeader />
       <PageMain layout="document" width="narrow">
         <article className="flex flex-col gap-8">
           <header className="flex flex-col gap-4">

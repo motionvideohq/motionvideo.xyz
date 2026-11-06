@@ -13,15 +13,17 @@ import { sendEmail } from "./email";
 import { planAccessFor } from "./plans";
 import { liveSponsors } from "./sponsorships";
 
-// Every page with sponsor placements loads this; `useSponsors` reads it.
+// Every page with sponsor placements loads this; `useSponsors` reads it. The
+// signed-in flag is deliberately not part of it: the header reads the session
+// on the client, so rendering a page (and its nav) never waits on auth. Pages
+// that gate content ask for it with `getSessionFlag`.
 export const getLandingData = createServerFn({ method: "GET" }).handler(
-  async () => {
-    const [session, sponsors] = await Promise.all([
-      getCurrentSession(),
-      liveSponsors(),
-    ]);
-    return { signedIn: session !== null, sponsors };
-  }
+  async () => ({ sponsors: await liveSponsors() })
+);
+
+/** Only for pages that gate content on the session (moves, templates, plans). */
+export const getSessionFlag = createServerFn({ method: "GET" }).handler(
+  async () => (await getCurrentSession()) !== null
 );
 
 /**

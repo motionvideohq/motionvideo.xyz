@@ -1,4 +1,4 @@
-import { createFileRoute, getRouteApi } from "@tanstack/react-router";
+import { createFileRoute } from "@tanstack/react-router";
 import { getIntlayer } from "intlayer";
 import { useIntlayer } from "react-intlayer";
 import { ArrowRight } from "reicon-react/icons/ArrowRight";
@@ -25,10 +25,7 @@ import { faqJsonLd } from "@/seo/json-ld";
 import { createMetadata } from "@/seo/metadata";
 import { getLandingData } from "@/server/functions";
 
-const routeApi = getRouteApi("/$locale/motionvideo-skill");
-
 const Landing = () => {
-  const { signedIn } = routeApi.useLoaderData();
   const content = useIntlayer("landing");
   const { faqs } = useIntlayer("faqs");
   const { features } = useIntlayer("features");
@@ -36,7 +33,7 @@ const Landing = () => {
 
   return (
     <>
-      <SiteHeader signedIn={signedIn} />
+      <SiteHeader />
       <PageMain layout="landing" width="full">
         <div className="mx-auto flex w-full max-w-5xl flex-col gap-12">
           {/* Equal halves, as on the MCP page, so both heroes split at the

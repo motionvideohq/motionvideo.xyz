@@ -11,8 +11,8 @@ import { getJobs } from "@/server/job-functions";
 const routeApi = getRouteApi("/$locale/jobs/$type");
 
 const JobsOfType = () => {
-  const { signedIn, jobs, type } = routeApi.useLoaderData();
-  return <JobsBoard signedIn={signedIn} jobs={jobs} type={type} />;
+  const { jobs, type } = routeApi.useLoaderData();
+  return <JobsBoard jobs={jobs} type={type} />;
 };
 
 // /jobs/full-time, /jobs/part-time, /jobs/contract, /jobs/freelance. Unknown

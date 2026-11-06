@@ -26,10 +26,8 @@ import { cn } from "@/lib/utils";
 import { createMetadata } from "@/seo/metadata";
 import { getDocsPage } from "@/server/docs-functions";
 import type { DocsPageVariant } from "@/server/docs-functions";
-import { getLandingData } from "@/server/functions";
 
 export interface DocsLoaderData {
-  signedIn: boolean;
   /** Path of the page, e.g. /docs/mcp. */
   url: string;
   english: DocsPageVariant;
@@ -213,10 +211,7 @@ const ApiArticle = ({
 export const loadDocsPage = async (
   slugs: string[]
 ): Promise<DocsLoaderData> => {
-  const [{ signedIn }, page] = await Promise.all([
-    getLandingData(),
-    getDocsPage({ data: slugs }),
-  ]);
+  const page = await getDocsPage({ data: slugs });
   // API reference pages have no compiled MDX to preload.
   if (!page.openapi) {
     const paths = new Set([page.english.path]);
@@ -227,7 +222,7 @@ export const loadDocsPage = async (
     }
     await Promise.all([...paths].map((path) => docsContent.preload(path)));
   }
-  return { signedIn, ...page };
+  return page;
 };
 
 export const docsHead = (data: DocsLoaderData | undefined) => {
@@ -268,7 +263,7 @@ export const DocsPage = ({ data }: { data: DocsLoaderData }) => {
   return (
     <>
       <div className="contents print:hidden">
-        <SiteHeader signedIn={data.signedIn} />
+        <SiteHeader />
       </div>
       <div className="grid w-full flex-1 px-4 sm:px-6 lg:grid-cols-[15rem_minmax(0,1fr)] lg:gap-x-10 xl:grid-cols-[15rem_minmax(0,1fr)_15rem]">
         <aside className="no-scrollbar sticky top-0 max-h-svh self-start overflow-y-auto pt-10 pb-8 max-lg:hidden print:hidden">

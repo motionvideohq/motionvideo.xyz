@@ -24,11 +24,9 @@ import type { JobListing } from "@/server/job-functions";
 // Same shell as Tools, Skills and Extras: type chips, then the masonry with
 // the intro tile first and the sponsored tile in the first row.
 export const JobsBoard = ({
-  signedIn,
   jobs,
   type,
 }: {
-  signedIn: boolean;
   jobs: JobListing[];
   /** The type page being shown; `undefined` on /jobs. */
   type: JobType | undefined;
@@ -82,7 +80,7 @@ export const JobsBoard = ({
 
   return (
     <>
-      <SiteHeader signedIn={signedIn} />
+      <SiteHeader />
       <CollectionToolbar>
         <FadeScroller
           label={content.filterType.value}

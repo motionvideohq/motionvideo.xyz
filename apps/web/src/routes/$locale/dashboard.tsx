@@ -10,7 +10,7 @@ import { createMetadata } from "@/seo/metadata";
 // pages themselves own their headings and content.
 const DashboardLayout = () => (
   <>
-    <SiteHeader signedIn />
+    <SiteHeader />
     <Outlet />
     <SiteFooter />
   </>

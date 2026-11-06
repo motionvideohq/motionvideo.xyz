@@ -10,8 +10,8 @@ import { getJobs } from "@/server/job-functions";
 const routeApi = getRouteApi("/$locale/jobs/");
 
 const Jobs = () => {
-  const { signedIn, jobs } = routeApi.useLoaderData();
-  return <JobsBoard signedIn={signedIn} jobs={jobs} type={undefined} />;
+  const { jobs } = routeApi.useLoaderData();
+  return <JobsBoard jobs={jobs} type={undefined} />;
 };
 
 export const Route = createFileRoute("/$locale/jobs/")({

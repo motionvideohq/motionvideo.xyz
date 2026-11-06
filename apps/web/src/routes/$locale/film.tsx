@@ -141,7 +141,7 @@ const Film = () => {
 
   return (
     <>
-      <SiteHeader signedIn={false} />
+      <SiteHeader />
       <CollectionToolbar label={content.browse.value}>
         <FadeScroller
           label={content.filterCategory.value}

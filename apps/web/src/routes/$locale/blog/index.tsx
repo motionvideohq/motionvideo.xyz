@@ -21,7 +21,7 @@ const Blog = () => {
   const { covers } = Route.useLoaderData();
   return (
     <>
-      <SiteHeader signedIn={false} />
+      <SiteHeader />
       <PageMain layout="document" width="narrow">
         <PageHeader
           title={sections.blog.value}

@@ -405,9 +405,9 @@ const headerRowClass = "grid grid-rows-[2rem] items-center";
 // One header for every page. Left: brand + navigation menu. Right: search,
 // Get Pro, and account. Mobile: brand left; search, avatar, menu right.
 // The online count sits before search (number only on phones).
-// `signedIn` (from the page loader) only covers the first render; the account
-// menu follows the client session after that.
-export const SiteHeader = ({ signedIn }: { signedIn?: boolean }) => (
+// The account chip reads the session on the client, so nothing here waits on
+// a page loader.
+export const SiteHeader = () => (
   <header
     className={cn(
       headerFrameClass,
@@ -425,7 +425,7 @@ export const SiteHeader = ({ signedIn }: { signedIn?: boolean }) => (
       <div className="max-md:hidden">
         <GetProLink variant="gradient" />
       </div>
-      <AccountMenu signedIn={signedIn} />
+      <AccountMenu />
       {/* Below lg one menu holds sections, account, and preferences. */}
       <div className="lg:hidden">
         <MobileMenu />

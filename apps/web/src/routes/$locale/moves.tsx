@@ -24,7 +24,7 @@ import type { MasonryItem } from "@/components/virtual-masonry";
 import { ROUTES } from "@/constants/routes";
 import { MOVE_FAMILIES, findMoveFamily } from "@/lib/move-families";
 import { movesIn } from "@/lib/moves";
-import { getLandingData } from "@/server/functions";
+import { getLandingData, getSessionFlag } from "@/server/functions";
 import { getMoveCards } from "@/server/move-functions";
 
 const routeApi = getRouteApi("/$locale/moves");
@@ -37,7 +37,7 @@ const routeApi = getRouteApi("/$locale/moves");
  */
 const Moves = () => {
   const content = useIntlayer("moves");
-  const { signedIn, cards } = routeApi.useLoaderData();
+  const { cards } = routeApi.useLoaderData();
   const params = useParams({ strict: false });
   const openSlug = params.slug;
   // The URL's family is the grid, except under an open move, whose URL names
@@ -92,7 +92,7 @@ const Moves = () => {
 
   return (
     <>
-      <SiteHeader signedIn={signedIn} />
+      <SiteHeader />
       <CollectionToolbar label={content.browse.value}>
         <FadeScroller
           label={content.families.value}
@@ -136,10 +136,11 @@ const Moves = () => {
 export const Route = createFileRoute("/$locale/moves")({
   component: Moves,
   loader: async () => {
-    const [landing, cards] = await Promise.all([
+    const [landing, cards, signedIn] = await Promise.all([
       getLandingData(),
       getMoveCards(),
+      getSessionFlag(),
     ]);
-    return { ...landing, cards };
+    return { ...landing, cards, signedIn };
   },
 });
