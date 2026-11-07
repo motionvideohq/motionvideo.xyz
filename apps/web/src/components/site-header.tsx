@@ -113,7 +113,10 @@ type Section = MenuName | "moves" | "templates" | "docs" | null;
 
 /** Which menu or docs link holds the current page, to mark it. */
 const useCurrentSection = (): Section => {
-  const inGallery = useMatch({ from: "/$locale/_gallery", shouldThrow: false });
+  const inGallery = useMatch({
+    from: "/{-$locale}/_gallery",
+    shouldThrow: false,
+  });
   // App paths: section routes are compared without the locale prefix.
   const pathname = useRouterState({
     select: (state) => getPathWithoutLocale(state.location.pathname),

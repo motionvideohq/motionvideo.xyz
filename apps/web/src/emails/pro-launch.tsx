@@ -21,7 +21,7 @@ export const proLaunchSubject = `${SITE.NAME} Pro is here`;
 // `{{{FIRST_NAME|there}}}` and `{{{RESEND_UNSUBSCRIBE_URL}}}` are filled in by
 // Resend per Contact.
 
-const url = (path: string) => `${SITE_ORIGIN}/en${path}`;
+const url = (path: string) => `${SITE_ORIGIN}${path}`;
 
 const ProLaunchEmail = () => (
   <EmailLayout

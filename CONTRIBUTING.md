@@ -110,7 +110,7 @@ If Studio fails because the licensed Timeless font is missing, pull the website 
 pnpm --filter @motionvideo/web fonts:pull
 ```
 
-The launch film (`src/film`) records the site's real components from the dev-only `/en/film` page. Start `pnpm dev` in `apps/web`, then, in `apps/videos`:
+The launch film (`src/film`) records the site's real components from the dev-only `/film` page. Start `pnpm dev` in `apps/web`, then, in `apps/videos`:
 
 ```bash
 pnpm film:capture   # record the 30 fps, half-scale takes

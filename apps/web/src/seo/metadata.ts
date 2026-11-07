@@ -40,7 +40,7 @@ export const createMetadata = ({
     : `${SITE.NAME}: ${SITE.TAGLINE}`;
 
   // Canonical, hreflang, og:locale, og:url and robots are set on the locale
-  // layout (src/routes/$locale/route.tsx), where the current pathname, prefix
+  // layout (src/routes/{-$locale}/route.tsx), where the current pathname, prefix
   // and the routes' `staticData.noIndex` are known for every page.
   return {
     meta: [

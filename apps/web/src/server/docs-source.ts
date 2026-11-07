@@ -14,7 +14,7 @@ import { openApiDocument } from "./openapi";
 // Server only: the compiled content/docs collection (see source.config.ts)
 // plus the API reference generated from src/server/openapi.ts. Docs locales
 // are the site's locales. Fumadocs URLs stay unprefixed (`/docs/<slug>`);
-// links add the `/$locale` prefix when they render. A translation is
+// links add the `/{-$locale}` prefix when they render. A translation is
 // `name.<locale>.mdx` next to the English file; a locale without one falls
 // back to English. API reference pages are the same in every locale.
 export const docsI18n = defineI18n({

@@ -1,4 +1,4 @@
-// Every app path, unprefixed; links add the `/$locale` prefix. `$name`
+// Every app path, unprefixed; links add the `/{-$locale}` prefix. `$name`
 // segments are router params (`to={ROUTES.VIDEO} params={{ slug }}`).
 export const ROUTES = {
   ABOUT: "/about",

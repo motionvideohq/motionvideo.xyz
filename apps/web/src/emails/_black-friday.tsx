@@ -43,7 +43,7 @@ export const LAST_DAY = new Intl.DateTimeFormat("en-US", {
 
 /** The plans page on annual, tagged with the email it came from. */
 export const plansUrl = (email: string) =>
-  `${SITE_ORIGIN}/en${ROUTES.PRO}?billing=annual&utm_source=email&utm_medium=email&utm_campaign=black-friday-${email}`;
+  `${SITE_ORIGIN}${ROUTES.PRO}?billing=annual&utm_source=email&utm_medium=email&utm_campaign=black-friday-${email}`;
 
 const salePrice = (cents: number) =>
   formatUsd(Math.round((cents * (100 - offer.percentOff)) / 100));
@@ -84,14 +84,14 @@ export const ProIncludes = () => (
   <List>
     <Item>
       Every move in the{" "}
-      <InlineLink href={`${SITE_ORIGIN}/en${ROUTES.MOVES}`}>
+      <InlineLink href={`${SITE_ORIGIN}${ROUTES.MOVES}`}>
         Moves library
       </InlineLink>
       , with its copy-ready prompt
     </Item>
     <Item>
       Every{" "}
-      <InlineLink href={`${SITE_ORIGIN}/en${ROUTES.TEMPLATES}`}>
+      <InlineLink href={`${SITE_ORIGIN}${ROUTES.TEMPLATES}`}>
         prompt template
       </InlineLink>
       , with its full prompt and the customizer

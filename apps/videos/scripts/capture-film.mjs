@@ -5,7 +5,7 @@ import { chromium } from "playwright";
 import film from "../src/film/shots.json" with { type: "json" };
 
 // Records the launch film's takes from the site's real components: the
-// dev-only stage at apps/web/src/routes/$locale/film.tsx (run `pnpm dev` in
+// dev-only stage at apps/web/src/routes/{-$locale}/film.tsx (run `pnpm dev` in
 // apps/web first). Each frame is a pure function of time: the fake clock
 // is installed before navigation, CSS animations and videos are seeked by
 // hand, and the UI is driven through `window.__film` and element.click().
@@ -25,7 +25,7 @@ const fps = final ? 60 : 30;
 // Output frame height over 1080: the preview renders 960×540.
 const outputScale = final ? 1 : 0.5;
 const contextScale = 1.5 * outputScale;
-const url = process.env.FILM_URL ?? "http://localhost:3000/en/film";
+const url = process.env.FILM_URL ?? "http://localhost:3000/film";
 const { width: W, height: H } = film.ui;
 const dir = path.join(root, "public/film", mode);
 const metaPath = path.join(dir, "capture.json");

@@ -33,7 +33,7 @@ const variantOf = async (
   tree: await source.serializePageTree(source.getPageTree(locale)),
 });
 
-// The page at /$locale/docs/<slugs> in English plus every locale with
+// The page at /{-$locale}/docs/<slugs> in English plus every locale with
 // translated docs (this page or any other, since the sidebar lists every
 // title). The client picks the URL's locale with `useLocale()` and falls back
 // to English. API reference pages are the same in every locale, so their

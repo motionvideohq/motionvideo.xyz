@@ -136,7 +136,7 @@ export const faqJsonLd = (locale?: string) =>
   });
 
 // One blog post. Posts are written in English whichever locale serves them;
-// the URL is the page's own (locale-prefixed) address.
+// the URL is the page's own localized address (unprefixed in English).
 export const blogPostingJsonLd = (
   post: { slug: string; title: string; description: string; date: string },
   locale?: string

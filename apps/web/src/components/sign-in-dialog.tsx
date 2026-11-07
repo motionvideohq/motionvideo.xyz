@@ -73,8 +73,10 @@ export const SignInDialogProvider = ({ children }: { children: ReactNode }) => {
     if (userId) {
       setState((current) => ({ ...current, open: false, next: undefined }));
       if (state.open && state.next) {
+        // `next` is a public URL (`/dashboard`, `/fr/dashboard`), not a route
+        // id, so it goes in as `href`.
         void router.navigate({
-          to: ensureLocalizedPath(state.next, locale),
+          href: ensureLocalizedPath(state.next, locale),
         });
       }
     }
