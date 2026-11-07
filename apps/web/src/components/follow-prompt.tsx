@@ -4,7 +4,7 @@ import { useIntlayer } from "react-intlayer";
 import { Xmark } from "reicon-react/icons/Xmark";
 
 import { GitHubIcon, XIcon } from "@/components/icons";
-import { Logomark } from "@/components/logomark";
+import { Logomark } from "@/components/logo";
 import { buttonVariants } from "@/components/ui/button";
 import { LINK } from "@/constants/links";
 import { cn } from "@/lib/utils";

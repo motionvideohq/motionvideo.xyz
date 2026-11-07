@@ -5,7 +5,7 @@ import { useIntlayer, useLocale } from "react-intlayer";
 import { Brand } from "@/components/brand";
 import { GoogleIcon } from "@/components/icons";
 import { LocaleSwitcher } from "@/components/locale-switcher";
-import { Logomark } from "@/components/logomark";
+import { Logomark } from "@/components/logo";
 import { Turnstile } from "@/components/turnstile";
 import { Button } from "@/components/ui/button";
 import {

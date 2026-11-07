@@ -121,10 +121,10 @@ const poster = async (slug) => {
 
 const logomark = async () => {
   const source = await readFile(
-    path.join(ROOT, "src/components/logomark.tsx"),
+    path.join(ROOT, "src/components/logo.tsx"),
     "utf-8"
   );
-  const { d } = source.match(/\bd="(?<d>[^"]+)"/u).groups;
+  const { d } = source.match(/LOGOMARK_PATH =\s*"(?<d>[^"]+)"/u).groups;
   const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="12 12 1242 587"><path fill="${COLOR.foreground}" d="${d}"/></svg>`;
   return dataUri(Buffer.from(svg), "image/svg+xml");
 };

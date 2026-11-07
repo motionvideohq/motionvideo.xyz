@@ -3,7 +3,7 @@ import { getIntlayer } from "intlayer";
 import { useIntlayer } from "react-intlayer";
 import { Download } from "reicon-react/icons/Download";
 
-import { Logomark } from "@/components/logomark";
+import { Logomark } from "@/components/logo";
 import {
   PageHeader,
   PageList,
