@@ -15,6 +15,7 @@ import { KeyboardShortcutsProvider } from "@/components/keyboard-shortcuts";
 import { LivePresenceProvider } from "@/components/live-presence";
 import { LocaleProvider } from "@/components/locale-provider";
 import { NotFound } from "@/components/not-found";
+import { OfferBanner, offerScript } from "@/components/offer-banner";
 import { PageBottomBlur } from "@/components/progressive-blur";
 import { SignInDialogProvider } from "@/components/sign-in-dialog";
 import { SoundEffects } from "@/components/ui/sound";
@@ -42,6 +43,7 @@ const RootDocument = ({ children }: { children: React.ReactNode }) => {
       </head>
       <body className="flex min-h-svh flex-col antialiased">
         <LocaleProvider locale={locale}>
+          <OfferBanner />
           <SignInDialogProvider>
             <FeedbackDialogProvider>
               <KeyboardShortcutsProvider>
@@ -90,7 +92,11 @@ export const Route = createRootRoute({
       ...baseMetadata.links,
     ],
     meta: baseMetadata.meta,
-    scripts: [{ children: themeScript }, organizationJsonLd()],
+    scripts: [
+      { children: themeScript },
+      { children: offerScript },
+      organizationJsonLd(),
+    ],
   }),
   notFoundComponent: NotFound,
   shellComponent: RootDocument,

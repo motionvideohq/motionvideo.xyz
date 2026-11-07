@@ -1,10 +1,18 @@
-import type { ReactNode } from "react";
-import { Button, Heading, Link, Section } from "react-email";
+import { Heading } from "react-email";
 
 import { ROUTES } from "../constants/routes";
 import { SITE } from "../constants/site";
 import { SITE_ORIGIN } from "../constants/url";
-import { EmailLayout, INK, MUTED, Paragraph } from "./_layout";
+import {
+  CtaButton,
+  EmailLayout,
+  INK,
+  InlineLink,
+  Item,
+  List,
+  Paragraph,
+  unsubscribeLink,
+} from "./_layout";
 
 export const proLaunchSubject = `${SITE.NAME} Pro is here`;
 
@@ -15,37 +23,12 @@ export const proLaunchSubject = `${SITE.NAME} Pro is here`;
 
 const url = (path: string) => `${SITE_ORIGIN}/en${path}`;
 
-const InlineLink = ({ href, children }: { href: string; children: string }) => (
-  <Link href={href} style={{ color: INK, textDecoration: "underline" }}>
-    {children}
-  </Link>
-);
-
-const List = ({ children }: { children: ReactNode }) => (
-  <ul style={{ margin: "0 0 16px", paddingLeft: 20 }}>{children}</ul>
-);
-
-const Item = ({ children }: { children: ReactNode }) => (
-  <li
-    style={{ color: MUTED, fontSize: 17, lineHeight: "1.6", margin: "0 0 8px" }}
-  >
-    {children}
-  </li>
-);
-
 const ProLaunchEmail = () => (
   <EmailLayout
     heading={proLaunchSubject}
     preview="The Moves library, every prompt template, the Pro agent skill and Pro MCP tools."
     reason="You received this because you have an account on"
-    footer={
-      <Link
-        href="{{{RESEND_UNSUBSCRIBE_URL}}}"
-        style={{ color: MUTED, textDecoration: "underline" }}
-      >
-        Unsubscribe
-      </Link>
-    }
+    footer={unsubscribeLink}
   >
     <Paragraph>Hi {"{{{FIRST_NAME|there}}}"},</Paragraph>
     <Paragraph>
@@ -77,22 +60,7 @@ const ProLaunchEmail = () => (
       Monthly, annual and lifetime plans, and a Business plan with seats for
       teams.
     </Paragraph>
-    <Section style={{ margin: "32px 0" }}>
-      <Button
-        href={url(ROUTES.PRO)}
-        style={{
-          backgroundColor: INK,
-          borderRadius: 8,
-          color: "#ffffff",
-          fontSize: 16,
-          fontWeight: 600,
-          padding: "14px 24px",
-          textDecoration: "none",
-        }}
-      >
-        See {SITE.NAME} Pro
-      </Button>
-    </Section>
+    <CtaButton href={url(ROUTES.PRO)}>See {SITE.NAME} Pro</CtaButton>
     <Heading
       as="h2"
       style={{

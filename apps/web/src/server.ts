@@ -11,9 +11,11 @@ import {
 } from "@/constants/locales";
 import { STATIC_PAGES } from "@/constants/routes";
 import { SITE } from "@/constants/site";
+import { currentOffer } from "@/lib/offers";
 import { UPLOAD_PATH_PREFIX } from "@/lib/uploads";
 import { deleteExpiredAuthRows } from "@/server/cleanup";
 import { oauthPreflight, withOAuthCors } from "@/server/oauth-cors";
+import { visitorOffer } from "@/server/visitor-pricing";
 
 // Durable Object classes must be exported from the Worker entry.
 export { Presence } from "@/server/presence";
@@ -113,6 +115,40 @@ const withSecurityHeaders = (response: Response) => {
   return secured;
 };
 
+/**
+ * While an offer runs for this visitor (src/lib/offers.ts), teaser included,
+ * marks the page (`<html data-offer="black-friday-2026" data-offer-phase=
+ * "sale">`) so its banner shows (OfferBanner). Done here, not in the render,
+ * so prerendered pages get it too. The marked copy goes out without
+ * validators: a browser can't then revalidate it against a cached unmarked
+ * one, or keep the mark once the offer is over.
+ */
+const withOffer = async (request: Request, response: Response) => {
+  if (!response.headers.get("Content-Type")?.startsWith("text/html")) {
+    return response;
+  }
+  const current = await visitorOffer(request);
+  if (!current) {
+    return response;
+  }
+  const marked = new HTMLRewriter()
+    .on("html", {
+      element: (element) => {
+        // An HTMLRewriter element, not a DOM node: it has no `dataset`.
+        // oxlint-disable-next-line unicorn/prefer-dom-node-dataset
+        element.setAttribute("data-offer", current.offer.id);
+        // oxlint-disable-next-line unicorn/prefer-dom-node-dataset
+        element.setAttribute("data-offer-phase", current.phase);
+      },
+    })
+    .transform(response);
+  const headers = new Headers(marked.headers);
+  headers.delete("ETag");
+  headers.delete("Last-Modified");
+  headers.set("Cache-Control", "private, no-cache");
+  return new Response(marked.body, { headers, status: marked.status });
+};
+
 // Worker entry. `www.` is attached as a custom domain too; send it to the
 // apex so auth cookies and BETTER_AUTH_URL only ever see one origin.
 const route = async (request: Request): Promise<Response> => {
@@ -151,9 +187,18 @@ const route = async (request: Request): Promise<Response> => {
     return new Response(object.body, { headers });
   }
   // Prerendered at build time: serve the HTML file. It doesn't exist yet
-  // while the build itself prerenders these pages, so render instead.
+  // while the build itself prerenders these pages, so render instead. While
+  // an offer runs the file is fetched whole (no validators), so it can be
+  // marked (withOffer) rather than answered with a 304 for the unmarked copy.
   if (STATIC_PATHS.has(url.pathname)) {
-    const page = await env.ASSETS.fetch(request);
+    let assetRequest = request;
+    if (currentOffer(Date.now())) {
+      const headers = new Headers(request.headers);
+      headers.delete("If-None-Match");
+      headers.delete("If-Modified-Since");
+      assetRequest = new Request(request, { headers });
+    }
+    const page = await env.ASSETS.fetch(assetRequest);
     if (page.status !== 404) {
       return page;
     }
@@ -179,7 +224,9 @@ export default {
     if (preflight) {
       return preflight;
     }
-    return withSecurityHeaders(withOAuthCors(request, await route(request)));
+    return withSecurityHeaders(
+      withOAuthCors(request, await withOffer(request, await route(request)))
+    );
   },
   // Daily Cron Trigger (wrangler.jsonc `triggers`).
   async scheduled() {

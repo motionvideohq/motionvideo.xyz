@@ -1,7 +1,7 @@
 // Idempotent Dodo Payments setup for MotionVideo: brand, products, GitHub
-// repository entitlement, and webhook endpoint. Re-running
-// finds what already exists by name or URL and only creates the rest (and
-// replaces a product whose price changed).
+// repository entitlement, sale discount codes, and webhook endpoint.
+// Re-running finds what already exists by name, code or URL and only creates
+// the rest (and replaces a product whose price changed).
 //
 //   pnpm dodo:setup            test mode (DODO_PAYMENTS_API_KEY), writes IDs to .env
 //   pnpm dodo:setup --live     live mode (DODO_PAYMENTS_LIVE_API_KEY), writes IDs to wrangler.jsonc
@@ -17,6 +17,8 @@ import { randomBytes } from "node:crypto";
 import { existsSync, readFileSync, writeFileSync } from "node:fs";
 
 import DodoPayments from "dodopayments";
+
+import { upcomingOffers } from "../src/lib/offers.ts";
 
 const ENV_FILE = ".env";
 const WRANGLER_FILE = "wrangler.jsonc";
@@ -290,6 +292,47 @@ const productEntries = await Promise.all(
   })
 );
 const productIds = Object.fromEntries(productEntries.filter(Boolean));
+
+// Sale codes (src/lib/offers.ts): each offer's current or next run, as a
+// percentage code on the plans it covers, valid exactly for the run's window,
+// for a customer's first purchase only, and for one renewal cycle on annual
+// plans. A code that exists is updated in place, so edits to an offer apply.
+const discounts = await collect(dodo.discounts.list({ page_size: 100 }));
+const syncOffer = async (offer) => {
+  const restrictedTo = offer.covers.map(
+    ([plan, billing]) =>
+      productIds[`DODO_PRODUCT_${plan}_${billing}`.toUpperCase()]
+  );
+  if (!restrictedTo.every(Boolean)) {
+    throw new Error(`${offer.code}: a plan it covers has no product`);
+  }
+  const params = {
+    type: "percentage",
+    // Basis points: 3000 is 30%.
+    amount: offer.percentOff * 100,
+    code: offer.code,
+    name: `${offer.name} ${new Date(offer.startsAt).getUTCFullYear()}`,
+    starts_at: new Date(offer.startsAt).toISOString(),
+    expires_at: new Date(offer.endsAt).toISOString(),
+    restricted_to: restrictedTo,
+    subscription_cycles: offer.subscriptionCycles,
+    customer_eligibility: "first_time",
+    per_customer_usage_limit: 1,
+    preserve_on_plan_change: false,
+    metadata: { offer: offer.id },
+  };
+  // Listed rather than fetched by code: Dodo answers a lookup of a code that
+  // isn't active yet (or has expired) with an error, not the discount.
+  const existing = discounts.find((discount) => discount.code === offer.code);
+  if (existing) {
+    await dodo.discounts.update(existing.discount_id, params);
+    log(`discount  updated  ${existing.discount_id}  ${offer.code}`);
+  } else {
+    const created = await dodo.discounts.create(params);
+    log(`discount  created  ${created.discount_id}  ${offer.code}`);
+  }
+};
+await Promise.all(upcomingOffers(Date.now()).map(syncOffer));
 
 // Adds an entitlement to each product, keeping the ones it already has. Each
 // product's entitlement list is read and rewritten independently.

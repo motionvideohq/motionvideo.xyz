@@ -1,6 +1,7 @@
 import type { ReactNode } from "react";
 import {
   Body,
+  Button,
   Container,
   Head,
   Heading,
@@ -33,6 +34,68 @@ export const Paragraph = ({ children }: { children: ReactNode }) => (
   >
     {children}
   </Text>
+);
+
+// Pieces of the announcement emails (Pro launch, Black Friday).
+
+export const InlineLink = ({
+  href,
+  children,
+}: {
+  href: string;
+  children: ReactNode;
+}) => (
+  <Link href={href} style={{ color: INK, textDecoration: "underline" }}>
+    {children}
+  </Link>
+);
+
+export const List = ({ children }: { children: ReactNode }) => (
+  <ul style={{ margin: "0 0 16px", paddingLeft: 20 }}>{children}</ul>
+);
+
+export const Item = ({ children }: { children: ReactNode }) => (
+  <li
+    style={{ color: MUTED, fontSize: 17, lineHeight: "1.6", margin: "0 0 8px" }}
+  >
+    {children}
+  </li>
+);
+
+/** The email's one call to action, as a dark button. */
+export const CtaButton = ({
+  href,
+  children,
+}: {
+  href: string;
+  children: ReactNode;
+}) => (
+  <Section style={{ margin: "32px 0" }}>
+    <Button
+      href={href}
+      style={{
+        backgroundColor: INK,
+        borderRadius: 8,
+        color: "#ffffff",
+        fontSize: 16,
+        fontWeight: 600,
+        padding: "14px 24px",
+        textDecoration: "none",
+      }}
+    >
+      {children}
+    </Button>
+  </Section>
+);
+
+/** Footer link Resend fills in per Contact (Broadcasts). */
+export const unsubscribeLink = (
+  <Link
+    href="{{{RESEND_UNSUBSCRIBE_URL}}}"
+    style={{ color: MUTED, textDecoration: "underline" }}
+  >
+    Unsubscribe
+  </Link>
 );
 
 // Logo, heading, copy, the sign-in code in a large box (when there is one), and

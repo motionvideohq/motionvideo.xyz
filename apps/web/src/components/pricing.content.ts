@@ -237,6 +237,21 @@ const pricing = {
       pt: "Aplicamos um desconto de paridade de {percent}% em {country} no checkout",
       ru: "При оформлении заказа из страны «{country}» мы применим скидку по паритету покупательной способности {percent}%",
     }),
+    /**
+     * Under the plans while a sale runs (src/lib/offers.ts); `{name}` stays
+     * as the offer's English name ("Black Friday").
+     */
+    sale: t({
+      en: "{name}: {percent}% off for new customers, applied at checkout. Annual plans renew at the regular price.",
+      es: "{name}: {percent}% de descuento para clientes nuevos, aplicado al pagar. Los planes anuales se renuevan al precio normal.",
+      fr: "{name} : -{percent} % pour les nouveaux clients, appliqué au paiement. Les formules annuelles se renouvellent au prix normal.",
+      zh: "{name}：新客户享 {percent}% 折扣，结账时自动生效。年付方案续费按原价计算。",
+      ko: "{name}: 신규 고객 {percent}% 할인, 결제 시 자동 적용됩니다. 연간 플랜은 정상가로 갱신됩니다.",
+      ja: "{name}：新規のお客様は {percent}% オフ、チェックアウト時に自動適用されます。年額プランは通常価格で更新されます。",
+      de: "{name}: {percent} % Rabatt für Neukunden, an der Kasse abgezogen. Jahrespläne verlängern sich zum regulären Preis.",
+      pt: "{name}: {percent}% de desconto para novos clientes, aplicado no checkout. Os planos anuais renovam pelo preço normal.",
+      ru: "{name}: скидка {percent}% для новых клиентов, применяется при оформлении заказа. Годовые планы продлеваются по обычной цене.",
+    }),
     plans: {
       pro: {
         name: t({
