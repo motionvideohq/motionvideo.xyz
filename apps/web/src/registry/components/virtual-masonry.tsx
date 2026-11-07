@@ -1,4 +1,3 @@
-import { ScriptOnce } from "@tanstack/react-router";
 import {
   useEffect,
   useId,
@@ -9,7 +8,7 @@ import {
 } from "react";
 import type { ReactNode } from "react";
 
-import layoutMasonry from "@/lib/masonry-layout";
+import layoutMasonry from "@/registry/lib/masonry-layout";
 
 export interface MasonryItem {
   key: string;
@@ -207,8 +206,7 @@ export const VirtualMasonry = ({ items }: { items: MasonryItem[] }) => {
         id={id}
         ref={ref}
         data-masonry-layout={initialLayout && JSON.stringify(initialLayout)}
-        // Turns on the page's fixed bottom blur (PageBottomBlur).
-        data-bottom-blur
+        data-slot="virtual-masonry"
         className="relative w-full"
         style={{ height: totalHeight }}
         suppressHydrationWarning
@@ -235,9 +233,19 @@ export const VirtualMasonry = ({ items }: { items: MasonryItem[] }) => {
             </div>
           ))}
       </div>
-      {/* SSR only, removing itself: client bundles serialize layoutMasonry
+      {/* Server render only, and it removes itself once run, so hydration
+          finds no script either: client bundles serialize layoutMasonry
           differently, and client-rendered scripts never run. */}
-      <ScriptOnce>{script}</ScriptOnce>
+      {typeof document === "undefined" && (
+        <script
+          // SAFETY: the script is built from this file's own code and the
+          // items' keys, ratios and lanes, with `<` escaped (JSON above).
+          // oxlint-disable-next-line react/no-danger
+          dangerouslySetInnerHTML={{
+            __html: `${script};document.currentScript.remove()`,
+          }}
+        />
+      )}
     </>
   );
 };

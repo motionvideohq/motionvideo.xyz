@@ -125,7 +125,7 @@ const Brand = () => {
   );
 };
 
-export const Route = createFileRoute("/$locale/_pages/brand")({
+export const Route = createFileRoute("/$locale/_pages/design/brand")({
   component: Brand,
   head: ({ params }) => ({
     ...createMetadata({
@@ -139,7 +139,13 @@ export const Route = createFileRoute("/$locale/_pages/brand")({
       ).brand.title,
     }),
     scripts: [
-      breadcrumbJsonLd({ page: "brand", path: ROUTES.BRAND }, params.locale),
+      breadcrumbJsonLd(
+        [
+          { page: "design", path: ROUTES.DESIGN },
+          { page: "brand", path: ROUTES.DESIGN_BRAND },
+        ],
+        params.locale
+      ),
     ],
   }),
 });

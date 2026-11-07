@@ -16,6 +16,7 @@ import {
 import { absoluteUrl } from "@/constants/url";
 import catalog from "@/data/motion-catalog.json";
 import { CHANGELOG_ENTRIES } from "@/lib/changelog";
+import { DESIGN_COMPONENT_PAGES } from "@/lib/design-components";
 import { DIRECTORY_CATEGORIES } from "@/lib/directories";
 import {
   MOTION_CATEGORIES,
@@ -106,6 +107,8 @@ const PAGES: { lastmod?: string; path: string }[] = [
     ...API_REFERENCE_PATHS,
   ].map((path) => ({ path })),
   ...STATIC_PAGES.map((page) => ({ path: page })),
+  // Registry component pages (content/design/components/*.mdx).
+  ...DESIGN_COMPONENT_PAGES.map((page) => ({ path: page.url })),
   ...CHANGELOG_ENTRIES.map((entry) => ({
     lastmod: entry.data.date,
     path: entry.url,

@@ -9,14 +9,14 @@ import { LocalizedLink as Link } from "@/components/localized-link";
 import { LockedPrompt } from "@/components/locked-prompt";
 import { MotionVideoCard } from "@/components/motion-video";
 import { PAGE_TOP, pageContainerClass } from "@/components/page";
-import { buttonVariants } from "@/components/ui/button";
-import { VirtualMasonry } from "@/components/virtual-masonry";
 import { ROUTES } from "@/constants/routes";
 import type { MotionVideo } from "@/lib/motion-catalog";
 import { DEFAULT_DIALS, fillTemplate } from "@/lib/prompt-customizer";
 import { findPromptTemplate, templatePath } from "@/lib/prompt-templates";
 import type { PromptTemplate } from "@/lib/prompt-templates";
 import { cn } from "@/lib/utils";
+import { VirtualMasonry } from "@/registry/components/virtual-masonry";
+import { buttonVariants } from "@/registry/ui/button";
 import { breadcrumbJsonLd } from "@/seo/json-ld";
 import { createMetadata } from "@/seo/metadata";
 import {

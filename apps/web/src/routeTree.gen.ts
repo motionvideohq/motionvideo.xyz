@@ -23,6 +23,7 @@ import { Route as LocaleGalleryRouteImport } from './routes/$locale/_gallery'
 import { Route as LocalePagesRouteImport } from './routes/$locale/_pages'
 import { Route as LocaleAdminRouteImport } from './routes/$locale/admin'
 import { Route as LocaleBookmarksRouteImport } from './routes/$locale/bookmarks'
+import { Route as LocaleBrandRouteImport } from './routes/$locale/brand'
 import { Route as LocaleCheckoutRouteImport } from './routes/$locale/checkout'
 import { Route as LocaleConsentRouteImport } from './routes/$locale/consent'
 import { Route as LocaleCreativesRouteImport } from './routes/$locale/creatives'
@@ -57,7 +58,6 @@ import { Route as ChangelogRssDotxmlRouteImport } from './routes/changelog.rss[.
 import { Route as DocsSplatRouteImport } from './routes/docs.$'
 import { Route as LocaleGalleryIndexRouteImport } from './routes/$locale/_gallery/index'
 import { Route as LocalePagesAboutRouteImport } from './routes/$locale/_pages/about'
-import { Route as LocalePagesBrandRouteImport } from './routes/$locale/_pages/brand'
 import { Route as LocalePagesContactRouteImport } from './routes/$locale/_pages/contact'
 import { Route as LocalePagesPrivacyRouteImport } from './routes/$locale/_pages/privacy'
 import { Route as LocalePagesRefundsRouteImport } from './routes/$locale/_pages/refunds'
@@ -113,6 +113,8 @@ import { Route as LocaleGalleryTypeTypeRouteImport } from './routes/$locale/_gal
 import { Route as LocaleGalleryVideosSlugRouteImport } from './routes/$locale/_gallery/videos.$slug'
 import { Route as LocalePagesChangelogIndexRouteImport } from './routes/$locale/_pages/changelog/index'
 import { Route as LocalePagesChangelogSlugRouteImport } from './routes/$locale/_pages/changelog/$slug'
+import { Route as LocalePagesDesignIndexRouteImport } from './routes/$locale/_pages/design/index'
+import { Route as LocalePagesDesignBrandRouteImport } from './routes/$locale/_pages/design/brand'
 import { Route as LocaleDashboardJobsPostRouteImport } from './routes/$locale/dashboard/jobs/post'
 import { Route as LocaleDashboardSponsorshipsIndexRouteImport } from './routes/$locale/dashboard/sponsorships/index'
 import { Route as LocaleDashboardSponsorshipsNewRouteImport } from './routes/$locale/dashboard/sponsorships/new'
@@ -127,6 +129,8 @@ import { Route as LocaleGalleryColorColorIndexRouteImport } from './routes/$loca
 import { Route as LocaleGalleryCreatorsCreatorIndexRouteImport } from './routes/$locale/_gallery/creators.$creator.index'
 import { Route as LocaleGalleryModelModelIndexRouteImport } from './routes/$locale/_gallery/model.$model.index'
 import { Route as LocaleGalleryTypeTypeIndexRouteImport } from './routes/$locale/_gallery/type.$type.index'
+import { Route as LocalePagesDesignComponentsIndexRouteImport } from './routes/$locale/_pages/design/components/index'
+import { Route as LocalePagesDesignComponentsSlugRouteImport } from './routes/$locale/_pages/design/components/$slug'
 import { Route as LocaleGalleryCategoryCategoryVideosSlugRouteImport } from './routes/$locale/_gallery/category.$category.videos.$slug'
 import { Route as LocaleGalleryColorColorVideosSlugRouteImport } from './routes/$locale/_gallery/color.$color.videos.$slug'
 import { Route as LocaleGalleryModelModelVideosSlugRouteImport } from './routes/$locale/_gallery/model.$model.videos.$slug'
@@ -198,6 +202,11 @@ const LocaleAdminRoute = LocaleAdminRouteImport.update({
 const LocaleBookmarksRoute = LocaleBookmarksRouteImport.update({
   id: '/bookmarks',
   path: '/bookmarks',
+  getParentRoute: () => LocaleRouteRoute,
+} as any)
+const LocaleBrandRoute = LocaleBrandRouteImport.update({
+  id: '/brand',
+  path: '/brand',
   getParentRoute: () => LocaleRouteRoute,
 } as any)
 const LocaleCheckoutRoute = LocaleCheckoutRouteImport.update({
@@ -368,11 +377,6 @@ const LocaleGalleryIndexRoute = LocaleGalleryIndexRouteImport.update({
 const LocalePagesAboutRoute = LocalePagesAboutRouteImport.update({
   id: '/about',
   path: '/about',
-  getParentRoute: () => LocalePagesRoute,
-} as any)
-const LocalePagesBrandRoute = LocalePagesBrandRouteImport.update({
-  id: '/brand',
-  path: '/brand',
   getParentRoute: () => LocalePagesRoute,
 } as any)
 const LocalePagesContactRoute = LocalePagesContactRouteImport.update({
@@ -655,6 +659,16 @@ const LocalePagesChangelogSlugRoute =
     path: '/changelog/$slug',
     getParentRoute: () => LocalePagesRoute,
   } as any)
+const LocalePagesDesignIndexRoute = LocalePagesDesignIndexRouteImport.update({
+  id: '/design/',
+  path: '/design/',
+  getParentRoute: () => LocalePagesRoute,
+} as any)
+const LocalePagesDesignBrandRoute = LocalePagesDesignBrandRouteImport.update({
+  id: '/design/brand',
+  path: '/design/brand',
+  getParentRoute: () => LocalePagesRoute,
+} as any)
 const LocaleDashboardJobsPostRoute = LocaleDashboardJobsPostRouteImport.update({
   id: '/jobs/post',
   path: '/jobs/post',
@@ -734,6 +748,18 @@ const LocaleGalleryTypeTypeIndexRoute =
     path: '/',
     getParentRoute: () => LocaleGalleryTypeTypeRoute,
   } as any)
+const LocalePagesDesignComponentsIndexRoute =
+  LocalePagesDesignComponentsIndexRouteImport.update({
+    id: '/design/components/',
+    path: '/design/components/',
+    getParentRoute: () => LocalePagesRoute,
+  } as any)
+const LocalePagesDesignComponentsSlugRoute =
+  LocalePagesDesignComponentsSlugRouteImport.update({
+    id: '/design/components/$slug',
+    path: '/design/components/$slug',
+    getParentRoute: () => LocalePagesRoute,
+  } as any)
 const LocaleGalleryCategoryCategoryVideosSlugRoute =
   LocaleGalleryCategoryCategoryVideosSlugRouteImport.update({
     id: '/videos/$slug',
@@ -772,6 +798,7 @@ export interface FileRoutesByFullPath {
   '/$locale/$': typeof LocaleSplatRoute
   '/$locale/admin': typeof LocaleAdminRouteWithChildren
   '/$locale/bookmarks': typeof LocaleBookmarksRoute
+  '/$locale/brand': typeof LocaleBrandRoute
   '/$locale/checkout': typeof LocaleCheckoutRoute
   '/$locale/consent': typeof LocaleConsentRoute
   '/$locale/creatives': typeof LocaleCreativesRouteWithChildren
@@ -805,7 +832,6 @@ export interface FileRoutesByFullPath {
   '/changelog/rss.xml': typeof ChangelogRssDotxmlRoute
   '/docs/$': typeof DocsSplatRoute
   '/$locale/about': typeof LocalePagesAboutRoute
-  '/$locale/brand': typeof LocalePagesBrandRoute
   '/$locale/contact': typeof LocalePagesContactRoute
   '/$locale/privacy': typeof LocalePagesPrivacyRoute
   '/$locale/refunds': typeof LocalePagesRefundsRoute
@@ -861,21 +887,25 @@ export interface FileRoutesByFullPath {
   '/$locale/type/$type': typeof LocaleGalleryTypeTypeRouteWithChildren
   '/$locale/videos/$slug': typeof LocaleGalleryVideosSlugRoute
   '/$locale/changelog/$slug': typeof LocalePagesChangelogSlugRoute
+  '/$locale/design/brand': typeof LocalePagesDesignBrandRoute
   '/$locale/dashboard/jobs/post': typeof LocaleDashboardJobsPostRoute
   '/$locale/dashboard/sponsorships/new': typeof LocaleDashboardSponsorshipsNewRoute
   '/$locale/moves/$family/$slug': typeof LocaleMovesFamilySlugRoute
   '/$locale/templates/$templateId/customize': typeof LocaleTemplatesTemplateIdCustomizeRoute
   '/api/mcp/moves/$slug': typeof ApiMcpMovesSlugRoute
   '/$locale/changelog/': typeof LocalePagesChangelogIndexRoute
+  '/$locale/design/': typeof LocalePagesDesignIndexRoute
   '/$locale/dashboard/sponsorships/': typeof LocaleDashboardSponsorshipsIndexRoute
   '/$locale/moves/$family/': typeof LocaleMovesFamilyIndexRoute
   '/$locale/templates/$templateId/': typeof LocaleTemplatesTemplateIdIndexRoute
   '/api/mcp/moves/': typeof ApiMcpMovesIndexRoute
+  '/$locale/design/components/$slug': typeof LocalePagesDesignComponentsSlugRoute
   '/$locale/category/$category/': typeof LocaleGalleryCategoryCategoryIndexRoute
   '/$locale/color/$color/': typeof LocaleGalleryColorColorIndexRoute
   '/$locale/creators/$creator/': typeof LocaleGalleryCreatorsCreatorIndexRoute
   '/$locale/model/$model/': typeof LocaleGalleryModelModelIndexRoute
   '/$locale/type/$type/': typeof LocaleGalleryTypeTypeIndexRoute
+  '/$locale/design/components/': typeof LocalePagesDesignComponentsIndexRoute
   '/$locale/category/$category/videos/$slug': typeof LocaleGalleryCategoryCategoryVideosSlugRoute
   '/$locale/color/$color/videos/$slug': typeof LocaleGalleryColorColorVideosSlugRoute
   '/$locale/model/$model/videos/$slug': typeof LocaleGalleryModelModelVideosSlugRoute
@@ -893,6 +923,7 @@ export interface FileRoutesByTo {
   '/skill.md': typeof SkillDotmdRoute
   '/$locale/$': typeof LocaleSplatRoute
   '/$locale/bookmarks': typeof LocaleBookmarksRoute
+  '/$locale/brand': typeof LocaleBrandRoute
   '/$locale/checkout': typeof LocaleCheckoutRoute
   '/$locale/consent': typeof LocaleConsentRoute
   '/$locale/featured': typeof LocaleFeaturedRoute
@@ -918,7 +949,6 @@ export interface FileRoutesByTo {
   '/changelog/rss.xml': typeof ChangelogRssDotxmlRoute
   '/docs/$': typeof DocsSplatRoute
   '/$locale/about': typeof LocalePagesAboutRoute
-  '/$locale/brand': typeof LocalePagesBrandRoute
   '/$locale/contact': typeof LocalePagesContactRoute
   '/$locale/privacy': typeof LocalePagesPrivacyRoute
   '/$locale/refunds': typeof LocalePagesRefundsRoute
@@ -967,21 +997,25 @@ export interface FileRoutesByTo {
   '/api/moves': typeof ApiMovesIndexRoute
   '/$locale/videos/$slug': typeof LocaleGalleryVideosSlugRoute
   '/$locale/changelog/$slug': typeof LocalePagesChangelogSlugRoute
+  '/$locale/design/brand': typeof LocalePagesDesignBrandRoute
   '/$locale/dashboard/jobs/post': typeof LocaleDashboardJobsPostRoute
   '/$locale/dashboard/sponsorships/new': typeof LocaleDashboardSponsorshipsNewRoute
   '/$locale/moves/$family/$slug': typeof LocaleMovesFamilySlugRoute
   '/$locale/templates/$templateId/customize': typeof LocaleTemplatesTemplateIdCustomizeRoute
   '/api/mcp/moves/$slug': typeof ApiMcpMovesSlugRoute
   '/$locale/changelog': typeof LocalePagesChangelogIndexRoute
+  '/$locale/design': typeof LocalePagesDesignIndexRoute
   '/$locale/dashboard/sponsorships': typeof LocaleDashboardSponsorshipsIndexRoute
   '/$locale/moves/$family': typeof LocaleMovesFamilyIndexRoute
   '/$locale/templates/$templateId': typeof LocaleTemplatesTemplateIdIndexRoute
   '/api/mcp/moves': typeof ApiMcpMovesIndexRoute
+  '/$locale/design/components/$slug': typeof LocalePagesDesignComponentsSlugRoute
   '/$locale/category/$category': typeof LocaleGalleryCategoryCategoryIndexRoute
   '/$locale/color/$color': typeof LocaleGalleryColorColorIndexRoute
   '/$locale/creators/$creator': typeof LocaleGalleryCreatorsCreatorIndexRoute
   '/$locale/model/$model': typeof LocaleGalleryModelModelIndexRoute
   '/$locale/type/$type': typeof LocaleGalleryTypeTypeIndexRoute
+  '/$locale/design/components': typeof LocalePagesDesignComponentsIndexRoute
   '/$locale/category/$category/videos/$slug': typeof LocaleGalleryCategoryCategoryVideosSlugRoute
   '/$locale/color/$color/videos/$slug': typeof LocaleGalleryColorColorVideosSlugRoute
   '/$locale/model/$model/videos/$slug': typeof LocaleGalleryModelModelVideosSlugRoute
@@ -1003,6 +1037,7 @@ export interface FileRoutesById {
   '/$locale/_pages': typeof LocalePagesRouteWithChildren
   '/$locale/admin': typeof LocaleAdminRouteWithChildren
   '/$locale/bookmarks': typeof LocaleBookmarksRoute
+  '/$locale/brand': typeof LocaleBrandRoute
   '/$locale/checkout': typeof LocaleCheckoutRoute
   '/$locale/consent': typeof LocaleConsentRoute
   '/$locale/creatives': typeof LocaleCreativesRouteWithChildren
@@ -1036,7 +1071,6 @@ export interface FileRoutesById {
   '/changelog/rss.xml': typeof ChangelogRssDotxmlRoute
   '/docs/$': typeof DocsSplatRoute
   '/$locale/_pages/about': typeof LocalePagesAboutRoute
-  '/$locale/_pages/brand': typeof LocalePagesBrandRoute
   '/$locale/_pages/contact': typeof LocalePagesContactRoute
   '/$locale/_pages/privacy': typeof LocalePagesPrivacyRoute
   '/$locale/_pages/refunds': typeof LocalePagesRefundsRoute
@@ -1092,21 +1126,25 @@ export interface FileRoutesById {
   '/$locale/_gallery/type/$type': typeof LocaleGalleryTypeTypeRouteWithChildren
   '/$locale/_gallery/videos/$slug': typeof LocaleGalleryVideosSlugRoute
   '/$locale/_pages/changelog/$slug': typeof LocalePagesChangelogSlugRoute
+  '/$locale/_pages/design/brand': typeof LocalePagesDesignBrandRoute
   '/$locale/dashboard/jobs/post': typeof LocaleDashboardJobsPostRoute
   '/$locale/dashboard/sponsorships/new': typeof LocaleDashboardSponsorshipsNewRoute
   '/$locale/moves/$family/$slug': typeof LocaleMovesFamilySlugRoute
   '/$locale/templates/$templateId/customize': typeof LocaleTemplatesTemplateIdCustomizeRoute
   '/api/mcp/moves/$slug': typeof ApiMcpMovesSlugRoute
   '/$locale/_pages/changelog/': typeof LocalePagesChangelogIndexRoute
+  '/$locale/_pages/design/': typeof LocalePagesDesignIndexRoute
   '/$locale/dashboard/sponsorships/': typeof LocaleDashboardSponsorshipsIndexRoute
   '/$locale/moves/$family/': typeof LocaleMovesFamilyIndexRoute
   '/$locale/templates/$templateId/': typeof LocaleTemplatesTemplateIdIndexRoute
   '/api/mcp/moves/': typeof ApiMcpMovesIndexRoute
+  '/$locale/_pages/design/components/$slug': typeof LocalePagesDesignComponentsSlugRoute
   '/$locale/_gallery/category/$category/': typeof LocaleGalleryCategoryCategoryIndexRoute
   '/$locale/_gallery/color/$color/': typeof LocaleGalleryColorColorIndexRoute
   '/$locale/_gallery/creators/$creator/': typeof LocaleGalleryCreatorsCreatorIndexRoute
   '/$locale/_gallery/model/$model/': typeof LocaleGalleryModelModelIndexRoute
   '/$locale/_gallery/type/$type/': typeof LocaleGalleryTypeTypeIndexRoute
+  '/$locale/_pages/design/components/': typeof LocalePagesDesignComponentsIndexRoute
   '/$locale/_gallery/category/$category/videos/$slug': typeof LocaleGalleryCategoryCategoryVideosSlugRoute
   '/$locale/_gallery/color/$color/videos/$slug': typeof LocaleGalleryColorColorVideosSlugRoute
   '/$locale/_gallery/model/$model/videos/$slug': typeof LocaleGalleryModelModelVideosSlugRoute
@@ -1127,6 +1165,7 @@ export interface FileRouteTypes {
     | '/$locale/$'
     | '/$locale/admin'
     | '/$locale/bookmarks'
+    | '/$locale/brand'
     | '/$locale/checkout'
     | '/$locale/consent'
     | '/$locale/creatives'
@@ -1160,7 +1199,6 @@ export interface FileRouteTypes {
     | '/changelog/rss.xml'
     | '/docs/$'
     | '/$locale/about'
-    | '/$locale/brand'
     | '/$locale/contact'
     | '/$locale/privacy'
     | '/$locale/refunds'
@@ -1216,21 +1254,25 @@ export interface FileRouteTypes {
     | '/$locale/type/$type'
     | '/$locale/videos/$slug'
     | '/$locale/changelog/$slug'
+    | '/$locale/design/brand'
     | '/$locale/dashboard/jobs/post'
     | '/$locale/dashboard/sponsorships/new'
     | '/$locale/moves/$family/$slug'
     | '/$locale/templates/$templateId/customize'
     | '/api/mcp/moves/$slug'
     | '/$locale/changelog/'
+    | '/$locale/design/'
     | '/$locale/dashboard/sponsorships/'
     | '/$locale/moves/$family/'
     | '/$locale/templates/$templateId/'
     | '/api/mcp/moves/'
+    | '/$locale/design/components/$slug'
     | '/$locale/category/$category/'
     | '/$locale/color/$color/'
     | '/$locale/creators/$creator/'
     | '/$locale/model/$model/'
     | '/$locale/type/$type/'
+    | '/$locale/design/components/'
     | '/$locale/category/$category/videos/$slug'
     | '/$locale/color/$color/videos/$slug'
     | '/$locale/model/$model/videos/$slug'
@@ -1248,6 +1290,7 @@ export interface FileRouteTypes {
     | '/skill.md'
     | '/$locale/$'
     | '/$locale/bookmarks'
+    | '/$locale/brand'
     | '/$locale/checkout'
     | '/$locale/consent'
     | '/$locale/featured'
@@ -1273,7 +1316,6 @@ export interface FileRouteTypes {
     | '/changelog/rss.xml'
     | '/docs/$'
     | '/$locale/about'
-    | '/$locale/brand'
     | '/$locale/contact'
     | '/$locale/privacy'
     | '/$locale/refunds'
@@ -1322,21 +1364,25 @@ export interface FileRouteTypes {
     | '/api/moves'
     | '/$locale/videos/$slug'
     | '/$locale/changelog/$slug'
+    | '/$locale/design/brand'
     | '/$locale/dashboard/jobs/post'
     | '/$locale/dashboard/sponsorships/new'
     | '/$locale/moves/$family/$slug'
     | '/$locale/templates/$templateId/customize'
     | '/api/mcp/moves/$slug'
     | '/$locale/changelog'
+    | '/$locale/design'
     | '/$locale/dashboard/sponsorships'
     | '/$locale/moves/$family'
     | '/$locale/templates/$templateId'
     | '/api/mcp/moves'
+    | '/$locale/design/components/$slug'
     | '/$locale/category/$category'
     | '/$locale/color/$color'
     | '/$locale/creators/$creator'
     | '/$locale/model/$model'
     | '/$locale/type/$type'
+    | '/$locale/design/components'
     | '/$locale/category/$category/videos/$slug'
     | '/$locale/color/$color/videos/$slug'
     | '/$locale/model/$model/videos/$slug'
@@ -1357,6 +1403,7 @@ export interface FileRouteTypes {
     | '/$locale/_pages'
     | '/$locale/admin'
     | '/$locale/bookmarks'
+    | '/$locale/brand'
     | '/$locale/checkout'
     | '/$locale/consent'
     | '/$locale/creatives'
@@ -1390,7 +1437,6 @@ export interface FileRouteTypes {
     | '/changelog/rss.xml'
     | '/docs/$'
     | '/$locale/_pages/about'
-    | '/$locale/_pages/brand'
     | '/$locale/_pages/contact'
     | '/$locale/_pages/privacy'
     | '/$locale/_pages/refunds'
@@ -1446,21 +1492,25 @@ export interface FileRouteTypes {
     | '/$locale/_gallery/type/$type'
     | '/$locale/_gallery/videos/$slug'
     | '/$locale/_pages/changelog/$slug'
+    | '/$locale/_pages/design/brand'
     | '/$locale/dashboard/jobs/post'
     | '/$locale/dashboard/sponsorships/new'
     | '/$locale/moves/$family/$slug'
     | '/$locale/templates/$templateId/customize'
     | '/api/mcp/moves/$slug'
     | '/$locale/_pages/changelog/'
+    | '/$locale/_pages/design/'
     | '/$locale/dashboard/sponsorships/'
     | '/$locale/moves/$family/'
     | '/$locale/templates/$templateId/'
     | '/api/mcp/moves/'
+    | '/$locale/_pages/design/components/$slug'
     | '/$locale/_gallery/category/$category/'
     | '/$locale/_gallery/color/$color/'
     | '/$locale/_gallery/creators/$creator/'
     | '/$locale/_gallery/model/$model/'
     | '/$locale/_gallery/type/$type/'
+    | '/$locale/_pages/design/components/'
     | '/$locale/_gallery/category/$category/videos/$slug'
     | '/$locale/_gallery/color/$color/videos/$slug'
     | '/$locale/_gallery/model/$model/videos/$slug'
@@ -1595,6 +1645,13 @@ declare module '@tanstack/react-router' {
       path: '/bookmarks'
       fullPath: '/$locale/bookmarks'
       preLoaderRoute: typeof LocaleBookmarksRouteImport
+      parentRoute: typeof LocaleRouteRoute
+    }
+    '/$locale/brand': {
+      id: '/$locale/brand'
+      path: '/brand'
+      fullPath: '/$locale/brand'
+      preLoaderRoute: typeof LocaleBrandRouteImport
       parentRoute: typeof LocaleRouteRoute
     }
     '/$locale/checkout': {
@@ -1833,13 +1890,6 @@ declare module '@tanstack/react-router' {
       path: '/about'
       fullPath: '/$locale/about'
       preLoaderRoute: typeof LocalePagesAboutRouteImport
-      parentRoute: typeof LocalePagesRoute
-    }
-    '/$locale/_pages/brand': {
-      id: '/$locale/_pages/brand'
-      path: '/brand'
-      fullPath: '/$locale/brand'
-      preLoaderRoute: typeof LocalePagesBrandRouteImport
       parentRoute: typeof LocalePagesRoute
     }
     '/$locale/_pages/contact': {
@@ -2227,6 +2277,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LocalePagesChangelogSlugRouteImport
       parentRoute: typeof LocalePagesRoute
     }
+    '/$locale/_pages/design/': {
+      id: '/$locale/_pages/design/'
+      path: '/design'
+      fullPath: '/$locale/design/'
+      preLoaderRoute: typeof LocalePagesDesignIndexRouteImport
+      parentRoute: typeof LocalePagesRoute
+    }
+    '/$locale/_pages/design/brand': {
+      id: '/$locale/_pages/design/brand'
+      path: '/design/brand'
+      fullPath: '/$locale/design/brand'
+      preLoaderRoute: typeof LocalePagesDesignBrandRouteImport
+      parentRoute: typeof LocalePagesRoute
+    }
     '/$locale/dashboard/jobs/post': {
       id: '/$locale/dashboard/jobs/post'
       path: '/jobs/post'
@@ -2324,6 +2388,20 @@ declare module '@tanstack/react-router' {
       fullPath: '/$locale/type/$type/'
       preLoaderRoute: typeof LocaleGalleryTypeTypeIndexRouteImport
       parentRoute: typeof LocaleGalleryTypeTypeRoute
+    }
+    '/$locale/_pages/design/components/': {
+      id: '/$locale/_pages/design/components/'
+      path: '/design/components'
+      fullPath: '/$locale/design/components/'
+      preLoaderRoute: typeof LocalePagesDesignComponentsIndexRouteImport
+      parentRoute: typeof LocalePagesRoute
+    }
+    '/$locale/_pages/design/components/$slug': {
+      id: '/$locale/_pages/design/components/$slug'
+      path: '/design/components/$slug'
+      fullPath: '/$locale/design/components/$slug'
+      preLoaderRoute: typeof LocalePagesDesignComponentsSlugRouteImport
+      parentRoute: typeof LocalePagesRoute
     }
     '/$locale/_gallery/category/$category/videos/$slug': {
       id: '/$locale/_gallery/category/$category/videos/$slug'
@@ -2466,24 +2544,30 @@ const LocaleGalleryRouteWithChildren = LocaleGalleryRoute._addFileChildren(
 
 interface LocalePagesRouteChildren {
   LocalePagesAboutRoute: typeof LocalePagesAboutRoute
-  LocalePagesBrandRoute: typeof LocalePagesBrandRoute
   LocalePagesContactRoute: typeof LocalePagesContactRoute
   LocalePagesPrivacyRoute: typeof LocalePagesPrivacyRoute
   LocalePagesRefundsRoute: typeof LocalePagesRefundsRoute
   LocalePagesTermsRoute: typeof LocalePagesTermsRoute
   LocalePagesChangelogSlugRoute: typeof LocalePagesChangelogSlugRoute
+  LocalePagesDesignBrandRoute: typeof LocalePagesDesignBrandRoute
   LocalePagesChangelogIndexRoute: typeof LocalePagesChangelogIndexRoute
+  LocalePagesDesignIndexRoute: typeof LocalePagesDesignIndexRoute
+  LocalePagesDesignComponentsSlugRoute: typeof LocalePagesDesignComponentsSlugRoute
+  LocalePagesDesignComponentsIndexRoute: typeof LocalePagesDesignComponentsIndexRoute
 }
 
 const LocalePagesRouteChildren: LocalePagesRouteChildren = {
   LocalePagesAboutRoute: LocalePagesAboutRoute,
-  LocalePagesBrandRoute: LocalePagesBrandRoute,
   LocalePagesContactRoute: LocalePagesContactRoute,
   LocalePagesPrivacyRoute: LocalePagesPrivacyRoute,
   LocalePagesRefundsRoute: LocalePagesRefundsRoute,
   LocalePagesTermsRoute: LocalePagesTermsRoute,
   LocalePagesChangelogSlugRoute: LocalePagesChangelogSlugRoute,
+  LocalePagesDesignBrandRoute: LocalePagesDesignBrandRoute,
   LocalePagesChangelogIndexRoute: LocalePagesChangelogIndexRoute,
+  LocalePagesDesignIndexRoute: LocalePagesDesignIndexRoute,
+  LocalePagesDesignComponentsSlugRoute: LocalePagesDesignComponentsSlugRoute,
+  LocalePagesDesignComponentsIndexRoute: LocalePagesDesignComponentsIndexRoute,
 }
 
 const LocalePagesRouteWithChildren = LocalePagesRoute._addFileChildren(
@@ -2662,6 +2746,7 @@ interface LocaleRouteRouteChildren {
   LocalePagesRoute: typeof LocalePagesRouteWithChildren
   LocaleAdminRoute: typeof LocaleAdminRouteWithChildren
   LocaleBookmarksRoute: typeof LocaleBookmarksRoute
+  LocaleBrandRoute: typeof LocaleBrandRoute
   LocaleCheckoutRoute: typeof LocaleCheckoutRoute
   LocaleConsentRoute: typeof LocaleConsentRoute
   LocaleCreativesRoute: typeof LocaleCreativesRouteWithChildren
@@ -2703,6 +2788,7 @@ const LocaleRouteRouteChildren: LocaleRouteRouteChildren = {
   LocalePagesRoute: LocalePagesRouteWithChildren,
   LocaleAdminRoute: LocaleAdminRouteWithChildren,
   LocaleBookmarksRoute: LocaleBookmarksRoute,
+  LocaleBrandRoute: LocaleBrandRoute,
   LocaleCheckoutRoute: LocaleCheckoutRoute,
   LocaleConsentRoute: LocaleConsentRoute,
   LocaleCreativesRoute: LocaleCreativesRouteWithChildren,

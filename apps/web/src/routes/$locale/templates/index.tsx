@@ -4,10 +4,10 @@ import { ArrowRight } from "reicon-react/icons/ArrowRight";
 
 import { LocalizedLink as Link } from "@/components/localized-link";
 import { PageHeader, PageMain } from "@/components/page";
-import { buttonVariants } from "@/components/ui/button";
 import { ROUTES } from "@/constants/routes";
 import { PROMPT_TEMPLATES } from "@/lib/prompt-templates";
 import type { PromptTemplate } from "@/lib/prompt-templates";
+import { buttonVariants } from "@/registry/ui/button";
 import { breadcrumbJsonLd } from "@/seo/json-ld";
 import { createMetadata } from "@/seo/metadata";
 import { getTemplateCovers } from "@/server/template-functions";

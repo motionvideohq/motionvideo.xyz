@@ -72,7 +72,9 @@ export const Brand = () => {
         </ContextMenuItem>
         <ContextMenuSeparator />
         <ContextMenuItem
-          render={<Link to={ROUTES.BRAND} data-track="brand_guidelines" />}
+          render={
+            <Link to={ROUTES.DESIGN_BRAND} data-track="brand_guidelines" />
+          }
         >
           {/* A dashed square: the guidelines frame the marks. */}
           <svg

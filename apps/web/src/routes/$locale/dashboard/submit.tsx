@@ -9,7 +9,6 @@ import { z } from "zod";
 import { LocalizedLink as Link } from "@/components/localized-link";
 import { FormSection, HeroHeader, PageMain } from "@/components/page";
 import { useSignInDialog } from "@/components/sign-in-dialog";
-import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -34,6 +33,7 @@ import {
 import type { SubmissionCategory, SubmissionKind } from "@/lib/community";
 import type { DirectorySlug } from "@/lib/directories";
 import { localizedRedirect } from "@/lib/localized-redirect";
+import { Button } from "@/registry/ui/button";
 import { createMetadata } from "@/seo/metadata";
 import {
   getSubmitter,

@@ -16,15 +16,15 @@ import { Loader } from "reicon-react/icons/Loader";
 import { Trash } from "reicon-react/icons/Trash";
 import { Upload } from "reicon-react/icons/Upload";
 
-import { Button } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
+import { Button } from "@/registry/ui/button";
 import {
   fileColorFor,
   fileMarkFor,
   markOfExtension,
   MARKED_EXTENSIONS,
-} from "@/components/ui/file-badge";
-import type { MarkedKind } from "@/components/ui/file-badge";
-import { cn } from "@/lib/utils";
+} from "@/registry/ui/file-badge";
+import type { MarkedKind } from "@/registry/ui/file-badge";
 
 const MAGNET_DISTANCE = 180;
 

@@ -21,7 +21,6 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { Badge } from "@/components/ui/badge";
-import { Button, buttonVariants } from "@/components/ui/button";
 import {
   Card,
   CardContent,
@@ -40,6 +39,7 @@ import {
 import type { FoundingSponsor } from "@/constants/sponsors";
 import { cn } from "@/lib/utils";
 import { withUtm } from "@/lib/utm";
+import { Button, buttonVariants } from "@/registry/ui/button";
 import { createMetadata } from "@/seo/metadata";
 import { getLandingData } from "@/server/functions";
 import { getSoldOutTiers } from "@/server/sponsorship-functions";

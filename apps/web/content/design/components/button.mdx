@@ -1,0 +1,82 @@
+---
+title: Button
+description: A shadcn button whose variants all share one size, with a gradient variant for the call to action that matters most.
+---
+
+<ComponentPreview name="button" />
+
+## Installation
+
+<DocsTabs items={["pnpm", "npm", "bun"]}>
+<DocsTab value="pnpm">
+
+```bash
+pnpm dlx shadcn@latest add https://motionvideo.xyz/r/button.json
+```
+
+</DocsTab>
+<DocsTab value="npm">
+
+```bash
+npx shadcn@latest add https://motionvideo.xyz/r/button.json
+```
+
+</DocsTab>
+<DocsTab value="bun">
+
+```bash
+bunx --bun shadcn@latest add https://motionvideo.xyz/r/button.json
+```
+
+</DocsTab>
+</DocsTabs>
+
+It installs as `components/ui/button.tsx`, so it replaces shadcn's button if you have one; the CLI asks first. The API is the same (Base UI underneath), so existing buttons keep working. The CLI also adds the colors the gradient variant uses to your CSS.
+
+## Usage
+
+```tsx
+import { Button, buttonVariants } from "@/components/ui/button";
+
+<Button variant="gradient" size="xl">
+  Get Pro
+</Button>
+
+// A link that looks like a button
+<a href="/pricing" className={buttonVariants({ variant: "outline" })}>
+  See plans
+</a>
+```
+
+## Variants
+
+| Variant | For |
+| --- | --- |
+| `default` | The usual primary action |
+| `gradient` | The call to action that matters most, such as checkout. Use it sparingly |
+| `secondary` | Secondary actions beside a primary one |
+| `outline` | Actions on busy backgrounds, drawn with a soft outline shadow instead of a border |
+| `ghost` | Toolbar and menu actions |
+| `subtle` | Ghost with muted text at rest, for secondary chrome like footers |
+| `destructive` | Deleting or removing |
+| `link` | An action that reads as a link |
+
+Every variant keeps a 1px transparent border and fills the border box, so switching variants never changes a button's size.
+
+## Sizes
+
+`xs`, `sm`, `default`, `lg` and `xl`, and square icon buttons `icon-xs`, `icon-sm`, `icon`, `icon-lg` and `icon-xl`. An icon marked `data-icon="inline-start"` or `data-icon="inline-end"` gets tighter padding on its side.
+
+## Theming
+
+The gradient variant reads three CSS variables. Change them to make it yours:
+
+```css
+:root {
+  --cta-from: #ffdd73;
+  --cta-to: #ffbe25;
+  --cta-foreground: oklch(0.145 0 0);
+}
+```
+
+`--cta-shadow` draws its inset ring, and `--surface-outline` the outline variant's shadow. Set both again under `.dark` to tune them for dark mode.

@@ -4,7 +4,6 @@ import { TickCircle } from "reicon-react/icons/TickCircle";
 import { TextMorph } from "torph/react";
 
 import { LocalizedLink as Link } from "@/components/localized-link";
-import { Button, buttonVariants } from "@/components/ui/button";
 import {
   Card,
   CardContent,
@@ -26,6 +25,7 @@ import { fillTemplate } from "@/lib/motion-video-route";
 import { offerCovers } from "@/lib/offers";
 import type { SaleOffer } from "@/lib/offers";
 import { cn } from "@/lib/utils";
+import { Button, buttonVariants } from "@/registry/ui/button";
 
 /**
  * Monthly | Annual | Lifetime as tabs that render links setting `?billing=`,

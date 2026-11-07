@@ -17,7 +17,6 @@ import { LocalizedLink as Link } from "@/components/localized-link";
 import { MotionVideoCard, MotionVideoOverlay } from "@/components/motion-video";
 import { AccountPageHeader, pageContainerClass } from "@/components/page";
 import { SectionIcon } from "@/components/section-icon";
-import { buttonVariants } from "@/components/ui/button";
 import {
   Empty,
   EmptyContent,
@@ -26,8 +25,6 @@ import {
   EmptyMedia,
   EmptyTitle,
 } from "@/components/ui/empty";
-import { VirtualMasonry } from "@/components/virtual-masonry";
-import type { MasonryItem } from "@/components/virtual-masonry";
 import { DEFAULT_LOCALE, isLocale, localizedPath } from "@/constants/locales";
 import type { LocaleHeadContext } from "@/constants/locales";
 import { ROUTES } from "@/constants/routes";
@@ -40,6 +37,9 @@ import { DIRECTORY_CATEGORIES } from "@/lib/directories";
 import type { DirectoryCategory } from "@/lib/directories";
 import { localizedRedirect } from "@/lib/localized-redirect";
 import { cn } from "@/lib/utils";
+import { VirtualMasonry } from "@/registry/components/virtual-masonry";
+import type { MasonryItem } from "@/registry/components/virtual-masonry";
+import { buttonVariants } from "@/registry/ui/button";
 import { createMetadata } from "@/seo/metadata";
 import { getBookmarks } from "@/server/bookmark-functions";
 import { getLandingData } from "@/server/functions";

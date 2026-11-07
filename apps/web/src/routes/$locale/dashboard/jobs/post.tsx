@@ -10,7 +10,6 @@ import { ImageDropzone } from "@/components/image-dropzone";
 import { OrderSummary } from "@/components/order-summary";
 import { FormSection, HeroHeader, PageMain } from "@/components/page";
 import { PlanDetails } from "@/components/plan-details";
-import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -40,6 +39,7 @@ import {
   jobPostSchema,
 } from "@/lib/jobs";
 import { localizedRedirect } from "@/lib/localized-redirect";
+import { Button } from "@/registry/ui/button";
 import { createMetadata } from "@/seo/metadata";
 import {
   getMyJobPosts,

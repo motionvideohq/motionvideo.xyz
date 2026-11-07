@@ -7,7 +7,6 @@ import { LocalizedLink as Link } from "@/components/localized-link";
 import { PageMain } from "@/components/page";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
-import { buttonVariants } from "@/components/ui/button";
 import { ROUTES } from "@/constants/routes";
 import catalog from "@/data/motion-catalog.json";
 import {
@@ -18,6 +17,7 @@ import {
 } from "@/lib/blog";
 import { cn } from "@/lib/utils";
 import { pickVideos } from "@/lib/video-picks";
+import { buttonVariants } from "@/registry/ui/button";
 import { blogPostingJsonLd } from "@/seo/json-ld";
 import { createMetadata } from "@/seo/metadata";
 

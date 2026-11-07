@@ -1,0 +1,65 @@
+---
+title: Virtual Masonry
+description: A window-scrolled masonry grid that mounts only the items near the viewport and lays out server-rendered items before first paint, so nothing jumps.
+---
+
+<ComponentPreview name="virtual-masonry" />
+
+## Installation
+
+<DocsTabs items={["pnpm", "npm", "bun"]}>
+<DocsTab value="pnpm">
+
+```bash
+pnpm dlx shadcn@latest add https://motionvideo.xyz/r/virtual-masonry.json
+```
+
+</DocsTab>
+<DocsTab value="npm">
+
+```bash
+npx shadcn@latest add https://motionvideo.xyz/r/virtual-masonry.json
+```
+
+</DocsTab>
+<DocsTab value="bun">
+
+```bash
+bunx --bun shadcn@latest add https://motionvideo.xyz/r/virtual-masonry.json
+```
+
+</DocsTab>
+</DocsTabs>
+
+It installs `components/virtual-masonry.tsx` and the layout it shares with its first-paint script, `lib/masonry-layout.ts`. No dependencies beyond React.
+
+## Usage
+
+```tsx
+import { VirtualMasonry } from "@/components/virtual-masonry";
+import type { MasonryItem } from "@/components/virtual-masonry";
+
+const items: MasonryItem[] = videos.map((video) => ({
+  key: video.id,
+  aspectRatio: video.width / video.height,
+  node: <VideoCard video={video} />,
+}));
+
+<VirtualMasonry items={items} />;
+```
+
+## Items
+
+| Field | Type |  |
+| --- | --- | --- |
+| `key` | `string` | Stable and unique: it identifies the item across renders and measurements |
+| `aspectRatio` | `number` | Width ÷ height of fixed-ratio media, such as images and video. Omit it to measure the rendered item instead |
+| `lane` | `number` | Pin the item to a lane, counted from 0, instead of the shortest one |
+| `node` | `ReactNode` | What to render; it fills the lane's width |
+
+## How it works
+
+- Items fill the shortest lane in order. The number of lanes follows the grid's width: 1 below 560px, then 2, 3, 4 and 5 from 560, 900, 1200 and 1600px, with a 12px gap.
+- The grid scrolls with the window and mounts only the items within 900px of the viewport, so thousands of items stay cheap.
+- Fixed-ratio items are sized from `aspectRatio` without measuring. The rest are measured once rendered, and the layout updates as they resize.
+- In a server render, a small script runs while the page is still parsing. It places the server-rendered items at the real width before they first paint, then removes itself, and hydration adopts its layout. It works in any React server render: Next.js, TanStack Start or Remix.

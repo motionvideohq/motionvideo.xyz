@@ -3,9 +3,9 @@ import type { ComponentProps } from "react";
 import { useIntlayer } from "react-intlayer";
 
 import { CopyIcon } from "@/components/copy-icon";
-import { Button } from "@/components/ui/button";
 import { useTransientStatus } from "@/hooks/use-transient-status";
 import { cn } from "@/lib/utils";
+import { Button } from "@/registry/ui/button";
 
 type CopyStatus = "idle" | "copied" | "failed";
 

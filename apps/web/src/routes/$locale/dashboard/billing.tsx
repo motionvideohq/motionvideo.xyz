@@ -12,7 +12,6 @@ import { CopyIcon } from "@/components/copy-icon";
 import { LocalizedLink as Link } from "@/components/localized-link";
 import { AccountPageHeader, PageMain } from "@/components/page";
 import { Badge } from "@/components/ui/badge";
-import { Button, buttonVariants } from "@/components/ui/button";
 import {
   Card,
   CardContent,
@@ -27,6 +26,7 @@ import { ROUTES } from "@/constants/routes";
 import { SKILL } from "@/constants/skill";
 import { useTransientStatus } from "@/hooks/use-transient-status";
 import { localizedRedirect } from "@/lib/localized-redirect";
+import { Button, buttonVariants } from "@/registry/ui/button";
 import { createMetadata } from "@/seo/metadata";
 import {
   getMyPlan,

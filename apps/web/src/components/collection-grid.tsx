@@ -1,8 +1,8 @@
 import type { ReactNode } from "react";
 import type { IconComponent } from "reicon-react";
 
-import { VirtualMasonry } from "@/components/virtual-masonry";
-import type { MasonryItem } from "@/components/virtual-masonry";
+import { VirtualMasonry } from "@/registry/components/virtual-masonry";
+import type { MasonryItem } from "@/registry/components/virtual-masonry";
 
 /**
  * The masonry grid section shared by the gallery and the resource

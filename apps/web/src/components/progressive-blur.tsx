@@ -46,11 +46,12 @@ export const ProgressiveBlur = ({ className }: { className?: string }) => (
 );
 
 /**
- * Masonry pages (any page with a VirtualMasonry, marked `data-bottom-blur`)
- * soften their endless grid as it scrolls under the viewport's bottom edge.
- * CSS, so it is there from the first paint. Elsewhere only the footer
- * wordmark is blurred, in place (FooterWordmark).
+ * Masonry pages (any page with a VirtualMasonry, `data-slot="virtual-
+ * masonry"`, outside a component preview on /design) soften their endless
+ * grid as it scrolls under the viewport's bottom edge. CSS, so it is there
+ * from the first paint. Elsewhere only the footer wordmark is blurred, in
+ * place (FooterWordmark).
  */
 export const PageBottomBlur = () => (
-  <ProgressiveBlur className="fixed z-35 hidden transition-opacity duration-200 in-data-overlay-open:opacity-0 [body:has([data-bottom-blur])_&]:block" />
+  <ProgressiveBlur className="fixed z-35 hidden transition-opacity duration-200 in-data-overlay-open:opacity-0 [body:has([data-slot=virtual-masonry]:not([data-component-preview]_*))_&]:block" />
 );

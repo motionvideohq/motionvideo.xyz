@@ -2,7 +2,6 @@ import { useIntlayer } from "react-intlayer";
 import { ChevronDown } from "reicon-react/icons/ChevronDown";
 
 import { RssIcon } from "@/components/icons";
-import { buttonVariants } from "@/components/ui/button";
 import {
   ButtonGroup,
   ButtonGroupSeparator,
@@ -14,6 +13,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import type { Feeds } from "@/lib/feeds";
+import { buttonVariants } from "@/registry/ui/button";
 
 /**
  * A section's feeds: RSS as the button, Atom and JSON Feed in its menu. Feed

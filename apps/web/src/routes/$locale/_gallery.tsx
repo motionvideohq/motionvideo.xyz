@@ -36,7 +36,6 @@ import { MotionVideoCard, setMorphCard } from "@/components/motion-video";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
 import { SponsoredCard, sponsoredTileIndex } from "@/components/sponsored-card";
-import { Button, buttonVariants } from "@/components/ui/button";
 import { ButtonGroup } from "@/components/ui/button-group";
 import {
   DropdownMenu,
@@ -51,7 +50,6 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
-import type { MasonryItem } from "@/components/virtual-masonry";
 import { xProfileUrl } from "@/constants/links";
 import { ROUTES } from "@/constants/routes";
 import catalog from "@/data/motion-catalog.json";
@@ -86,6 +84,8 @@ import type {
 import { findMotionCreator } from "@/lib/motion-creators";
 import { COLOR_PAGES, fillTemplate } from "@/lib/motion-video-route";
 import { cn } from "@/lib/utils";
+import type { MasonryItem } from "@/registry/components/virtual-masonry";
+import { Button, buttonVariants } from "@/registry/ui/button";
 import { getLandingData } from "@/server/functions";
 import { getJobs } from "@/server/job-functions";
 

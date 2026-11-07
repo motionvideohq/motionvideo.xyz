@@ -13,12 +13,12 @@ import { LocalizedLink as Link } from "@/components/localized-link";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
 import { SponsoredCard, sponsoredTileIndex } from "@/components/sponsored-card";
-import { buttonVariants } from "@/components/ui/button";
-import type { MasonryItem } from "@/components/virtual-masonry";
 import { JOB_TYPES } from "@/constants/jobs";
 import type { JobType } from "@/constants/jobs";
 import { ROUTES } from "@/constants/routes";
 import { useLaneCount } from "@/hooks/use-lane-count";
+import type { MasonryItem } from "@/registry/components/virtual-masonry";
+import { buttonVariants } from "@/registry/ui/button";
 import type { JobListing } from "@/server/job-functions";
 
 // Same shell as Tools, Skills and Extras: type chips, then the masonry with
