@@ -223,7 +223,7 @@ export const openApiDocument: OpenAPIV3_1.Document = {
           slug: {
             type: "string",
             description:
-              "Stable ID: the creator's handle and a short hash. The video's page is `/videos/{slug}` under a locale, e.g. `/en/videos/{slug}`.",
+              "Stable ID: the creator's handle and a short hash. The video's page is `/videos/{slug}` in English and `/{locale}/videos/{slug}` in other languages, e.g. `/fr/videos/{slug}`.",
           },
           title: { type: "string" },
           date: {

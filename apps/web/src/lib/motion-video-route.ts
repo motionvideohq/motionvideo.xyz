@@ -30,7 +30,7 @@ const duplicateOf = new Map(
 export const loadMotionVideo = ({
   params,
 }: {
-  params: { locale: string; slug: string };
+  params: { locale?: string; slug: string };
 }) => {
   const video = videos.find((entry) => entry.slug === params.slug);
   if (video) {
@@ -43,7 +43,7 @@ export const loadMotionVideo = ({
   }
   if (target) {
     throw redirect({
-      to: "/$locale/videos/$slug",
+      to: "/{-$locale}/videos/$slug",
       params: { locale: params.locale, slug: target },
       statusCode: 301,
     });
@@ -54,10 +54,10 @@ export const loadMotionVideo = ({
 export const redirectMotionVideo = ({
   params,
 }: {
-  params: { locale: string; slug: string };
+  params: { locale?: string; slug: string };
 }) => {
   throw redirect({
-    to: "/$locale/videos/$slug",
+    to: "/{-$locale}/videos/$slug",
     params: { locale: params.locale, slug: params.slug },
     search: {},
     statusCode: 301,
@@ -74,13 +74,13 @@ export const fillTemplate = (
     (match, key: string) => values[key] ?? match
   );
 
-// Structured data identifies the video at its canonical `/$locale/videos/$slug`.
+// Structured data identifies the video at its canonical `/{-$locale}/videos/$slug`.
 export const motionVideoHead = ({
   loaderData,
   params,
 }: {
   loaderData?: { video: MotionVideo };
-  params: { locale: string; slug: string };
+  params: { locale?: string; slug: string };
 }) => {
   const locale = isLocale(params.locale) ? params.locale : DEFAULT_LOCALE;
   const meta = getIntlayer("gallery-meta", locale).video;

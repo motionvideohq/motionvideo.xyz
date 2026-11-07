@@ -5,7 +5,7 @@ All credits live here and in the video description (CC BY credits are required t
 ## Launch film
 
 `LaunchFilm` shows the site's real components on the dev-only `/film` stage
-(`apps/web/src/routes/$locale/film.tsx`), fed a fixed set of catalog videos.
+(`apps/web/src/routes/{-$locale}/film.tsx`), fed a fixed set of catalog videos.
 Gallery creators keep their on-screen attribution (avatars and handles).
 
 There is no music.

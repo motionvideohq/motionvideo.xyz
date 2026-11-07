@@ -246,7 +246,7 @@ From the `coreyhaines31/marketingskills` `email-sequence` skill and standard del
 - **New users:**
   - An unchecked opt-in for _Tips & offers_ at sign-up.
   - _Product updates_ on by default, with opt-out in Settings.
-- **Privacy page** (`src/routes/$locale/_pages/privacy.content.ts`):
+- **Privacy page** (`src/routes/{-$locale}/_pages/privacy.content.ts`):
   - Describe Resend Contacts and topics.
   - Describe Cloudflare as a sending processor.
   - Remove the newsletter-table wording.

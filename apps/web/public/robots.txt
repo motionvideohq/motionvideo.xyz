@@ -1,7 +1,7 @@
 # https://www.robotstxt.org/robotstxt.html
 # Search and AI crawlers are welcome on public pages; account, admin, and
-# utility paths stay out. Pages live under a locale prefix (`/en/admin`), so
-# each private path is blocked both with and without it.
+# utility paths stay out. English pages are unprefixed (`/admin`) and other
+# locales prefixed (`/fr/admin`), so each private path is blocked both ways.
 User-agent: *
 Disallow: /admin
 Disallow: /*/admin

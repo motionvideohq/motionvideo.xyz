@@ -31,7 +31,7 @@ export const moveHead = ({
   params,
 }: {
   loaderData?: { move: Move };
-  params: { locale: string; family: string; slug: string };
+  params: { locale?: string; family: string; slug: string };
 }) => {
   const path = `${ROUTES.MOVES}/${params.family}/${params.slug}`;
   return {

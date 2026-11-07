@@ -11,7 +11,7 @@ import { LOCALES, localizedPath } from "./src/constants/locales.ts";
 import { STATIC_PAGES } from "./src/constants/routes.ts";
 
 // Every content page is prerendered once per locale, at the same URL the
-// router renders: `/en/about`, `/fr/about`, and so on.
+// router renders: `/about`, `/fr/about`, and so on.
 const STATIC_ROUTES = LOCALES.flatMap((locale) =>
   STATIC_PAGES.map((page) => localizedPath(page, locale))
 );
@@ -64,8 +64,8 @@ const config = defineConfig(({ command }) => ({
       pages: STATIC_ROUTES.map((path) => ({ path })),
       prerender: {
         autoStaticPathsDiscovery: false,
-        // `/en/about.html` rather than `/en/about/index.html`: Workers assets
-        // serve it at `/en/about` without a trailing-slash redirect.
+        // `/fr/about.html` rather than `/fr/about/index.html`: Workers assets
+        // serve it at `/fr/about` without a trailing-slash redirect.
         autoSubfolderIndex: false,
         crawlLinks: false,
         enabled: true,
