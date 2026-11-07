@@ -15,7 +15,7 @@ import { KeyboardShortcutsProvider } from "@/components/keyboard-shortcuts";
 import { LivePresenceProvider } from "@/components/live-presence";
 import { LocaleProvider } from "@/components/locale-provider";
 import { NotFound } from "@/components/not-found";
-import { ProgressiveBlur } from "@/components/progressive-blur";
+import { PageBottomBlur } from "@/components/progressive-blur";
 import { SignInDialogProvider } from "@/components/sign-in-dialog";
 import { SoundEffects } from "@/components/ui/sound";
 import { localeFromPath } from "@/constants/locales";
@@ -53,7 +53,7 @@ const RootDocument = ({ children }: { children: React.ReactNode }) => {
           </SignInDialogProvider>
           <FollowPrompt />
         </LocaleProvider>
-        <ProgressiveBlur />
+        <PageBottomBlur />
         <ClickTracking />
         <TanStackDevtools
           config={{

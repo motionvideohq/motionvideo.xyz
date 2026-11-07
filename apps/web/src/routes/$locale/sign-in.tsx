@@ -61,7 +61,7 @@ const SignIn = () => {
     redirectTo = ensureLocalizedPath(search.redirect, locale);
   }
   return (
-    <div data-no-bottom-blur className="relative grid min-h-svh lg:grid-cols-2">
+    <div className="relative grid min-h-svh lg:grid-cols-2">
       {/* Spans the whole page, not just the form's half, so the logo sits
           where the site header puts it on wide screens too. */}
       <BrandHeader className="absolute inset-x-0 top-0" />

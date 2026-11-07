@@ -153,10 +153,8 @@ const DocsArticle = ({
       </main>
       {/* As tall as its contents, with the actions right under them, up to
           one viewport minus the site header (3.5rem from lg, not sticky);
-          then only the contents between the heading and the actions scroll.
-          The bottom padding (5rem) keeps the actions clear of the page's
-          bottom blur (4.5rem, ProgressiveBlur). */}
-      <aside className="sticky top-0 flex max-h-[calc(100svh-3.5rem)] flex-col gap-4 self-start pt-10 pb-20 max-xl:hidden print:hidden">
+          then only the contents between the heading and the actions scroll. */}
+      <aside className="sticky top-0 flex max-h-[calc(100svh-3.5rem)] flex-col gap-4 self-start py-10 max-xl:hidden print:hidden">
         {hasToc ? <DocsToc toc={toc} /> : null}
         <div className={cn("shrink-0", hasToc && "border-t pt-3")}>
           {actions(false)}

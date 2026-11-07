@@ -207,6 +207,8 @@ export const VirtualMasonry = ({ items }: { items: MasonryItem[] }) => {
         id={id}
         ref={ref}
         data-masonry-layout={initialLayout && JSON.stringify(initialLayout)}
+        // Turns on the page's fixed bottom blur (PageBottomBlur).
+        data-bottom-blur
         className="relative w-full"
         style={{ height: totalHeight }}
         suppressHydrationWarning

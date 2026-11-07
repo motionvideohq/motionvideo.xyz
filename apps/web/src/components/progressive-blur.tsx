@@ -1,5 +1,7 @@
 import type { CSSProperties } from "react";
 
+import { cn } from "@/lib/utils";
+
 // Blur per layer in px. The ramp eases in, so content stays crisp until the
 // last few pixels and only the very edge reads as soft.
 const BLURS = [0.5, 1, 1.75, 2.75, 4, 5.5] as const;
@@ -20,16 +22,18 @@ const layerStyle = (index: number): CSSProperties => {
 };
 
 /**
- * A fixed blur that softens content as it scrolls under the bottom edge.
- * Shorter on mobile, where the footer wordmark is only ~45px tall and
- * the full ramp would blur it away entirely. A page without scrolling
- * content under it (e.g. /sign-in) opts out with `data-no-bottom-blur`;
- * CSS, so it is gone from the first paint.
+ * A blur that softens content towards the bottom edge of its box. Place it
+ * with `className` (`fixed` or `absolute`; it spans the box's bottom). Shorter
+ * on mobile, where the footer wordmark is only ~45px tall and the full ramp
+ * would blur it away entirely.
  */
-export const ProgressiveBlur = () => (
+export const ProgressiveBlur = ({ className }: { className?: string }) => (
   <div
     aria-hidden="true"
-    className="pointer-events-none fixed inset-x-0 bottom-0 z-35 h-10 transition-opacity duration-200 in-data-overlay-open:opacity-0 md:h-18 [body:has([data-no-bottom-blur])_&]:hidden"
+    className={cn(
+      "pointer-events-none inset-x-0 bottom-0 h-10 md:h-18",
+      className
+    )}
   >
     {Array.from({ length: LAYERS }, (_, index) => (
       <div
@@ -39,4 +43,14 @@ export const ProgressiveBlur = () => (
       />
     ))}
   </div>
+);
+
+/**
+ * Masonry pages (any page with a VirtualMasonry, marked `data-bottom-blur`)
+ * soften their endless grid as it scrolls under the viewport's bottom edge.
+ * CSS, so it is there from the first paint. Elsewhere only the footer
+ * wordmark is blurred, in place (FooterWordmark).
+ */
+export const PageBottomBlur = () => (
+  <ProgressiveBlur className="fixed z-35 hidden transition-opacity duration-200 in-data-overlay-open:opacity-0 [body:has([data-bottom-blur])_&]:block" />
 );

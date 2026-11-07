@@ -1,9 +1,12 @@
+import { ProgressiveBlur } from "@/components/progressive-blur";
 import { SITE } from "@/constants/site";
 
 /**
  * The oversized MotionVideo wordmark closing every page. Letters are filled
  * with the page colour and raised only by a soft shadow, and the bottom is
- * cropped, so the fixed progressive blur dissolves them into the edge.
+ * cropped and blurred, so they dissolve into the page's edge. Masonry pages
+ * blur the whole bottom edge already (PageBottomBlur), so the wordmark's own
+ * blur steps aside there rather than doubling up.
  * On mobile the word is small and sits wholly in the blur, which erases a
  * shadow-only edge, so it gets a faint foreground fill there instead.
  * Decorative: the brand name is already in the footer row.
@@ -11,7 +14,7 @@ import { SITE } from "@/constants/site";
 export const FooterWordmark = () => (
   <div
     aria-hidden="true"
-    className="pointer-events-none overflow-hidden select-none"
+    className="pointer-events-none relative overflow-hidden select-none"
   >
     <svg
       viewBox="0 0 1000 120"
@@ -28,5 +31,6 @@ export const FooterWordmark = () => (
         {SITE.NAME}
       </text>
     </svg>
+    <ProgressiveBlur className="absolute [body:has([data-bottom-blur])_&]:hidden" />
   </div>
 );

@@ -927,7 +927,7 @@ export const DetailOverlay = ({
   /** The sidebar's content. */
   children: ReactNode;
 }) => {
-  // Fades out page chrome keyed on `in-data-overlay-open` (the bottom blur).
+  // Fades out page chrome keyed on `in-data-overlay-open` (the page bottom blur).
   useEffect(() => {
     const root = document.documentElement;
     root.dataset.overlayOpen = "";
