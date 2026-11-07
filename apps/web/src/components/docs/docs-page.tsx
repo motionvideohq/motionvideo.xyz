@@ -246,7 +246,7 @@ export const docsHead = (data: DocsLoaderData | undefined) => {
 // Full width, three columns from lg (sidebar, article, and from xl the table
 // of contents with the page actions); below lg the pages are listed in the
 // site menu and the contents and actions fold above the article. Printing
-// (Export → PDF) keeps only the article. The locale comes from the URL's `/$locale` prefix;
+// (Export → PDF) keeps only the article. The locale comes from the URL's `/{-$locale}` prefix;
 // pages without a translation show the English file.
 export const DocsPage = ({ data }: { data: DocsLoaderData }) => {
   const { locale } = useLocale();

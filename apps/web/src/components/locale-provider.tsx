@@ -1,9 +1,5 @@
 import { useLocation } from "@tanstack/react-router";
-import {
-  getHTMLTextDir,
-  getLocalizedUrl,
-  getPathWithoutLocale,
-} from "intlayer";
+import { getHTMLTextDir, getPathWithoutLocale } from "intlayer";
 import type { LocalesValues } from "intlayer";
 import { useEffect } from "react";
 import type { ReactNode } from "react";
@@ -11,8 +7,8 @@ import { IntlayerProvider } from "react-intlayer";
 
 import {
   DEFAULT_LOCALE,
-  I18N_ROUTING,
   LOCALE_COOKIE,
+  localizedPath,
 } from "@/constants/locales";
 
 const rememberLocale = (locale: LocalesValues) => {
@@ -25,8 +21,9 @@ const rememberLocale = (locale: LocalesValues) => {
 };
 
 /**
- * Locale comes from the route (`/$locale/...`), so switching languages is a
- * navigation to the same page with a different prefix rather than local state.
+ * Locale comes from the URL (`/fr/...`, or no prefix for English), so
+ * switching languages is a navigation to the same page with a different
+ * prefix rather than local state.
  */
 const LocaleEffect = ({ locale }: { locale: LocalesValues }) => {
   useEffect(() => {
@@ -50,14 +47,18 @@ export const LocaleProvider = ({
     if (typeof window === "undefined" || nextLocale === locale) {
       return;
     }
-    const path = getLocalizedUrl(
+    // Remembered first: the Worker sends unprefixed (English) visits to the
+    // cookie's locale, which would otherwise bounce a switch to English back.
+    rememberLocale(nextLocale);
+    const path = localizedPath(
       getPathWithoutLocale(location.pathname),
-      nextLocale,
-      I18N_ROUTING
+      nextLocale
     );
     // A full load keeps the server-rendered document, loaders, and `<html
     // lang>` in sync with the new prefix.
-    window.location.assign(`${path}${location.searchStr}${location.hash}`);
+    window.location.assign(
+      `${path}${window.location.search}${window.location.hash}`
+    );
   };
 
   return (

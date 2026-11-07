@@ -6,11 +6,11 @@ const config = {
     defaultLocale: "en",
   },
   routing: {
-    // Every locale is a real path prefix, including the default one:
-    // `/en/about`, `/fr/about`, and so on.
-    mode: "prefix-all",
-    // The URL is the source of truth; the Worker negotiates a locale for
-    // unprefixed visits and stores it in a cookie.
+    // English (the default) has no prefix, every other locale does:
+    // `/about`, `/fr/about`, and so on.
+    mode: "prefix-no-default",
+    // The URL is the source of truth; the Worker sends unprefixed visits to a
+    // non-English locale negotiated from the cookie or Accept-Language.
     storage: false,
     enableProxy: false,
   },

@@ -13,14 +13,21 @@
   // Branch previews: Workers Builds runs `wrangler preview`, which requires
   // this block (empty inherits the top-level settings).
   "previews": {},
-  // Locale-prefixed pages run the Worker first so it can apply the www redirect
-  // and serve prerendered HTML through ASSETS. Scripts, styles, and images skip
-  // the Worker, as do unprefixed URLs (they have no static file and reach the
-  // Worker anyway, where localeRedirect sends them to their locale).
+  // Pages with a prerendered file run the Worker first so it can apply the www
+  // and locale redirects and serve the HTML through ASSETS: every prefixed
+  // locale, plus the English (unprefixed) STATIC_PAGES in src/constants/routes.ts.
+  // Scripts, styles, and images skip the Worker; other unprefixed pages have no
+  // static file and reach the Worker anyway.
   "assets": {
     "binding": "ASSETS",
     "run_worker_first": [
-      "/en/*",
+      "/about",
+      "/brand",
+      "/changelog",
+      "/contact",
+      "/privacy",
+      "/refunds",
+      "/terms",
       "/es/*",
       "/fr/*",
       "/zh/*",

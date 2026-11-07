@@ -13,7 +13,7 @@ import { cn } from "@/lib/utils";
 
 // Site-relative path (not protocol-relative `//host`), optional #fragment.
 const INTERNAL_HREF = /^(?<path>\/(?!\/)[^#]*)(?:#(?<hash>.*))?$/u;
-// Site files served outside `/$locale` (`/skill.md`, `/llms.txt`).
+// Site files served outside `/{-$locale}` (`/skill.md`, `/llms.txt`).
 const SITE_FILE = /\.[a-z0-9]+$/iu;
 
 const linkClass =

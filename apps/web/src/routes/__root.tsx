@@ -28,7 +28,7 @@ import fontsCss from "../styles/fonts.css?url";
 import appCss from "../styles/globals.css?url";
 
 const RootDocument = ({ children }: { children: React.ReactNode }) => {
-  // The locale is a route param on every page (`/$locale/...`); reading the
+  // The locale is a route param on every page (`/{-$locale}/...`); reading the
   // pathname here also covers dialogs and error pages rendered above the
   // locale layout.
   const pathname = useRouterState({

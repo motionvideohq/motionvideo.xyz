@@ -6,8 +6,11 @@ import {
   DEFAULT_LOCALE,
   LOCALE_COOKIE,
   LOCALES,
+  NON_PAGE_PREFIXES,
   isLocale,
+  isPagePath,
   localizedPath,
+  withoutDefaultLocale,
 } from "@/constants/locales";
 import { STATIC_PAGES } from "@/constants/routes";
 import { SITE } from "@/constants/site";
@@ -22,16 +25,12 @@ export { Presence } from "@/server/presence";
 
 const PRESENCE_PATH = "/api/presence";
 
-/** Prerendered pages, once per locale (`/en/about`, `/fr/about`, …). */
+/** Prerendered pages, once per locale (`/about`, `/fr/about`, …). */
 const STATIC_PATHS = new Set(
   LOCALES.flatMap((locale) =>
     STATIC_PAGES.map((page) => localizedPath(page, locale))
   )
 );
-
-const HAS_FILE_EXTENSION = /\.[a-z0-9]+$/iu;
-// OAuth discovery (`/.well-known/…`) is machine-read at fixed URLs.
-const SKIP_PREFIXES = ["/api/", "/_", "/uploads/", "/.well-known/"];
 
 /**
  * Locale for an unprefixed visit: an explicit choice in the cookie first, then
@@ -58,9 +57,10 @@ const negotiateLocale = (request: Request) => {
 };
 
 /**
- * Old unprefixed pages (`/about`) become the negotiated locale's URL. API,
- * asset, and framework paths are left alone, as are unknown two-letter
- * prefixes: those render a translation-aware 404 instead of being rewritten.
+ * English pages have no prefix, so a legacy `/en/about` moves permanently to
+ * `/about`. An unprefixed page goes to the negotiated locale's URL when that
+ * isn't English (`/about` → `/fr/about`). API, asset, and framework paths are
+ * left alone.
  */
 const localeRedirect = (request: Request): Response | null => {
   if (request.method !== "GET" && request.method !== "HEAD") {
@@ -68,33 +68,32 @@ const localeRedirect = (request: Request): Response | null => {
   }
   const url = new URL(request.url);
   const { pathname } = url;
-  if (
-    pathname === "/" ||
-    (!SKIP_PREFIXES.some((prefix) => pathname.startsWith(prefix)) &&
-      !HAS_FILE_EXTENSION.test(pathname))
-  ) {
-    const [, segment] = pathname.split("/");
-    if (isLocale(segment)) {
-      return null;
-    }
-    // A lowercase two-letter first segment is most likely an attempted locale
-    // (`/xx/about`); let the router show its locale-aware 404.
-    if (segment !== undefined && /^[a-z]{2}$/iu.test(segment)) {
-      return null;
-    }
-    url.pathname = localizedPath(pathname, negotiateLocale(request));
-    // `Response.redirect` has immutable headers in Workers, so build the response
-    // directly to add cache negotiation hints.
-    return new Response(null, {
-      headers: {
-        "Cache-Control": CACHE_CONTROL.PRIVATE,
-        Location: url.toString(),
-        Vary: "Accept-Language, Cookie",
-      },
-      status: 307,
-    });
+  if (!isPagePath(pathname)) {
+    return null;
   }
-  return null;
+  const [, segment] = pathname.split("/");
+  if (segment === DEFAULT_LOCALE) {
+    url.pathname = withoutDefaultLocale(pathname);
+    return Response.redirect(url.toString(), 301);
+  }
+  if (isLocale(segment)) {
+    return null;
+  }
+  const locale = negotiateLocale(request);
+  if (locale === DEFAULT_LOCALE) {
+    return null;
+  }
+  url.pathname = localizedPath(pathname, locale);
+  // `Response.redirect` has immutable headers in Workers, so build the response
+  // directly to add cache negotiation hints.
+  return new Response(null, {
+    headers: {
+      "Cache-Control": CACHE_CONTROL.PRIVATE,
+      Location: url.toString(),
+      Vary: "Accept-Language, Cookie",
+    },
+    status: 307,
+  });
 };
 
 // Sent with every page and API response (not the presence WebSocket). Framing
@@ -157,15 +156,18 @@ const route = async (request: Request): Promise<Response> => {
     url.hostname = SITE.DOMAIN;
     return Response.redirect(url.toString(), 301);
   }
-  // One URL per page: `/en/tools/` (and `/en/`) move permanently to the
+  // One URL per page: `/fr/tools/` (and `/fr/`) move permanently to the
   // slashless form the router renders, rather than through the router's own
-  // temporary redirect. API and framework paths keep their exact form.
+  // temporary redirect; a legacy `/en/tools/` goes straight to `/tools`. API
+  // and framework paths keep their exact form.
   if (
     url.pathname.length > 1 &&
     url.pathname.endsWith("/") &&
-    !SKIP_PREFIXES.some((prefix) => url.pathname.startsWith(prefix))
+    !NON_PAGE_PREFIXES.some((prefix) => url.pathname.startsWith(prefix))
   ) {
-    url.pathname = url.pathname.replace(/\/+$/u, "") || "/";
+    url.pathname = withoutDefaultLocale(
+      url.pathname.replace(/\/+$/u, "") || "/"
+    );
     return Response.redirect(url.toString(), 308);
   }
   const localized = localeRedirect(request);

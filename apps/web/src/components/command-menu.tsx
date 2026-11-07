@@ -241,7 +241,7 @@ export const CommandMenu = () => {
   const hasQuery = query.trim().length > 0;
   const groups = useMemo<PaletteGroup[]>(() => {
     // PagePath limits `page()` to real pages; the localized navigate adds the
-    // locale prefix.
+    // locale prefix (none in English).
     const page = (
       to: PagePath,
       label: string,

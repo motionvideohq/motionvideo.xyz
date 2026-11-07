@@ -10,10 +10,10 @@ export type LocalizedRouteValue = string | number | boolean | undefined;
 
 /**
  * Navigation options for app paths: `to` is written without the locale segment
- * (`to: ROUTES.DASHBOARD`), and the wrapper inserts `/$locale`.
+ * (`to: ROUTES.DASHBOARD`), and the wrapper inserts `/{-$locale}`.
  *
  * These are intentionally loose. The generated router types only know the
- * `/$locale/...` routes, so typing callers against them would force every page
+ * `/{-$locale}/...` routes, so typing callers against them would force every page
  * to spell the locale segment itself.
  */
 export interface LocalizedNavigateOptions {
@@ -39,8 +39,9 @@ export type LocalizedNavigate = (
 ) => Promise<void>;
 
 /**
- * `useNavigate` for locale-prefixed routes: callers keep passing the app path
- * (`to: ROUTES.DASHBOARD`) and the wrapper inserts the current locale.
+ * `useNavigate` for localized routes: callers keep passing the app path
+ * (`to: ROUTES.DASHBOARD`) and the wrapper inserts the current locale's prefix
+ * (none in English).
  */
 export const useLocalizedNavigate = (): LocalizedNavigate => {
   const navigate = useNavigate();
@@ -57,12 +58,12 @@ export const useLocalizedNavigate = (): LocalizedNavigate => {
     // carries the locale.
     if (to.startsWith(".")) {
       // SAFETY: the router accepts app paths, but its generated types only
-      // expose the `/$locale/...` ids.
+      // expose the `/{-$locale}/...` ids.
       return navigate({ ...rest, params, search, to } as never);
     }
 
     // SAFETY: `to` is an app path; prepending the locale segment produces the
-    // matching generated `/$locale/...` route id.
+    // matching generated `/{-$locale}/...` route id (English drops it).
     return navigate({
       ...rest,
       params: { locale: localePrefix, ...params },
