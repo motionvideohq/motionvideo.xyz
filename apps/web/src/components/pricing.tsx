@@ -23,6 +23,8 @@ import type {
 import { formatUsd } from "@/constants/pricing";
 import { ROUTES } from "@/constants/routes";
 import { fillTemplate } from "@/lib/motion-video-route";
+import { offerCovers } from "@/lib/offers";
+import type { SaleOffer } from "@/lib/offers";
 import { cn } from "@/lib/utils";
 
 /**
@@ -107,10 +109,12 @@ const PlanCard = ({
   plan,
   billing,
   access,
+  sale,
 }: {
   plan: Plan;
   billing: PlanBilling;
   access: PlanAccess | null;
+  sale: SaleOffer | null;
 }) => {
   const content = useIntlayer("pricing");
   const { locale } = useLocale();
@@ -121,7 +125,13 @@ const PlanCard = ({
   const shown = offered ? billing : "monthly";
   const current = access?.plan === plan;
   const featured = plan === "pro";
-
+  const listCents = PLAN_PRICE_CENTS[plan][shown] ?? 0;
+  // During a sale, the price it brings at checkout, with the list price
+  // struck through beside it.
+  const onSale = offered && sale !== null && offerCovers(sale, plan, billing);
+  const priceCents = onSale
+    ? Math.round((listCents * (100 - sale.percentOff)) / 100)
+    : listCents;
   let cta = (
     <Button size="xl" variant="secondary" disabled className="w-full">
       {copy.cta}
@@ -173,13 +183,18 @@ const PlanCard = ({
           <h2 className="text-base font-semibold">{copy.name}</h2>
           <div className="flex flex-col gap-1">
             <p className="flex items-baseline gap-1.5">
+              {onSale && (
+                <s className="text-muted-foreground text-xl font-medium tabular-nums">
+                  {formatUsd(listCents)}
+                </s>
+              )}
               <TextMorph
                 as="span"
                 numbers
                 {...MORPH}
                 className="text-4xl font-semibold tracking-tight tabular-nums"
               >
-                {formatUsd(PLAN_PRICE_CENTS[plan][shown] ?? 0)}
+                {formatUsd(priceCents)}
               </TextMorph>
               <TextMorph
                 as="span"
@@ -260,10 +275,12 @@ export const PlanCards = ({
   billing,
   access,
   signedIn,
+  sale,
 }: {
   billing: PlanBilling;
   access: PlanAccess | null;
   signedIn: boolean;
+  sale: SaleOffer | null;
 }) => (
   <ul className="grid w-full gap-4 md:grid-cols-3">
     <li className="flex">
@@ -271,11 +288,24 @@ export const PlanCards = ({
     </li>
     {PLANS.map((plan) => (
       <li key={plan} className="flex">
-        <PlanCard plan={plan} billing={billing} access={access} />
+        <PlanCard plan={plan} billing={billing} access={access} sale={sale} />
       </li>
     ))}
   </ul>
 );
+
+/** "Black Friday: 30% off for new customers, applied at checkout. …" */
+export const SaleNote = ({ sale }: { sale: SaleOffer }) => {
+  const content = useIntlayer("pricing");
+  return (
+    <p className="from-cta-from to-cta-to text-cta-foreground rounded-full bg-linear-to-r px-4 py-1.5 text-center text-sm text-pretty">
+      {fillTemplate(content.sale.value, {
+        name: sale.name,
+        percent: String(sale.percentOff),
+      })}
+    </p>
+  );
+};
 
 /** "We'll apply a 70% parity discount in India at checkout". */
 export const ParityBanner = ({ offer }: { offer: ParityOffer }) => {

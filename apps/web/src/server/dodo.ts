@@ -1,5 +1,8 @@
 import { env } from "cloudflare:workers";
-import DodoPayments, { NotFoundError } from "dodopayments";
+import DodoPayments, {
+  NotFoundError,
+  UnprocessableEntityError,
+} from "dodopayments";
 import type { CheckoutSessionCreateParams } from "dodopayments/resources/checkout-sessions";
 import type { CountryCode } from "dodopayments/resources/misc";
 
@@ -197,29 +200,55 @@ export interface Buyer {
 }
 
 /**
+ * Codes for a plan checkout. `codes` are applied for the buyer; `locked`
+ * hides the code field, so nothing else can be entered (or stacked on them).
+ */
+export interface CheckoutDiscounts {
+  codes: string[];
+  locked: boolean;
+}
+
+/**
  * Checkout for MotionVideo Pro or Business. The metadata ties the
  * subscription or lifetime payment to the account (src/server/plans.ts); Dodo
  * returns to /dashboard/billing, appending `subscription_id` or `payment_id`.
+ * Outside a sale the code field shows (e.g. MOTIONVIDEOLAUNCH, 20% off every
+ * plan); during one, `discounts` locks it and applies the sale's code.
  */
-export const createPlanCheckoutUrl = (
+export const createPlanCheckoutUrl = async (
   plan: Plan,
   billing: PlanBilling,
   buyer: Buyer,
-  locale?: string
+  locale: string | undefined,
+  discounts: CheckoutDiscounts
 ): Promise<string> => {
   const productId = planProductId(plan, billing);
   if (!productId) {
     throw new Error("Plan products are not set up; run pnpm dodo:setup");
   }
-  return checkoutUrl({
+  const params: CheckoutSessionCreateParams = {
     cancel_url: appUrl(ROUTES.PRO, locale),
     customer: { email: buyer.email },
-    // Shows the code field (e.g. MOTIONVIDEOLAUNCH, 20% off every plan).
-    feature_flags: { allow_discount_code: true },
+    feature_flags: { allow_discount_code: !discounts.locked },
     metadata: { plan, billing, user_id: buyer.userId },
     product_cart: [{ product_id: productId, quantity: 1 }],
     return_url: `${appUrl(ROUTES.DASHBOARD_BILLING, locale)}?checkout=success`,
-  });
+  };
+  if (discounts.codes.length === 0) {
+    return checkoutUrl(params);
+  }
+  try {
+    return await checkoutUrl({ ...params, discount_codes: discounts.codes });
+  } catch (error) {
+    // Dodo refuses a code it doesn't take right now (a second off at the
+    // sale's edges, say: "not yet active"). Check out at the full price
+    // rather than not at all.
+    if (!(error instanceof UnprocessableEntityError)) {
+      throw error;
+    }
+    console.error("Checkout code refused", discounts.codes, error.message);
+    return checkoutUrl(params);
+  }
 };
 
 /**

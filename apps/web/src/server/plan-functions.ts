@@ -13,12 +13,12 @@ import {
 import type { ParityOffer, PlanAccess } from "@/constants/plans";
 import { ROUTES } from "@/constants/routes";
 import { SITE } from "@/constants/site";
+import type { SaleOffer } from "@/lib/offers";
 
 import { getCurrentSession } from "./auth";
 import {
   createPlanCheckoutUrl,
   legacySkillPortalUrl,
-  parityPercentOff,
   planPortalUrl,
 } from "./dodo";
 import { sendEmail } from "./email";
@@ -31,6 +31,12 @@ import {
   syncPlanPayment,
   syncPlanSubscription,
 } from "./plans";
+import {
+  checkoutDiscounts,
+  offerForVisitor,
+  parityFor,
+  visitorCountry,
+} from "./visitor-pricing";
 
 const requireSession = async () => {
   const session = await getCurrentSession();
@@ -73,11 +79,6 @@ export const getMyPlan = createServerFn({ method: "GET" })
     return planAccessFor(session.user);
   });
 
-// Percent off by country. Dodo's percentages change only when edited in its
-// dashboard, so one preview per country per isolate every few hours is plenty.
-const PARITY_TTL_MS = 6 * 60 * 60 * 1000;
-const parityCache = new Map<string, { at: number; percentOff: number }>();
-
 /**
  * The visitor's purchasing power parity discount, for the banner under the
  * plans: their country from Cloudflare (`cf-ipcountry`), the percent from a
@@ -86,23 +87,33 @@ const parityCache = new Map<string, { at: number; percentOff: number }>();
  */
 export const getParityOffer = createServerFn({ method: "GET" }).handler(
   async (): Promise<ParityOffer | null> => {
-    const country = getRequest().headers.get("cf-ipcountry")?.toUpperCase();
-    // XX is "unknown"; Tor's T1 already fails the letters-only pattern.
-    if (!country || !/^[A-Z]{2}$/u.test(country) || country === "XX") {
+    const country = visitorCountry(getRequest());
+    if (!country) {
       return null;
     }
-    const cached = parityCache.get(country);
-    let percentOff = cached?.percentOff;
-    if (!cached || Date.now() - cached.at > PARITY_TTL_MS) {
-      try {
-        percentOff = await parityPercentOff(country);
-      } catch (error) {
-        console.error("Parity preview failed", country, error);
-        return null;
-      }
-      parityCache.set(country, { at: Date.now(), percentOff });
+    try {
+      const percentOff = await parityFor(country);
+      return percentOff ? { country, percentOff } : null;
+    } catch (error) {
+      console.error("Parity preview failed", country, error);
+      return null;
     }
-    return percentOff ? { country, percentOff } : null;
+  }
+);
+
+/**
+ * The sale running for this visitor (src/lib/offers.ts), for the prices on
+ * /pro; null outside one or where parity applies. Without its code: checkout
+ * applies that itself.
+ */
+export const getSaleOffer = createServerFn({ method: "GET" }).handler(
+  async (): Promise<SaleOffer | null> => {
+    const offer = await offerForVisitor(getRequest());
+    if (!offer) {
+      return null;
+    }
+    const { code: _code, ...shown } = offer;
+    return shown;
   }
 );
 
@@ -123,7 +134,8 @@ export const startPlanCheckout = createServerFn({ method: "POST" })
       data.plan,
       data.billing,
       { email: session.user.email, userId: session.user.id },
-      data.locale
+      data.locale,
+      await checkoutDiscounts(getRequest(), data.plan, data.billing)
     );
   });
 

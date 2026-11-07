@@ -7,7 +7,12 @@ import { LocalizedLink as Link } from "@/components/localized-link";
 import { LogoGroup } from "@/components/logo-group";
 import { MotionPreview } from "@/components/motion-video";
 import { HeroHeader, PageMain, SectionHeader } from "@/components/page";
-import { BillingToggle, ParityBanner, PlanCards } from "@/components/pricing";
+import {
+  BillingToggle,
+  ParityBanner,
+  PlanCards,
+  SaleNote,
+} from "@/components/pricing";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
 import { SocialProof } from "@/components/social-proof";
@@ -30,7 +35,11 @@ import { planJsonLd } from "@/seo/json-ld";
 import { createMetadata } from "@/seo/metadata";
 import { getLandingData, getSessionFlag } from "@/server/functions";
 import { getMoveCards } from "@/server/move-functions";
-import { getMyPlan, getParityOffer } from "@/server/plan-functions";
+import {
+  getMyPlan,
+  getParityOffer,
+  getSaleOffer,
+} from "@/server/plan-functions";
 
 interface ProSearch {
   /** Omitted for monthly, the default tab. */
@@ -118,7 +127,7 @@ const FaqItem = ({ value, question, children }: FaqItemProps) => (
 const Pro = () => {
   const content = useIntlayer("pricing-page");
   const landing = useIntlayer("landing");
-  const { signedIn, access, cards, parity } = routeApi.useLoaderData();
+  const { signedIn, access, cards, parity, sale } = routeApi.useLoaderData();
   const { billing = "monthly" } = routeApi.useSearch();
   const previews = Object.values(cards).slice(0, PREVIEW_COUNT);
 
@@ -146,7 +155,13 @@ const Pro = () => {
           className="flex w-full max-w-5xl flex-col items-center gap-6"
         >
           <BillingToggle billing={billing} />
-          <PlanCards billing={billing} access={access} signedIn={signedIn} />
+          <PlanCards
+            billing={billing}
+            access={access}
+            signedIn={signedIn}
+            sale={sale}
+          />
+          {sale && <SaleNote sale={sale} />}
           {parity && <ParityBanner offer={parity} />}
         </section>
         <SocialProof />
@@ -296,14 +311,15 @@ export const Route = createFileRoute("/$locale/pro")({
     return { billing: billing === "monthly" ? undefined : billing };
   },
   loader: async () => {
-    const [landing, access, cards, parity, signedIn] = await Promise.all([
+    const [landing, access, cards, parity, sale, signedIn] = await Promise.all([
       getLandingData(),
       getMyPlan(),
       getMoveCards(),
       getParityOffer(),
+      getSaleOffer(),
       getSessionFlag(),
     ]);
-    return { ...landing, access, cards, parity, signedIn };
+    return { ...landing, access, cards, parity, sale, signedIn };
   },
   head: ({ params }: LocaleHeadContext) => ({
     ...createMetadata({

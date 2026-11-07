@@ -7,6 +7,7 @@ import { ROUTES } from "@/constants/routes";
 import { getAuth } from "@/server/auth";
 import { createPlanCheckoutUrl } from "@/server/dodo";
 import { liveOwnedRow } from "@/server/plans";
+import { checkoutDiscounts } from "@/server/visitor-pricing";
 
 const redirect = (location: string): Response =>
   new Response(null, { headers: { Location: location }, status: 303 });
@@ -46,7 +47,8 @@ export const Route = createFileRoute("/$locale/checkout")({
             plan,
             billing,
             { email: session.user.email, userId: session.user.id },
-            locale
+            locale,
+            await checkoutDiscounts(request, plan, billing)
           )
         );
       },

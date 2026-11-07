@@ -10,7 +10,7 @@
     "postinstall": "fumadocs-mdx",
     "postbuild": "node scripts/link-root-deploy-config.mjs",
     "fonts:pull": "node scripts/pull-fonts.mjs",
-    "dodo:setup": "node scripts/setup-dodo.mjs",
+    "dodo:setup": "node --experimental-strip-types scripts/setup-dodo.mjs",
     "resend:setup": "node --env-file=.env scripts/setup-resend.mjs",
     "moves:check": "node scripts/check-moves.mjs",
     "preview": "vite preview",
