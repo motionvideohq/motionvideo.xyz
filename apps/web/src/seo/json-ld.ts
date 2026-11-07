@@ -171,6 +171,7 @@ export type BreadcrumbItem = { path: string } & (
         | "brand"
         | "changelog"
         | "contact"
+        | "design"
         | "privacy"
         | "refunds"
         | "terms";

@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { useIntlayer } from "react-intlayer";
 
-import { Button, buttonVariants } from "@/components/ui/button";
 import {
   Dialog,
   DialogClose,
@@ -13,6 +12,7 @@ import {
 } from "@/components/ui/dialog";
 import { ROUTES } from "@/constants/routes";
 import { cn } from "@/lib/utils";
+import { Button, buttonVariants } from "@/registry/ui/button";
 import { deleteMyAccount } from "@/server/account-functions";
 
 export const DeleteAccountDialog = ({

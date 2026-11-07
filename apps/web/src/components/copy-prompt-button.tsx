@@ -2,7 +2,6 @@ import type { ReactNode } from "react";
 import { useIntlayer } from "react-intlayer";
 
 import { CopyIcon } from "@/components/copy-icon";
-import { buttonVariants } from "@/components/ui/button";
 import {
   Tooltip,
   TooltipContent,
@@ -13,6 +12,7 @@ import { useTransientStatus } from "@/hooks/use-transient-status";
 import { track } from "@/lib/analytics";
 import type { AnalyticsProps } from "@/lib/analytics";
 import { cn } from "@/lib/utils";
+import { buttonVariants } from "@/registry/ui/button";
 
 /**
  * Icon button that copies a prompt, labelled by its tooltip (Copy prompt,

@@ -30,7 +30,6 @@ import { GitHubIcon, XIcon } from "@/components/icons";
 import { LocalizedLink as Link } from "@/components/localized-link";
 import { SimilarVideos } from "@/components/similar-videos";
 import { SponsoredCard } from "@/components/sponsored-card";
-import { Button, buttonVariants } from "@/components/ui/button";
 import {
   Tooltip,
   TooltipContent,
@@ -59,6 +58,7 @@ import { promptFor } from "@/lib/prompt-translations";
 import type { PromptLanguage } from "@/lib/prompt-translations";
 import { relativeDate } from "@/lib/relative-date";
 import { cn } from "@/lib/utils";
+import { Button, buttonVariants } from "@/registry/ui/button";
 
 // Shared-element name: the card media morphs into the overlay's player.
 // Slugs are `[a-z0-9-]` already; strip anything else so the ident stays valid.

@@ -66,7 +66,9 @@ type PagePath = (typeof ROUTES)[
   | "MOTIONVIDEO_SKILL"
   | "ABOUT"
   | "BLOG"
-  | "BRAND"
+  | "DESIGN"
+  | "DESIGN_BRAND"
+  | "DESIGN_COMPONENTS"
   | "CONTACT"
   | "PRIVACY"
   | "TERMS"
@@ -457,6 +459,18 @@ export const CommandMenu = () => {
             "skill.md",
           ]),
           page(ROUTES.ABOUT, footer.about.value, "about"),
+          page(ROUTES.DESIGN, footer.design.value, "design", [
+            "design system",
+            "components",
+            "registry",
+            "shadcn",
+          ]),
+          page(ROUTES.DESIGN_BRAND, footer.brand.value, "design", [
+            "brand",
+            "logo",
+            "logomark",
+            "colors",
+          ]),
           page(ROUTES.BLOG, header.blog.value, "blog", ["articles", "guides"]),
           page(ROUTES.CONTACT, footer.contact.value, "contact"),
           page(ROUTES.SPONSOR, footer.sponsor.value, "sponsor"),

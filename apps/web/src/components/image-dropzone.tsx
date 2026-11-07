@@ -3,10 +3,10 @@ import { useIntlayer } from "react-intlayer";
 import { GalleryAdd } from "reicon-react/icons/GalleryAdd";
 import { GalleryAdd3 } from "reicon-react/icons/GalleryAdd3";
 
-import { Dropzone } from "@/components/ui/magnetic-dropzone";
 import { UPLOAD_MAX_BYTES } from "@/lib/uploads";
 import type { UploadPurpose } from "@/lib/uploads";
 import { cn } from "@/lib/utils";
+import { Dropzone } from "@/registry/ui/magnetic-dropzone";
 
 const ACCEPT = "image/png,image/jpeg,image/webp";
 const ACCEPTED_TYPES = new Set(ACCEPT.split(","));

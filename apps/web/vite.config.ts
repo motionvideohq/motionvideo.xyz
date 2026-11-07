@@ -45,10 +45,16 @@ const config = defineConfig(({ command }) => ({
     devtools(),
     // One instance for every MDX source: content/docs (source.config.ts) is
     // compiled into `.source/` at build time, and the macro compiles the
-    // changelog and blog collections. Only those two modules use the macro,
-    // so its transform skips every other module.
+    // changelog, blog and registry component collections. Only those modules
+    // use the macro, so its transform skips every other module.
     fumadocsMdx({
-      macro: { include: ["src/lib/changelog.ts", "src/lib/blog.ts"] },
+      macro: {
+        include: [
+          "src/lib/changelog.ts",
+          "src/lib/blog.ts",
+          "src/lib/design-components.ts",
+        ],
+      },
     }),
     intlayer(),
     cloudflare({ viteEnvironment: { name: "ssr" } }),

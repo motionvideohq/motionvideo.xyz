@@ -14,7 +14,6 @@ import {
   useLiveCursorsEnabled,
 } from "@/components/live-presence";
 import { AccountPageHeader, PageMain } from "@/components/page";
-import { Button } from "@/components/ui/button";
 import {
   Card,
   CardContent,
@@ -46,6 +45,7 @@ import { ROUTES } from "@/constants/routes";
 import { useEmailUpdates } from "@/hooks/use-email-updates";
 import { authClient, useSession } from "@/lib/auth-client";
 import { localizedRedirect } from "@/lib/localized-redirect";
+import { Button } from "@/registry/ui/button";
 import { createMetadata } from "@/seo/metadata";
 import { getSubmitter } from "@/server/community-functions";
 

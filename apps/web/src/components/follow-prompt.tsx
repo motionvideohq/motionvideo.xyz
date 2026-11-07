@@ -5,9 +5,9 @@ import { Xmark } from "reicon-react/icons/Xmark";
 
 import { GitHubIcon, XIcon } from "@/components/icons";
 import { Logomark } from "@/components/logo";
-import { buttonVariants } from "@/components/ui/button";
 import { LINK } from "@/constants/links";
 import { cn } from "@/lib/utils";
+import { buttonVariants } from "@/registry/ui/button";
 
 // Asks visitors who have browsed a little to follow on X and star the repo.
 // Once dismissed (the cross, Escape, or either button) it stays away for a

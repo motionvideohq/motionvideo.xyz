@@ -3,13 +3,13 @@ import { useIntlayer } from "react-intlayer";
 import { Moon } from "reicon-react/icons/Moon";
 import { Sun } from "reicon-react/icons/Sun";
 
-import { buttonVariants } from "@/components/ui/button";
 import { Kbd } from "@/components/ui/kbd";
 import { TooltipTrigger } from "@/components/ui/tooltip";
 import type { TooltipHandle } from "@/components/ui/tooltip";
 import { SHORTCUT_KEYS, keyLabel } from "@/constants/shortcuts";
 import { track } from "@/lib/analytics";
 import { THEME_KEY, setThemeColor } from "@/lib/theme";
+import { buttonVariants } from "@/registry/ui/button";
 
 export const toggleTheme = () => {
   const dark = !document.documentElement.classList.contains("dark");

@@ -20,7 +20,6 @@ import type {
   NavPreviewsPromise,
 } from "@/components/nav-previews";
 import { SectionIcon } from "@/components/section-icon";
-import { buttonVariants } from "@/components/ui/button";
 import {
   Collapsible,
   CollapsibleContent,
@@ -37,6 +36,7 @@ import {
 } from "@/components/ui/navigation-menu";
 import { ROUTES } from "@/constants/routes";
 import { cn } from "@/lib/utils";
+import { buttonVariants } from "@/registry/ui/button";
 
 // Explore's sections: key (nav preview data), path and section (its name and
 // icon, shared with the command menu).

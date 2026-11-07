@@ -15,7 +15,6 @@ import {
   EMPTY_CREATIVE,
 } from "@/components/sponsor-creative-fields";
 import type { CreativeFields } from "@/components/sponsor-creative-fields";
-import { Button } from "@/components/ui/button";
 import { RadioGroup } from "@/components/ui/radio-group";
 import { DEFAULT_LOCALE, isLocale } from "@/constants/locales";
 import type { LocaleHeadContext } from "@/constants/locales";
@@ -29,6 +28,7 @@ import type { SponsorBilling, SponsorTier } from "@/constants/sponsors";
 import { track } from "@/lib/analytics";
 import { localizedRedirect } from "@/lib/localized-redirect";
 import { sponsorDraftSchema } from "@/lib/sponsorships";
+import { Button } from "@/registry/ui/button";
 import { createMetadata } from "@/seo/metadata";
 import {
   getMySponsorships,

@@ -11,11 +11,11 @@ import { CopyIcon } from "@/components/copy-icon";
 import { SponsorSlots } from "@/components/sponsor-slots";
 import { SponsoredCard } from "@/components/sponsored-card";
 import { Badge } from "@/components/ui/badge";
-import { buttonVariants } from "@/components/ui/button";
 import { ASSETS_URL } from "@/constants/links";
 import type { SponsorTier } from "@/constants/sponsors";
 import type { MotionCategory } from "@/lib/motion-catalog";
 import { cn } from "@/lib/utils";
+import { buttonVariants } from "@/registry/ui/button";
 
 interface PreviewVideo {
   title: string;

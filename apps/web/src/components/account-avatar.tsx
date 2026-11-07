@@ -19,7 +19,6 @@ import { LocalizedLink as Link } from "@/components/localized-link";
 import { SectionIcon } from "@/components/section-icon";
 import { useSignInDialog } from "@/components/sign-in-dialog";
 import { toggleTheme } from "@/components/theme-toggle";
-import { buttonVariants } from "@/components/ui/button";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -36,6 +35,7 @@ import { SHORTCUT_KEYS, keyLabel } from "@/constants/shortcuts";
 import { useLocalizedNavigate as useNavigate } from "@/hooks/use-localized-navigate";
 import { authClient, useSession } from "@/lib/auth-client";
 import { cn } from "@/lib/utils";
+import { buttonVariants } from "@/registry/ui/button";
 
 // The hover zoom lives on the inner span: the menu positions against the
 // trigger's box, and scaling the trigger itself made the open menu jump when

@@ -3,12 +3,12 @@ import type { ReactNode } from "react";
 import { Check } from "reicon-react/icons/Check";
 import { ChevronDown } from "reicon-react/icons/ChevronDown";
 
-import { buttonVariants } from "@/components/ui/button";
 import {
   Collapsible,
   CollapsibleContent,
   CollapsibleTrigger,
 } from "@/components/ui/collapsible";
+import { buttonVariants } from "@/registry/ui/button";
 
 /**
  * "Details" under a plan card's price (sponsorship and job post forms):

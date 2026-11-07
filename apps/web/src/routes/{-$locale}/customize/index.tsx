@@ -7,11 +7,11 @@ import { CategoryChip } from "@/components/collection-toolbar";
 import { LocalizedLink as Link } from "@/components/localized-link";
 import { MotionPreview } from "@/components/motion-video";
 import { PageHeader, PageMain } from "@/components/page";
-import { VirtualMasonry } from "@/components/virtual-masonry";
 import { ROUTES } from "@/constants/routes";
 import catalog from "@/data/motion-catalog.json";
 import { MOTION_CATEGORIES } from "@/lib/motion-catalog";
 import type { MotionCategory, MotionVideo } from "@/lib/motion-catalog";
+import { VirtualMasonry } from "@/registry/components/virtual-masonry";
 import { createMetadata } from "@/seo/metadata";
 
 const videos: MotionVideo[] = catalog.videos;

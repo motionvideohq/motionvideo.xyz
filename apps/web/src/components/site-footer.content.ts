@@ -359,6 +359,17 @@ export default {
       pt: "Marca",
       ru: "Бренд",
     }),
+    design: t({
+      en: "Design",
+      es: "Diseño",
+      fr: "Design",
+      zh: "设计",
+      ko: "디자인",
+      ja: "デザイン",
+      de: "Design",
+      pt: "Design",
+      ru: "Дизайн",
+    }),
     terms: t({
       en: "Terms of service",
       es: "Términos de servicio",
