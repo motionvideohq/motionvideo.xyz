@@ -601,8 +601,9 @@
   }
 }
 
-/* A sparkler ray: shoots out along its own angle and burns out. */
-@keyframes logo-diwali-spark {
+/* A spark (Diwali sparkler, US fireworks): shoots out along its own angle and
+   burns out. */
+@keyframes logo-spark {
   0% {
     opacity: 0;
     transform: translateY(-10px);
@@ -693,7 +694,8 @@
   }
 }
 
-@keyframes logo-christmas-twinkle {
+/* Light bulbs (Christmas) and stars (US): dim and brighten. */
+@keyframes logo-twinkle {
   50% {
     opacity: 0.35;
   }
@@ -729,6 +731,91 @@
   100% {
     opacity: 0;
     transform: translate(var(--sx), 800px);
+  }
+}
+
+/* A speck of Holi powder drifts up off the mark, sideways by --sx. */
+@keyframes logo-holi-drift {
+  0% {
+    opacity: 0;
+    transform: none;
+  }
+  25% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translate(var(--sx), -180px);
+  }
+}
+
+/* A cloud of Holi powder bursts out by (--px, --py) and spreads. */
+@keyframes logo-holi-puff {
+  0% {
+    opacity: 0;
+    transform: scale(0.2);
+  }
+  20% {
+    opacity: 0.95;
+  }
+  100% {
+    opacity: 0;
+    transform: translate(var(--px), var(--py)) scale(1.8);
+  }
+}
+
+/* A kite sways on its string, pivoting at the hand. */
+@keyframes logo-india-kite {
+  0%,
+  100% {
+    transform: rotate(-4deg);
+  }
+  50% {
+    transform: rotate(5deg);
+  }
+}
+
+@keyframes logo-india-chakra {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Republic Day flypast: jets cross the mark trailing the tricolour. */
+@keyframes logo-india-flypast {
+  0% {
+    opacity: 0;
+    transform: translateX(-200px);
+  }
+  12%,
+  80% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(1700px);
+  }
+}
+
+/* An autumn leaf falls off a peak, swaying and turning as it drops. */
+@keyframes logo-thanksgiving-fall {
+  0% {
+    opacity: 0;
+    transform: none;
+  }
+  10%,
+  85% {
+    opacity: 1;
+  }
+  35% {
+    transform: translate(-30px, 140px) rotate(50deg);
+  }
+  65% {
+    transform: translate(30px, 280px) rotate(-30deg);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-10px, 440px) rotate(70deg);
   }
 }
 

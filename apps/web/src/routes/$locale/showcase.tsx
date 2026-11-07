@@ -16,8 +16,13 @@ import { createMetadata } from "@/seo/metadata";
 // stage.
 const LOGO_SEASONS = [
   { season: null, name: "Default" },
-  { season: "diwali", name: "Diwali" },
+  { season: "republic-day-india", name: "Republic Day (India)" },
+  { season: "holi", name: "Holi" },
+  { season: "independence-day-us", name: "Independence Day (US)" },
+  { season: "independence-day-india", name: "Independence Day (India)" },
   { season: "halloween", name: "Halloween" },
+  { season: "diwali", name: "Diwali" },
+  { season: "thanksgiving", name: "Thanksgiving" },
   { season: "christmas", name: "Christmas" },
 ] as const;
 

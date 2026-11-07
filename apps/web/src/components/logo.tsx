@@ -9,7 +9,8 @@ import { cn } from "@/lib/utils";
 // Every form of the MotionVideo logo, in one place:
 //   Logomark          the symbol alone, static (menus, dialogs, brand page)
 //   AnimatedLogomark  the symbol with its hover move, or the festive take on
-//                     it during a season (Diwali, Halloween, Christmas)
+//                     it during a season (Diwali, Holi, Halloween, Christmas,
+//                     Republic and Independence Day in India, July 4 in the US)
 //   Logotype          the name "MotionVideo" set in type, with its hover moves
 //   Logo              the lockup: AnimatedLogomark beside Logotype (header,
 //                     footer, sign-in)
@@ -19,9 +20,9 @@ import { cn } from "@/lib/utils";
 //   "Video"  → the letters advance one film frame while sprockets run past
 // Festive marks are drawn in the logomark's own viewBox, so decorations sit on
 // its exact outline at any size, and spill out of it (`overflow-visible`) for
-// flames, hats and bats. Each idles with a small loop and does more on hover;
-// the keyframes live in globals.css. Reduced motion keeps the art and drops
-// the motion.
+// flames, hats, bats, kites and fireworks. Each idles with a small loop and
+// does more on hover; the keyframes live in globals.css. Reduced motion keeps
+// the art and drops the motion.
 
 /** The logomark outline, in the `12 12 1242 587` viewBox. */
 export const LOGOMARK_PATH =
@@ -147,7 +148,7 @@ const DiwaliLogomark = ({ className }: LogoProps) => {
                 stroke="#FFD36B"
                 strokeWidth={14}
                 strokeLinecap="round"
-                className="opacity-0 motion-safe:group-hover/mark:[animation:logo-diwali-spark_640ms_ease-out_var(--d)_infinite]"
+                className="opacity-0 motion-safe:group-hover/mark:[animation:logo-spark_640ms_ease-out_var(--d)_infinite]"
                 // SAFETY: `--d` is a CSS custom property read by the animation.
                 style={
                   {
@@ -468,7 +469,7 @@ const ChristmasLogomark = ({ className }: LogoProps) => {
             cy={32}
             r={20}
             fill={BULB_COLORS[index % 3]}
-            className="motion-safe:[animation:logo-christmas-twinkle_1.8s_ease-in-out_var(--d)_infinite] motion-safe:group-hover/mark:[animation-duration:600ms]"
+            className="motion-safe:[animation:logo-twinkle_1.8s_ease-in-out_var(--d)_infinite] motion-safe:group-hover/mark:[animation-duration:600ms]"
             // SAFETY: `--d` is a CSS custom property read by the animation.
             style={{ "--d": `${(index % 3) * -600}ms` } as CSSProperties}
           />
@@ -514,6 +515,531 @@ const ChristmasLogomark = ({ className }: LogoProps) => {
   );
 };
 
+// Marks with white in them (the Indian and US flags) on a white page: a faint
+// outline keeps the shape.
+const OUTLINE = (
+  <path
+    d={LOGOMARK_PATH}
+    stroke="currentColor"
+    strokeOpacity={0.2}
+    strokeWidth={10}
+  />
+);
+
+// ─── Holi: the mark doused in coloured powder (gulal) ─────────────────────
+
+const HOLI_COLORS = [
+  "#FF3E9A",
+  "#FFD60A",
+  "#38B000",
+  "#3A86FF",
+  "#FF7B00",
+  "#8338EC",
+];
+// Splashes of powder over the mark: centre, radius, colour (index).
+const BLOTCHES = [
+  [120, 200, 150, 0],
+  [330, 110, 130, 1],
+  [300, 420, 160, 3],
+  [470, 250, 100, 4],
+  [560, 340, 140, 2],
+  [640, 520, 110, 1],
+  [760, 200, 150, 4],
+  [820, 470, 140, 5],
+  [1000, 330, 140, 0],
+  [1180, 250, 120, 1],
+  [1120, 480, 120, 2],
+] as const;
+// Specks drifting up off the peaks, always.
+const SPECKS = [
+  { x: 400, y: 50, drift: -30, color: 0, delay: 0 },
+  { x: 450, y: 60, drift: 20, color: 1, delay: 1.1 },
+  { x: 900, y: 80, drift: -20, color: 3, delay: 0.5 },
+  { x: 950, y: 90, drift: 30, color: 4, delay: 1.7 },
+  { x: 1220, y: 190, drift: 25, color: 5, delay: 0.9 },
+  { x: 1240, y: 200, drift: -15, color: 2, delay: 2.2 },
+];
+// Clouds of powder thrown off the mark on hover: start, then travel.
+const PUFFS = [
+  { x: 424, y: 60, px: -60, py: -220, color: 0, delay: 0 },
+  { x: 928, y: 90, px: 40, py: -240, color: 1, delay: 120 },
+  { x: 1230, y: 200, px: 200, py: -160, color: 3, delay: 240 },
+  { x: 60, y: 300, px: -220, py: -40, color: 5, delay: 60 },
+  { x: 560, y: 560, px: -40, py: 200, color: 2, delay: 180 },
+  { x: 1060, y: 520, px: 160, py: 180, color: 4, delay: 300 },
+];
+
+const HoliLogomark = ({ className }: LogoProps) => {
+  const id = useId();
+  return (
+    <Frame className={className}>
+      <defs>
+        {/* Soft-edged powder: solid at the centre, fading out. */}
+        {HOLI_COLORS.map((color, index) => (
+          <radialGradient key={color} id={`${id}-${index}`}>
+            <stop offset="0" stopColor={color} />
+            <stop offset="0.55" stopColor={color} stopOpacity="0.95" />
+            <stop offset="1" stopColor={color} stopOpacity="0" />
+          </radialGradient>
+        ))}
+        <clipPath id={`${id}-clip`}>
+          <path d={LOGOMARK_PATH} />
+        </clipPath>
+      </defs>
+      <path d={LOGOMARK_PATH} fill="#FFF6E5" />
+      <g clipPath={`url(#${id}-clip)`}>
+        {BLOTCHES.map(([cx, cy, r, color]) => (
+          <circle
+            key={`${cx}-${cy}`}
+            cx={cx}
+            cy={cy}
+            r={r}
+            fill={`url(#${id}-${color})`}
+          />
+        ))}
+      </g>
+      {OUTLINE}
+      {SPECKS.map((speck) => (
+        <circle
+          key={speck.x}
+          cx={speck.x}
+          cy={speck.y}
+          r={14}
+          fill={HOLI_COLORS[speck.color]}
+          className="opacity-0 motion-safe:[animation:logo-holi-drift_3s_ease-out_var(--d)_infinite]"
+          // SAFETY: CSS custom properties read by the drift keyframes.
+          style={
+            {
+              "--d": `${speck.delay}s`,
+              "--sx": `${speck.drift}px`,
+            } as CSSProperties
+          }
+        />
+      ))}
+      {PUFFS.map((puff) => (
+        <circle
+          key={puff.x}
+          cx={puff.x}
+          cy={puff.y}
+          r={100}
+          fill={`url(#${id}-${puff.color})`}
+          className={cn(
+            OWN_BOX,
+            "origin-center opacity-0 motion-safe:group-hover/mark:[animation:logo-holi-puff_1.4s_ease-out_var(--d)_infinite]"
+          )}
+          // SAFETY: CSS custom properties read by the puff keyframes.
+          style={
+            {
+              "--d": `${puff.delay}ms`,
+              "--px": `${puff.px}px`,
+              "--py": `${puff.py}px`,
+            } as CSSProperties
+          }
+        />
+      ))}
+    </Frame>
+  );
+};
+
+// ─── India: the tricolour, for Republic Day and Independence Day ──────────
+
+const INDIA = {
+  saffron: "#FF9933",
+  white: "#FFFFFF",
+  green: "#138808",
+  navy: "#000080",
+};
+// The flag's three bands, each a third of the viewBox's height.
+const BAND = 587 / 3;
+// The Ashoka Chakra, on the white band in the middle block: its 24 spokes.
+const CHAKRA = { x: 740, y: 12 + BAND * 1.5, r: 88 };
+const SPOKES = Array.from({ length: 24 }, (_, index) => index * 15);
+
+/**
+ * The mark in the tricolour, with the Ashoka Chakra. `spin`: the chakra turns
+ * slowly, and fast on hover (idle turn inside, hover spin outside, so hover
+ * starts from wherever the idle turn is).
+ */
+const Tricolour = ({ spin = false }: { spin?: boolean }) => {
+  const id = useId();
+  return (
+    <>
+      <defs>
+        <clipPath id={`${id}-clip`}>
+          <path d={LOGOMARK_PATH} />
+        </clipPath>
+      </defs>
+      <g clipPath={`url(#${id}-clip)`}>
+        {[INDIA.saffron, INDIA.white, INDIA.green].map((fill, band) => (
+          <rect
+            key={fill}
+            x={12}
+            y={12 + band * BAND}
+            width={1242}
+            height={BAND}
+            fill={fill}
+          />
+        ))}
+      </g>
+      {OUTLINE}
+      <g transform={`translate(${CHAKRA.x} ${CHAKRA.y})`}>
+        <g
+          className={cn(
+            OWN_BOX,
+            "origin-center",
+            spin &&
+              "motion-safe:group-hover/mark:[animation:logo-india-chakra_1.6s_linear_infinite]"
+          )}
+        >
+          <g
+            stroke={INDIA.navy}
+            className={cn(
+              OWN_BOX,
+              "origin-center",
+              spin &&
+                "motion-safe:[animation:logo-india-chakra_14s_linear_infinite]"
+            )}
+          >
+            <circle r={CHAKRA.r} strokeWidth={12} />
+            <circle r={14} fill={INDIA.navy} />
+            {SPOKES.map((angle) => (
+              <line
+                key={angle}
+                y1={-14}
+                y2={-CHAKRA.r}
+                strokeWidth={5}
+                transform={`rotate(${angle})`}
+              />
+            ))}
+          </g>
+        </g>
+      </g>
+    </>
+  );
+};
+
+// Jets of the flypast, in formation, each trailing its band's smoke.
+const FLYPAST = [
+  { y: -36, color: INDIA.saffron },
+  { y: 0, color: INDIA.white },
+  { y: 36, color: INDIA.green },
+];
+
+/** Republic Day: the chakra turns; on hover it spins and jets fly past. */
+const RepublicDayLogomark = ({ className }: LogoProps) => {
+  const id = useId();
+  return (
+    <Frame className={className}>
+      <defs>
+        {FLYPAST.map((jet, index) => (
+          <linearGradient key={jet.color} id={`${id}-${index}`}>
+            <stop offset="0" stopColor={jet.color} stopOpacity="0" />
+            <stop offset="1" stopColor={jet.color} stopOpacity="0.9" />
+          </linearGradient>
+        ))}
+      </defs>
+      <Tricolour spin />
+      <g transform="translate(0 -120)">
+        <g className="opacity-0 motion-safe:group-hover/mark:[animation:logo-india-flypast_1.8s_linear_infinite]">
+          {FLYPAST.map((jet, index) => (
+            <g key={jet.color} transform={`translate(0 ${jet.y})`}>
+              <rect
+                x={-640}
+                y={-10}
+                width={620}
+                height={20}
+                rx={10}
+                fill={`url(#${id}-${index})`}
+              />
+              <path d="M40 0L-30-22L-16 0L-30 22Z" fill="#6B7280" />
+            </g>
+          ))}
+        </g>
+      </g>
+    </Frame>
+  );
+};
+
+// A diamond kite, its right half a second colour, with a tail.
+const KITE = "M0-70L48 0L0 70L-48 0Z";
+const KITE_HALF = "M0-70L48 0L0 70Z";
+// Each kite flies off a peak (its hand, x, y); the left one mirrored.
+const KITES = [
+  {
+    x: 928,
+    y: 66,
+    flip: false,
+    scale: 1,
+    colors: [INDIA.saffron, INDIA.white],
+    delay: 0,
+  },
+  {
+    x: 424,
+    y: 34,
+    flip: true,
+    scale: 0.8,
+    colors: [INDIA.green, INDIA.white],
+    delay: -1.4,
+  },
+];
+
+/** Independence Day (India): kites fly off the peaks and climb on hover. */
+const IndependenceDayIndiaLogomark = ({ className }: LogoProps) => (
+  <Frame className={className}>
+    <Tricolour />
+    {KITES.map((kite) => (
+      <g
+        key={kite.x}
+        transform={`translate(${kite.x} ${kite.y}) scale(${kite.flip ? -kite.scale : kite.scale} ${kite.scale})`}
+      >
+        {/* Drawn up and right of the hand (0, 0), the box's bottom-left
+            corner, so both groups pivot there: hover lets out string. */}
+        <g
+          className={cn(
+            OWN_BOX,
+            SPRING,
+            "origin-bottom-left transition-[scale] duration-500 group-hover/mark:scale-125 motion-reduce:transition-none"
+          )}
+        >
+          <g
+            className={cn(
+              OWN_BOX,
+              "origin-bottom-left motion-safe:[animation:logo-india-kite_3s_ease-in-out_var(--d)_infinite]"
+            )}
+            // SAFETY: `--d` is a CSS custom property read by the animation.
+            style={{ "--d": `${kite.delay}s` } as CSSProperties}
+          >
+            <path
+              d="M0 0Q150-40 186-184"
+              stroke="currentColor"
+              strokeOpacity={0.5}
+              strokeWidth={4}
+            />
+            <g transform="translate(210 -250) rotate(20)">
+              <path
+                d={KITE}
+                fill={kite.colors[0]}
+                stroke="currentColor"
+                strokeOpacity={0.25}
+                strokeWidth={4}
+              />
+              <path d={KITE_HALF} fill={kite.colors[1]} />
+              <path
+                d="M0-70V70M-48 0H48"
+                stroke="#5A3A1A"
+                strokeOpacity={0.5}
+                strokeWidth={4}
+              />
+              <path
+                d="M0 70Q14 90 0 110T0 150"
+                stroke={kite.colors[0]}
+                strokeWidth={8}
+                strokeLinecap="round"
+              />
+            </g>
+          </g>
+        </g>
+      </g>
+    ))}
+  </Frame>
+);
+
+// ─── Independence Day (US): stars and stripes, fireworks on hover ─────────
+
+const US = { red: "#B22234", white: "#FFFFFF", blue: "#3C3B6E" };
+// Thirteen stripes over the viewBox's height; the canton covers the top seven.
+const STRIPE = 587 / 13;
+const CANTON = { width: 508, height: STRIPE * 7 };
+// A five-pointed star, outer radius 22, inner 9.
+const STAR = `M${Array.from({ length: 10 }, (_, index) => {
+  const radius = index % 2 ? 9 : 22;
+  const angle = (index * Math.PI) / 5;
+  return `${(radius * Math.sin(angle)).toFixed(1)} ${(-radius * Math.cos(angle)).toFixed(1)}`;
+}).join("L")}Z`;
+// Six rows of six stars across the canton, alternate rows offset.
+const STARS = Array.from({ length: 36 }, (_, index) => {
+  const row = Math.floor(index / 6);
+  return { x: 52 + (index % 6) * 76 + (row % 2) * 38, y: 44 + row * 48 };
+});
+const BURSTS = [
+  { x: 250, y: -160, color: "#FF4D5E", delay: 0 },
+  { x: 700, y: -230, color: "#FFD23F", delay: 350 },
+  { x: 1120, y: -140, color: "#5B8CFF", delay: 700 },
+];
+const BURST_ANGLES = Array.from({ length: 12 }, (_, index) => index * 30);
+
+const IndependenceDayUsLogomark = ({ className }: LogoProps) => {
+  const id = useId();
+  return (
+    <Frame className={className}>
+      <defs>
+        <clipPath id={`${id}-clip`}>
+          <path d={LOGOMARK_PATH} />
+        </clipPath>
+      </defs>
+      <g clipPath={`url(#${id}-clip)`}>
+        {Array.from({ length: 13 }, (_, stripe) => (
+          <rect
+            key={stripe}
+            x={12}
+            y={12 + stripe * STRIPE}
+            width={1242}
+            height={STRIPE}
+            fill={stripe % 2 ? US.white : US.red}
+          />
+        ))}
+        <rect
+          x={12}
+          y={12}
+          width={CANTON.width}
+          height={CANTON.height}
+          fill={US.blue}
+        />
+        {STARS.map((star, index) => (
+          <path
+            key={`${star.x}-${star.y}`}
+            d={STAR}
+            transform={`translate(${star.x} ${star.y})`}
+            fill={US.white}
+            className="motion-safe:[animation:logo-twinkle_2.4s_ease-in-out_var(--d)_infinite]"
+            // SAFETY: `--d` is a CSS custom property read by the animation.
+            style={{ "--d": `${(index * -0.37) % 2.4}s` } as CSSProperties}
+          />
+        ))}
+      </g>
+      {OUTLINE}
+      {BURSTS.map((burst) =>
+        BURST_ANGLES.map((angle) => (
+          <g
+            key={`${burst.x}-${angle}`}
+            transform={`translate(${burst.x} ${burst.y}) rotate(${angle})`}
+          >
+            <line
+              y2={-36}
+              stroke={burst.color}
+              strokeWidth={12}
+              strokeLinecap="round"
+              className="opacity-0 motion-safe:group-hover/mark:[animation:logo-spark_1.1s_ease-out_var(--d)_infinite]"
+              // SAFETY: `--d` is a CSS custom property read by the animation.
+              style={{ "--d": `${burst.delay}ms` } as CSSProperties}
+            />
+          </g>
+        ))
+      )}
+    </Frame>
+  );
+};
+
+// ─── Thanksgiving: autumn leaves, and a turkey's tail fanning out ─────────
+
+// A tail feather, base at 0,0 and pointing up, with a pale band by its tip.
+const FEATHER = "M0 0C-50-120-70-300 0-420C70-300 50-120 0 0Z";
+const FEATHER_TIP = "M0-300C-30-340-34-390 0-420C34-390 30-340 0-300Z";
+// The tail rises from behind the middle of the mark (scaled to 560 long, so
+// most of it clears the top edge; folded to 15% it stays hidden): each
+// feather's angle when fanned, and its colour.
+const FEATHERS = [
+  { angle: -60, color: "#7A3B12" },
+  { angle: -40, color: "#C2410C" },
+  { angle: -20, color: "#E07B24" },
+  { angle: 0, color: "#F2B33D" },
+  { angle: 20, color: "#E07B24" },
+  { angle: 40, color: "#C2410C" },
+  { angle: 60, color: "#7A3B12" },
+];
+const LEAF =
+  "M0-40C22-30 30-8 22 14C14 30 4 38 0 44C-4 38-14 30-22 14C-30-8-22-30 0-40Z";
+// Leaves resting on the mark: position, tilt, colour.
+const RESTING_LEAVES = [
+  { x: 300, y: 70, angle: -35, color: "#B5541B" },
+  { x: 840, y: 110, angle: 25, color: "#8C3B1E" },
+  { x: 1180, y: 210, angle: -15, color: "#D97706" },
+];
+// Leaves falling off the peaks, always.
+const FALLING_LEAVES = [
+  { x: 424, y: 40, color: "#C2410C", delay: 0 },
+  { x: 928, y: 70, color: "#D97706", delay: 2.2 },
+  { x: 1232, y: 180, color: "#8C3B1E", delay: 4.1 },
+];
+
+const ThanksgivingLogomark = ({ className }: LogoProps) => {
+  const id = useId();
+  return (
+    <Frame className={className}>
+      <defs>
+        <linearGradient
+          id={`${id}-autumn`}
+          gradientUnits="userSpaceOnUse"
+          x1="0"
+          y1="12"
+          x2="0"
+          y2="599"
+        >
+          <stop offset="0" stopColor="#F2A541" />
+          <stop offset="0.5" stopColor="#D9622B" />
+          <stop offset="1" stopColor="#8C3B1E" />
+        </linearGradient>
+      </defs>
+      {/* Behind the mark: folded small out of sight, fanned on hover. */}
+      <g transform="translate(640 330) scale(1.33)">
+        {FEATHERS.map((feather, index) => (
+          <g
+            key={feather.angle}
+            className={cn(
+              OWN_BOX,
+              SPRING,
+              "origin-bottom [transform:scale(0.15)] transition-transform delay-(--d) duration-500 group-hover/mark:[transform:rotate(var(--a))_scale(1)] motion-reduce:transition-none"
+            )}
+            // SAFETY: CSS custom properties read by the fanned transform.
+            style={
+              {
+                "--a": `${feather.angle}deg`,
+                "--d": `${Math.abs(feather.angle) * 2}ms`,
+              } as CSSProperties
+            }
+          >
+            <path d={FEATHER} fill={feather.color} />
+            <path
+              d={FEATHER_TIP}
+              fill="#FFF1D6"
+              fillOpacity={index % 2 ? 0.55 : 0.75}
+            />
+          </g>
+        ))}
+      </g>
+      <path d={LOGOMARK_PATH} fill={`url(#${id}-autumn)`} />
+      {RESTING_LEAVES.map((leaf) => (
+        <g
+          key={leaf.x}
+          transform={`translate(${leaf.x} ${leaf.y}) rotate(${leaf.angle}) scale(1.4)`}
+        >
+          <path d={LEAF} fill={leaf.color} />
+          <path
+            d="M0-30V52"
+            stroke="#5A2A10"
+            strokeOpacity={0.6}
+            strokeWidth={4}
+          />
+        </g>
+      ))}
+      {FALLING_LEAVES.map((leaf) => (
+        <g key={leaf.x} transform={`translate(${leaf.x} ${leaf.y})`}>
+          <path
+            d={LEAF}
+            fill={leaf.color}
+            className={cn(
+              OWN_BOX,
+              "origin-center opacity-0 motion-safe:[animation:logo-thanksgiving-fall_6s_ease-in-out_var(--d)_infinite] motion-safe:group-hover/mark:[animation-duration:2.5s]"
+            )}
+            // SAFETY: `--d` is a CSS custom property read by the animation.
+            style={{ "--d": `${leaf.delay}s` } as CSSProperties}
+          />
+        </g>
+      ))}
+    </Frame>
+  );
+};
+
 interface SeasonProps {
   /** Force a season (`null`: none); by default, the visitor's current one. */
   season?: Season | null;
@@ -531,8 +1057,23 @@ export const AnimatedLogomark = ({ season }: SeasonProps) => {
     case "halloween": {
       return <HalloweenLogomark className={size} />;
     }
+    case "thanksgiving": {
+      return <ThanksgivingLogomark className={size} />;
+    }
     case "christmas": {
       return <ChristmasLogomark className={size} />;
+    }
+    case "holi": {
+      return <HoliLogomark className={size} />;
+    }
+    case "republic-day-india": {
+      return <RepublicDayLogomark className={size} />;
+    }
+    case "independence-day-india": {
+      return <IndependenceDayIndiaLogomark className={size} />;
+    }
+    case "independence-day-us": {
+      return <IndependenceDayUsLogomark className={size} />;
     }
     default: {
       // The app-icon tile (site radius) springs up behind the mark, which
