@@ -1,7 +1,7 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry.json",
   "name": "motionvideo",
-  "homepage": "https://motionvideo.xyz/en/design/components",
+  "homepage": "https://motionvideo.xyz/design/components",
   "items": [
     {
       "name": "button",
