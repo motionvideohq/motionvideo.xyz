@@ -1,7 +1,8 @@
 import { NavigationMenu as NavigationMenuPrimitive } from "@base-ui/react/navigation-menu";
 import { cva } from "class-variance-authority";
+import type { VariantProps } from "class-variance-authority";
 import { useEffect, useEffectEvent, useRef, useState } from "react";
-import type { ComponentPropsWithRef } from "react";
+import type { CSSProperties, ComponentPropsWithRef } from "react";
 import { flushSync } from "react-dom";
 import { ChevronDown } from "reicon-react/icons/ChevronDown";
 
@@ -14,8 +15,11 @@ const NavigationMenuPositioner = ({
   align = "start",
   alignOffset = 0,
   collisionPadding = 16,
+  popupStyle,
   ...props
-}: NavigationMenuPrimitive.Positioner.Props) => (
+}: NavigationMenuPrimitive.Positioner.Props & {
+  popupStyle?: CSSProperties;
+}) => (
   <NavigationMenuPrimitive.Portal>
     <NavigationMenuPrimitive.Positioner
       side={side}
@@ -29,32 +33,96 @@ const NavigationMenuPositioner = ({
       )}
       {...props}
     >
-      <NavigationMenuPrimitive.Popup className="popover-panel bg-popover text-popover-foreground ring-foreground/10 relative h-(--popup-height) w-(--popup-width) origin-(--transform-origin) rounded-xl shadow ring-1 transition-[width,height] duration-200 ease-(--ease-out) outline-none">
+      <NavigationMenuPrimitive.Popup
+        className="popover-panel bg-popover text-popover-foreground ring-foreground/10 relative h-(--popup-height) w-(--popup-width) origin-(--transform-origin) rounded-xl shadow ring-1 transition-[width,height] duration-200 ease-(--ease-out) outline-none"
+        style={popupStyle}
+      >
         <NavigationMenuPrimitive.Viewport className="relative size-full overflow-hidden" />
       </NavigationMenuPrimitive.Popup>
     </NavigationMenuPrimitive.Positioner>
   </NavigationMenuPrimitive.Portal>
 );
 
+const TRIGGER_SELECTOR = '[data-slot="navigation-menu-trigger"]';
+
+/**
+ * `anchored`: the popup stays under the whole menu instead of following the
+ * open trigger, and panels can size to the menu's width with
+ * `w-(--navigation-menu-width)`. That width is measured up front, so a panel
+ * has it on its first open; the popup still opens out of, and closes back
+ * into, the trigger that opened it.
+ */
 const NavigationMenu = ({
   align = "start",
+  anchored = false,
   className,
   children,
+  onValueChange,
   ...props
 }: NavigationMenuPrimitive.Root.Props &
-  Pick<NavigationMenuPrimitive.Positioner.Props, "align">) => (
-  <NavigationMenuPrimitive.Root
-    data-slot="navigation-menu"
-    className={cn(
-      "group/navigation-menu relative flex max-w-max flex-1 items-center justify-center",
-      className
-    )}
-    {...props}
-  >
-    {children}
-    <NavigationMenuPositioner align={align} />
-  </NavigationMenuPrimitive.Root>
-);
+  Pick<NavigationMenuPrimitive.Positioner.Props, "align"> & {
+    anchored?: boolean;
+  }) => {
+  const [root, setRoot] = useState<HTMLElement | null>(null);
+  const [width, setWidth] = useState<number | null>(null);
+  // The open trigger's centre, from the menu's left edge.
+  const [origin, setOrigin] = useState<number | null>(null);
+
+  useEffect(() => {
+    if (!anchored || !root) {
+      return;
+    }
+    const observer = new ResizeObserver(() =>
+      setWidth(root.getBoundingClientRect().width)
+    );
+    observer.observe(root);
+    return () => observer.disconnect();
+  }, [anchored, root]);
+
+  // SAFETY: `--navigation-menu-width` is a CSS custom property read by the panels.
+  const widthStyle = (
+    anchored && width !== null
+      ? { "--navigation-menu-width": `${width}px` }
+      : undefined
+  ) as CSSProperties | undefined;
+
+  return (
+    <NavigationMenuPrimitive.Root
+      ref={setRoot}
+      data-slot="navigation-menu"
+      className={cn(
+        "group/navigation-menu relative flex max-w-max flex-1 items-center justify-center",
+        className
+      )}
+      onValueChange={(value, details) => {
+        // Closing keeps the last origin, so the popup shrinks back into it.
+        const target = details.trigger ?? details.event.target;
+        const trigger =
+          target instanceof Element ? target.closest(TRIGGER_SELECTOR) : null;
+        if (anchored && root && value !== null && trigger) {
+          const box = trigger.getBoundingClientRect();
+          setOrigin(
+            box.left + box.width / 2 - root.getBoundingClientRect().left
+          );
+        }
+        onValueChange?.(value, details);
+      }}
+      {...props}
+    >
+      {children}
+      <NavigationMenuPositioner
+        align={align}
+        anchor={anchored ? root : undefined}
+        style={widthStyle}
+        popupStyle={
+          anchored && origin !== null
+            ? { transformOrigin: `${origin}px 0` }
+            : undefined
+        }
+      />
+    </NavigationMenuPrimitive.Root>
+  );
+};
 
 interface Pill {
   x: number;
@@ -259,16 +327,31 @@ const NavigationMenuContent = ({
   />
 );
 
+const navigationMenuLinkVariants = cva(
+  "focus-visible:ring-ring/50 in-data-[slot=navigation-menu-content]:hover:bg-nav-hover in-data-[slot=navigation-menu-content]:focus:bg-nav-hover data-active:bg-muted/50 relative flex items-center gap-2 rounded-lg text-sm transition-[box-shadow,outline-color,outline-offset] duration-(--ring-duration) ease-(--ease-out) outline-none focus-visible:ring-3 focus-visible:outline-1 motion-reduce:transition-none [&_svg:not([class*='size-'])]:size-4",
+  {
+    variants: {
+      size: {
+        sm: "h-7 px-2 text-[0.8rem] [&_svg:not([class*='size-'])]:size-3.5",
+        default: "h-8 px-2",
+        lg: "h-9 px-2",
+      },
+    },
+    defaultVariants: {
+      size: "default",
+    },
+  }
+);
+
 const NavigationMenuLink = ({
   className,
+  size,
   ...props
-}: NavigationMenuPrimitive.Link.Props) => (
+}: NavigationMenuPrimitive.Link.Props &
+  VariantProps<typeof navigationMenuLinkVariants>) => (
   <NavigationMenuPrimitive.Link
     data-slot="navigation-menu-link"
-    className={cn(
-      "focus-visible:ring-ring/50 in-data-[slot=navigation-menu-content]:hover:bg-nav-hover in-data-[slot=navigation-menu-content]:focus:bg-nav-hover data-active:bg-muted/50 relative flex items-center gap-2 rounded-lg p-2 text-sm transition-[box-shadow,outline-color,outline-offset] duration-(--ring-duration) ease-(--ease-out) outline-none focus-visible:ring-3 focus-visible:outline-1 motion-reduce:transition-none [&_svg:not([class*='size-'])]:size-4",
-      className
-    )}
+    className={cn(navigationMenuLinkVariants({ size }), className)}
     {...props}
   />
 );

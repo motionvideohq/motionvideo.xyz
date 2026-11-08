@@ -202,17 +202,6 @@ export default {
       pt: "Como o site se comporta para ti.",
       ru: "Как сайт работает для вас.",
     }),
-    language: t({
-      en: "Language",
-      es: "Idioma",
-      fr: "Langue",
-      zh: "语言",
-      ko: "언어",
-      ja: "言語",
-      de: "Sprache",
-      pt: "Idioma",
-      ru: "Язык",
-    }),
     cursors: t({
       en: "Cursors",
       es: "Cursores",

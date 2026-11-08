@@ -18,6 +18,14 @@ export const setThemeColor = (dark: boolean) => {
     );
 };
 
+const themeListeners = new Set<() => void>();
+
+const notifyTheme = () => {
+  for (const onChange of themeListeners) {
+    onChange();
+  }
+};
+
 // Explicit choice; `system` clears the stored value so the OS setting (and
 // the `themeScript` media listener) takes over again.
 export const setTheme = (mode: ThemeMode) => {
@@ -31,6 +39,26 @@ export const setTheme = (mode: ThemeMode) => {
     (mode === "system" && matchMedia("(prefers-color-scheme: dark)").matches);
   document.documentElement.classList.toggle("dark", dark);
   setThemeColor(dark);
+  notifyTheme();
+};
+
+/** The stored choice; no stored value reads as following the system. */
+export const getThemeMode = (): ThemeMode => {
+  if (typeof localStorage === "undefined") {
+    return "system";
+  }
+  const stored = localStorage.getItem(THEME_KEY);
+  return stored === "light" || stored === "dark" ? stored : "system";
+};
+
+/** Follows the stored choice, including changes made elsewhere in the UI. */
+export const subscribeThemeMode = (onChange: () => void) => {
+  themeListeners.add(onChange);
+  window.addEventListener("storage", onChange);
+  return () => {
+    themeListeners.delete(onChange);
+    window.removeEventListener("storage", onChange);
+  };
 };
 
 // Inlined in <head> so the right theme is applied before first paint. Keep in
