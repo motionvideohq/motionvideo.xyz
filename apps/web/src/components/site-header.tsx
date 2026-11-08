@@ -3,7 +3,7 @@ import { useMatch, useRouterState } from "@tanstack/react-router";
 import type { VariantProps } from "class-variance-authority";
 import { getPathWithoutLocale } from "intlayer";
 import { useState } from "react";
-import type { ComponentProps } from "react";
+import type { ComponentProps, ReactNode } from "react";
 import { useIntlayer } from "react-intlayer";
 import { ChevronDown } from "reicon-react/icons/ChevronDown";
 import { Menu } from "reicon-react/icons/Menu";
@@ -14,8 +14,13 @@ import { Brand } from "@/components/brand";
 import { CommandMenu } from "@/components/command-menu";
 import { OnlineCount } from "@/components/live-presence";
 import { LocalizedLink as Link } from "@/components/localized-link";
-import { NavPreviewMenu, loadNavPreviews } from "@/components/nav-previews";
+import {
+  NavCardMenu,
+  NavPreviewMenu,
+  loadNavPreviews,
+} from "@/components/nav-previews";
 import type {
+  NavCardItem,
   NavPreviewItem,
   NavPreviewsPromise,
 } from "@/components/nav-previews";
@@ -49,6 +54,19 @@ const EXPLORE_ROUTES = [
   ["jobs", ROUTES.JOBS, "jobs"],
 ] as const;
 
+// The pages under each menu: the product itself, what agents use, and the
+// site's own pages.
+const PRODUCT_LINKS = ["moves", "templates"] as const;
+const AI_LINKS = ["mcp", "skill"] as const;
+const RESOURCE_LINKS = [
+  "about",
+  "design",
+  "blog",
+  "changelog",
+  "contact",
+  "sponsor",
+] as const;
+
 // The docs pages, listed under Docs in the mobile menu (content/docs).
 const DOCS_PAGES = [
   ["", "quickstart"],
@@ -64,15 +82,36 @@ const EXPLORE_PATHS = EXPLORE_ROUTES.flatMap(([, to]) =>
   to === ROUTES.HOME ? [] : [to]
 );
 
-const MENUS = ["explore"] as const;
+const MENUS = ["explore", "product", "ai", "resources"] as const;
 type MenuName = (typeof MENUS)[number];
-// The item each menu previews when it opens.
-const FIRST_ITEM: Record<MenuName, string> = {
-  explore: "discover",
+// The menus that preview their items, and the item each shows when it opens.
+const FIRST_ITEM = { explore: "discover", resources: "about" } as const;
+type PreviewMenuName = keyof typeof FIRST_ITEM;
+
+// Every panel is as tall as the longest list (32px rows, 1px apart, inside
+// the panel's 4px padding) and as wide as the nav row (the menu is
+// `anchored`: the popup sits under the whole row), so it keeps one size and one
+// place whichever menu is open.
+const PANEL_ROWS = Math.max(EXPLORE_ROUTES.length, RESOURCE_LINKS.length);
+const panelStyle = {
+  height: `calc(${PANEL_ROWS} * 2rem + ${PANEL_ROWS - 1}px + 0.5rem)`,
 };
 
-const TOP_LINKS = ["moves", "templates", "mcp", "skill", "docs"] as const;
-type TopLinkName = (typeof TOP_LINKS)[number];
+// Every page a top-level link (or a menu item) points at.
+const NAV_LINKS = {
+  moves: ROUTES.MOVES,
+  templates: ROUTES.TEMPLATES,
+  mcp: ROUTES.MOTIONVIDEO_MCP,
+  skill: ROUTES.MOTIONVIDEO_SKILL,
+  docs: ROUTES.DOCS,
+  about: ROUTES.ABOUT,
+  design: ROUTES.DESIGN,
+  blog: ROUTES.BLOG,
+  changelog: ROUTES.CHANGELOG,
+  contact: ROUTES.CONTACT,
+  sponsor: ROUTES.SPONSOR,
+} as const;
+type TopLinkName = keyof typeof NAV_LINKS;
 
 // Muted until hovered, open, or holding the current page; the list's pill
 // supplies the hover fill.
@@ -80,8 +119,8 @@ const topLevelClass = cn(
   navigationMenuTriggerStyle(),
   "text-muted-foreground hover:text-foreground data-popup-open:text-foreground aria-[current=page]:text-foreground data-[current=true]:text-foreground relative z-1 transition-colors"
 );
-// Mobile: every top-level entry the same size; Explore's and Docs' pages are
-// indented under them.
+// Mobile: every top-level entry the same size; each menu's pages are indented
+// under it.
 const mobileLinkClass =
   "text-muted-foreground hover:text-foreground [&[aria-current=page]]:text-foreground focus-visible:ring-ring flex items-center gap-3 rounded-md py-2 text-2xl font-semibold tracking-tight transition-colors outline-none focus-visible:ring-2";
 const mobileSubLinkClass = cn(mobileLinkClass, "pl-5 [&>svg]:size-5");
@@ -109,7 +148,7 @@ const GetProLink = ({
   );
 };
 
-type Section = MenuName | "moves" | "templates" | "docs" | null;
+type Section = MenuName | "docs" | null;
 
 /** Which menu or docs link holds the current page, to mark it. */
 const useCurrentSection = (): Section => {
@@ -126,72 +165,96 @@ const useCurrentSection = (): Section => {
   if (inGallery || EXPLORE_PATHS.some(under)) {
     return "explore";
   }
-  if (under(ROUTES.MOVES)) {
-    return "moves";
+  if (under(ROUTES.MOVES) || under(ROUTES.TEMPLATES)) {
+    return "product";
   }
-  if (under(ROUTES.TEMPLATES)) {
-    return "templates";
+  if (under(ROUTES.MOTIONVIDEO_MCP) || under(ROUTES.MOTIONVIDEO_SKILL)) {
+    return "ai";
   }
-  return under(ROUTES.DOCS) ? "docs" : null;
+  if (under(ROUTES.DOCS)) {
+    return "docs";
+  }
+  if (
+    under(ROUTES.ABOUT) ||
+    under(ROUTES.DESIGN) ||
+    under(ROUTES.BLOG) ||
+    under(ROUTES.CHANGELOG) ||
+    under(ROUTES.CONTACT) ||
+    under(ROUTES.SPONSOR)
+  ) {
+    return "resources";
+  }
+  return null;
 };
 
 /**
- * Moves, Templates, Skill, MCP or Docs. Skill and MCP are the product pages (their
- * reference lives in the docs); Docs stays marked on every docs page.
+ * One page link, marked when the current page is it or sits under it. Product
+ * pages share a menu, so the mark follows the link, not its menu.
  */
 const TopLink = ({
   name,
-  section,
   ...props
-}: { name: TopLinkName; section: Section } & Omit<
-  ComponentProps<"a">,
-  "href"
->) => {
-  if (name === "moves") {
-    return (
-      <Link
-        to={ROUTES.MOVES}
-        aria-current={section === "moves" ? "page" : undefined}
-        {...props}
-      />
-    );
-  }
-  if (name === "templates") {
-    return (
-      <Link
-        to={ROUTES.TEMPLATES}
-        aria-current={section === "templates" ? "page" : undefined}
-        {...props}
-      />
-    );
-  }
-  if (name === "skill") {
-    return <Link to={ROUTES.MOTIONVIDEO_SKILL} {...props} />;
-  }
-  if (name === "mcp") {
-    return <Link to={ROUTES.MOTIONVIDEO_MCP} {...props} />;
-  }
+}: { name: TopLinkName } & Omit<ComponentProps<"a">, "href">) => {
+  const pathname = useRouterState({
+    select: (state) => getPathWithoutLocale(state.location.pathname),
+  });
+  const to = NAV_LINKS[name];
+  const current = pathname === to || pathname.startsWith(`${to}/`);
   return (
-    <Link
-      to={ROUTES.DOCS}
-      aria-current={section === "docs" ? "page" : undefined}
-      {...props}
-    />
+    <Link to={to} aria-current={current ? "page" : undefined} {...props} />
   );
 };
 
-/** Desktop: the Explore menu, then Moves, Templates, MCP and Docs. */
+/** A top-level menu and its panel, which fetches the previews when near. */
+const NavMenu = ({
+  name,
+  current,
+  onWarm,
+  children,
+}: {
+  name: MenuName;
+  current: boolean;
+  onWarm: () => void;
+  children: ReactNode;
+}) => {
+  const content = useIntlayer("site-header");
+  return (
+    <NavigationMenuItem value={name}>
+      <NavigationMenuTrigger
+        className={topLevelClass}
+        data-current={current}
+        onPointerEnter={onWarm}
+        onFocus={onWarm}
+      >
+        {content[name]}
+      </NavigationMenuTrigger>
+      <NavigationMenuContent
+        className="w-(--navigation-menu-width)"
+        style={panelStyle}
+      >
+        {children}
+      </NavigationMenuContent>
+    </NavigationMenuItem>
+  );
+};
+
+/**
+ * Desktop: Explore, Product, AI, Resources and Docs. Explore and Resources
+ * list their pages beside a preview; Product and AI show theirs as cards.
+ */
 const DesktopNav = () => {
   const content = useIntlayer("site-header");
   const section = useCurrentSection();
   const [open, setOpen] = useState<MenuName | null>(null);
-  const [active, setActive] = useState(FIRST_ITEM);
+  const [active, setActive] =
+    useState<Record<PreviewMenuName, string>>(FIRST_ITEM);
   // Fetched the first time a menu is about to open; shared after that.
   const [previews, setPreviews] = useState<NavPreviewsPromise | null>(null);
   const warm = () => {
     setPreviews(loadNavPreviews());
   };
 
+  const jobsIcon = <SectionIcon section="jobs" />;
   const exploreItems = EXPLORE_ROUTES.map(
     ([key, to, name]): NavPreviewItem => ({
       key,
@@ -199,78 +262,189 @@ const DesktopNav = () => {
       title: content[name],
       icon: <SectionIcon section={name} />,
       count: (data) => data[key].count,
-      detail: () => content.resourceNotes[key],
+      detail: () => content.menuNotes[key],
       media: (data) => {
         if (key === "discover") {
           return { kind: "video", video: data.discover.video };
         }
         if (key === "jobs") {
-          return {
-            kind: "jobs",
-            listings: data.jobs.listings,
-            empty: content.jobsEmpty,
-          };
+          // No open roles: the icon tile, like the other pages without
+          // imagery; the caption still says what the page is.
+          return data.jobs.listings.length > 0
+            ? { kind: "jobs", listings: data.jobs.listings }
+            : { kind: "icon", icon: jobsIcon };
         }
         return { kind: "cover", src: data[key].cover };
       },
     })
   );
 
+  // The blog and changelog show their newest entry; About the site's share
+  // image; the other pages their icon.
+  const resourceItems = RESOURCE_LINKS.map((name): NavPreviewItem => {
+    const icon = <SectionIcon section={name} />;
+    const item = {
+      key: name,
+      link: <TopLink name={name} />,
+      title: content[name],
+      icon,
+    };
+    if (name === "blog" || name === "changelog") {
+      return {
+        ...item,
+        count: (data) => data[name].count,
+        detail: (data) => data[name].title,
+        media: (data) => ({ kind: "video", video: data[name].video }),
+      };
+    }
+    return {
+      ...item,
+      detail: () => content.menuNotes[name],
+      media: () =>
+        name === "about"
+          ? { kind: "cover", src: "/og.jpg" }
+          : { kind: "icon", icon },
+    };
+  });
+
+  // Moves and templates show a gallery example; MCP and Skill their icon.
+  const cards = (
+    names: readonly (typeof PRODUCT_LINKS | typeof AI_LINKS)[number][]
+  ) =>
+    names.map((name): NavCardItem => {
+      const icon = <SectionIcon section={name} />;
+      return {
+        key: name,
+        link: <TopLink name={name} />,
+        title: content[name],
+        icon,
+        detail: content.menuNotes[name],
+        media: (data) =>
+          name === "moves" || name === "templates"
+            ? { kind: "video", video: data[name].video }
+            : { kind: "icon", icon },
+      };
+    });
+
   return (
     <NavigationMenu
+      anchored
       className="-ml-2 hidden lg:flex"
       onValueChange={(value) => {
         const menu = MENUS.find((name) => name === value) ?? null;
         if (menu && menu !== open) {
           // Each opening starts on the menu's first item.
-          setActive((current) => ({ ...current, [menu]: FIRST_ITEM[menu] }));
+          if (menu === "explore" || menu === "resources") {
+            setActive((current) => ({ ...current, [menu]: FIRST_ITEM[menu] }));
+          }
           warm();
         }
         setOpen(menu);
       }}
     >
       <NavigationMenuList>
-        <NavigationMenuItem value="explore">
-          <NavigationMenuTrigger
-            className={topLevelClass}
-            data-current={section === "explore"}
-            onPointerEnter={warm}
-            onFocus={warm}
+        <NavMenu name="explore" current={section === "explore"} onWarm={warm}>
+          <NavPreviewMenu
+            items={exploreItems}
+            active={active.explore}
+            onActive={(key) =>
+              setActive((current) => ({ ...current, explore: key }))
+            }
+            previews={previews}
+            open={open === "explore"}
+          />
+        </NavMenu>
+        <NavMenu name="product" current={section === "product"} onWarm={warm}>
+          <NavCardMenu
+            items={cards(PRODUCT_LINKS)}
+            previews={previews}
+            open={open === "product"}
+          />
+        </NavMenu>
+        <NavMenu name="ai" current={section === "ai"} onWarm={warm}>
+          <NavCardMenu
+            items={cards(AI_LINKS)}
+            previews={previews}
+            open={open === "ai"}
+          />
+        </NavMenu>
+        <NavMenu
+          name="resources"
+          current={section === "resources"}
+          onWarm={warm}
+        >
+          <NavPreviewMenu
+            items={resourceItems}
+            active={active.resources}
+            onActive={(key) =>
+              setActive((current) => ({ ...current, resources: key }))
+            }
+            previews={previews}
+            open={open === "resources"}
+          />
+        </NavMenu>
+        <NavigationMenuItem>
+          <NavigationMenuLink
+            render={<TopLink name="docs" />}
+            className={cn(topLevelClass, "p-0 px-3")}
           >
-            {content.explore}
-          </NavigationMenuTrigger>
-          <NavigationMenuContent>
-            <NavPreviewMenu
-              items={exploreItems}
-              active={active.explore}
-              onActive={(key) =>
-                setActive((current) => ({ ...current, explore: key }))
-              }
-              previews={previews}
-              open={open === "explore"}
-            />
-          </NavigationMenuContent>
+            {content.docs}
+          </NavigationMenuLink>
         </NavigationMenuItem>
-        {TOP_LINKS.map((name) => (
-          <NavigationMenuItem key={name}>
-            <NavigationMenuLink
-              render={<TopLink name={name} section={section} />}
-              className={cn(topLevelClass, "p-0 px-3")}
-            >
-              {content[name]}
-            </NavigationMenuLink>
-          </NavigationMenuItem>
-        ))}
       </NavigationMenuList>
     </NavigationMenu>
   );
 };
 
 /**
- * Below lg: Explore and Docs open in place with their pages indented under
- * them; Moves, Templates, MCP and Skill are links, all the same size, with the Get Pro
- * CTA at the bottom. Account items and preferences stay in the avatar
- * popover, as on desktop.
+ * A collapsible group in the mobile sheet: its pages indent under it like
+ * Explore's.
+ */
+const MobileNavGroup = ({
+  name,
+  items,
+  section,
+  onNavigate,
+}: {
+  name: Exclude<MenuName, "explore">;
+  items: readonly TopLinkName[];
+  section: Section;
+  onNavigate: () => void;
+}) => {
+  const content = useIntlayer("site-header");
+  return (
+    <Collapsible defaultOpen={section === name}>
+      <CollapsibleTrigger
+        className={cn(mobileLinkClass, "group w-full justify-between")}
+      >
+        {content[name]}
+        <ChevronDown
+          aria-hidden="true"
+          className="me-2 size-4 transition-transform group-data-panel-open:rotate-180"
+        />
+      </CollapsibleTrigger>
+      <CollapsibleContent className="flex flex-col">
+        {items.map((item) => (
+          <TopLink
+            key={item}
+            name={item}
+            onClick={onNavigate}
+            className={mobileSubLinkClass}
+          >
+            <SectionIcon section={item} />
+            {content[item]}
+          </TopLink>
+        ))}
+      </CollapsibleContent>
+    </Collapsible>
+  );
+};
+
+/**
+ * Below lg: Explore, Product, AI, Resources and Docs open in place with their
+ * pages indented under them, all the same size, with the Get Pro CTA at the
+ * bottom. Account items and preferences stay in the avatar popover, as on
+ * desktop.
  */
 const MobileMenu = () => {
   const content = useIntlayer("site-header");
@@ -340,17 +514,24 @@ const MobileMenu = () => {
                 ))}
               </CollapsibleContent>
             </Collapsible>
-            {TOP_LINKS.filter((name) => name !== "docs").map((name) => (
-              <TopLink
-                key={name}
-                name={name}
-                section={section}
-                onClick={close}
-                className={mobileLinkClass}
-              >
-                {content[name]}
-              </TopLink>
-            ))}
+            <MobileNavGroup
+              name="product"
+              items={PRODUCT_LINKS}
+              section={section}
+              onNavigate={close}
+            />
+            <MobileNavGroup
+              name="ai"
+              items={AI_LINKS}
+              section={section}
+              onNavigate={close}
+            />
+            <MobileNavGroup
+              name="resources"
+              items={RESOURCE_LINKS}
+              section={section}
+              onNavigate={close}
+            />
             <Collapsible defaultOpen={section === "docs"}>
               <CollapsibleTrigger
                 className={cn(mobileLinkClass, "group w-full justify-between")}

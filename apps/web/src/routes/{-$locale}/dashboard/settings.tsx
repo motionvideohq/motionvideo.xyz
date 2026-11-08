@@ -23,21 +23,11 @@ import {
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import {
-  Select,
-  SelectContent,
-  SelectGroup,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
 import { Switch } from "@/components/ui/switch";
 import {
   DEFAULT_LOCALE,
   isLocale,
   localeParam,
-  LOCALE_NAMES,
-  LOCALES,
   localizedPath,
 } from "@/constants/locales";
 import type { LocaleHeadContext } from "@/constants/locales";
@@ -247,7 +237,6 @@ const Settings = () => {
   const sections = useIntlayer("site-header");
   const [emailUpdates, setEmailUpdates] = useEmailUpdates();
   const cursors = useLiveCursorsEnabled();
-  const { locale, setLocale } = useLocale();
   const [deleteOpen, setDeleteOpen] = useState(false);
   const { email } = Route.useLoaderData();
   const session = useSession();
@@ -287,32 +276,6 @@ const Settings = () => {
             title={content.preferences}
             description={content.preferencesBody}
           >
-            <Row label={content.language} htmlFor="settings-language">
-              <Select
-                value={locale}
-                onValueChange={(value) => {
-                  const selected = LOCALES.find(
-                    (supported) => supported === value
-                  );
-                  if (selected) {
-                    setLocale(selected);
-                  }
-                }}
-              >
-                <SelectTrigger id="settings-language" className="w-40">
-                  <SelectValue>{LOCALE_NAMES[locale]}</SelectValue>
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectGroup>
-                    {LOCALES.map((value) => (
-                      <SelectItem key={value} value={value} lang={value}>
-                        {LOCALE_NAMES[value]}
-                      </SelectItem>
-                    ))}
-                  </SelectGroup>
-                </SelectContent>
-              </Select>
-            </Row>
             <Row
               label={content.cursors}
               help={content.cursorsHelp}

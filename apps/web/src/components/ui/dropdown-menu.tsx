@@ -1,9 +1,29 @@
 import { Menu as MenuPrimitive } from "@base-ui/react/menu";
+import { cva } from "class-variance-authority";
+import type { VariantProps } from "class-variance-authority";
 import * as React from "react";
 import { Check } from "reicon-react/icons/Check";
 import { ChevronRight } from "reicon-react/icons/ChevronRight";
 
 import { cn } from "@/lib/utils";
+
+// Menu rows match the button heights: 32px by default, with the same smaller
+// and larger steps available where a menu needs them.
+const dropdownMenuItemVariants = cva(
+  "relative flex cursor-default items-center gap-1.5 rounded-md px-1.5 text-sm outline-hidden select-none data-disabled:pointer-events-none data-disabled:opacity-50 data-inset:pl-7 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
+  {
+    variants: {
+      size: {
+        sm: "h-7 text-[0.8rem] [&_svg:not([class*='size-'])]:size-3.5",
+        default: "h-8",
+        lg: "h-9",
+      },
+    },
+    defaultVariants: {
+      size: "default",
+    },
+  }
+);
 
 const DropdownMenu = ({ ...props }: MenuPrimitive.Root.Props) => (
   <MenuPrimitive.Root data-slot="dropdown-menu" {...props} />
@@ -75,17 +95,20 @@ const DropdownMenuItem = ({
   className,
   inset,
   variant = "default",
+  size,
   ...props
-}: MenuPrimitive.Item.Props & {
-  inset?: boolean;
-  variant?: "default" | "destructive";
-}) => (
+}: MenuPrimitive.Item.Props &
+  VariantProps<typeof dropdownMenuItemVariants> & {
+    inset?: boolean;
+    variant?: "default" | "destructive";
+  }) => (
   <MenuPrimitive.Item
     data-slot="dropdown-menu-item"
     data-inset={inset}
     data-variant={variant}
     className={cn(
-      "group/dropdown-menu-item focus:bg-accent focus:text-accent-foreground not-data-[variant=destructive]:focus:**:text-accent-foreground data-[variant=destructive]:text-destructive data-[variant=destructive]:focus:bg-destructive/10 data-[variant=destructive]:focus:text-destructive dark:data-[variant=destructive]:focus:bg-destructive/20 data-[variant=destructive]:*:[svg]:text-destructive relative flex cursor-default items-center gap-1.5 rounded-md px-1.5 py-1 text-sm outline-hidden select-none data-disabled:pointer-events-none data-disabled:opacity-50 data-inset:pl-7 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
+      dropdownMenuItemVariants({ size }),
+      "group/dropdown-menu-item focus:bg-accent focus:text-accent-foreground not-data-[variant=destructive]:focus:**:text-accent-foreground data-[variant=destructive]:text-destructive data-[variant=destructive]:focus:bg-destructive/10 data-[variant=destructive]:focus:text-destructive dark:data-[variant=destructive]:focus:bg-destructive/20 data-[variant=destructive]:*:[svg]:text-destructive",
       className
     )}
     {...props}
@@ -95,12 +118,15 @@ const DropdownMenuItem = ({
 // Menu item that navigates: renders an <a> with the same styles as an item.
 const DropdownMenuLinkItem = ({
   className,
+  size,
   ...props
-}: MenuPrimitive.LinkItem.Props) => (
+}: MenuPrimitive.LinkItem.Props &
+  VariantProps<typeof dropdownMenuItemVariants>) => (
   <MenuPrimitive.LinkItem
     data-slot="dropdown-menu-link-item"
     className={cn(
-      "focus:bg-accent focus:text-accent-foreground relative flex cursor-default items-center gap-1.5 rounded-md px-1.5 py-1 text-sm outline-hidden select-none [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
+      dropdownMenuItemVariants({ size }),
+      "focus:bg-accent focus:text-accent-foreground",
       className
     )}
     {...props}
@@ -115,21 +141,29 @@ const DropdownMenuSubTrigger = ({
   className,
   inset,
   children,
+  size,
   ...props
-}: MenuPrimitive.SubmenuTrigger.Props & {
-  inset?: boolean;
-}) => (
+}: MenuPrimitive.SubmenuTrigger.Props &
+  VariantProps<typeof dropdownMenuItemVariants> & {
+    inset?: boolean;
+  }) => (
   <MenuPrimitive.SubmenuTrigger
     data-slot="dropdown-menu-sub-trigger"
     data-inset={inset}
     className={cn(
-      "focus:bg-accent focus:text-accent-foreground not-data-[variant=destructive]:focus:**:text-accent-foreground data-popup-open:bg-accent data-popup-open:text-accent-foreground data-open:bg-accent data-open:text-accent-foreground flex cursor-default items-center gap-1.5 rounded-md px-1.5 py-1 text-sm outline-hidden select-none data-inset:pl-7 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
+      dropdownMenuItemVariants({ size }),
+      "group/dropdown-menu-sub-trigger focus:bg-accent focus:text-accent-foreground not-data-[variant=destructive]:focus:**:text-accent-foreground data-popup-open:bg-accent data-popup-open:text-accent-foreground data-open:bg-accent data-open:text-accent-foreground",
       className
     )}
     {...props}
   >
     {children}
-    <ChevronRight className="ml-auto" />
+    {/* Muted until the row is highlighted or its submenu is open; a step
+        smaller than the row's icons. */}
+    <ChevronRight
+      aria-hidden="true"
+      className="text-muted-foreground group-data-popup-open/dropdown-menu-sub-trigger:text-accent-foreground ml-auto size-3.5 transition-colors"
+    />
   </MenuPrimitive.SubmenuTrigger>
 );
 
@@ -160,15 +194,18 @@ const DropdownMenuCheckboxItem = ({
   children,
   checked,
   inset,
+  size,
   ...props
-}: MenuPrimitive.CheckboxItem.Props & {
-  inset?: boolean;
-}) => (
+}: MenuPrimitive.CheckboxItem.Props &
+  VariantProps<typeof dropdownMenuItemVariants> & {
+    inset?: boolean;
+  }) => (
   <MenuPrimitive.CheckboxItem
     data-slot="dropdown-menu-checkbox-item"
     data-inset={inset}
     className={cn(
-      "focus:bg-accent focus:text-accent-foreground focus:**:text-accent-foreground relative flex cursor-default items-center gap-1.5 rounded-md py-1 pr-8 pl-1.5 text-sm outline-hidden select-none data-disabled:pointer-events-none data-disabled:opacity-50 data-inset:pl-7 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
+      dropdownMenuItemVariants({ size }),
+      "focus:bg-accent focus:text-accent-foreground focus:**:text-accent-foreground pr-8",
       className
     )}
     checked={checked}
@@ -197,20 +234,23 @@ const DropdownMenuRadioItem = ({
   children,
   inset,
   indicator = "check",
+  size,
   ...props
-}: MenuPrimitive.RadioItem.Props & {
-  inset?: boolean;
-  /**
-   * `check`: a trailing tick on the picked item. `radio`: a leading
-   * circle-and-dot on every item, for exclusive choices like a sort order.
-   */
-  indicator?: "check" | "radio";
-}) => (
+}: MenuPrimitive.RadioItem.Props &
+  VariantProps<typeof dropdownMenuItemVariants> & {
+    inset?: boolean;
+    /**
+     * `check`: a trailing tick on the picked item. `radio`: a leading
+     * circle-and-dot on every item, for exclusive choices like a sort order.
+     */
+    indicator?: "check" | "radio";
+  }) => (
   <MenuPrimitive.RadioItem
     data-slot="dropdown-menu-radio-item"
     data-inset={inset}
     className={cn(
-      "focus:bg-accent focus:text-accent-foreground focus:**:text-accent-foreground relative flex cursor-default items-center gap-1.5 rounded-md py-1 pl-1.5 text-sm outline-hidden select-none data-disabled:pointer-events-none data-disabled:opacity-50 data-inset:pl-7 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
+      dropdownMenuItemVariants({ size }),
+      "focus:bg-accent focus:text-accent-foreground focus:**:text-accent-foreground",
       indicator === "check" ? "pr-8" : "gap-2 pr-2",
       className
     )}

@@ -1,11 +1,12 @@
 import { ClientOnly, useRouter } from "@tanstack/react-router";
 import { getPathWithoutLocale } from "intlayer";
-import { useMemo, useState } from "react";
-import type { ReactNode } from "react";
-import { useIntlayer } from "react-intlayer";
+import { useMemo, useState, useSyncExternalStore } from "react";
+import { useIntlayer, useLocale } from "react-intlayer";
 import { ChatRoundDots } from "reicon-react/icons/ChatRoundDots";
 import { Exit } from "reicon-react/icons/Exit";
+import { Globe } from "reicon-react/icons/Globe";
 import { Keyboard } from "reicon-react/icons/Keyboard";
+import { Monitor } from "reicon-react/icons/Monitor";
 import { Moon } from "reicon-react/icons/Moon";
 import { Sun } from "reicon-react/icons/Sun";
 import { User } from "reicon-react/icons/User";
@@ -18,22 +19,32 @@ import { useKeyboardShortcuts } from "@/components/keyboard-shortcuts";
 import { LocalizedLink as Link } from "@/components/localized-link";
 import { SectionIcon } from "@/components/section-icon";
 import { useSignInDialog } from "@/components/sign-in-dialog";
-import { toggleTheme } from "@/components/theme-toggle";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuLinkItem,
+  DropdownMenuRadioGroup,
+  DropdownMenuRadioItem,
   DropdownMenuSeparator,
+  DropdownMenuSub,
+  DropdownMenuSubContent,
+  DropdownMenuSubTrigger,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Skeleton } from "@/components/ui/skeleton";
 import { setSoundMuted, useSoundMuted } from "@/components/ui/sound";
 import { LINK } from "@/constants/links";
+import { LOCALE_NAMES, LOCALES } from "@/constants/locales";
 import { ACCOUNT_PAGES, ROUTES } from "@/constants/routes";
-import { SHORTCUT_KEYS, keyLabel } from "@/constants/shortcuts";
 import { useLocalizedNavigate as useNavigate } from "@/hooks/use-localized-navigate";
 import { authClient, useSession } from "@/lib/auth-client";
+import {
+  getThemeMode,
+  setTheme as applyTheme,
+  subscribeThemeMode,
+} from "@/lib/theme";
+import type { ThemeMode } from "@/lib/theme";
 import { cn } from "@/lib/utils";
 import { buttonVariants } from "@/registry/ui/button";
 
@@ -112,38 +123,17 @@ export const AvatarImage = ({
 const iconButtonClass =
   "text-muted-foreground flex size-8 items-center justify-center transition-colors outline-none hover:text-foreground";
 
-// The state icon at the right of a toggle row, coloured like the other rows'.
+// A row's leading icon: muted until the row is hovered, focused, or holds an
+// open submenu.
 const rowIconClass =
-  "text-muted-foreground group-hover:text-foreground group-focus:text-accent-foreground ml-auto transition-colors";
+  "text-muted-foreground group-hover:text-foreground group-focus:text-accent-foreground group-data-popup-open:text-accent-foreground transition-colors";
 
-/** Interface sounds as a whole-row toggle; the icon shows the current state. */
-const SoundItem = ({ label }: { label: ReactNode }) => {
-  const content = useIntlayer("command-menu");
-  const muted = useSoundMuted();
-  const action = muted ? content.unmuteSounds.value : content.muteSounds.value;
-  const shortcut = keyLabel(SHORTCUT_KEYS.sounds);
-  return (
-    <DropdownMenuItem
-      closeOnClick={false}
-      onClick={() => setSoundMuted(!muted)}
-      title={`${action} (${shortcut})`}
-      aria-keyshortcuts={shortcut}
-      className="group py-1.5"
-    >
-      {label}
-      {muted ? (
-        <VolumeCross aria-hidden="true" className={rowIconClass} />
-      ) : (
-        <VolumeHigh aria-hidden="true" className={rowIconClass} />
-      )}
-    </DropdownMenuItem>
-  );
-};
+const THEME_ICONS = { light: Sun, dark: Moon, system: Monitor } as const;
 
 /**
- * Session, theme, and sign-out shared by the desktop account
- * popover and the mobile site menu. The session is read on the client, so the
- * header never waits on a loader (or a page) for it.
+ * Session, theme, and sign-out shared by the desktop account popover and the
+ * mobile site menu. The session is read on the client, so the header never
+ * waits on a loader (or a page) for it.
  */
 export const useAccount = () => {
   const session = useSession();
@@ -152,17 +142,12 @@ export const useAccount = () => {
   const user = session.isPending ? undefined : session.data?.user;
   const signedIn = !session.isPending && Boolean(user);
   const pending = session.isPending;
-  // Menus remount on every open, so lazy init resyncs without effects.
-  const [dark, setDark] = useState(
-    () =>
-      typeof document !== "undefined" &&
-      document.documentElement.classList.contains("dark")
+  // The stored choice, kept live when it changes from the footer or a shortcut.
+  const theme = useSyncExternalStore<ThemeMode>(
+    subscribeThemeMode,
+    getThemeMode,
+    () => "system"
   );
-
-  const onToggleTheme = () => {
-    toggleTheme();
-    setDark((wasDark) => !wasDark);
-  };
 
   const signOut = async () => {
     await authClient.signOut();
@@ -174,20 +159,23 @@ export const useAccount = () => {
     }
   };
 
-  return { pending, signedIn, user, dark, onToggleTheme, signOut };
+  return { pending, signedIn, user, theme, setTheme: applyTheme, signOut };
 };
 
 /**
- * Header avatar. Always opens the account popover: featured + bookmarks,
- * sponsorships, a settings page link, theme, sounds, and socials in labeled
- * rows; a gradient sign-in button (log out at the same spot when signed in)
- * closes the menu. It reads the session itself, so it never blocks on a page
- * loader; a skeleton stands in until the session answers.
+ * Header avatar. Always opens the account popover: the signed-in pages first,
+ * then listings and sponsorships, preferences (language, theme, sounds) and
+ * socials in labeled rows; a gradient sign-in button (log out at the same spot
+ * when signed in) closes the menu. It reads the session itself, so it never
+ * blocks on a page loader; a skeleton stands in until the session answers.
  */
 export const AccountMenu = () => {
   const content = useIntlayer("site-header");
-  const { pending, signedIn, user, dark, onToggleTheme, signOut } =
-    useAccount();
+  const { pending, signedIn, user, theme, setTheme, signOut } = useAccount();
+  const { locale, setLocale } = useLocale();
+  const muted = useSoundMuted();
+  const ThemeIcon = THEME_ICONS[theme];
+  const SoundIcon = muted ? VolumeCross : VolumeHigh;
   const signInDialog = useSignInDialog();
   const feedbackDialog = useFeedbackDialog();
   const feedbackContent = useIntlayer("feedback-dialog");
@@ -233,105 +221,161 @@ export const AccountMenu = () => {
           )}
           <DropdownMenuLinkItem
             render={<Link to={ROUTES.DASHBOARD_FEATURED} />}
-            className="group py-1.5"
+            className="group"
           >
+            <SectionIcon section="featured" className={rowIconClass} />
             {content.featured}
-            <SectionIcon
-              section="featured"
-              className="text-muted-foreground group-hover:text-foreground group-focus:text-accent-foreground ml-auto transition-colors"
-            />
           </DropdownMenuLinkItem>
           <DropdownMenuLinkItem
             render={<Link to={ROUTES.DASHBOARD_BOOKMARKS} />}
             data-bookmark-fly-target="bookmarks-item"
-            className="group py-1.5"
+            className="group"
           >
+            <SectionIcon section="bookmarks" className={rowIconClass} />
             {content.bookmarks}
-            <SectionIcon
-              section="bookmarks"
-              className="text-muted-foreground group-hover:text-foreground group-focus:text-accent-foreground ml-auto transition-colors"
-            />
           </DropdownMenuLinkItem>
           <DropdownMenuLinkItem
             render={<Link to={ROUTES.DASHBOARD_BILLING} />}
-            className="group py-1.5"
+            className="group"
           >
+            <SectionIcon section="billing" className={rowIconClass} />
             {content.billing}
-            <SectionIcon
-              section="billing"
-              className="text-muted-foreground group-hover:text-foreground group-focus:text-accent-foreground ml-auto transition-colors"
-            />
+          </DropdownMenuLinkItem>
+          <DropdownMenuLinkItem
+            render={<Link to={ROUTES.DASHBOARD_SETTINGS} />}
+            className="group"
+          >
+            <SectionIcon section="settings" className={rowIconClass} />
+            {content.settings}
           </DropdownMenuLinkItem>
           <DropdownMenuSeparator />
           <DropdownMenuLinkItem
             render={<Link to={ROUTES.DASHBOARD_LISTINGS} />}
-            className="group py-1.5"
+            className="group"
           >
+            <SectionIcon section="listings" className={rowIconClass} />
             {content.listings}
-            <SectionIcon
-              section="listings"
-              className="text-muted-foreground group-hover:text-foreground group-focus:text-accent-foreground ml-auto transition-colors"
-            />
           </DropdownMenuLinkItem>
           <DropdownMenuLinkItem
             render={<Link to={ROUTES.DASHBOARD_SPONSORSHIPS} />}
-            className="group py-1.5"
+            className="group"
           >
+            <SectionIcon section="sponsorships" className={rowIconClass} />
             {content.sponsorships}
-            <SectionIcon
-              section="sponsorships"
-              className="text-muted-foreground group-hover:text-foreground group-focus:text-accent-foreground ml-auto transition-colors"
-            />
           </DropdownMenuLinkItem>
           <DropdownMenuSeparator />
-          <DropdownMenuLinkItem
-            render={<Link to={ROUTES.DASHBOARD_SETTINGS} />}
-            className="group py-1.5"
-          >
-            {content.settings}
-            <SectionIcon
-              section="settings"
-              className="text-muted-foreground group-hover:text-foreground group-focus:text-accent-foreground ml-auto transition-colors"
-            />
-          </DropdownMenuLinkItem>
+          {/* Preferences open as submenus; Base UI flips them to the left
+              when the menu sits too close to the window's right edge. Each
+              row's icon shows the current choice: the language's code, the
+              theme's icon, sounds on or off. */}
+          <DropdownMenuSub>
+            <DropdownMenuSubTrigger className="group">
+              <span
+                aria-hidden="true"
+                className={cn(
+                  rowIconClass,
+                  "flex size-4 shrink-0 items-center justify-center text-[0.625rem] leading-none font-semibold uppercase"
+                )}
+              >
+                {locale}
+              </span>
+              {content.language}
+            </DropdownMenuSubTrigger>
+            <DropdownMenuSubContent>
+              <DropdownMenuRadioGroup
+                value={locale}
+                onValueChange={(value) => {
+                  const selected = LOCALES.find(
+                    (supported) => supported === value
+                  );
+                  if (selected) {
+                    setLocale(selected);
+                  }
+                }}
+              >
+                {LOCALES.map((value) => (
+                  <DropdownMenuRadioItem key={value} value={value} lang={value}>
+                    {LOCALE_NAMES[value]}
+                  </DropdownMenuRadioItem>
+                ))}
+              </DropdownMenuRadioGroup>
+            </DropdownMenuSubContent>
+          </DropdownMenuSub>
+          <DropdownMenuSub>
+            <DropdownMenuSubTrigger className="group">
+              <ThemeIcon aria-hidden="true" className={rowIconClass} />
+              {content.theme}
+            </DropdownMenuSubTrigger>
+            <DropdownMenuSubContent>
+              <DropdownMenuRadioGroup
+                value={theme}
+                onValueChange={(value) => {
+                  if (
+                    value === "light" ||
+                    value === "dark" ||
+                    value === "system"
+                  ) {
+                    setTheme(value);
+                  }
+                }}
+              >
+                <DropdownMenuRadioItem value="light">
+                  <Sun aria-hidden="true" />
+                  {content.light}
+                </DropdownMenuRadioItem>
+                <DropdownMenuRadioItem value="dark">
+                  <Moon aria-hidden="true" />
+                  {content.dark}
+                </DropdownMenuRadioItem>
+                <DropdownMenuRadioItem value="system">
+                  <Monitor aria-hidden="true" />
+                  {content.system}
+                </DropdownMenuRadioItem>
+              </DropdownMenuRadioGroup>
+            </DropdownMenuSubContent>
+          </DropdownMenuSub>
+          <DropdownMenuSub>
+            <DropdownMenuSubTrigger className="group">
+              <SoundIcon aria-hidden="true" className={rowIconClass} />
+              {content.sounds}
+            </DropdownMenuSubTrigger>
+            <DropdownMenuSubContent>
+              <DropdownMenuRadioGroup
+                value={muted ? "off" : "on"}
+                onValueChange={(value) => setSoundMuted(value === "off")}
+              >
+                <DropdownMenuRadioItem value="on">
+                  <VolumeHigh aria-hidden="true" />
+                  {content.soundsOn}
+                </DropdownMenuRadioItem>
+                <DropdownMenuRadioItem value="off">
+                  <VolumeCross aria-hidden="true" />
+                  {content.soundsOff}
+                </DropdownMenuRadioItem>
+              </DropdownMenuRadioGroup>
+            </DropdownMenuSubContent>
+          </DropdownMenuSub>
+          <DropdownMenuSeparator />
           <DropdownMenuItem
             onClick={() => feedbackDialog.open()}
-            className="group py-1.5"
+            className="group"
           >
+            <ChatRoundDots aria-hidden="true" className={rowIconClass} />
             {feedbackContent.trigger}
-            <ChatRoundDots
-              aria-hidden="true"
-              className="text-muted-foreground group-hover:text-foreground group-focus:text-accent-foreground ml-auto transition-colors"
-            />
           </DropdownMenuItem>
           <DropdownMenuItem
             onClick={() => keyboardShortcuts.open()}
-            className="group py-1.5"
+            className="group"
           >
+            <Keyboard aria-hidden="true" className={rowIconClass} />
             {content.keyboard}
-            <Keyboard
+          </DropdownMenuItem>
+          {/* Icon and label left like the rows; GitHub then X on the right. */}
+          <div className="flex h-8 items-center gap-1.5 px-1.5">
+            <Globe
               aria-hidden="true"
-              className="text-muted-foreground group-hover:text-foreground group-focus:text-accent-foreground ml-auto transition-colors"
+              className="text-muted-foreground size-4"
             />
-          </DropdownMenuItem>
-          <DropdownMenuSeparator />
-          {/* Whole rows toggle (the menu stays open to show the new state):
-              label left, current state's icon right. */}
-          <DropdownMenuItem
-            closeOnClick={false}
-            onClick={onToggleTheme}
-            className="group py-1.5"
-          >
-            {content.theme}
-            {dark ? (
-              <Moon aria-hidden="true" className={rowIconClass} />
-            ) : (
-              <Sun aria-hidden="true" className={rowIconClass} />
-            )}
-          </DropdownMenuItem>
-          <SoundItem label={content.sounds} />
-          {/* Label left, GitHub then X right-aligned with the theme toggle. */}
-          <div className="flex h-8 items-center gap-1 px-1.5">
             <span className="text-sm">{content.socials}</span>
             <div className="-mr-2 ml-auto flex items-center">
               <a
@@ -357,15 +401,11 @@ export const AccountMenu = () => {
           <DropdownMenuSeparator />
           {/* Footer button: gradient sign-in, log out at the same spot. */}
           {signedIn ? (
-            // A plain row like the others (label left, icon right), in the
+            // A plain row like the others (icon then label), in the
             // destructive colour: logging out is not a call to action.
-            <DropdownMenuItem
-              variant="destructive"
-              onClick={signOut}
-              className="py-1.5"
-            >
+            <DropdownMenuItem variant="destructive" onClick={signOut}>
+              <Exit aria-hidden="true" />
               {content.signOut}
-              <Exit aria-hidden="true" className="ml-auto" />
             </DropdownMenuItem>
           ) : (
             <DropdownMenuItem
