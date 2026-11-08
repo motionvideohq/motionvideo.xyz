@@ -17,7 +17,7 @@ import { track } from "@/lib/analytics";
 
 const ASSETS = {
   logomark: "/brand/motionvideo-logomark-black.svg",
-  logotype: "/brand/motionvideo-wordmark.svg",
+  logotype: "/brand/motionvideo-wordmark-black.svg",
   appIcon: "/brand/motionvideo-app-icon.svg",
 } as const;
 const ZIP = "/brand/motionvideo-brand-assets.zip";

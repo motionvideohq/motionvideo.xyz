@@ -550,6 +550,24 @@
   }
 }
 
+/* Brand page: the logomark traces its outline (`pathLength` 1), then fills. */
+@keyframes brand-draw {
+  from {
+    stroke-dashoffset: 1;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+@keyframes brand-fill {
+  from {
+    fill-opacity: 0;
+  }
+  to {
+    fill-opacity: 1;
+  }
+}
+
 /* Header wordmark: an o of "Motion" bounces like a ball. Anticipate (squash),
    stretch on the way up, squash on landing, settle. */
 @keyframes brand-bounce {

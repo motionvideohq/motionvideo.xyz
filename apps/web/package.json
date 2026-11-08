@@ -14,6 +14,7 @@
     "dodo:setup": "node --experimental-strip-types scripts/setup-dodo.mjs",
     "resend:setup": "node --env-file=.env scripts/setup-resend.mjs",
     "moves:check": "node scripts/check-moves.mjs",
+    "brand:kit": "node scripts/brand-kit.mjs",
     "preview": "vite preview",
     "deploy": "pnpm build && pnpm db:migrate:remote && wrangler deploy",
     "typecheck": "intlayer build && wrangler types && tsc --noEmit",

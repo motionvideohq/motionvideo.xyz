@@ -49,7 +49,7 @@ const organization = {
     name: SITE.AUTHOR.NAME,
     url: LINK.AUTHOR_WEBSITE,
   },
-  logo: absoluteUrl("/brand/motionvideo-app-icon-512.png"),
+  logo: absoluteUrl("/brand/motionvideo-app-icon.png"),
   name: SITE.NAME,
   sameAs: [LINK.GITHUB, LINK.X],
   url: SITE.URL,
