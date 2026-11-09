@@ -1,0 +1,39 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "button",
+  "title": "Button",
+  "description": "A shadcn button whose variants all share one size, with a gradient variant for the call to action that matters most.",
+  "dependencies": [
+    "@base-ui/react",
+    "class-variance-authority"
+  ],
+  "files": [
+    {
+      "path": "src/registry/ui/button.tsx",
+      "content": "import { Button as ButtonPrimitive } from \"@base-ui/react/button\";\nimport { cva } from \"class-variance-authority\";\nimport type { VariantProps } from \"class-variance-authority\";\n\nimport { cn } from \"@/lib/utils\";\n\n// Fills cover the border box (`bg-clip-border`), so every variant is exactly\n// the same size as any other (all keep the 1px transparent border) and\n// toggling between variants never resizes a button.\nconst buttonCva = cva(\n  \"group/button focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:border-destructive aria-invalid:ring-destructive/20 dark:aria-invalid:border-destructive/50 dark:aria-invalid:ring-destructive/40 inline-flex shrink-0 items-center justify-center rounded-lg border border-transparent bg-clip-border text-sm font-medium whitespace-nowrap transition-[color,background-color,box-shadow,transform,filter,opacity] duration-150 ease-out outline-none select-none focus-visible:ring-3 active:not-aria-[haspopup]:scale-[0.97] disabled:pointer-events-none disabled:opacity-50 aria-invalid:ring-3 motion-reduce:transition-none [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4\",\n  {\n    variants: {\n      variant: {\n        // Plain yellow fill (`--primary`) with black text.\n        default:\n          \"bg-primary text-primary-foreground hover:bg-primary/85 aria-expanded:bg-primary/85\",\n        // Yellow gradient from the landing CTA (`--color-cta-*` in\n        // styles/globals.css).\n        // Reserved for special calls to action such as checkout.\n        gradient:\n          \"from-cta-from to-cta-to shadow-cta text-cta-foreground border-0 bg-linear-to-b bg-clip-border duration-200 hover:brightness-105\",\n        outline:\n          \"bg-background shadow-outline hover:bg-muted hover:text-foreground aria-expanded:bg-muted aria-expanded:text-foreground dark:bg-popover dark:hover:bg-muted\",\n        secondary:\n          \"bg-secondary text-secondary-foreground aria-expanded:bg-secondary aria-expanded:text-secondary-foreground hover:bg-[color-mix(in_oklch,var(--secondary),var(--foreground)_5%)]\",\n        ghost:\n          \"hover:bg-muted hover:text-foreground aria-expanded:bg-muted aria-expanded:text-foreground dark:hover:bg-muted/50\",\n        // Ghost with muted text at rest, for secondary chrome (footer, nav extras).\n        subtle:\n          \"text-muted-foreground hover:bg-muted hover:text-foreground aria-expanded:bg-muted aria-expanded:text-foreground dark:hover:bg-muted/50\",\n        destructive:\n          \"bg-destructive/10 text-destructive hover:bg-destructive/20 focus-visible:border-destructive/40 focus-visible:ring-destructive/20 dark:bg-destructive/20 dark:hover:bg-destructive/30 dark:focus-visible:ring-destructive/40\",\n        link: \"text-primary underline-offset-4 hover:underline\",\n      },\n      size: {\n        default:\n          \"h-8 gap-1.5 px-2.5 has-data-[icon=inline-end]:pr-2 has-data-[icon=inline-start]:pl-2\",\n        xs: \"h-6 gap-1 rounded-[min(var(--radius-md),10px)] px-2 text-xs in-data-[slot=button-group]:rounded-lg has-data-[icon=inline-end]:pr-1.5 has-data-[icon=inline-start]:pl-1.5 [&_svg:not([class*='size-'])]:size-3\",\n        sm: \"h-7 gap-1 rounded-[min(var(--radius-md),12px)] px-2.5 text-[0.8rem] in-data-[slot=button-group]:rounded-lg has-data-[icon=inline-end]:pr-1.5 has-data-[icon=inline-start]:pl-1.5 [&_svg:not([class*='size-'])]:size-3.5\",\n        lg: \"h-9 gap-1.5 px-2.5 has-data-[icon=inline-end]:pr-2 has-data-[icon=inline-start]:pl-2\",\n        icon: \"size-8\",\n        \"icon-xs\":\n          \"size-6 rounded-[min(var(--radius-md),10px)] in-data-[slot=button-group]:rounded-lg [&_svg:not([class*='size-'])]:size-3\",\n        \"icon-sm\":\n          \"size-7 rounded-[min(var(--radius-md),12px)] in-data-[slot=button-group]:rounded-lg\",\n        \"icon-lg\": \"size-9\",\n        xl: \"h-12 gap-2 rounded-[16px] px-4 py-1.5 text-base\",\n        \"icon-xl\": \"size-12 [&_svg:not([class*='size-'])]:size-5\",\n      },\n    },\n    defaultVariants: {\n      variant: \"default\",\n      size: \"default\",\n    },\n  }\n);\n\n// Merged, so a size's text class (e.g. xl's text-base) beats the base\n// text-sm for callers that use `buttonVariants` directly on links.\nconst buttonVariants = (props?: Parameters<typeof buttonCva>[0]) =>\n  cn(buttonCva(props));\n\nconst Button = ({\n  className,\n  variant = \"default\",\n  size = \"default\",\n  ...props\n}: ButtonPrimitive.Props & VariantProps<typeof buttonCva>) => (\n  <ButtonPrimitive\n    data-slot=\"button\"\n    className={buttonVariants({ variant, size, className })}\n    {...props}\n  />\n);\n\nexport { Button, buttonVariants };\n",
+      "type": "registry:ui"
+    }
+  ],
+  "cssVars": {
+    "theme": {
+      "color-cta-from": "var(--cta-from)",
+      "color-cta-to": "var(--cta-to)",
+      "color-cta-foreground": "var(--cta-foreground)",
+      "shadow-cta": "inset 0 0 0 1px #fac83e, inset 0 0 1px 1px #ffffff24, 0 2px 2px #0000000a",
+      "shadow-outline": "var(--surface-outline)"
+    },
+    "light": {
+      "cta-from": "#ffdd73",
+      "cta-to": "#ffbe25",
+      "cta-foreground": "oklch(0.145 0 0)",
+      "surface-outline": "oklch(0 0 0 / 0.08) 0 0 0 0.5px, oklch(0 0 0 / 0.2) 0 1px 1px -1px, oklch(0 0 0 / 0.08) 0 1px 2px"
+    },
+    "dark": {
+      "cta-from": "#ffdd73",
+      "cta-to": "#ffbe25",
+      "cta-foreground": "oklch(0.145 0 0)",
+      "surface-outline": "oklch(1 0 0 / 0.12) 0 0 0 1px, oklch(0 0 0 / 0.4) 0 1px 2px"
+    }
+  },
+  "type": "registry:ui"
+}

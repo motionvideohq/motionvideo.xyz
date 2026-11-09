@@ -17,7 +17,7 @@ import { track } from "@/lib/analytics";
 
 const ASSETS = {
   logomark: "/brand/motionvideo-logomark-black.svg",
-  logotype: "/brand/motionvideo-wordmark.svg",
+  logotype: "/brand/motionvideo-wordmark-black.svg",
   appIcon: "/brand/motionvideo-app-icon.svg",
 } as const;
 const ZIP = "/brand/motionvideo-brand-assets.zip";
@@ -72,7 +72,9 @@ export const Brand = () => {
         </ContextMenuItem>
         <ContextMenuSeparator />
         <ContextMenuItem
-          render={<Link to={ROUTES.BRAND} data-track="brand_guidelines" />}
+          render={
+            <Link to={ROUTES.DESIGN_BRAND} data-track="brand_guidelines" />
+          }
         >
           {/* A dashed square: the guidelines frame the marks. */}
           <svg

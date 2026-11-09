@@ -19,11 +19,11 @@ import { LocalizedLink as Link } from "@/components/localized-link";
 import { MoveCard, MovesGridContext } from "@/components/moves";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
-import { buttonVariants } from "@/components/ui/button";
-import type { MasonryItem } from "@/components/virtual-masonry";
 import { ROUTES } from "@/constants/routes";
 import { MOVE_FAMILIES, findMoveFamily } from "@/lib/move-families";
 import { movesIn } from "@/lib/moves";
+import type { MasonryItem } from "@/registry/components/virtual-masonry";
+import { buttonVariants } from "@/registry/ui/button";
 import { getLandingData, getSessionFlag } from "@/server/functions";
 import { getMoveCards } from "@/server/move-functions";
 

@@ -47,7 +47,6 @@ import {
 } from "@/components/directory-card";
 import { FadeScroller } from "@/components/fade-scroller";
 import { SponsoredCard, sponsoredTileIndex } from "@/components/sponsored-card";
-import { buttonVariants } from "@/components/ui/button";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -56,7 +55,6 @@ import {
   DropdownMenuRadioItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import type { MasonryItem } from "@/components/virtual-masonry";
 import { useLaneCount } from "@/hooks/use-lane-count";
 import { useLocalizedNavigate as useNavigate } from "@/hooks/use-localized-navigate";
 import {
@@ -75,6 +73,8 @@ import type {
   DirectorySearch,
 } from "@/lib/directories";
 import { cn } from "@/lib/utils";
+import type { MasonryItem } from "@/registry/components/virtual-masonry";
+import { buttonVariants } from "@/registry/ui/button";
 
 // "All" and each category are their own pages: /tools, /tools/ai, /skills…
 const SECTION_ROUTES = {

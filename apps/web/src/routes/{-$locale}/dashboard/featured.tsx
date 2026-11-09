@@ -13,7 +13,6 @@ import { MotionVideoCard, MotionVideoOverlay } from "@/components/motion-video";
 import { PageMain, AccountPageHeader } from "@/components/page";
 import { SectionIcon } from "@/components/section-icon";
 import { Badge } from "@/components/ui/badge";
-import { buttonVariants } from "@/components/ui/button";
 import {
   Empty,
   EmptyContent,
@@ -22,8 +21,6 @@ import {
   EmptyMedia,
   EmptyTitle,
 } from "@/components/ui/empty";
-import { VirtualMasonry } from "@/components/virtual-masonry";
-import type { MasonryItem } from "@/components/virtual-masonry";
 import {
   DEFAULT_LOCALE,
   isLocale,
@@ -37,6 +34,9 @@ import { DIRECTORY_ENTRIES } from "@/lib/directories";
 import type { DirectoryEntry, DirectoryKind } from "@/lib/directories";
 import { localizedRedirect } from "@/lib/localized-redirect";
 import type { MotionVideo } from "@/lib/motion-catalog";
+import { VirtualMasonry } from "@/registry/components/virtual-masonry";
+import type { MasonryItem } from "@/registry/components/virtual-masonry";
+import { buttonVariants } from "@/registry/ui/button";
 import { createMetadata } from "@/seo/metadata";
 import type { MySubmission } from "@/server/community-functions";
 import { getMySubmissions } from "@/server/community-functions";

@@ -400,57 +400,6 @@
       --u: min(1px, calc(100cqw / var(--fan, 546)));
     }
   }
-  .dropzone-card[data-revealing] {
-    -webkit-mask-image: radial-gradient(
-      circle at var(--reveal-x, 50%) var(--reveal-y, 50%),
-      #000 var(--reveal-solid, 0px),
-      transparent var(--reveal-r, 0px)
-    );
-    mask-image: radial-gradient(
-      circle at var(--reveal-x, 50%) var(--reveal-y, 50%),
-      #000 var(--reveal-solid, 0px),
-      transparent var(--reveal-r, 0px)
-    );
-  }
-  .dropzone-edge > .dropzone-edge-solid {
-    opacity: 0;
-  }
-  .dropzone-edge[data-ground] > .dropzone-edge-solid {
-    opacity: 1;
-  }
-  .dropzone-edge[data-ground="full"] > .dropzone-edge-dashed {
-    opacity: 0;
-  }
-  .dropzone-edge[data-ground="rising"] > .dropzone-edge-solid {
-    -webkit-mask-image: radial-gradient(
-      circle at var(--ground-x) var(--ground-y),
-      #000 var(--ground-solid),
-      transparent var(--ground-r)
-    );
-    mask-image: radial-gradient(
-      circle at var(--ground-x) var(--ground-y),
-      #000 var(--ground-solid),
-      transparent var(--ground-r)
-    );
-  }
-  .dropzone-edge[data-ground="rising"] > .dropzone-edge-dashed {
-    -webkit-mask-image: radial-gradient(
-      circle at var(--ground-x) var(--ground-y),
-      transparent var(--ground-solid),
-      #000 var(--ground-r)
-    );
-    mask-image: radial-gradient(
-      circle at var(--ground-x) var(--ground-y),
-      transparent var(--ground-solid),
-      #000 var(--ground-r)
-    );
-  }
-  .dropzone-edge[data-ground="falling"] > .dropzone-edge-solid {
-    opacity: var(--ground-left);
-  }
-  .dropzone-edge[data-ground="falling"] > .dropzone-edge-dashed {
-    opacity: calc(1 - var(--ground-left));
-  }
   .sliding-tab-pill {
     transition:
       transform var(--tabs-duration) var(--tabs-ease),
@@ -547,6 +496,24 @@
   }
   to {
     background-position-x: -0.3em;
+  }
+}
+
+/* Brand page: the logomark traces its outline (`pathLength` 1), then fills. */
+@keyframes brand-draw {
+  from {
+    stroke-dashoffset: 1;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+@keyframes brand-fill {
+  from {
+    fill-opacity: 0;
+  }
+  to {
+    fill-opacity: 1;
   }
 }
 

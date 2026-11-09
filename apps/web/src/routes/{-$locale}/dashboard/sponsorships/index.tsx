@@ -18,7 +18,6 @@ import {
 } from "@/components/sponsor-creative-fields";
 import type { CreativeFields } from "@/components/sponsor-creative-fields";
 import { Badge } from "@/components/ui/badge";
-import { Button, buttonVariants } from "@/components/ui/button";
 import {
   Empty,
   EmptyContent,
@@ -34,6 +33,7 @@ import { SPONSOR_PRICE_USD } from "@/constants/sponsors";
 import { track } from "@/lib/analytics";
 import { localizedRedirect } from "@/lib/localized-redirect";
 import { sponsorCreativeSchema } from "@/lib/sponsorships";
+import { Button, buttonVariants } from "@/registry/ui/button";
 import { createMetadata } from "@/seo/metadata";
 import {
   deleteSponsorDraft,

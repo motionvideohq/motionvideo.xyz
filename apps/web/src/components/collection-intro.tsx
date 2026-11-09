@@ -3,8 +3,8 @@ import { Ufo } from "reicon-react/icons/Ufo";
 
 import { LocalizedLink as Link } from "@/components/localized-link";
 import { SponsorSlots } from "@/components/sponsor-slots";
-import { Button, buttonVariants } from "@/components/ui/button";
 import { ROUTES } from "@/constants/routes";
+import { Button, buttonVariants } from "@/registry/ui/button";
 
 /** Surprise me and Submit, the intro actions of the gallery and directories. */
 export const SurpriseAndSubmit = ({

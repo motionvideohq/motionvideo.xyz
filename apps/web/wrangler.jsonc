@@ -25,6 +25,8 @@
       "/brand",
       "/changelog",
       "/contact",
+      "/design",
+      "/design/*",
       "/privacy",
       "/refunds",
       "/terms",

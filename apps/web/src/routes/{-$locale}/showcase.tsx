@@ -6,9 +6,9 @@ import { z } from "zod";
 import { CommandMenu } from "@/components/command-menu";
 import { LocalizedLink as Link } from "@/components/localized-link";
 import { Logo } from "@/components/logo";
-import { buttonVariants } from "@/components/ui/button";
 import { ROUTES } from "@/constants/routes";
 import { cn } from "@/lib/utils";
+import { buttonVariants } from "@/registry/ui/button";
 import { createMetadata } from "@/seo/metadata";
 
 // The logo (logomark and name) in each season, the default (no season) first.

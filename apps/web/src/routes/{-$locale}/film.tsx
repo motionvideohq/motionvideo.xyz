@@ -14,10 +14,10 @@ import {
 import { FadeScroller } from "@/components/fade-scroller";
 import { MotionVideoCard, MotionVideoOverlay } from "@/components/motion-video";
 import { SiteHeader } from "@/components/site-header";
-import type { MasonryItem } from "@/components/virtual-masonry";
 import catalog from "@/data/motion-catalog.json";
 import { MOTION_CATEGORIES } from "@/lib/motion-catalog";
 import type { MotionCategory, MotionVideo } from "@/lib/motion-catalog";
+import type { MasonryItem } from "@/registry/components/virtual-masonry";
 
 // Dev-only stage for the launch film (apps/videos/scripts/capture-film.mjs).
 // The site's real header, toolbar, cards, search menu and detail overlay,

@@ -1,0 +1,57 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry.json",
+  "name": "motionvideo",
+  "homepage": "https://motionvideo.xyz/design/components",
+  "items": [
+    {
+      "name": "button",
+      "type": "registry:ui",
+      "title": "Button",
+      "description": "A shadcn button whose variants all share one size, with a gradient variant for the call to action that matters most.",
+      "dependencies": ["@base-ui/react", "class-variance-authority"],
+      "files": [
+        {
+          "path": "src/registry/ui/button.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "cssVars": {
+        "theme": {
+          "color-cta-from": "var(--cta-from)",
+          "color-cta-to": "var(--cta-to)",
+          "color-cta-foreground": "var(--cta-foreground)",
+          "shadow-cta": "inset 0 0 0 1px #fac83e, inset 0 0 1px 1px #ffffff24, 0 2px 2px #0000000a",
+          "shadow-outline": "var(--surface-outline)"
+        },
+        "light": {
+          "cta-from": "#ffdd73",
+          "cta-to": "#ffbe25",
+          "cta-foreground": "oklch(0.145 0 0)",
+          "surface-outline": "oklch(0 0 0 / 0.08) 0 0 0 0.5px, oklch(0 0 0 / 0.2) 0 1px 1px -1px, oklch(0 0 0 / 0.08) 0 1px 2px"
+        },
+        "dark": {
+          "cta-from": "#ffdd73",
+          "cta-to": "#ffbe25",
+          "cta-foreground": "oklch(0.145 0 0)",
+          "surface-outline": "oklch(1 0 0 / 0.12) 0 0 0 1px, oklch(0 0 0 / 0.4) 0 1px 2px"
+        }
+      }
+    },
+    {
+      "name": "virtual-masonry",
+      "type": "registry:component",
+      "title": "Virtual Masonry",
+      "description": "A window-scrolled masonry grid that mounts only the items near the viewport and lays out server-rendered items before first paint, so nothing jumps.",
+      "files": [
+        {
+          "path": "src/registry/components/virtual-masonry.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/registry/lib/masonry-layout.ts",
+          "type": "registry:lib"
+        }
+      ]
+    }
+  ]
+}

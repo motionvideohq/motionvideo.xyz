@@ -10,7 +10,6 @@ import { LocaleSwitcher } from "@/components/locale-switcher";
 import { LocalizedLink as Link } from "@/components/localized-link";
 import { SoundSwitch } from "@/components/sound-switch";
 import { ThemeToggle } from "@/components/theme-toggle";
-import { buttonVariants } from "@/components/ui/button";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -32,6 +31,7 @@ import { ROUTES } from "@/constants/routes";
 import { SITE } from "@/constants/site";
 import { cn } from "@/lib/utils";
 import { withUtm } from "@/lib/utm";
+import { buttonVariants } from "@/registry/ui/button";
 
 const IconLink = ({
   href,
@@ -159,7 +159,7 @@ export const SiteFooter = () => {
   ] as const;
   const company = [
     [ROUTES.ABOUT, content.about],
-    [ROUTES.BRAND, content.brand],
+    [ROUTES.DESIGN, content.design],
     [ROUTES.BLOG, content.blog],
     [ROUTES.CHANGELOG, content.changelog],
     [ROUTES.CONTACT, content.contact],

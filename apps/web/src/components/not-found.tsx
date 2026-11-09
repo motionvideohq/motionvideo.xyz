@@ -5,9 +5,9 @@ import missingFrame from "@/components/hairline/missing-frame.js?raw";
 import { LocalizedLink as Link } from "@/components/localized-link";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
-import { buttonVariants } from "@/components/ui/button";
 import { localizedPath } from "@/constants/locales";
 import { ROUTES } from "@/constants/routes";
+import { buttonVariants } from "@/registry/ui/button";
 
 export const NotFound = () => {
   const content = useIntlayer("not-found");
