@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useIntlayer } from "react-intlayer";
 
-import { ImageDropzone } from "@/components/image-dropzone";
+import { ImageUpload } from "@/components/image-upload";
 import { FormSection } from "@/components/page";
 import { SponsorDetailRow } from "@/components/sponsor-detail-row";
 import { Checkbox } from "@/components/ui/checkbox";
@@ -306,7 +306,7 @@ export const CreativeSections = ({
         title={content.brandSection}
         description={content.brandSectionBody}
       >
-        <ImageDropzone
+        <ImageUpload
           purpose="logo"
           value={fields.logo}
           onChange={(logo) => update({ logo })}
@@ -327,7 +327,7 @@ export const CreativeSections = ({
         title={content.mediaSection}
         description={content.mediaSectionBody}
       >
-        <ImageDropzone
+        <ImageUpload
           purpose="cover"
           value={fields.cover}
           onChange={(cover) => update({ cover })}

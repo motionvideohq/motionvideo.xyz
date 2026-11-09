@@ -6,7 +6,7 @@ import { useIntlayer, useLocale } from "react-intlayer";
 import { z } from "zod";
 
 import { ChoiceCard } from "@/components/choice-card";
-import { ImageDropzone } from "@/components/image-dropzone";
+import { ImageUpload } from "@/components/image-upload";
 import { OrderSummary } from "@/components/order-summary";
 import { FormSection, HeroHeader, PageMain } from "@/components/page";
 import { PlanDetails } from "@/components/plan-details";
@@ -303,7 +303,7 @@ const PostJob = () => {
             </div>
             <div className={fieldClass}>
               <span className="text-sm font-medium">{content.logo}</span>
-              <ImageDropzone
+              <ImageUpload
                 purpose="logo"
                 value={fields.logo}
                 onChange={(logo) => update({ logo })}

@@ -5,6 +5,7 @@ import { DEFAULT_LOCALE, localizedPath } from "@/constants/locales";
 import { ROUTES, STATIC_PAGES, docsMarkdownPath } from "@/constants/routes";
 import { SITE } from "@/constants/site";
 import { absoluteUrl } from "@/constants/url";
+import { designSource } from "@/lib/design";
 import { englishDocsPages } from "@/server/docs-markdown";
 import type { DocsPage } from "@/server/docs-source";
 
@@ -51,6 +52,18 @@ ${docsPages
   )
   .join("\n")}
 
+## Design system
+
+Read the [agent-facing design guide](${absoluteUrl(ROUTES.DESIGN_MD)}). Every design article is also available as Markdown:
+
+${designSource
+  .getPages()
+  .map(
+    (page) =>
+      `- [${page.data.title}](${absoluteUrl(docsMarkdownPath(page.url))}): ${page.data.description}`
+  )
+  .join("\n")}
+
 ## Data
 
 - [Motion catalog](${absoluteUrl("/api/catalog/")}): JSON of every gallery video with its prompt, model, stack, effort, and media URLs.
@@ -63,7 +76,7 @@ ${docsPages
 ## Optional
 
 - [Pricing](${absoluteUrl(ROUTES.PRICING_MD)}): Plans and prices as Markdown.
-- [Full docs](${absoluteUrl(ROUTES.LLMS_FULL_TXT)}): Every docs page in one Markdown file.
+- [Full docs and design system](${absoluteUrl(ROUTES.LLMS_FULL_TXT)}): Every docs page and design article, including the agent-facing design guide, in one Markdown file.
 - [Sitemap](${absoluteUrl("/sitemap.xml")})
 `;
 

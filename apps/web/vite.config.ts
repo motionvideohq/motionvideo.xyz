@@ -45,14 +45,14 @@ const config = defineConfig(({ command }) => ({
     devtools(),
     // One instance for every MDX source: content/docs (source.config.ts) is
     // compiled into `.source/` at build time, and the macro compiles the
-    // changelog, blog and registry component collections. Only those modules
+    // changelog, blog and design collections. Only those modules
     // use the macro, so its transform skips every other module.
     fumadocsMdx({
       macro: {
         include: [
           "src/lib/changelog.ts",
           "src/lib/blog.ts",
-          "src/lib/design-components.ts",
+          "src/lib/design.ts",
         ],
       },
     }),

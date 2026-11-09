@@ -59,6 +59,17 @@ export default {
       pt: "Páginas",
       ru: "Страницы",
     }),
+    design: t({
+      en: "Design system",
+      es: "Sistema de diseño",
+      fr: "Système de design",
+      zh: "设计系统",
+      ko: "디자인 시스템",
+      ja: "デザインシステム",
+      de: "Designsystem",
+      pt: "Sistema de design",
+      ru: "Дизайн-система",
+    }),
     popular: t({
       en: "Popular videos",
       es: "Vídeos populares",

@@ -39,12 +39,14 @@ export const ROUTES = {
   DASHBOARD_SPONSORSHIPS: "/dashboard/sponsorships",
   DASHBOARD_SPONSORSHIPS_NEW: "/dashboard/sponsorships/new",
   DASHBOARD_SUBMIT: "/dashboard/submit",
-  /** The design hub: brand guidelines and the component registry. */
+  /** The design system: foundations, brand assets, and component registry. */
   DESIGN: "/design",
   DESIGN_BRAND: "/design/brand",
   DESIGN_COMPONENTS: "/design/components",
   /** One registry component's page: `params={{ slug: "button" }}`. */
   DESIGN_COMPONENT: "/design/components/$slug",
+  /** Agent-facing design guidance; article Markdown uses /design/<path>.md. */
+  DESIGN_MD: "/design.md",
   DOCS: "/docs",
   DOCS_API: "/docs/api",
   /** Any docs page: `params={{ _splat: "mcp" }}`. */
@@ -122,11 +124,13 @@ export const STATIC_PAGES: readonly string[] = [
 ];
 
 /**
- * A docs page's Markdown (for agents and "Copy as Markdown"): /docs →
- * /docs.md, /docs/mcp → /docs/mcp.md. Unprefixed, and the file extension
- * keeps the server from redirecting it to a locale.
+ * A docs or design article's Markdown (for agents and "Copy as Markdown").
+ * /design.md is the design guide; /design/index.md is the overview article.
+ * Other paths append .md: /docs/mcp → /docs/mcp.md. Unprefixed; the file
+ * extension keeps the server from redirecting it to a locale.
  */
-export const docsMarkdownPath = (docsPath: string) => `${docsPath}.md`;
+export const docsMarkdownPath = (path: string) =>
+  path === ROUTES.DESIGN ? `${path}/index.md` : `${path}.md`;
 
 /**
  * A registry item's JSON for the shadcn CLI (`shadcn build`, registry.json):

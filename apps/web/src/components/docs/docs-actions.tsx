@@ -209,7 +209,7 @@ type CopyStatus = "idle" | "copied" | "failed";
 export interface DocsActionsProps {
   title: string;
   description: string;
-  /** Page path, e.g. /docs/mcp. */
+  /** Unprefixed page path, e.g. /docs/mcp or /design/colors. */
   url: string;
   /**
    * The file the page is built from, relative to apps/web, for the edit

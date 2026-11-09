@@ -52,24 +52,6 @@
           "type": "registry:lib"
         }
       ]
-    },
-    {
-      "name": "magnetic-dropzone",
-      "type": "registry:ui",
-      "title": "Magnetic Dropzone",
-      "description": "A file dropzone that pulls the dragged file in like a magnet, with file-type badges, previews, progress and error states.",
-      "dependencies": ["motion", "reicon-react"],
-      "registryDependencies": ["https://motionvideo.xyz/r/button.json"],
-      "files": [
-        {
-          "path": "src/registry/ui/magnetic-dropzone.tsx",
-          "type": "registry:ui"
-        },
-        {
-          "path": "src/registry/ui/file-badge.tsx",
-          "type": "registry:ui"
-        }
-      ]
     }
   ]
 }

@@ -17,10 +17,8 @@ import { track } from "@/lib/analytics";
 import { cn } from "@/lib/utils";
 import { Button, buttonVariants } from "@/registry/ui/button";
 
-// The brand page's sections: the kit download and a drawing of the
-// logomark, every logo with copy and save actions, the colors, the type and
-// the usage rules. The files in public/brand and the zip's weight
-// (src/data/brand-kit.json) come from `pnpm brand:kit`.
+// Interactive specimens for the MDX brand guidelines. The files in
+// public/brand and the zip's weight come from `pnpm brand:kit`.
 
 const BRAND = "/brand";
 const ZIP = `${BRAND}/motionvideo-brand-assets.zip`;
@@ -170,15 +168,7 @@ export const BrandHero = () => {
     maximumFractionDigits: 0,
   }).format(kit.zip.bytes / 1024);
   return (
-    <header className="flex flex-col gap-6">
-      <div className="flex flex-col gap-3">
-        <h1 className="text-4xl font-semibold tracking-tight text-balance">
-          {content.title}
-        </h1>
-        <p className="text-muted-foreground max-w-xl leading-7">
-          {content.intro}
-        </p>
-      </div>
+    <div className="text-foreground flex flex-col gap-6">
       <div className="flex flex-wrap items-center gap-2">
         <a
           href={ZIP}
@@ -197,7 +187,7 @@ export const BrandHero = () => {
         />
       </div>
       <MarkShowcase />
-    </header>
+    </div>
   );
 };
 
@@ -346,34 +336,13 @@ const LogoTile = ({ asset }: { asset: LogoAsset }) => {
   );
 };
 
-const SectionTitle = ({
-  title,
-  intro,
-}: {
-  title: ReactNode;
-  intro: ReactNode;
-}) => (
-  <div className="flex flex-col gap-2">
-    <h2 className="text-foreground text-xl font-semibold tracking-tight">
-      {title}
-    </h2>
-    <p className="text-muted-foreground leading-7">{intro}</p>
-  </div>
+export const BrandLogos = () => (
+  <ul className="grid gap-x-4 gap-y-10 sm:grid-cols-2">
+    {LOGOS.map((asset) => (
+      <LogoTile key={asset.key} asset={asset} />
+    ))}
+  </ul>
 );
-
-export const BrandLogos = () => {
-  const content = useIntlayer("brand");
-  return (
-    <section className="flex flex-col gap-6">
-      <SectionTitle title={content.logos} intro={content.logosIntro} />
-      <ul className="grid gap-x-4 gap-y-10 sm:grid-cols-2">
-        {LOGOS.map((asset) => (
-          <LogoTile key={asset.key} asset={asset} />
-        ))}
-      </ul>
-    </section>
-  );
-};
 
 // ─── Colors ────────────────────────────────────────────────────────────────
 
@@ -449,7 +418,6 @@ export const BrandColors = () => {
   const content = useIntlayer("brand");
   return (
     <section className="flex flex-col gap-6">
-      <SectionTitle title={content.colors} intro={content.colorsIntro} />
       <div className="grid gap-4 sm:grid-cols-2">
         {(["light", "dark"] as const).map((tone) => (
           <div key={tone} className={colorCardClass}>
@@ -521,37 +489,6 @@ export const BrandColors = () => {
 const MONO_SAMPLE =
   "Draw the logomark’s outline, then fill it: 1.6s, ease-out.";
 
-const TypeCard = ({
-  name,
-  specimen,
-  sample,
-  use,
-  footer,
-}: {
-  name: string;
-  specimen: string;
-  sample: ReactNode;
-  use: ReactNode;
-  footer: ReactNode;
-}) => (
-  <div className="shadow-outline flex flex-col gap-5 rounded-xl p-5">
-    <div className="flex items-end justify-between gap-4">
-      <span
-        aria-hidden="true"
-        className={cn("text-foreground text-6xl leading-none", specimen)}
-      >
-        Aa
-      </span>
-    </div>
-    <div className={cn("text-foreground", specimen)}>{sample}</div>
-    <div className="mt-auto flex flex-col gap-1 text-sm">
-      <h3 className="text-foreground text-base font-medium">{name}</h3>
-      <p className="text-muted-foreground">{use}</p>
-      {footer}
-    </div>
-  </div>
-);
-
 const FontLink = ({
   href,
   children,
@@ -570,88 +507,87 @@ const FontLink = ({
   </a>
 );
 
-export const BrandType = () => {
+export const BrandTypeface = ({
+  font,
+  children,
+}: {
+  font: "sans" | "mono";
+  children: ReactNode;
+}) => {
   const content = useIntlayer("brand");
+  const specimen =
+    font === "sans" ? "font-sans font-semibold tracking-tight" : "font-mono";
   return (
-    <section className="flex flex-col gap-6">
-      <SectionTitle title={content.type} intro={content.typeIntro} />
-      <div className="grid gap-4 sm:grid-cols-2">
-        <TypeCard
-          name="Timeless Sans"
-          specimen="font-sans font-semibold tracking-tight"
-          sample={<p className="text-2xl text-balance">{SITE.TAGLINE}</p>}
-          use={content.timelessUse}
-          footer={
-            <div className="flex flex-wrap gap-x-4 gap-y-1">
-              <FontLink href={TIMELESS_URL}>{content.getTimeless}</FontLink>
-              <FontLink href={TIMELESS_PLAYGROUND_URL}>
-                {content.timelessPlayground}
-              </FontLink>
-            </div>
-          }
-        />
-        <TypeCard
-          name="Paper Mono"
-          specimen="font-mono"
-          sample={
-            <p className="bg-muted/50 rounded-lg p-3 text-[0.8125rem] leading-6">
-              <span className="text-muted-foreground">&gt; </span>
-              {MONO_SAMPLE}
-            </p>
-          }
-          use={content.paperMonoUse}
-          footer={
-            <FontLink href={PAPER_MONO_URL}>{content.getPaperMono}</FontLink>
-          }
-        />
+    <div className="shadow-outline flex flex-col gap-5 rounded-xl p-5">
+      <div className="flex items-end justify-between gap-4">
+        <span
+          aria-hidden="true"
+          className={cn("text-foreground text-6xl leading-none", specimen)}
+        >
+          Aa
+        </span>
       </div>
-    </section>
+      <div className={cn("text-foreground", specimen)}>
+        {font === "sans" ? (
+          <p className="text-2xl text-balance">{SITE.TAGLINE}</p>
+        ) : (
+          <p className="bg-muted/50 rounded-lg p-3 text-[0.8125rem] leading-6">
+            <span className="text-muted-foreground">&gt; </span>
+            {MONO_SAMPLE}
+          </p>
+        )}
+      </div>
+      <div className="mt-auto flex flex-col gap-1 text-sm [&_h3]:m-0 [&_h3]:text-base [&_h3]:font-medium [&_p]:m-0">
+        {children}
+        {font === "sans" ? (
+          <div className="flex flex-wrap gap-x-4 gap-y-1">
+            <FontLink href={TIMELESS_URL}>{content.getTimeless}</FontLink>
+            <FontLink href={TIMELESS_PLAYGROUND_URL}>
+              {content.timelessPlayground}
+            </FontLink>
+          </div>
+        ) : (
+          <FontLink href={PAPER_MONO_URL}>{content.getPaperMono}</FontLink>
+        )}
+      </div>
+    </div>
   );
 };
+
+export const BrandType = ({ children }: { children: ReactNode }) => (
+  <div className="grid gap-4 sm:grid-cols-2">{children}</div>
+);
 
 // ─── Usage ─────────────────────────────────────────────────────────────────
 
-const RULES = ["name", "room", "files", "endorsement"] as const;
-
 // Each misuse applied to the logomark.
-const DONTS = [
-  ["recolor", "text-sky-500"],
-  ["stretch", "scale-x-150 scale-y-75"],
-  ["rotate", "-rotate-12"],
-  ["effects", "drop-shadow-[0_6px_6px_rgb(0_0_0/0.5)] blur-[0.5px]"],
-] as const;
+const MISUSE_STYLES = {
+  recolor: "text-sky-500",
+  stretch: "scale-x-150 scale-y-75",
+  rotate: "-rotate-12",
+  effects: "drop-shadow-[0_6px_6px_rgb(0_0_0/0.5)] blur-[0.5px]",
+} as const;
 
-export const BrandUsage = ({ questions }: { questions: ReactNode }) => {
-  const content = useIntlayer("brand");
-  return (
-    <section className="flex flex-col gap-6">
-      <SectionTitle title={content.usage} intro={content.usageIntro} />
-      <div className="grid gap-x-6 gap-y-5 sm:grid-cols-2">
-        {RULES.map((rule) => (
-          <div key={rule} className="flex flex-col gap-1">
-            <h3 className="text-foreground font-medium">
-              {content.rules[rule].title}
-            </h3>
-            <p className="text-muted-foreground leading-7">
-              {content.rules[rule].body}
-            </p>
-          </div>
-        ))}
-      </div>
-      <ul className="grid grid-cols-2 gap-4 sm:grid-cols-4">
-        {DONTS.map(([key, misuse]) => (
-          <li key={key} className="flex flex-col gap-2">
-            <div className="bg-muted/40 shadow-outline flex aspect-square items-center justify-center rounded-xl">
-              <Logomark className={cn("text-foreground h-8 w-auto", misuse)} />
-            </div>
-            <p className="text-muted-foreground flex items-center gap-1.5 text-sm">
-              <Xmark aria-hidden="true" className="text-destructive size-4" />
-              {content.donts[key]}
-            </p>
-          </li>
-        ))}
-      </ul>
-      <p className="text-muted-foreground leading-7">{questions}</p>
-    </section>
-  );
-};
+export const BrandMisuses = ({ children }: { children: ReactNode }) => (
+  <div className="grid grid-cols-2 gap-4 sm:grid-cols-4">{children}</div>
+);
+
+export const BrandMisuse = ({
+  kind,
+  children,
+}: {
+  kind: keyof typeof MISUSE_STYLES;
+  children: ReactNode;
+}) => (
+  <figure className="flex flex-col gap-2">
+    <div className="bg-muted/40 shadow-outline flex aspect-square items-center justify-center rounded-xl">
+      <Logomark
+        className={cn("text-foreground h-8 w-auto", MISUSE_STYLES[kind])}
+      />
+    </div>
+    <figcaption className="text-muted-foreground flex items-center gap-1.5 text-sm [&_p]:m-0">
+      <Xmark aria-hidden="true" className="text-destructive size-4 shrink-0" />
+      {children}
+    </figcaption>
+  </figure>
+);

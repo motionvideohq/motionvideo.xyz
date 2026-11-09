@@ -1,0 +1,46 @@
+---
+title: Typography
+description: Timeless Sans for a clear voice. Paper Mono for the details that need precision.
+---
+
+## Typefaces
+
+Timeless Sans is a variable sans-serif for navigation, reading, and expressive headlines. Use weight and spacing to establish hierarchy before adding another size. Paper Mono gives code and precise numeric readouts a distinct voice.
+
+<Typefaces />
+
+Timeless Sans supports weights 300–900 and an italic face. Paper Mono supports weights 100–800. Both are served locally with `font-display: swap`. Keep code, token names, and precise numeric readouts in mono; keep prose in sans.
+
+| Typeface | Utility | Purpose |
+| --- | --- | --- |
+| Timeless Sans | `font-sans` | Navigation, prose, and headlines |
+| Paper Mono | `font-mono` | Code, tokens, timecodes, and precise numeric readouts |
+
+## Type scale
+
+Use the existing Tailwind scale rather than unrelated pixel sizes. These specimens render the real utilities; their labels name the size, while the examples show the accompanying weight and rhythm.
+
+<TypeScale />
+
+| Role       | Size        | Weight and rhythm              |
+| ---------- | ----------- | ------------------------------ |
+| Display    | `text-5xl`  | `font-semibold tracking-tight` |
+| Page title | `text-4xl`  | `font-semibold tracking-tight` |
+| Section    | `text-2xl`  | `font-semibold tracking-tight` |
+| Lead       | `text-lg`   | Default weight                 |
+| Body       | `text-base` | `leading-7`                    |
+| Label      | `text-sm`   | `font-medium`                  |
+| Metadata   | `text-xs`   | `font-mono`                    |
+
+## Using typography
+
+Use one h1 per page and sequential heading levels. Keep body copy at a comfortable line length with generous leading. Muted foreground is for supporting copy, not the main message. Avoid all-caps paragraphs and excessive tracking.
+
+```tsx title="Reading hierarchy"
+<h2 className="text-2xl font-semibold tracking-tight">
+  Your next project
+</h2>
+<p className="max-w-prose text-base leading-7 text-muted-foreground">
+  Start with a clear idea. Let the details follow.
+</p>
+```

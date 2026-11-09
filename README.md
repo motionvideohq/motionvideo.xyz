@@ -73,6 +73,22 @@ The MotionVideo community lives on [GitHub](https://github.com/motionvideohq/mot
 
 > Found MotionVideo useful? [Become a sponsor](https://motionvideo.xyz/sponsor) to support maintenance and get your logo here and on the site, with placement based on your tier.
 
+## Design system
+
+The design system has dedicated pages for [colors](https://motionvideo.xyz/design/colors), [typography](https://motionvideo.xyz/design/typography), [materials](https://motionvideo.xyz/design/materials), [motion](https://motionvideo.xyz/design/motion), and [components](https://motionvideo.xyz/design/components), alongside downloadable brand assets. Brand appears under Foundations after Motion, without a separate sidebar group. It keeps MotionVideo's existing header, footer, page spacing, site search, and theme controls, with documentation navigation and page contents inside the site layout.
+
+The `/design` overview presents visual previews for brand assets, components, and foundations inside that same site layout. Muted preview panels and thin dividers separate each specimen from its text; the brand assets preview uses a centered monochrome logomark without a grid.
+
+Theme tokens live in `apps/web/src/styles/globals.css`; font faces live in `apps/web/src/styles/fonts.css`. Every design article—including the overview, brand kit, foundations, catalog, and individual components—lives in `apps/web/content/design`. Frontmatter, prose, headings, tables, and code examples are authored in MDX and loaded through the async Fumadocs collection in `apps/web/src/lib/design.ts`. React components in `apps/web/src/components/design` supply visual and interactive specimens. Routes stay in `apps/web/src/routes/{-$locale}/design`. Navigation and controls are localized; MDX articles are written in English.
+
+Design articles share Docs' edit-on-GitHub, scroll-to-top, Markdown copy, export, chat, and MCP actions on desktop and mobile. Previous and next links use Docs' padded outline cards and responsive stacking. Edit links point to the article's MDX source. Markdown representations use that same compiled content: `/design/index.md` for the overview and `/design/<path>.md` for other articles, including component pages.
+
+The agent-facing design guide lives in `apps/web/content/design.md` and is served at `/design.md`, separately from the overview article. It covers integration, foundations, accessibility, registry installation, and downloadable brand assets without replacing the site's layout.
+
+The command menu indexes every design article's title, description, and section headings from the MDX collection. It includes a localized Design system scope, locale-aware heading links, and a separate `design.md` agent entry. `/llms.txt` lists the guide and article Markdown URLs; `/llms-full.txt` includes their complete content. The sitemap includes the design HTML pages, not machine-readable files.
+
+The public component registry contains Button and Virtual Masonry. The Components sidebar links directly to those articles; the catalog remains at `/design/components` without a sidebar entry. Form image fields use the site's native `ImageUpload` picker, not a registry component. Only publish components with redistribution permission.
+
 ## Contributing
 
 Contributions are welcome. See [CONTRIBUTING.md](CONTRIBUTING.md) for local setup, checks, generated files, and the pull request process. Use [issues](https://github.com/motionvideohq/motionvideo.xyz/issues) for bugs and feature requests. By participating, you agree to the [Code of Conduct](CODE_OF_CONDUCT.md).
