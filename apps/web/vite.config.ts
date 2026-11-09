@@ -18,10 +18,22 @@ const STATIC_ROUTES = LOCALES.flatMap((locale) =>
 
 // Dev-only pages: dropped from the route tree in `vite build`, so neither the
 // route nor its code ships to production.
-const DEV_ONLY_ROUTES = ["showcase", "film"];
+const DEV_ONLY_ROUTES = ["showcase", "film", "create-lab"];
 
 const config = defineConfig(({ command }) => ({
-  resolve: { tsconfigPaths: true },
+  resolve: {
+    tsconfigPaths: true,
+    // @motionvideo/engine is a linked workspace package: without this its
+    // imports could resolve to a second copy of React, Remotion or three.js.
+    dedupe: [
+      "react",
+      "react-dom",
+      "remotion",
+      "three",
+      "@react-three/fiber",
+      "mediabunny",
+    ],
+  },
   // vite-intlayer keeps its generated dictionary entries out of the client's
   // dependency prebundle, but not the Workers (ssr) environment's: there they
   // got baked into node_modules/.vite/deps_ssr, so the server kept rendering

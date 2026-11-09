@@ -71,6 +71,13 @@
       "when": 1792779230035,
       "tag": "0009_oauth_provider",
       "breakpoints": true
+    },
+    {
+      "idx": 10,
+      "version": "6",
+      "when": 1794127158807,
+      "tag": "0010_create_passes",
+      "breakpoints": true
     }
   ]
 }

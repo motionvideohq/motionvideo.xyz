@@ -1,0 +1,39 @@
+{
+  "name": "@motionvideo/engine",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts",
+    "./composition": "./src/composition.ts",
+    "./render": "./src/render/index.ts"
+  },
+  "scripts": {
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@remotion/google-fonts": "4.0.541",
+    "@remotion/media": "4.0.541",
+    "@remotion/three": "4.0.541",
+    "@remotion/web-renderer": "4.0.541",
+    "fflate": "^0.8.3",
+    "gifenc": "^1.0.3",
+    "remotion": "4.0.541",
+    "zod": "^4.6.5"
+  },
+  "devDependencies": {
+    "@react-three/fiber": "^9.8.2",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "@types/three": "^0.187.0",
+    "react": "^19.2.8",
+    "react-dom": "^19.2.8",
+    "three": "^0.187.0",
+    "typescript": "^6"
+  },
+  "peerDependencies": {
+    "@react-three/fiber": "^9.8.2",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0",
+    "three": "^0.187.0"
+  }
+}

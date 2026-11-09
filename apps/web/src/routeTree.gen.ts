@@ -32,6 +32,7 @@ import { Route as Char123LocaleChar125AdminRouteImport } from './routes/{-$local
 import { Route as Char123LocaleChar125BookmarksRouteImport } from './routes/{-$locale}/bookmarks'
 import { Route as Char123LocaleChar125CheckoutRouteImport } from './routes/{-$locale}/checkout'
 import { Route as Char123LocaleChar125ConsentRouteImport } from './routes/{-$locale}/consent'
+import { Route as Char123LocaleChar125CreateLabRouteImport } from './routes/{-$locale}/create-lab'
 import { Route as Char123LocaleChar125CreativesRouteImport } from './routes/{-$locale}/creatives'
 import { Route as Char123LocaleChar125CustomizeRouteImport } from './routes/{-$locale}/customize'
 import { Route as Char123LocaleChar125DashboardRouteImport } from './routes/{-$locale}/dashboard'
@@ -74,6 +75,8 @@ import { Route as Char123LocaleChar125AdminSponsorshipsRouteImport } from './rou
 import { Route as Char123LocaleChar125AdminSubmissionsRouteImport } from './routes/{-$locale}/admin/submissions'
 import { Route as Char123LocaleChar125BlogIndexRouteImport } from './routes/{-$locale}/blog/index'
 import { Route as Char123LocaleChar125BlogSlugRouteImport } from './routes/{-$locale}/blog/$slug'
+import { Route as Char123LocaleChar125CreateIndexRouteImport } from './routes/{-$locale}/create/index'
+import { Route as Char123LocaleChar125CreateProjectsRouteImport } from './routes/{-$locale}/create/projects'
 import { Route as Char123LocaleChar125CreativesIndexRouteImport } from './routes/{-$locale}/creatives/index'
 import { Route as Char123LocaleChar125CreativesCategoryRouteImport } from './routes/{-$locale}/creatives/$category'
 import { Route as Char123LocaleChar125CreatorsIndexRouteImport } from './routes/{-$locale}/creators.index'
@@ -113,6 +116,8 @@ import { Route as Char123LocaleChar125GalleryTypeTypeRouteImport } from './route
 import { Route as Char123LocaleChar125GalleryVideosSlugRouteImport } from './routes/{-$locale}/_gallery/videos.$slug'
 import { Route as Char123LocaleChar125PagesChangelogIndexRouteImport } from './routes/{-$locale}/_pages/changelog/index'
 import { Route as Char123LocaleChar125PagesChangelogSlugRouteImport } from './routes/{-$locale}/_pages/changelog/$slug'
+import { Route as Char123LocaleChar125CreateShowcaseIndexRouteImport } from './routes/{-$locale}/create/showcase/index'
+import { Route as Char123LocaleChar125CreateShowcaseEditorRouteImport } from './routes/{-$locale}/create/showcase/editor'
 import { Route as Char123LocaleChar125DashboardJobsPostRouteImport } from './routes/{-$locale}/dashboard/jobs/post'
 import { Route as Char123LocaleChar125DashboardSponsorshipsIndexRouteImport } from './routes/{-$locale}/dashboard/sponsorships/index'
 import { Route as Char123LocaleChar125DashboardSponsorshipsNewRouteImport } from './routes/{-$locale}/dashboard/sponsorships/new'
@@ -125,6 +130,8 @@ import { Route as Char123LocaleChar125GalleryColorColorIndexRouteImport } from '
 import { Route as Char123LocaleChar125GalleryCreatorsCreatorIndexRouteImport } from './routes/{-$locale}/_gallery/creators.$creator.index'
 import { Route as Char123LocaleChar125GalleryModelModelIndexRouteImport } from './routes/{-$locale}/_gallery/model.$model.index'
 import { Route as Char123LocaleChar125GalleryTypeTypeIndexRouteImport } from './routes/{-$locale}/_gallery/type.$type.index'
+import { Route as Char123LocaleChar125CreateShowcaseTemplatesIndexRouteImport } from './routes/{-$locale}/create/showcase/templates/index'
+import { Route as Char123LocaleChar125CreateShowcaseTemplatesTemplateIdRouteImport } from './routes/{-$locale}/create/showcase/templates/$templateId'
 import { Route as Char123LocaleChar125GalleryCategoryCategoryVideosSlugRouteImport } from './routes/{-$locale}/_gallery/category.$category.videos.$slug'
 import { Route as Char123LocaleChar125GalleryColorColorVideosSlugRouteImport } from './routes/{-$locale}/_gallery/color.$color.videos.$slug'
 import { Route as Char123LocaleChar125GalleryModelModelVideosSlugRouteImport } from './routes/{-$locale}/_gallery/model.$model.videos.$slug'
@@ -249,6 +256,12 @@ const Char123LocaleChar125ConsentRoute =
   Char123LocaleChar125ConsentRouteImport.update({
     id: '/consent',
     path: '/consent',
+    getParentRoute: () => Char123LocaleChar125RouteRoute,
+  } as any)
+const Char123LocaleChar125CreateLabRoute =
+  Char123LocaleChar125CreateLabRouteImport.update({
+    id: '/create-lab',
+    path: '/create-lab',
     getParentRoute: () => Char123LocaleChar125RouteRoute,
   } as any)
 const Char123LocaleChar125CreativesRoute =
@@ -495,6 +508,18 @@ const Char123LocaleChar125BlogSlugRoute =
     path: '/blog/$slug',
     getParentRoute: () => Char123LocaleChar125RouteRoute,
   } as any)
+const Char123LocaleChar125CreateIndexRoute =
+  Char123LocaleChar125CreateIndexRouteImport.update({
+    id: '/create/',
+    path: '/create/',
+    getParentRoute: () => Char123LocaleChar125RouteRoute,
+  } as any)
+const Char123LocaleChar125CreateProjectsRoute =
+  Char123LocaleChar125CreateProjectsRouteImport.update({
+    id: '/create/projects',
+    path: '/create/projects',
+    getParentRoute: () => Char123LocaleChar125RouteRoute,
+  } as any)
 const Char123LocaleChar125CreativesIndexRoute =
   Char123LocaleChar125CreativesIndexRouteImport.update({
     id: '/',
@@ -727,6 +752,18 @@ const Char123LocaleChar125PagesChangelogSlugRoute =
     path: '/changelog/$slug',
     getParentRoute: () => Char123LocaleChar125PagesRoute,
   } as any)
+const Char123LocaleChar125CreateShowcaseIndexRoute =
+  Char123LocaleChar125CreateShowcaseIndexRouteImport.update({
+    id: '/create/showcase/',
+    path: '/create/showcase/',
+    getParentRoute: () => Char123LocaleChar125RouteRoute,
+  } as any)
+const Char123LocaleChar125CreateShowcaseEditorRoute =
+  Char123LocaleChar125CreateShowcaseEditorRouteImport.update({
+    id: '/create/showcase/editor',
+    path: '/create/showcase/editor',
+    getParentRoute: () => Char123LocaleChar125RouteRoute,
+  } as any)
 const Char123LocaleChar125DashboardJobsPostRoute =
   Char123LocaleChar125DashboardJobsPostRouteImport.update({
     id: '/jobs/post',
@@ -799,6 +836,18 @@ const Char123LocaleChar125GalleryTypeTypeIndexRoute =
     path: '/',
     getParentRoute: () => Char123LocaleChar125GalleryTypeTypeRoute,
   } as any)
+const Char123LocaleChar125CreateShowcaseTemplatesIndexRoute =
+  Char123LocaleChar125CreateShowcaseTemplatesIndexRouteImport.update({
+    id: '/create/showcase/templates/',
+    path: '/create/showcase/templates/',
+    getParentRoute: () => Char123LocaleChar125RouteRoute,
+  } as any)
+const Char123LocaleChar125CreateShowcaseTemplatesTemplateIdRoute =
+  Char123LocaleChar125CreateShowcaseTemplatesTemplateIdRouteImport.update({
+    id: '/create/showcase/templates/$templateId',
+    path: '/create/showcase/templates/$templateId',
+    getParentRoute: () => Char123LocaleChar125RouteRoute,
+  } as any)
 const Char123LocaleChar125GalleryCategoryCategoryVideosSlugRoute =
   Char123LocaleChar125GalleryCategoryCategoryVideosSlugRouteImport.update({
     id: '/videos/$slug',
@@ -846,6 +895,7 @@ export interface FileRoutesByFullPath {
   '/{-$locale}/bookmarks': typeof Char123LocaleChar125BookmarksRoute
   '/{-$locale}/checkout': typeof Char123LocaleChar125CheckoutRoute
   '/{-$locale}/consent': typeof Char123LocaleChar125ConsentRoute
+  '/{-$locale}/create-lab': typeof Char123LocaleChar125CreateLabRoute
   '/{-$locale}/creatives': typeof Char123LocaleChar125CreativesRouteWithChildren
   '/{-$locale}/customize': typeof Char123LocaleChar125CustomizeRouteWithChildren
   '/{-$locale}/dashboard': typeof Char123LocaleChar125DashboardRouteWithChildren
@@ -883,6 +933,7 @@ export interface FileRoutesByFullPath {
   '/{-$locale}/admin/sponsorships': typeof Char123LocaleChar125AdminSponsorshipsRoute
   '/{-$locale}/admin/submissions': typeof Char123LocaleChar125AdminSubmissionsRoute
   '/{-$locale}/blog/$slug': typeof Char123LocaleChar125BlogSlugRoute
+  '/{-$locale}/create/projects': typeof Char123LocaleChar125CreateProjectsRoute
   '/{-$locale}/creatives/$category': typeof Char123LocaleChar125CreativesCategoryRoute
   '/{-$locale}/customize/$slug': typeof Char123LocaleChar125CustomizeSlugRoute
   '/{-$locale}/dashboard/billing': typeof Char123LocaleChar125DashboardBillingRoute
@@ -905,6 +956,7 @@ export interface FileRoutesByFullPath {
   '/{-$locale}/': typeof Char123LocaleChar125GalleryIndexRoute
   '/{-$locale}/admin/': typeof Char123LocaleChar125AdminIndexRoute
   '/{-$locale}/blog/': typeof Char123LocaleChar125BlogIndexRoute
+  '/{-$locale}/create/': typeof Char123LocaleChar125CreateIndexRoute
   '/{-$locale}/creatives/': typeof Char123LocaleChar125CreativesIndexRoute
   '/{-$locale}/creators/': typeof Char123LocaleChar125CreatorsIndexRoute
   '/{-$locale}/customize/': typeof Char123LocaleChar125CustomizeIndexRoute
@@ -925,20 +977,24 @@ export interface FileRoutesByFullPath {
   '/{-$locale}/type/$type': typeof Char123LocaleChar125GalleryTypeTypeRouteWithChildren
   '/{-$locale}/videos/$slug': typeof Char123LocaleChar125GalleryVideosSlugRoute
   '/{-$locale}/changelog/$slug': typeof Char123LocaleChar125PagesChangelogSlugRoute
+  '/{-$locale}/create/showcase/editor': typeof Char123LocaleChar125CreateShowcaseEditorRoute
   '/{-$locale}/dashboard/jobs/post': typeof Char123LocaleChar125DashboardJobsPostRoute
   '/{-$locale}/dashboard/sponsorships/new': typeof Char123LocaleChar125DashboardSponsorshipsNewRoute
   '/{-$locale}/moves/$family/$slug': typeof Char123LocaleChar125MovesFamilySlugRoute
   '/{-$locale}/templates/$templateId/customize': typeof Char123LocaleChar125TemplatesTemplateIdCustomizeRoute
   '/api/mcp/moves/': typeof ApiMcpMovesIndexRoute
   '/{-$locale}/changelog/': typeof Char123LocaleChar125PagesChangelogIndexRoute
+  '/{-$locale}/create/showcase/': typeof Char123LocaleChar125CreateShowcaseIndexRoute
   '/{-$locale}/dashboard/sponsorships/': typeof Char123LocaleChar125DashboardSponsorshipsIndexRoute
   '/{-$locale}/moves/$family/': typeof Char123LocaleChar125MovesFamilyIndexRoute
   '/{-$locale}/templates/$templateId/': typeof Char123LocaleChar125TemplatesTemplateIdIndexRoute
+  '/{-$locale}/create/showcase/templates/$templateId': typeof Char123LocaleChar125CreateShowcaseTemplatesTemplateIdRoute
   '/{-$locale}/category/$category/': typeof Char123LocaleChar125GalleryCategoryCategoryIndexRoute
   '/{-$locale}/color/$color/': typeof Char123LocaleChar125GalleryColorColorIndexRoute
   '/{-$locale}/creators/$creator/': typeof Char123LocaleChar125GalleryCreatorsCreatorIndexRoute
   '/{-$locale}/model/$model/': typeof Char123LocaleChar125GalleryModelModelIndexRoute
   '/{-$locale}/type/$type/': typeof Char123LocaleChar125GalleryTypeTypeIndexRoute
+  '/{-$locale}/create/showcase/templates/': typeof Char123LocaleChar125CreateShowcaseTemplatesIndexRoute
   '/{-$locale}/category/$category/videos/$slug': typeof Char123LocaleChar125GalleryCategoryCategoryVideosSlugRoute
   '/{-$locale}/color/$color/videos/$slug': typeof Char123LocaleChar125GalleryColorColorVideosSlugRoute
   '/{-$locale}/model/$model/videos/$slug': typeof Char123LocaleChar125GalleryModelModelVideosSlugRoute
@@ -965,6 +1021,7 @@ export interface FileRoutesByTo {
   '/{-$locale}/bookmarks': typeof Char123LocaleChar125BookmarksRoute
   '/{-$locale}/checkout': typeof Char123LocaleChar125CheckoutRoute
   '/{-$locale}/consent': typeof Char123LocaleChar125ConsentRoute
+  '/{-$locale}/create-lab': typeof Char123LocaleChar125CreateLabRoute
   '/{-$locale}/featured': typeof Char123LocaleChar125FeaturedRoute
   '/{-$locale}/film': typeof Char123LocaleChar125FilmRoute
   '/{-$locale}/listings': typeof Char123LocaleChar125ListingsRoute
@@ -994,6 +1051,7 @@ export interface FileRoutesByTo {
   '/{-$locale}/admin/sponsorships': typeof Char123LocaleChar125AdminSponsorshipsRoute
   '/{-$locale}/admin/submissions': typeof Char123LocaleChar125AdminSubmissionsRoute
   '/{-$locale}/blog/$slug': typeof Char123LocaleChar125BlogSlugRoute
+  '/{-$locale}/create/projects': typeof Char123LocaleChar125CreateProjectsRoute
   '/{-$locale}/creatives/$category': typeof Char123LocaleChar125CreativesCategoryRoute
   '/{-$locale}/customize/$slug': typeof Char123LocaleChar125CustomizeSlugRoute
   '/{-$locale}/dashboard/billing': typeof Char123LocaleChar125DashboardBillingRoute
@@ -1014,6 +1072,7 @@ export interface FileRoutesByTo {
   '/api/moves': typeof ApiMovesIndexRoute
   '/{-$locale}/admin': typeof Char123LocaleChar125AdminIndexRoute
   '/{-$locale}/blog': typeof Char123LocaleChar125BlogIndexRoute
+  '/{-$locale}/create': typeof Char123LocaleChar125CreateIndexRoute
   '/{-$locale}/creatives': typeof Char123LocaleChar125CreativesIndexRoute
   '/{-$locale}/creators': typeof Char123LocaleChar125CreatorsIndexRoute
   '/{-$locale}/customize': typeof Char123LocaleChar125CustomizeIndexRoute
@@ -1029,20 +1088,24 @@ export interface FileRoutesByTo {
   '/api/mcp/moves/$slug': typeof ApiMcpMovesSlugRoute
   '/{-$locale}/videos/$slug': typeof Char123LocaleChar125GalleryVideosSlugRoute
   '/{-$locale}/changelog/$slug': typeof Char123LocaleChar125PagesChangelogSlugRoute
+  '/{-$locale}/create/showcase/editor': typeof Char123LocaleChar125CreateShowcaseEditorRoute
   '/{-$locale}/dashboard/jobs/post': typeof Char123LocaleChar125DashboardJobsPostRoute
   '/{-$locale}/dashboard/sponsorships/new': typeof Char123LocaleChar125DashboardSponsorshipsNewRoute
   '/{-$locale}/moves/$family/$slug': typeof Char123LocaleChar125MovesFamilySlugRoute
   '/{-$locale}/templates/$templateId/customize': typeof Char123LocaleChar125TemplatesTemplateIdCustomizeRoute
   '/api/mcp/moves': typeof ApiMcpMovesIndexRoute
   '/{-$locale}/changelog': typeof Char123LocaleChar125PagesChangelogIndexRoute
+  '/{-$locale}/create/showcase': typeof Char123LocaleChar125CreateShowcaseIndexRoute
   '/{-$locale}/dashboard/sponsorships': typeof Char123LocaleChar125DashboardSponsorshipsIndexRoute
   '/{-$locale}/moves/$family': typeof Char123LocaleChar125MovesFamilyIndexRoute
   '/{-$locale}/templates/$templateId': typeof Char123LocaleChar125TemplatesTemplateIdIndexRoute
+  '/{-$locale}/create/showcase/templates/$templateId': typeof Char123LocaleChar125CreateShowcaseTemplatesTemplateIdRoute
   '/{-$locale}/category/$category': typeof Char123LocaleChar125GalleryCategoryCategoryIndexRoute
   '/{-$locale}/color/$color': typeof Char123LocaleChar125GalleryColorColorIndexRoute
   '/{-$locale}/creators/$creator': typeof Char123LocaleChar125GalleryCreatorsCreatorIndexRoute
   '/{-$locale}/model/$model': typeof Char123LocaleChar125GalleryModelModelIndexRoute
   '/{-$locale}/type/$type': typeof Char123LocaleChar125GalleryTypeTypeIndexRoute
+  '/{-$locale}/create/showcase/templates': typeof Char123LocaleChar125CreateShowcaseTemplatesIndexRoute
   '/{-$locale}/category/$category/videos/$slug': typeof Char123LocaleChar125GalleryCategoryCategoryVideosSlugRoute
   '/{-$locale}/color/$color/videos/$slug': typeof Char123LocaleChar125GalleryColorColorVideosSlugRoute
   '/{-$locale}/model/$model/videos/$slug': typeof Char123LocaleChar125GalleryModelModelVideosSlugRoute
@@ -1073,6 +1136,7 @@ export interface FileRoutesById {
   '/{-$locale}/bookmarks': typeof Char123LocaleChar125BookmarksRoute
   '/{-$locale}/checkout': typeof Char123LocaleChar125CheckoutRoute
   '/{-$locale}/consent': typeof Char123LocaleChar125ConsentRoute
+  '/{-$locale}/create-lab': typeof Char123LocaleChar125CreateLabRoute
   '/{-$locale}/creatives': typeof Char123LocaleChar125CreativesRouteWithChildren
   '/{-$locale}/customize': typeof Char123LocaleChar125CustomizeRouteWithChildren
   '/{-$locale}/dashboard': typeof Char123LocaleChar125DashboardRouteWithChildren
@@ -1110,6 +1174,7 @@ export interface FileRoutesById {
   '/{-$locale}/admin/sponsorships': typeof Char123LocaleChar125AdminSponsorshipsRoute
   '/{-$locale}/admin/submissions': typeof Char123LocaleChar125AdminSubmissionsRoute
   '/{-$locale}/blog/$slug': typeof Char123LocaleChar125BlogSlugRoute
+  '/{-$locale}/create/projects': typeof Char123LocaleChar125CreateProjectsRoute
   '/{-$locale}/creatives/$category': typeof Char123LocaleChar125CreativesCategoryRoute
   '/{-$locale}/customize/$slug': typeof Char123LocaleChar125CustomizeSlugRoute
   '/{-$locale}/dashboard/billing': typeof Char123LocaleChar125DashboardBillingRoute
@@ -1132,6 +1197,7 @@ export interface FileRoutesById {
   '/{-$locale}/_gallery/': typeof Char123LocaleChar125GalleryIndexRoute
   '/{-$locale}/admin/': typeof Char123LocaleChar125AdminIndexRoute
   '/{-$locale}/blog/': typeof Char123LocaleChar125BlogIndexRoute
+  '/{-$locale}/create/': typeof Char123LocaleChar125CreateIndexRoute
   '/{-$locale}/creatives/': typeof Char123LocaleChar125CreativesIndexRoute
   '/{-$locale}/creators/': typeof Char123LocaleChar125CreatorsIndexRoute
   '/{-$locale}/customize/': typeof Char123LocaleChar125CustomizeIndexRoute
@@ -1152,20 +1218,24 @@ export interface FileRoutesById {
   '/{-$locale}/_gallery/type/$type': typeof Char123LocaleChar125GalleryTypeTypeRouteWithChildren
   '/{-$locale}/_gallery/videos/$slug': typeof Char123LocaleChar125GalleryVideosSlugRoute
   '/{-$locale}/_pages/changelog/$slug': typeof Char123LocaleChar125PagesChangelogSlugRoute
+  '/{-$locale}/create/showcase/editor': typeof Char123LocaleChar125CreateShowcaseEditorRoute
   '/{-$locale}/dashboard/jobs/post': typeof Char123LocaleChar125DashboardJobsPostRoute
   '/{-$locale}/dashboard/sponsorships/new': typeof Char123LocaleChar125DashboardSponsorshipsNewRoute
   '/{-$locale}/moves/$family/$slug': typeof Char123LocaleChar125MovesFamilySlugRoute
   '/{-$locale}/templates/$templateId/customize': typeof Char123LocaleChar125TemplatesTemplateIdCustomizeRoute
   '/api/mcp/moves/': typeof ApiMcpMovesIndexRoute
   '/{-$locale}/_pages/changelog/': typeof Char123LocaleChar125PagesChangelogIndexRoute
+  '/{-$locale}/create/showcase/': typeof Char123LocaleChar125CreateShowcaseIndexRoute
   '/{-$locale}/dashboard/sponsorships/': typeof Char123LocaleChar125DashboardSponsorshipsIndexRoute
   '/{-$locale}/moves/$family/': typeof Char123LocaleChar125MovesFamilyIndexRoute
   '/{-$locale}/templates/$templateId/': typeof Char123LocaleChar125TemplatesTemplateIdIndexRoute
+  '/{-$locale}/create/showcase/templates/$templateId': typeof Char123LocaleChar125CreateShowcaseTemplatesTemplateIdRoute
   '/{-$locale}/_gallery/category/$category/': typeof Char123LocaleChar125GalleryCategoryCategoryIndexRoute
   '/{-$locale}/_gallery/color/$color/': typeof Char123LocaleChar125GalleryColorColorIndexRoute
   '/{-$locale}/_gallery/creators/$creator/': typeof Char123LocaleChar125GalleryCreatorsCreatorIndexRoute
   '/{-$locale}/_gallery/model/$model/': typeof Char123LocaleChar125GalleryModelModelIndexRoute
   '/{-$locale}/_gallery/type/$type/': typeof Char123LocaleChar125GalleryTypeTypeIndexRoute
+  '/{-$locale}/create/showcase/templates/': typeof Char123LocaleChar125CreateShowcaseTemplatesIndexRoute
   '/{-$locale}/_gallery/category/$category/videos/$slug': typeof Char123LocaleChar125GalleryCategoryCategoryVideosSlugRoute
   '/{-$locale}/_gallery/color/$color/videos/$slug': typeof Char123LocaleChar125GalleryColorColorVideosSlugRoute
   '/{-$locale}/_gallery/model/$model/videos/$slug': typeof Char123LocaleChar125GalleryModelModelVideosSlugRoute
@@ -1195,6 +1265,7 @@ export interface FileRouteTypes {
     | '/{-$locale}/bookmarks'
     | '/{-$locale}/checkout'
     | '/{-$locale}/consent'
+    | '/{-$locale}/create-lab'
     | '/{-$locale}/creatives'
     | '/{-$locale}/customize'
     | '/{-$locale}/dashboard'
@@ -1232,6 +1303,7 @@ export interface FileRouteTypes {
     | '/{-$locale}/admin/sponsorships'
     | '/{-$locale}/admin/submissions'
     | '/{-$locale}/blog/$slug'
+    | '/{-$locale}/create/projects'
     | '/{-$locale}/creatives/$category'
     | '/{-$locale}/customize/$slug'
     | '/{-$locale}/dashboard/billing'
@@ -1254,6 +1326,7 @@ export interface FileRouteTypes {
     | '/{-$locale}/'
     | '/{-$locale}/admin/'
     | '/{-$locale}/blog/'
+    | '/{-$locale}/create/'
     | '/{-$locale}/creatives/'
     | '/{-$locale}/creators/'
     | '/{-$locale}/customize/'
@@ -1274,20 +1347,24 @@ export interface FileRouteTypes {
     | '/{-$locale}/type/$type'
     | '/{-$locale}/videos/$slug'
     | '/{-$locale}/changelog/$slug'
+    | '/{-$locale}/create/showcase/editor'
     | '/{-$locale}/dashboard/jobs/post'
     | '/{-$locale}/dashboard/sponsorships/new'
     | '/{-$locale}/moves/$family/$slug'
     | '/{-$locale}/templates/$templateId/customize'
     | '/api/mcp/moves/'
     | '/{-$locale}/changelog/'
+    | '/{-$locale}/create/showcase/'
     | '/{-$locale}/dashboard/sponsorships/'
     | '/{-$locale}/moves/$family/'
     | '/{-$locale}/templates/$templateId/'
+    | '/{-$locale}/create/showcase/templates/$templateId'
     | '/{-$locale}/category/$category/'
     | '/{-$locale}/color/$color/'
     | '/{-$locale}/creators/$creator/'
     | '/{-$locale}/model/$model/'
     | '/{-$locale}/type/$type/'
+    | '/{-$locale}/create/showcase/templates/'
     | '/{-$locale}/category/$category/videos/$slug'
     | '/{-$locale}/color/$color/videos/$slug'
     | '/{-$locale}/model/$model/videos/$slug'
@@ -1314,6 +1391,7 @@ export interface FileRouteTypes {
     | '/{-$locale}/bookmarks'
     | '/{-$locale}/checkout'
     | '/{-$locale}/consent'
+    | '/{-$locale}/create-lab'
     | '/{-$locale}/featured'
     | '/{-$locale}/film'
     | '/{-$locale}/listings'
@@ -1343,6 +1421,7 @@ export interface FileRouteTypes {
     | '/{-$locale}/admin/sponsorships'
     | '/{-$locale}/admin/submissions'
     | '/{-$locale}/blog/$slug'
+    | '/{-$locale}/create/projects'
     | '/{-$locale}/creatives/$category'
     | '/{-$locale}/customize/$slug'
     | '/{-$locale}/dashboard/billing'
@@ -1363,6 +1442,7 @@ export interface FileRouteTypes {
     | '/api/moves'
     | '/{-$locale}/admin'
     | '/{-$locale}/blog'
+    | '/{-$locale}/create'
     | '/{-$locale}/creatives'
     | '/{-$locale}/creators'
     | '/{-$locale}/customize'
@@ -1378,20 +1458,24 @@ export interface FileRouteTypes {
     | '/api/mcp/moves/$slug'
     | '/{-$locale}/videos/$slug'
     | '/{-$locale}/changelog/$slug'
+    | '/{-$locale}/create/showcase/editor'
     | '/{-$locale}/dashboard/jobs/post'
     | '/{-$locale}/dashboard/sponsorships/new'
     | '/{-$locale}/moves/$family/$slug'
     | '/{-$locale}/templates/$templateId/customize'
     | '/api/mcp/moves'
     | '/{-$locale}/changelog'
+    | '/{-$locale}/create/showcase'
     | '/{-$locale}/dashboard/sponsorships'
     | '/{-$locale}/moves/$family'
     | '/{-$locale}/templates/$templateId'
+    | '/{-$locale}/create/showcase/templates/$templateId'
     | '/{-$locale}/category/$category'
     | '/{-$locale}/color/$color'
     | '/{-$locale}/creators/$creator'
     | '/{-$locale}/model/$model'
     | '/{-$locale}/type/$type'
+    | '/{-$locale}/create/showcase/templates'
     | '/{-$locale}/category/$category/videos/$slug'
     | '/{-$locale}/color/$color/videos/$slug'
     | '/{-$locale}/model/$model/videos/$slug'
@@ -1421,6 +1505,7 @@ export interface FileRouteTypes {
     | '/{-$locale}/bookmarks'
     | '/{-$locale}/checkout'
     | '/{-$locale}/consent'
+    | '/{-$locale}/create-lab'
     | '/{-$locale}/creatives'
     | '/{-$locale}/customize'
     | '/{-$locale}/dashboard'
@@ -1458,6 +1543,7 @@ export interface FileRouteTypes {
     | '/{-$locale}/admin/sponsorships'
     | '/{-$locale}/admin/submissions'
     | '/{-$locale}/blog/$slug'
+    | '/{-$locale}/create/projects'
     | '/{-$locale}/creatives/$category'
     | '/{-$locale}/customize/$slug'
     | '/{-$locale}/dashboard/billing'
@@ -1480,6 +1566,7 @@ export interface FileRouteTypes {
     | '/{-$locale}/_gallery/'
     | '/{-$locale}/admin/'
     | '/{-$locale}/blog/'
+    | '/{-$locale}/create/'
     | '/{-$locale}/creatives/'
     | '/{-$locale}/creators/'
     | '/{-$locale}/customize/'
@@ -1500,20 +1587,24 @@ export interface FileRouteTypes {
     | '/{-$locale}/_gallery/type/$type'
     | '/{-$locale}/_gallery/videos/$slug'
     | '/{-$locale}/_pages/changelog/$slug'
+    | '/{-$locale}/create/showcase/editor'
     | '/{-$locale}/dashboard/jobs/post'
     | '/{-$locale}/dashboard/sponsorships/new'
     | '/{-$locale}/moves/$family/$slug'
     | '/{-$locale}/templates/$templateId/customize'
     | '/api/mcp/moves/'
     | '/{-$locale}/_pages/changelog/'
+    | '/{-$locale}/create/showcase/'
     | '/{-$locale}/dashboard/sponsorships/'
     | '/{-$locale}/moves/$family/'
     | '/{-$locale}/templates/$templateId/'
+    | '/{-$locale}/create/showcase/templates/$templateId'
     | '/{-$locale}/_gallery/category/$category/'
     | '/{-$locale}/_gallery/color/$color/'
     | '/{-$locale}/_gallery/creators/$creator/'
     | '/{-$locale}/_gallery/model/$model/'
     | '/{-$locale}/_gallery/type/$type/'
+    | '/{-$locale}/create/showcase/templates/'
     | '/{-$locale}/_gallery/category/$category/videos/$slug'
     | '/{-$locale}/_gallery/color/$color/videos/$slug'
     | '/{-$locale}/_gallery/model/$model/videos/$slug'
@@ -1709,6 +1800,13 @@ declare module '@tanstack/react-router' {
       path: '/consent'
       fullPath: '/{-$locale}/consent'
       preLoaderRoute: typeof Char123LocaleChar125ConsentRouteImport
+      parentRoute: typeof Char123LocaleChar125RouteRoute
+    }
+    '/{-$locale}/create-lab': {
+      id: '/{-$locale}/create-lab'
+      path: '/create-lab'
+      fullPath: '/{-$locale}/create-lab'
+      preLoaderRoute: typeof Char123LocaleChar125CreateLabRouteImport
       parentRoute: typeof Char123LocaleChar125RouteRoute
     }
     '/{-$locale}/creatives': {
@@ -2005,6 +2103,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof Char123LocaleChar125BlogSlugRouteImport
       parentRoute: typeof Char123LocaleChar125RouteRoute
     }
+    '/{-$locale}/create/': {
+      id: '/{-$locale}/create/'
+      path: '/create'
+      fullPath: '/{-$locale}/create/'
+      preLoaderRoute: typeof Char123LocaleChar125CreateIndexRouteImport
+      parentRoute: typeof Char123LocaleChar125RouteRoute
+    }
+    '/{-$locale}/create/projects': {
+      id: '/{-$locale}/create/projects'
+      path: '/create/projects'
+      fullPath: '/{-$locale}/create/projects'
+      preLoaderRoute: typeof Char123LocaleChar125CreateProjectsRouteImport
+      parentRoute: typeof Char123LocaleChar125RouteRoute
+    }
     '/{-$locale}/creatives/': {
       id: '/{-$locale}/creatives/'
       path: '/'
@@ -2278,6 +2390,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof Char123LocaleChar125PagesChangelogSlugRouteImport
       parentRoute: typeof Char123LocaleChar125PagesRoute
     }
+    '/{-$locale}/create/showcase/': {
+      id: '/{-$locale}/create/showcase/'
+      path: '/create/showcase'
+      fullPath: '/{-$locale}/create/showcase/'
+      preLoaderRoute: typeof Char123LocaleChar125CreateShowcaseIndexRouteImport
+      parentRoute: typeof Char123LocaleChar125RouteRoute
+    }
+    '/{-$locale}/create/showcase/editor': {
+      id: '/{-$locale}/create/showcase/editor'
+      path: '/create/showcase/editor'
+      fullPath: '/{-$locale}/create/showcase/editor'
+      preLoaderRoute: typeof Char123LocaleChar125CreateShowcaseEditorRouteImport
+      parentRoute: typeof Char123LocaleChar125RouteRoute
+    }
     '/{-$locale}/dashboard/jobs/post': {
       id: '/{-$locale}/dashboard/jobs/post'
       path: '/jobs/post'
@@ -2361,6 +2487,20 @@ declare module '@tanstack/react-router' {
       fullPath: '/{-$locale}/type/$type/'
       preLoaderRoute: typeof Char123LocaleChar125GalleryTypeTypeIndexRouteImport
       parentRoute: typeof Char123LocaleChar125GalleryTypeTypeRoute
+    }
+    '/{-$locale}/create/showcase/templates/': {
+      id: '/{-$locale}/create/showcase/templates/'
+      path: '/create/showcase/templates'
+      fullPath: '/{-$locale}/create/showcase/templates/'
+      preLoaderRoute: typeof Char123LocaleChar125CreateShowcaseTemplatesIndexRouteImport
+      parentRoute: typeof Char123LocaleChar125RouteRoute
+    }
+    '/{-$locale}/create/showcase/templates/$templateId': {
+      id: '/{-$locale}/create/showcase/templates/$templateId'
+      path: '/create/showcase/templates/$templateId'
+      fullPath: '/{-$locale}/create/showcase/templates/$templateId'
+      preLoaderRoute: typeof Char123LocaleChar125CreateShowcaseTemplatesTemplateIdRouteImport
+      parentRoute: typeof Char123LocaleChar125RouteRoute
     }
     '/{-$locale}/_gallery/category/$category/videos/$slug': {
       id: '/{-$locale}/_gallery/category/$category/videos/$slug'
@@ -2767,6 +2907,7 @@ interface Char123LocaleChar125RouteRouteChildren {
   Char123LocaleChar125BookmarksRoute: typeof Char123LocaleChar125BookmarksRoute
   Char123LocaleChar125CheckoutRoute: typeof Char123LocaleChar125CheckoutRoute
   Char123LocaleChar125ConsentRoute: typeof Char123LocaleChar125ConsentRoute
+  Char123LocaleChar125CreateLabRoute: typeof Char123LocaleChar125CreateLabRoute
   Char123LocaleChar125CreativesRoute: typeof Char123LocaleChar125CreativesRouteWithChildren
   Char123LocaleChar125CustomizeRoute: typeof Char123LocaleChar125CustomizeRouteWithChildren
   Char123LocaleChar125DashboardRoute: typeof Char123LocaleChar125DashboardRouteWithChildren
@@ -2789,15 +2930,21 @@ interface Char123LocaleChar125RouteRouteChildren {
   Char123LocaleChar125ToolsRoute: typeof Char123LocaleChar125ToolsRouteWithChildren
   Char123LocaleChar125WelcomeRoute: typeof Char123LocaleChar125WelcomeRoute
   Char123LocaleChar125BlogSlugRoute: typeof Char123LocaleChar125BlogSlugRoute
+  Char123LocaleChar125CreateProjectsRoute: typeof Char123LocaleChar125CreateProjectsRoute
   Char123LocaleChar125DocsSplatRoute: typeof Char123LocaleChar125DocsSplatRoute
   Char123LocaleChar125JobsTypeRoute: typeof Char123LocaleChar125JobsTypeRoute
   Char123LocaleChar125JobsPostRoute: typeof Char123LocaleChar125JobsPostRoute
   Char123LocaleChar125SponsorshipsNewRoute: typeof Char123LocaleChar125SponsorshipsNewRoute
   Char123LocaleChar125BlogIndexRoute: typeof Char123LocaleChar125BlogIndexRoute
+  Char123LocaleChar125CreateIndexRoute: typeof Char123LocaleChar125CreateIndexRoute
   Char123LocaleChar125CreatorsIndexRoute: typeof Char123LocaleChar125CreatorsIndexRoute
   Char123LocaleChar125DocsIndexRoute: typeof Char123LocaleChar125DocsIndexRoute
   Char123LocaleChar125JobsIndexRoute: typeof Char123LocaleChar125JobsIndexRoute
   Char123LocaleChar125SponsorshipsIndexRoute: typeof Char123LocaleChar125SponsorshipsIndexRoute
+  Char123LocaleChar125CreateShowcaseEditorRoute: typeof Char123LocaleChar125CreateShowcaseEditorRoute
+  Char123LocaleChar125CreateShowcaseIndexRoute: typeof Char123LocaleChar125CreateShowcaseIndexRoute
+  Char123LocaleChar125CreateShowcaseTemplatesTemplateIdRoute: typeof Char123LocaleChar125CreateShowcaseTemplatesTemplateIdRoute
+  Char123LocaleChar125CreateShowcaseTemplatesIndexRoute: typeof Char123LocaleChar125CreateShowcaseTemplatesIndexRoute
 }
 
 const Char123LocaleChar125RouteRouteChildren: Char123LocaleChar125RouteRouteChildren =
@@ -2810,6 +2957,7 @@ const Char123LocaleChar125RouteRouteChildren: Char123LocaleChar125RouteRouteChil
     Char123LocaleChar125BookmarksRoute: Char123LocaleChar125BookmarksRoute,
     Char123LocaleChar125CheckoutRoute: Char123LocaleChar125CheckoutRoute,
     Char123LocaleChar125ConsentRoute: Char123LocaleChar125ConsentRoute,
+    Char123LocaleChar125CreateLabRoute: Char123LocaleChar125CreateLabRoute,
     Char123LocaleChar125CreativesRoute:
       Char123LocaleChar125CreativesRouteWithChildren,
     Char123LocaleChar125CustomizeRoute:
@@ -2840,18 +2988,29 @@ const Char123LocaleChar125RouteRouteChildren: Char123LocaleChar125RouteRouteChil
     Char123LocaleChar125ToolsRoute: Char123LocaleChar125ToolsRouteWithChildren,
     Char123LocaleChar125WelcomeRoute: Char123LocaleChar125WelcomeRoute,
     Char123LocaleChar125BlogSlugRoute: Char123LocaleChar125BlogSlugRoute,
+    Char123LocaleChar125CreateProjectsRoute:
+      Char123LocaleChar125CreateProjectsRoute,
     Char123LocaleChar125DocsSplatRoute: Char123LocaleChar125DocsSplatRoute,
     Char123LocaleChar125JobsTypeRoute: Char123LocaleChar125JobsTypeRoute,
     Char123LocaleChar125JobsPostRoute: Char123LocaleChar125JobsPostRoute,
     Char123LocaleChar125SponsorshipsNewRoute:
       Char123LocaleChar125SponsorshipsNewRoute,
     Char123LocaleChar125BlogIndexRoute: Char123LocaleChar125BlogIndexRoute,
+    Char123LocaleChar125CreateIndexRoute: Char123LocaleChar125CreateIndexRoute,
     Char123LocaleChar125CreatorsIndexRoute:
       Char123LocaleChar125CreatorsIndexRoute,
     Char123LocaleChar125DocsIndexRoute: Char123LocaleChar125DocsIndexRoute,
     Char123LocaleChar125JobsIndexRoute: Char123LocaleChar125JobsIndexRoute,
     Char123LocaleChar125SponsorshipsIndexRoute:
       Char123LocaleChar125SponsorshipsIndexRoute,
+    Char123LocaleChar125CreateShowcaseEditorRoute:
+      Char123LocaleChar125CreateShowcaseEditorRoute,
+    Char123LocaleChar125CreateShowcaseIndexRoute:
+      Char123LocaleChar125CreateShowcaseIndexRoute,
+    Char123LocaleChar125CreateShowcaseTemplatesTemplateIdRoute:
+      Char123LocaleChar125CreateShowcaseTemplatesTemplateIdRoute,
+    Char123LocaleChar125CreateShowcaseTemplatesIndexRoute:
+      Char123LocaleChar125CreateShowcaseTemplatesIndexRoute,
   }
 
 const Char123LocaleChar125RouteRouteWithChildren =

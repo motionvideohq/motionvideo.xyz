@@ -119,6 +119,13 @@ const Terms = () => {
         </p>
       </PageSection>
 
+      <PageSection title={copy.createHeading.value}>
+        <p>{copy.createFree}</p>
+        <p>{copy.createPass}</p>
+        <p>{copy.createPlans}</p>
+        <p>{copy.createMedia}</p>
+      </PageSection>
+
       <PageSection title={copy.heading29.value}>
         <p>{copy.text30}</p>
         <PageList>

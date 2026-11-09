@@ -12,6 +12,7 @@ export default defineConfig({
     "./src/server/db/feedback-schema.ts",
     "./src/server/db/job-schema.ts",
     "./src/server/db/plan-schema.ts",
+    "./src/server/db/create-schema.ts",
   ],
   out: "./drizzle",
 });

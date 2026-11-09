@@ -1,3 +1,4 @@
+import { TEMPLATES as SHOWCASE_TEMPLATES } from "@motionvideo/engine";
 import { createFileRoute } from "@tanstack/react-router";
 
 import { CACHE_CONTROL } from "@/constants/cache-control";
@@ -93,6 +94,14 @@ const PAGES: { lastmod?: string; path: string }[] = [
   ...MOVES.map((move) => ({ path: movePath(move) })),
   { path: ROUTES.TEMPLATES },
   ...PROMPT_TEMPLATES.map((template) => ({ path: templatePath(template) })),
+  // MotionVideo's own tools: the hub, Showcase and one page per template.
+  // The editors are apps, not pages, and stay out.
+  { path: ROUTES.CREATE },
+  { path: ROUTES.CREATE_SHOWCASE },
+  { path: ROUTES.CREATE_SHOWCASE_TEMPLATES },
+  ...SHOWCASE_TEMPLATES.map((template) => ({
+    path: `${ROUTES.CREATE_SHOWCASE_TEMPLATES}/${template.id}`,
+  })),
   // Docs pages (content/docs/*.mdx) and the API reference generated from
   // src/server/openapi.ts.
   ...[

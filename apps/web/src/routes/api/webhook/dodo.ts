@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import type { UnwrapWebhookEvent } from "dodopayments/resources/webhooks";
 
+import { syncCreatePassPayment } from "@/server/create-passes";
 import { getDodo } from "@/server/dodo";
 import { syncJobPayment } from "@/server/jobs";
 import { syncPlanPayment, syncPlanSubscription } from "@/server/plans";
@@ -61,8 +62,8 @@ export const Route = createFileRoute("/api/webhook/dodo")({
             return Response.json({ received: false }, { status: 500 });
           }
         }
-        // Job posts, one-off sponsorships and Pro lifetime: a payment moves
-        // the draft to review or grants access; a full refund takes it back.
+        // Job posts, one-off sponsorships, Pro lifetime and Create single
+        // exports: a payment moves the draft to review or grants access; a full refund takes it back.
         // Same re-read-from-the-API approach; each sync ignores the others'
         // products.
         if (
@@ -74,6 +75,7 @@ export const Route = createFileRoute("/api/webhook/dodo")({
               syncJobPayment(event.data.payment_id),
               syncSponsorPayment(event.data.payment_id),
               syncPlanPayment(event.data.payment_id),
+              syncCreatePassPayment(event.data.payment_id),
             ]);
           } catch (error) {
             console.error("Payment sync failed", error);

@@ -62,7 +62,8 @@ Local Cloudflare bindings (D1, R2, Durable Objects, rate limiters) are emulated 
 | Path | What it is |
 | --- | --- |
 | `apps/web` | The MotionVideo site: TanStack Start on Cloudflare Workers, with D1, R2, and Durable Objects |
-| `apps/videos` | Remotion project for the launch videos and the OG video |
+| `apps/videos` | Remotion project for the launch videos, the OG video, the Showcase sample library and template previews |
+| `packages/engine` | `@motionvideo/engine`: the Remotion + three.js engine behind Showcase (templates, document schema, browser rendering) |
 | `docs` | Internal planning notes and migration docs |
 
 ### Commands

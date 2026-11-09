@@ -249,6 +249,17 @@ export default {
       pt: "Modelos",
       ru: "Шаблоны",
     }),
+    showcase: t({
+      en: "Showcase",
+      es: "Showcase",
+      fr: "Showcase",
+      zh: "Showcase",
+      ko: "Showcase",
+      ja: "Showcase",
+      de: "Showcase",
+      pt: "Showcase",
+      ru: "Showcase",
+    }),
     mcp: t({
       en: "MCP",
       es: "MCP",

@@ -1,0 +1,22 @@
+{
+  "fps": 30,
+  "samples": [
+    { "id": "analytics", "kind": "image", "name": "Revenue dashboard", "width": 1600, "height": 1200, "tags": ["desktop", "dark"] },
+    { "id": "landing-hero", "kind": "image", "name": "Landing hero", "width": 1600, "height": 1200, "tags": ["desktop", "light"] },
+    { "id": "pricing", "kind": "image", "name": "Pricing page", "width": 1600, "height": 1200, "tags": ["desktop", "light"] },
+    { "id": "settings", "kind": "image", "name": "Workspace settings", "width": 1600, "height": 1200, "tags": ["desktop", "light"] },
+    { "id": "kanban", "kind": "image", "name": "Sprint board", "width": 1600, "height": 1200, "tags": ["desktop", "light"] },
+    { "id": "chat", "kind": "image", "name": "Team chat", "width": 1600, "height": 1200, "tags": ["desktop", "dark"] },
+    { "id": "calendar", "kind": "image", "name": "Week calendar", "width": 1600, "height": 1200, "tags": ["desktop", "light"] },
+    { "id": "poster", "kind": "image", "name": "Festival poster", "width": 1600, "height": 1200, "tags": ["desktop", "light"] },
+    { "id": "brand-board", "kind": "image", "name": "Brand identity", "width": 1600, "height": 1200, "tags": ["desktop", "dark"] },
+    { "id": "mobile-fitness", "kind": "image", "name": "Fitness app", "width": 1170, "height": 2532, "tags": ["mobile", "dark"] },
+    { "id": "mobile-wallet", "kind": "image", "name": "Wallet app", "width": 1170, "height": 2532, "tags": ["mobile", "light"] },
+    { "id": "mobile-music", "kind": "image", "name": "Music player", "width": 1170, "height": 2532, "tags": ["mobile", "dark"] },
+    { "id": "landing-long", "kind": "image", "name": "Full landing page", "width": 1440, "height": 4200, "tags": ["long", "light"] },
+    { "id": "logo", "kind": "image", "name": "Logo", "width": 800, "height": 240, "tags": ["logo", "light"] },
+    { "id": "clip-chart", "kind": "video", "name": "Chart drawing in", "width": 1600, "height": 1000, "seconds": 5, "tags": ["desktop", "dark"] },
+    { "id": "clip-feed", "kind": "video", "name": "Scrolling feed", "width": 1600, "height": 1000, "seconds": 6, "tags": ["desktop", "light"] },
+    { "id": "clip-flow", "kind": "video", "name": "Checkout flow", "width": 1600, "height": 1000, "seconds": 6, "tags": ["desktop", "light"] }
+  ]
+}

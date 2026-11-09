@@ -10,6 +10,8 @@ import {
   OG_WIDTH,
   OgVideo,
 } from "./og/OgVideo";
+import { SampleFolder } from "./samples";
+import { ShowcaseFolder } from "./showcase";
 
 /**
  * Every MotionVideo film, one folder per video in Studio. A new video (a
@@ -60,5 +62,7 @@ export const RemotionRoot = () => (
         height={OG_HEIGHT}
       />
     </Folder>
+    <SampleFolder />
+    <ShowcaseFolder />
   </>
 );

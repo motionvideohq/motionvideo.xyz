@@ -61,6 +61,9 @@ type PagePath = (typeof ROUTES)[
   | "SPONSOR"
   | "MOVES"
   | "TEMPLATES"
+  | "CREATE"
+  | "CREATE_SHOWCASE"
+  | "CREATE_SHOWCASE_TEMPLATES"
   | "DOCS"
   | "MOTIONVIDEO_MCP"
   | "MOTIONVIDEO_SKILL"
@@ -444,6 +447,25 @@ export const CommandMenu = () => {
             "prompt",
             "template",
             "pro",
+          ]),
+          page(ROUTES.CREATE_SHOWCASE, header.showcase.value, "showcase", [
+            "create",
+            "video",
+            "screenshots",
+            "editor",
+            "mockup",
+            "3d",
+          ]),
+          page(
+            ROUTES.CREATE_SHOWCASE_TEMPLATES,
+            content.showcaseTemplates.value,
+            "showcase",
+            ["create", "video", "template", "carousel"]
+          ),
+          page(ROUTES.CREATE, content.create.value, "create", [
+            "tools",
+            "editor",
+            "make",
           ]),
           page(ROUTES.CUSTOMIZE, content.customize.value, "customize", [
             "prompt",
