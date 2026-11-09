@@ -41,6 +41,7 @@ import {
   navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu";
 import { ROUTES } from "@/constants/routes";
+import { SHOWCASE_POSTER } from "@/lib/create-previews";
 import { cn } from "@/lib/utils";
 
 // Explore's sections: key (nav preview data), path and section (its name and
@@ -56,7 +57,7 @@ const EXPLORE_ROUTES = [
 
 // The pages under each menu: the product itself, what agents use, and the
 // site's own pages.
-const PRODUCT_LINKS = ["moves", "templates"] as const;
+const PRODUCT_LINKS = ["moves", "templates", "showcase"] as const;
 const AI_LINKS = ["mcp", "skill"] as const;
 const RESOURCE_LINKS = [
   "about",
@@ -101,6 +102,7 @@ const panelStyle = {
 const NAV_LINKS = {
   moves: ROUTES.MOVES,
   templates: ROUTES.TEMPLATES,
+  showcase: ROUTES.CREATE_SHOWCASE,
   mcp: ROUTES.MOTIONVIDEO_MCP,
   skill: ROUTES.MOTIONVIDEO_SKILL,
   docs: ROUTES.DOCS,
@@ -165,7 +167,7 @@ const useCurrentSection = (): Section => {
   if (inGallery || EXPLORE_PATHS.some(under)) {
     return "explore";
   }
-  if (under(ROUTES.MOVES) || under(ROUTES.TEMPLATES)) {
+  if (under(ROUTES.MOVES) || under(ROUTES.TEMPLATES) || under(ROUTES.CREATE)) {
     return "product";
   }
   if (under(ROUTES.MOTIONVIDEO_MCP) || under(ROUTES.MOTIONVIDEO_SKILL)) {
@@ -307,7 +309,8 @@ const DesktopNav = () => {
     };
   });
 
-  // Moves and templates show a gallery example; MCP and Skill their icon.
+  // Moves and templates show a gallery example, Showcase a template's
+  // preview poster once one is published; MCP and Skill their icon.
   const cards = (
     names: readonly (typeof PRODUCT_LINKS | typeof AI_LINKS)[number][]
   ) =>
@@ -319,10 +322,15 @@ const DesktopNav = () => {
         title: content[name],
         icon,
         detail: content.menuNotes[name],
-        media: (data) =>
-          name === "moves" || name === "templates"
-            ? { kind: "video", video: data[name].video }
-            : { kind: "icon", icon },
+        media: (data) => {
+          if (name === "moves" || name === "templates") {
+            return { kind: "video", video: data[name].video };
+          }
+          if (name === "showcase" && SHOWCASE_POSTER) {
+            return { kind: "cover", src: SHOWCASE_POSTER };
+          }
+          return { kind: "icon", icon };
+        },
       };
     });
 

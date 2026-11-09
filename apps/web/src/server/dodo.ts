@@ -6,6 +6,7 @@ import DodoPayments, {
 import type { CheckoutSessionCreateParams } from "dodopayments/resources/checkout-sessions";
 import type { CountryCode } from "dodopayments/resources/misc";
 
+import type { CreateTool } from "@/constants/create";
 import { JOB_PLANS } from "@/constants/jobs";
 import type { JobPlan } from "@/constants/jobs";
 import { DEFAULT_LOCALE, isLocale, localizedPath } from "@/constants/locales";
@@ -378,5 +379,42 @@ export const createJobCheckoutUrl = (
     metadata: { product: `job-${plan}`, job_id: jobId, user_id: buyer.userId },
     product_cart: [{ product_id: productId, quantity: 1 }],
     return_url: `${appUrl(ROUTES.DASHBOARD_LISTINGS, locale)}${query}`,
+  });
+};
+
+/** True when a Dodo product is the Create single export. */
+export const createPassProductOf = (productId: string): boolean =>
+  Boolean(env.DODO_PRODUCT_CREATE_PASS) &&
+  productId === env.DODO_PRODUCT_CREATE_PASS;
+
+/**
+ * Checkout for one Create single export. `tool` and `project_id` in the
+ * metadata tie the payment to the project; Dodo returns to the editor with
+ * `payment_id`.
+ */
+export const createCreatePassCheckoutUrl = (
+  project: { tool: CreateTool; id: string; name: string },
+  buyer: Buyer,
+  locale?: string
+): Promise<string> => {
+  const productId = env.DODO_PRODUCT_CREATE_PASS;
+  if (!productId) {
+    throw new Error("Create products are not set up; run pnpm dodo:setup");
+  }
+  const editor = appUrl(ROUTES.CREATE_SHOWCASE_EDITOR, locale);
+  const url = `${editor}?project=${encodeURIComponent(project.id)}`;
+  return checkoutUrl({
+    cancel_url: url,
+    customer: { email: buyer.email },
+    feature_flags: { allow_discount_code: false },
+    metadata: {
+      product: "create-pass",
+      tool: project.tool,
+      project_id: project.id,
+      project_name: project.name,
+      user_id: buyer.userId,
+    },
+    product_cart: [{ product_id: productId, quantity: 1 }],
+    return_url: url,
   });
 };

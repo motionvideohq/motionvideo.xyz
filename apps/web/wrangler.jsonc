@@ -71,6 +71,8 @@
     "DODO_PRODUCT_SPONSOR_SILVER_ONCE": "pdt_0Npo4c5xgFw1edo98hW5G",
     "DODO_PRODUCT_JOB_STANDARD": "pdt_0Npn9szB8Z5kqnx2MBPVg",
     "DODO_PRODUCT_JOB_FEATURED": "pdt_0Npn9szIfRBwgezuI25bw",
+    // Create: one single export ($4, one project, 7 days).
+    "DODO_PRODUCT_CREATE_PASS": "",
     // Uploads are linked from the bucket's public domain (cached at the edge,
     // no Worker request per view). Empty: served by the Worker at /uploads/.
     "UPLOADS_PUBLIC_URL": "https://assets.motionvideo.xyz",
@@ -127,6 +129,7 @@
       "DODO_PRODUCT_SPONSOR_SILVER_ONCE": "pdt_0Npnyojv6m33RUQt1kpdl",
       "DODO_PRODUCT_JOB_STANDARD": "pdt_0Npm8wZZC70CtLPJI3lSL",
       "DODO_PRODUCT_JOB_FEATURED": "pdt_0Npm8wx91Hhgl33rDpqUH",
+      "DODO_PRODUCT_CREATE_PASS": "pdt_0NrUTRy2nUW73ZYC1WDkq",
       "UPLOADS_PUBLIC_URL": "",
     },
     "ratelimits": [

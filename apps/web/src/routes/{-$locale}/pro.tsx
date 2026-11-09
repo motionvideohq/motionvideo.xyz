@@ -171,7 +171,7 @@ const Pro = () => {
         >
           <SectionHeader id="what-you-get" title={content.whatYouGet} />
           {/* What your agent gets, nothing else: Moves beside Templates (4|2),
-              then MCP and the skill full width with their snippets beside the
+              then MCP, the skill and Showcase full width with their snippets beside the
               copy. Rows are as tall as their content. One column below lg,
               `minmax(0,1fr)` so the truncated snippets can't widen it. */}
           <div className="grid grid-cols-1 gap-4 lg:grid-cols-6">
@@ -270,6 +270,17 @@ const Pro = () => {
                 </ul>
               </div>
             </Tile>
+            <Tile
+              title={content.showcaseTitle}
+              body={content.showcaseBody}
+              link={
+                <Link to={ROUTES.CREATE_SHOWCASE} className={featureLinkClass}>
+                  {content.openShowcase}
+                  <ArrowRight aria-hidden="true" className="size-3.5" />
+                </Link>
+              }
+              className="lg:col-span-6"
+            />
           </div>
         </section>
         <section

@@ -25,6 +25,13 @@ export const ROUTES = {
   CHECKOUT: "/checkout",
   CONSENT: "/consent",
   CONTACT: "/contact",
+  /** MotionVideo Create: the hub of browser tools. */
+  CREATE: "/create",
+  CREATE_PROJECTS: "/create/projects",
+  CREATE_SHOWCASE: "/create/showcase",
+  CREATE_SHOWCASE_EDITOR: "/create/showcase/editor",
+  CREATE_SHOWCASE_TEMPLATES: "/create/showcase/templates",
+  CREATE_SHOWCASE_TEMPLATE: "/create/showcase/templates/$templateId",
   CREATIVES: "/creatives",
   CREATOR: "/creators/$creator",
   CREATORS: "/creators",

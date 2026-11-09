@@ -138,6 +138,15 @@ const PRODUCTS = [
     description: `${plan} job listing on motionvideo.xyz/jobs for 30 days from approval. One-time payment; nothing renews.`,
     price: oneTimePrice(cents),
   })),
+  // Keep in sync with CREATE_PASS_CENTS and CREATE_PASS_DAYS in
+  // src/constants/create.ts.
+  {
+    envKey: "DODO_PRODUCT_CREATE_PASS",
+    name: "MotionVideo Create — Single export",
+    description:
+      "Unlocks every export setting for one MotionVideo Create project (such as a Showcase video) for 7 days, re-exports included. One-time payment; nothing renews.",
+    price: oneTimePrice(400, { ppp: false }),
+  },
 ];
 
 const WEBHOOK_EVENTS = [

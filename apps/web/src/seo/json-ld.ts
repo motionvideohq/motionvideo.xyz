@@ -122,18 +122,27 @@ export const planJsonLd = (locale?: string) => {
   );
 };
 
-// The skill page's FAQ, in the language the page shows it in: FAQ markup
-// must match the visible questions and answers.
-export const faqJsonLd = (locale?: string) =>
+/**
+ * A page's FAQ from the question and answer pairs it shows, in the page's
+ * language: FAQ markup must match the visible questions and answers.
+ */
+export const faqPageJsonLd = (
+  faqs: readonly { question: string; answer: string }[],
+  locale?: string
+) =>
   jsonLdScript({
     "@type": "FAQPage",
     inLanguage: resolveLocale(locale),
-    mainEntity: getIntlayer("faqs", resolveLocale(locale)).faqs.map((faq) => ({
+    mainEntity: faqs.map((faq) => ({
       "@type": "Question",
       acceptedAnswer: { "@type": "Answer", text: faq.answer },
       name: faq.question,
     })),
   });
+
+// The skill page's FAQ.
+export const faqJsonLd = (locale?: string) =>
+  faqPageJsonLd(getIntlayer("faqs", resolveLocale(locale)).faqs, locale);
 
 // One blog post. Posts are written in English whichever locale serves them;
 // the URL is the page's own localized address (unprefixed in English).

@@ -1,0 +1,178 @@
+{
+  "version": 1,
+  "items": [
+    {
+      "id": "analytics",
+      "kind": "image",
+      "name": "Revenue dashboard",
+      "url": "https://assets.motionvideo.xyz/create/samples/analytics-1e0d98ddf2.webp",
+      "thumb": "https://assets.motionvideo.xyz/create/samples/analytics-thumb-c6570633ee.webp",
+      "width": 1600,
+      "height": 1200,
+      "tags": ["desktop", "dark"]
+    },
+    {
+      "id": "landing-hero",
+      "kind": "image",
+      "name": "Landing hero",
+      "url": "https://assets.motionvideo.xyz/create/samples/landing-hero-f82f207775.webp",
+      "thumb": "https://assets.motionvideo.xyz/create/samples/landing-hero-thumb-5da94b5400.webp",
+      "width": 1600,
+      "height": 1200,
+      "tags": ["desktop", "light"]
+    },
+    {
+      "id": "pricing",
+      "kind": "image",
+      "name": "Pricing page",
+      "url": "https://assets.motionvideo.xyz/create/samples/pricing-5bb3d13109.webp",
+      "thumb": "https://assets.motionvideo.xyz/create/samples/pricing-thumb-1dbd8bd79b.webp",
+      "width": 1600,
+      "height": 1200,
+      "tags": ["desktop", "light"]
+    },
+    {
+      "id": "settings",
+      "kind": "image",
+      "name": "Workspace settings",
+      "url": "https://assets.motionvideo.xyz/create/samples/settings-935de46b79.webp",
+      "thumb": "https://assets.motionvideo.xyz/create/samples/settings-thumb-f20bf326f2.webp",
+      "width": 1600,
+      "height": 1200,
+      "tags": ["desktop", "light"]
+    },
+    {
+      "id": "kanban",
+      "kind": "image",
+      "name": "Sprint board",
+      "url": "https://assets.motionvideo.xyz/create/samples/kanban-88b690ed0b.webp",
+      "thumb": "https://assets.motionvideo.xyz/create/samples/kanban-thumb-2642e05029.webp",
+      "width": 1600,
+      "height": 1200,
+      "tags": ["desktop", "light"]
+    },
+    {
+      "id": "chat",
+      "kind": "image",
+      "name": "Team chat",
+      "url": "https://assets.motionvideo.xyz/create/samples/chat-23e6ce6995.webp",
+      "thumb": "https://assets.motionvideo.xyz/create/samples/chat-thumb-061646cc17.webp",
+      "width": 1600,
+      "height": 1200,
+      "tags": ["desktop", "dark"]
+    },
+    {
+      "id": "calendar",
+      "kind": "image",
+      "name": "Week calendar",
+      "url": "https://assets.motionvideo.xyz/create/samples/calendar-16f1e4537b.webp",
+      "thumb": "https://assets.motionvideo.xyz/create/samples/calendar-thumb-d2cc74d20a.webp",
+      "width": 1600,
+      "height": 1200,
+      "tags": ["desktop", "light"]
+    },
+    {
+      "id": "poster",
+      "kind": "image",
+      "name": "Festival poster",
+      "url": "https://assets.motionvideo.xyz/create/samples/poster-823cdca026.webp",
+      "thumb": "https://assets.motionvideo.xyz/create/samples/poster-thumb-3525b45b09.webp",
+      "width": 1600,
+      "height": 1200,
+      "tags": ["desktop", "light"]
+    },
+    {
+      "id": "brand-board",
+      "kind": "image",
+      "name": "Brand identity",
+      "url": "https://assets.motionvideo.xyz/create/samples/brand-board-782f50f0b4.webp",
+      "thumb": "https://assets.motionvideo.xyz/create/samples/brand-board-thumb-793c8c09c6.webp",
+      "width": 1600,
+      "height": 1200,
+      "tags": ["desktop", "dark"]
+    },
+    {
+      "id": "mobile-fitness",
+      "kind": "image",
+      "name": "Fitness app",
+      "url": "https://assets.motionvideo.xyz/create/samples/mobile-fitness-ababc1ae52.webp",
+      "thumb": "https://assets.motionvideo.xyz/create/samples/mobile-fitness-thumb-622bb66e21.webp",
+      "width": 1170,
+      "height": 2532,
+      "tags": ["mobile", "dark"]
+    },
+    {
+      "id": "mobile-wallet",
+      "kind": "image",
+      "name": "Wallet app",
+      "url": "https://assets.motionvideo.xyz/create/samples/mobile-wallet-bf3467b2e4.webp",
+      "thumb": "https://assets.motionvideo.xyz/create/samples/mobile-wallet-thumb-6a78a8b8d3.webp",
+      "width": 1170,
+      "height": 2532,
+      "tags": ["mobile", "light"]
+    },
+    {
+      "id": "mobile-music",
+      "kind": "image",
+      "name": "Music player",
+      "url": "https://assets.motionvideo.xyz/create/samples/mobile-music-f01397fde3.webp",
+      "thumb": "https://assets.motionvideo.xyz/create/samples/mobile-music-thumb-f29bb31057.webp",
+      "width": 1170,
+      "height": 2532,
+      "tags": ["mobile", "dark"]
+    },
+    {
+      "id": "landing-long",
+      "kind": "image",
+      "name": "Full landing page",
+      "url": "https://assets.motionvideo.xyz/create/samples/landing-long-9a22e01253.webp",
+      "thumb": "https://assets.motionvideo.xyz/create/samples/landing-long-thumb-137f36a6b7.webp",
+      "width": 1440,
+      "height": 4200,
+      "tags": ["long", "light"]
+    },
+    {
+      "id": "logo",
+      "kind": "image",
+      "name": "Logo",
+      "url": "https://assets.motionvideo.xyz/create/samples/logo-0d912450c8.png",
+      "thumb": "https://assets.motionvideo.xyz/create/samples/logo-thumb-7cc0d4497b.webp",
+      "width": 800,
+      "height": 240,
+      "tags": ["logo", "light"]
+    },
+    {
+      "id": "clip-chart",
+      "kind": "video",
+      "name": "Chart drawing in",
+      "url": "https://assets.motionvideo.xyz/create/samples/clip-chart-d3d9d9c255.mp4",
+      "thumb": "https://assets.motionvideo.xyz/create/samples/clip-chart-thumb-e3fddf05f2.webp",
+      "width": 1600,
+      "height": 1000,
+      "duration": 5,
+      "tags": ["desktop", "dark"]
+    },
+    {
+      "id": "clip-feed",
+      "kind": "video",
+      "name": "Scrolling feed",
+      "url": "https://assets.motionvideo.xyz/create/samples/clip-feed-f581d1a928.mp4",
+      "thumb": "https://assets.motionvideo.xyz/create/samples/clip-feed-thumb-0557807768.webp",
+      "width": 1600,
+      "height": 1000,
+      "duration": 6,
+      "tags": ["desktop", "light"]
+    },
+    {
+      "id": "clip-flow",
+      "kind": "video",
+      "name": "Checkout flow",
+      "url": "https://assets.motionvideo.xyz/create/samples/clip-flow-df9c66e08b.mp4",
+      "thumb": "https://assets.motionvideo.xyz/create/samples/clip-flow-thumb-d017bdb123.webp",
+      "width": 1600,
+      "height": 1000,
+      "duration": 6,
+      "tags": ["desktop", "light"]
+    }
+  ]
+}

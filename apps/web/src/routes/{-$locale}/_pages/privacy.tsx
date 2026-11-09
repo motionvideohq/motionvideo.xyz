@@ -81,6 +81,16 @@ const Privacy = () => {
             <strong className="text-foreground">{copy.feedbackHeading}</strong>
             {copy.feedbackData}
           </li>
+          <li>
+            <strong className="text-foreground">{copy.createHeading}</strong>
+            {copy.createData}
+          </li>
+          <li>
+            <strong className="text-foreground">
+              {copy.singleExportHeading}
+            </strong>
+            {copy.singleExportData}
+          </li>
         </PageList>
         <p>{copy.text22}</p>
       </PageSection>
@@ -114,6 +124,10 @@ const Privacy = () => {
             <strong className="text-foreground">{copy.text32}</strong>
             {copy.text33}
           </li>
+          <li>
+            <strong className="text-foreground">{copy.remotionHeading}</strong>
+            {copy.remotionData}
+          </li>
         </PageList>
         <p>
           {copy.text34} {copy.text36}
@@ -131,6 +145,7 @@ const Privacy = () => {
           <li>{copy.newsletterRetention}</li>
           <li>{copy.submissionRetention}</li>
           <li>{copy.feedbackRetention}</li>
+          <li>{copy.singleExportRetention}</li>
         </PageList>
       </PageSection>
 

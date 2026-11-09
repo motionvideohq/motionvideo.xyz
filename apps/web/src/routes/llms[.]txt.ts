@@ -1,3 +1,4 @@
+import { TEMPLATES as SHOWCASE_TEMPLATES } from "@motionvideo/engine";
 import { createFileRoute } from "@tanstack/react-router";
 
 import { CACHE_CONTROL } from "@/constants/cache-control";
@@ -29,6 +30,9 @@ const body = (docsPages: DocsPage[]) => `# ${SITE.NAME}
 - [Moves](${pageUrl(ROUTES.MOVES)}): Named motion design techniques with gallery examples; each move's copy-ready prompt is in Pro.
 - [Templates](${pageUrl(ROUTES.TEMPLATES)}): Prompt templates with fill-in fields (concept, palette, length, size); each template's full prompt is in Pro.
 - [MotionVideo Pro](${pageUrl(ROUTES.PRO)}): Pro and Business plans: what they include and what they cost. As Markdown: ${absoluteUrl(ROUTES.PRICING_MD)}
+- [Create](${pageUrl(ROUTES.CREATE)}): ${SITE.NAME}'s own browser tools for making motion videos without code.
+- [Showcase](${pageUrl(ROUTES.CREATE_SHOWCASE)}): Browser editor that turns screenshots, images and screen recordings into a looping 3D motion video (carousels, orbits, stacks, device frames), exported as MP4, WebM, GIF, stills or PNG sequences. Media stays on the device; free exports up to 1080p30, Pro or a $4 single export unlocks 4K60 and every format. Editor: ${pageUrl(ROUTES.CREATE_SHOWCASE_EDITOR)}
+- [Showcase templates](${pageUrl(ROUTES.CREATE_SHOWCASE_TEMPLATES)}): Every Showcase motion template by collection, each with a preview, its controls and the move it is built on.
 - [Tools](${pageUrl(ROUTES.TOOLS)}): Agent tools and plugins for motion design, by category.
 - [Creatives](${pageUrl(ROUTES.CREATIVES)}): Studios, designers, and agencies that make motion work.
 - [Skills](${pageUrl(ROUTES.SKILLS)}): Agent skills for motion design, by category.
@@ -38,6 +42,13 @@ const body = (docsPages: DocsPage[]) => `# ${SITE.NAME}
 ${STATIC_PAGES.map(
   (page) =>
     `- [${page.slice(1).replace(/^./u, (letter) => letter.toUpperCase())}](${pageUrl(page)})`
+).join("\n")}
+
+## Showcase templates
+
+${SHOWCASE_TEMPLATES.map(
+  (template) =>
+    `- [${template.name}](${pageUrl(`${ROUTES.CREATE_SHOWCASE_TEMPLATES}/${template.id}`)}): ${template.description || `A ${template.collection} template.`}`
 ).join("\n")}
 
 ## Docs

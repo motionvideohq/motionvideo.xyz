@@ -152,6 +152,7 @@ export const SiteFooter = () => {
     [ROUTES.HOME, content.videos],
     [ROUTES.MOVES, content.moves],
     [ROUTES.TEMPLATES, content.templates],
+    [ROUTES.CREATE_SHOWCASE, content.showcase],
     [ROUTES.MOTIONVIDEO_MCP, content.mcp],
     [ROUTES.MOTIONVIDEO_SKILL, content.skill],
     [ROUTES.DOCS, content.docs],

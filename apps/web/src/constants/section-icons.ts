@@ -11,8 +11,10 @@ import { DocumentText } from "reicon-react/icons/DocumentText";
 import { Envelope } from "reicon-react/icons/Envelope";
 import { HandHeart } from "reicon-react/icons/HandHeart";
 import { History } from "reicon-react/icons/History";
+import { Layers } from "reicon-react/icons/Layers";
 import { Layout } from "reicon-react/icons/Layout";
 import { Lock } from "reicon-react/icons/Lock";
+import { Magicpen } from "reicon-react/icons/Magicpen";
 import { Office } from "reicon-react/icons/Office";
 import { Plug } from "reicon-react/icons/Plug";
 import { ProfileCircle } from "reicon-react/icons/ProfileCircle";
@@ -42,6 +44,8 @@ export const SECTION_ICONS = {
   moves: Bezier,
   templates: Layout,
   customize: Sliders,
+  create: Magicpen,
+  showcase: Layers,
   docs: Docs,
   blog: DocumentText,
   changelog: History,

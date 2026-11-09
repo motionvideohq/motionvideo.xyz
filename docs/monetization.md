@@ -19,6 +19,17 @@ Ideas for monthly recurring revenue on MotionVideo, ranked by fit with what alre
 | 7 | **Prompt and video data API or feed** for tool makers | $99+/mo (B2B) | Medium | Licensing: videos and prompts belong to their creators |
 | 9 | **Job board** (live: `/jobs`) | $99 Standard / $199 Featured per 30-day post | High: same audience as the gallery | One-time, not recurring; becomes steady revenue only with repeat employers |
 | 8 | **Recurring affiliate commissions** (video tools, payments) | Revenue share | Easy to add | Small amounts; disclose affiliate links to keep editorial trust |
+| 10 | **Create single export** (live: Showcase at `/create/showcase`) | $4 once per project, no purchasing-power parity | High: free browser tool funnels into Pro | One-time; most value is as an upgrade path to Pro |
+
+## MotionVideo Create
+
+Create is the set of browser creative tools; Showcase (images and videos to a looping 3D motion video) is the first. Rendering and export run in the visitor's browser with Remotion, so there is no render cost per export. Plan constants live in `apps/web/src/constants/create.ts`.
+
+- **Free**: MP4 up to 1080p (short side) at 30 fps, stills up to 1440 px, no watermark. No Pro templates, transparent video, GIF or PNG sequence.
+- **Single export**: $4 one-time (`CREATE_PASS_CENTS`), unlocks every export setting for one project in one tool for 7 days (`CREATE_PASS_DAYS`), re-exports included, nothing renews. Requires sign-in. Refunded only in the general refund-policy cases (double charge, not delivered, not as described).
+- **Pro / Business**: unlimited exports at every setting in every project.
+
+Fulfillment mirrors the job board: `startCreatePassCheckout` creates a hosted Dodo checkout for product `DODO_PRODUCT_CREATE_PASS` with `tool`, `project_id` and `user_id` metadata; `syncCreatePassPayment` (`apps/web/src/server/create-passes.ts`) re-reads the payment from the Dodo API and upserts one `create_pass` row per payment, from the webhook (`payment.succeeded`, `refund.succeeded`) and from `getCreateAccess` when Dodo returns to the editor with `payment_id`. A full refund marks the row refunded. Media and projects stay in the browser (IndexedDB); the server stores only the purchase record.
 
 ## Suggested order
 
