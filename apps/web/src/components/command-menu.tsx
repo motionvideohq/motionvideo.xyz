@@ -183,6 +183,69 @@ const SEARCH_SCOPES = [
 
 type SearchScope = (typeof SEARCH_SCOPES)[number];
 
+/**
+ * The label with the characters the query matches in the primary colour:
+ * the first place the whole query appears, else each query character in
+ * order (cmdk's fuzzy match). Plain when the entry matched only through its
+ * keywords.
+ */
+const MatchedLabel = ({ label, query }: { label: string; query: string }) => {
+  const chars = [...label];
+  const lower = chars.map((char) => char.toLowerCase());
+  const wanted = [...query.trim().toLowerCase()];
+  const hits = new Set<number>();
+  const needle = wanted.join("");
+  const start =
+    wanted.length > 0
+      ? lower.findIndex(
+          (_, index) =>
+            lower.slice(index, index + wanted.length).join("") === needle
+        )
+      : -1;
+  if (start === -1) {
+    let next = 0;
+    for (const target of wanted.filter((char) => char.trim())) {
+      while (next < lower.length && lower[next] !== target) {
+        next += 1;
+      }
+      if (next === lower.length) {
+        hits.clear();
+        break;
+      }
+      hits.add(next);
+      next += 1;
+    }
+  } else {
+    for (let index = 0; index < wanted.length; index += 1) {
+      hits.add(start + index);
+    }
+  }
+  if (hits.size === 0) {
+    return label;
+  }
+  // Consecutive characters share one span.
+  const runs: { text: string; hit: boolean }[] = [];
+  for (const [index, char] of chars.entries()) {
+    const hit = hits.has(index);
+    const last = runs.at(-1);
+    if (last?.hit === hit) {
+      last.text += char;
+    } else {
+      runs.push({ text: char, hit });
+    }
+  }
+  return runs.map((run, index) =>
+    run.hit ? (
+      // oxlint-disable-next-line react/no-array-index-key -- runs are positional and rebuilt on every keystroke.
+      <span key={index} className="text-primary">
+        {run.text}
+      </span>
+    ) : (
+      run.text
+    )
+  );
+};
+
 export const CommandMenu = () => {
   const content = useIntlayer("command-menu");
   const header = useIntlayer("site-header");
@@ -727,7 +790,9 @@ export const CommandMenu = () => {
                     }}
                   >
                     {entry.icon}
-                    <span className="truncate">{entry.label}</span>
+                    <span className="truncate">
+                      <MatchedLabel label={entry.label} query={query} />
+                    </span>
                     {entry.hint && (
                       <CommandShortcut className="max-w-1/2 truncate tracking-normal">
                         {entry.hint}
