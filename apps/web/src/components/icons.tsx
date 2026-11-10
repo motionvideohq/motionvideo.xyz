@@ -49,7 +49,7 @@ export const Claude = (props: SVGProps<SVGSVGElement>) => (
   </svg>
 );
 
-export const Codex = (props: SVGProps<SVGSVGElement>) => (
+export const OpenAI = (props: SVGProps<SVGSVGElement>) => (
   <svg
     viewBox="0 0 40 40"
     width="24"

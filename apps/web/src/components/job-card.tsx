@@ -1,6 +1,7 @@
 import { useIntlayer, useLocale } from "react-intlayer";
 import { Briefcase } from "reicon-react/icons/Briefcase";
 
+import { CollectionEmptyCard } from "@/components/collection-grid";
 import { CompanyLogo } from "@/components/company-logo";
 import { ExternalLinkChip } from "@/components/external-link-chip";
 import { Badge } from "@/components/ui/badge";
@@ -66,16 +67,10 @@ export const JobCard = ({ job }: { job: JobListing }) => {
 export const NoJobsCard = () => {
   const content = useIntlayer("jobs-page");
   return (
-    <div className={cn(tileClass, "bg-muted/40 shadow-none")}>
-      <span className="bg-muted text-muted-foreground flex size-10 items-center justify-center rounded-lg">
-        <Briefcase aria-hidden="true" className="size-4" />
-      </span>
-      <span className="flex flex-col gap-0.5">
-        <span className="font-medium">{content.emptyTitle}</span>
-        <span className="text-muted-foreground text-sm">
-          {content.emptyBody}
-        </span>
-      </span>
-    </div>
+    <CollectionEmptyCard
+      icon={Briefcase}
+      title={content.emptyTitle}
+      description={content.emptyBody}
+    />
   );
 };

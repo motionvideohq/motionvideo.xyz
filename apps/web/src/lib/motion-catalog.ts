@@ -52,20 +52,51 @@ export const findIterations = (value: string | undefined) =>
 
 // Models creators reported making their videos with, as shown in the gallery.
 // The URL carries a slug: `?model=opus-5-5` on Discover, or the
-// `/model/opus-5-5` page.
+// `/model/opus-5-5` page. Kept grouped by MOTION_MODEL_FAMILY.
 export const MOTION_MODELS = [
   "Opus 5.5",
+  "Fable 5",
+  "Fable 5.1",
+  "Fable 5.2",
   "Fable 5.5",
-  "Gemini 4 Argon",
+  "Mythos Preview",
+  "Mythos 5",
+  "Mythos 5.1",
+  "Mythos 5.2",
   "GPT-6 Astra",
+  "Gemini 4 Argon",
 ] as const;
 export type MotionModel = (typeof MOTION_MODELS)[number];
 /** Each model's full name, for page titles and copy. */
 export const MOTION_MODEL_NAMES: Record<MotionModel, string> = {
   "Opus 5.5": "Claude Opus 5.5",
+  "Fable 5": "Claude Fable 5",
+  "Fable 5.1": "Claude Fable 5.1",
+  "Fable 5.2": "Claude Fable 5.2",
   "Fable 5.5": "Claude Fable 5.5",
-  "Gemini 4 Argon": "Gemini 4 Argon",
+  "Mythos Preview": "Claude Mythos Preview",
+  "Mythos 5": "Claude Mythos 5",
+  "Mythos 5.1": "Claude Mythos 5.1",
+  "Mythos 5.2": "Claude Mythos 5.2",
   "GPT-6 Astra": "GPT-6 Astra",
+  "Gemini 4 Argon": "Gemini 4 Argon",
+};
+// Model families, named like the models (Claude, GPT, Gemini) rather than the
+// labs, so the gallery's model filter can nest each family's models.
+export const MOTION_MODEL_FAMILIES = ["Claude", "GPT", "Gemini"] as const;
+export type MotionModelFamily = (typeof MOTION_MODEL_FAMILIES)[number];
+export const MOTION_MODEL_FAMILY: Record<MotionModel, MotionModelFamily> = {
+  "Opus 5.5": "Claude",
+  "Fable 5": "Claude",
+  "Fable 5.1": "Claude",
+  "Fable 5.2": "Claude",
+  "Fable 5.5": "Claude",
+  "Mythos Preview": "Claude",
+  "Mythos 5": "Claude",
+  "Mythos 5.1": "Claude",
+  "Mythos 5.2": "Claude",
+  "GPT-6 Astra": "GPT",
+  "Gemini 4 Argon": "Gemini",
 };
 export const motionModelSlug = (model: string) =>
   model.toLowerCase().replaceAll(/[^a-z\d]+/gu, "-");

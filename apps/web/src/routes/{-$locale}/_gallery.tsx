@@ -11,14 +11,13 @@ import type { IconComponent } from "reicon-react";
 import { ChevronDown } from "reicon-react/icons/ChevronDown";
 import { Code } from "reicon-react/icons/Code";
 import { Layers } from "reicon-react/icons/Layers";
-import { Search } from "reicon-react/icons/Search";
 import { Text } from "reicon-react/icons/Text";
 import { Ufo } from "reicon-react/icons/Ufo";
 import { z } from "zod";
 
 import {
+  CollectionEmptyCard,
   CollectionGrid,
-  CollectionEmptyState,
 } from "@/components/collection-grid";
 import {
   CollectionIntro,
@@ -30,7 +29,7 @@ import {
 } from "@/components/collection-toolbar";
 import { ColorPicker } from "@/components/color-picker";
 import { FadeScroller } from "@/components/fade-scroller";
-import { Claude, Codex, ColorDots, Gemini, XIcon } from "@/components/icons";
+import { Claude, ColorDots, Gemini, OpenAI, XIcon } from "@/components/icons";
 import { JobsWidget } from "@/components/jobs-widget";
 import { MotionVideoCard, setMorphCard } from "@/components/motion-video";
 import { SiteFooter } from "@/components/site-footer";
@@ -44,6 +43,9 @@ import {
   DropdownMenuLabel,
   DropdownMenuRadioGroup,
   DropdownMenuRadioItem,
+  DropdownMenuSub,
+  DropdownMenuSubContent,
+  DropdownMenuSubTrigger,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import {
@@ -54,6 +56,7 @@ import {
 import type { MasonryItem } from "@/components/virtual-masonry";
 import { xProfileUrl } from "@/constants/links";
 import { ROUTES } from "@/constants/routes";
+import { SECTION_ICONS } from "@/constants/section-icons";
 import catalog from "@/data/motion-catalog.json";
 import { useLaneCount } from "@/hooks/use-lane-count";
 import { useLocalizedNavigate as useNavigate } from "@/hooks/use-localized-navigate";
@@ -66,6 +69,8 @@ import {
   MAX_FILTER_COLORS,
   MOTION_CATEGORIES,
   MOTION_MODELS,
+  MOTION_MODEL_FAMILIES,
+  MOTION_MODEL_FAMILY,
   MOTION_TYPES,
   filterMotionVideos,
   findMotionCategory,
@@ -80,7 +85,7 @@ import type {
   GalleryScope,
   GallerySearch,
   MotionCategory,
-  MotionModel,
+  MotionModelFamily,
   MotionVideo,
 } from "@/lib/motion-catalog";
 import { findMotionCreator } from "@/lib/motion-creators";
@@ -91,10 +96,16 @@ import { getJobs } from "@/server/job-functions";
 
 const routeApi = getRouteApi("/{-$locale}/_gallery");
 const videos: MotionVideo[] = catalog.videos;
-// Only models some video was made with get a filter.
-const MODELS = MOTION_MODELS.filter((model) =>
-  videos.some((video) => video.model === model)
-);
+// Only models some video was made with get a filter, nested under their
+// family; a family with none of them is left out.
+const MODEL_FAMILIES = MOTION_MODEL_FAMILIES.map((family) => ({
+  family,
+  models: MOTION_MODELS.filter(
+    (model) =>
+      MOTION_MODEL_FAMILY[model] === family &&
+      videos.some((video) => video.model === model)
+  ),
+})).filter(({ models }) => models.length > 0);
 
 type Navigate = LocalizedNavigate;
 
@@ -208,15 +219,14 @@ type Sort = (typeof SORTS)[number];
 const TYPE_ICONS: Record<"all" | (typeof MOTION_TYPES)[number], IconComponent> =
   { all: Layers, prompt: Text, skill: Code };
 
-// Model options carry standalone brand marks; sort options carry no icon.
-const MODEL_ICONS: Record<
-  MotionModel,
+// Model families carry standalone brand marks; sort options carry no icon.
+const FAMILY_ICONS: Record<
+  MotionModelFamily,
   ComponentType<SVGProps<SVGSVGElement>>
 > = {
-  "Opus 5.5": Claude,
-  "Fable 5.5": Claude,
-  "Gemini 4 Argon": Gemini,
-  "GPT-6 Astra": Codex,
+  Claude,
+  GPT: OpenAI,
+  Gemini,
 };
 
 interface FilterOption {
@@ -224,6 +234,8 @@ interface FilterOption {
   label: ReactNode;
   icon?: ComponentType<SVGProps<SVGSVGElement>>;
   disabled?: boolean;
+  /** Set for a submenu (a model family), whose options are the picks. */
+  options?: FilterOption[];
 }
 
 interface FilterSection {
@@ -235,9 +247,10 @@ interface FilterSection {
 }
 
 // One control for type, model and order: a single dropdown at every size,
-// with the groups stacked vertically. Picks apply at once and the menu stays
-// open, so all three can be set in one go. A type or model with no videos on
-// the current page (category) under the other's pick is disabled.
+// with the groups stacked vertically. A model family with several models
+// nests them in a submenu. Picks apply at once and the menu stays open, so
+// all three can be set in one go. A type or model with no videos on the
+// current page (category) under the other's pick is disabled.
 const GalleryFilters = ({
   search,
   category,
@@ -296,12 +309,26 @@ const GalleryFilters = ({
       onSelect: (value) => onChange({ model: findMotionModel(value) && value }),
       options: [
         { value: "all", label: content.all, icon: Layers },
-        ...MODELS.map((id) => ({
-          value: motionModelSlug(id),
-          label: id,
-          icon: MODEL_ICONS[id],
-          disabled: !modelsInView.has(id) && model !== id,
-        })),
+        // A family with one model is a plain option; one with several opens
+        // a submenu of them.
+        ...MODEL_FAMILIES.map(({ family, models }) => {
+          const options = models.map((id) => ({
+            value: motionModelSlug(id),
+            label: id,
+            disabled: !modelsInView.has(id) && model !== id,
+          }));
+          return {
+            ...(options.length === 1
+              ? options[0]
+              : {
+                  value: family,
+                  label: family,
+                  disabled: options.every((option) => option.disabled),
+                  options,
+                }),
+            icon: FAMILY_ICONS[family],
+          };
+        }),
       ],
     },
     {
@@ -317,7 +344,9 @@ const GalleryFilters = ({
   ];
 
   const TypeIcon = search.type ? TYPE_ICONS[search.type] : undefined;
-  const ModelIcon = model ? MODEL_ICONS[model] : undefined;
+  const ModelIcon = model
+    ? FAMILY_ICONS[MOTION_MODEL_FAMILY[model]]
+    : undefined;
   const triggerClass = chipClass(Boolean(search.type || model || search.sort));
   const summary = (
     <>
@@ -356,36 +385,78 @@ const GalleryFilters = ({
         align="end"
         className="flex w-auto max-w-[calc(100vw-1rem)] flex-col gap-1"
       >
-        {sections.map((section) => (
-          <div key={section.id} className="contents">
-            <DropdownMenuRadioGroup
-              className={section.id === "model" ? "min-w-44" : "min-w-40"}
-              value={section.value}
-              onValueChange={(value) => section.onSelect(String(value))}
-            >
-              <DropdownMenuLabel>{section.label}</DropdownMenuLabel>
-              {section.options.map((option) => {
-                const Icon = option.icon;
-                return (
-                  <DropdownMenuRadioItem
-                    key={option.value}
-                    value={option.value}
-                    disabled={option.disabled}
-                    indicator={section.id === "sort" ? "radio" : "check"}
-                  >
-                    {Icon && (
-                      <Icon
-                        aria-hidden="true"
-                        className="text-muted-foreground"
-                      />
-                    )}
-                    {option.label}
-                  </DropdownMenuRadioItem>
-                );
-              })}
-            </DropdownMenuRadioGroup>
-          </div>
-        ))}
+        {sections.map((section) => {
+          const renderOption = (option: FilterOption) => {
+            const Icon = option.icon;
+            return (
+              <DropdownMenuRadioItem
+                key={option.value}
+                value={option.value}
+                disabled={option.disabled}
+                indicator={section.id === "sort" ? "radio" : "check"}
+              >
+                {Icon && (
+                  <Icon aria-hidden="true" className="text-muted-foreground" />
+                )}
+                {option.label}
+              </DropdownMenuRadioItem>
+            );
+          };
+          return (
+            <div key={section.id} className="contents">
+              <DropdownMenuRadioGroup
+                // Wide enough for "Claude" plus a picked model like
+                // "Mythos 5.2", so picking one never resizes the menu.
+                className={section.id === "model" ? "min-w-48" : "min-w-40"}
+                value={section.value}
+                onValueChange={(value) => section.onSelect(String(value))}
+              >
+                <DropdownMenuLabel>{section.label}</DropdownMenuLabel>
+                {section.options.map((option) => {
+                  if (!option.options) {
+                    return renderOption(option);
+                  }
+                  const Icon = option.icon;
+                  const picked = option.options.find(
+                    (child) => child.value === section.value
+                  );
+                  return (
+                    <DropdownMenuSub key={option.value}>
+                      <DropdownMenuSubTrigger disabled={option.disabled}>
+                        {Icon && (
+                          <Icon
+                            aria-hidden="true"
+                            className="text-muted-foreground"
+                          />
+                        )}
+                        {option.label}
+                        {picked && (
+                          // Fills the row and right-aligns, so it sits next to
+                          // the chevron (whose own ml-auto would otherwise
+                          // split the free space and centre this).
+                          <span className="text-muted-foreground flex-1 pl-2 text-right">
+                            {picked.label}
+                          </span>
+                        )}
+                      </DropdownMenuSubTrigger>
+                      <DropdownMenuSubContent>
+                        <DropdownMenuRadioGroup
+                          className="min-w-40"
+                          value={section.value}
+                          onValueChange={(value) =>
+                            section.onSelect(String(value))
+                          }
+                        >
+                          {option.options.map(renderOption)}
+                        </DropdownMenuRadioGroup>
+                      </DropdownMenuSubContent>
+                    </DropdownMenuSub>
+                  );
+                })}
+              </DropdownMenuRadioGroup>
+            </div>
+          );
+        })}
       </DropdownMenuContent>
     </DropdownMenu>
   );
@@ -603,6 +674,20 @@ const Gallery = () => {
       />
     ),
   }));
+  // No matches: a quiet tile in the grid says so, like the jobs board's.
+  if (cards.length === 0) {
+    cards.push({
+      key: "no-videos",
+      aspectRatio: 16 / 9,
+      node: (
+        <CollectionEmptyCard
+          icon={SECTION_ICONS.videos}
+          title={content.noResults}
+          description={content.tryAgain}
+        />
+      ),
+    });
+  }
   const items: MasonryItem[] = [{ key: "intro", node: intro }, ...cards];
   const sponsoredIndex = sponsoredTileIndex(lanes, cards.length);
   items.splice(sponsoredIndex, 0, {
@@ -696,18 +781,7 @@ const Gallery = () => {
           />
         </ButtonGroup>
       </CollectionToolbar>
-      <CollectionGrid
-        items={items}
-        emptyState={
-          filtered.length === 0 ? (
-            <CollectionEmptyState
-              icon={Search}
-              title={content.noResults}
-              description={content.tryAgain}
-            />
-          ) : undefined
-        }
-      />
+      <CollectionGrid items={items} />
       <Outlet />
       <SiteFooter />
     </>
@@ -727,7 +801,9 @@ export const Route = createFileRoute("/{-$locale}/_gallery")({
     return {
       category: findMotionCategory(z.string().safeParse(search.category).data),
       type: findMotionType(z.string().safeParse(search.type).data),
-      model: MODELS.map(motionModelSlug).find((slug) => slug === search.model),
+      model: MODEL_FAMILIES.flatMap(({ models }) => models)
+        .map(motionModelSlug)
+        .find((slug) => slug === search.model),
       sort: z.enum(["newest", "oldest"]).safeParse(search.sort).data,
       color: colors.length > 0 ? colors.join(",") : undefined,
     };
