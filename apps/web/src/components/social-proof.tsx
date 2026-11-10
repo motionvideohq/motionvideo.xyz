@@ -1,46 +1,92 @@
 import { useIntlayer } from "react-intlayer";
 
 import { XIcon } from "@/components/icons";
-import type { Logo } from "@/constants/stack";
+import { LogosSwap } from "@/components/logos-swap";
 import testimonials from "@/data/testimonials.json";
+import { cn } from "@/lib/utils";
+
+interface Company {
+  name: string;
+  src: string;
+  /** The logo already spells the name, so it shows alone. */
+  wordmark?: boolean;
+}
 
 // Companies whose people replied to MotionVideo's launch posts on X with
-// something positive (see src/data/testimonials.json for the quotes). Any
-// colour mark is drawn as one flat grey, so the row reads as a single tone.
-const COMPANIES: readonly Logo[] = [
+// something positive (see src/data/testimonials.json for the quotes), then
+// paying customers on their company domains. Any colour mark is drawn as one
+// flat grey, so the row reads as a single tone.
+const COMPANIES: readonly Company[] = [
   { name: "Netlify", src: "/logos/companies/netlify.svg" },
   { name: "Appwrite", src: "/logos/companies/appwrite.svg" },
   { name: "mem0", src: "/logos/companies/mem0.svg" },
   { name: "Timeless", src: "/logos/companies/timeless.svg" },
+  {
+    name: "General Matters",
+    src: "/logos/companies/general-matters.svg",
+    wordmark: true,
+  },
+  { name: "Setu", src: "/logos/companies/setu.svg", wordmark: true },
+  {
+    name: "Voortraject",
+    src: "/logos/companies/voortraject.png",
+    wordmark: true,
+  },
+  {
+    name: "Travel Likes Me",
+    src: "/logos/companies/travel-likes-me.png",
+    wordmark: true,
+  },
 ];
 
-/** A monochrome row of company marks with their names. */
+const logoClass = "object-contain opacity-60 brightness-0 dark:invert";
+
+/** Monochrome company marks, swapping a few at a time. */
 const CompanyLogos = () => {
   const content = useIntlayer("social-proof");
   return (
-    <div className="flex flex-col items-center gap-5">
+    <div className="flex w-full flex-col items-center gap-5">
       <p className="text-muted-foreground text-center text-sm">
         {content.lovedBy}
       </p>
-      <ul className="flex flex-wrap items-center justify-center gap-x-10 gap-y-4">
+      {/* The row moves on its own, so screen readers get the full list
+          instead. */}
+      <ul className="sr-only">
         {COMPANIES.map((company) => (
-          <li
-            key={company.name}
-            className="text-muted-foreground flex items-center gap-2"
-          >
-            <img
-              src={company.src}
-              alt=""
-              width={22}
-              height={22}
-              className="size-[22px] object-contain opacity-60 brightness-0 dark:invert"
-            />
-            <span className="text-lg font-semibold tracking-tight">
-              {company.name}
-            </span>
-          </li>
+          <li key={company.name}>{company.name}</li>
         ))}
       </ul>
+      <LogosSwap
+        aria-hidden="true"
+        columnCount={6}
+        className="w-full max-w-4xl gap-x-2 [--column-count:3] sm:[--column-count:6]"
+        logos={COMPANIES.map((company) =>
+          company.wordmark ? (
+            <img
+              key={company.name}
+              src={company.src}
+              alt=""
+              className={cn("h-7 max-w-full", logoClass)}
+            />
+          ) : (
+            <span
+              key={company.name}
+              className="text-muted-foreground flex items-center gap-2"
+            >
+              <img
+                src={company.src}
+                alt=""
+                width={22}
+                height={22}
+                className={cn("size-[22px]", logoClass)}
+              />
+              <span className="text-lg font-semibold tracking-tight">
+                {company.name}
+              </span>
+            </span>
+          )
+        )}
+      />
     </div>
   );
 };

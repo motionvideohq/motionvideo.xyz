@@ -394,7 +394,7 @@ export const AccountMenu = () => {
                 aria-label="X/Twitter"
                 className={iconButtonClass}
               >
-                <XIcon className="size-4" />
+                <XIcon className="size-3.5" />
               </a>
             </div>
           </div>
