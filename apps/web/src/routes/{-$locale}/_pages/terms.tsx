@@ -43,6 +43,13 @@ const Terms = () => {
           <li>{copy.plansBusiness}</li>
         </PageList>
         <p>{copy.plansIncluded}</p>
+        <p>
+          {copy.dpaNote}{" "}
+          <Link to={ROUTES.DPA} className={linkClass}>
+            {copy.dpaLink}
+          </Link>{" "}
+          {copy.dpaNote2}
+        </p>
       </PageSection>
 
       <PageSection title={copy.heading9.value}>
@@ -108,8 +115,15 @@ const Terms = () => {
         <p>{copy.sponsorText3}</p>
       </PageSection>
 
+      <PageSection title={copy.jobsHeading.value}>
+        <p>{copy.jobsText1}</p>
+        <p>{copy.jobsText2}</p>
+        <p>{copy.jobsText3}</p>
+      </PageSection>
+
       <PageSection title={copy.worksHeading.value}>
         <p>{copy.worksText1} assets.motionvideo.xyz.</p>
+        <p>{copy.worksSubmit}</p>
         <p>
           {copy.worksText2}{" "}
           <Link to={ROUTES.CONTACT} className={linkClass}>

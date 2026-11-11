@@ -5,11 +5,13 @@ import { Briefcase } from "reicon-react/icons/Briefcase";
 import { Brush } from "reicon-react/icons/Brush";
 import { Card2 } from "reicon-react/icons/Card2";
 import { Code } from "reicon-react/icons/Code";
+import { Database } from "reicon-react/icons/Database";
 import { Designtools } from "reicon-react/icons/Designtools";
 import { Docs } from "reicon-react/icons/Docs";
 import { DocumentText } from "reicon-react/icons/DocumentText";
 import { Envelope } from "reicon-react/icons/Envelope";
 import { HandHeart } from "reicon-react/icons/HandHeart";
+import { Hierarchy } from "reicon-react/icons/Hierarchy";
 import { History } from "reicon-react/icons/History";
 import { Layout } from "reicon-react/icons/Layout";
 import { Lock } from "reicon-react/icons/Lock";
@@ -18,6 +20,7 @@ import { Plug } from "reicon-react/icons/Plug";
 import { ProfileCircle } from "reicon-react/icons/ProfileCircle";
 import { Scroll } from "reicon-react/icons/Scroll";
 import { Settings } from "reicon-react/icons/Settings";
+import { ShieldCheck } from "reicon-react/icons/ShieldCheck";
 import { Sliders } from "reicon-react/icons/Sliders";
 import { Sparkles } from "reicon-react/icons/Sparkles";
 import { Star } from "reicon-react/icons/Star";
@@ -54,6 +57,9 @@ export const SECTION_ICONS = {
   terms: Scroll,
   privacy: Lock,
   refunds: Undo,
+  subprocessors: Hierarchy,
+  security: ShieldCheck,
+  dpa: Database,
   // Signed-in pages.
   featured: Star,
   bookmarks: Bookmark,

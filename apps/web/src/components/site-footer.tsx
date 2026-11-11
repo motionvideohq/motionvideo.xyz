@@ -140,48 +140,44 @@ const ExternalLink = ({
 );
 
 /**
- * The brand column, then four link groups: product, company, legal and the
- * other products. Crawlers find every other page through the sitemap. On
- * phones the brand sits on top and the groups pair up.
+ * The brand column, then the link groups. Product, AI and Resources mirror
+ * the header's menus (same labels, same order); Product and AI share a
+ * column. Crawlers find every other page through the sitemap. On phones the
+ * brand sits on top and the columns pair up.
  */
 export const SiteFooter = () => {
   const content = useIntlayer("site-footer");
-  // The main pages only; collections and the rest are in the header, the
-  // command menu and the sitemap.
+  const nav = useIntlayer("site-header");
   const product = [
-    [ROUTES.HOME, content.videos],
-    [ROUTES.MOVES, content.moves],
-    [ROUTES.TEMPLATES, content.templates],
-    [ROUTES.MOTIONVIDEO_MCP, content.mcp],
-    [ROUTES.MOTIONVIDEO_SKILL, content.skill],
-    [ROUTES.DOCS, content.docs],
-    [ROUTES.PRO, content.pricing],
+    [ROUTES.MOVES, nav.moves],
+    [ROUTES.TEMPLATES, nav.templates],
   ] as const;
-  const company = [
-    [ROUTES.ABOUT, content.about],
-    [ROUTES.BRAND, content.brand],
-    [ROUTES.BLOG, content.blog],
-    [ROUTES.CHANGELOG, content.changelog],
-    [ROUTES.CONTACT, content.contact],
-    [ROUTES.SPONSOR, content.sponsor],
+  const ai = [
+    [ROUTES.MOTIONVIDEO_MCP, nav.mcp],
+    [ROUTES.MOTIONVIDEO_SKILL, nav.skill],
+  ] as const;
+  const resources = [
+    [ROUTES.ABOUT, nav.about],
+    [ROUTES.BRAND, nav.design],
+    [ROUTES.BLOG, nav.blog],
+    [ROUTES.CHANGELOG, nav.changelog],
+    [ROUTES.CONTACT, nav.contact],
+    [ROUTES.SPONSOR, nav.sponsor],
   ] as const;
   const legal = [
     [ROUTES.TERMS, content.terms],
     [ROUTES.PRIVACY, content.privacy],
     [ROUTES.REFUNDS, content.refunds],
+    [ROUTES.SUBPROCESSORS, content.subprocessors],
+    [ROUTES.SECURITY, content.security],
+    [ROUTES.DPA, content.dpa],
   ] as const;
   const links = (
     group: readonly (readonly [string, ReactNode])[]
   ): ReactNode[] =>
     group.map(([to, label]) => (
       // SAFETY: every `to` above is a ROUTES constant of a real page.
-      <Link
-        key={to}
-        to={to as never}
-        // Videos points home; without `exact` it reads as current on every route.
-        activeOptions={to === ROUTES.HOME ? { exact: true } : undefined}
-        className={linkClass}
-      >
+      <Link key={to} to={to as never} className={linkClass}>
         {label}
       </Link>
     ));
@@ -205,8 +201,11 @@ export const SiteFooter = () => {
           aria-label={content.footer.value}
           className="grid grid-cols-2 gap-x-6 gap-y-10 md:grid-cols-4 lg:col-span-4"
         >
-          <LinkGroup heading={content.product}>{links(product)}</LinkGroup>
-          <LinkGroup heading={content.company}>{links(company)}</LinkGroup>
+          <div className="flex flex-col gap-10">
+            <LinkGroup heading={nav.product}>{links(product)}</LinkGroup>
+            <LinkGroup heading={nav.ai}>{links(ai)}</LinkGroup>
+          </div>
+          <LinkGroup heading={nav.resources}>{links(resources)}</LinkGroup>
           <LinkGroup heading={content.legal}>{links(legal)}</LinkGroup>
           <LinkGroup heading={content.otherProducts}>
             {OTHER_PRODUCTS.map((item) => (

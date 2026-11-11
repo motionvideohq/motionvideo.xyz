@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { getIntlayer } from "intlayer";
 import { useIntlayer } from "react-intlayer";
 
+import { LocalizedLink as Link } from "@/components/localized-link";
 import {
   LegalPageHeader,
   PageList,
@@ -78,8 +79,20 @@ const Privacy = () => {
             {copy.submissionData}
           </li>
           <li>
+            <strong className="text-foreground">{copy.seatsHeading}</strong>
+            {copy.seatsData}
+          </li>
+          <li>
+            <strong className="text-foreground">{copy.listingsHeading}</strong>
+            {copy.listingsData}
+          </li>
+          <li>
             <strong className="text-foreground">{copy.feedbackHeading}</strong>
             {copy.feedbackData}
+          </li>
+          <li>
+            <strong className="text-foreground">{copy.presenceHeading}</strong>
+            {copy.presenceText}
           </li>
         </PageList>
         <p>{copy.text22}</p>
@@ -107,8 +120,24 @@ const Privacy = () => {
             .
           </li>
           <li>
+            <strong className="text-foreground">{copy.posthogName}</strong>
+            {copy.posthogData}{" "}
+            <a href="https://posthog.com/privacy" className={linkClass}>
+              {copy.posthogLink}
+            </a>
+            .
+          </li>
+          <li>
             <strong className="text-foreground">{copy.text30}</strong>
             {copy.text31}
+          </li>
+          <li>
+            <strong className="text-foreground">{copy.googleName}</strong>
+            {copy.googleData}{" "}
+            <a href="https://policies.google.com/privacy" className={linkClass}>
+              {copy.googleLink}
+            </a>
+            .
           </li>
           <li>
             <strong className="text-foreground">{copy.text32}</strong>
@@ -116,7 +145,11 @@ const Privacy = () => {
           </li>
         </PageList>
         <p>
-          {copy.text34} {copy.text36}
+          {copy.text34} {copy.text36} {copy.subprocessorsNote}{" "}
+          <Link to={ROUTES.SUBPROCESSORS} className={linkClass}>
+            {copy.subprocessorsLink}
+          </Link>
+          .
         </p>
       </PageSection>
 
@@ -131,6 +164,7 @@ const Privacy = () => {
           <li>{copy.newsletterRetention}</li>
           <li>{copy.submissionRetention}</li>
           <li>{copy.feedbackRetention}</li>
+          <li>{copy.uploadsRetention}</li>
         </PageList>
       </PageSection>
 
@@ -139,10 +173,6 @@ const Privacy = () => {
           {copy.text45} <SupportEmail /> {copy.text46}{" "}
           <code>{copy.text47}</code> {copy.text48}
         </p>
-      </PageSection>
-
-      <PageSection title={copy.presenceHeading.value}>
-        <p>{copy.presenceText}</p>
       </PageSection>
 
       <PageSection title={copy.heading49.value}>

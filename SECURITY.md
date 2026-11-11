@@ -6,7 +6,7 @@ MotionVideo is a hosted site. Production is continuously deployed from `main`, s
 
 ## Reporting a vulnerability
 
-Please report vulnerabilities privately through [GitHub Security Advisories](https://github.com/motionvideohq/motionvideo.xyz/security/advisories/new). Do not open a public issue.
+Please report vulnerabilities privately through [GitHub Security Advisories](https://github.com/motionvideohq/motionvideo.xyz/security/advisories/new) or by email to hello@motionvideo.xyz. Do not open a public issue. How the site protects accounts and data is described at [motionvideo.xyz/security](https://motionvideo.xyz/security).
 
 Include:
 

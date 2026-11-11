@@ -64,8 +64,11 @@ import { Route as Char123LocaleChar125GalleryIndexRouteImport } from './routes/{
 import { Route as Char123LocaleChar125PagesAboutRouteImport } from './routes/{-$locale}/_pages/about'
 import { Route as Char123LocaleChar125PagesBrandRouteImport } from './routes/{-$locale}/_pages/brand'
 import { Route as Char123LocaleChar125PagesContactRouteImport } from './routes/{-$locale}/_pages/contact'
+import { Route as Char123LocaleChar125PagesDpaRouteImport } from './routes/{-$locale}/_pages/dpa'
 import { Route as Char123LocaleChar125PagesPrivacyRouteImport } from './routes/{-$locale}/_pages/privacy'
 import { Route as Char123LocaleChar125PagesRefundsRouteImport } from './routes/{-$locale}/_pages/refunds'
+import { Route as Char123LocaleChar125PagesSecurityRouteImport } from './routes/{-$locale}/_pages/security'
+import { Route as Char123LocaleChar125PagesSubprocessorsRouteImport } from './routes/{-$locale}/_pages/subprocessors'
 import { Route as Char123LocaleChar125PagesTermsRouteImport } from './routes/{-$locale}/_pages/terms'
 import { Route as Char123LocaleChar125AdminIndexRouteImport } from './routes/{-$locale}/admin/index'
 import { Route as Char123LocaleChar125AdminFeedbackRouteImport } from './routes/{-$locale}/admin/feedback'
@@ -435,6 +438,12 @@ const Char123LocaleChar125PagesContactRoute =
     path: '/contact',
     getParentRoute: () => Char123LocaleChar125PagesRoute,
   } as any)
+const Char123LocaleChar125PagesDpaRoute =
+  Char123LocaleChar125PagesDpaRouteImport.update({
+    id: '/dpa',
+    path: '/dpa',
+    getParentRoute: () => Char123LocaleChar125PagesRoute,
+  } as any)
 const Char123LocaleChar125PagesPrivacyRoute =
   Char123LocaleChar125PagesPrivacyRouteImport.update({
     id: '/privacy',
@@ -445,6 +454,18 @@ const Char123LocaleChar125PagesRefundsRoute =
   Char123LocaleChar125PagesRefundsRouteImport.update({
     id: '/refunds',
     path: '/refunds',
+    getParentRoute: () => Char123LocaleChar125PagesRoute,
+  } as any)
+const Char123LocaleChar125PagesSecurityRoute =
+  Char123LocaleChar125PagesSecurityRouteImport.update({
+    id: '/security',
+    path: '/security',
+    getParentRoute: () => Char123LocaleChar125PagesRoute,
+  } as any)
+const Char123LocaleChar125PagesSubprocessorsRoute =
+  Char123LocaleChar125PagesSubprocessorsRouteImport.update({
+    id: '/subprocessors',
+    path: '/subprocessors',
     getParentRoute: () => Char123LocaleChar125PagesRoute,
   } as any)
 const Char123LocaleChar125PagesTermsRoute =
@@ -875,8 +896,11 @@ export interface FileRoutesByFullPath {
   '/{-$locale}/about': typeof Char123LocaleChar125PagesAboutRoute
   '/{-$locale}/brand': typeof Char123LocaleChar125PagesBrandRoute
   '/{-$locale}/contact': typeof Char123LocaleChar125PagesContactRoute
+  '/{-$locale}/dpa': typeof Char123LocaleChar125PagesDpaRoute
   '/{-$locale}/privacy': typeof Char123LocaleChar125PagesPrivacyRoute
   '/{-$locale}/refunds': typeof Char123LocaleChar125PagesRefundsRoute
+  '/{-$locale}/security': typeof Char123LocaleChar125PagesSecurityRoute
+  '/{-$locale}/subprocessors': typeof Char123LocaleChar125PagesSubprocessorsRoute
   '/{-$locale}/terms': typeof Char123LocaleChar125PagesTermsRoute
   '/{-$locale}/admin/feedback': typeof Char123LocaleChar125AdminFeedbackRoute
   '/{-$locale}/admin/jobs': typeof Char123LocaleChar125AdminJobsRoute
@@ -986,8 +1010,11 @@ export interface FileRoutesByTo {
   '/{-$locale}/about': typeof Char123LocaleChar125PagesAboutRoute
   '/{-$locale}/brand': typeof Char123LocaleChar125PagesBrandRoute
   '/{-$locale}/contact': typeof Char123LocaleChar125PagesContactRoute
+  '/{-$locale}/dpa': typeof Char123LocaleChar125PagesDpaRoute
   '/{-$locale}/privacy': typeof Char123LocaleChar125PagesPrivacyRoute
   '/{-$locale}/refunds': typeof Char123LocaleChar125PagesRefundsRoute
+  '/{-$locale}/security': typeof Char123LocaleChar125PagesSecurityRoute
+  '/{-$locale}/subprocessors': typeof Char123LocaleChar125PagesSubprocessorsRoute
   '/{-$locale}/terms': typeof Char123LocaleChar125PagesTermsRoute
   '/{-$locale}/admin/feedback': typeof Char123LocaleChar125AdminFeedbackRoute
   '/{-$locale}/admin/jobs': typeof Char123LocaleChar125AdminJobsRoute
@@ -1102,8 +1129,11 @@ export interface FileRoutesById {
   '/{-$locale}/_pages/about': typeof Char123LocaleChar125PagesAboutRoute
   '/{-$locale}/_pages/brand': typeof Char123LocaleChar125PagesBrandRoute
   '/{-$locale}/_pages/contact': typeof Char123LocaleChar125PagesContactRoute
+  '/{-$locale}/_pages/dpa': typeof Char123LocaleChar125PagesDpaRoute
   '/{-$locale}/_pages/privacy': typeof Char123LocaleChar125PagesPrivacyRoute
   '/{-$locale}/_pages/refunds': typeof Char123LocaleChar125PagesRefundsRoute
+  '/{-$locale}/_pages/security': typeof Char123LocaleChar125PagesSecurityRoute
+  '/{-$locale}/_pages/subprocessors': typeof Char123LocaleChar125PagesSubprocessorsRoute
   '/{-$locale}/_pages/terms': typeof Char123LocaleChar125PagesTermsRoute
   '/{-$locale}/admin/feedback': typeof Char123LocaleChar125AdminFeedbackRoute
   '/{-$locale}/admin/jobs': typeof Char123LocaleChar125AdminJobsRoute
@@ -1224,8 +1254,11 @@ export interface FileRouteTypes {
     | '/{-$locale}/about'
     | '/{-$locale}/brand'
     | '/{-$locale}/contact'
+    | '/{-$locale}/dpa'
     | '/{-$locale}/privacy'
     | '/{-$locale}/refunds'
+    | '/{-$locale}/security'
+    | '/{-$locale}/subprocessors'
     | '/{-$locale}/terms'
     | '/{-$locale}/admin/feedback'
     | '/{-$locale}/admin/jobs'
@@ -1335,8 +1368,11 @@ export interface FileRouteTypes {
     | '/{-$locale}/about'
     | '/{-$locale}/brand'
     | '/{-$locale}/contact'
+    | '/{-$locale}/dpa'
     | '/{-$locale}/privacy'
     | '/{-$locale}/refunds'
+    | '/{-$locale}/security'
+    | '/{-$locale}/subprocessors'
     | '/{-$locale}/terms'
     | '/{-$locale}/admin/feedback'
     | '/{-$locale}/admin/jobs'
@@ -1450,8 +1486,11 @@ export interface FileRouteTypes {
     | '/{-$locale}/_pages/about'
     | '/{-$locale}/_pages/brand'
     | '/{-$locale}/_pages/contact'
+    | '/{-$locale}/_pages/dpa'
     | '/{-$locale}/_pages/privacy'
     | '/{-$locale}/_pages/refunds'
+    | '/{-$locale}/_pages/security'
+    | '/{-$locale}/_pages/subprocessors'
     | '/{-$locale}/_pages/terms'
     | '/{-$locale}/admin/feedback'
     | '/{-$locale}/admin/jobs'
@@ -1935,6 +1974,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof Char123LocaleChar125PagesContactRouteImport
       parentRoute: typeof Char123LocaleChar125PagesRoute
     }
+    '/{-$locale}/_pages/dpa': {
+      id: '/{-$locale}/_pages/dpa'
+      path: '/dpa'
+      fullPath: '/{-$locale}/dpa'
+      preLoaderRoute: typeof Char123LocaleChar125PagesDpaRouteImport
+      parentRoute: typeof Char123LocaleChar125PagesRoute
+    }
     '/{-$locale}/_pages/privacy': {
       id: '/{-$locale}/_pages/privacy'
       path: '/privacy'
@@ -1947,6 +1993,20 @@ declare module '@tanstack/react-router' {
       path: '/refunds'
       fullPath: '/{-$locale}/refunds'
       preLoaderRoute: typeof Char123LocaleChar125PagesRefundsRouteImport
+      parentRoute: typeof Char123LocaleChar125PagesRoute
+    }
+    '/{-$locale}/_pages/security': {
+      id: '/{-$locale}/_pages/security'
+      path: '/security'
+      fullPath: '/{-$locale}/security'
+      preLoaderRoute: typeof Char123LocaleChar125PagesSecurityRouteImport
+      parentRoute: typeof Char123LocaleChar125PagesRoute
+    }
+    '/{-$locale}/_pages/subprocessors': {
+      id: '/{-$locale}/_pages/subprocessors'
+      path: '/subprocessors'
+      fullPath: '/{-$locale}/subprocessors'
+      preLoaderRoute: typeof Char123LocaleChar125PagesSubprocessorsRouteImport
       parentRoute: typeof Char123LocaleChar125PagesRoute
     }
     '/{-$locale}/_pages/terms': {
@@ -2517,8 +2577,11 @@ interface Char123LocaleChar125PagesRouteChildren {
   Char123LocaleChar125PagesAboutRoute: typeof Char123LocaleChar125PagesAboutRoute
   Char123LocaleChar125PagesBrandRoute: typeof Char123LocaleChar125PagesBrandRoute
   Char123LocaleChar125PagesContactRoute: typeof Char123LocaleChar125PagesContactRoute
+  Char123LocaleChar125PagesDpaRoute: typeof Char123LocaleChar125PagesDpaRoute
   Char123LocaleChar125PagesPrivacyRoute: typeof Char123LocaleChar125PagesPrivacyRoute
   Char123LocaleChar125PagesRefundsRoute: typeof Char123LocaleChar125PagesRefundsRoute
+  Char123LocaleChar125PagesSecurityRoute: typeof Char123LocaleChar125PagesSecurityRoute
+  Char123LocaleChar125PagesSubprocessorsRoute: typeof Char123LocaleChar125PagesSubprocessorsRoute
   Char123LocaleChar125PagesTermsRoute: typeof Char123LocaleChar125PagesTermsRoute
   Char123LocaleChar125PagesChangelogSlugRoute: typeof Char123LocaleChar125PagesChangelogSlugRoute
   Char123LocaleChar125PagesChangelogIndexRoute: typeof Char123LocaleChar125PagesChangelogIndexRoute
@@ -2530,10 +2593,15 @@ const Char123LocaleChar125PagesRouteChildren: Char123LocaleChar125PagesRouteChil
     Char123LocaleChar125PagesBrandRoute: Char123LocaleChar125PagesBrandRoute,
     Char123LocaleChar125PagesContactRoute:
       Char123LocaleChar125PagesContactRoute,
+    Char123LocaleChar125PagesDpaRoute: Char123LocaleChar125PagesDpaRoute,
     Char123LocaleChar125PagesPrivacyRoute:
       Char123LocaleChar125PagesPrivacyRoute,
     Char123LocaleChar125PagesRefundsRoute:
       Char123LocaleChar125PagesRefundsRoute,
+    Char123LocaleChar125PagesSecurityRoute:
+      Char123LocaleChar125PagesSecurityRoute,
+    Char123LocaleChar125PagesSubprocessorsRoute:
+      Char123LocaleChar125PagesSubprocessorsRoute,
     Char123LocaleChar125PagesTermsRoute: Char123LocaleChar125PagesTermsRoute,
     Char123LocaleChar125PagesChangelogSlugRoute:
       Char123LocaleChar125PagesChangelogSlugRoute,

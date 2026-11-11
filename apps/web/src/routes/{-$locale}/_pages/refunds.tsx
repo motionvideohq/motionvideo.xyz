@@ -77,6 +77,10 @@ const Refunds = () => {
         <p>{copy.sponsorText1}</p>
         <p>{copy.sponsorText2}</p>
       </PageSection>
+
+      <PageSection title={copy.jobsHeading.value}>
+        <p>{copy.jobsText}</p>
+      </PageSection>
     </>
   );
 };

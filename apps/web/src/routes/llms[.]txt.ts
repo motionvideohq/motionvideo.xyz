@@ -37,7 +37,7 @@ const body = (docsPages: DocsPage[]) => `# ${SITE.NAME}
 - [Sponsor](${pageUrl(ROUTES.SPONSOR)}): Sponsorship placements on the site.
 ${STATIC_PAGES.map(
   (page) =>
-    `- [${page.slice(1).replace(/^./u, (letter) => letter.toUpperCase())}](${pageUrl(page)})`
+    `- [${page === ROUTES.DPA ? "Data processing addendum" : page.slice(1).replace(/^./u, (letter) => letter.toUpperCase())}](${pageUrl(page)})`
 ).join("\n")}
 
 ## Docs

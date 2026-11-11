@@ -62,6 +62,9 @@ export const ROUTES = {
   PRO: "/pro",
   PRIVACY: "/privacy",
   REFUNDS: "/refunds",
+  SECURITY: "/security",
+  SUBPROCESSORS: "/subprocessors",
+  DPA: "/dpa",
   SIGN_IN: "/sign-in",
   // Dev only (vite.config.ts drops it from production builds).
   SHOWCASE: "/showcase",
@@ -112,6 +115,9 @@ export const STATIC_PAGES: readonly string[] = [
   ROUTES.PRIVACY,
   ROUTES.REFUNDS,
   ROUTES.TERMS,
+  ROUTES.SUBPROCESSORS,
+  ROUTES.SECURITY,
+  ROUTES.DPA,
 ];
 
 /**

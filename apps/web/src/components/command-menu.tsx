@@ -70,7 +70,10 @@ type PagePath = (typeof ROUTES)[
   | "CONTACT"
   | "PRIVACY"
   | "TERMS"
-  | "REFUNDS"];
+  | "REFUNDS"
+  | "SUBPROCESSORS"
+  | "SECURITY"
+  | "DPA"];
 
 interface SearchData {
   videos: MotionVideo[];
@@ -526,6 +529,16 @@ export const CommandMenu = () => {
           page(ROUTES.TERMS, footer.terms.value, "terms"),
           page(ROUTES.PRIVACY, footer.privacy.value, "privacy"),
           page(ROUTES.REFUNDS, footer.refunds.value, "refunds"),
+          page(
+            ROUTES.SUBPROCESSORS,
+            footer.subprocessors.value,
+            "subprocessors"
+          ),
+          page(ROUTES.SECURITY, footer.security.value, "security"),
+          page(ROUTES.DPA, footer.dpa.value, "dpa", [
+            "gdpr",
+            "data processing",
+          ]),
         ],
       },
       {
