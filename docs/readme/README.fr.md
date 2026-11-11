@@ -29,8 +29,9 @@ Un répertoire de vidéos de motion design créées avec l'IA et du code, avec l
 - 🎞️ **Rendu depuis le code** — Les vidéos sont écrites en code, pas en timelines : chaque image reste modifiable, reproductible et versionnée.
 - 🤖 **Compatible avec tout agent** — Conçu pour Claude Code, Codex, Cursor, GitHub Copilot et d'autres agents de codage.
 - 🛰️ **Serveur MCP** — Cherchez des vidéos, récupérez des prompts et parcourez outils et studios motion depuis n'importe quel client MCP.
-- 🎛️ **Moves** — Chaque technique de motion nommée, avec un prompt prêt à copier et les paramètres à régler.
-- 🔖 **Collections et favoris** — Enregistrez des vidéos, suivez des créateurs et gardez vos références au même endroit.
+- 🎛️ **Moves** — Chaque technique de motion nommée, avec les paramètres à régler et un prompt prêt à copier dans Pro.
+- 💳 **Pro et Business** — Le prompt de chaque move, les modèles de prompt complets avec le personnalisateur, la skill d’agent Pro et les outils MCP Pro. Business ajoute des places pour votre équipe.
+- 🔖 **Favoris** — Enregistrez des vidéos, des outils, des studios, des skills et des extras, et gardez vos références au même endroit.
 - 🌍 **Localisé** — Anglais, 中文, 日本語, 한국어, Español, Français, Português, Deutsch et Русский.
 
 ## Communauté
@@ -86,7 +87,7 @@ N'ouvrez pas d'issue publique pour les vulnérabilités de sécurité. Suivez [S
 
 ## Licence
 
-Le code source du site web est publié sous la [licence MIT](../../LICENSE). Le pack de skills MotionVideo, le nom de la marque et le logotype ne sont pas couverts par cette licence ; le pack de skills est vendu séparément selon ses propres [conditions](https://motionvideo.xyz/terms).
+Le code source du site web est publié sous la [licence MIT](../../LICENSE). Le nom de la marque MotionVideo, le logotype, la skill d’agent Pro et les prompts Pro ne sont pas couverts par cette licence ; la skill et les prompts sont inclus dans les formules Pro et Business selon leurs propres [conditions](https://motionvideo.xyz/terms).
 
 <div align="center">
 <br />

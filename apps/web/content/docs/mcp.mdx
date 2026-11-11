@@ -9,6 +9,7 @@ The server provides:
 
 - **Four free read-only tools:** `search-videos`, `get-video`, `list-categories` and `browse-directory`.
 - **Two Pro tools:** `search-moves` and `get-move-prompt`. They need you to sign in with an account that has Pro or Business.
+- **Two account tools:** `list-bookmarks` reads your saved items, optionally filtered by kind, and `my-featured` reads your featured community submissions. They need a free sign-in.
 - **Two resources:** `motionvideo://catalog/overview` and `motionvideo://videos/{slug}`. They need a free sign-in.
 - **One prompt:** `remix-video`. It turns an entry's original prompt into a brief your agent can adapt. It needs a free sign-in.
 - **One skill:** `motionvideo`. It teaches agents the search → pull prompt → adapt → credit workflow. The plugin bundles include it.
@@ -22,7 +23,7 @@ https://mcp.motionvideo.xyz/mcp
 | Property | Value |
 | --- | --- |
 | Transport | Streamable HTTP |
-| Authentication | OAuth 2.1 sign-in with your motionvideo.xyz account, only where needed. The catalog tools work anonymously. The resources and the `remix-video` prompt need a free sign-in. The [Pro tools](#pro-tools) need a Pro or Business plan. |
+| Authentication | OAuth 2.1 sign-in with your motionvideo.xyz account, only where needed. The catalog tools work anonymously. The resources, the `remix-video` prompt and the account tools need a free sign-in. The [Pro tools](#pro-tools) need a Pro or Business plan. Clients without OAuth get only the catalog tools. |
 | Access | Read-only. Nothing on the site can be changed from chat. |
 | Data | Fetched live from the site's public [catalog endpoints](/docs/api). The Pro tools read the site's `/api/mcp/moves` endpoint with your sign-in. |
 | License | MIT. The MotionVideo brand and catalog content belong to motionvideo.xyz. |
@@ -199,12 +200,12 @@ When you need production help, `browse-directory` lists tools and studios.
 
 ## Connect your client
 
-Every client uses the same server URL. You don't set up any auth in the client: the catalog tools work right away, and when a resource, the prompt or a Pro tool needs a sign-in, your client opens the motionvideo.xyz sign-in.
+Every client uses the same server URL. Leave authentication on OAuth (most clients discover it from the server by themselves): the catalog tools work right away, and when a resource, the prompt, an account tool or a Pro tool needs a sign-in, your client opens the motionvideo.xyz sign-in. Don't force **No Auth** or **No sign-in**, or only the catalog tools work.
 
 <Tabs items={["Claude", "Claude Code", "ChatGPT", "Cursor", "VS Code", "Grok", "More agents", "Any client"]}>
 <Tab value="Claude">
 
-Open **Settings → Connectors → Add custom connector** and paste the server URL. The catalog tools work without signing in.
+Open **Settings → Connectors → Add custom connector** and paste the server URL. The catalog tools work without signing in; Claude opens the motionvideo.xyz sign-in when a tool needs it.
 
 </Tab>
 <Tab value="Claude Code">
@@ -226,7 +227,7 @@ The plugin adds the server and the `motionvideo` skill.
 </Tab>
 <Tab value="ChatGPT">
 
-Open **Settings → Apps → Advanced → Create app**, paste the server URL and choose **No Auth**.
+Open **Settings → Apps → Advanced → Create app**, paste the server URL and choose **OAuth** for authentication. ChatGPT finds the motionvideo.xyz sign-in on its own, so there's no client ID to enter.
 
 </Tab>
 <Tab value="Cursor">
@@ -271,7 +272,7 @@ For the skill in agents without a plugin install (Amp, MiMo Code, Pi), copy `ski
 </Tab>
 <Tab value="Any client">
 
-Any MCP client that supports remote servers can connect: add the server URL as a Streamable HTTP server, with no authentication settings.
+Any MCP client that supports remote servers can connect: add the server URL as a Streamable HTTP server and let the client discover OAuth from it. Clients without OAuth get only the catalog tools.
 
 </Tab>
 </Tabs>
@@ -284,7 +285,7 @@ The repository is also a plugin marketplace. One [Agent Plugin](https://agent-pl
 .claude-plugin/plugin.json   Claude manifest
 .mcp.json                    Claude MCP wiring
 plugin.json                  OpenAI portable manifest
-mcp.json                     portable MCP wiring (streamable-http, no auth)
+mcp.json                     portable MCP wiring (streamable-http, OAuth discovered from the server)
 kimi.plugin.json             Kimi Code manifest
 skills/motionvideo/          the motionvideo skill
 assets/                      icon and screenshots

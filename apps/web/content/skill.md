@@ -9,14 +9,14 @@ description: Use when the user wants motion video ideas, references or prompts f
 
 ## 1. Connect the MCP server
 
-Server URL (free, no sign-in): `https://mcp.motionvideo.xyz/mcp`
+Server URL: `https://mcp.motionvideo.xyz/mcp`. The catalog tools are free and work without signing in. The resources, the `remix-video` prompt, the account tools (`list-bookmarks`, `my-featured`) and the Pro tools sign in with OAuth, so leave the client's authentication on OAuth rather than No Auth.
 
 - Claude Code: run `claude plugin marketplace add motionvideohq/motionvideo-mcp`, then `/plugin install motionvideo` inside Claude Code.
 - Cursor: open https://cursor.com/install-mcp?name=motionvideo&config=eyJ1cmwiOiAiaHR0cHM6Ly9tY3AubW90aW9udmlkZW8ueHl6L21jcCJ9 or Customize → MCPs → add the URL.
 - VS Code: open `vscode:mcp/install?%7B%22name%22%3A%22motionvideo%22%2C%22type%22%3A%22http%22%2C%22url%22%3A%22https%3A%2F%2Fmcp.motionvideo.xyz%2Fmcp%22%7D`.
 - Grok CLI: `grok mcp add --transport http motionvideo https://mcp.motionvideo.xyz/mcp`
 - Claude: Settings → Connectors → Add custom connector → paste the URL.
-- ChatGPT: Settings → Apps → Advanced → Create app → paste the URL, No Auth.
+- ChatGPT: Settings → Apps → Advanced → Create app → paste the URL, Authentication: OAuth.
 - Other clients (Amp, Droid, Gemini CLI, Antigravity, Kimi Code, Kiro, Devin and more): see https://github.com/motionvideohq/motionvideo-mcp/blob/main/plugins/README.md, or point the client at the URL.
 
 Full setup: https://motionvideo.xyz/docs/mcp

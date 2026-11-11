@@ -29,8 +29,9 @@
 - 🎞️ **由代码渲染** — 视频用代码编写，而不是时间线，因此每一帧都可编辑、可复现，并可进行版本管理。
 - 🤖 **兼容任意智能体** — 为 Claude Code、Codex、Cursor、GitHub Copilot 等编程智能体打造。
 - 🛰️ **MCP 服务器** — 在任意 MCP 客户端中搜索视频、获取提示词，并浏览动效工具和工作室。
-- 🎛️ **Moves** — 收录每一种具名动效手法，附带可直接复制的提示词和可调参数。
-- 🔖 **收藏与书签** — 保存视频、关注创作者，把你的参考资料集中在一处。
+- 🎛️ **Moves** — 收录每一种具名动效手法，附带可调参数，Pro 中还可获取可直接复制的提示词。
+- 💳 **Pro 与 Business** — 每个动效技法的提示词、带自定义器的完整提示词模板、Pro 智能体技能和 Pro MCP 工具。Business 为你的团队增加席位。
+- 🔖 **书签** — 保存视频、工具、工作室、技能和扩展资源，把你的参考资料集中在一处。
 - 🌍 **多语言** — 英语、中文、日本語、한국어、Español、Français、Português、Deutsch、Русский。
 
 ## 社区
@@ -86,7 +87,7 @@ MotionVideo 社区在 [GitHub](https://github.com/motionvideohq/motionvideo.xyz)
 
 ## 许可证
 
-网站源代码以 [MIT 许可证](../../LICENSE) 发布。MotionVideo 技能包、品牌名称和标志不在本许可证范围内；技能包依据其自身的[条款](https://motionvideo.xyz/terms)单独销售。
+网站源代码以 [MIT 许可证](../../LICENSE) 发布。MotionVideo 品牌名称、标志、Pro 智能体技能和 Pro 提示词不在本许可证范围内；技能和提示词依据其自身的[条款](https://motionvideo.xyz/terms)包含在 Pro 和 Business 方案中。
 
 <div align="center">
 <br />

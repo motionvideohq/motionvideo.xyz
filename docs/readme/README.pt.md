@@ -29,8 +29,9 @@ Um diretório de vídeos de motion design criados com IA e código, com os promp
 - 🎞️ **Renderizado a partir de código** — Os vídeos são escritos em código, não em timelines, por isso cada frame permanece editável, reproduzível e versionado.
 - 🤖 **Funciona com qualquer agente** — Criado para Claude Code, Codex, Cursor, GitHub Copilot e outros agentes de programação.
 - 🛰️ **Servidor MCP** — Pesquise vídeos, obtenha prompts e explore ferramentas e estúdios de motion a partir de qualquer cliente MCP.
-- 🎛️ **Moves** — Cada técnica de motion com nome, com um prompt pronto a copiar e os parâmetros para ajustar.
-- 🔖 **Coleções e marcadores** — Guarde vídeos, siga criadores e mantenha as suas referências num só lugar.
+- 🎛️ **Moves** — Cada técnica de motion com nome, com os parâmetros para ajustar e um prompt pronto a copiar no Pro.
+- 💳 **Pro e Business** — O prompt de cada move, os templates de prompt completos com o personalizador, a skill de agente Pro e as ferramentas MCP Pro. O Business acrescenta lugares para a sua equipa.
+- 🔖 **Marcadores** — Guarde vídeos, ferramentas, estúdios, skills e extras, e mantenha as suas referências num só lugar.
 - 🌍 **Localizado** — Inglês, 中文, 日本語, 한국어, Español, Français, Português, Deutsch e Русский.
 
 ## Comunidade
@@ -86,7 +87,7 @@ Não abra issues públicas para vulnerabilidades de segurança. Siga o [SECURITY
 
 ## Licença
 
-O código-fonte do site é distribuído sob a [Licença MIT](../../LICENSE). O pacote de skills do MotionVideo, o nome da marca e o logotipo não são cobertos por esta licença; o pacote de skills é vendido separadamente sob seus próprios [termos](https://motionvideo.xyz/terms).
+O código-fonte do site é distribuído sob a [Licença MIT](../../LICENSE). O nome da marca MotionVideo, o logotipo, a skill de agente Pro e os prompts Pro não são cobertos por esta licença; a skill e os prompts vêm com os planos Pro e Business sob os seus próprios [termos](https://motionvideo.xyz/terms).
 
 <div align="center">
 <br />

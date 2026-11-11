@@ -29,8 +29,9 @@ Un directorio de vídeos de motion design creados con IA y código, con los prom
 - 🎞️ **Renderizado desde código** — Los vídeos se escriben en código, no en líneas de tiempo, así que cada fotograma sigue siendo editable, repetible y versionado.
 - 🤖 **Funciona con cualquier agente** — Creado para Claude Code, Codex, Cursor, GitHub Copilot y otros agentes de programación.
 - 🛰️ **Servidor MCP** — Busca vídeos, obtén prompts y explora herramientas y estudios de motion desde cualquier cliente MCP.
-- 🎛️ **Moves** — Cada técnica de motion con nombre, con un prompt listo para copiar y los parámetros para ajustarla.
-- 🔖 **Colecciones y marcadores** — Guarda vídeos, sigue a creadores y mantén tus referencias en un solo lugar.
+- 🎛️ **Moves** — Cada técnica de motion con nombre, con los parámetros para ajustarla y un prompt listo para copiar en Pro.
+- 💳 **Pro y Business** — El prompt de cada move, las plantillas de prompt completas con el personalizador, la skill de agente Pro y las herramientas MCP Pro. Business añade puestos para tu equipo.
+- 🔖 **Marcadores** — Guarda vídeos, herramientas, estudios, skills y extras, y mantén tus referencias en un solo lugar.
 - 🌍 **Localizado** — Inglés, 中文, 日本語, 한국어, Español, Français, Português, Deutsch y Русский.
 
 ## Comunidad
@@ -86,7 +87,7 @@ No abras issues públicos para vulnerabilidades de seguridad. Sigue [SECURITY.md
 
 ## Licencia
 
-El código fuente del sitio web se publica bajo la [Licencia MIT](../../LICENSE). El paquete de skills de MotionVideo, el nombre de la marca y el logotipo no están cubiertos por esta licencia; el paquete de skills se vende por separado bajo sus propios [términos](https://motionvideo.xyz/terms).
+El código fuente del sitio web se publica bajo la [Licencia MIT](../../LICENSE). El nombre de la marca MotionVideo, el logotipo, la skill de agente Pro y los prompts Pro no están cubiertos por esta licencia; la skill y los prompts se incluyen en los planes Pro y Business bajo sus propios [términos](https://motionvideo.xyz/terms).
 
 <div align="center">
 <br />

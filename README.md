@@ -30,8 +30,9 @@
 - 🎞️ **Rendered from code** — Videos are written in code, not timelines, so every frame stays editable, repeatable, and version-controlled.
 - 🤖 **Works with any agent** — Built for Claude Code, Codex, Cursor, GitHub Copilot, and other coding agents.
 - 🛰️ **MCP server** — Search videos, pull prompts, and browse motion tools and studios from any MCP client.
-- 🎛️ **Moves** — Every named motion technique with a copy-ready prompt and the parameters to tune it.
-- 🔖 **Collections and bookmarks** — Save videos, follow creators, and keep your references in one place.
+- 🎛️ **Moves** — Every named motion technique, with the parameters to tune it and a copy-ready prompt in Pro.
+- 💳 **Pro and Business** — Every move’s prompt, the full prompt templates with the customizer, the Pro agent skill, and the Pro MCP tools. Business adds seats for your team.
+- 🔖 **Bookmarks** — Save videos, tools, studios, skills, and extras, and keep your references in one place.
 - 🌍 **Localized** — English, 中文, 日本語, 한국어, Español, Français, Português, Deutsch, and Русский.
 
 ## Community
@@ -87,7 +88,7 @@ Please do not open public issues for security vulnerabilities. Follow [SECURITY.
 
 ## License
 
-The website source code is released under the [MIT License](LICENSE). The MotionVideo skill pack, brand name, and logomark are not covered by this license; the skill pack is sold separately under its own [terms](https://motionvideo.xyz/terms).
+The website source code is released under the [MIT License](LICENSE). The MotionVideo brand name, logomark, Pro agent skill, and Pro prompts are not covered by this license; the skill and prompts come with the Pro and Business plans under their own [terms](https://motionvideo.xyz/terms).
 
 <div align="center">
 <br />
