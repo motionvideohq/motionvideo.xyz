@@ -141,6 +141,14 @@ const renderProLaunch = () => {
 
 const HTML = renderProLaunch();
 
+// Broadcasts take the inline fallback (`{{{FIRST_NAME|there}}}`); Templates
+// reject the pipe, and FIRST_NAME is a reserved Contact variable they can't
+// declare a fallback for, so the template copy uses the bare variable.
+const TEMPLATE_HTML = HTML.replaceAll(
+  "{{{FIRST_NAME|there}}}",
+  "{{{FIRST_NAME}}}"
+);
+
 const ensureTemplate = async () => {
   const existing = await resend("GET", `/templates/${TEMPLATE_ALIAS}`);
   if (existing.ok) {
@@ -150,7 +158,7 @@ const ensureTemplate = async () => {
   const created = await must("POST", "/templates", {
     alias: TEMPLATE_ALIAS,
     from: FROM,
-    html: HTML,
+    html: TEMPLATE_HTML,
     name: TEMPLATE_NAME,
     subject: SUBJECT,
   });

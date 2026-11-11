@@ -11,10 +11,10 @@ How MotionVideo sends email: which provider sends what, from which address, whic
 | Sender | Every app email goes out as `"Aniket @ MotionVideo" <hello@motionvideo.xyz>` (`EMAIL_FROM` in `apps/web/wrangler.jsonc`) |
 | Code | One seam, `sendEmail()` in `apps/web/src/server/email.ts`; React Email templates in `apps/web/src/emails` (`_layout.tsx`, `sign-in.tsx`, `welcome.tsx`, `pro-launch.tsx`) |
 | Inbound | `hello@motionvideo.xyz` (Cloudflare Email Routing to the personal inbox) |
-| Contacts | None in Resend yet. 387 accounts in D1 (`user` table), none opted into marketing |
+| Contacts | Every account synced into the Resend segment "MotionVideo users" by `pnpm resend:setup` (2026-11-12). Disclosed under "Product emails" on the privacy page; every marketing email carries the unsubscribe link |
 | Settings toggle | "MotionVideo updates" on `/dashboard/settings` is a stub: `useEmailUpdates` keeps it in `localStorage` only |
 | Scheduled work | Daily Cron Trigger (`0 3 * * *`, `apps/web/wrangler.jsonc`) runs `scheduled()` in `src/server.ts`, which deletes expired sessions and sign-in codes (`src/server/cleanup.ts`) |
-| Pro launch | `pnpm resend:setup` (`apps/web/scripts/setup-resend.mjs`) syncs accounts into the Resend segment "MotionVideo users", uploads `pro-launch.tsx` as the template "MotionVideo Pro launch", and creates a draft Broadcast. Not run yet |
+| Pro launch | `pnpm resend:setup` (`apps/web/scripts/setup-resend.mjs`) syncs accounts into the Resend segment "MotionVideo users", uploads `pro-launch.tsx` as the template "MotionVideo Pro launch", and creates a draft Broadcast (not sent). Run 2026-11-12; rerun to add new accounts |
 | Account deletion | Self-serve from Settings (`src/server/account-functions.ts`); also deletes the Resend Contact |
 
 ## The split
