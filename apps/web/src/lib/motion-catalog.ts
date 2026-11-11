@@ -63,6 +63,7 @@ export const MOTION_MODELS = [
   "Mythos 5.2",
   "GPT-6 Astra",
   "Gemini 4 Argon",
+  "Gemini 4 Carbon",
 ] as const;
 export type MotionModel = (typeof MOTION_MODELS)[number];
 /** Each model's full name, for page titles and copy. */
@@ -76,6 +77,7 @@ export const MOTION_MODEL_NAMES: Record<MotionModel, string> = {
   "Mythos 5.2": "Claude Mythos 5.2",
   "GPT-6 Astra": "GPT-6 Astra",
   "Gemini 4 Argon": "Gemini 4 Argon",
+  "Gemini 4 Carbon": "Gemini 4 Carbon",
 };
 // Model families, named like the models (Claude, GPT, Gemini) rather than the
 // labs, so the gallery's model filter can nest each family's models.
@@ -91,6 +93,7 @@ export const MOTION_MODEL_FAMILY: Record<MotionModel, MotionModelFamily> = {
   "Mythos 5.2": "Claude",
   "GPT-6 Astra": "GPT",
   "Gemini 4 Argon": "Gemini",
+  "Gemini 4 Carbon": "Gemini",
 };
 export const motionModelSlug = (model: string) =>
   model.toLowerCase().replaceAll(/[^a-z\d]+/gu, "-");
