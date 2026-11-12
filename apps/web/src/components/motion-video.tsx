@@ -1265,9 +1265,14 @@ export const MotionVideoOverlay = ({
         {types.length > 0 && (
           <DetailRow label={content.type}>
             {types.map((tag) => (
-              <span key={tag}>
+              <Link
+                key={tag}
+                to={ROUTES.TYPE}
+                params={{ type: tag }}
+                className="hover:underline"
+              >
                 {tag === "prompt" ? content.prompt : content.skill}
-              </span>
+              </Link>
             ))}
           </DetailRow>
         )}
