@@ -7,8 +7,20 @@ import type { MotionVideo } from "./motion-catalog";
 // translation; every other locale keeps the creator's original, since
 // prompts aren't translated into those languages.
 
-/** Languages a translated prompt was originally written in. */
-export type PromptLanguage = "zh" | "ja";
+/** Languages a translated prompt was originally written in, in their own script. */
+export const LANGUAGE_NAMES = {
+  ar: "العربية",
+  cs: "Čeština",
+  de: "Deutsch",
+  es: "Español",
+  fr: "Français",
+  ja: "日本語",
+  ko: "한국어",
+  pt: "Português",
+  tr: "Türkçe",
+  zh: "中文",
+} as const;
+export type PromptLanguage = keyof typeof LANGUAGE_NAMES;
 
 interface PromptTranslation {
   from: PromptLanguage;

@@ -48,14 +48,16 @@ import {
   findEffort,
   findIterations,
   findMotionCategory,
+  motionModelSlug,
 } from "@/lib/motion-catalog";
 import type {
   GalleryScope,
   GallerySearch,
   MotionVideo,
 } from "@/lib/motion-catalog";
+import { fillTemplate } from "@/lib/motion-video-route";
 import { templateForVideo } from "@/lib/prompt-templates";
-import { promptFor } from "@/lib/prompt-translations";
+import { promptFor, LANGUAGE_NAMES } from "@/lib/prompt-translations";
 import type { PromptLanguage } from "@/lib/prompt-translations";
 import { relativeDate } from "@/lib/relative-date";
 import { cn } from "@/lib/utils";
@@ -475,7 +477,15 @@ const MakingRows = ({ video }: { video: MotionVideo }) => {
   return (
     <>
       {video.model && (
-        <DetailRow label={content.model}>{video.model}</DetailRow>
+        <DetailRow label={content.model}>
+          <Link
+            to={ROUTES.MODEL}
+            params={{ model: motionModelSlug(video.model) }}
+            className="hover:underline"
+          >
+            {video.model}
+          </Link>
+        </DetailRow>
       )}
       {video.stack && (
         <DetailRow label={content.stack}>{video.stack}</DetailRow>
@@ -570,6 +580,7 @@ const PromptText = ({
           id={id}
           ref={measure}
           lang={lang}
+          dir="auto"
           className={cn(
             "bg-muted rounded-xl p-4 font-serif text-sm leading-relaxed whitespace-pre-wrap",
             // Folded to six lines (plus the padding).
@@ -613,9 +624,6 @@ const PromptText = ({
     </div>
   );
 };
-
-// The original's language in its own script: "中文 → EN" reads in any locale.
-const LANGUAGE_NAMES = { zh: "中文", ja: "日本語" } as const;
 
 // Hosts the detail view's source button names, by registrable domain.
 const SOURCE_ACTIONS = {
@@ -785,16 +793,16 @@ const TranslationToggle = ({
   onToggle: () => void;
 }) => {
   const content = useIntlayer("motion-gallery");
+  const languageName = LANGUAGE_NAMES[language];
   return (
     <p className="text-muted-foreground flex items-center gap-2 text-xs">
       <span
-        title={
-          showOriginal
-            ? content.originalIn[language].value
-            : content.translatedFrom[language].value
-        }
+        title={fillTemplate(
+          (showOriginal ? content.originalIn : content.translatedFrom).value,
+          { language: languageName }
+        )}
       >
-        {LANGUAGE_NAMES[language]}
+        <span dir="auto">{languageName}</span>
         {!showOriginal && " → EN"}
       </span>
       <span aria-hidden="true">·</span>
@@ -1257,9 +1265,14 @@ export const MotionVideoOverlay = ({
         {types.length > 0 && (
           <DetailRow label={content.type}>
             {types.map((tag) => (
-              <span key={tag}>
+              <Link
+                key={tag}
+                to={ROUTES.TYPE}
+                params={{ type: tag }}
+                className="hover:underline"
+              >
                 {tag === "prompt" ? content.prompt : content.skill}
-              </span>
+              </Link>
             ))}
           </DetailRow>
         )}
