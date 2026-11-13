@@ -14,11 +14,11 @@ import { CtaButton, EmailLayout, Paragraph, unsubscribeLink } from "./_layout";
 // Black Friday draft 2 of 4, sent the morning the sale opens (Monday). See
 // _black-friday.tsx.
 
-export const blackFridayLaunchSubject = `${BLACK_FRIDAY.percentOff}% off ${SITE.NAME} Pro, this week only`;
+export const blackFridayLaunchSubject = `${BLACK_FRIDAY.percentOff}% off ${SITE.NAME} Pro, through Cyber Monday`;
 
 const BlackFridayLaunchEmail = () => (
   <EmailLayout
-    heading="Black Friday week is on"
+    heading="The Black Friday sale is on"
     preview={`Annual plans and Pro Lifetime are ${BLACK_FRIDAY.percentOff}% off through Cyber Monday.`}
     reason="You received this because you have an account on"
     footer={unsubscribeLink}

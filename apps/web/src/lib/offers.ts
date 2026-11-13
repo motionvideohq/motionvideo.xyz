@@ -79,12 +79,18 @@ export const OFFER_RULES = [
     // Black Friday week, Pacific time, around Thanksgiving (a Thursday): the
     // teaser from the Monday a week before, the sale from the Monday before,
     // the last call from Saturday, the end after Cyber Monday. Daylight saving
-    // has ended by then, so it is always UTC−8.
+    // has ended by then, so it is always UTC−8. 2026 opened early, on Friday
+    // November 13, with no teaser.
     schedule: (year) => {
       const thursday = thanksgivingDay(year);
+      const startsAt =
+        year === 2026
+          ? pstMidnight(2026, 10, 13)
+          : pstMidnight(year, 10, thursday - 3);
       return {
-        teaseAt: pstMidnight(year, 10, thursday - 10),
-        startsAt: pstMidnight(year, 10, thursday - 3),
+        teaseAt:
+          year === 2026 ? startsAt : pstMidnight(year, 10, thursday - 10),
+        startsAt,
         lastCallAt: pstMidnight(year, 10, thursday + 2),
         endsAt: pstMidnight(year, 10, thursday + 5),
       };

@@ -16,14 +16,14 @@ export const blackFridayLastCallSubject = `Last day: ${BLACK_FRIDAY.percentOff}%
 
 const BlackFridayLastCallEmail = () => (
   <EmailLayout
-    heading="Last day of Black Friday week"
+    heading="Last day of the Black Friday sale"
     preview={`${BLACK_FRIDAY.percentOff}% off annual plans and Pro Lifetime ends at midnight, Pacific time.`}
     reason="You received this because you have an account on"
     footer={unsubscribeLink}
   >
     <Paragraph>Hi {"{{{FIRST_NAME|there}}}"},</Paragraph>
     <Paragraph>
-      Today is the last day of {SITE.NAME}’s Black Friday week. At midnight
+      Today is the last day of {SITE.NAME}’s Black Friday sale. At midnight
       Pacific time tonight, prices go back to normal until next year.
     </Paragraph>
     <SalePrices />
