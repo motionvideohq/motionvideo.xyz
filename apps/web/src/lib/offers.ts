@@ -14,9 +14,10 @@ import { thanksgivingDay } from "./seasons.ts";
 //              (naming the discount early makes buyers wait for it)
 //   sale       the banner, the prices on /pro and the code at checkout
 //   last-call  the same, with the banner saying it ends soon
-// A sale skips visitors whose country already gets a purchasing power parity
-// price (the two would stack), and the code only takes for a customer's first
-// purchase (Dodo's `first_time` eligibility).
+// The banner shows in every country, but the sale prices and the code skip
+// visitors whose country already gets a purchasing power parity price (the
+// two would stack): they get the parity price. The code only takes for a
+// customer's first purchase (Dodo's `first_time` eligibility).
 
 export type OfferPhase = "teaser" | "sale" | "last-call";
 

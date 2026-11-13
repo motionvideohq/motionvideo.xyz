@@ -13,7 +13,7 @@ import type { OfferPhase } from "@/lib/offers";
 import { getMyPlan } from "@/server/plan-functions";
 
 // The offer banner above every page. The worker marks the page with the offer
-// running for this visitor and its phase (`<html data-offer=
+// running and its phase (`<html data-offer=
 // "black-friday-2026" data-offer-phase="teaser">`, see src/server.ts),
 // prerendered pages included, so the banner can't be decided in the render.
 // Instead every offer's bar for every phase is rendered hidden, and

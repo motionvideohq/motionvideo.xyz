@@ -18,7 +18,6 @@ import { currentOffer } from "@/lib/offers";
 import { UPLOAD_PATH_PREFIX } from "@/lib/uploads";
 import { deleteExpiredAuthRows } from "@/server/cleanup";
 import { oauthPreflight, withOAuthCors } from "@/server/oauth-cors";
-import { visitorOffer } from "@/server/visitor-pricing";
 
 // Durable Object classes must be exported from the Worker entry.
 export { Presence } from "@/server/presence";
@@ -115,7 +114,9 @@ const withSecurityHeaders = (response: Response) => {
 };
 
 /**
- * While an offer runs for this visitor (src/lib/offers.ts), teaser included,
+ * While an offer runs (src/lib/offers.ts), teaser included, for every
+ * visitor (parity countries too: their prices skip the sale, see
+ * src/server/visitor-pricing.ts),
  * marks the page (`<html data-offer="black-friday-2026" data-offer-phase=
  * "sale">`) so its banner shows (OfferBanner). Done here, not in the render,
  * so prerendered pages get it too. The marked copy goes out without
@@ -123,14 +124,14 @@ const withSecurityHeaders = (response: Response) => {
  * one, or keep the mark once the offer is over. Build-time renders
  * (PRERENDER_HEADER) stay unmarked, or the mark would ship in the file.
  */
-const withOffer = async (request: Request, response: Response) => {
+const withOffer = (request: Request, response: Response) => {
   if (
     !response.headers.get("Content-Type")?.startsWith("text/html") ||
     request.headers.has(PRERENDER_HEADER)
   ) {
     return response;
   }
-  const current = await visitorOffer(request);
+  const current = currentOffer(Date.now());
   if (!current) {
     return response;
   }
@@ -231,7 +232,7 @@ export default {
       return preflight;
     }
     return withSecurityHeaders(
-      withOAuthCors(request, await withOffer(request, await route(request)))
+      withOAuthCors(request, withOffer(request, await route(request)))
     );
   },
   // Daily Cron Trigger (wrangler.jsonc `triggers`).

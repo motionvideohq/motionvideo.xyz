@@ -1,13 +1,15 @@
 import type { Plan, PlanBilling } from "@/constants/plans";
-import { activeOffer, currentOffer, offerCovers } from "@/lib/offers";
-import type { Offer, OfferPhase } from "@/lib/offers";
+import { activeOffer, offerCovers } from "@/lib/offers";
+import type { Offer } from "@/lib/offers";
 
 import { parityPercentOff } from "./dodo";
 import type { CheckoutDiscounts } from "./dodo";
 
 // What a visitor pays depends on where they are: Dodo's purchasing power
 // parity lowers the price in some countries, and a running sale (src/lib/
-// offers.ts) skips those countries, since the two would stack.
+// offers.ts) doesn't take off there too, since the two would stack. Those
+// visitors still see the sale's banner; /pro and checkout give them the
+// parity price.
 
 // Percent off by country. Dodo's percentages change only when edited in its
 // dashboard, so one preview per country per isolate every few hours is plenty.
@@ -36,32 +38,24 @@ export const parityFor = async (country: string): Promise<number> => {
 };
 
 /**
- * The offer for this visitor right now, teaser included, with its phase:
- * none when their country has a parity price, or when that can't be checked
- * (rather than risk stacking). The worker marks pages with it (banner).
+ * The sale on for this visitor right now (not a teaser), or null: none when
+ * their country has a parity price, or when that can't be checked (rather
+ * than risk stacking). Feeds the prices on /pro and the code at checkout.
  */
-export const visitorOffer = async (
+export const offerForVisitor = async (
   request: Request
-): Promise<{ offer: Offer; phase: OfferPhase } | null> => {
-  const current = currentOffer(Date.now());
+): Promise<Offer | null> => {
+  const offer = activeOffer(Date.now());
   const country = visitorCountry(request);
-  if (!current || !country) {
-    return current;
+  if (!offer || !country) {
+    return offer;
   }
   try {
-    return (await parityFor(country)) > 0 ? null : current;
+    return (await parityFor(country)) > 0 ? null : offer;
   } catch (error) {
     console.error("Parity preview failed", country, error);
     return null;
   }
-};
-
-/** The sale on for this visitor right now (not a teaser), or null. */
-export const offerForVisitor = async (
-  request: Request
-): Promise<Offer | null> => {
-  const current = await visitorOffer(request);
-  return current && current.phase !== "teaser" ? current.offer : null;
 };
 
 /**
