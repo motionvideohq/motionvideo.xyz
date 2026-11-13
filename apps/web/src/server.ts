@@ -12,7 +12,7 @@ import {
   localizedPath,
   withoutDefaultLocale,
 } from "@/constants/locales";
-import { STATIC_PAGES } from "@/constants/routes";
+import { PRERENDER_HEADER, STATIC_PAGES } from "@/constants/routes";
 import { SITE } from "@/constants/site";
 import { currentOffer } from "@/lib/offers";
 import { UPLOAD_PATH_PREFIX } from "@/lib/uploads";
@@ -120,10 +120,14 @@ const withSecurityHeaders = (response: Response) => {
  * "sale">`) so its banner shows (OfferBanner). Done here, not in the render,
  * so prerendered pages get it too. The marked copy goes out without
  * validators: a browser can't then revalidate it against a cached unmarked
- * one, or keep the mark once the offer is over.
+ * one, or keep the mark once the offer is over. Build-time renders
+ * (PRERENDER_HEADER) stay unmarked, or the mark would ship in the file.
  */
 const withOffer = async (request: Request, response: Response) => {
-  if (!response.headers.get("Content-Type")?.startsWith("text/html")) {
+  if (
+    !response.headers.get("Content-Type")?.startsWith("text/html") ||
+    request.headers.has(PRERENDER_HEADER)
+  ) {
     return response;
   }
   const current = await visitorOffer(request);

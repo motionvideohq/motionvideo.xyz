@@ -8,7 +8,7 @@ import { defineConfig } from "vite";
 import { intlayer } from "vite-intlayer";
 
 import { LOCALES, localizedPath } from "./src/constants/locales.ts";
-import { STATIC_PAGES } from "./src/constants/routes.ts";
+import { PRERENDER_HEADER, STATIC_PAGES } from "./src/constants/routes.ts";
 
 // Every content page is prerendered once per locale, at the same URL the
 // router renders: `/about`, `/fr/about`, and so on.
@@ -70,6 +70,7 @@ const config = defineConfig(({ command }) => ({
         crawlLinks: false,
         enabled: true,
         filter: ({ path }) => STATIC_ROUTES.includes(path),
+        headers: { [PRERENDER_HEADER]: "1" },
       },
     }),
     viteReact(),

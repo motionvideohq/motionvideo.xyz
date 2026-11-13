@@ -121,6 +121,13 @@ export const STATIC_PAGES: readonly string[] = [
 ];
 
 /**
+ * Sent with each build-time render of a static page (vite.config.ts). The
+ * Worker leaves those renders unmarked (no offer banner, src/server.ts): the
+ * mark depends on the visitor and the day, so it's added per request instead.
+ */
+export const PRERENDER_HEADER = "X-MotionVideo-Prerender";
+
+/**
  * A docs page's Markdown (for agents and "Copy as Markdown"): /docs →
  * /docs.md, /docs/mcp → /docs/mcp.md. Unprefixed, and the file extension
  * keeps the server from redirecting it to a locale.
