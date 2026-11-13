@@ -1,0 +1,6 @@
+# Files in public/ that Workers static assets must never serve (merged into
+# dist/client/.assetsignore by @cloudflare/vite-plugin).
+.DS_Store
+._*
+Thumbs.db
+desktop.ini
