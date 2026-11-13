@@ -1572,10 +1572,11 @@ media-theme-sutro {
   animation: popover-flip-out 160ms var(--ease-exit) forwards;
 }
 
-/* /pro hero "Pro": the brand yellow as a slow-moving amber gradient clipped
-   to the text. The gradient starts and ends on the same stop and travels its
+/* The brand yellow as a slow-moving amber gradient, flowing left to right:
+   behind the offer banner (OfferBanner) and, clipped to the text, on the /pro
+   hero "Pro". The gradient starts and ends on the same stop and travels its
    own width, so the loop is seamless. Static under reduced motion. */
-@utility text-pro-gradient {
+@utility bg-pro-gradient {
   background-image: linear-gradient(
     100deg,
     color-mix(in oklab, var(--primary) 60%, oklch(0.666 0.179 58.318)),
@@ -1585,12 +1586,16 @@ media-theme-sutro {
     color-mix(in oklab, var(--primary) 60%, oklch(0.666 0.179 58.318))
   );
   background-size: 200% 100%;
-  background-clip: text;
-  color: transparent;
   animation: pro-gradient 6s linear infinite;
   @media (prefers-reduced-motion: reduce) {
     animation: none;
   }
+}
+
+@utility text-pro-gradient {
+  @apply bg-pro-gradient;
+  background-clip: text;
+  color: transparent;
 }
 
 @keyframes pro-gradient {

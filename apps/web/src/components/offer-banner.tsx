@@ -1,7 +1,6 @@
 import { useEffect } from "react";
 import { useIntlayer, useLocale } from "react-intlayer";
 import { ArrowRight } from "reicon-react/icons/ArrowRight";
-import { Xmark } from "reicon-react/icons/Xmark";
 
 import { LocalizedLink as Link } from "@/components/localized-link";
 import { hasPro } from "@/constants/plans";
@@ -10,6 +9,7 @@ import { useSession } from "@/lib/auth-client";
 import { fillTemplate } from "@/lib/motion-video-route";
 import { OFFER_RULES, upcomingOffers } from "@/lib/offers";
 import type { OfferPhase } from "@/lib/offers";
+import { cn } from "@/lib/utils";
 import { getMyPlan } from "@/server/plan-functions";
 
 // The offer banner above every page. The worker marks the page with the offer
@@ -17,32 +17,25 @@ import { getMyPlan } from "@/server/plan-functions";
 // "black-friday-2026" data-offer-phase="teaser">`, see src/server.ts),
 // prerendered pages included, so the banner can't be decided in the render.
 // Instead every offer's bar for every phase is rendered hidden, and
-// `offerScript`, before first paint, adds a style that shows the running one,
-// unless it was dismissed. No flash, no layout jump. A dismissal holds for
-// that phase only: the sale and the last call still show after the teaser.
+// `offerScript`, before first paint, adds a style that shows the running one.
+// No flash, no layout jump. During the sale the whole bar links to /pro. Its
+// background is the /pro hero's flowing amber gradient (`bg-pro-gradient`).
 
 const PHASES = ["teaser", "sale", "last-call"] as const satisfies OfferPhase[];
-const DISMISSED_KEY = "mv-offer-dismissed";
 const STYLE_ID = "offer-banner-style";
 
 /** Head script: shows the running bar (`data-offer` minus its year, and the phase). */
 export const offerScript = `(() => {
   const { offer, offerPhase } = document.documentElement.dataset;
-  if (!offer || !offerPhase || document.getElementById("${STYLE_ID}") || localStorage.getItem("${DISMISSED_KEY}") === offer + ":" + offerPhase) return;
+  if (!offer || !offerPhase || document.getElementById("${STYLE_ID}")) return;
   const style = document.createElement("style");
   style.id = "${STYLE_ID}";
   style.textContent = 'html [data-offer-banner="' + offer.replace(/-\\d+$/, "") + '"][data-offer-phase="' + offerPhase + '"]{display:flex}';
   document.head.append(style);
 })()`;
 
-/** Hides the bar and remembers it for the rest of this phase. */
-const dismiss = () => {
-  document.querySelector(`#${STYLE_ID}`)?.remove();
-  const { offer, offerPhase } = document.documentElement.dataset;
-  if (offer && offerPhase) {
-    localStorage.setItem(DISMISSED_KEY, `${offer}:${offerPhase}`);
-  }
-};
+const BAR =
+  "bg-pro-gradient text-cta-foreground hidden min-h-9 items-center justify-center px-4 py-2 text-sm print:hidden";
 
 const MESSAGE_KEY = {
   teaser: "teaser",
@@ -62,7 +55,7 @@ export const OfferBanner = () => {
   const signedIn = Boolean(session.data?.user);
 
   // Accounts with a plan aren't offered it (the code is for first purchases):
-  // once the session says so, the bar goes, as if dismissed.
+  // once the session says so, the bar goes for this page view.
   useEffect(() => {
     if (!signedIn || !document.querySelector(`#${STYLE_ID}`)) {
       return;
@@ -72,7 +65,7 @@ export const OfferBanner = () => {
       try {
         const access = await getMyPlan();
         if (current && access && hasPro(access)) {
-          dismiss();
+          document.querySelector(`#${STYLE_ID}`)?.remove();
         }
       } catch {
         // Unknown plan: the bar stays; the code's own eligibility still holds.
@@ -93,42 +86,49 @@ export const OfferBanner = () => {
 
   return OFFER_RULES.flatMap((rule) => {
     const offer = UPCOMING.find((candidate) => candidate.rule === rule.id);
-    return PHASES.map((phase) => (
-      <div
-        key={`${rule.id}-${phase}`}
-        data-offer-banner={rule.id}
-        data-offer-phase={phase}
-        className="from-cta-from to-cta-to text-cta-foreground relative hidden min-h-9 items-center justify-center bg-linear-to-r py-2 pr-12 pl-4 text-sm print:hidden"
-      >
-        <p className="text-center text-pretty">
-          {fillTemplate(content[rule.id][MESSAGE_KEY[phase]].value, {
-            date: offer ? startDay.format(offer.startsAt) : "",
-            percent: String(rule.percentOff),
-          })}
-          {/* The teaser only gives notice: no prices to see yet. */}
-          {phase !== "teaser" && (
-            <Link
-              to={ROUTES.PRO}
-              search={{ billing: "annual" }}
-              data-track="offer_banner"
-              data-track-offer={rule.id}
-              data-track-phase={phase}
-              className="ml-2 inline-flex items-center gap-1 font-semibold underline-offset-2 hover:underline"
-            >
-              {content.cta}
-              <ArrowRight aria-hidden="true" className="size-3.5" />
-            </Link>
+    return PHASES.map((phase) => {
+      const message = fillTemplate(content[rule.id][MESSAGE_KEY[phase]].value, {
+        date: offer ? startDay.format(offer.startsAt) : "",
+        percent: String(rule.percentOff),
+      });
+      const bar = {
+        "data-offer-banner": rule.id,
+        "data-offer-phase": phase,
+      };
+      // The teaser only gives notice: no prices to see yet, so no link.
+      if (phase === "teaser") {
+        return (
+          <div key={`${rule.id}-${phase}`} {...bar} className={BAR}>
+            <p className="text-center text-pretty">{message}</p>
+          </div>
+        );
+      }
+      return (
+        <Link
+          key={`${rule.id}-${phase}`}
+          {...bar}
+          to={ROUTES.PRO}
+          search={{ billing: "annual" }}
+          data-track="offer_banner"
+          data-track-offer={rule.id}
+          data-track-phase={phase}
+          className={cn(
+            BAR,
+            "group/offer focus-visible:ring-foreground/40 transition-[filter] duration-150 outline-none hover:brightness-105 focus-visible:ring-2 focus-visible:ring-inset motion-reduce:transition-none"
           )}
-        </p>
-        <button
-          type="button"
-          aria-label={content.dismiss.value}
-          onClick={dismiss}
-          className="absolute top-1/2 right-3 grid size-7 -translate-y-1/2 place-items-center rounded-full transition-colors hover:bg-black/10"
         >
-          <Xmark aria-hidden="true" className="size-4" />
-        </button>
-      </div>
-    ));
+          <p className="text-center text-pretty">
+            {message}
+            <span className="ml-2 inline-flex items-center gap-1 rounded-full bg-black/[0.08] px-2.5 py-0.5 font-semibold transition-colors duration-150 group-hover/offer:bg-black/85 group-hover/offer:text-white group-focus-visible/offer:bg-black/85 group-focus-visible/offer:text-white motion-reduce:transition-none">
+              {content.cta}
+              <ArrowRight
+                aria-hidden="true"
+                className="size-3.5 transition-transform duration-150 group-hover/offer:translate-x-0.5 motion-reduce:transition-none"
+              />
+            </span>
+          </p>
+        </Link>
+      );
+    });
   });
 };
