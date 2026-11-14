@@ -16,6 +16,7 @@ import { LivePresenceProvider } from "@/components/live-presence";
 import { LocaleProvider } from "@/components/locale-provider";
 import { NotFound } from "@/components/not-found";
 import { OfferBanner, offerScript } from "@/components/offer-banner";
+import { ProTransition } from "@/components/pro-transition";
 import { PageBottomBlur } from "@/components/progressive-blur";
 import { SignInDialogProvider } from "@/components/sign-in-dialog";
 import { SoundEffects } from "@/components/ui/sound";
@@ -42,19 +43,21 @@ const RootDocument = ({ children }: { children: React.ReactNode }) => {
         <HeadContent />
       </head>
       <body className="flex min-h-svh flex-col antialiased">
-        <LocaleProvider locale={locale}>
-          <OfferBanner />
-          <SignInDialogProvider>
-            <FeedbackDialogProvider>
-              <KeyboardShortcutsProvider>
-                <LivePresenceProvider>
-                  <SoundEffects>{children}</SoundEffects>
-                </LivePresenceProvider>
-              </KeyboardShortcutsProvider>
-            </FeedbackDialogProvider>
-          </SignInDialogProvider>
-          <FollowPrompt />
-        </LocaleProvider>
+        <ProTransition>
+          <LocaleProvider locale={locale}>
+            <OfferBanner />
+            <SignInDialogProvider>
+              <FeedbackDialogProvider>
+                <KeyboardShortcutsProvider>
+                  <LivePresenceProvider>
+                    <SoundEffects>{children}</SoundEffects>
+                  </LivePresenceProvider>
+                </KeyboardShortcutsProvider>
+              </FeedbackDialogProvider>
+            </SignInDialogProvider>
+            <FollowPrompt />
+          </LocaleProvider>
+        </ProTransition>
         <PageBottomBlur />
         <ClickTracking />
         <TanStackDevtools

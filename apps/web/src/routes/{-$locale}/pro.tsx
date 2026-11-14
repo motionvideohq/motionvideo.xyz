@@ -6,11 +6,6 @@ import { ArrowRight } from "reicon-react/icons/ArrowRight";
 import { LocalizedLink as Link } from "@/components/localized-link";
 import { LogoGroup } from "@/components/logo-group";
 import { MotionPreview } from "@/components/motion-video";
-import {
-  OfferHeroBadge,
-  OfferPage,
-  offerSeason,
-} from "@/components/offer-page";
 import { HeroHeader, PageMain, SectionHeader } from "@/components/page";
 import {
   BillingToggle,
@@ -132,17 +127,15 @@ const FaqItem = ({ value, question, children }: FaqItemProps) => (
 const Pro = () => {
   const content = useIntlayer("pricing-page");
   const landing = useIntlayer("landing");
-  const { signedIn, access, cards, parity, sale, season } =
-    routeApi.useLoaderData();
+  const { signedIn, access, cards, parity, sale } = routeApi.useLoaderData();
   const { billing = "monthly" } = routeApi.useSearch();
   const previews = Object.values(cards).slice(0, PREVIEW_COUNT);
 
   return (
-    <OfferPage season={season}>
+    <>
       <SiteHeader />
       <PageMain layout="landing" width="full" className="items-center">
         <HeroHeader
-          eyebrow={season && <OfferHeroBadge season={season} />}
           title={
             <>
               {SITE.NAME} <span className="text-pro-gradient">Pro</span>
@@ -167,6 +160,7 @@ const Pro = () => {
             access={access}
             signedIn={signedIn}
             sale={sale}
+            parity={parity}
           />
           {sale && <SaleNote sale={sale} />}
           {parity && <ParityBanner offer={parity} />}
@@ -307,7 +301,7 @@ const Pro = () => {
         </section>
       </PageMain>
       <SiteFooter />
-    </OfferPage>
+    </>
   );
 };
 
@@ -326,15 +320,7 @@ export const Route = createFileRoute("/{-$locale}/pro")({
       getSaleOffer(),
       getSessionFlag(),
     ]);
-    return {
-      ...landing,
-      access,
-      cards,
-      parity,
-      sale,
-      signedIn,
-      season: offerSeason(Date.now()),
-    };
+    return { ...landing, access, cards, parity, sale, signedIn };
   },
   head: ({ params }: LocaleHeadContext) => ({
     ...createMetadata({

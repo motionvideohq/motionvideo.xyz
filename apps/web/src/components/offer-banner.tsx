@@ -1,14 +1,9 @@
 import { useEffect } from "react";
 import { useIntlayer, useLocale } from "react-intlayer";
 import { ArrowRight } from "reicon-react/icons/ArrowRight";
-import { BadgePercent } from "reicon-react/icons/BadgePercent";
 
 import { LocalizedLink as Link } from "@/components/localized-link";
-import {
-  CountdownPills,
-  shortTimeLeft,
-  useNowSecond,
-} from "@/components/offer-countdown";
+import { CountdownPills, useNowSecond } from "@/components/offer-countdown";
 import { hasPro } from "@/constants/plans";
 import { ROUTES } from "@/constants/routes";
 import { useSession } from "@/lib/auth-client";
@@ -26,10 +21,11 @@ import { getMyPlan } from "@/server/plan-functions";
 // `offerScript`, before first paint, adds a style that shows the running one.
 // No flash, no layout jump. During the sale the whole bar links to /pro, on
 // one line at every width:
-//   phones   30% off Pro · 3d 10h left  [Claim 30%]
-//   md       % Black Friday  30% off Pro  Ends in 17d 00h 09m 35s  Claim 30% →
-//   xl       the same with the full deal (Pro annual and lifetime, Business annual)
-// Its background is the /pro hero's flowing amber gradient (`bg-pro-gradient`).
+//   phones   30% off Pro  [3d][10h]  [Claim 30%]
+//   md       **Black Friday**  30% off Pro  Ends in 17d 00h 09m 35s  Claim 30% →
+//   lg       the same with the full deal (Pro annual and lifetime)
+// The countdown is a skeleton until hydrated (src/components/offer-countdown.tsx).
+// The bar is the brand yellow with a glass glint sweeping left to right.
 
 const PHASES = ["teaser", "sale", "last-call"] as const satisfies OfferPhase[];
 const STYLE_ID = "offer-banner-style";
@@ -45,7 +41,20 @@ export const offerScript = `(() => {
 })()`;
 
 const BAR =
-  "bg-pro-gradient text-cta-foreground hidden min-h-9 items-center justify-center px-3 py-1.5 text-sm whitespace-nowrap print:hidden sm:px-4";
+  "bg-primary text-cta-foreground relative hidden min-h-9 items-center justify-center overflow-hidden px-3 py-1.5 text-sm whitespace-nowrap print:hidden sm:px-4";
+
+// Each offer's icon, beside its name (3D, so an image rather than a glyph).
+const ICONS = {
+  "black-friday": "/offers/black-friday-heart.png",
+} as const satisfies Record<(typeof OFFER_RULES)[number]["id"], string>;
+
+// Under the bar's content: its children are `relative`, so they paint over it.
+const SHIMMER = (
+  <span
+    aria-hidden="true"
+    className="animate-offer-shimmer pointer-events-none absolute inset-0 [transform:translateX(-100%)] bg-[linear-gradient(105deg,transparent_38%,rgb(255_255_255/0.2)_45%,rgb(255_255_255/0.6)_50%,rgb(255_255_255/0.2)_55%,transparent_62%)] motion-reduce:hidden"
+  />
+);
 
 // Each rule's current or next run, for the date in its teaser and the end of
 // its countdown. Read when the module loads: a page view (or a prerender)
@@ -105,13 +114,13 @@ export const OfferBanner = () => {
       if (phase === "teaser") {
         return (
           <div key={`${rule.id}-${phase}`} {...bar} className={BAR}>
-            <p className="truncate">
+            {SHIMMER}
+            <p className="relative truncate">
               {fillTemplate(copy.teaser.value, values)}
             </p>
           </div>
         );
       }
-      const left = offer ? shortTimeLeft(offer.endsAt, now, locale) : "";
       return (
         <Link
           key={`${rule.id}-${phase}`}
@@ -126,33 +135,32 @@ export const OfferBanner = () => {
             "group/offer focus-visible:ring-foreground/40 gap-3 transition-[filter] duration-150 outline-none hover:brightness-105 focus-visible:ring-2 focus-visible:ring-inset motion-reduce:transition-none md:gap-4"
           )}
         >
-          <span className="flex min-w-0 items-center gap-2">
-            <BadgePercent
-              aria-hidden="true"
-              className="hidden size-4.5 shrink-0 md:block"
+          {SHIMMER}
+          <span className="relative flex min-w-0 items-center gap-2">
+            <img
+              src={ICONS[rule.id]}
+              alt=""
+              width={18}
+              height={18}
+              className="size-[18px] shrink-0"
             />
             <strong className="hidden font-bold md:inline">
               {phase === "last-call" ? content.lastChance : copy.name}
             </strong>
             <span className="truncate font-semibold md:font-normal md:opacity-80">
-              <span className="xl:hidden">
+              <span className="lg:hidden">
                 {fillTemplate(copy.dealShort.value, values)}
               </span>
-              <span className="hidden xl:inline">
+              <span className="hidden lg:inline">
                 {fillTemplate(copy.deal.value, values)}
               </span>
             </span>
-            {offer && (
-              <span
-                className={cn("opacity-75 md:hidden", !left && "invisible")}
-              >
-                · {fillTemplate(content.left.value, { time: left })}
-              </span>
-            )}
           </span>
           {offer && (
-            <span className="hidden items-center gap-2 md:inline-flex">
-              <span className="opacity-75">{content.endsIn}</span>
+            <span className="relative inline-flex shrink-0 items-center gap-2">
+              <span className="hidden opacity-75 md:inline">
+                {content.endsIn}
+              </span>
               <CountdownPills
                 endsAt={offer.endsAt}
                 now={now}
@@ -161,7 +169,7 @@ export const OfferBanner = () => {
               />
             </span>
           )}
-          <span className="inline-flex shrink-0 items-center gap-1 rounded-md bg-black/[0.08] px-2.5 py-0.5 font-semibold transition-colors duration-150 group-hover/offer:bg-black/85 group-hover/offer:text-white group-focus-visible/offer:bg-black/85 group-focus-visible/offer:text-white motion-reduce:transition-none">
+          <span className="relative inline-flex shrink-0 items-center gap-1 rounded-md bg-black/[0.08] px-2.5 py-0.5 font-semibold transition-colors duration-150 group-hover/offer:bg-black/85 group-hover/offer:text-white group-focus-visible/offer:bg-black/85 group-focus-visible/offer:text-white motion-reduce:transition-none">
             {fillTemplate(content.cta.value, values)}
             <ArrowRight
               aria-hidden="true"

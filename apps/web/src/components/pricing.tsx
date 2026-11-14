@@ -110,11 +110,13 @@ const PlanCard = ({
   billing,
   access,
   sale,
+  parity,
 }: {
   plan: Plan;
   billing: PlanBilling;
   access: PlanAccess | null;
   sale: SaleOffer | null;
+  parity: ParityOffer | null;
 }) => {
   const content = useIntlayer("pricing");
   const { locale } = useLocale();
@@ -126,12 +128,14 @@ const PlanCard = ({
   const current = access?.plan === plan;
   const featured = plan === "pro";
   const listCents = PLAN_PRICE_CENTS[plan][shown] ?? 0;
-  // During a sale, the price it brings at checkout, with the list price
-  // struck through beside it.
+  // The price it brings at checkout, with the list price struck through
+  // beside it: the sale's on the plans it covers, or the visitor country's
+  // parity price on every plan (the two never stack: a sale skips parity
+  // countries, src/server/visitor-pricing.ts).
   const onSale = offered && sale !== null && offerCovers(sale, plan, billing);
-  const priceCents = onSale
-    ? Math.round((listCents * (100 - sale.percentOff)) / 100)
-    : listCents;
+  const { percentOff } = (onSale && sale) ||
+    (offered && parity) || { percentOff: 0 };
+  const priceCents = Math.round((listCents * (100 - percentOff)) / 100);
   let cta = (
     <Button size="xl" variant="secondary" disabled className="w-full">
       {copy.cta}
@@ -183,7 +187,7 @@ const PlanCard = ({
           <h2 className="text-base font-semibold">{copy.name}</h2>
           <div className="flex flex-col gap-1">
             <p className="flex items-baseline gap-1.5">
-              {onSale && (
+              {percentOff > 0 && (
                 <s className="text-muted-foreground text-xl font-medium tabular-nums">
                   {formatUsd(listCents)}
                 </s>
@@ -276,11 +280,13 @@ export const PlanCards = ({
   access,
   signedIn,
   sale,
+  parity,
 }: {
   billing: PlanBilling;
   access: PlanAccess | null;
   signedIn: boolean;
   sale: SaleOffer | null;
+  parity: ParityOffer | null;
 }) => (
   <ul className="grid w-full gap-4 md:grid-cols-3">
     <li className="flex">
@@ -288,7 +294,13 @@ export const PlanCards = ({
     </li>
     {PLANS.map((plan) => (
       <li key={plan} className="flex">
-        <PlanCard plan={plan} billing={billing} access={access} sale={sale} />
+        <PlanCard
+          plan={plan}
+          billing={billing}
+          access={access}
+          sale={sale}
+          parity={parity}
+        />
       </li>
     ))}
   </ul>
@@ -298,7 +310,7 @@ export const PlanCards = ({
 export const SaleNote = ({ sale }: { sale: SaleOffer }) => {
   const content = useIntlayer("pricing");
   return (
-    <p className="from-cta-from to-cta-to text-cta-foreground rounded-full bg-linear-to-r px-4 py-1.5 text-center text-sm text-pretty">
+    <p className="bg-muted text-muted-foreground rounded-full px-4 py-1.5 text-center text-sm text-pretty">
       {fillTemplate(content.sale.value, {
         name: sale.name,
         percent: String(sale.percentOff),

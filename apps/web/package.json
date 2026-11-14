@@ -56,6 +56,7 @@
     "fumadocs-core": "^16.17.10",
     "fumadocs-mdx": "^15.4.10",
     "fumadocs-openapi": "^12.5.8",
+    "glimm": "^0.4.1",
     "input-otp": "^1.5.0",
     "intlayer": "^9.7.0",
     "motion": "^14.1.0",

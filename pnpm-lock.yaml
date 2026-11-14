@@ -144,6 +144,9 @@ importers:
       fumadocs-openapi:
         specifier: ^12.5.8
         version: 12.5.8(54cec206c151427283cc629da07d0181)
+      glimm:
+        specifier: ^0.4.1
+        version: 0.4.1(next@16.3.3(@babel/core@8.0.6)(@types/node@20.19.43)(react-dom@19.3.0(react@19.3.0))(react@19.3.0))(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
       input-otp:
         specifier: ^1.5.0
         version: 1.5.0(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
@@ -6041,6 +6044,21 @@ packages:
   github-slugger@2.0.0:
     resolution: {integrity: sha512-IaOQ9puYtjrkq7Y0Ygl9KDZnrf/aiUJYUpVf89y8kyaxbRG7Y1SrX/jaumrv81vc61+kiMempujsM3Yw7w5qcw==}
 
+  glimm@0.4.1:
+    resolution: {integrity: sha512-Mi6fIrGR5/sVX0C6aasgjRDZ+/hhZdGMYo4iPV7tMKuQ+dxBm4YbWZVomkyAZoCBBqMxf6KOthP9fyVUgql4aA==}
+    engines: {node: '>=18'}
+    peerDependencies:
+      next: '>=14'
+      react: '>=18'
+      react-dom: '>=18'
+    peerDependenciesMeta:
+      next:
+        optional: true
+      react:
+        optional: true
+      react-dom:
+        optional: true
+
   glob-parent@5.1.2:
     resolution: {integrity: sha512-AOIgSQCepiJYwP3ARnGx+5VnTu2HBYdzbGP45eLw1vr3zB3vZLeyed1sC9hnbcOc9/SrMyM5RPQrkGz4aS9Zow==}
     engines: {node: '>= 6'}
@@ -8128,6 +8146,7 @@ packages:
 
   tldts-core@7.4.20:
     resolution: {integrity: sha512-C630TWXZCZmLq0F2bW4QqwnaaxCQ/svpAqvJwnC4JvgEM5ohhBnGsEzTLSOXcN+xjz+kEaHS5uoWIw2klnqd0A==}
+    deprecated: Partial release, see https://github.com/remusao/tldts/issues/2735. Use >=7.4.22.
 
   tldts@7.4.19:
     resolution: {integrity: sha512-48dH6aSpQnpbzDUc4vIQZ1VjB8tkK+e8c1yx05/SZK+rkssgjEOlxDd/yU8/a4vGYQ9vRgJr9dwMq9TJ0b3X2Q==}
@@ -14294,6 +14313,12 @@ snapshots:
       resolve-pkg-maps: 1.0.0
 
   github-slugger@2.0.0: {}
+
+  glimm@0.4.1(next@16.3.3(@babel/core@8.0.6)(@types/node@20.19.43)(react-dom@19.3.0(react@19.3.0))(react@19.3.0))(react-dom@19.3.0(react@19.3.0))(react@19.3.0):
+    optionalDependencies:
+      next: 16.3.3(@babel/core@8.0.6)(@types/node@20.19.43)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
+      react: 19.3.0
+      react-dom: 19.3.0(react@19.3.0)
 
   glob-parent@5.1.2:
     dependencies:

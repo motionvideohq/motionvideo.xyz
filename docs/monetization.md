@@ -8,6 +8,7 @@ Ideas for monthly recurring revenue on MotionVideo, ranked by fit with what alre
 - The one-time Skill Bundle is retired; existing owners keep repo access, and the skill now ships in Pro and Business.
 - **Sponsorships**: each tier has 3 slots (`SPONSOR_SLOTS = 3` in `apps/web/src/constants/sponsors.ts`).
 - **Job board**: `/jobs`.
+- Links into `/pro` use a gold Glimm sweep (`apps/web/src/components/pro-transition.tsx`), including localized URLs. Other routes and changes within `/pro` stay instant; reduced motion skips the sweep. Sale details below the pricing cards use the same muted treatment as the parity note, keeping the yellow checkout CTA prominent.
 
 ## Founding sponsors
 

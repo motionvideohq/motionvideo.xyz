@@ -1,14 +1,18 @@
 import { useSyncExternalStore } from "react";
+import { TextMorph } from "torph/react";
 
+import { currentOffer } from "@/lib/offers";
 import { cn } from "@/lib/utils";
 
-// The time left in a sale, for the offer banner and the /pro hero. Rendered
-// empty on the server and while hydrating (prerendered pages would otherwise
-// carry a countdown frozen at build time), then ticking once a second while
-// an offer runs (`<html data-offer>`, see src/server.ts).
+// The time left in a sale, for the offer banner. Unknown on the server and
+// while hydrating (prerendered pages would otherwise carry a countdown frozen
+// at build time), so it shows a skeleton of the same size, then ticks once a
+// second while an offer runs, each change morphing in place. Every value sits
+// over an invisible "00" of the same format, so neither the skeleton nor a
+// changing digit ever moves the layout.
 
 const subscribe = (tick: () => void) => {
-  const id = document.documentElement.dataset.offer
+  const id = currentOffer(Date.now())
     ? window.setInterval(tick, 1000)
     : undefined;
   return () => window.clearInterval(id);
@@ -19,6 +23,11 @@ const notYet = () => null;
 /** The current second (Unix time), or null until hydrated. */
 export const useNowSecond = (): number | null =>
   useSyncExternalStore(subscribe, nowSecond, notYet);
+
+const MORPH = {
+  duration: 400,
+  ease: "cubic-bezier(0.19, 1, 0.22, 1)",
+} as const;
 
 const UNITS = ["day", "hour", "minute", "second"] as const;
 type Unit = (typeof UNITS)[number];
@@ -49,7 +58,34 @@ const unitParts = (locale: string, unit: Unit, value: number, pad: boolean) => {
   return { number: join("integer"), unit: join("unit") };
 };
 
-/** "17d 00h 09m 35s" as one pill per unit. */
+/** `text` morphing in place over an invisible `ghost` that holds its width. */
+const Slot = ({
+  text,
+  ghost,
+  loading,
+  className,
+}: {
+  text: string;
+  ghost: string;
+  loading: boolean;
+  className?: string;
+}) => (
+  <span className={cn("inline-grid tabular-nums", className)}>
+    <span aria-hidden="true" className="invisible col-start-1 row-start-1">
+      {ghost}
+    </span>
+    <TextMorph
+      as="span"
+      numbers
+      {...MORPH}
+      className={cn("col-start-1 row-start-1", loading && "invisible")}
+    >
+      {text}
+    </TextMorph>
+  </span>
+);
+
+/** Countdown pills: days/hours on phones, all four units on desktop; skeleton until hydrated. */
 export const CountdownPills = ({
   endsAt,
   now,
@@ -63,56 +99,38 @@ export const CountdownPills = ({
 }) => {
   const left = now === null ? null : timeLeft(endsAt, now);
   return (
-    <span
-      className={cn(
-        "inline-flex gap-1 tabular-nums",
-        left === null && "invisible"
-      )}
-    >
+    <span className="inline-flex gap-1">
       {UNITS.map((unit) => {
         const parts = unitParts(locale, unit, left?.[unit] ?? 0, true);
         return (
           <span
             key={unit}
             className={cn(
-              "inline-flex items-baseline rounded-md px-1.5 py-px",
-              pillClassName
+              "items-baseline rounded-md px-1.5 py-px",
+              unit === "day" || unit === "hour"
+                ? "inline-flex"
+                : "hidden md:inline-flex",
+              pillClassName,
+              left === null && "skeleton-shimmer"
             )}
           >
-            <span className="font-semibold">{parts.number}</span>
-            <span className="text-[0.85em] opacity-60">{parts.unit}</span>
+            <Slot
+              text={parts.number}
+              ghost="00"
+              loading={left === null}
+              className="justify-items-end font-semibold"
+            />
+            <span
+              className={cn(
+                "text-[0.85em] opacity-60",
+                left === null && "invisible"
+              )}
+            >
+              {parts.unit}
+            </span>
           </span>
         );
       })}
     </span>
   );
-};
-
-/**
- * The two largest units left, for tight spaces: "3d 10h", then "10h 5m",
- * then "5m 30s". Empty until hydrated.
- */
-export const shortTimeLeft = (
-  endsAt: number,
-  now: number | null,
-  locale: string
-): string => {
-  if (now === null) {
-    return "";
-  }
-  const left = timeLeft(endsAt, now);
-  // From the largest non-zero unit; at least minutes and seconds.
-  const start = Math.max(
-    0,
-    Math.min(
-      UNITS.findIndex((unit) => left[unit] > 0),
-      UNITS.length - 2
-    )
-  );
-  return UNITS.slice(start, start + 2)
-    .map((unit) => {
-      const parts = unitParts(locale, unit, left[unit], false);
-      return `${parts.number}${parts.unit}`;
-    })
-    .join(" ");
 };
