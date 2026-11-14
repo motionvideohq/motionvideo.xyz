@@ -291,6 +291,29 @@
   --nav-hover: var(--muted);
 }
 
+/* /pro while a sale runs (OfferPage, src/components/offer-page.tsx): the page
+   wraps in [data-offer-page="<rule>"] on the light or dark base its rule
+   names (`pageTheme` in src/lib/offers.ts), whatever the site's own mode,
+   and takes that offer's palette from here. One block per offer rule; after
+   `.dark` so it wins over the base. */
+[data-offer-page="black-friday"] {
+  --background: oklch(0.13 0.005 75);
+  --foreground: oklch(0.97 0.012 90);
+  --card: oklch(0.175 0.009 75);
+  --card-foreground: var(--foreground);
+  --popover: oklch(0.175 0.009 75);
+  --popover-foreground: var(--foreground);
+  --primary: oklch(0.84 0.15 85);
+  --ring: var(--primary);
+  --secondary: oklch(0.22 0.012 75);
+  --muted: oklch(0.22 0.012 75);
+  --muted-foreground: oklch(0.74 0.035 85);
+  --accent: oklch(0.22 0.012 75);
+  --border: oklch(0.84 0.15 85 / 14%);
+  --input: oklch(0.84 0.15 85 / 20%);
+  --nav-hover: var(--muted);
+}
+
 /* Site cursor: the kibo-ui pointer arrow (black, white keyline so it reads on
    light and dark), hotspot at the tip. Mouse/trackpad only; touch and coarse
    pointers keep native behavior because the variables stay undefined. */

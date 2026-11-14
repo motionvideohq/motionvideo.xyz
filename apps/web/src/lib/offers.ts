@@ -21,6 +21,13 @@ import { thanksgivingDay } from "./seasons.ts";
 
 export type OfferPhase = "teaser" | "sale" | "last-call";
 
+/**
+ * The look /pro takes while the sale runs, whatever the site's own light or
+ * dark mode: this base, under the rule's own palette (`[data-offer-page]` in
+ * src/styles/globals.css, one block per rule).
+ */
+export type OfferPageTheme = "light" | "dark";
+
 interface OfferRule {
   id: string;
   name: string;
@@ -31,6 +38,7 @@ interface OfferRule {
   covers: readonly (readonly [Plan, PlanBilling])[];
   /** Renewals the discount lasts for: 1 is the first year of an annual plan. */
   subscriptionCycles: number;
+  pageTheme: OfferPageTheme;
   /** The run in `year`, in ms: when each phase starts, and when it ends. */
   schedule: (year: number) => {
     teaseAt: number;
@@ -50,6 +58,7 @@ export interface Offer {
   percentOff: number;
   covers: readonly (readonly [Plan, PlanBilling])[];
   subscriptionCycles: number;
+  pageTheme: OfferPageTheme;
   /** The teaser starts. */
   teaseAt: number;
   /** The sale starts: the code works from here. */
@@ -77,6 +86,8 @@ export const OFFER_RULES = [
       ["business", "annual"],
     ],
     subscriptionCycles: 1,
+    // Black and gold, the season's colours.
+    pageTheme: "dark",
     // Black Friday week, Pacific time, around Thanksgiving (a Thursday): the
     // teaser from the Monday a week before, the sale from the Monday before,
     // the last call from Saturday, the end after Cyber Monday. Daylight saving
@@ -107,6 +118,7 @@ const occurrence = (rule: OfferRule, year: number): Offer => ({
   percentOff: rule.percentOff,
   covers: rule.covers,
   subscriptionCycles: rule.subscriptionCycles,
+  pageTheme: rule.pageTheme,
   ...rule.schedule(year),
 });
 

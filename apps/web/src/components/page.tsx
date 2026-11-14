@@ -87,22 +87,25 @@ export const AccountPageHeader = ({
 );
 
 /**
- * Centred hero for `landing` pages (Sponsor, Pro) and the hero-headed forms: a
- * large title, one muted line, then optional actions and a small note. The
- * page's layout sets the space above it.
+ * Centred hero for `landing` pages (Sponsor, Pro) and the hero-headed forms: an
+ * optional eyebrow, a large title, one muted line, then optional actions and
+ * a small note. The page's layout sets the space above it.
  */
 export const HeroHeader = ({
+  eyebrow,
   title,
   intro,
   actions,
   note,
 }: {
+  eyebrow?: ReactNode;
   title: ReactNode;
   intro: ReactNode;
   actions?: ReactNode;
   note?: ReactNode;
 }) => (
   <header className="mx-auto flex max-w-2xl flex-col items-center gap-4 text-center">
+    {eyebrow}
     <h1 className="text-4xl font-semibold tracking-tight text-balance sm:text-5xl">
       {title}
     </h1>

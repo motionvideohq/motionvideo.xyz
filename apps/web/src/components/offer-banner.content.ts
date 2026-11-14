@@ -4,11 +4,23 @@ import type { Dictionary } from "intlayer";
 export default {
   key: "offer-banner",
   content: {
-    // Each offer in src/lib/offers.ts, keyed by its rule id, with a message
-    // per phase. `{date}` is the day the sale starts; `{percent}` its
-    // discount. The teaser names the day, not the discount. "Black Friday"
-    // and "Cyber Monday" stay in English where that's usual.
+    // Each offer in src/lib/offers.ts, keyed by its rule id. `{date}` is the
+    // day the sale starts; `{percent}` its discount. The teaser names the
+    // day, not the discount. `deal` is the full offer (wide screens),
+    // `dealShort` the gist (phones). "Black Friday" stays in English where
+    // that's usual.
     "black-friday": {
+      name: t({
+        en: "Black Friday",
+        es: "Black Friday",
+        fr: "Black Friday",
+        zh: "黑色星期五",
+        ko: "블랙 프라이데이",
+        ja: "ブラックフライデー",
+        de: "Black Friday",
+        pt: "Black Friday",
+        ru: "Чёрная пятница",
+      }),
       teaser: t({
         en: "Black Friday week starts {date}: our one sale of the year on Pro and Business",
         es: "La semana del Black Friday empieza el {date}: nuestra única oferta del año en Pro y Business",
@@ -20,39 +32,74 @@ export default {
         pt: "A semana da Black Friday começa a {date}: a nossa única promoção do ano no Pro e no Business",
         ru: "Неделя Чёрной пятницы начнётся {date}: наша единственная распродажа Pro и Business в году",
       }),
-      sale: t({
-        en: "Black Friday: {percent}% off annual plans and Pro Lifetime, through Cyber Monday",
-        es: "Black Friday: {percent}% de descuento en los planes anuales y Pro De por vida, hasta el Cyber Monday",
-        fr: "Black Friday : -{percent} % sur les formules annuelles et Pro À vie, jusqu’au Cyber Monday",
-        zh: "黑色星期五：年付方案和 Pro 终身版享 {percent}% 折扣，持续到网络星期一",
-        ko: "블랙 프라이데이: 연간 플랜과 Pro 평생 {percent}% 할인, 사이버 먼데이까지",
-        ja: "ブラックフライデー：年額プランと Pro 買い切りが {percent}% オフ（サイバーマンデーまで）",
-        de: "Black Friday: {percent} % Rabatt auf Jahrespläne und Pro Lifetime, bis Cyber Monday",
-        pt: "Black Friday: {percent}% de desconto nos planos anuais e no Pro Vitalício, até à Cyber Monday",
-        ru: "Чёрная пятница: скидка {percent}% на годовые планы и Pro Навсегда до Киберпонедельника",
+      deal: t({
+        en: "{percent}% off Pro annual and lifetime, plus Business annual",
+        es: "{percent}% de descuento en Pro anual y De por vida, y en Business anual",
+        fr: "-{percent} % sur Pro annuel et À vie, et sur Business annuel",
+        zh: "Pro 年付和终身版、Business 年付享 {percent}% 折扣",
+        ko: "Pro 연간·평생, Business 연간 {percent}% 할인",
+        ja: "Pro 年額・買い切りと Business 年額が {percent}% オフ",
+        de: "{percent} % Rabatt auf Pro jährlich und Lifetime sowie Business jährlich",
+        pt: "{percent}% de desconto no Pro anual e Vitalício, e no Business anual",
+        ru: "Скидка {percent}% на Pro на год и навсегда, а также на Business на год",
       }),
-      lastCall: t({
-        en: "Last call: {percent}% off annual plans and Pro Lifetime, until the end of Cyber Monday (PT)",
-        es: "Última oportunidad: {percent}% de descuento en los planes anuales y Pro De por vida, hasta el final del Cyber Monday (PT)",
-        fr: "Dernière chance : -{percent} % sur les formules annuelles et Pro À vie, jusqu’à la fin du Cyber Monday (PT)",
-        zh: "最后机会：年付方案和 Pro 终身版享 {percent}% 折扣，截至网络星期一结束（太平洋时间）",
-        ko: "마지막 기회: 연간 플랜과 Pro 평생 {percent}% 할인, 사이버 먼데이가 끝날 때까지(태평양 시간)",
-        ja: "まもなく終了：年額プランと Pro 買い切りが {percent}% オフ（太平洋時間のサイバーマンデー終了まで）",
-        de: "Letzte Chance: {percent} % Rabatt auf Jahrespläne und Pro Lifetime, bis Ende Cyber Monday (PT)",
-        pt: "Última oportunidade: {percent}% de desconto nos planos anuais e no Pro Vitalício, até ao fim da Cyber Monday (PT)",
-        ru: "Последний шанс: скидка {percent}% на годовые планы и Pro Навсегда до конца Киберпонедельника (PT)",
+      dealShort: t({
+        en: "{percent}% off Pro",
+        es: "-{percent}% en Pro",
+        fr: "-{percent} % sur Pro",
+        zh: "Pro {percent}% 折扣",
+        ko: "Pro {percent}% 할인",
+        ja: "Pro {percent}% オフ",
+        de: "{percent} % auf Pro",
+        pt: "-{percent}% no Pro",
+        ru: "−{percent}% на Pro",
       }),
     },
+    /** In place of the offer's name in its last days. */
+    lastChance: t({
+      en: "Last chance",
+      es: "Última oportunidad",
+      fr: "Dernière chance",
+      zh: "最后机会",
+      ko: "마지막 기회",
+      ja: "まもなく終了",
+      de: "Letzte Chance",
+      pt: "Última oportunidade",
+      ru: "Последний шанс",
+    }),
+    endsIn: t({
+      en: "Ends in",
+      es: "Termina en",
+      fr: "Se termine dans",
+      zh: "距结束",
+      ko: "종료까지",
+      ja: "終了まで",
+      de: "Endet in",
+      pt: "Termina em",
+      ru: "До конца",
+    }),
+    /** `{time}`: "3d 10h". */
+    left: t({
+      en: "{time} left",
+      es: "Quedan {time}",
+      fr: "Encore {time}",
+      zh: "剩余 {time}",
+      ko: "{time} 남음",
+      ja: "残り {time}",
+      de: "Noch {time}",
+      pt: "Faltam {time}",
+      ru: "Осталось {time}",
+    }),
     cta: t({
-      en: "See plans",
-      es: "Ver planes",
-      fr: "Voir les formules",
-      zh: "查看方案",
-      ko: "플랜 보기",
-      ja: "プランを見る",
-      de: "Pläne ansehen",
-      pt: "Ver planos",
-      ru: "Смотреть планы",
+      en: "Claim {percent}%",
+      es: "Obtener el {percent}%",
+      fr: "Profiter des -{percent} %",
+      zh: "立享 {percent}% 折扣",
+      ko: "{percent}% 할인 받기",
+      ja: "{percent}% オフで購入",
+      de: "{percent} % sichern",
+      pt: "Garantir {percent}%",
+      ru: "Получить −{percent}%",
     }),
   },
 } satisfies Dictionary;
