@@ -1,6 +1,7 @@
 import { createFileRoute, getRouteApi, notFound } from "@tanstack/react-router";
 import { useId } from "react";
 import { useIntlayer } from "react-intlayer";
+import { ArrowLeft } from "reicon-react/icons/ArrowLeft";
 import { Check } from "reicon-react/icons/Check";
 import { Sliders } from "reicon-react/icons/Sliders";
 
@@ -124,9 +125,10 @@ const TemplateDetail = () => {
       <div className={cn(pageContainerClass("narrow"), "flex flex-col gap-10")}>
         <Link
           to={ROUTES.TEMPLATES}
-          className="text-muted-foreground hover:text-foreground w-fit text-sm underline-offset-4 transition-colors hover:underline"
+          className={buttonVariants({ variant: "ghost", className: "w-fit" })}
         >
-          ← {content.allTemplates}
+          <ArrowLeft data-icon="inline-start" />
+          {content.allTemplates}
         </Link>
 
         <header className="flex flex-col gap-3">

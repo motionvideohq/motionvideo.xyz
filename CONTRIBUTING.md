@@ -94,6 +94,10 @@ The preview server runs on port 3001.
 
 Add releases to `apps/web/content/changelog/<slug>.mdx` with `title`, `description`, and an ISO `date` (`YYYY-MM-DD`) in YAML frontmatter. The filename becomes `/{locale}/changelog/<slug>`; the index sorts entries newest first. Entry text is shared in English across locales, while dates and navigation are localized. Write internal links without a locale (for example, `/color/blue`); the MDX renderer adds the reader's locale.
 
+Blog and changelog articles use the shared docs-style article shell: desktop entry navigation comes from each collection, and the table of contents comes from compiled MDX headings. Mobile keeps the contents panel, without a duplicate all-entries accordion. Previous/next cards follow collection order at the end of every article. Blog tools include Markdown copy, PDF/EPUB export, assistant links, and sharing; the English source is served at `/blog/<slug>.md`. Use Markdown headings rather than hand-built anchors so contents navigation stays in sync. Listing pages use an intro tile alongside equal-height entry cards; collection back links use the shared ghost-button styling.
+
+Blog sharing uses LinkedIn and X brand marks. “Other app…” opens the device's native share sheet where Web Share is supported; canceling it is not an error. Copy link remains available in every browser.
+
 Run `pnpm build` to compile MDX and prerender the localized indexes. Check the entry body in the browser as well as direct navigation to its URL. No new environment variables or database migrations are needed for changelog content.
 
 ### Remotion videos

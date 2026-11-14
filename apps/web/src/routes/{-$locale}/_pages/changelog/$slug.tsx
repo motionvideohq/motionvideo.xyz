@@ -1,13 +1,14 @@
 import { createFileRoute, notFound } from "@tanstack/react-router";
+import { use } from "react";
 import { useIntlayer, useLocale } from "react-intlayer";
-import { ArrowLeft } from "reicon-react/icons/ArrowLeft";
 
-import { LocalizedLink as Link } from "@/components/localized-link";
+import { ArticleLayout } from "@/components/article-layout";
 import { PageHeader } from "@/components/page";
 import { ProseBody } from "@/components/prose-mdx";
 import { DEFAULT_LOCALE, isLocale } from "@/constants/locales";
 import { ROUTES } from "@/constants/routes";
 import {
+  CHANGELOG_ENTRIES,
   CHANGELOG_FEEDS,
   changelog,
   formatChangelogDate,
@@ -24,15 +25,14 @@ const ChangelogEntry = () => {
   if (!entry) {
     return null;
   }
+  const { toc } = use(entry.data.load());
   return (
-    <>
-      <Link
-        to={ROUTES.CHANGELOG}
-        className="text-muted-foreground hover:text-foreground inline-flex w-fit items-center gap-1.5 text-sm"
-      >
-        <ArrowLeft aria-hidden="true" className="size-4" />
-        {content.allUpdates}
-      </Link>
+    <ArticleLayout
+      entries={CHANGELOG_ENTRIES}
+      currentUrl={entry.url}
+      navigationLabel={content.allUpdates.value}
+      toc={toc}
+    >
       <article className="flex flex-col gap-10">
         <PageHeader
           title={entry.data.title}
@@ -44,7 +44,7 @@ const ChangelogEntry = () => {
         />
         <ProseBody Body={entry.data.body} />
       </article>
-    </>
+    </ArticleLayout>
   );
 };
 

@@ -1,15 +1,23 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useIntlayer } from "react-intlayer";
 import { Sliders } from "reicon-react/icons/Sliders";
-import { z } from "zod";
 
-import { CategoryChip } from "@/components/collection-toolbar";
+import { CollectionGrid } from "@/components/collection-grid";
+import {
+  CollectionIntro,
+  SurpriseAndSubmit,
+} from "@/components/collection-intro";
+import {
+  CategoryChip,
+  CollectionToolbar,
+} from "@/components/collection-toolbar";
+import { FadeScroller } from "@/components/fade-scroller";
 import { LocalizedLink as Link } from "@/components/localized-link";
 import { MotionPreview } from "@/components/motion-video";
-import { PageHeader, PageMain } from "@/components/page";
-import { VirtualMasonry } from "@/components/virtual-masonry";
+import type { MasonryItem } from "@/components/virtual-masonry";
 import { ROUTES } from "@/constants/routes";
 import catalog from "@/data/motion-catalog.json";
+import { useLocalizedNavigate } from "@/hooks/use-localized-navigate";
 import { MOTION_CATEGORIES } from "@/lib/motion-catalog";
 import type { MotionCategory, MotionVideo } from "@/lib/motion-catalog";
 import { createMetadata } from "@/seo/metadata";
@@ -25,12 +33,19 @@ const categories = MOTION_CATEGORIES.filter((category) =>
  * One prompt to customize, shown like a gallery card (the clip playing) but
  * opening the customizer, with the title, creator and a "Customize" mark.
  */
-const CustomizeCard = ({ video }: { video: MotionVideo }) => {
+const CustomizeCard = ({
+  video,
+  category,
+}: {
+  video: MotionVideo;
+  category?: MotionCategory;
+}) => {
   const gallery = useIntlayer("motion-gallery");
   return (
     <Link
       to={ROUTES.CUSTOMIZE_PROMPT}
       params={{ slug: video.slug }}
+      search={{ category }}
       className="group focus-visible:ring-ring relative block overflow-hidden rounded-xl outline-none focus-visible:ring-2"
     >
       <MotionPreview video={video} paused={false} />
@@ -56,57 +71,89 @@ const CustomizeIndex = () => {
   const content = useIntlayer("customize-page");
   const gallery = useIntlayer("motion-gallery");
   const { category } = Route.useSearch();
+  const navigate = useLocalizedNavigate();
   const shown = category
     ? promptVideos.filter((video) => video.contentTags.includes(category))
     : promptVideos;
 
+  const surprise = () => {
+    const video = shown[Math.floor(Math.random() * shown.length)];
+    if (video) {
+      void navigate({
+        to: ROUTES.CUSTOMIZE_PROMPT,
+        params: { slug: video.slug },
+        search: { category },
+      });
+    }
+  };
+
+  const items: MasonryItem[] = [
+    {
+      key: "intro",
+      node: (
+        <CollectionIntro
+          titleId="customize-intro-title"
+          title={content.title}
+          description={content.intro}
+          actions={
+            <SurpriseAndSubmit
+              onSurprise={surprise}
+              surpriseDisabled={shown.length === 0}
+              surpriseLabel={gallery.surprise}
+              submitLabel={gallery.submitVideo}
+              submitSearch={{ kind: "video", category }}
+            />
+          }
+        />
+      ),
+    },
+    ...shown.map((video) => ({
+      key: video.slug,
+      aspectRatio: video.width / video.height,
+      node: <CustomizeCard video={video} category={category} />,
+    })),
+  ];
+
   return (
-    <PageMain layout="app" width="full">
-      <PageHeader title={content.title.value} intro={content.intro} />
-      <nav
-        aria-label={content.filterCategory.value}
-        className="flex flex-wrap gap-2"
-      >
-        <CategoryChip
-          active={!category}
-          label={gallery.all}
-          to={ROUTES.CUSTOMIZE}
-          search={{ category: undefined }}
-        />
-        {categories.map((entry) => (
+    <>
+      <CollectionToolbar label={content.filterCategory.value}>
+        <FadeScroller
+          label={content.filterCategory.value}
+          className="-mx-1 -my-1 min-w-0 flex-1 px-1 py-1"
+        >
           <CategoryChip
-            key={entry}
-            active={category === entry}
-            label={gallery.categories[entry]}
+            active={!category}
+            label={gallery.all}
             to={ROUTES.CUSTOMIZE}
-            search={{ category: entry }}
+            search={{ category: undefined }}
           />
-        ))}
-      </nav>
-      {shown.length > 0 ? (
-        <VirtualMasonry
-          items={shown.map((video) => ({
-            key: video.slug,
-            aspectRatio: video.width / video.height,
-            node: <CustomizeCard video={video} />,
-          }))}
-        />
-      ) : (
-        <p className="text-muted-foreground text-sm">{content.noPrompts}</p>
-      )}
-    </PageMain>
+          {categories.map((entry) => (
+            <CategoryChip
+              key={entry}
+              active={category === entry}
+              label={gallery.categories[entry]}
+              to={ROUTES.CUSTOMIZE}
+              search={{ category: entry }}
+            />
+          ))}
+        </FadeScroller>
+      </CollectionToolbar>
+      <CollectionGrid
+        items={items}
+        emptyState={
+          shown.length === 0 ? (
+            <p className="text-muted-foreground mt-6 text-sm">
+              {content.noPrompts}
+            </p>
+          ) : undefined
+        }
+      />
+    </>
   );
 };
 
-interface CustomizeSearch {
-  category?: MotionCategory;
-}
-
 export const Route = createFileRoute("/{-$locale}/customize/")({
   component: CustomizeIndex,
-  validateSearch: (search): CustomizeSearch => ({
-    category: z.enum(MOTION_CATEGORIES).safeParse(search.category).data,
-  }),
   head: () =>
     createMetadata({
       title: "Prompt customizer",
