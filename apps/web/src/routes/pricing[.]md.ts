@@ -4,6 +4,8 @@ import { CACHE_CONTROL } from "@/constants/cache-control";
 import { DEFAULT_LOCALE, localizedPath } from "@/constants/locales";
 import {
   BUSINESS_SEATS,
+  GTA_PACK_PLANS,
+  GTA_PACK_PRICE_CENTS,
   PLAN_PRICE_CENTS,
   PLANS,
   planOffers,
@@ -52,6 +54,15 @@ ${planOffers(plan)
   )
   .join("\n")}`
 ).join("\n\n")}
+
+## GTA 6 Clip Pack
+
+Six agent skills that add a GTA-flavored motion-graphics layer to gameplay clips (wanted meter, mission cards, kinetic captions, HUD callouts, impact effects), rendered by any renderer skill. Installed from a private GitHub repository.
+
+- ${formatUsd(GTA_PACK_PRICE_CENTS)} once
+- Included with ${GTA_PACK_PLANS.map(([plan, billing]) => `${PLAN_NAMES[plan]} ${billing}`).join(", ")} (the plan owner's GitHub account; not Business seats)
+
+Details: ${absoluteUrl(docsMarkdownPath(ROUTES.DOCS_GTA))}. Checkout: ${absoluteUrl(localizedPath(ROUTES.GTA_CLIPPING, DEFAULT_LOCALE))}
 
 ## Billing
 

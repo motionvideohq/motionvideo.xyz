@@ -4,12 +4,13 @@ import DodoPayments, {
   UnprocessableEntityError,
 } from "dodopayments";
 import type { CheckoutSessionCreateParams } from "dodopayments/resources/checkout-sessions";
+import type { Customer } from "dodopayments/resources/customers";
 import type { CountryCode } from "dodopayments/resources/misc";
 
 import { JOB_PLANS } from "@/constants/jobs";
 import type { JobPlan } from "@/constants/jobs";
 import { DEFAULT_LOCALE, isLocale, localizedPath } from "@/constants/locales";
-import { PLAN_PRICE_CENTS } from "@/constants/plans";
+import { GTA_PACK_PRODUCT, PLAN_PRICE_CENTS } from "@/constants/plans";
 import type { Plan, PlanBilling } from "@/constants/plans";
 import { ROUTES } from "@/constants/routes";
 import { SPONSOR_BILLINGS, SPONSOR_TIERS } from "@/constants/sponsors";
@@ -135,7 +136,7 @@ export const jobPlanOf = (productId: string): JobPlan | undefined =>
 
 // Dodo customers for an email. Buyers check out as guests, so the email they
 // paid with is the only link between them and their payments.
-const customersFor = async (email: string) => {
+const customersFor = async (email: string): Promise<Customer[]> => {
   const normalized = email.toLowerCase();
   const { items } = await getDodo().customers.list({
     email: normalized,
@@ -146,41 +147,64 @@ const customersFor = async (email: string) => {
   );
 };
 
-// The retired Skill Bundle: no longer sold, but its buyers keep their skill
-// repository access (Dodo's GitHub entitlement) and are told apart by it.
-const hasPaidSkill = async (customerId: string): Promise<boolean> => {
+/**
+ * Whether a customer has a paid, unrefunded purchase of a product. A product
+ * that isn't set up yet (no ID in the env) has no purchases.
+ */
+const hasPaid = async (
+  customerId: string,
+  productId: string | undefined
+): Promise<boolean> => {
   // Without a product ID the filter would match every payment.
-  if (!env.DODO_PRODUCT_SKILL) {
+  if (!productId) {
     return false;
   }
   const { items } = await getDodo().payments.list({
     customer_id: customerId,
     page_size: 100,
-    product_id: env.DODO_PRODUCT_SKILL,
+    product_id: productId,
     status: "succeeded",
   });
   return items.some((payment) => payment.refund_status !== "full");
 };
 
-/** The customer behind a paid, unrefunded skill bundle purchase, if any. */
-const skillCustomer = async (email: string) => {
-  const customers = await customersFor(email);
+/** The first of the customers with a paid, unrefunded purchase of a product. */
+const payingCustomer = async (
+  customers: Customer[],
+  productId: string | undefined
+): Promise<Customer | null> => {
   const paid = await Promise.all(
-    customers.map((customer) => hasPaidSkill(customer.customer_id))
+    customers.map((customer) => hasPaid(customer.customer_id, productId))
   );
   return customers.find((_, index) => paid[index]) ?? null;
 };
 
+// The retired Skill Bundle: no longer sold, but its buyers keep their skill
+// repository access (Dodo's GitHub entitlement) and are told apart by it.
 export const purchaseStatus = async (
   email: string
 ): Promise<{ purchased: boolean; name: string | null }> => {
-  const customer = await skillCustomer(email);
+  const customer = await payingCustomer(
+    await customersFor(email),
+    env.DODO_PRODUCT_SKILL
+  );
   return { name: customer?.name || null, purchased: customer !== null };
 };
 
-export const hasPurchased = async (email: string): Promise<boolean> => {
-  const status = await purchaseStatus(email);
-  return status.purchased;
+/**
+ * The one-time repository purchases an email paid for and kept: the retired
+ * Skill Bundle and the GTA 6 Clip Pack, each granting its repository through
+ * Dodo's GitHub entitlement.
+ */
+export const repoPurchases = async (
+  email: string
+): Promise<{ legacySkill: boolean; gtaPack: boolean }> => {
+  const customers = await customersFor(email);
+  const [skill, gtaPack] = await Promise.all([
+    payingCustomer(customers, env.DODO_PRODUCT_SKILL),
+    payingCustomer(customers, env.DODO_PRODUCT_GTA_PACK),
+  ]);
+  return { legacySkill: skill !== null, gtaPack: gtaPack !== null };
 };
 
 const checkoutUrl = async (
@@ -249,6 +273,30 @@ export const createPlanCheckoutUrl = async (
     console.error("Checkout code refused", discounts.codes, error.message);
     return checkoutUrl(params);
   }
+};
+
+/**
+ * Checkout for the GTA 6 Clip Pack, one payment. Dodo's GitHub entitlement
+ * grants the repository; the metadata ties the payment to the account. Dodo
+ * returns to /dashboard/billing, where the repository card shows once the
+ * payment is in.
+ */
+export const createGtaCheckoutUrl = (
+  buyer: Buyer,
+  locale?: string
+): Promise<string> => {
+  const productId = env.DODO_PRODUCT_GTA_PACK;
+  if (!productId) {
+    throw new Error("The GTA pack product is not set up; run pnpm dodo:setup");
+  }
+  return checkoutUrl({
+    cancel_url: appUrl(ROUTES.GTA_CLIPPING, locale),
+    customer: { email: buyer.email },
+    feature_flags: { allow_discount_code: false },
+    metadata: { product: GTA_PACK_PRODUCT, user_id: buyer.userId },
+    product_cart: [{ product_id: productId, quantity: 1 }],
+    return_url: `${appUrl(ROUTES.DASHBOARD_BILLING, locale)}?checkout=${GTA_PACK_PRODUCT}`,
+  });
 };
 
 /**
@@ -331,14 +379,18 @@ export const planPortalUrl = async (
 };
 
 /**
- * The portal for a retired Skill Bundle buyer (receipts, the GitHub
- * connection for the repository invite), found by email.
+ * The portal for a buyer without a plan, found by email: a retired Skill
+ * Bundle or GTA 6 Clip Pack purchase (receipts, the GitHub connection for
+ * the repository invite).
  */
-export const legacySkillPortalUrl = async (
+export const purchasePortalUrl = async (
   email: string,
   locale?: string
 ): Promise<string> => {
-  const customer = await skillCustomer(email);
+  const customers = await customersFor(email);
+  const customer =
+    (await payingCustomer(customers, env.DODO_PRODUCT_SKILL)) ??
+    (await payingCustomer(customers, env.DODO_PRODUCT_GTA_PACK));
   if (!customer) {
     throw new Error("No Dodo customer with a purchase for this email");
   }

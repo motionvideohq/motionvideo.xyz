@@ -1,0 +1,139 @@
+---
+title: GTA 6 Clip Pack
+description: Renderer-agnostic agent skills that add a GTA-flavored motion-graphics layer to your gameplay clips.
+---
+
+The GTA 6 Clip Pack is six agent skills that add the motion-graphics layer on top of a gameplay clip you've already cut: wanted stars, mission cards, kinetic captions, HUD callouts and impact effects, timed to the moments in the clip. It comes in four styles (Vice, Wasted, Neon and Clean), and it turns a 16:9 stream with a facecam into the vertical clipper layout: facecam on top, gameplay below. It costs $49 once and comes with Pro annual, Pro lifetime and Business annual. For a short overview, see the [GTA 6 Clip Pack page](/gta-6-clipping).
+
+The pack is renderer-agnostic. Its skills describe motion (timing, easing, layout, references) and write an overlay spec, `overlay.json`. Your renderer skill, an open-source Remotion or HyperFrames skill or the [Pro agent skill](/docs/skill)'s renderer skills, turns that into code and renders it. The pack ships no renderer code.
+
+## What's in the pack
+
+| Skill | What it does |
+| --- | --- |
+| `gta-clip` | Entry point: order of work, intake (clip, platform, aspect, marked moments), moment finding with ffmpeg plus your timestamps, overlay picks, `overlay.json`, hand-off to the renderer skill, review and export (9:16, 16:9, 1:1, with TikTok, Reels and Shorts safe zones) |
+| `gta-wanted` | Wanted-level star meter: build-up on escalation, flicker at max, cool-down |
+| `gta-cards` | Full-screen title cards in a mission passed, failed or busted style, with your own titles, letterbox and a grade dip |
+| `gta-captions` | Beat-synced kinetic captions: punch words, karaoke, reaction text, safe zones |
+| `gta-hud` | HUD callouts: cash and kill counters, minimap location tag, phone overlay, freeze-frame callouts |
+| `gta-impact` | Impact effects: zoom punch, shake, flash, chromatic split, letterbox, speed-ramp marks, with an intensity budget |
+
+Every overlay is an original design in open-licensed fonts such as Anton, Bebas Neue and Inter. There are no Rockstar logos, fonts or game art.
+
+## What you need
+
+- A coding agent that loads skills, such as Claude Code.
+- A renderer skill: an open-source Remotion or HyperFrames skill, or the renderer skills in [MotionVideo Pro](/pro).
+- ffmpeg, installed locally.
+
+## Get access
+
+The pack lives in a private GitHub repository, `motionvideohq/motionvideo-gta-skill`, and Dodo Payments invites you to it.
+
+<Steps>
+<Step>
+
+### Buy the pack or the plan
+
+Buy the pack on the [GTA 6 Clip Pack page](/gta-6-clipping), or own Pro annual, Pro lifetime or Business annual. Monthly plans and Business seats don't include it.
+
+</Step>
+<Step>
+
+### Connect GitHub
+
+Open [Billing in your dashboard](/dashboard/billing), go to the Dodo Payments customer portal and connect your GitHub account.
+
+</Step>
+<Step>
+
+### Accept the invite
+
+Accept the private repository invite that arrives by email.
+
+</Step>
+<Step>
+
+### Install
+
+Run the install command below in your project, then give your agent a gameplay clip.
+
+</Step>
+</Steps>
+
+## Install
+
+Accept the GitHub invite first, so your git credentials can read the repository. Run this from your project to install every skill there, for Claude Code. It's the command shown in your dashboard:
+
+```bash title="Terminal"
+npx skills add https://github.com/motionvideohq/motionvideo-gta-skill.git --skill '*' -a claude-code -y
+```
+
+To choose the agents and skills in prompts, use the SSH address:
+
+```bash title="Terminal"
+npx skills add git@github.com:motionvideohq/motionvideo-gta-skill.git
+```
+
+To get new versions, run `npx skills update`.
+
+## How it works
+
+1. Cut your clip as usual, in your editor or clip tool.
+2. Your agent finds the moments: scene cuts and audio peaks with ffmpeg, plus any timestamps you mark.
+3. It writes `overlay.json`: every caption, star, card and callout, timed to the clip.
+4. Your renderer skill renders the layer over the clip.
+
+Times in `overlay.json` are seconds from the start of the source clip:
+
+```json title="overlay.json"
+{
+  "version": 1,
+  "source": {
+    "path": "clip.mp4",
+    "width": 1080,
+    "height": 1920,
+    "fps": 60,
+    "durationSec": 20.0
+  },
+  "format": { "aspect": "9:16", "width": 1080, "height": 1920, "fps": 30 },
+  "style": {
+    "palette": {
+      "ink": "#0B0B0F",
+      "paper": "#F5F1E8",
+      "heat": "#FF3B6B",
+      "cash": "#7CFF6B",
+      "sun": "#FF9E3D",
+      "sky": "#38C6FF"
+    },
+    "display": "Anton",
+    "text": "Inter",
+    "intensity": "medium"
+  },
+  "cues": [
+    {
+      "at": 1.2,
+      "until": 2.4,
+      "kind": "caption",
+      "text": "HE DID NOT SEE THAT",
+      "emphasis": ["NOT"]
+    },
+    { "at": 3.0, "kind": "wanted", "level": 3 },
+    { "at": 5.1, "kind": "impact", "effect": "zoom-punch", "strength": 0.6 },
+    {
+      "at": 17.0,
+      "until": 20.0,
+      "kind": "card",
+      "variant": "passed",
+      "title": "HEIST COMPLETE",
+      "subtitle": "+$12,500"
+    }
+  ]
+}
+```
+
+Cue kinds: `caption`, `wanted`, `impact`, `callout`, `counter`, `minimap`, `phone` and `card`. `until` is optional; each kind has a default hold.
+
+## Disclaimer
+
+Not affiliated with, endorsed by, or sponsored by Rockstar Games or Take-Two Interactive. Grand Theft Auto and GTA are trademarks of Take-Two Interactive.

@@ -3,6 +3,8 @@ import { getRequest } from "@tanstack/react-start/server";
 import { env } from "cloudflare:workers";
 import { z } from "zod";
 
+import { gtaDemoForCountry } from "@/constants/gta-demos";
+import type { GtaDemoSlug } from "@/constants/gta-demos";
 import { LINK } from "@/constants/links";
 import { SITE } from "@/constants/site";
 import { contactSchema } from "@/lib/contact";
@@ -12,6 +14,7 @@ import { completedCheckout } from "./dodo";
 import { sendEmail } from "./email";
 import { planAccessFor } from "./plans";
 import { liveSponsors } from "./sponsorships";
+import { visitorCountry } from "./visitor-pricing";
 
 // Every page with sponsor placements loads this; `useSponsors` reads it. The
 // signed-in flag is deliberately not part of it: the header reads the session
@@ -24,6 +27,16 @@ export const getLandingData = createServerFn({ method: "GET" }).handler(
 /** Only for pages that gate content on the session (moves, templates, plans). */
 export const getSessionFlag = createServerFn({ method: "GET" }).handler(
   async () => (await getCurrentSession()) !== null
+);
+
+/**
+ * The /gta-6-clipping demo for the visitor's country (Cloudflare's `cf-ipcountry`),
+ * so the first paint shows their creator. The page is rendered per request
+ * (not prerendered, no shared cache), so the pick is never one visitor's
+ * for everyone.
+ */
+export const getGtaDemoPick = createServerFn({ method: "GET" }).handler(
+  (): GtaDemoSlug => gtaDemoForCountry(visitorCountry(getRequest()))
 );
 
 /**

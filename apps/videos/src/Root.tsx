@@ -2,6 +2,7 @@ import "./index.css";
 import { Composition, Folder } from "remotion";
 import { DURATION, FPS, MotionVideoLaunch } from "./launch/MotionVideoLaunch";
 import { LaunchFilm, calculateLaunchFilmMetadata } from "./film/LaunchFilm";
+import { GTA_SAMPLE, GtaClip, calculateGtaClipMetadata } from "./gta/GtaClip";
 import film from "./film/shots.json";
 import {
   OG_DURATION,
@@ -58,6 +59,18 @@ export const RemotionRoot = () => (
         fps={OG_FPS}
         width={OG_WIDTH}
         height={OG_HEIGHT}
+      />
+    </Folder>
+    <Folder name="gta">
+      <Composition
+        id="GtaClip"
+        component={GtaClip}
+        durationInFrames={360}
+        fps={30}
+        width={1080}
+        height={1920}
+        defaultProps={GTA_SAMPLE}
+        calculateMetadata={calculateGtaClipMetadata}
       />
     </Folder>
   </>
