@@ -4,11 +4,12 @@ import {
   useRouter,
 } from "@tanstack/react-router";
 import { useState } from "react";
-import type { FormEvent } from "react";
+import type { FormEvent, ReactNode } from "react";
 import { useIntlayer, useLocale } from "react-intlayer";
 import { z } from "zod";
 
 import { CopyIcon } from "@/components/copy-icon";
+import { GitHubIcon } from "@/components/icons";
 import { LocalizedLink as Link } from "@/components/localized-link";
 import { AccountPageHeader, PageMain } from "@/components/page";
 import { Badge } from "@/components/ui/badge";
@@ -22,9 +23,10 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
+import { GTA_PACK_PRODUCT } from "@/constants/plans";
 import type { PlanAccess } from "@/constants/plans";
 import { ROUTES } from "@/constants/routes";
-import { SKILL } from "@/constants/skill";
+import { GTA_SKILL, SKILL } from "@/constants/skill";
 import { useTransientStatus } from "@/hooks/use-transient-status";
 import { localizedRedirect } from "@/lib/localized-redirect";
 import { createMetadata } from "@/seo/metadata";
@@ -38,7 +40,8 @@ import {
 import type { Seat } from "@/server/plan-functions";
 
 interface BillingSearch {
-  checkout?: "success";
+  /** Set by our checkout return URLs: a plan, or the GTA 6 Clip Pack. */
+  checkout?: "success" | typeof GTA_PACK_PRODUCT;
   /** Appended by Dodo to the checkout return URL; synced on load. */
   subscription_id?: string;
   payment_id?: string;
@@ -46,7 +49,10 @@ interface BillingSearch {
 
 const routeApi = getRouteApi("/{-$locale}/dashboard/billing");
 
-/** Opens Dodo's billing portal (owners) or receipts (Skill Bundle buyers). */
+/**
+ * Opens Dodo's billing portal (owners) or receipts and the GitHub link
+ * (Skill Bundle and GTA 6 Clip Pack buyers without a plan).
+ */
 const PortalButton = () => {
   const content = useIntlayer("billing-page");
   const { locale } = useLocale();
@@ -227,28 +233,40 @@ const McpCard = () => {
   );
 };
 
+interface RepoCardProps {
+  title: ReactNode;
+  intro: ReactNode;
+  /** The skills CLI command that installs the repository's skills. */
+  command: string;
+  repo: string;
+  /** The last step, after the GitHub invite. */
+  prompt: ReactNode;
+}
+
 /**
- * The agent skill, part of the plan: the private repository is granted
- * through Dodo's portal (connect GitHub there), then installed with the
- * command below. Also shown to Skill Bundle buyers, who keep the repository.
+ * A private skill repository the account can install: granted through
+ * Dodo's portal (connect GitHub there), then installed with the command
+ * below. The Pro agent skill (plan owners and Skill Bundle buyers) and the
+ * GTA 6 Clip Pack (its buyers and owners of the plans that include it).
  */
-const SkillCard = () => {
+const RepoCard = ({ title, intro, command, repo, prompt }: RepoCardProps) => {
   const content = useIntlayer("dashboard-page");
+  const billing = useIntlayer("billing-page");
   const [status, flash] = useTransientStatus<"idle" | "copied">("idle");
   const copied = status === "copied";
   const label = copied ? content.copied.value : content.copy.value;
   return (
     <Card size="lg">
       <CardHeader>
-        <CardTitle>{content.install}</CardTitle>
-        <CardDescription>{content.installIntro}</CardDescription>
+        <CardTitle>{title}</CardTitle>
+        <CardDescription>{intro}</CardDescription>
       </CardHeader>
       <CardContent className="flex flex-col gap-6">
         <div className="flex flex-col gap-2">
           <span className="text-sm font-medium">{content.commandLabel}</span>
           <div className="bg-muted/50 flex items-center gap-2 rounded-xl p-2 pl-4">
             <code className="min-w-0 flex-1 overflow-x-auto font-mono text-xs whitespace-nowrap">
-              {SKILL.INSTALL_COMMAND}
+              {command}
             </code>
             <Button
               aria-label={label}
@@ -256,7 +274,7 @@ const SkillCard = () => {
               variant="outline"
               onClick={async () => {
                 try {
-                  await navigator.clipboard.writeText(SKILL.INSTALL_COMMAND);
+                  await navigator.clipboard.writeText(command);
                   flash("copied");
                 } catch {
                   // Clipboard access can be denied; the command stays selectable.
@@ -276,12 +294,21 @@ const SkillCard = () => {
           <ol className="text-muted-foreground flex list-decimal flex-col gap-1.5 pl-4 text-sm">
             <li>{content.stepPortal}</li>
             <li>{content.stepInvite}</li>
-            <li>{content.stepPrompt}</li>
+            <li>{prompt}</li>
           </ol>
         </div>
       </CardContent>
-      <CardFooter>
+      <CardFooter className="flex flex-wrap gap-2">
         <PortalButton />
+        <a
+          href={repo}
+          target="_blank"
+          rel="noopener noreferrer"
+          className={buttonVariants({ size: "lg", variant: "ghost" })}
+        >
+          <GitHubIcon aria-hidden="true" className="size-4" />
+          {billing.openRepo}
+        </a>
       </CardFooter>
     </Card>
   );
@@ -292,13 +319,22 @@ const Billing = () => {
   const sections = useIntlayer("site-header");
   const { access, seats } = routeApi.useLoaderData();
   const { checkout } = routeApi.useSearch();
+  const dashboard = useIntlayer("dashboard-page");
+  let noPlanBody: ReactNode = content.noPlanBody;
+  if (access.legacySkill) {
+    noPlanBody = content.legacySkill;
+  } else if (access.gtaPack) {
+    noPlanBody = content.gtaOnly;
+  }
 
   return (
     <PageMain layout="app" width="narrow">
       <AccountPageHeader title={sections.billing} intro={content.intro} />
-      {checkout === "success" && (
+      {checkout && (
         <output className="bg-primary/10 text-foreground rounded-xl px-4 py-3 text-sm">
-          {content.checkoutSuccess}
+          {checkout === GTA_PACK_PRODUCT
+            ? content.gtaCheckoutSuccess
+            : content.checkoutSuccess}
         </output>
       )}
       {access.plan ? (
@@ -307,23 +343,38 @@ const Billing = () => {
         <Card size="lg">
           <CardHeader>
             <CardTitle>{content.noPlanTitle}</CardTitle>
-            <CardDescription>
-              {access.legacySkill ? content.legacySkill : content.noPlanBody}
-            </CardDescription>
+            <CardDescription>{noPlanBody}</CardDescription>
           </CardHeader>
           <CardFooter className="flex flex-wrap gap-2">
             <Link to={ROUTES.PRO} className={buttonVariants({ size: "lg" })}>
               {content.seePlans}
             </Link>
-            {access.legacySkill && <PortalButton />}
+            {(access.legacySkill || access.gtaPack) && <PortalButton />}
           </CardFooter>
         </Card>
       )}
       {seats && <SeatsCard seats={seats} />}
       {access.plan && <McpCard />}
-      {/* The repository is granted to whoever paid (Dodo's customer): plan
-          owners and Skill Bundle buyers, not seat holders. */}
-      {(access.role === "owner" || access.legacySkill) && <SkillCard />}
+      {/* Repositories are granted to whoever paid (Dodo's customer): plan
+          owners and one-time buyers, not seat holders. */}
+      {(access.role === "owner" || access.legacySkill) && (
+        <RepoCard
+          title={dashboard.install}
+          intro={dashboard.installIntro}
+          command={SKILL.INSTALL_COMMAND}
+          repo={SKILL.REPO}
+          prompt={dashboard.stepPrompt}
+        />
+      )}
+      {access.gtaPack && (
+        <RepoCard
+          title={content.gtaTitle}
+          intro={content.gtaIntro}
+          command={GTA_SKILL.INSTALL_COMMAND}
+          repo={GTA_SKILL.REPO}
+          prompt={content.gtaStepPrompt}
+        />
+      )}
     </PageMain>
   );
 };
@@ -334,7 +385,10 @@ export const Route = createFileRoute("/{-$locale}/dashboard/billing")({
   component: Billing,
   head: () => createMetadata({ title: "Usage and billing" }),
   validateSearch: (search): BillingSearch => ({
-    checkout: search.checkout === "success" ? "success" : undefined,
+    checkout:
+      search.checkout === "success" || search.checkout === GTA_PACK_PRODUCT
+        ? search.checkout
+        : undefined,
     subscription_id: idSchema.safeParse(search.subscription_id).data,
     payment_id: idSchema.safeParse(search.payment_id).data,
   }),

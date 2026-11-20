@@ -86,6 +86,7 @@ const PAGES: { lastmod?: string; path: string }[] = [
   { path: ROUTES.PRO },
   { path: ROUTES.MOTIONVIDEO_SKILL },
   { path: ROUTES.MOTIONVIDEO_MCP },
+  { path: ROUTES.GTA_CLIPPING },
   { path: ROUTES.MOVES },
   ...MOVE_FAMILIES.map((family) => ({
     path: `${ROUTES.MOVES}/${family}`,
@@ -99,6 +100,7 @@ const PAGES: { lastmod?: string; path: string }[] = [
     ROUTES.DOCS,
     ROUTES.DOCS_MCP,
     ROUTES.DOCS_SKILL,
+    ROUTES.DOCS_GTA,
     ROUTES.DOCS_MOVES,
     ROUTES.DOCS_TEMPLATES,
     ROUTES.DOCS_PLANS,

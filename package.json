@@ -9,6 +9,7 @@
     "deploy": "pnpm --filter @motionvideo/web run deploy",
     "assets:mirror": "pnpm --filter @motionvideo/web run assets:mirror",
     "studio": "pnpm --filter @motionvideo/videos run studio",
+    "gta:render": "pnpm --filter @motionvideo/videos run gta:render",
     "typecheck": "pnpm -r typecheck",
     "lint": "oxlint",
     "format": "oxfmt",

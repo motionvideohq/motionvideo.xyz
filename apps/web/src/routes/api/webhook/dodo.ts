@@ -47,9 +47,9 @@ export const Route = createFileRoute("/api/webhook/dodo")({
         // live placements, Pro access). Each sync re-reads the subscription
         // from the API and ignores the other's products, so redeliveries and
         // out-of-order events are harmless, and a failure returns 500 for Dodo
-        // to retry. The skill repository needs no fulfillment here: Dodo's
-        // GitHub entitlement (on every plan product) sends the invite on
-        // payment and removes it on refund or cancellation.
+        // to retry. The skill repositories need no fulfillment here: Dodo's
+        // GitHub entitlements (on the plan products and the GTA 6 Clip Pack)
+        // send the invite on payment and remove it on refund or cancellation.
         if (isSubscriptionEvent(event)) {
           try {
             await Promise.all([

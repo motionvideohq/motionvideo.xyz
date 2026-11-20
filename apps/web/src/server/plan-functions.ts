@@ -18,8 +18,8 @@ import type { SaleOffer } from "@/lib/offers";
 import { getCurrentSession } from "./auth";
 import {
   createPlanCheckoutUrl,
-  legacySkillPortalUrl,
   planPortalUrl,
+  purchasePortalUrl,
 } from "./dodo";
 import { sendEmail } from "./email";
 import {
@@ -141,7 +141,8 @@ export const startPlanCheckout = createServerFn({ method: "POST" })
 
 /**
  * Dodo's billing portal: the owner's plan (cancel, change card, invoices),
- * or, for a retired Skill Bundle buyer, their receipts and GitHub link.
+ * or, for a buyer of the retired Skill Bundle or the GTA 6 Clip Pack without
+ * a plan, their receipts and GitHub link.
  */
 export const getPlanPortalUrl = createServerFn({ method: "POST" })
   .validator(z.object({ locale: z.string().optional() }).optional())
@@ -151,7 +152,7 @@ export const getPlanPortalUrl = createServerFn({ method: "POST" })
     if (row) {
       return planPortalUrl(row.customerId, data?.locale);
     }
-    return legacySkillPortalUrl(session.user.email, data?.locale);
+    return purchasePortalUrl(session.user.email, data?.locale);
   });
 
 // The owner's live Business row, or an error for anyone else.
