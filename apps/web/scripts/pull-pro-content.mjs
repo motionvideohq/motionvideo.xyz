@@ -214,10 +214,15 @@ try {
   }
   if (current.startsWith("real")) {
     log(`couldn't refresh (${reason}); keeping ${current}`);
-  } else if (process.env.PRO_CONTENT_SAMPLES === "1" && !process.env.WORKERS_CI) {
+  } else if (
+    process.env.PRO_CONTENT_SAMPLES === "1" &&
+    !process.env.WORKERS_CI
+  ) {
     await copyAll(SAMPLES);
     await writeFile(MARKER, "sample\n");
-    log(`no access (${reason}); using the redacted samples (PRO_CONTENT_SAMPLES=1)`);
+    log(
+      `no access (${reason}); using the redacted samples (PRO_CONTENT_SAMPLES=1)`
+    );
   } else {
     console.error(
       `pro:pull: couldn't pull ${REPO} (${reason}). Ask for access, set ` +
