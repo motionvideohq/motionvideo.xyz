@@ -2,11 +2,13 @@ import { createFileRoute } from "@tanstack/react-router";
 
 import { CACHE_CONTROL } from "@/constants/cache-control";
 import { JOB_TYPES } from "@/constants/jobs";
+import { LAUNCH_VIDEOS_LIVE } from "@/constants/launch-videos";
 import { DEFAULT_LOCALE, LOCALES, localizedPath } from "@/constants/locales";
 import {
   categoryPath,
   colorPath,
   creatorPath,
+  launchFilmPath,
   modelPath,
   ROUTES,
   STATIC_PAGES,
@@ -18,6 +20,7 @@ import catalog from "@/data/motion-catalog.json";
 import { CHANGELOG_ENTRIES } from "@/lib/changelog";
 import { DESIGN_COMPONENT_PAGES, DESIGN_FOUNDATIONS } from "@/lib/design";
 import { DIRECTORY_CATEGORIES } from "@/lib/directories";
+import { LAUNCH_FILMS } from "@/lib/launch-catalog";
 import {
   MOTION_CATEGORIES,
   MOTION_MODELS,
@@ -92,6 +95,18 @@ const PAGES: { lastmod?: string; path: string }[] = [
     path: `${ROUTES.MOVES}/${family}`,
   })),
   ...MOVES.map((move) => ({ path: movePath(move) })),
+  // Launch Videos and each film, once the section is live. A scene is a
+  // `?scene=` view of its film, not a page of its own; the composer is
+  // personal and stays out.
+  ...(LAUNCH_VIDEOS_LIVE
+    ? [
+        { path: ROUTES.LAUNCH_VIDEOS },
+        ...LAUNCH_FILMS.map((film) => ({
+          lastmod: film.publishedAt,
+          path: launchFilmPath(film.slug),
+        })),
+      ]
+    : []),
   { path: ROUTES.TEMPLATES },
   ...PROMPT_TEMPLATES.map((template) => ({ path: templatePath(template) })),
   // Docs pages (content/docs/*.mdx) and the API reference generated from

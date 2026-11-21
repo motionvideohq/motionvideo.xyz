@@ -4,6 +4,7 @@ import { BookOpen } from "reicon-react/icons/BookOpen";
 import { Briefcase } from "reicon-react/icons/Briefcase";
 import { Brush } from "reicon-react/icons/Brush";
 import { Card2 } from "reicon-react/icons/Card2";
+import { Clapperboard } from "reicon-react/icons/Clapperboard";
 import { Code } from "reicon-react/icons/Code";
 import { Database } from "reicon-react/icons/Database";
 import { Designtools } from "reicon-react/icons/Designtools";
@@ -43,6 +44,7 @@ export const SECTION_ICONS = {
   jobs: Briefcase,
   creators: ProfileCircle,
   moves: Bezier,
+  launchVideos: Clapperboard,
   templates: Layout,
   customize: Sliders,
   docs: Docs,

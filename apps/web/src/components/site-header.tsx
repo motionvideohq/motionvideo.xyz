@@ -39,6 +39,7 @@ import {
   NavigationMenuTrigger,
   navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu";
+import { LAUNCH_VIDEOS_LIVE } from "@/constants/launch-videos";
 import { ROUTES } from "@/constants/routes";
 import { cn } from "@/lib/utils";
 import { buttonVariants } from "@/registry/ui/button";
@@ -56,7 +57,10 @@ const EXPLORE_ROUTES = [
 
 // The pages under each menu: the product itself, what agents use, and the
 // site's own pages.
-const PRODUCT_LINKS = ["customize", "moves", "templates"] as const;
+// Launch Videos sits next to Moves once its release flag is on.
+const PRODUCT_LINKS = LAUNCH_VIDEOS_LIVE
+  ? (["customize", "moves", "launchVideos", "templates"] as const)
+  : (["customize", "moves", "templates"] as const);
 const AI_LINKS = ["mcp", "skill"] as const;
 const RESOURCE_LINKS = [
   "about",
@@ -104,6 +108,7 @@ const panelStyle = {
 // Every page a top-level link (or a menu item) points at.
 const NAV_LINKS = {
   moves: ROUTES.MOVES,
+  launchVideos: ROUTES.LAUNCH_VIDEOS,
   templates: ROUTES.TEMPLATES,
   customize: ROUTES.CUSTOMIZE,
   mcp: ROUTES.MOTIONVIDEO_MCP,
@@ -172,6 +177,7 @@ const useCurrentSection = (): Section => {
   }
   if (
     under(ROUTES.MOVES) ||
+    under(ROUTES.LAUNCH_VIDEOS) ||
     under(ROUTES.TEMPLATES) ||
     under(ROUTES.CUSTOMIZE)
   ) {
