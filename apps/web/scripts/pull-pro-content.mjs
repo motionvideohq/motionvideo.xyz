@@ -14,7 +14,8 @@
 //                                    redacted (after adding moves or scenes)
 //
 // Access: a local checkout, or `git` over HTTPS with your GitHub credentials
-// (or PRO_CONTENT_TOKEN, e.g. a build secret on Cloudflare Workers Builds).
+// or MOTIONVIDEO_PRO_GH_TOKEN (read from apps/web/.env locally; a build secret
+// on Cloudflare Workers Builds).
 // Without access, PRO_CONTENT_SAMPLES=1 installs the redacted samples in
 // `src/server/data/samples/` so typecheck and build run (GitHub Actions sets
 // it). It is an explicit opt-in, not `CI`: Workers Builds sets CI=true too,
@@ -40,6 +41,7 @@ const SAMPLES = path.join(DATA, "samples");
 // Records what is in DATA: `real <commit>` or `sample`.
 const MARKER = path.join(DATA, ".pro-content");
 const REPO = "github.com/motionvideohq/motionvideo-pro";
+const TOKEN = process.env.MOTIONVIDEO_PRO_GH_TOKEN ?? "";
 /** Files in the private repo's `data/`, copied to DATA under the same name. */
 const FILES = [
   "move-prompts.json",
@@ -161,9 +163,8 @@ const install = async (sourceDir, label) => {
 };
 
 const fromGit = async () => {
-  const token = process.env.PRO_CONTENT_TOKEN;
-  const url = token
-    ? `https://x-access-token:${token}@${REPO}.git`
+  const url = TOKEN
+    ? `https://x-access-token:${TOKEN}@${REPO}.git`
     : `https://${REPO}.git`;
   const dir = await mkdtemp(path.join(tmpdir(), "motionvideo-pro-"));
   try {
@@ -197,7 +198,9 @@ try {
     log(`pulled Pro content at ${await fromGit()}`);
   }
 } catch (error) {
-  const reason = (error.stderr || error.message || String(error))
+  // execFile's message repeats the command, clone URL and token included.
+  const raw = String(error.stderr || error.message || error);
+  const reason = (TOKEN ? raw.replaceAll(TOKEN, "***") : raw)
     .trim()
     .split("\n")
     .at(-1);
@@ -226,7 +229,7 @@ try {
   } else {
     console.error(
       `pro:pull: couldn't pull ${REPO} (${reason}). Ask for access, set ` +
-        "PRO_CONTENT_TOKEN, or point PRO_CONTENT_DIR at a local checkout."
+        "MOTIONVIDEO_PRO_GH_TOKEN in apps/web/.env, or point PRO_CONTENT_DIR at a local checkout."
     );
     process.exit(1);
   }
