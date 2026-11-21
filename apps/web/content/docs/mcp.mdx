@@ -8,7 +8,7 @@ The MotionVideo MCP server brings the motionvideo.xyz catalog into any MCP clien
 The server provides:
 
 - **Four free read-only tools:** `search-videos`, `get-video`, `list-categories` and `browse-directory`.
-- **Two Pro tools:** `search-moves` and `get-move-prompt`. They need you to sign in with an account that has Pro or Business.
+- **Five Pro tools:** `search-moves` and `get-move-prompt` for Moves, and `search-launch-scenes`, `get-launch-prompt` and `compose-launch-prompt` for [Launch Videos](#launch-videos). They need you to sign in with an account that has Pro or Business.
 - **Two account tools:** `list-bookmarks` reads your saved items, optionally filtered by kind, and `my-featured` reads your featured community submissions. They need a free sign-in.
 - **Two resources:** `motionvideo://catalog/overview` and `motionvideo://videos/{slug}`. They need a free sign-in.
 - **One prompt:** `remix-video`. It turns an entry's original prompt into a brief your agent can adapt. It needs a free sign-in.
@@ -119,6 +119,7 @@ Your client registers itself with motionvideo.xyz and keeps the sign-in, so you 
 | `search-videos`, `get-video`, `list-categories`, `browse-directory` | Nothing. They work without signing in. |
 | Resources and the `remix-video` prompt | A free motionvideo.xyz sign-in |
 | `search-moves`, `get-move-prompt` | A sign-in with a Pro or Business plan, or a Business seat |
+| `search-launch-scenes`, `get-launch-prompt`, `compose-launch-prompt` | A sign-in with a Pro or Business plan, or a Business seat |
 
 The Pro tools work while the signed-in account has an active Pro or Business plan or holds a Business seat. Without one, they return an error that links to [plans](/pro). If your sign-in expires or is no longer valid, sign in again from your MCP client.
 
@@ -143,6 +144,59 @@ Gets one move's copy-ready prompt.
 | `slug`   | string, required | Move slug from `search-moves` |
 
 **Returns** `slug`, `name`, `family`, `summary`, `prompt` (the copy-ready prompt), `parameters` (the knobs worth naming in a prompt, such as stagger or easing values) and `pageUrl`.
+
+### Launch Videos
+
+Three tools work with the [Launch Videos](/launch-videos) library of real product launch films. Search films or single scenes, then compile one film or scene, or a mix of scenes from different films, into a frame-accurate prompt for Remotion, HyperFrames, Editframe or fframes. `exact` mode recreates the film as made; `adapt` mode keeps its structure and timing and swaps in your brand.
+
+#### search-launch-scenes
+
+Searches launch films, or the scenes inside them.
+
+| Argument | Type | Description |
+| --- | --- | --- |
+| `query` | string, optional | Keywords matched against titles, brands and summaries. |
+| `view` | string, optional | `films` (default) or `scenes`. |
+| `roles` | string[], optional | Scene roles such as `hook`, `reveal`, `feature` or `cta`. Any of them matches; the films view matches through the film's scenes. |
+| `styles` | string[], optional | Scene styles. Any of them matches. |
+| `aspect` | string, optional | `16:9`, `9:16`, `1:1` or `4:5`. |
+| `minSeconds`, `maxSeconds` | number, optional | Duration range. |
+| `category` | string, optional | One film category. |
+| `limit` | integer, optional | How many results to return, 1 to 30. Defaults to 12. |
+| `cursor` | string, optional | `nextCursor` from the previous page. |
+
+**Returns** `view`, `items` and `nextCursor`. Film items have `slug`, `title`, `brand`, `summary`, `seconds`, `aspect`, `fps`, `url`, `credits` and `sceneIds`. Scene items have `id`, `filmSlug`, `title`, `role`, `style`, `seconds`, start and end frames, `url` and the film's credits. No recipe text.
+
+#### get-launch-prompt
+
+Compiles one film, or one of its scenes, into a prompt.
+
+| Argument | Type | Description |
+| --- | --- | --- |
+| `filmSlug` | string, required | Film slug from `search-launch-scenes`. |
+| `sceneId` | string, optional | One scene of the film. Omit it for the whole film. |
+| `mode` | string, required | `exact` or `adapt`. |
+| `renderer` | string, required | `remotion`, `hyperframes`, `editframe` or `fframes`. |
+| `inputs` | object, optional | Brand inputs keyed by slot key, all strings. Run once without them to see the slots. |
+| `aspect` | string, optional | Output aspect. Defaults to the film's. |
+| `fps` | object, optional | Output frame rate as `{ num, den }`, for example `{ "num": 30, "den": 1 }`. |
+| `targetSeconds` | number, optional | Retime the output to about this length. |
+| `finalize` | boolean, optional | Refuse while required inputs are missing instead of leaving placeholders. |
+
+**Returns** the markdown prompt as the tool's text, plus structured `mode`, `renderer`, `width`, `height`, `fps`, `totalFrames`, `filmVersion`, `scenes` (the frame timeline), `joins`, `slots` (each with `filled`), `missing`, `assets` and `warnings`.
+
+#### compose-launch-prompt
+
+Combines scenes from one or more films, in order, into one storyboard prompt.
+
+| Argument | Type | Description |
+| --- | --- | --- |
+| `sceneIds` | string[], required | 1 to 16 scene ids, in storyboard order. |
+| `versions` | (integer \| null)[], optional | Recipe version per position in `sceneIds`. `null` means the latest. |
+| `joins` | object[], optional | How scenes meet: `{ after, kind, frames? }`, where `after` is the index of the earlier scene, `kind` is `cut` or `bridge`, and `frames` is the bridge length. |
+| `mode`, `renderer`, `inputs`, `aspect`, `fps`, `targetSeconds`, `finalize` |  | As in `get-launch-prompt`. |
+
+**Returns** the same as `get-launch-prompt`.
 
 ## Categories
 
@@ -309,6 +363,8 @@ The server doesn't store the catalog. It reads it from the site's public JSON en
 If the site can't be reached, the server keeps serving its last good copy and tries again after a minute. If it has no copy yet, tools return an error saying the catalog is temporarily unavailable. Retry in a moment.
 
 The Pro tools read moves from the site's `/api/mcp/moves` endpoint, passing along the access token from your sign-in. The site checks the account's plan and returns the moves only for Pro, Business or a Business seat. `search-moves` keeps the moves list in memory for 10 minutes per signed-in account. `get-move-prompt` fetches the move on every call. If the site can't reach its database, the Pro tools return an error. Retry in a moment.
+
+The Launch Videos tools call the site's `/api/mcp/launch-videos` endpoints (`/search`, `/prompt` and `/compose`) on every call, with the same access token. The site checks the plan and compiles the prompt, so the MCP server returns the same markdown as the website for the same inputs. Nothing is cached.
 
 ## Local development
 

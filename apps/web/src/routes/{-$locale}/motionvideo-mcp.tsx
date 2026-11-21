@@ -38,6 +38,9 @@ const TOOLS = [
   { name: "browse-directory", key: "browseDirectory", pro: false },
   { name: "search-moves", key: "searchMoves", pro: true },
   { name: "get-move-prompt", key: "getMovePrompt", pro: true },
+  { name: "search-launch-scenes", key: "searchLaunchScenes", pro: true },
+  { name: "get-launch-prompt", key: "getLaunchPrompt", pro: true },
+  { name: "compose-launch-prompt", key: "composeLaunchPrompt", pro: true },
 ] as const;
 
 const EXTRAS = [

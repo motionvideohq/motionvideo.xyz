@@ -34,6 +34,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { InputGroupButton } from "@/components/ui/input-group";
 import { Kbd, KbdGroup } from "@/components/ui/kbd";
+import { LAUNCH_VIDEOS_LIVE } from "@/constants/launch-videos";
 import { LINK } from "@/constants/links";
 import { LOCALES, LOCALE_NAMES } from "@/constants/locales";
 import { ROUTES } from "@/constants/routes";
@@ -60,6 +61,7 @@ type PagePath = (typeof ROUTES)[
   | "JOBS"
   | "SPONSOR"
   | "MOVES"
+  | "LAUNCH_VIDEOS"
   | "TEMPLATES"
   | "DOCS"
   | "MOTIONVIDEO_MCP"
@@ -506,6 +508,16 @@ export const CommandMenu = () => {
             "prompts",
             "easing",
           ]),
+          ...(LAUNCH_VIDEOS_LIVE
+            ? [
+                page(
+                  ROUTES.LAUNCH_VIDEOS,
+                  header.launchVideos.value,
+                  "launchVideos",
+                  ["launch", "film", "scenes", "storyboard", "prompts"]
+                ),
+              ]
+            : []),
           page(ROUTES.TEMPLATES, header.templates.value, "templates", [
             "prompt",
             "template",

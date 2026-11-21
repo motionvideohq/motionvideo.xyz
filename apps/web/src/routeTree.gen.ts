@@ -38,6 +38,7 @@ import { Route as Char123LocaleChar125DashboardRouteImport } from './routes/{-$l
 import { Route as Char123LocaleChar125ExtrasRouteImport } from './routes/{-$locale}/extras'
 import { Route as Char123LocaleChar125FeaturedRouteImport } from './routes/{-$locale}/featured'
 import { Route as Char123LocaleChar125FilmRouteImport } from './routes/{-$locale}/film'
+import { Route as Char123LocaleChar125LaunchVideosRouteImport } from './routes/{-$locale}/launch-videos'
 import { Route as Char123LocaleChar125ListingsRouteImport } from './routes/{-$locale}/listings'
 import { Route as Char123LocaleChar125MotionvideoMcpRouteImport } from './routes/{-$locale}/motionvideo-mcp'
 import { Route as Char123LocaleChar125MotionvideoSkillRouteImport } from './routes/{-$locale}/motionvideo-skill'
@@ -99,6 +100,9 @@ import { Route as Char123LocaleChar125ExtrasCategoryRouteImport } from './routes
 import { Route as Char123LocaleChar125JobsIndexRouteImport } from './routes/{-$locale}/jobs/index'
 import { Route as Char123LocaleChar125JobsTypeRouteImport } from './routes/{-$locale}/jobs/$type'
 import { Route as Char123LocaleChar125JobsPostRouteImport } from './routes/{-$locale}/jobs/post'
+import { Route as Char123LocaleChar125LaunchVideosIndexRouteImport } from './routes/{-$locale}/launch-videos/index'
+import { Route as Char123LocaleChar125LaunchVideosFilmRouteImport } from './routes/{-$locale}/launch-videos/$film'
+import { Route as Char123LocaleChar125LaunchVideosComposeRouteImport } from './routes/{-$locale}/launch-videos/compose'
 import { Route as Char123LocaleChar125MovesIndexRouteImport } from './routes/{-$locale}/moves/index'
 import { Route as Char123LocaleChar125MovesFamilyRouteImport } from './routes/{-$locale}/moves/$family'
 import { Route as Char123LocaleChar125SkillsIndexRouteImport } from './routes/{-$locale}/skills/index'
@@ -110,6 +114,9 @@ import { Route as Char123LocaleChar125ToolsIndexRouteImport } from './routes/{-$
 import { Route as Char123LocaleChar125ToolsCategoryRouteImport } from './routes/{-$locale}/tools/$category'
 import { Route as ApiCatalogDirectoriesSearchRouteImport } from './routes/api/catalog/directories_.search'
 import { Route as ApiCatalogVideosSlugRouteImport } from './routes/api/catalog/videos/$slug'
+import { Route as ApiMcpLaunchVideosComposeRouteImport } from './routes/api/mcp/launch-videos/compose'
+import { Route as ApiMcpLaunchVideosPromptRouteImport } from './routes/api/mcp/launch-videos/prompt'
+import { Route as ApiMcpLaunchVideosSearchRouteImport } from './routes/api/mcp/launch-videos/search'
 import { Route as ApiMcpMovesIndexRouteImport } from './routes/api/mcp/moves/index'
 import { Route as ApiMcpMovesSlugRouteImport } from './routes/api/mcp/moves/$slug'
 import { Route as Char123LocaleChar125GalleryCategoryCategoryRouteImport } from './routes/{-$locale}/_gallery/category.$category'
@@ -127,6 +134,8 @@ import { Route as Char123LocaleChar125MovesFamilyIndexRouteImport } from './rout
 import { Route as Char123LocaleChar125MovesFamilySlugRouteImport } from './routes/{-$locale}/moves/$family.$slug'
 import { Route as Char123LocaleChar125TemplatesTemplateIdIndexRouteImport } from './routes/{-$locale}/templates/$templateId.index'
 import { Route as Char123LocaleChar125TemplatesTemplateIdCustomizeRouteImport } from './routes/{-$locale}/templates/$templateId.customize'
+import { Route as Char123LocaleChar125TemplatesLaunchFilmIndexRouteImport } from './routes/{-$locale}/templates/launch-film.index'
+import { Route as Char123LocaleChar125TemplatesLaunchFilmCustomizeRouteImport } from './routes/{-$locale}/templates/launch-film.customize'
 import { Route as Char123LocaleChar125GalleryCategoryCategoryIndexRouteImport } from './routes/{-$locale}/_gallery/category.$category.index'
 import { Route as Char123LocaleChar125GalleryColorColorIndexRouteImport } from './routes/{-$locale}/_gallery/color.$color.index'
 import { Route as Char123LocaleChar125GalleryCreatorsCreatorIndexRouteImport } from './routes/{-$locale}/_gallery/creators.$creator.index'
@@ -292,6 +301,12 @@ const Char123LocaleChar125FilmRoute =
   Char123LocaleChar125FilmRouteImport.update({
     id: '/film',
     path: '/film',
+    getParentRoute: () => Char123LocaleChar125RouteRoute,
+  } as any)
+const Char123LocaleChar125LaunchVideosRoute =
+  Char123LocaleChar125LaunchVideosRouteImport.update({
+    id: '/launch-videos',
+    path: '/launch-videos',
     getParentRoute: () => Char123LocaleChar125RouteRoute,
   } as any)
 const Char123LocaleChar125ListingsRoute =
@@ -650,6 +665,24 @@ const Char123LocaleChar125JobsPostRoute =
     path: '/jobs/post',
     getParentRoute: () => Char123LocaleChar125RouteRoute,
   } as any)
+const Char123LocaleChar125LaunchVideosIndexRoute =
+  Char123LocaleChar125LaunchVideosIndexRouteImport.update({
+    id: '/',
+    path: '/',
+    getParentRoute: () => Char123LocaleChar125LaunchVideosRoute,
+  } as any)
+const Char123LocaleChar125LaunchVideosFilmRoute =
+  Char123LocaleChar125LaunchVideosFilmRouteImport.update({
+    id: '/$film',
+    path: '/$film',
+    getParentRoute: () => Char123LocaleChar125LaunchVideosRoute,
+  } as any)
+const Char123LocaleChar125LaunchVideosComposeRoute =
+  Char123LocaleChar125LaunchVideosComposeRouteImport.update({
+    id: '/compose',
+    path: '/compose',
+    getParentRoute: () => Char123LocaleChar125LaunchVideosRoute,
+  } as any)
 const Char123LocaleChar125MovesIndexRoute =
   Char123LocaleChar125MovesIndexRouteImport.update({
     id: '/',
@@ -715,6 +748,24 @@ const ApiCatalogVideosSlugRoute = ApiCatalogVideosSlugRouteImport.update({
   path: '/api/catalog/videos/$slug',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ApiMcpLaunchVideosComposeRoute =
+  ApiMcpLaunchVideosComposeRouteImport.update({
+    id: '/api/mcp/launch-videos/compose',
+    path: '/api/mcp/launch-videos/compose',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const ApiMcpLaunchVideosPromptRoute =
+  ApiMcpLaunchVideosPromptRouteImport.update({
+    id: '/api/mcp/launch-videos/prompt',
+    path: '/api/mcp/launch-videos/prompt',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const ApiMcpLaunchVideosSearchRoute =
+  ApiMcpLaunchVideosSearchRouteImport.update({
+    id: '/api/mcp/launch-videos/search',
+    path: '/api/mcp/launch-videos/search',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 const ApiMcpMovesIndexRoute = ApiMcpMovesIndexRouteImport.update({
   id: '/api/mcp/moves/',
   path: '/api/mcp/moves/',
@@ -815,6 +866,18 @@ const Char123LocaleChar125TemplatesTemplateIdCustomizeRoute =
     path: '/$templateId/customize',
     getParentRoute: () => Char123LocaleChar125TemplatesRoute,
   } as any)
+const Char123LocaleChar125TemplatesLaunchFilmIndexRoute =
+  Char123LocaleChar125TemplatesLaunchFilmIndexRouteImport.update({
+    id: '/launch-film/',
+    path: '/launch-film/',
+    getParentRoute: () => Char123LocaleChar125TemplatesRoute,
+  } as any)
+const Char123LocaleChar125TemplatesLaunchFilmCustomizeRoute =
+  Char123LocaleChar125TemplatesLaunchFilmCustomizeRouteImport.update({
+    id: '/launch-film/customize',
+    path: '/launch-film/customize',
+    getParentRoute: () => Char123LocaleChar125TemplatesRoute,
+  } as any)
 const Char123LocaleChar125GalleryCategoryCategoryIndexRoute =
   Char123LocaleChar125GalleryCategoryCategoryIndexRouteImport.update({
     id: '/',
@@ -898,6 +961,7 @@ export interface FileRoutesByFullPath {
   '/{-$locale}/extras': typeof Char123LocaleChar125ExtrasRouteWithChildren
   '/{-$locale}/featured': typeof Char123LocaleChar125FeaturedRoute
   '/{-$locale}/film': typeof Char123LocaleChar125FilmRoute
+  '/{-$locale}/launch-videos': typeof Char123LocaleChar125LaunchVideosRouteWithChildren
   '/{-$locale}/listings': typeof Char123LocaleChar125ListingsRoute
   '/{-$locale}/motionvideo-mcp': typeof Char123LocaleChar125MotionvideoMcpRoute
   '/{-$locale}/motionvideo-skill': typeof Char123LocaleChar125MotionvideoSkillRoute
@@ -947,6 +1011,8 @@ export interface FileRoutesByFullPath {
   '/{-$locale}/extras/$category': typeof Char123LocaleChar125ExtrasCategoryRoute
   '/{-$locale}/jobs/$type': typeof Char123LocaleChar125JobsTypeRoute
   '/{-$locale}/jobs/post': typeof Char123LocaleChar125JobsPostRoute
+  '/{-$locale}/launch-videos/$film': typeof Char123LocaleChar125LaunchVideosFilmRoute
+  '/{-$locale}/launch-videos/compose': typeof Char123LocaleChar125LaunchVideosComposeRoute
   '/{-$locale}/moves/$family': typeof Char123LocaleChar125MovesFamilyRouteWithChildren
   '/{-$locale}/skills/$category': typeof Char123LocaleChar125SkillsCategoryRoute
   '/{-$locale}/sponsorships/new': typeof Char123LocaleChar125SponsorshipsNewRoute
@@ -963,6 +1029,7 @@ export interface FileRoutesByFullPath {
   '/{-$locale}/docs/': typeof Char123LocaleChar125DocsIndexRoute
   '/{-$locale}/extras/': typeof Char123LocaleChar125ExtrasIndexRoute
   '/{-$locale}/jobs/': typeof Char123LocaleChar125JobsIndexRoute
+  '/{-$locale}/launch-videos/': typeof Char123LocaleChar125LaunchVideosIndexRoute
   '/{-$locale}/moves/': typeof Char123LocaleChar125MovesIndexRoute
   '/{-$locale}/skills/': typeof Char123LocaleChar125SkillsIndexRoute
   '/{-$locale}/sponsorships/': typeof Char123LocaleChar125SponsorshipsIndexRoute
@@ -970,6 +1037,9 @@ export interface FileRoutesByFullPath {
   '/{-$locale}/tools/': typeof Char123LocaleChar125ToolsIndexRoute
   '/api/catalog/directories/search': typeof ApiCatalogDirectoriesSearchRoute
   '/api/catalog/videos/$slug': typeof ApiCatalogVideosSlugRoute
+  '/api/mcp/launch-videos/compose': typeof ApiMcpLaunchVideosComposeRoute
+  '/api/mcp/launch-videos/prompt': typeof ApiMcpLaunchVideosPromptRoute
+  '/api/mcp/launch-videos/search': typeof ApiMcpLaunchVideosSearchRoute
   '/api/mcp/moves/$slug': typeof ApiMcpMovesSlugRoute
   '/{-$locale}/category/$category': typeof Char123LocaleChar125GalleryCategoryCategoryRouteWithChildren
   '/{-$locale}/color/$color': typeof Char123LocaleChar125GalleryColorColorRouteWithChildren
@@ -982,11 +1052,13 @@ export interface FileRoutesByFullPath {
   '/{-$locale}/dashboard/sponsorships/new': typeof Char123LocaleChar125DashboardSponsorshipsNewRoute
   '/{-$locale}/moves/$family/$slug': typeof Char123LocaleChar125MovesFamilySlugRoute
   '/{-$locale}/templates/$templateId/customize': typeof Char123LocaleChar125TemplatesTemplateIdCustomizeRoute
+  '/{-$locale}/templates/launch-film/customize': typeof Char123LocaleChar125TemplatesLaunchFilmCustomizeRoute
   '/api/mcp/moves/': typeof ApiMcpMovesIndexRoute
   '/{-$locale}/changelog/': typeof Char123LocaleChar125PagesChangelogIndexRoute
   '/{-$locale}/dashboard/sponsorships/': typeof Char123LocaleChar125DashboardSponsorshipsIndexRoute
   '/{-$locale}/moves/$family/': typeof Char123LocaleChar125MovesFamilyIndexRoute
   '/{-$locale}/templates/$templateId/': typeof Char123LocaleChar125TemplatesTemplateIdIndexRoute
+  '/{-$locale}/templates/launch-film/': typeof Char123LocaleChar125TemplatesLaunchFilmIndexRoute
   '/{-$locale}/category/$category/': typeof Char123LocaleChar125GalleryCategoryCategoryIndexRoute
   '/{-$locale}/color/$color/': typeof Char123LocaleChar125GalleryColorColorIndexRoute
   '/{-$locale}/creators/$creator/': typeof Char123LocaleChar125GalleryCreatorsCreatorIndexRoute
@@ -1065,6 +1137,8 @@ export interface FileRoutesByTo {
   '/{-$locale}/extras/$category': typeof Char123LocaleChar125ExtrasCategoryRoute
   '/{-$locale}/jobs/$type': typeof Char123LocaleChar125JobsTypeRoute
   '/{-$locale}/jobs/post': typeof Char123LocaleChar125JobsPostRoute
+  '/{-$locale}/launch-videos/$film': typeof Char123LocaleChar125LaunchVideosFilmRoute
+  '/{-$locale}/launch-videos/compose': typeof Char123LocaleChar125LaunchVideosComposeRoute
   '/{-$locale}/skills/$category': typeof Char123LocaleChar125SkillsCategoryRoute
   '/{-$locale}/sponsorships/new': typeof Char123LocaleChar125SponsorshipsNewRoute
   '/{-$locale}/tools/$category': typeof Char123LocaleChar125ToolsCategoryRoute
@@ -1079,6 +1153,7 @@ export interface FileRoutesByTo {
   '/{-$locale}/docs': typeof Char123LocaleChar125DocsIndexRoute
   '/{-$locale}/extras': typeof Char123LocaleChar125ExtrasIndexRoute
   '/{-$locale}/jobs': typeof Char123LocaleChar125JobsIndexRoute
+  '/{-$locale}/launch-videos': typeof Char123LocaleChar125LaunchVideosIndexRoute
   '/{-$locale}/moves': typeof Char123LocaleChar125MovesIndexRoute
   '/{-$locale}/skills': typeof Char123LocaleChar125SkillsIndexRoute
   '/{-$locale}/sponsorships': typeof Char123LocaleChar125SponsorshipsIndexRoute
@@ -1086,6 +1161,9 @@ export interface FileRoutesByTo {
   '/{-$locale}/tools': typeof Char123LocaleChar125ToolsIndexRoute
   '/api/catalog/directories/search': typeof ApiCatalogDirectoriesSearchRoute
   '/api/catalog/videos/$slug': typeof ApiCatalogVideosSlugRoute
+  '/api/mcp/launch-videos/compose': typeof ApiMcpLaunchVideosComposeRoute
+  '/api/mcp/launch-videos/prompt': typeof ApiMcpLaunchVideosPromptRoute
+  '/api/mcp/launch-videos/search': typeof ApiMcpLaunchVideosSearchRoute
   '/api/mcp/moves/$slug': typeof ApiMcpMovesSlugRoute
   '/{-$locale}/videos/$slug': typeof Char123LocaleChar125GalleryVideosSlugRoute
   '/{-$locale}/changelog/$slug': typeof Char123LocaleChar125PagesChangelogSlugRoute
@@ -1093,11 +1171,13 @@ export interface FileRoutesByTo {
   '/{-$locale}/dashboard/sponsorships/new': typeof Char123LocaleChar125DashboardSponsorshipsNewRoute
   '/{-$locale}/moves/$family/$slug': typeof Char123LocaleChar125MovesFamilySlugRoute
   '/{-$locale}/templates/$templateId/customize': typeof Char123LocaleChar125TemplatesTemplateIdCustomizeRoute
+  '/{-$locale}/templates/launch-film/customize': typeof Char123LocaleChar125TemplatesLaunchFilmCustomizeRoute
   '/api/mcp/moves': typeof ApiMcpMovesIndexRoute
   '/{-$locale}/changelog': typeof Char123LocaleChar125PagesChangelogIndexRoute
   '/{-$locale}/dashboard/sponsorships': typeof Char123LocaleChar125DashboardSponsorshipsIndexRoute
   '/{-$locale}/moves/$family': typeof Char123LocaleChar125MovesFamilyIndexRoute
   '/{-$locale}/templates/$templateId': typeof Char123LocaleChar125TemplatesTemplateIdIndexRoute
+  '/{-$locale}/templates/launch-film': typeof Char123LocaleChar125TemplatesLaunchFilmIndexRoute
   '/{-$locale}/category/$category': typeof Char123LocaleChar125GalleryCategoryCategoryIndexRoute
   '/{-$locale}/color/$color': typeof Char123LocaleChar125GalleryColorColorIndexRoute
   '/{-$locale}/creators/$creator': typeof Char123LocaleChar125GalleryCreatorsCreatorIndexRoute
@@ -1139,6 +1219,7 @@ export interface FileRoutesById {
   '/{-$locale}/extras': typeof Char123LocaleChar125ExtrasRouteWithChildren
   '/{-$locale}/featured': typeof Char123LocaleChar125FeaturedRoute
   '/{-$locale}/film': typeof Char123LocaleChar125FilmRoute
+  '/{-$locale}/launch-videos': typeof Char123LocaleChar125LaunchVideosRouteWithChildren
   '/{-$locale}/listings': typeof Char123LocaleChar125ListingsRoute
   '/{-$locale}/motionvideo-mcp': typeof Char123LocaleChar125MotionvideoMcpRoute
   '/{-$locale}/motionvideo-skill': typeof Char123LocaleChar125MotionvideoSkillRoute
@@ -1188,6 +1269,8 @@ export interface FileRoutesById {
   '/{-$locale}/extras/$category': typeof Char123LocaleChar125ExtrasCategoryRoute
   '/{-$locale}/jobs/$type': typeof Char123LocaleChar125JobsTypeRoute
   '/{-$locale}/jobs/post': typeof Char123LocaleChar125JobsPostRoute
+  '/{-$locale}/launch-videos/$film': typeof Char123LocaleChar125LaunchVideosFilmRoute
+  '/{-$locale}/launch-videos/compose': typeof Char123LocaleChar125LaunchVideosComposeRoute
   '/{-$locale}/moves/$family': typeof Char123LocaleChar125MovesFamilyRouteWithChildren
   '/{-$locale}/skills/$category': typeof Char123LocaleChar125SkillsCategoryRoute
   '/{-$locale}/sponsorships/new': typeof Char123LocaleChar125SponsorshipsNewRoute
@@ -1204,6 +1287,7 @@ export interface FileRoutesById {
   '/{-$locale}/docs/': typeof Char123LocaleChar125DocsIndexRoute
   '/{-$locale}/extras/': typeof Char123LocaleChar125ExtrasIndexRoute
   '/{-$locale}/jobs/': typeof Char123LocaleChar125JobsIndexRoute
+  '/{-$locale}/launch-videos/': typeof Char123LocaleChar125LaunchVideosIndexRoute
   '/{-$locale}/moves/': typeof Char123LocaleChar125MovesIndexRoute
   '/{-$locale}/skills/': typeof Char123LocaleChar125SkillsIndexRoute
   '/{-$locale}/sponsorships/': typeof Char123LocaleChar125SponsorshipsIndexRoute
@@ -1211,6 +1295,9 @@ export interface FileRoutesById {
   '/{-$locale}/tools/': typeof Char123LocaleChar125ToolsIndexRoute
   '/api/catalog/directories_/search': typeof ApiCatalogDirectoriesSearchRoute
   '/api/catalog/videos/$slug': typeof ApiCatalogVideosSlugRoute
+  '/api/mcp/launch-videos/compose': typeof ApiMcpLaunchVideosComposeRoute
+  '/api/mcp/launch-videos/prompt': typeof ApiMcpLaunchVideosPromptRoute
+  '/api/mcp/launch-videos/search': typeof ApiMcpLaunchVideosSearchRoute
   '/api/mcp/moves/$slug': typeof ApiMcpMovesSlugRoute
   '/{-$locale}/_gallery/category/$category': typeof Char123LocaleChar125GalleryCategoryCategoryRouteWithChildren
   '/{-$locale}/_gallery/color/$color': typeof Char123LocaleChar125GalleryColorColorRouteWithChildren
@@ -1223,11 +1310,13 @@ export interface FileRoutesById {
   '/{-$locale}/dashboard/sponsorships/new': typeof Char123LocaleChar125DashboardSponsorshipsNewRoute
   '/{-$locale}/moves/$family/$slug': typeof Char123LocaleChar125MovesFamilySlugRoute
   '/{-$locale}/templates/$templateId/customize': typeof Char123LocaleChar125TemplatesTemplateIdCustomizeRoute
+  '/{-$locale}/templates/launch-film/customize': typeof Char123LocaleChar125TemplatesLaunchFilmCustomizeRoute
   '/api/mcp/moves/': typeof ApiMcpMovesIndexRoute
   '/{-$locale}/_pages/changelog/': typeof Char123LocaleChar125PagesChangelogIndexRoute
   '/{-$locale}/dashboard/sponsorships/': typeof Char123LocaleChar125DashboardSponsorshipsIndexRoute
   '/{-$locale}/moves/$family/': typeof Char123LocaleChar125MovesFamilyIndexRoute
   '/{-$locale}/templates/$templateId/': typeof Char123LocaleChar125TemplatesTemplateIdIndexRoute
+  '/{-$locale}/templates/launch-film/': typeof Char123LocaleChar125TemplatesLaunchFilmIndexRoute
   '/{-$locale}/_gallery/category/$category/': typeof Char123LocaleChar125GalleryCategoryCategoryIndexRoute
   '/{-$locale}/_gallery/color/$color/': typeof Char123LocaleChar125GalleryColorColorIndexRoute
   '/{-$locale}/_gallery/creators/$creator/': typeof Char123LocaleChar125GalleryCreatorsCreatorIndexRoute
@@ -1268,6 +1357,7 @@ export interface FileRouteTypes {
     | '/{-$locale}/extras'
     | '/{-$locale}/featured'
     | '/{-$locale}/film'
+    | '/{-$locale}/launch-videos'
     | '/{-$locale}/listings'
     | '/{-$locale}/motionvideo-mcp'
     | '/{-$locale}/motionvideo-skill'
@@ -1317,6 +1407,8 @@ export interface FileRouteTypes {
     | '/{-$locale}/extras/$category'
     | '/{-$locale}/jobs/$type'
     | '/{-$locale}/jobs/post'
+    | '/{-$locale}/launch-videos/$film'
+    | '/{-$locale}/launch-videos/compose'
     | '/{-$locale}/moves/$family'
     | '/{-$locale}/skills/$category'
     | '/{-$locale}/sponsorships/new'
@@ -1333,6 +1425,7 @@ export interface FileRouteTypes {
     | '/{-$locale}/docs/'
     | '/{-$locale}/extras/'
     | '/{-$locale}/jobs/'
+    | '/{-$locale}/launch-videos/'
     | '/{-$locale}/moves/'
     | '/{-$locale}/skills/'
     | '/{-$locale}/sponsorships/'
@@ -1340,6 +1433,9 @@ export interface FileRouteTypes {
     | '/{-$locale}/tools/'
     | '/api/catalog/directories/search'
     | '/api/catalog/videos/$slug'
+    | '/api/mcp/launch-videos/compose'
+    | '/api/mcp/launch-videos/prompt'
+    | '/api/mcp/launch-videos/search'
     | '/api/mcp/moves/$slug'
     | '/{-$locale}/category/$category'
     | '/{-$locale}/color/$color'
@@ -1352,11 +1448,13 @@ export interface FileRouteTypes {
     | '/{-$locale}/dashboard/sponsorships/new'
     | '/{-$locale}/moves/$family/$slug'
     | '/{-$locale}/templates/$templateId/customize'
+    | '/{-$locale}/templates/launch-film/customize'
     | '/api/mcp/moves/'
     | '/{-$locale}/changelog/'
     | '/{-$locale}/dashboard/sponsorships/'
     | '/{-$locale}/moves/$family/'
     | '/{-$locale}/templates/$templateId/'
+    | '/{-$locale}/templates/launch-film/'
     | '/{-$locale}/category/$category/'
     | '/{-$locale}/color/$color/'
     | '/{-$locale}/creators/$creator/'
@@ -1435,6 +1533,8 @@ export interface FileRouteTypes {
     | '/{-$locale}/extras/$category'
     | '/{-$locale}/jobs/$type'
     | '/{-$locale}/jobs/post'
+    | '/{-$locale}/launch-videos/$film'
+    | '/{-$locale}/launch-videos/compose'
     | '/{-$locale}/skills/$category'
     | '/{-$locale}/sponsorships/new'
     | '/{-$locale}/tools/$category'
@@ -1449,6 +1549,7 @@ export interface FileRouteTypes {
     | '/{-$locale}/docs'
     | '/{-$locale}/extras'
     | '/{-$locale}/jobs'
+    | '/{-$locale}/launch-videos'
     | '/{-$locale}/moves'
     | '/{-$locale}/skills'
     | '/{-$locale}/sponsorships'
@@ -1456,6 +1557,9 @@ export interface FileRouteTypes {
     | '/{-$locale}/tools'
     | '/api/catalog/directories/search'
     | '/api/catalog/videos/$slug'
+    | '/api/mcp/launch-videos/compose'
+    | '/api/mcp/launch-videos/prompt'
+    | '/api/mcp/launch-videos/search'
     | '/api/mcp/moves/$slug'
     | '/{-$locale}/videos/$slug'
     | '/{-$locale}/changelog/$slug'
@@ -1463,11 +1567,13 @@ export interface FileRouteTypes {
     | '/{-$locale}/dashboard/sponsorships/new'
     | '/{-$locale}/moves/$family/$slug'
     | '/{-$locale}/templates/$templateId/customize'
+    | '/{-$locale}/templates/launch-film/customize'
     | '/api/mcp/moves'
     | '/{-$locale}/changelog'
     | '/{-$locale}/dashboard/sponsorships'
     | '/{-$locale}/moves/$family'
     | '/{-$locale}/templates/$templateId'
+    | '/{-$locale}/templates/launch-film'
     | '/{-$locale}/category/$category'
     | '/{-$locale}/color/$color'
     | '/{-$locale}/creators/$creator'
@@ -1508,6 +1614,7 @@ export interface FileRouteTypes {
     | '/{-$locale}/extras'
     | '/{-$locale}/featured'
     | '/{-$locale}/film'
+    | '/{-$locale}/launch-videos'
     | '/{-$locale}/listings'
     | '/{-$locale}/motionvideo-mcp'
     | '/{-$locale}/motionvideo-skill'
@@ -1557,6 +1664,8 @@ export interface FileRouteTypes {
     | '/{-$locale}/extras/$category'
     | '/{-$locale}/jobs/$type'
     | '/{-$locale}/jobs/post'
+    | '/{-$locale}/launch-videos/$film'
+    | '/{-$locale}/launch-videos/compose'
     | '/{-$locale}/moves/$family'
     | '/{-$locale}/skills/$category'
     | '/{-$locale}/sponsorships/new'
@@ -1573,6 +1682,7 @@ export interface FileRouteTypes {
     | '/{-$locale}/docs/'
     | '/{-$locale}/extras/'
     | '/{-$locale}/jobs/'
+    | '/{-$locale}/launch-videos/'
     | '/{-$locale}/moves/'
     | '/{-$locale}/skills/'
     | '/{-$locale}/sponsorships/'
@@ -1580,6 +1690,9 @@ export interface FileRouteTypes {
     | '/{-$locale}/tools/'
     | '/api/catalog/directories_/search'
     | '/api/catalog/videos/$slug'
+    | '/api/mcp/launch-videos/compose'
+    | '/api/mcp/launch-videos/prompt'
+    | '/api/mcp/launch-videos/search'
     | '/api/mcp/moves/$slug'
     | '/{-$locale}/_gallery/category/$category'
     | '/{-$locale}/_gallery/color/$color'
@@ -1592,11 +1705,13 @@ export interface FileRouteTypes {
     | '/{-$locale}/dashboard/sponsorships/new'
     | '/{-$locale}/moves/$family/$slug'
     | '/{-$locale}/templates/$templateId/customize'
+    | '/{-$locale}/templates/launch-film/customize'
     | '/api/mcp/moves/'
     | '/{-$locale}/_pages/changelog/'
     | '/{-$locale}/dashboard/sponsorships/'
     | '/{-$locale}/moves/$family/'
     | '/{-$locale}/templates/$templateId/'
+    | '/{-$locale}/templates/launch-film/'
     | '/{-$locale}/_gallery/category/$category/'
     | '/{-$locale}/_gallery/color/$color/'
     | '/{-$locale}/_gallery/creators/$creator/'
@@ -1636,6 +1751,9 @@ export interface RootRouteChildren {
   ApiMovesIndexRoute: typeof ApiMovesIndexRoute
   ApiCatalogDirectoriesSearchRoute: typeof ApiCatalogDirectoriesSearchRoute
   ApiCatalogVideosSlugRoute: typeof ApiCatalogVideosSlugRoute
+  ApiMcpLaunchVideosComposeRoute: typeof ApiMcpLaunchVideosComposeRoute
+  ApiMcpLaunchVideosPromptRoute: typeof ApiMcpLaunchVideosPromptRoute
+  ApiMcpLaunchVideosSearchRoute: typeof ApiMcpLaunchVideosSearchRoute
   ApiMcpMovesSlugRoute: typeof ApiMcpMovesSlugRoute
   ApiMcpMovesIndexRoute: typeof ApiMcpMovesIndexRoute
 }
@@ -1843,6 +1961,13 @@ declare module '@tanstack/react-router' {
       path: '/film'
       fullPath: '/{-$locale}/film'
       preLoaderRoute: typeof Char123LocaleChar125FilmRouteImport
+      parentRoute: typeof Char123LocaleChar125RouteRoute
+    }
+    '/{-$locale}/launch-videos': {
+      id: '/{-$locale}/launch-videos'
+      path: '/launch-videos'
+      fullPath: '/{-$locale}/launch-videos'
+      preLoaderRoute: typeof Char123LocaleChar125LaunchVideosRouteImport
       parentRoute: typeof Char123LocaleChar125RouteRoute
     }
     '/{-$locale}/listings': {
@@ -2272,6 +2397,27 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof Char123LocaleChar125JobsPostRouteImport
       parentRoute: typeof Char123LocaleChar125RouteRoute
     }
+    '/{-$locale}/launch-videos/': {
+      id: '/{-$locale}/launch-videos/'
+      path: '/'
+      fullPath: '/{-$locale}/launch-videos/'
+      preLoaderRoute: typeof Char123LocaleChar125LaunchVideosIndexRouteImport
+      parentRoute: typeof Char123LocaleChar125LaunchVideosRoute
+    }
+    '/{-$locale}/launch-videos/$film': {
+      id: '/{-$locale}/launch-videos/$film'
+      path: '/$film'
+      fullPath: '/{-$locale}/launch-videos/$film'
+      preLoaderRoute: typeof Char123LocaleChar125LaunchVideosFilmRouteImport
+      parentRoute: typeof Char123LocaleChar125LaunchVideosRoute
+    }
+    '/{-$locale}/launch-videos/compose': {
+      id: '/{-$locale}/launch-videos/compose'
+      path: '/compose'
+      fullPath: '/{-$locale}/launch-videos/compose'
+      preLoaderRoute: typeof Char123LocaleChar125LaunchVideosComposeRouteImport
+      parentRoute: typeof Char123LocaleChar125LaunchVideosRoute
+    }
     '/{-$locale}/moves/': {
       id: '/{-$locale}/moves/'
       path: '/'
@@ -2347,6 +2493,27 @@ declare module '@tanstack/react-router' {
       path: '/api/catalog/videos/$slug'
       fullPath: '/api/catalog/videos/$slug'
       preLoaderRoute: typeof ApiCatalogVideosSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/mcp/launch-videos/compose': {
+      id: '/api/mcp/launch-videos/compose'
+      path: '/api/mcp/launch-videos/compose'
+      fullPath: '/api/mcp/launch-videos/compose'
+      preLoaderRoute: typeof ApiMcpLaunchVideosComposeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/mcp/launch-videos/prompt': {
+      id: '/api/mcp/launch-videos/prompt'
+      path: '/api/mcp/launch-videos/prompt'
+      fullPath: '/api/mcp/launch-videos/prompt'
+      preLoaderRoute: typeof ApiMcpLaunchVideosPromptRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/mcp/launch-videos/search': {
+      id: '/api/mcp/launch-videos/search'
+      path: '/api/mcp/launch-videos/search'
+      fullPath: '/api/mcp/launch-videos/search'
+      preLoaderRoute: typeof ApiMcpLaunchVideosSearchRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/api/mcp/moves/': {
@@ -2466,6 +2633,20 @@ declare module '@tanstack/react-router' {
       path: '/$templateId/customize'
       fullPath: '/{-$locale}/templates/$templateId/customize'
       preLoaderRoute: typeof Char123LocaleChar125TemplatesTemplateIdCustomizeRouteImport
+      parentRoute: typeof Char123LocaleChar125TemplatesRoute
+    }
+    '/{-$locale}/templates/launch-film/': {
+      id: '/{-$locale}/templates/launch-film/'
+      path: '/launch-film'
+      fullPath: '/{-$locale}/templates/launch-film/'
+      preLoaderRoute: typeof Char123LocaleChar125TemplatesLaunchFilmIndexRouteImport
+      parentRoute: typeof Char123LocaleChar125TemplatesRoute
+    }
+    '/{-$locale}/templates/launch-film/customize': {
+      id: '/{-$locale}/templates/launch-film/customize'
+      path: '/launch-film/customize'
+      fullPath: '/{-$locale}/templates/launch-film/customize'
+      preLoaderRoute: typeof Char123LocaleChar125TemplatesLaunchFilmCustomizeRouteImport
       parentRoute: typeof Char123LocaleChar125TemplatesRoute
     }
     '/{-$locale}/_gallery/category/$category/': {
@@ -2818,6 +2999,27 @@ const Char123LocaleChar125ExtrasRouteWithChildren =
     Char123LocaleChar125ExtrasRouteChildren,
   )
 
+interface Char123LocaleChar125LaunchVideosRouteChildren {
+  Char123LocaleChar125LaunchVideosFilmRoute: typeof Char123LocaleChar125LaunchVideosFilmRoute
+  Char123LocaleChar125LaunchVideosComposeRoute: typeof Char123LocaleChar125LaunchVideosComposeRoute
+  Char123LocaleChar125LaunchVideosIndexRoute: typeof Char123LocaleChar125LaunchVideosIndexRoute
+}
+
+const Char123LocaleChar125LaunchVideosRouteChildren: Char123LocaleChar125LaunchVideosRouteChildren =
+  {
+    Char123LocaleChar125LaunchVideosFilmRoute:
+      Char123LocaleChar125LaunchVideosFilmRoute,
+    Char123LocaleChar125LaunchVideosComposeRoute:
+      Char123LocaleChar125LaunchVideosComposeRoute,
+    Char123LocaleChar125LaunchVideosIndexRoute:
+      Char123LocaleChar125LaunchVideosIndexRoute,
+  }
+
+const Char123LocaleChar125LaunchVideosRouteWithChildren =
+  Char123LocaleChar125LaunchVideosRoute._addFileChildren(
+    Char123LocaleChar125LaunchVideosRouteChildren,
+  )
+
 interface Char123LocaleChar125MovesFamilyRouteChildren {
   Char123LocaleChar125MovesFamilySlugRoute: typeof Char123LocaleChar125MovesFamilySlugRoute
   Char123LocaleChar125MovesFamilyIndexRoute: typeof Char123LocaleChar125MovesFamilyIndexRoute
@@ -2873,7 +3075,9 @@ const Char123LocaleChar125SkillsRouteWithChildren =
 interface Char123LocaleChar125TemplatesRouteChildren {
   Char123LocaleChar125TemplatesIndexRoute: typeof Char123LocaleChar125TemplatesIndexRoute
   Char123LocaleChar125TemplatesTemplateIdCustomizeRoute: typeof Char123LocaleChar125TemplatesTemplateIdCustomizeRoute
+  Char123LocaleChar125TemplatesLaunchFilmCustomizeRoute: typeof Char123LocaleChar125TemplatesLaunchFilmCustomizeRoute
   Char123LocaleChar125TemplatesTemplateIdIndexRoute: typeof Char123LocaleChar125TemplatesTemplateIdIndexRoute
+  Char123LocaleChar125TemplatesLaunchFilmIndexRoute: typeof Char123LocaleChar125TemplatesLaunchFilmIndexRoute
 }
 
 const Char123LocaleChar125TemplatesRouteChildren: Char123LocaleChar125TemplatesRouteChildren =
@@ -2882,8 +3086,12 @@ const Char123LocaleChar125TemplatesRouteChildren: Char123LocaleChar125TemplatesR
       Char123LocaleChar125TemplatesIndexRoute,
     Char123LocaleChar125TemplatesTemplateIdCustomizeRoute:
       Char123LocaleChar125TemplatesTemplateIdCustomizeRoute,
+    Char123LocaleChar125TemplatesLaunchFilmCustomizeRoute:
+      Char123LocaleChar125TemplatesLaunchFilmCustomizeRoute,
     Char123LocaleChar125TemplatesTemplateIdIndexRoute:
       Char123LocaleChar125TemplatesTemplateIdIndexRoute,
+    Char123LocaleChar125TemplatesLaunchFilmIndexRoute:
+      Char123LocaleChar125TemplatesLaunchFilmIndexRoute,
   }
 
 const Char123LocaleChar125TemplatesRouteWithChildren =
@@ -2922,6 +3130,7 @@ interface Char123LocaleChar125RouteRouteChildren {
   Char123LocaleChar125ExtrasRoute: typeof Char123LocaleChar125ExtrasRouteWithChildren
   Char123LocaleChar125FeaturedRoute: typeof Char123LocaleChar125FeaturedRoute
   Char123LocaleChar125FilmRoute: typeof Char123LocaleChar125FilmRoute
+  Char123LocaleChar125LaunchVideosRoute: typeof Char123LocaleChar125LaunchVideosRouteWithChildren
   Char123LocaleChar125ListingsRoute: typeof Char123LocaleChar125ListingsRoute
   Char123LocaleChar125MotionvideoMcpRoute: typeof Char123LocaleChar125MotionvideoMcpRoute
   Char123LocaleChar125MotionvideoSkillRoute: typeof Char123LocaleChar125MotionvideoSkillRoute
@@ -2969,6 +3178,8 @@ const Char123LocaleChar125RouteRouteChildren: Char123LocaleChar125RouteRouteChil
       Char123LocaleChar125ExtrasRouteWithChildren,
     Char123LocaleChar125FeaturedRoute: Char123LocaleChar125FeaturedRoute,
     Char123LocaleChar125FilmRoute: Char123LocaleChar125FilmRoute,
+    Char123LocaleChar125LaunchVideosRoute:
+      Char123LocaleChar125LaunchVideosRouteWithChildren,
     Char123LocaleChar125ListingsRoute: Char123LocaleChar125ListingsRoute,
     Char123LocaleChar125MotionvideoMcpRoute:
       Char123LocaleChar125MotionvideoMcpRoute,
@@ -3036,6 +3247,9 @@ const rootRouteChildren: RootRouteChildren = {
   ApiMovesIndexRoute: ApiMovesIndexRoute,
   ApiCatalogDirectoriesSearchRoute: ApiCatalogDirectoriesSearchRoute,
   ApiCatalogVideosSlugRoute: ApiCatalogVideosSlugRoute,
+  ApiMcpLaunchVideosComposeRoute: ApiMcpLaunchVideosComposeRoute,
+  ApiMcpLaunchVideosPromptRoute: ApiMcpLaunchVideosPromptRoute,
+  ApiMcpLaunchVideosSearchRoute: ApiMcpLaunchVideosSearchRoute,
   ApiMcpMovesSlugRoute: ApiMcpMovesSlugRoute,
   ApiMcpMovesIndexRoute: ApiMcpMovesIndexRoute,
 }
