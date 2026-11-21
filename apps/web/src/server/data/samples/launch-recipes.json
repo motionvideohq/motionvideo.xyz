@@ -1,0 +1,656 @@
+{
+  "scenes": [
+    {
+      "sceneId": "motionvideo-launch/problem",
+      "version": 1,
+      "minFrames": 85,
+      "maxFrames": 120,
+      "aspects": ["16:9"],
+      "inputs": [],
+      "layers": [
+        {
+          "id": "sample",
+          "kind": "text",
+          "description": "Sample layer."
+        }
+      ],
+      "events": [
+        {
+          "start": 0,
+          "layer": "sample",
+          "action": "Sample beat. The real recipe is Pro content."
+        }
+      ],
+      "entry": {
+        "kind": "cut",
+        "frames": 0,
+        "description": "Sample entry."
+      },
+      "exit": {
+        "kind": "cut",
+        "frames": 0,
+        "description": "Sample exit."
+      },
+      "assets": [],
+      "substitutions": [],
+      "qa": []
+    },
+    {
+      "sceneId": "motionvideo-launch/logo",
+      "version": 1,
+      "minFrames": 60,
+      "maxFrames": 90,
+      "aspects": ["16:9"],
+      "inputs": [],
+      "layers": [
+        {
+          "id": "sample",
+          "kind": "text",
+          "description": "Sample layer."
+        }
+      ],
+      "events": [
+        {
+          "start": 0,
+          "layer": "sample",
+          "action": "Sample beat. The real recipe is Pro content."
+        }
+      ],
+      "entry": {
+        "kind": "cut",
+        "frames": 0,
+        "description": "Sample entry."
+      },
+      "exit": {
+        "kind": "cut",
+        "frames": 0,
+        "description": "Sample exit."
+      },
+      "assets": [],
+      "substitutions": [],
+      "qa": []
+    },
+    {
+      "sceneId": "motionvideo-launch/positioning",
+      "version": 1,
+      "minFrames": 92,
+      "maxFrames": 130,
+      "aspects": ["16:9"],
+      "inputs": [],
+      "layers": [
+        {
+          "id": "sample",
+          "kind": "text",
+          "description": "Sample layer."
+        }
+      ],
+      "events": [
+        {
+          "start": 0,
+          "layer": "sample",
+          "action": "Sample beat. The real recipe is Pro content."
+        }
+      ],
+      "entry": {
+        "kind": "cut",
+        "frames": 0,
+        "description": "Sample entry."
+      },
+      "exit": {
+        "kind": "cut",
+        "frames": 0,
+        "description": "Sample exit."
+      },
+      "assets": [],
+      "substitutions": [],
+      "qa": []
+    },
+    {
+      "sceneId": "motionvideo-launch/gallery",
+      "version": 1,
+      "minFrames": 52,
+      "maxFrames": 90,
+      "aspects": ["16:9"],
+      "inputs": [],
+      "layers": [
+        {
+          "id": "sample",
+          "kind": "text",
+          "description": "Sample layer."
+        }
+      ],
+      "events": [
+        {
+          "start": 0,
+          "layer": "sample",
+          "action": "Sample beat. The real recipe is Pro content."
+        }
+      ],
+      "entry": {
+        "kind": "cut",
+        "frames": 0,
+        "description": "Sample entry."
+      },
+      "exit": {
+        "kind": "cut",
+        "frames": 0,
+        "description": "Sample exit."
+      },
+      "assets": [],
+      "substitutions": [],
+      "qa": []
+    },
+    {
+      "sceneId": "motionvideo-launch/prompt",
+      "version": 1,
+      "minFrames": 130,
+      "maxFrames": 210,
+      "aspects": ["16:9"],
+      "inputs": [],
+      "layers": [
+        {
+          "id": "sample",
+          "kind": "text",
+          "description": "Sample layer."
+        }
+      ],
+      "events": [
+        {
+          "start": 0,
+          "layer": "sample",
+          "action": "Sample beat. The real recipe is Pro content."
+        }
+      ],
+      "entry": {
+        "kind": "cut",
+        "frames": 0,
+        "description": "Sample entry."
+      },
+      "exit": {
+        "kind": "cut",
+        "frames": 0,
+        "description": "Sample exit."
+      },
+      "assets": [],
+      "substitutions": [],
+      "qa": []
+    },
+    {
+      "sceneId": "motionvideo-launch/search",
+      "version": 1,
+      "minFrames": 90,
+      "maxFrames": 130,
+      "aspects": ["16:9"],
+      "inputs": [],
+      "layers": [
+        {
+          "id": "sample",
+          "kind": "text",
+          "description": "Sample layer."
+        }
+      ],
+      "events": [
+        {
+          "start": 0,
+          "layer": "sample",
+          "action": "Sample beat. The real recipe is Pro content."
+        }
+      ],
+      "entry": {
+        "kind": "cut",
+        "frames": 0,
+        "description": "Sample entry."
+      },
+      "exit": {
+        "kind": "cut",
+        "frames": 0,
+        "description": "Sample exit."
+      },
+      "assets": [],
+      "substitutions": [],
+      "qa": []
+    },
+    {
+      "sceneId": "motionvideo-launch/directory",
+      "version": 1,
+      "minFrames": 110,
+      "maxFrames": 200,
+      "aspects": ["16:9"],
+      "inputs": [],
+      "layers": [
+        {
+          "id": "sample",
+          "kind": "text",
+          "description": "Sample layer."
+        }
+      ],
+      "events": [
+        {
+          "start": 0,
+          "layer": "sample",
+          "action": "Sample beat. The real recipe is Pro content."
+        }
+      ],
+      "entry": {
+        "kind": "cut",
+        "frames": 0,
+        "description": "Sample entry."
+      },
+      "exit": {
+        "kind": "cut",
+        "frames": 0,
+        "description": "Sample exit."
+      },
+      "assets": [],
+      "substitutions": [],
+      "qa": []
+    },
+    {
+      "sceneId": "motionvideo-launch/lockup",
+      "version": 1,
+      "minFrames": 110,
+      "maxFrames": 210,
+      "aspects": ["16:9"],
+      "inputs": [],
+      "layers": [
+        {
+          "id": "sample",
+          "kind": "text",
+          "description": "Sample layer."
+        }
+      ],
+      "events": [
+        {
+          "start": 0,
+          "layer": "sample",
+          "action": "Sample beat. The real recipe is Pro content."
+        }
+      ],
+      "entry": {
+        "kind": "cut",
+        "frames": 0,
+        "description": "Sample entry."
+      },
+      "exit": {
+        "kind": "cut",
+        "frames": 0,
+        "description": "Sample exit."
+      },
+      "assets": [],
+      "substitutions": [],
+      "qa": []
+    },
+    {
+      "sceneId": "motionvideo-cinematic/gallery",
+      "version": 1,
+      "minFrames": 180,
+      "maxFrames": 330,
+      "aspects": ["16:9"],
+      "inputs": [],
+      "layers": [
+        {
+          "id": "sample",
+          "kind": "text",
+          "description": "Sample layer."
+        }
+      ],
+      "events": [
+        {
+          "start": 0,
+          "layer": "sample",
+          "action": "Sample beat. The real recipe is Pro content."
+        }
+      ],
+      "entry": {
+        "kind": "cut",
+        "frames": 0,
+        "description": "Sample entry."
+      },
+      "exit": {
+        "kind": "cut",
+        "frames": 0,
+        "description": "Sample exit."
+      },
+      "assets": [],
+      "substitutions": [],
+      "qa": []
+    },
+    {
+      "sceneId": "motionvideo-cinematic/chip",
+      "version": 1,
+      "minFrames": 120,
+      "maxFrames": 210,
+      "aspects": ["16:9"],
+      "inputs": [],
+      "layers": [
+        {
+          "id": "sample",
+          "kind": "text",
+          "description": "Sample layer."
+        }
+      ],
+      "events": [
+        {
+          "start": 0,
+          "layer": "sample",
+          "action": "Sample beat. The real recipe is Pro content."
+        }
+      ],
+      "entry": {
+        "kind": "cut",
+        "frames": 0,
+        "description": "Sample entry."
+      },
+      "exit": {
+        "kind": "cut",
+        "frames": 0,
+        "description": "Sample exit."
+      },
+      "assets": [],
+      "substitutions": [],
+      "qa": []
+    },
+    {
+      "sceneId": "motionvideo-cinematic/search",
+      "version": 1,
+      "minFrames": 280,
+      "maxFrames": 420,
+      "aspects": ["16:9"],
+      "inputs": [],
+      "layers": [
+        {
+          "id": "sample",
+          "kind": "text",
+          "description": "Sample layer."
+        }
+      ],
+      "events": [
+        {
+          "start": 0,
+          "layer": "sample",
+          "action": "Sample beat. The real recipe is Pro content."
+        }
+      ],
+      "entry": {
+        "kind": "cut",
+        "frames": 0,
+        "description": "Sample entry."
+      },
+      "exit": {
+        "kind": "cut",
+        "frames": 0,
+        "description": "Sample exit."
+      },
+      "assets": [],
+      "substitutions": [],
+      "qa": []
+    },
+    {
+      "sceneId": "motionvideo-cinematic/prompt",
+      "version": 1,
+      "minFrames": 220,
+      "maxFrames": 360,
+      "aspects": ["16:9"],
+      "inputs": [],
+      "layers": [
+        {
+          "id": "sample",
+          "kind": "text",
+          "description": "Sample layer."
+        }
+      ],
+      "events": [
+        {
+          "start": 0,
+          "layer": "sample",
+          "action": "Sample beat. The real recipe is Pro content."
+        }
+      ],
+      "entry": {
+        "kind": "cut",
+        "frames": 0,
+        "description": "Sample entry."
+      },
+      "exit": {
+        "kind": "cut",
+        "frames": 0,
+        "description": "Sample exit."
+      },
+      "assets": [],
+      "substitutions": [],
+      "qa": []
+    },
+    {
+      "sceneId": "motionvideo-cinematic/copy",
+      "version": 1,
+      "minFrames": 120,
+      "maxFrames": 210,
+      "aspects": ["16:9"],
+      "inputs": [],
+      "layers": [
+        {
+          "id": "sample",
+          "kind": "text",
+          "description": "Sample layer."
+        }
+      ],
+      "events": [
+        {
+          "start": 0,
+          "layer": "sample",
+          "action": "Sample beat. The real recipe is Pro content."
+        }
+      ],
+      "entry": {
+        "kind": "cut",
+        "frames": 0,
+        "description": "Sample entry."
+      },
+      "exit": {
+        "kind": "cut",
+        "frames": 0,
+        "description": "Sample exit."
+      },
+      "assets": [],
+      "substitutions": [],
+      "qa": []
+    },
+    {
+      "sceneId": "motionvideo-cinematic/wide",
+      "version": 1,
+      "minFrames": 210,
+      "maxFrames": 360,
+      "aspects": ["16:9"],
+      "inputs": [],
+      "layers": [
+        {
+          "id": "sample",
+          "kind": "text",
+          "description": "Sample layer."
+        }
+      ],
+      "events": [
+        {
+          "start": 0,
+          "layer": "sample",
+          "action": "Sample beat. The real recipe is Pro content."
+        }
+      ],
+      "entry": {
+        "kind": "cut",
+        "frames": 0,
+        "description": "Sample entry."
+      },
+      "exit": {
+        "kind": "cut",
+        "frames": 0,
+        "description": "Sample exit."
+      },
+      "assets": [],
+      "substitutions": [],
+      "qa": []
+    },
+    {
+      "sceneId": "motionvideo-cinematic/outro-copy",
+      "version": 1,
+      "minFrames": 140,
+      "maxFrames": 240,
+      "aspects": ["16:9"],
+      "inputs": [],
+      "layers": [
+        {
+          "id": "sample",
+          "kind": "text",
+          "description": "Sample layer."
+        }
+      ],
+      "events": [
+        {
+          "start": 0,
+          "layer": "sample",
+          "action": "Sample beat. The real recipe is Pro content."
+        }
+      ],
+      "entry": {
+        "kind": "cut",
+        "frames": 0,
+        "description": "Sample entry."
+      },
+      "exit": {
+        "kind": "cut",
+        "frames": 0,
+        "description": "Sample exit."
+      },
+      "assets": [],
+      "substitutions": [],
+      "qa": []
+    },
+    {
+      "sceneId": "motionvideo-cinematic/outro-logo",
+      "version": 1,
+      "minFrames": 150,
+      "maxFrames": 300,
+      "aspects": ["16:9"],
+      "inputs": [],
+      "layers": [
+        {
+          "id": "sample",
+          "kind": "text",
+          "description": "Sample layer."
+        }
+      ],
+      "events": [
+        {
+          "start": 0,
+          "layer": "sample",
+          "action": "Sample beat. The real recipe is Pro content."
+        }
+      ],
+      "entry": {
+        "kind": "cut",
+        "frames": 0,
+        "description": "Sample entry."
+      },
+      "exit": {
+        "kind": "cut",
+        "frames": 0,
+        "description": "Sample exit."
+      },
+      "assets": [],
+      "substitutions": [],
+      "qa": []
+    }
+  ],
+  "films": [
+    {
+      "filmSlug": "motionvideo-launch",
+      "version": 1,
+      "brief": {
+        "type": "Sample.",
+        "palette": "Sample.",
+        "layout": "Sample.",
+        "audio": "Sample."
+      },
+      "brandSource": {},
+      "scenes": [
+        {
+          "sceneId": "motionvideo-launch/problem",
+          "version": 1
+        },
+        {
+          "sceneId": "motionvideo-launch/logo",
+          "version": 1
+        },
+        {
+          "sceneId": "motionvideo-launch/positioning",
+          "version": 1
+        },
+        {
+          "sceneId": "motionvideo-launch/gallery",
+          "version": 1
+        },
+        {
+          "sceneId": "motionvideo-launch/prompt",
+          "version": 1
+        },
+        {
+          "sceneId": "motionvideo-launch/search",
+          "version": 1
+        },
+        {
+          "sceneId": "motionvideo-launch/directory",
+          "version": 1
+        },
+        {
+          "sceneId": "motionvideo-launch/lockup",
+          "version": 1
+        }
+      ]
+    },
+    {
+      "filmSlug": "motionvideo-cinematic",
+      "version": 1,
+      "brief": {
+        "type": "Sample.",
+        "palette": "Sample.",
+        "layout": "Sample.",
+        "audio": "Sample."
+      },
+      "brandSource": {},
+      "scenes": [
+        {
+          "sceneId": "motionvideo-cinematic/gallery",
+          "version": 1
+        },
+        {
+          "sceneId": "motionvideo-cinematic/chip",
+          "version": 1
+        },
+        {
+          "sceneId": "motionvideo-cinematic/search",
+          "version": 1
+        },
+        {
+          "sceneId": "motionvideo-cinematic/prompt",
+          "version": 1
+        },
+        {
+          "sceneId": "motionvideo-cinematic/copy",
+          "version": 1
+        },
+        {
+          "sceneId": "motionvideo-cinematic/wide",
+          "version": 1
+        },
+        {
+          "sceneId": "motionvideo-cinematic/outro-copy",
+          "version": 1
+        },
+        {
+          "sceneId": "motionvideo-cinematic/outro-logo",
+          "version": 1
+        }
+      ]
+    }
+  ]
+}
