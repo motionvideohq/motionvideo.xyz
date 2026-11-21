@@ -15,6 +15,11 @@ concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: ${{ github.ref != 'refs/heads/main' }}
 
+# No access to the private Pro prompts in GitHub Actions: typecheck and build
+# run on the redacted samples (apps/web/scripts/pull-pro-content.mjs).
+env:
+  PRO_CONTENT_SAMPLES: "1"
+
 jobs:
   check:
     name: Lint and format
@@ -27,6 +32,18 @@ jobs:
 
       - name: Lint and format
         run: pnpm check
+
+      # Pro prompts live in the private motionvideohq/motionvideo-pro repo
+      # (see apps/web/scripts/pull-pro-content.mjs). Fail if one is committed
+      # here; only the redacted samples are public.
+      - name: No Pro content in the repo
+        run: |
+          tracked=$(git ls-files ':(glob)apps/web/src/server/data/*.json' 'apps/web/src/server/data/.pro-content')
+          if [ -n "$tracked" ]; then
+            echo "::error::Pro content is committed to this public repo:"
+            echo "$tracked"
+            exit 1
+          fi
 
   typecheck:
     name: Typecheck
@@ -41,6 +58,11 @@ jobs:
       # empty placeholders. Typecheck needs the keys even though CI runs no app.
       - name: Create local env file
         run: cp apps/web/.env.example apps/web/.env
+
+      # No access to the private Pro content here: this installs the redacted
+      # samples, which have the same shape.
+      - name: Pro content samples
+        run: pnpm --filter @motionvideo/web pro:pull
 
       - name: Typecheck
         run: pnpm typecheck

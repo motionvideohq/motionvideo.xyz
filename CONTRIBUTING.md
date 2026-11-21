@@ -151,6 +151,10 @@ Media and large assets live in R2 (`motionvideo-assets`) rather than the reposit
 
 The licensed Timeless font is pulled into a gitignored directory by `predev` and `prebuild`. If the download fails, place the licensed file at `apps/web/public/fonts/timeless/` or set `FONT_SRC=<path-or-url>` for the pull.
 
+## Pro prompts
+
+The Pro prompts (move prompts, template prompts and Launch Videos recipes) are not in this repository. They live in a private repository, and `predev` and `prebuild` pull them into the gitignored `apps/web/src/server/data/`, using your GitHub credentials or `MOTIONVIDEO_PRO_GH_TOKEN` from `apps/web/.env`. Without access, `pnpm dev` stops and says so. Set `PRO_CONTENT_SAMPLES=1` to use the redacted samples in `apps/web/src/server/data/samples/` instead: they have the same shape, so everything runs, but every prompt reads "Sample prompt". Never commit a file to `apps/web/src/server/data/` outside `samples/`; CI fails if you do.
+
 ## Before opening a pull request
 
 Every pull request must be tied to an issue. Before opening a PR, search the existing issues and pull requests so you do not duplicate active work. If there is no existing issue, open one with the relevant template and describe the problem, use case, or bug reproduction.

@@ -1,0 +1,16 @@
+{
+  "prompts": [
+    {
+      "id": "showreel",
+      "prompt": "Sample prompt for the showreel template. The real prompt is Pro content."
+    },
+    {
+      "id": "launch-film",
+      "prompt": "Sample prompt for the launch-film template. The real prompt is Pro content."
+    },
+    {
+      "id": "realtime-3d",
+      "prompt": "Sample prompt for the realtime-3d template. The real prompt is Pro content."
+    }
+  ]
+}
