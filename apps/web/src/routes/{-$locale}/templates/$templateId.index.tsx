@@ -112,7 +112,7 @@ const Inspiration = ({ source }: { source: MotionVideo }) => {
 
 const TemplateDetail = () => {
   const content = useIntlayer("templates-page");
-  const { signedIn } = layoutApi.useLoaderData();
+  const { signedIn, prices } = layoutApi.useLoaderData();
   const { template, prompt, examples, source } = Route.useLoaderData();
   const promptId = useId();
 
@@ -147,6 +147,7 @@ const TemplateDetail = () => {
               title={content.lockedTitle}
               signInReason={content.signInReason}
               signedIn={signedIn}
+              prices={prices}
               redirect={templatePath(template)}
               track={{
                 "data-track": "templates_unlock",

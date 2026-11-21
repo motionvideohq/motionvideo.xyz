@@ -3,23 +3,10 @@ import { useIntlayer, useLocale } from "react-intlayer";
 
 import { EvilLineChart } from "@/components/evilcharts/charts/recharts-line-chart";
 import type { ChartConfig } from "@/components/evilcharts/ui/recharts-chart";
+import { flagOf } from "@/lib/country";
 import type { AudienceStats } from "@/server/audience";
 
 const cardClass = "bg-card shadow-outline flex flex-col gap-4 rounded-2xl p-5";
-
-// Regional indicator "A" is U+1F1E6, "B" the next code point, through "Z";
-// two of them render as that country's flag.
-const REGIONAL_INDICATOR_A = 0x1_f1_e6;
-const LETTER_A = 0x41;
-
-/** A flag emoji from an ISO 3166-1 alpha-2 code. */
-const flagOf = (code: string) =>
-  String.fromCodePoint(
-    ...[...code.toUpperCase()].map(
-      (letter) =>
-        REGIONAL_INDICATOR_A + (letter.codePointAt(0) ?? LETTER_A) - LETTER_A
-    )
-  );
 
 /** A ranked list with each row's share drawn as a bar behind it. */
 const BarList = ({

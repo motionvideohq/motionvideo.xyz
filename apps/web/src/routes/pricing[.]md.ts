@@ -28,7 +28,7 @@ const body = `# ${SITE.NAME} pricing
 
 > The gallery, its prompts, the MCP server's catalog tools and the onboarding skill are free. Pro and Business unlock the paid library.
 
-Prices in US dollars, before tax. Some countries see a purchasing power discount at checkout.
+Prices in US dollars, before tax; taxes are added at checkout where they apply. Many countries pay in their own currency, and some get regional pricing: ${absoluteUrl(localizedPath(ROUTES.PRO, DEFAULT_LOCALE))} shows the visitor's own prices.
 
 ## What a plan includes
 

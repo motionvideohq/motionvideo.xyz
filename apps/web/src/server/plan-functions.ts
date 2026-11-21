@@ -10,7 +10,7 @@ import {
   PLANS,
   planOffers,
 } from "@/constants/plans";
-import type { ParityOffer, PlanAccess } from "@/constants/plans";
+import type { LocalPrices, PlanAccess } from "@/constants/plans";
 import { ROUTES } from "@/constants/routes";
 import { SITE } from "@/constants/site";
 import type { SaleOffer } from "@/lib/offers";
@@ -33,8 +33,8 @@ import {
 } from "./plans";
 import {
   checkoutDiscounts,
+  countryPricing,
   offerForVisitor,
-  parityFor,
   visitorCountry,
 } from "./visitor-pricing";
 
@@ -80,31 +80,29 @@ export const getMyPlan = createServerFn({ method: "GET" })
   });
 
 /**
- * The visitor's purchasing power parity discount, for the banner under the
- * plans: their country from Cloudflare (`cf-ipcountry`), the percent from a
- * Dodo checkout preview. Null when nothing applies or anything fails; the
- * banner then stays hidden and checkout prices are unaffected either way.
+ * What the visitor's country pays, for the prices on the plans: their country
+ * from Cloudflare (`cf-ipcountry`), the currency and amounts from Dodo's
+ * checkout previews. Null when Dodo prices nothing or anything fails; the
+ * cards then show the USD list prices, and checkout prices are unaffected
+ * either way.
  */
-export const getParityOffer = createServerFn({ method: "GET" }).handler(
-  async (): Promise<ParityOffer | null> => {
+export const getLocalPrices = createServerFn({ method: "GET" }).handler(
+  async (): Promise<LocalPrices | null> => {
     const country = visitorCountry(getRequest());
     if (!country) {
       return null;
     }
-    try {
-      const percentOff = await parityFor(country);
-      return percentOff ? { country, percentOff } : null;
-    } catch (error) {
-      console.error("Parity preview failed", country, error);
-      return null;
-    }
+    const pricing = await countryPricing(country);
+    return pricing?.prices
+      ? { country, ...pricing.prices, parity: pricing.parity }
+      : null;
   }
 );
 
 /**
  * The sale running for this visitor (src/lib/offers.ts), for the prices on
- * /pro; null outside one or where parity applies. Without its code: checkout
- * applies that itself.
+ * /pro; null outside one or in countries that already get a regional price.
+ * Without its code: checkout applies that itself.
  */
 export const getSaleOffer = createServerFn({ method: "GET" }).handler(
   async (): Promise<SaleOffer | null> => {

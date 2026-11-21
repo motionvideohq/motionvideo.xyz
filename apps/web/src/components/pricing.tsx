@@ -13,15 +13,21 @@ import {
 } from "@/components/ui/card";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { localizedPath } from "@/constants/locales";
-import { PLAN_BILLINGS, PLAN_PRICE_CENTS, PLANS } from "@/constants/plans";
+import {
+  PLAN_BILLINGS,
+  PLAN_PRICE_CENTS,
+  PLANS,
+  planPrice,
+} from "@/constants/plans";
 import type {
-  ParityOffer,
+  LocalPrices,
   Plan,
   PlanAccess,
   PlanBilling,
 } from "@/constants/plans";
-import { formatUsd } from "@/constants/pricing";
+import { formatPrice } from "@/constants/pricing";
 import { ROUTES } from "@/constants/routes";
+import { flagOf } from "@/lib/country";
 import { fillTemplate } from "@/lib/motion-video-route";
 import { offerCovers } from "@/lib/offers";
 import type { SaleOffer } from "@/lib/offers";
@@ -110,13 +116,13 @@ const PlanCard = ({
   billing,
   access,
   sale,
-  parity,
+  prices,
 }: {
   plan: Plan;
   billing: PlanBilling;
   access: PlanAccess | null;
   sale: SaleOffer | null;
-  parity: ParityOffer | null;
+  prices: LocalPrices | null;
 }) => {
   const content = useIntlayer("pricing");
   const { locale } = useLocale();
@@ -127,14 +133,15 @@ const PlanCard = ({
   const shown = offered ? billing : "monthly";
   const current = access?.plan === plan;
   const featured = plan === "pro";
-  const listCents = PLAN_PRICE_CENTS[plan][shown] ?? 0;
+  // What the visitor's country pays, from Dodo's checkout previews, or the
+  // USD list price when Dodo priced nothing. Those amounts already carry
+  // Dodo's purchasing power parity, so only a sale comes off them.
+  const { cents: listCents, currency } = planPrice(prices, plan, shown);
   // The price it brings at checkout, with the list price struck through
-  // beside it: the sale's on the plans it covers, or the visitor country's
-  // parity price on every plan (the two never stack: a sale skips parity
-  // countries, src/server/visitor-pricing.ts).
+  // beside it: the sale's on the plans it covers (a sale skips countries that
+  // already get a regional price, src/server/visitor-pricing.ts).
   const onSale = offered && sale !== null && offerCovers(sale, plan, billing);
-  const { percentOff } = (onSale && sale) ||
-    (offered && parity) || { percentOff: 0 };
+  const percentOff = onSale && sale ? sale.percentOff : 0;
   const priceCents = Math.round((listCents * (100 - percentOff)) / 100);
   let cta = (
     <Button size="xl" variant="secondary" disabled className="w-full">
@@ -189,7 +196,7 @@ const PlanCard = ({
             <p className="flex items-baseline gap-1.5">
               {percentOff > 0 && (
                 <s className="text-muted-foreground text-xl font-medium tabular-nums">
-                  {formatUsd(listCents)}
+                  {formatPrice(listCents, currency, locale)}
                 </s>
               )}
               <TextMorph
@@ -198,7 +205,7 @@ const PlanCard = ({
                 {...MORPH}
                 className="text-4xl font-semibold tracking-tight tabular-nums"
               >
-                {formatUsd(priceCents)}
+                {formatPrice(priceCents, currency, locale)}
               </TextMorph>
               <TextMorph
                 as="span"
@@ -222,15 +229,18 @@ const PlanCard = ({
   );
 };
 
-/** The free tier: what anyone gets without a plan, at $0. */
+/** The free tier: what anyone gets without a plan, at zero. */
 const FreeCard = ({
   billing,
+  currency,
   signedIn,
 }: {
   billing: PlanBilling;
+  currency: string;
   signedIn: boolean;
 }) => {
   const content = useIntlayer("pricing");
+  const { locale } = useLocale();
   return (
     <Card size="lg" className="w-full">
       <CardHeader>
@@ -239,7 +249,7 @@ const FreeCard = ({
           <div className="flex flex-col gap-1">
             <p className="flex items-baseline gap-1.5">
               <span className="text-4xl font-semibold tracking-tight tabular-nums">
-                {formatUsd(0)}
+                {formatPrice(0, currency, locale)}
               </span>
               {/* "$0 once" would read oddly, so lifetime's unit morphs away. */}
               <TextMorph
@@ -280,17 +290,21 @@ export const PlanCards = ({
   access,
   signedIn,
   sale,
-  parity,
+  prices,
 }: {
   billing: PlanBilling;
   access: PlanAccess | null;
   signedIn: boolean;
   sale: SaleOffer | null;
-  parity: ParityOffer | null;
+  prices: LocalPrices | null;
 }) => (
   <ul className="grid w-full gap-4 md:grid-cols-3">
     <li className="flex">
-      <FreeCard billing={billing} signedIn={signedIn} />
+      <FreeCard
+        billing={billing}
+        currency={prices?.currency ?? "USD"}
+        signedIn={signedIn}
+      />
     </li>
     {PLANS.map((plan) => (
       <li key={plan} className="flex">
@@ -299,7 +313,7 @@ export const PlanCards = ({
           billing={billing}
           access={access}
           sale={sale}
-          parity={parity}
+          prices={prices}
         />
       </li>
     ))}
@@ -319,19 +333,24 @@ export const SaleNote = ({ sale }: { sale: SaleOffer }) => {
   );
 };
 
-/** "We'll apply a 70% parity discount in India at checkout". */
-export const ParityBanner = ({ offer }: { offer: ParityOffer }) => {
+/**
+ * Under the cards when they price the visitor's country: "🇮🇳 Regional pricing
+ * for India · Taxes are added at checkout where they apply."
+ */
+export const LocalPriceNote = ({ prices }: { prices: LocalPrices }) => {
   const content = useIntlayer("pricing");
   const { locale } = useLocale();
   const country =
-    new Intl.DisplayNames([locale], { type: "region" }).of(offer.country) ??
-    offer.country;
+    new Intl.DisplayNames([locale], { type: "region" }).of(prices.country) ??
+    prices.country;
   return (
-    <p className="bg-muted text-muted-foreground rounded-full px-4 py-1.5 text-center text-sm text-pretty">
-      {fillTemplate(content.parity.value, {
-        country,
-        percent: String(offer.percentOff),
-      })}
+    <p className="bg-muted text-muted-foreground flex flex-wrap items-center justify-center gap-x-1.5 rounded-full px-4 py-1.5 text-center text-sm text-pretty">
+      <span className="text-foreground inline-flex items-center gap-1.5 font-medium">
+        <span aria-hidden="true">{flagOf(prices.country)}</span>
+        {fillTemplate(content.regionalPricing.value, { country })}
+      </span>
+      <span aria-hidden="true">·</span>
+      {content.taxesAtCheckout}
     </p>
   );
 };

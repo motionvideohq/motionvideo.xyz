@@ -1,3 +1,4 @@
+import { Await } from "@tanstack/react-router";
 import type { ReactNode } from "react";
 import { useIntlayer, useLocale } from "react-intlayer";
 import { Lock } from "reicon-react/icons/Lock";
@@ -5,8 +6,9 @@ import { Lock } from "reicon-react/icons/Lock";
 import { LocalizedLink as Link } from "@/components/localized-link";
 import { buttonVariants } from "@/components/ui/button";
 import { localizedPath } from "@/constants/locales";
-import { PLAN_PRICE_CENTS } from "@/constants/plans";
-import { formatUsd } from "@/constants/pricing";
+import { planPrice } from "@/constants/plans";
+import type { LocalPrices } from "@/constants/plans";
+import { formatPrice } from "@/constants/pricing";
 import { ROUTES } from "@/constants/routes";
 
 // Widths of the placeholder lines that stand in for the hidden prompt.
@@ -23,6 +25,7 @@ export const LockedPrompt = ({
   signInReason,
   signedIn,
   redirect,
+  prices,
   track,
 }: {
   title: ReactNode;
@@ -30,6 +33,11 @@ export const LockedPrompt = ({
   signedIn: boolean;
   /** The page to return to after signing in. */
   redirect: string;
+  /**
+   * The visitor's country's prices (Dodo), deferred so a slow preview never
+   * holds up the page; null shows the USD list price.
+   */
+  prices: Promise<LocalPrices | null>;
   /** The unlock link's analytics: `data-track` plus its properties. */
   track: Record<`data-track${string}`, string>;
 }) => {
@@ -68,7 +76,18 @@ export const LockedPrompt = ({
           </Link>
           <span className="text-muted-foreground text-sm">
             {content.priceBefore}
-            {formatUsd(PLAN_PRICE_CENTS.pro.monthly ?? 0)}
+            <Await
+              promise={prices}
+              // A span, not Skeleton's div: it sits inside a line of text.
+              fallback={
+                <span className="skeleton-shimmer bg-foreground/10 inline-block h-3.5 w-10 rounded-md align-middle" />
+              }
+            >
+              {(resolved) => {
+                const price = planPrice(resolved, "pro", "monthly");
+                return formatPrice(price.cents, price.currency, locale);
+              }}
+            </Await>
             {content.priceAfter}
           </span>
         </div>

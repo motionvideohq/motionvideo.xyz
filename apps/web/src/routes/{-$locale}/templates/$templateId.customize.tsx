@@ -14,7 +14,7 @@ const layoutApi = getRouteApi("/{-$locale}/templates");
 
 const CustomizeTemplate = () => {
   const content = useIntlayer("templates-page");
-  const { signedIn } = layoutApi.useLoaderData();
+  const { signedIn, prices } = layoutApi.useLoaderData();
   const { template, prompt } = Route.useLoaderData();
   const path = templatePath(template);
 
@@ -46,6 +46,7 @@ const CustomizeTemplate = () => {
           title={content.lockedTitle}
           signInReason={content.signInReason}
           signedIn={signedIn}
+          prices={prices}
           redirect={`${path}/customize`}
           track={{
             "data-track": "templates_unlock",
