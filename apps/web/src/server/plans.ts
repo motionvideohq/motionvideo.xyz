@@ -2,11 +2,16 @@ import { env } from "cloudflare:workers";
 import { and, eq, isNull, or } from "drizzle-orm";
 import { drizzle } from "drizzle-orm/d1";
 
-import { NO_ACCESS, PLAN_BILLINGS, PLANS } from "@/constants/plans";
+import {
+  NO_ACCESS,
+  PLAN_BILLINGS,
+  PLANS,
+  planIncludesGtaPack,
+} from "@/constants/plans";
 import type { Plan, PlanAccess, PlanBilling } from "@/constants/plans";
 
 import { planSeats, planSubscriptions } from "./db/plan-schema";
-import { getDodo, hasPurchased, planProductId } from "./dodo";
+import { getDodo, planProductId, repoPurchases } from "./dodo";
 
 // Server-only plan logic shared by the webhook, /checkout and the server
 // functions. Kept out of plan-functions.ts: a module the client imports may
@@ -129,14 +134,16 @@ export const isLive = (row: PlanRow, now = Date.now()): boolean => {
 const rank = (row: PlanRow) =>
   (row.plan === "business" ? 2 : 0) + (row.billing === "lifetime" ? 1 : 0);
 
-const accessOf = (row: PlanRow, role: "owner" | "seat"): PlanAccess => ({
+// The row's part of PlanAccess; one-time purchases are added per account.
+type RowAccess = Omit<PlanAccess, "legacySkill" | "gtaPack">;
+
+const accessOf = (row: PlanRow, role: "owner" | "seat"): RowAccess => ({
   plan: row.plan,
   billing: row.billing,
   role,
   status: row.status,
   periodEnd: row.periodEnd?.getTime() ?? null,
   cancelAtPeriodEnd: row.cancelAtPeriodEnd,
-  legacySkill: false,
 });
 
 /** Every plan row this account pays for: by account, or by its email. */
@@ -154,11 +161,17 @@ export const ownedPlanRows = (user: { id: string; email: string }) =>
       )
     );
 
-/** The account's best live plan row as owner, if any. */
-export const liveOwnedRow = async (user: { id: string; email: string }) => {
+/** The account's live plan rows as owner, best first. */
+const liveOwnedRows = async (user: { id: string; email: string }) => {
   const owned = await ownedPlanRows(user);
   const rows = owned.filter((row) => isLive(row));
-  return rows.toSorted((a, b) => rank(b) - rank(a))[0] ?? null;
+  return rows.toSorted((a, b) => rank(b) - rank(a));
+};
+
+/** The account's best live plan row as owner, if any. */
+export const liveOwnedRow = async (user: { id: string; email: string }) => {
+  const [best] = await liveOwnedRows(user);
+  return best ?? null;
 };
 
 /**
@@ -193,22 +206,36 @@ export const liveSeatRow = async (user: { id: string; email: string }) => {
 /**
  * What an account can use: its own live plan, else a seat on a live Business
  * plan, else nothing. `legacySkill` marks buyers of the retired Skill Bundle,
- * who keep the skill repository but not Pro.
+ * who keep the skill repository but not Pro. `gtaPack`: bought the GTA 6
+ * Clip Pack, or owns a live plan that includes it (any of them, not only the
+ * best: Business monthly outranks Pro lifetime but doesn't include it).
  */
 export const planAccessFor = async (user: {
   id: string;
   email: string;
 }): Promise<PlanAccess> => {
-  const legacySkill = await hasPurchased(user.email).catch(() => false);
-  const owned = await liveOwnedRow(user);
+  const [purchases, ownedRows] = await Promise.all([
+    repoPurchases(user.email).catch(() => ({
+      legacySkill: false,
+      gtaPack: false,
+    })),
+    liveOwnedRows(user),
+  ]);
+  const extras = {
+    legacySkill: purchases.legacySkill,
+    gtaPack:
+      purchases.gtaPack ||
+      ownedRows.some((row) => planIncludesGtaPack(row.plan, row.billing)),
+  };
+  const [owned] = ownedRows;
   if (owned) {
-    return { ...accessOf(owned, "owner"), legacySkill };
+    return { ...accessOf(owned, "owner"), ...extras };
   }
   const seat = await liveSeatRow(user);
   if (!seat) {
-    return { ...NO_ACCESS, legacySkill };
+    return { ...NO_ACCESS, ...extras };
   }
-  return { ...accessOf(seat, "seat"), legacySkill };
+  return { ...accessOf(seat, "seat"), ...extras };
 };
 
 /**

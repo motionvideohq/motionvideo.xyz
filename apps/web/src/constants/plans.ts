@@ -27,6 +27,32 @@ export const planOffers = (plan: Plan): PlanBilling[] =>
   );
 
 /**
+ * The MotionVideo GTA 6 Clip Pack (/gta-6-clipping): a one-time purchase of its
+ * private skill repository, in US cents. Keep in sync with the product in
+ * scripts/setup-dodo.mjs.
+ */
+export const GTA_PACK_PRICE_CENTS = 4900;
+
+/** The pack's `?product=` at /checkout and `product` in Dodo's metadata. */
+export const GTA_PACK_PRODUCT = "gta-pack";
+
+/**
+ * Plans whose owner also gets the GTA 6 Clip Pack repository; Business seats
+ * don't (Dodo grants it to the payer's GitHub). Keep in sync with the GTA
+ * entitlement in scripts/setup-dodo.mjs.
+ */
+export const GTA_PACK_PLANS: readonly (readonly [Plan, PlanBilling])[] = [
+  ["pro", "annual"],
+  ["pro", "lifetime"],
+  ["business", "annual"],
+];
+
+export const planIncludesGtaPack = (plan: Plan, billing: PlanBilling) =>
+  GTA_PACK_PLANS.some(
+    ([packPlan, packBilling]) => packPlan === plan && packBilling === billing
+  );
+
+/**
  * What a signed-in account can use. `plan` is null without access; `role`
  * says whether the account pays (owner) or holds a Business seat.
  */
@@ -41,6 +67,11 @@ export interface PlanAccess {
   cancelAtPeriodEnd: boolean;
   /** Owned the retired Skill Bundle: keeps skill repo access, not Pro. */
   legacySkill: boolean;
+  /**
+   * Can install the GTA 6 Clip Pack: bought it, or owns a plan in
+   * GTA_PACK_PLANS.
+   */
+  gtaPack: boolean;
 }
 
 /**
@@ -88,6 +119,7 @@ export const NO_ACCESS: PlanAccess = {
   periodEnd: null,
   cancelAtPeriodEnd: false,
   legacySkill: false,
+  gtaPack: false,
 };
 
 /** Pro and Business both unlock the library, the Pro skill and Pro MCP tools. */

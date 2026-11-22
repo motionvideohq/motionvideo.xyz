@@ -1,5 +1,5 @@
 // Idempotent Dodo Payments setup for MotionVideo: brand, products, GitHub
-// repository entitlement, sale discount codes, and webhook endpoint.
+// repository entitlements, sale discount codes, and webhook endpoint.
 // Re-running finds what already exists by name, code or URL and only creates
 // the rest (and replaces a product whose price changed).
 //
@@ -24,7 +24,6 @@ const ENV_FILE = ".env";
 const WRANGLER_FILE = "wrangler.jsonc";
 const SITE_URL = "https://motionvideo.xyz";
 const LIVE_WEBHOOK_URL = `${SITE_URL}/api/webhook/dodo`;
-const GITHUB_REPO = "motionvideohq/motionvideo-skill";
 
 const BRAND = {
   description:
@@ -35,7 +34,34 @@ const BRAND = {
   url: SITE_URL,
 };
 
-const ENTITLEMENT_NAME = "MotionVideo Skill repository";
+// Read-only GitHub repository access (Dodo GitHub entitlements), each on the
+// products whose buyers get it. Requires the Dodo Payments GitHub App on the
+// motionvideohq organization, which is a dashboard OAuth step.
+const GITHUB_ENTITLEMENTS = [
+  {
+    // The Pro agent skill: every Pro and Business product, and the retired
+    // bundle so its buyers keep theirs.
+    name: "MotionVideo Skill repository",
+    repo: "motionvideohq/motionvideo-skill",
+    includes: (product) =>
+      product.retired ||
+      /^DODO_PRODUCT_(?:PRO|BUSINESS)_/u.test(product.envKey),
+  },
+  {
+    // The GTA 6 Clip Pack: its buyers, and owners of Pro annual, Pro
+    // lifetime and Business annual. Keep in sync with GTA_PACK_PLANS in
+    // src/constants/plans.ts.
+    name: "MotionVideo GTA Skill repository",
+    repo: "motionvideohq/motionvideo-gta-skill",
+    includes: (product) =>
+      [
+        "DODO_PRODUCT_GTA_PACK",
+        "DODO_PRODUCT_PRO_ANNUAL",
+        "DODO_PRODUCT_PRO_LIFETIME",
+        "DODO_PRODUCT_BUSINESS_ANNUAL",
+      ].includes(product.envKey),
+  },
+];
 
 // A renewing subscription billed every `interval`. The subscription period is
 // longer than any billing cycle so it renews until cancelled. `ppp`: Dodo's
@@ -108,6 +134,16 @@ const PRODUCTS = [
     name: "MotionVideo Business — Annual",
     description: `${BUSINESS_SUMMARY} Billed yearly; cancel anytime.`,
     price: recurringPrice(24_900, "Year", { ppp: true }),
+  },
+  // The GTA 6 Clip Pack: a one-time purchase of a second private skill
+  // repository (also included in Pro annual, Pro lifetime and Business
+  // annual). Keep in sync with GTA_PACK_PRICE_CENTS in src/constants/plans.ts.
+  {
+    envKey: "DODO_PRODUCT_GTA_PACK",
+    name: "MotionVideo GTA 6 Clip Pack",
+    description:
+      "MotionVideo GTA 6 Clip Pack: six agent skills that add a GTA-flavored motion-graphics layer to your gameplay clips (wanted-level meter, mission cards, kinetic captions, HUD callouts and impact effects), timed to the clip and rendered by the renderer skill you already use. Read-only access to a private GitHub repository, with every future update. One-time payment; nothing renews. Not affiliated with, endorsed by, or sponsored by Rockstar Games or Take-Two Interactive.",
+    price: oneTimePrice(4900, { ppp: true }),
   },
   // Sponsorships, per tier: monthly (a renewing subscription) or one 30-day
   // run, both at the same price. Keep in sync with SPONSOR_PRICE_USD.
@@ -355,51 +391,49 @@ const attachEntitlement = (label, entitlement, products) =>
     })
   );
 
-// Every Pro and Business product.
-const PLAN_PRODUCTS = PRODUCTS.filter(
-  (product) =>
-    productIds[product.envKey] &&
-    /^DODO_PRODUCT_(?<plan>PRO|BUSINESS)_/u.test(product.envKey)
-);
 const entitlements = await collect(dodo.entitlements.list());
 
-// GitHub repository access (the Pro agent skill) for every Pro and Business
-// product, and for the retired bundle so its buyers keep theirs. Requires the
-// Dodo Payments GitHub App on the motionvideohq organization, which is a
-// dashboard OAuth step.
-const GITHUB_PRODUCTS = [
-  ...PRODUCTS.filter(
-    (product) => product.retired && productIds[product.envKey]
-  ),
-  ...PLAN_PRODUCTS,
-];
-let entitlementId = null;
-try {
-  let entitlement = entitlements.find(
-    (item) =>
-      item.integration_type === "github" && item.name === ENTITLEMENT_NAME
+// Finds or creates one GitHub entitlement and attaches it to its products.
+// Returns its ID, or null when GitHub isn't connected to Dodo yet.
+const syncGithubEntitlement = async ({ name, repo, includes }) => {
+  const products = PRODUCTS.filter(
+    (product) => productIds[product.envKey] && includes(product)
   );
-  if (entitlement) {
-    log(`github    found    ${entitlement.id}`);
-  } else {
-    entitlement = await dodo.entitlements.create({
-      integration_config: { permission: "pull", target_id: GITHUB_REPO },
-      integration_type: "github",
-      name: ENTITLEMENT_NAME,
-    });
-    log(`github    created  ${entitlement.id}`);
+  try {
+    let entitlement = entitlements.find(
+      (item) => item.integration_type === "github" && item.name === name
+    );
+    if (entitlement) {
+      log(`github    found    ${entitlement.id}  ${name}`);
+    } else {
+      entitlement = await dodo.entitlements.create({
+        integration_config: { permission: "pull", target_id: repo },
+        integration_type: "github",
+        name,
+      });
+      log(`github    created  ${entitlement.id}  ${name}`);
+    }
+    await attachEntitlement("github", entitlement.id, products);
+    return entitlement.id;
+  } catch (error) {
+    log(`github    skipped  ${error.status ?? ""} ${error.message}`);
+    log(
+      `          Dashboard (${environment}): Entitlements → + → GitHub Access → Connect GitHub,\n` +
+        `          install the app on motionvideohq, pick ${repo} with "pull",\n` +
+        `          name it "${name}", then attach it to:\n${products
+          .map((product) => `            ${product.name}\n`)
+          .join("")}          (or re-run this script once GitHub is connected).`
+    );
+    return null;
   }
-  entitlementId = entitlement.id;
-  await attachEntitlement("github", entitlementId, GITHUB_PRODUCTS);
-} catch (error) {
-  log(`github    skipped  ${error.status ?? ""} ${error.message}`);
-  log(
-    `          Dashboard (${environment}): Entitlements → + → GitHub Access → Connect GitHub,\n` +
-      `          install the app on motionvideohq, pick ${GITHUB_REPO} with "pull",\n` +
-      `          name it "${ENTITLEMENT_NAME}", then attach it to every MotionVideo Pro\n` +
-      "          and Business product and the retired MotionVideo Skill Bundle\n" +
-      "          (or re-run this script once GitHub is connected)."
-  );
+};
+
+// One at a time: products shared by two entitlements (Pro annual, say) have
+// their entitlement list read and rewritten by each.
+const entitlementIds = [];
+for (const entitlement of GITHUB_ENTITLEMENTS) {
+  // oxlint-disable-next-line no-await-in-loop
+  entitlementIds.push(await syncGithubEntitlement(entitlement));
 }
 
 // Webhook endpoint. Endpoints are business-wide, so this one also receives
@@ -480,7 +514,9 @@ log(`  brand        ${brandId}`);
 for (const [key, value] of Object.entries(ids)) {
   log(`  ${key.padEnd(30)} ${value}`);
 }
-log(`  github entitlement             ${entitlementId ?? "not created"}`);
+for (const [index, { name }] of GITHUB_ENTITLEMENTS.entries()) {
+  log(`  ${name.padEnd(30)} ${entitlementIds[index] ?? "not created"}`);
+}
 log(`  webhook endpoint               ${webhookId ?? "not created"}`);
 
 if (live) {

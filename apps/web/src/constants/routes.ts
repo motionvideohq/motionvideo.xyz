@@ -51,12 +51,16 @@ export const ROUTES = {
   DOCS_API: "/docs/api",
   /** Any docs page: `params={{ _splat: "mcp" }}`. */
   DOCS_PAGE: "/docs/$",
+  DOCS_GTA: "/docs/gta-6",
   DOCS_MCP: "/docs/mcp",
   DOCS_MOVES: "/docs/moves",
   DOCS_PLANS: "/docs/plans",
   DOCS_SKILL: "/docs/skill",
   DOCS_TEMPLATES: "/docs/templates",
   EXTRAS: "/extras",
+  GTA_CLIPPING: "/gta-6-clipping",
+  /** Redirects to GTA_CLIPPING. */
+  GTA_6: "/gta-6",
   HOME: "/",
   JOBS: "/jobs",
   JOBS_TYPE: "/jobs/$type",

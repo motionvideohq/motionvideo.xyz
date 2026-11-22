@@ -41,6 +41,8 @@ import { Route as Char123LocaleChar125DesignRouteImport } from './routes/{-$loca
 import { Route as Char123LocaleChar125ExtrasRouteImport } from './routes/{-$locale}/extras'
 import { Route as Char123LocaleChar125FeaturedRouteImport } from './routes/{-$locale}/featured'
 import { Route as Char123LocaleChar125FilmRouteImport } from './routes/{-$locale}/film'
+import { Route as Char123LocaleChar125Gta6RouteImport } from './routes/{-$locale}/gta-6'
+import { Route as Char123LocaleChar125Gta6ClippingRouteImport } from './routes/{-$locale}/gta-6-clipping'
 import { Route as Char123LocaleChar125ListingsRouteImport } from './routes/{-$locale}/listings'
 import { Route as Char123LocaleChar125MotionvideoMcpRouteImport } from './routes/{-$locale}/motionvideo-mcp'
 import { Route as Char123LocaleChar125MotionvideoSkillRouteImport } from './routes/{-$locale}/motionvideo-skill'
@@ -320,6 +322,18 @@ const Char123LocaleChar125FilmRoute =
   Char123LocaleChar125FilmRouteImport.update({
     id: '/film',
     path: '/film',
+    getParentRoute: () => Char123LocaleChar125RouteRoute,
+  } as any)
+const Char123LocaleChar125Gta6Route =
+  Char123LocaleChar125Gta6RouteImport.update({
+    id: '/gta-6',
+    path: '/gta-6',
+    getParentRoute: () => Char123LocaleChar125RouteRoute,
+  } as any)
+const Char123LocaleChar125Gta6ClippingRoute =
+  Char123LocaleChar125Gta6ClippingRouteImport.update({
+    id: '/gta-6-clipping',
+    path: '/gta-6-clipping',
     getParentRoute: () => Char123LocaleChar125RouteRoute,
   } as any)
 const Char123LocaleChar125ListingsRoute =
@@ -977,6 +991,8 @@ export interface FileRoutesByFullPath {
   '/{-$locale}/extras': typeof Char123LocaleChar125ExtrasRouteWithChildren
   '/{-$locale}/featured': typeof Char123LocaleChar125FeaturedRoute
   '/{-$locale}/film': typeof Char123LocaleChar125FilmRoute
+  '/{-$locale}/gta-6': typeof Char123LocaleChar125Gta6Route
+  '/{-$locale}/gta-6-clipping': typeof Char123LocaleChar125Gta6ClippingRoute
   '/{-$locale}/listings': typeof Char123LocaleChar125ListingsRoute
   '/{-$locale}/motionvideo-mcp': typeof Char123LocaleChar125MotionvideoMcpRoute
   '/{-$locale}/motionvideo-skill': typeof Char123LocaleChar125MotionvideoSkillRoute
@@ -1109,6 +1125,8 @@ export interface FileRoutesByTo {
   '/{-$locale}/consent': typeof Char123LocaleChar125ConsentRoute
   '/{-$locale}/featured': typeof Char123LocaleChar125FeaturedRoute
   '/{-$locale}/film': typeof Char123LocaleChar125FilmRoute
+  '/{-$locale}/gta-6': typeof Char123LocaleChar125Gta6Route
+  '/{-$locale}/gta-6-clipping': typeof Char123LocaleChar125Gta6ClippingRoute
   '/{-$locale}/listings': typeof Char123LocaleChar125ListingsRoute
   '/{-$locale}/motionvideo-mcp': typeof Char123LocaleChar125MotionvideoMcpRoute
   '/{-$locale}/motionvideo-skill': typeof Char123LocaleChar125MotionvideoSkillRoute
@@ -1239,6 +1257,8 @@ export interface FileRoutesById {
   '/{-$locale}/extras': typeof Char123LocaleChar125ExtrasRouteWithChildren
   '/{-$locale}/featured': typeof Char123LocaleChar125FeaturedRoute
   '/{-$locale}/film': typeof Char123LocaleChar125FilmRoute
+  '/{-$locale}/gta-6': typeof Char123LocaleChar125Gta6Route
+  '/{-$locale}/gta-6-clipping': typeof Char123LocaleChar125Gta6ClippingRoute
   '/{-$locale}/listings': typeof Char123LocaleChar125ListingsRoute
   '/{-$locale}/motionvideo-mcp': typeof Char123LocaleChar125MotionvideoMcpRoute
   '/{-$locale}/motionvideo-skill': typeof Char123LocaleChar125MotionvideoSkillRoute
@@ -1379,6 +1399,8 @@ export interface FileRouteTypes {
     | '/{-$locale}/extras'
     | '/{-$locale}/featured'
     | '/{-$locale}/film'
+    | '/{-$locale}/gta-6'
+    | '/{-$locale}/gta-6-clipping'
     | '/{-$locale}/listings'
     | '/{-$locale}/motionvideo-mcp'
     | '/{-$locale}/motionvideo-skill'
@@ -1511,6 +1533,8 @@ export interface FileRouteTypes {
     | '/{-$locale}/consent'
     | '/{-$locale}/featured'
     | '/{-$locale}/film'
+    | '/{-$locale}/gta-6'
+    | '/{-$locale}/gta-6-clipping'
     | '/{-$locale}/listings'
     | '/{-$locale}/motionvideo-mcp'
     | '/{-$locale}/motionvideo-skill'
@@ -1640,6 +1664,8 @@ export interface FileRouteTypes {
     | '/{-$locale}/extras'
     | '/{-$locale}/featured'
     | '/{-$locale}/film'
+    | '/{-$locale}/gta-6'
+    | '/{-$locale}/gta-6-clipping'
     | '/{-$locale}/listings'
     | '/{-$locale}/motionvideo-mcp'
     | '/{-$locale}/motionvideo-skill'
@@ -2005,6 +2031,20 @@ declare module '@tanstack/react-router' {
       path: '/film'
       fullPath: '/{-$locale}/film'
       preLoaderRoute: typeof Char123LocaleChar125FilmRouteImport
+      parentRoute: typeof Char123LocaleChar125RouteRoute
+    }
+    '/{-$locale}/gta-6': {
+      id: '/{-$locale}/gta-6'
+      path: '/gta-6'
+      fullPath: '/{-$locale}/gta-6'
+      preLoaderRoute: typeof Char123LocaleChar125Gta6RouteImport
+      parentRoute: typeof Char123LocaleChar125RouteRoute
+    }
+    '/{-$locale}/gta-6-clipping': {
+      id: '/{-$locale}/gta-6-clipping'
+      path: '/gta-6-clipping'
+      fullPath: '/{-$locale}/gta-6-clipping'
+      preLoaderRoute: typeof Char123LocaleChar125Gta6ClippingRouteImport
       parentRoute: typeof Char123LocaleChar125RouteRoute
     }
     '/{-$locale}/listings': {
@@ -3176,6 +3216,8 @@ interface Char123LocaleChar125RouteRouteChildren {
   Char123LocaleChar125ExtrasRoute: typeof Char123LocaleChar125ExtrasRouteWithChildren
   Char123LocaleChar125FeaturedRoute: typeof Char123LocaleChar125FeaturedRoute
   Char123LocaleChar125FilmRoute: typeof Char123LocaleChar125FilmRoute
+  Char123LocaleChar125Gta6Route: typeof Char123LocaleChar125Gta6Route
+  Char123LocaleChar125Gta6ClippingRoute: typeof Char123LocaleChar125Gta6ClippingRoute
   Char123LocaleChar125ListingsRoute: typeof Char123LocaleChar125ListingsRoute
   Char123LocaleChar125MotionvideoMcpRoute: typeof Char123LocaleChar125MotionvideoMcpRoute
   Char123LocaleChar125MotionvideoSkillRoute: typeof Char123LocaleChar125MotionvideoSkillRoute
@@ -3226,6 +3268,9 @@ const Char123LocaleChar125RouteRouteChildren: Char123LocaleChar125RouteRouteChil
       Char123LocaleChar125ExtrasRouteWithChildren,
     Char123LocaleChar125FeaturedRoute: Char123LocaleChar125FeaturedRoute,
     Char123LocaleChar125FilmRoute: Char123LocaleChar125FilmRoute,
+    Char123LocaleChar125Gta6Route: Char123LocaleChar125Gta6Route,
+    Char123LocaleChar125Gta6ClippingRoute:
+      Char123LocaleChar125Gta6ClippingRoute,
     Char123LocaleChar125ListingsRoute: Char123LocaleChar125ListingsRoute,
     Char123LocaleChar125MotionvideoMcpRoute:
       Char123LocaleChar125MotionvideoMcpRoute,

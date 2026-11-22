@@ -1,0 +1,28 @@
+{
+  "version": 1,
+  "source": { "path": "sample.mp4", "width": 1080, "height": 1920, "fps": 60, "durationSec": 12.0 },
+  "format": { "aspect": "9:16", "width": 1080, "height": 1920, "fps": 30 },
+  "style": {
+    "palette": { "ink": "#0B0B0F", "paper": "#F5F1E8", "heat": "#FF3B6B", "cash": "#7CFF6B", "sun": "#FF9E3D", "sky": "#38C6FF" },
+    "display": "Anton",
+    "text": "Inter",
+    "intensity": "medium"
+  },
+  "cues": [
+    { "at": 0.3, "until": 1.9, "kind": "caption", "text": "HE DID NOT SEE THAT", "emphasis": ["NOT"] },
+    { "at": 0.8, "kind": "impact", "effect": "shake", "strength": 0.5 },
+    { "at": 1.0, "kind": "wanted", "level": 2 },
+    { "at": 2.0, "kind": "impact", "effect": "zoom-punch", "strength": 0.7 },
+    { "at": 2.0, "kind": "wanted", "level": 5 },
+    { "at": 2.15, "kind": "impact", "effect": "chromatic", "strength": 0.6 },
+    { "at": 2.6, "until": 4.0, "kind": "callout", "label": "ONE TAP", "x": 0.62, "y": 0.41, "freeze": true },
+    { "at": 4.2, "until": 6.0, "kind": "counter", "label": "CASH", "from": 0, "to": 12500, "prefix": "$" },
+    { "at": 4.4, "kind": "impact", "effect": "flash", "strength": 0.5 },
+    { "at": 5.0, "until": 6.4, "kind": "impact", "effect": "letterbox", "strength": 0.8 },
+    { "at": 5.6, "kind": "wanted", "level": 0 },
+    { "at": 6.2, "until": 8.7, "kind": "minimap", "label": "VICE BEACH" },
+    { "at": 6.4, "until": 7.6, "kind": "caption", "text": "NEW CITY. NEW RULES.", "emphasis": ["RULES."] },
+    { "at": 7.4, "until": 10.0, "kind": "phone", "app": "messages", "lines": ["where r u", "running from 5 stars", "pull up"] },
+    { "at": 10.0, "until": 12.0, "kind": "card", "variant": "passed", "title": "HEIST COMPLETE", "subtitle": "+$12,500" }
+  ]
+}

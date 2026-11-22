@@ -27,6 +27,7 @@ const body = (docsPages: DocsPage[]) => `# ${SITE.NAME}
 - [skill.md](${absoluteUrl(ROUTES.SKILL_MD)}): A skill a coding agent can read to set itself up with ${SITE.NAME}.
 - [MotionVideo MCP](${pageUrl(ROUTES.MOTIONVIDEO_MCP)}): The free MCP server: search the gallery and pull prompts from Claude, ChatGPT, Cursor and other MCP clients. Setup reference: ${pageUrl(ROUTES.DOCS_MCP)}
 - [MotionVideo Skill](${pageUrl(ROUTES.MOTIONVIDEO_SKILL)}): The motion design skill pack included in Pro and Business. Install reference: ${pageUrl(ROUTES.DOCS_SKILL)}
+- [GTA 6 Clip Pack](${pageUrl(ROUTES.GTA_CLIPPING)}): Renderer-agnostic agent skills that add a GTA-flavored motion-graphics layer to gameplay clips; sold once and included in Pro annual and lifetime. Install reference: ${pageUrl(ROUTES.DOCS_GTA)}
 - [Moves](${pageUrl(ROUTES.MOVES)}): Named motion design techniques with gallery examples; each move's copy-ready prompt is in Pro.
 - [Templates](${pageUrl(ROUTES.TEMPLATES)}): Prompt templates with fill-in fields (concept, palette, length, size); each template's full prompt is in Pro.
 - [MotionVideo Pro](${pageUrl(ROUTES.PRO)}): Pro and Business plans: what they include and what they cost. As Markdown: ${absoluteUrl(ROUTES.PRICING_MD)}
