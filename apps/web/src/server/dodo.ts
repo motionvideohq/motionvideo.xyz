@@ -10,8 +10,13 @@ import type { CountryCode } from "dodopayments/resources/misc";
 import { JOB_PLANS } from "@/constants/jobs";
 import type { JobPlan } from "@/constants/jobs";
 import { DEFAULT_LOCALE, isLocale, localizedPath } from "@/constants/locales";
-import { GTA_PACK_PRODUCT, PLAN_PRICE_CENTS } from "@/constants/plans";
-import type { Plan, PlanBilling } from "@/constants/plans";
+import {
+  GTA_PACK_PRODUCT,
+  PLAN_PRICE_CENTS,
+  PLANS,
+  planOffers,
+} from "@/constants/plans";
+import type { LocalPrices, Plan, PlanBilling } from "@/constants/plans";
 import { ROUTES } from "@/constants/routes";
 import { SPONSOR_BILLINGS, SPONSOR_TIERS } from "@/constants/sponsors";
 import type { SponsorBilling, SponsorTier } from "@/constants/sponsors";
@@ -91,37 +96,95 @@ const PLAN_PRODUCT_IDS: Record<Plan, Partial<Record<PlanBilling, string>>> = {
 export const planProductId = (plan: Plan, billing: PlanBilling): string =>
   PLAN_PRODUCT_IDS[plan][billing] ?? "";
 
+// Previews price public pages, so a slow Dodo must not hold them up: one
+// short try, after which the caller falls back to the USD list prices.
+const PREVIEW_OPTIONS = { maxRetries: 0, timeout: 3000 };
+
 /**
- * Percent off the list price Dodo's purchasing power parity gives a billing
- * country, read from a checkout preview of Pro (annual). PPP is one
+ * One plan's line in a checkout preview for a billing country. Without
+ * `currency`, Adaptive Currency picks the country's own. Countries Dodo
+ * doesn't know throw (an API error).
+ */
+const previewPlan = async (
+  country: string,
+  productId: string,
+  currency?: "USD"
+) => {
+  const preview = await getDodo().checkoutSessions.preview(
+    {
+      // SAFETY: a two-letter code from Cloudflare's `cf-ipcountry`; Dodo
+      // validates it and rejects codes outside its list.
+      billing_address: { country: country as CountryCode },
+      ...(currency && { billing_currency: currency }),
+      product_cart: [{ product_id: productId, quantity: 1 }],
+    },
+    PREVIEW_OPTIONS
+  );
+  const [item] = preview.product_cart;
+  if (!item) {
+    throw new Error(`Dodo previewed no line for ${productId}`);
+  }
+  return item;
+};
+
+/**
+ * Whether Dodo's purchasing power parity already lowers a billing country's
+ * prices, read from a checkout preview of Pro (annual). PPP is one
  * business-wide percentage per country, the same for every opted-in product,
- * so one plan stands for all. Dodo applies PPP to the product's price itself
+ * so one plan stands for all. Dodo applies it to the product's price itself
  * (`og_price` already comes back reduced), so the preview's price is compared
  * with our list price, not with `og_price`. The preview is pinned to USD so
- * the two compare directly; anything else reads as no discount rather than a
- * wrong one. Countries Dodo doesn't know throw (an API error).
+ * the two compare directly; a preview in another currency reads as no parity
+ * rather than a wrong answer.
  */
-export const parityPercentOff = async (country: string): Promise<number> => {
+export const hasParityPrice = async (country: string): Promise<boolean> => {
   const productId = planProductId("pro", "annual");
   const listCents = PLAN_PRICE_CENTS.pro.annual;
   if (!productId || !listCents) {
-    return 0;
+    return false;
   }
-  const preview = await getDodo().checkoutSessions.preview({
-    // SAFETY: a two-letter code from Cloudflare's `cf-ipcountry`; Dodo
-    // validates it and rejects codes outside its list.
-    billing_address: { country: country as CountryCode },
-    billing_currency: "USD",
-    product_cart: [{ product_id: productId, quantity: 1 }],
-  });
-  const [item] = preview.product_cart;
-  if (!item || item.currency !== "USD") {
-    return 0;
-  }
-  return Math.max(
-    0,
-    Math.round(100 - (item.discounted_price / listCents) * 100)
+  const item = await previewPlan(country, productId, "USD");
+  return item.currency === "USD" && item.discounted_price < listCents;
+};
+
+/**
+ * What each plan costs a billing country, in the currency Dodo charges there,
+ * read from one checkout preview per product. The previews leave the
+ * currency to Dodo, so Adaptive Currency picks the country's own and
+ * converts the list price into it, after purchasing power parity takes its
+ * share. Each line's `discounted_price` is the per-unit price before tax
+ * (these previews pass no discount codes), whatever trial a plan may get.
+ * Null when a product isn't set up yet, or when the lines don't share a
+ * currency: mixed currencies side by side would read as a mistake.
+ */
+export const countryPlanPrices = async (
+  country: string
+): Promise<Pick<LocalPrices, "cents" | "currency"> | null> => {
+  const offers = PLANS.flatMap((plan) =>
+    planOffers(plan).map((billing) => ({
+      billing,
+      plan,
+      productId: planProductId(plan, billing),
+    }))
   );
+  if (offers.some(({ productId }) => !productId)) {
+    return null;
+  }
+  const lines = await Promise.all(
+    offers.map(async (offer) => ({
+      ...offer,
+      item: await previewPlan(country, offer.productId),
+    }))
+  );
+  const currency = lines[0]?.item.currency;
+  if (!currency || lines.some(({ item }) => item.currency !== currency)) {
+    return null;
+  }
+  const cents: LocalPrices["cents"] = { business: {}, pro: {} };
+  for (const { billing, plan, item } of lines) {
+    cents[plan][billing] = item.discounted_price;
+  }
+  return { cents, currency };
 };
 
 /** One-time job listing products, by plan. */

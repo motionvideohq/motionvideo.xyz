@@ -10,7 +10,7 @@ const layoutApi = getRouteApi("/{-$locale}/moves");
 
 const MoveRoute = () => {
   const { move, prompt, examples, related } = Route.useLoaderData();
-  const { signedIn } = layoutApi.useLoaderData();
+  const { signedIn, prices } = layoutApi.useLoaderData();
   const navigate = useLocalizedNavigate();
   // The grid behind the overlay: the one it was opened from.
   const grid = useMovesGrid();
@@ -34,6 +34,7 @@ const MoveRoute = () => {
       related={related}
       prompt={prompt}
       signedIn={signedIn}
+      prices={prices}
       previous={previous ? () => open(previous) : undefined}
       next={next ? () => open(next) : undefined}
       onClose={() =>

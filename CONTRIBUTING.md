@@ -55,6 +55,16 @@ pnpm --filter @motionvideo/web auth:schema
 
 Local Cloudflare bindings (D1, R2, Durable Objects, rate limiters) are emulated by the Cloudflare Vite plugin, so `pnpm dev` does not need a Cloudflare account. Wrangler stores local state in `apps/web/.wrangler`, which is gitignored.
 
+### Cloudflare preview database
+
+Branch previews share the `motionvideo-preview` D1 database. Workers Builds does not apply its migrations. Before testing a preview that needs a new schema, run:
+
+```bash
+pnpm --filter @motionvideo/web db:migrate:preview
+```
+
+This targets preview only. If the preview already hit a database error during Better Auth initialization, redeploy it after migrating: the Worker keeps its auth instance for the lifetime of the isolate.
+
 ## Development
 
 ### Project layout
@@ -94,6 +104,10 @@ The preview server runs on port 3001.
 
 Add releases to `apps/web/content/changelog/<slug>.mdx` with `title`, `description`, and an ISO `date` (`YYYY-MM-DD`) in YAML frontmatter. The filename becomes `/{locale}/changelog/<slug>`; the index sorts entries newest first. Entry text is shared in English across locales, while dates and navigation are localized. Write internal links without a locale (for example, `/color/blue`); the MDX renderer adds the reader's locale.
 
+Blog and changelog articles use the shared docs-style article shell: desktop entry navigation comes from each collection, and the table of contents comes from compiled MDX headings. Mobile keeps the contents panel, without a duplicate all-entries accordion. Previous/next cards follow collection order at the end of every article. Blog tools include Markdown copy, PDF/EPUB export, assistant links, and sharing; the English source is served at `/blog/<slug>.md`. Use Markdown headings rather than hand-built anchors so contents navigation stays in sync. Listing pages use an intro tile alongside equal-height entry cards; collection back links use the shared ghost-button styling.
+
+Blog sharing uses LinkedIn and X brand marks. “Other app…” opens the device's native share sheet where Web Share is supported; canceling it is not an error. Copy link remains available in every browser.
+
 Run `pnpm build` to compile MDX and prerender the localized indexes. Check the entry body in the browser as well as direct navigation to its URL. No new environment variables or database migrations are needed for changelog content.
 
 ### Remotion videos
@@ -132,6 +146,8 @@ pnpm build      # production build
 
 `pnpm typecheck` expects `apps/web/.env` to exist because `wrangler types` reads secret names from it. It also regenerates `apps/web/worker-configuration.d.ts`, which is gitignored. Run `pnpm build` when your change touches routing, prerendering, or Cloudflare bindings.
 
+Keep routes that load live D1 data out of `STATIC_PAGES` and the matching unprefixed paths out of `assets.run_worker_first` in `apps/web/wrangler.jsonc`. The build-time Worker does not have a migrated database; for example, `/changelog` loads live sponsor placements at request time.
+
 There is no automated test suite yet. CI runs `pnpm check`, `pnpm typecheck`, and `pnpm build`; include the commands you ran and a short manual verification path in your pull request.
 
 A pre-commit hook via [Lefthook](https://github.com/evilmartians/lefthook) runs `pnpm fix` on staged files.
@@ -150,6 +166,12 @@ Change their source instead of editing these by hand:
 Media and large assets live in R2 (`motionvideo-assets`) rather than the repository.
 
 The licensed Timeless font is pulled into a gitignored directory by `predev` and `prebuild`. If the download fails, place the licensed file at `apps/web/public/fonts/timeless/` or set `FONT_SRC=<path-or-url>` for the pull.
+
+## Pro prompts
+
+The Pro prompts (move prompts, template prompts and Launch Videos recipes) are not in this repository. They live in a private repository, and `predev` and `prebuild` pull them into the gitignored `apps/web/src/server/data/`, using your GitHub credentials or `MOTIONVIDEO_PRO_GH_TOKEN` from `apps/web/.env`. Without access, `pnpm dev` stops and says so. Set `PRO_CONTENT_SAMPLES=1` to use the redacted samples in `apps/web/src/server/data/samples/` instead: they have the same shape, so everything runs, but every prompt reads "Sample prompt". Never commit a file to `apps/web/src/server/data/` outside `samples/`; CI fails if you do.
+
+Cloudflare Workers Builds needs `MOTIONVIDEO_PRO_GH_TOKEN` as a **build secret**, with read-only Contents access to `motionvideohq/motionvideo-pro`. Workers Builds refuses to build with samples. This setup keeps prompts out of new commits; it does not remove prompts from public Git history.
 
 ## Before opening a pull request
 

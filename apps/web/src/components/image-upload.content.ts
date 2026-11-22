@@ -2,7 +2,7 @@ import { t } from "intlayer";
 import type { Dictionary } from "intlayer";
 
 export default {
-  key: "image-dropzone",
+  key: "image-upload",
   content: {
     browse: t({
       en: "Browse",

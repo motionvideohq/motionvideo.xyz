@@ -1,4 +1,4 @@
-import { Fragment } from "react";
+import { Fragment, useSyncExternalStore } from "react";
 import type { ReactNode } from "react";
 import { useIntlayer } from "react-intlayer";
 import { ArrowUpCircle } from "reicon-react/icons/ArrowUpCircle";
@@ -10,7 +10,9 @@ import { Copy3 } from "reicon-react/icons/Copy3";
 import { DocumentDownload } from "reicon-react/icons/DocumentDownload";
 import { Edit } from "reicon-react/icons/Edit";
 import { Export } from "reicon-react/icons/Export";
+import { MoreH } from "reicon-react/icons/MoreH";
 import { Plug } from "reicon-react/icons/Plug";
+import { Share } from "reicon-react/icons/Share";
 
 import {
   ChatGptIcon,
@@ -26,6 +28,7 @@ import {
   V0Icon,
   VsCodeIcon,
 } from "@/components/docs/brand-icons";
+import { LinkedInIcon, XIcon } from "@/components/icons";
 import {
   Collapsible,
   CollapsibleContent,
@@ -106,7 +109,7 @@ interface MenuEntry {
 }
 
 /**
- * One action with a submenu (Export, Open in chat, Connect to MCP). A
+ * One action with a submenu. A
  * dropdown in the desktop column; `inline` (the mobile "On this page") opens
  * the entries in the flow below it, indented behind a left rule.
  */
@@ -121,6 +124,7 @@ const MenuAction = ({
   entries: MenuEntry[];
   inline: boolean;
 }) => {
+  const content = useIntlayer("docs-layout");
   const trigger = (
     <>
       {icon}
@@ -154,6 +158,9 @@ const MenuAction = ({
                   >
                     {entry.icon}
                     {entry.label}
+                    {!entry.sameTab && (
+                      <span className="sr-only"> {content.opensInNewTab}</span>
+                    )}
                   </a>
                 ) : (
                   <button
@@ -190,6 +197,9 @@ const MenuAction = ({
               >
                 {entry.icon}
                 {entry.label}
+                {!entry.sameTab && (
+                  <span className="sr-only"> {content.opensInNewTab}</span>
+                )}
               </DropdownMenuLinkItem>
             ) : (
               <DropdownMenuItem onClick={entry.handleSelect}>
@@ -206,16 +216,24 @@ const MenuAction = ({
 
 type CopyStatus = "idle" | "copied" | "failed";
 
+const subscribeShareSupport = () => () => {
+  // Native sharing support does not change while this document is open.
+};
+
 export interface DocsActionsProps {
   title: string;
   description: string;
-  /** Page path, e.g. /docs/mcp. */
+  /** Public page path. Docs and design use an unprefixed path; articles may include their locale. */
   url: string;
   /**
    * The file the page is built from, relative to apps/web, for the edit
    * link, e.g. `content/docs/mcp.mdx`.
    */
-  path: string;
+  path?: string;
+  /** Override the docs Markdown endpoint for other article types. */
+  markdownUrl?: string;
+  /** Articles omit docs-only edit/MCP actions and offer sharing instead. */
+  variant?: "docs" | "article";
   /** Language of the shown page, for the EPUB. */
   lang: string;
   /** The rendered article body, for the EPUB. */
@@ -225,36 +243,48 @@ export interface DocsActionsProps {
 }
 
 /**
- * Edit, scroll to top, copy as Markdown, export (PDF via the print dialog,
- * EPUB built in the browser), open in an assistant and connect the MCP
- * server. Under the table of contents, and in the mobile "On this page".
+ * Shared page tools: copy Markdown, export and open in an assistant.
+ * Docs also offer editing, scrolling and MCP; articles offer sharing.
  */
 export const DocsActions = ({
   title,
   description,
   url,
   path,
+  markdownUrl,
+  variant = "docs",
   lang,
   getArticle,
   inline = false,
 }: DocsActionsProps) => {
   const content = useIntlayer("docs-layout");
+  const nativeShareSupported = useSyncExternalStore(
+    subscribeShareSupport,
+    () => "share" in navigator,
+    () => false
+  );
   const [markdownStatus, flashMarkdown] =
     useTransientStatus<CopyStatus>("idle");
   const [mcpStatus, flashMcp] = useTransientStatus<CopyStatus>("idle");
-  const statusLabel = (status: CopyStatus, idle: ReactNode) => {
+  const [shareStatus, flashShare] = useTransientStatus<CopyStatus>("idle");
+  const statusLabel = (
+    status: CopyStatus,
+    idle: ReactNode,
+    failed?: ReactNode
+  ) => {
     if (status === "copied") {
       return content.copied;
     }
-    return status === "failed" ? content.copyFailed : idle;
+    return status === "failed" ? (failed ?? content.copyFailed) : idle;
   };
 
   // Copied from this origin (localhost, previews and the live site alike);
   // assistants get the public URL.
-  const markdownPath = docsMarkdownPath(url);
+  const markdownPath = markdownUrl ?? docsMarkdownPath(url);
   const chatPrompt = encodeURIComponent(
     `Read ${absoluteUrl(markdownPath)}, I want to ask questions about it.`
   );
+  const shareUrl = absoluteUrl(url);
 
   const fetchMarkdown = async () => {
     const response = await fetch(markdownPath);
@@ -293,6 +323,25 @@ export const DocsActions = ({
     }
   };
 
+  const copyLink = async () => {
+    try {
+      await navigator.clipboard.writeText(shareUrl);
+      flashShare("copied");
+    } catch {
+      flashShare("failed");
+    }
+  };
+
+  const shareOtherApp = async () => {
+    try {
+      await navigator.share({ title, url: shareUrl });
+    } catch (error) {
+      if (!(error instanceof DOMException && error.name === "AbortError")) {
+        flashShare("failed");
+      }
+    }
+  };
+
   const exportEpub = () => {
     const article = getArticle();
     if (!article) {
@@ -318,32 +367,38 @@ export const DocsActions = ({
       aria-label={content.pageActions.value}
       className="flex flex-col gap-0.5 print:hidden"
     >
-      <a
-        href={`${EDIT_BASE}/${path}`}
-        target="_blank"
-        rel="noreferrer"
-        className={actionClass}
-      >
-        <Edit aria-hidden="true" />
-        {content.editPage}
-        <span className="sr-only"> {content.opensInNewTab}</span>
-      </a>
-      <button
-        type="button"
-        className={actionClass}
-        onClick={() =>
-          window.scrollTo({
-            top: 0,
-            behavior: window.matchMedia("(prefers-reduced-motion: reduce)")
-              .matches
-              ? "auto"
-              : "smooth",
-          })
-        }
-      >
-        <ArrowUpCircle aria-hidden="true" />
-        {content.scrollToTop}
-      </button>
+      {variant === "docs" && (
+        <>
+          {path && (
+            <a
+              href={`${EDIT_BASE}/${path}`}
+              target="_blank"
+              rel="noreferrer"
+              className={actionClass}
+            >
+              <Edit aria-hidden="true" />
+              {content.editPage}
+              <span className="sr-only"> {content.opensInNewTab}</span>
+            </a>
+          )}
+          <button
+            type="button"
+            className={actionClass}
+            onClick={() =>
+              window.scrollTo({
+                top: 0,
+                behavior: window.matchMedia("(prefers-reduced-motion: reduce)")
+                  .matches
+                  ? "auto"
+                  : "smooth",
+              })
+            }
+          >
+            <ArrowUpCircle aria-hidden="true" />
+            {content.scrollToTop}
+          </button>
+        </>
+      )}
       <button type="button" className={actionClass} onClick={copyMarkdown}>
         <Copy3 aria-hidden="true" />
         <span aria-live="polite">
@@ -380,49 +435,93 @@ export const DocsActions = ({
           href: `${chat.url}${chatPrompt}`,
         }))}
       />
-      <MenuAction
-        inline={inline}
-        icon={<Plug aria-hidden="true" />}
-        label={
-          <span aria-live="polite">
-            {statusLabel(mcpStatus, content.connectMcp)}
-          </span>
-        }
-        entries={[
-          {
-            key: "url",
-            icon: <Copy3 aria-hidden="true" />,
-            label: content.copyServerUrl,
-            handleSelect: () => copyMcp(MCP_RESOURCE),
-          },
-          {
-            key: "claude-code",
-            icon: <ClaudeCodeIcon />,
-            label: content.copyClaudeCode,
-            handleSelect: () => copyMcp(CLAUDE_CODE_COMMAND),
-          },
-          {
-            key: "codex",
-            icon: <CodexIcon />,
-            label: content.copyCodex,
-            handleSelect: () => copyMcp(CODEX_COMMAND),
-          },
-          {
-            key: "cursor",
-            icon: <CursorIcon />,
-            label: content.addToCursor,
-            href: CURSOR_INSTALL,
-            separated: true,
-          },
-          {
-            key: "vscode",
-            icon: <VsCodeIcon />,
-            label: content.addToVsCode,
-            href: VS_CODE_INSTALL,
-            sameTab: true,
-          },
-        ]}
-      />
+      {variant === "article" && (
+        <MenuAction
+          inline={inline}
+          icon={<Share aria-hidden="true" />}
+          label={
+            <span aria-live="polite">
+              {statusLabel(shareStatus, content.sharePage, content.shareFailed)}
+            </span>
+          }
+          entries={[
+            {
+              key: "linkedin",
+              icon: <LinkedInIcon />,
+              label: content.shareOn({ name: "LinkedIn" }),
+              href: `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(shareUrl)}`,
+            },
+            {
+              key: "x",
+              icon: <XIcon />,
+              label: content.shareOn({ name: "X" }),
+              href: `https://twitter.com/intent/tweet?url=${encodeURIComponent(shareUrl)}&text=${encodeURIComponent(title)}`,
+            },
+            ...(nativeShareSupported
+              ? [
+                  {
+                    key: "other-app",
+                    icon: <MoreH aria-hidden="true" />,
+                    label: content.otherApp,
+                    handleSelect: shareOtherApp,
+                  },
+                ]
+              : []),
+            {
+              key: "copy",
+              icon: <Copy3 aria-hidden="true" />,
+              label: content.copyLink,
+              handleSelect: copyLink,
+              separated: true,
+            },
+          ]}
+        />
+      )}
+      {variant === "docs" && (
+        <MenuAction
+          inline={inline}
+          icon={<Plug aria-hidden="true" />}
+          label={
+            <span aria-live="polite">
+              {statusLabel(mcpStatus, content.connectMcp)}
+            </span>
+          }
+          entries={[
+            {
+              key: "url",
+              icon: <Copy3 aria-hidden="true" />,
+              label: content.copyServerUrl,
+              handleSelect: () => copyMcp(MCP_RESOURCE),
+            },
+            {
+              key: "claude-code",
+              icon: <ClaudeCodeIcon />,
+              label: content.copyClaudeCode,
+              handleSelect: () => copyMcp(CLAUDE_CODE_COMMAND),
+            },
+            {
+              key: "codex",
+              icon: <CodexIcon />,
+              label: content.copyCodex,
+              handleSelect: () => copyMcp(CODEX_COMMAND),
+            },
+            {
+              key: "cursor",
+              icon: <CursorIcon />,
+              label: content.addToCursor,
+              href: CURSOR_INSTALL,
+              separated: true,
+            },
+            {
+              key: "vscode",
+              icon: <VsCodeIcon />,
+              label: content.addToVsCode,
+              href: VS_CODE_INSTALL,
+              sameTab: true,
+            },
+          ]}
+        />
+      )}
     </nav>
   );
 };

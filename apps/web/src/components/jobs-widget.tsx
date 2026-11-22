@@ -3,8 +3,8 @@ import { ArrowRight } from "reicon-react/icons/ArrowRight";
 
 import { CompanyLogo } from "@/components/company-logo";
 import { LocalizedLink as Link } from "@/components/localized-link";
-import { buttonVariants } from "@/components/ui/button";
 import { ROUTES } from "@/constants/routes";
+import { buttonVariants } from "@/registry/ui/button";
 import type { JobListing } from "@/server/job-functions";
 
 /** How many roles the Discover card lists before "See all jobs". */

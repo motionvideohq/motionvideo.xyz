@@ -3,8 +3,8 @@ import * as React from "react";
 import { useIntlayer } from "react-intlayer";
 import { Xmark } from "reicon-react/icons/Xmark";
 
-import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+import { Button } from "@/registry/ui/button";
 
 const Dialog = ({ ...props }: DialogPrimitive.Root.Props) => (
   <DialogPrimitive.Root data-slot="dialog" {...props} />

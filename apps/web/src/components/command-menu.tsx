@@ -66,7 +66,7 @@ type PagePath = (typeof ROUTES)[
   | "MOTIONVIDEO_SKILL"
   | "ABOUT"
   | "BLOG"
-  | "BRAND"
+  | "DESIGN"
   | "CONTACT"
   | "PRIVACY"
   | "TERMS"
@@ -120,10 +120,11 @@ const EMPTY_INDEX: SearchIndex = {
   blog: [],
   changelog: [],
   docs: [],
+  design: [],
 };
 
-// Moves, templates, posts, changelog and docs come from the server, which
-// keeps move bodies and prompts out of the browser. Docs titles depend on the
+// Moves, templates, posts, changelog, docs and design come from the server,
+// keeping bodies and prompts out of the browser. Docs titles depend on the
 // locale, so each locale loads once; a failed load retries on the next open.
 const indexPromises = new Map<string, Promise<SearchIndex>>();
 const loadSearchIndex = async (locale: string): Promise<SearchIndex> => {
@@ -176,6 +177,7 @@ const SEARCH_SCOPES = [
   "moves",
   "templates",
   "docs",
+  "design",
   "blog",
   "changelog",
   "tools",
@@ -421,6 +423,23 @@ export const CommandMenu = () => {
         })),
       ];
     });
+    const design = index.design.flatMap((designPage): PaletteItem[] => [
+      {
+        id: `design:${designPage.url}`,
+        label: designPage.title,
+        keywords: [designPage.title, designPage.description, "design system"],
+        icon: <SectionIcon section="design" />,
+        hint: designPage.description,
+        action: () => navigate({ to: designPage.url }),
+      },
+      ...designPage.headings.map((heading) => ({
+        id: `design:${designPage.url}#${heading.id}`,
+        label: heading.title,
+        keywords: [heading.title, designPage.title, "design system"],
+        hint: designPage.title,
+        action: () => navigate({ to: designPage.url, hash: heading.id }),
+      })),
+    ]);
     const item = (entry: Omit<PaletteItem, "action">, action: () => void) => ({
       ...entry,
       action,
@@ -486,6 +505,22 @@ export const CommandMenu = () => {
             "pro",
           ]),
           {
+            id: "agents:design-md",
+            label: "design.md",
+            keywords: [
+              "design",
+              "design system",
+              "guidelines",
+              "brand",
+              "agents",
+              "markdown",
+            ],
+            icon: <DocumentCode aria-hidden="true" />,
+            action: () => {
+              window.location.assign(ROUTES.DESIGN_MD);
+            },
+          },
+          {
             id: "agents:llms-txt",
             label: "llms.txt",
             keywords: ["llms", "llms.txt", "agents", "markdown", "ai"],
@@ -522,6 +557,9 @@ export const CommandMenu = () => {
             "api",
             "skill.md",
           ]),
+          ...(hasQuery
+            ? []
+            : [page(ROUTES.DESIGN, content.design.value, "design")]),
           page(ROUTES.ABOUT, footer.about.value, "about"),
           page(ROUTES.BLOG, header.blog.value, "blog", ["articles", "guides"]),
           page(ROUTES.CONTACT, footer.contact.value, "contact"),
@@ -632,6 +670,7 @@ export const CommandMenu = () => {
       moves,
       templates,
       docs,
+      design,
       blog: blogPosts,
       changelog,
       tools: linkItems(data.directories.tool),
@@ -646,7 +685,7 @@ export const CommandMenu = () => {
       heading: (
         <span className="flex items-center gap-1.5">
           <SectionIcon section={id} className="size-3" />
-          {header[id].value}
+          {id === "design" ? content.design.value : header[id].value}
         </span>
       ),
       items: searchItems[id],
@@ -664,7 +703,14 @@ export const CommandMenu = () => {
     setLocale,
   ]);
 
-  const scopeName = scope === "all" ? content.scopeAll : header[scope];
+  let scopeName;
+  if (scope === "all") {
+    scopeName = content.scopeAll;
+  } else if (scope === "design") {
+    scopeName = content.design;
+  } else {
+    scopeName = header[scope];
+  }
 
   return (
     <>
@@ -771,7 +817,7 @@ export const CommandMenu = () => {
                     {SEARCH_SCOPES.map((id) => (
                       <DropdownMenuRadioItem key={id} value={id}>
                         <SectionIcon section={id} />
-                        {header[id]}
+                        {id === "design" ? content.design : header[id]}
                       </DropdownMenuRadioItem>
                     ))}
                   </DropdownMenuRadioGroup>

@@ -14,7 +14,6 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import { buttonVariants } from "@/components/ui/button";
 import {
   GTA_DEMO_SLUGS,
   GTA_DEMOS,
@@ -31,6 +30,7 @@ import { formatUsd } from "@/constants/pricing";
 import { ROUTES } from "@/constants/routes";
 import { GTA_DISCLAIMER } from "@/constants/skill";
 import { cn } from "@/lib/utils";
+import { buttonVariants } from "@/registry/ui/button";
 import { createMetadata } from "@/seo/metadata";
 import { getGtaDemoPick } from "@/server/functions";
 

@@ -17,6 +17,8 @@ import { defineFeeds } from "@/lib/feeds";
 const posts = defineCollections({
   async: true,
   dir: "content/blog",
+  // Compile Markdown alongside each lazy body; no filesystem reads on Workers.
+  postprocess: { includeProcessedMarkdown: { output: "function" } },
   schema: z.object({
     title: z.string(),
     /** One or two sentences for the list, meta description and JSON-LD. */
@@ -43,6 +45,9 @@ export const blog = loader({
 export const BLOG_POSTS = blog
   .getPages()
   .toSorted((a, b) => b.data.date.localeCompare(a.data.date));
+
+/** A loaded blog page, with metadata and a lazily compiled article body. */
+export type BlogPost = (typeof BLOG_POSTS)[number];
 
 /** The blog's feeds, in English like the posts. */
 export const BLOG_FEEDS = defineFeeds(`${SITE.NAME} Blog`, {

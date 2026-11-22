@@ -4,8 +4,8 @@ import { Pause } from "reicon-react/icons/Pause";
 import { Play } from "reicon-react/icons/Play";
 import { Volume } from "reicon-react/icons/Volume";
 
-import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+import { Button } from "@/registry/ui/button";
 
 interface Clip {
   video: string;

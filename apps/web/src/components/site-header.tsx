@@ -25,7 +25,6 @@ import type {
   NavPreviewsPromise,
 } from "@/components/nav-previews";
 import { SectionIcon } from "@/components/section-icon";
-import { buttonVariants } from "@/components/ui/button";
 import {
   Collapsible,
   CollapsibleContent,
@@ -42,6 +41,7 @@ import {
 } from "@/components/ui/navigation-menu";
 import { ROUTES } from "@/constants/routes";
 import { cn } from "@/lib/utils";
+import { buttonVariants } from "@/registry/ui/button";
 
 // Explore's sections: key (nav preview data), path and section (its name and
 // icon, shared with the command menu).
@@ -105,7 +105,7 @@ const NAV_LINKS = {
   skill: ROUTES.MOTIONVIDEO_SKILL,
   docs: ROUTES.DOCS,
   about: ROUTES.ABOUT,
-  design: ROUTES.BRAND,
+  design: ROUTES.DESIGN,
   blog: ROUTES.BLOG,
   changelog: ROUTES.CHANGELOG,
   contact: ROUTES.CONTACT,
@@ -176,7 +176,7 @@ const useCurrentSection = (): Section => {
   }
   if (
     under(ROUTES.ABOUT) ||
-    under(ROUTES.BRAND) ||
+    under(ROUTES.DESIGN) ||
     under(ROUTES.BLOG) ||
     under(ROUTES.CHANGELOG) ||
     under(ROUTES.CONTACT) ||

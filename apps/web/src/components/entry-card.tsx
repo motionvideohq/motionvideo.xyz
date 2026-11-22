@@ -5,9 +5,8 @@ import { LocalizedLink as Link } from "@/components/localized-link";
 import type { VideoPick } from "@/lib/video-picks";
 
 /**
- * A card linking to one entry of a list page (blog posts, changelog
- * releases): cover poster on the left, then title, description and a meta
- * line (a date) with an arrow. Matches the /templates cards.
+ * A full-height collection card linking to a blog post or changelog release:
+ * cover poster, title, description, then a date with an arrow.
  */
 export const EntryCard = ({
   to,
@@ -28,9 +27,9 @@ export const EntryCard = ({
   <Link
     to={to}
     params={params}
-    className="group bg-card shadow-outline hover:bg-muted/60 flex flex-col gap-4 overflow-hidden rounded-xl p-3 transition-colors sm:flex-row"
+    className="group bg-card shadow-outline hover:bg-muted/60 flex h-full flex-col gap-4 overflow-hidden rounded-xl p-3 transition-colors"
   >
-    <span className="bg-muted aspect-video w-full shrink-0 overflow-hidden rounded-lg sm:w-56">
+    <span className="bg-muted aspect-video w-full shrink-0 overflow-hidden rounded-lg">
       {cover && (
         <img
           src={cover.poster}
@@ -43,7 +42,7 @@ export const EntryCard = ({
         />
       )}
     </span>
-    <span className="flex min-w-0 flex-col gap-2 py-1 sm:pr-2">
+    <span className="flex min-w-0 flex-1 flex-col gap-2 py-1">
       <h2 className="text-lg font-semibold tracking-tight text-balance">
         {title}
       </h2>

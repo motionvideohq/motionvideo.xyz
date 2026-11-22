@@ -1,3 +1,5 @@
+import { fileURLToPath } from "node:url";
+
 import { cloudflare } from "@cloudflare/vite-plugin";
 import tailwindcss from "@tailwindcss/vite";
 import { devtools } from "@tanstack/devtools-vite";
@@ -37,18 +39,39 @@ const config = defineConfig(({ command }) => ({
           "@intlayer/dictionaries-entry/dynamic",
           "@intlayer/dictionaries-entry/fetch",
           "@intlayer/config/built",
+          // Let the SSR resolver below handle Fumadocs' Markdown renderer.
+          "fumadocs-core/server",
+          "fumadocs-mdx/runtime/macro",
+          "fumadocs-mdx/runtime/server",
         ],
       },
     },
   },
   plugins: [
+    // Workers have AsyncLocalStorage via nodejs_compat; select the real
+    // Fumadocs Markdown renderer instead of its browser stub in SSR only.
+    {
+      name: "fumadocs-worker-markdown",
+      enforce: "pre",
+      applyToEnvironment: ({ name }) => name === "ssr",
+      resolveId: (id) =>
+        id === "fumadocs-core/server"
+          ? fileURLToPath(import.meta.resolve(id))
+          : null,
+    },
     devtools(),
     // One instance for every MDX source: content/docs (source.config.ts) is
     // compiled into `.source/` at build time, and the macro compiles the
-    // changelog and blog collections. Only those two modules use the macro,
-    // so its transform skips every other module.
+    // changelog, blog and design collections. Only those modules
+    // use the macro, so its transform skips every other module.
     fumadocsMdx({
-      macro: { include: ["src/lib/changelog.ts", "src/lib/blog.ts"] },
+      macro: {
+        include: [
+          "src/lib/changelog.ts",
+          "src/lib/blog.ts",
+          "src/lib/design.ts",
+        ],
+      },
     }),
     intlayer(),
     cloudflare({ viteEnvironment: { name: "ssr" } }),

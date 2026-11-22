@@ -5,7 +5,6 @@ import { Pipette } from "reicon-react/icons/Pipette";
 import { Plus } from "reicon-react/icons/Plus";
 import { Xmark } from "reicon-react/icons/Xmark";
 
-import { Button } from "@/components/ui/button";
 import {
   InputGroup,
   InputGroupAddon,
@@ -27,6 +26,7 @@ import {
   rgbToHsv,
 } from "@/lib/color";
 import type { Hsv } from "@/lib/color";
+import { Button } from "@/registry/ui/button";
 
 // Chromium's EyeDropper API; not in TypeScript's DOM lib yet.
 declare global {

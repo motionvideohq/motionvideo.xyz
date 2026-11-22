@@ -9,7 +9,6 @@ import { Check } from "reicon-react/icons/Check";
 import { Xmark } from "reicon-react/icons/Xmark";
 
 import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
 import {
   Select,
   SelectContent,
@@ -26,6 +25,7 @@ import { SUBMISSION_STATUSES } from "@/lib/community";
 import type { SubmissionKind, SubmissionStatus } from "@/lib/community";
 import { DIRECTORY_ENTRIES } from "@/lib/directories";
 import type { DirectoryKind } from "@/lib/directories";
+import { Button } from "@/registry/ui/button";
 import type { AdminSubmission } from "@/server/submission-admin-functions";
 import {
   listSubmissions,

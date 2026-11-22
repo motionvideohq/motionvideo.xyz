@@ -31,6 +31,6 @@ export const FooterWordmark = () => (
         {SITE.NAME}
       </text>
     </svg>
-    <ProgressiveBlur className="absolute [body:has([data-bottom-blur])_&]:hidden" />
+    <ProgressiveBlur className="absolute [body:has([data-slot=virtual-masonry]:not([data-component-preview]_*))_&]:hidden" />
   </div>
 );

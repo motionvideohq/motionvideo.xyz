@@ -9,7 +9,6 @@ import { EmojiSad } from "reicon-react/icons/EmojiSad";
 import { Send } from "reicon-react/icons/Send";
 
 import { SendShortcut } from "@/components/send-shortcut";
-import { Button } from "@/components/ui/button";
 import {
   Dialog as ShadDialog,
   DialogClose,
@@ -25,6 +24,7 @@ import { useSession } from "@/lib/auth-client";
 import { FEEDBACK_MAX, FEEDBACK_MOODS, feedbackSchema } from "@/lib/feedback";
 import type { FeedbackMood } from "@/lib/feedback";
 import { cn } from "@/lib/utils";
+import { Button } from "@/registry/ui/button";
 import { sendFeedback } from "@/server/feedback-functions";
 
 const MOOD_ICONS: Record<FeedbackMood, IconComponent> = {

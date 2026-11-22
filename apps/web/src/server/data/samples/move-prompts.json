@@ -1,0 +1,604 @@
+{
+  "prompts": [
+    {
+      "slug": "squash-and-stretch",
+      "prompt": "Sample prompt for the squash-and-stretch move. The real prompt is Pro content.",
+      "parameters": []
+    },
+    {
+      "slug": "anticipation",
+      "prompt": "Sample prompt for the anticipation move. The real prompt is Pro content.",
+      "parameters": []
+    },
+    {
+      "slug": "overshoot-and-settle",
+      "prompt": "Sample prompt for the overshoot-and-settle move. The real prompt is Pro content.",
+      "parameters": []
+    },
+    {
+      "slug": "follow-through",
+      "prompt": "Sample prompt for the follow-through move. The real prompt is Pro content.",
+      "parameters": []
+    },
+    {
+      "slug": "spring-animation",
+      "prompt": "Sample prompt for the spring-animation move. The real prompt is Pro content.",
+      "parameters": []
+    },
+    {
+      "slug": "staggered-timing",
+      "prompt": "Sample prompt for the staggered-timing move. The real prompt is Pro content.",
+      "parameters": []
+    },
+    {
+      "slug": "slow-in-slow-out",
+      "prompt": "Sample prompt for the slow-in-slow-out move. The real prompt is Pro content.",
+      "parameters": []
+    },
+    {
+      "slug": "ease-out-entrance",
+      "prompt": "Sample prompt for the ease-out-entrance move. The real prompt is Pro content.",
+      "parameters": []
+    },
+    {
+      "slug": "arc-motion",
+      "prompt": "Sample prompt for the arc-motion move. The real prompt is Pro content.",
+      "parameters": []
+    },
+    {
+      "slug": "moving-hold",
+      "prompt": "Sample prompt for the moving-hold move. The real prompt is Pro content.",
+      "parameters": []
+    },
+    {
+      "slug": "secondary-action",
+      "prompt": "Sample prompt for the secondary-action move. The real prompt is Pro content.",
+      "parameters": []
+    },
+    {
+      "slug": "animating-on-twos",
+      "prompt": "Sample prompt for the animating-on-twos move. The real prompt is Pro content.",
+      "parameters": []
+    },
+    {
+      "slug": "staggered-letter-reveal",
+      "prompt": "Sample prompt for the staggered-letter-reveal move. The real prompt is Pro content.",
+      "parameters": []
+    },
+    {
+      "slug": "word-by-word-reveal",
+      "prompt": "Sample prompt for the word-by-word-reveal move. The real prompt is Pro content.",
+      "parameters": []
+    },
+    {
+      "slug": "typewriter-text",
+      "prompt": "Sample prompt for the typewriter-text move. The real prompt is Pro content.",
+      "parameters": []
+    },
+    {
+      "slug": "text-scramble-decode",
+      "prompt": "Sample prompt for the text-scramble-decode move. The real prompt is Pro content.",
+      "parameters": []
+    },
+    {
+      "slug": "line-mask-text-reveal",
+      "prompt": "Sample prompt for the line-mask-text-reveal move. The real prompt is Pro content.",
+      "parameters": []
+    },
+    {
+      "slug": "variable-font-weight-animation",
+      "prompt": "Sample prompt for the variable-font-weight-animation move. The real prompt is Pro content.",
+      "parameters": []
+    },
+    {
+      "slug": "text-on-a-path",
+      "prompt": "Sample prompt for the text-on-a-path move. The real prompt is Pro content.",
+      "parameters": []
+    },
+    {
+      "slug": "rotating-word-swap",
+      "prompt": "Sample prompt for the rotating-word-swap move. The real prompt is Pro content.",
+      "parameters": []
+    },
+    {
+      "slug": "split-flap-text",
+      "prompt": "Sample prompt for the split-flap-text move. The real prompt is Pro content.",
+      "parameters": []
+    },
+    {
+      "slug": "scale-punch-headline",
+      "prompt": "Sample prompt for the scale-punch-headline move. The real prompt is Pro content.",
+      "parameters": []
+    },
+    {
+      "slug": "tracking-expand-title",
+      "prompt": "Sample prompt for the tracking-expand-title move. The real prompt is Pro content.",
+      "parameters": []
+    },
+    {
+      "slug": "outline-to-fill-text",
+      "prompt": "Sample prompt for the outline-to-fill-text move. The real prompt is Pro content.",
+      "parameters": []
+    },
+    {
+      "slug": "match-cut",
+      "prompt": "Sample prompt for the match-cut move. The real prompt is Pro content.",
+      "parameters": []
+    },
+    {
+      "slug": "whip-pan-transition",
+      "prompt": "Sample prompt for the whip-pan-transition move. The real prompt is Pro content.",
+      "parameters": []
+    },
+    {
+      "slug": "wipe-transition",
+      "prompt": "Sample prompt for the wipe-transition move. The real prompt is Pro content.",
+      "parameters": []
+    },
+    {
+      "slug": "iris-transition",
+      "prompt": "Sample prompt for the iris-transition move. The real prompt is Pro content.",
+      "parameters": []
+    },
+    {
+      "slug": "morph-transition",
+      "prompt": "Sample prompt for the morph-transition move. The real prompt is Pro content.",
+      "parameters": []
+    },
+    {
+      "slug": "color-flood-transition",
+      "prompt": "Sample prompt for the color-flood-transition move. The real prompt is Pro content.",
+      "parameters": []
+    },
+    {
+      "slug": "zoom-through-transition",
+      "prompt": "Sample prompt for the zoom-through-transition move. The real prompt is Pro content.",
+      "parameters": []
+    },
+    {
+      "slug": "push-transition",
+      "prompt": "Sample prompt for the push-transition move. The real prompt is Pro content.",
+      "parameters": []
+    },
+    {
+      "slug": "cross-dissolve",
+      "prompt": "Sample prompt for the cross-dissolve move. The real prompt is Pro content.",
+      "parameters": []
+    },
+    {
+      "slug": "glitch-cut",
+      "prompt": "Sample prompt for the glitch-cut move. The real prompt is Pro content.",
+      "parameters": []
+    },
+    {
+      "slug": "light-leak-transition",
+      "prompt": "Sample prompt for the light-leak-transition move. The real prompt is Pro content.",
+      "parameters": []
+    },
+    {
+      "slug": "j-cut-and-l-cut",
+      "prompt": "Sample prompt for the j-cut-and-l-cut move. The real prompt is Pro content.",
+      "parameters": []
+    },
+    {
+      "slug": "cursor-led-demo",
+      "prompt": "Sample prompt for the cursor-led-demo move. The real prompt is Pro content.",
+      "parameters": []
+    },
+    {
+      "slug": "click-ripple",
+      "prompt": "Sample prompt for the click-ripple move. The real prompt is Pro content.",
+      "parameters": []
+    },
+    {
+      "slug": "auto-zoom-on-click",
+      "prompt": "Sample prompt for the auto-zoom-on-click move. The real prompt is Pro content.",
+      "parameters": []
+    },
+    {
+      "slug": "card-stack",
+      "prompt": "Sample prompt for the card-stack move. The real prompt is Pro content.",
+      "parameters": []
+    },
+    {
+      "slug": "modal-spring-in",
+      "prompt": "Sample prompt for the modal-spring-in move. The real prompt is Pro content.",
+      "parameters": []
+    },
+    {
+      "slug": "skeleton-to-content",
+      "prompt": "Sample prompt for the skeleton-to-content move. The real prompt is Pro content.",
+      "parameters": []
+    },
+    {
+      "slug": "toast-notification",
+      "prompt": "Sample prompt for the toast-notification move. The real prompt is Pro content.",
+      "parameters": []
+    },
+    {
+      "slug": "tab-indicator-slide",
+      "prompt": "Sample prompt for the tab-indicator-slide move. The real prompt is Pro content.",
+      "parameters": []
+    },
+    {
+      "slug": "ui-number-ticker",
+      "prompt": "Sample prompt for the ui-number-ticker move. The real prompt is Pro content.",
+      "parameters": []
+    },
+    {
+      "slug": "scroll-through-screen",
+      "prompt": "Sample prompt for the scroll-through-screen move. The real prompt is Pro content.",
+      "parameters": []
+    },
+    {
+      "slug": "device-frame-reveal",
+      "prompt": "Sample prompt for the device-frame-reveal move. The real prompt is Pro content.",
+      "parameters": []
+    },
+    {
+      "slug": "ui-state-morph",
+      "prompt": "Sample prompt for the ui-state-morph move. The real prompt is Pro content.",
+      "parameters": []
+    },
+    {
+      "slug": "path-draw-on",
+      "prompt": "Sample prompt for the path-draw-on move. The real prompt is Pro content.",
+      "parameters": []
+    },
+    {
+      "slug": "shape-morph",
+      "prompt": "Sample prompt for the shape-morph move. The real prompt is Pro content.",
+      "parameters": []
+    },
+    {
+      "slug": "vector-mask-reveal",
+      "prompt": "Sample prompt for the vector-mask-reveal move. The real prompt is Pro content.",
+      "parameters": []
+    },
+    {
+      "slug": "gooey-split-merge",
+      "prompt": "Sample prompt for the gooey-split-merge move. The real prompt is Pro content.",
+      "parameters": []
+    },
+    {
+      "slug": "trim-path-loop",
+      "prompt": "Sample prompt for the trim-path-loop move. The real prompt is Pro content.",
+      "parameters": []
+    },
+    {
+      "slug": "icon-morph",
+      "prompt": "Sample prompt for the icon-morph move. The real prompt is Pro content.",
+      "parameters": []
+    },
+    {
+      "slug": "geometric-pattern-build",
+      "prompt": "Sample prompt for the geometric-pattern-build move. The real prompt is Pro content.",
+      "parameters": []
+    },
+    {
+      "slug": "isometric-build",
+      "prompt": "Sample prompt for the isometric-build move. The real prompt is Pro content.",
+      "parameters": []
+    },
+    {
+      "slug": "radial-burst",
+      "prompt": "Sample prompt for the radial-burst move. The real prompt is Pro content.",
+      "parameters": []
+    },
+    {
+      "slug": "orbiting-shapes",
+      "prompt": "Sample prompt for the orbiting-shapes move. The real prompt is Pro content.",
+      "parameters": []
+    },
+    {
+      "slug": "grid-tessellation",
+      "prompt": "Sample prompt for the grid-tessellation move. The real prompt is Pro content.",
+      "parameters": []
+    },
+    {
+      "slug": "shard-assemble-logo",
+      "prompt": "Sample prompt for the shard-assemble-logo move. The real prompt is Pro content.",
+      "parameters": []
+    },
+    {
+      "slug": "particle-assemble",
+      "prompt": "Sample prompt for the particle-assemble move. The real prompt is Pro content.",
+      "parameters": []
+    },
+    {
+      "slug": "flow-field",
+      "prompt": "Sample prompt for the flow-field move. The real prompt is Pro content.",
+      "parameters": []
+    },
+    {
+      "slug": "noise-displacement",
+      "prompt": "Sample prompt for the noise-displacement move. The real prompt is Pro content.",
+      "parameters": []
+    },
+    {
+      "slug": "instanced-grid",
+      "prompt": "Sample prompt for the instanced-grid move. The real prompt is Pro content.",
+      "parameters": []
+    },
+    {
+      "slug": "l-system-growth",
+      "prompt": "Sample prompt for the l-system-growth move. The real prompt is Pro content.",
+      "parameters": []
+    },
+    {
+      "slug": "flocking-boids",
+      "prompt": "Sample prompt for the flocking-boids move. The real prompt is Pro content.",
+      "parameters": []
+    },
+    {
+      "slug": "voronoi-cells",
+      "prompt": "Sample prompt for the voronoi-cells move. The real prompt is Pro content.",
+      "parameters": []
+    },
+    {
+      "slug": "reaction-diffusion",
+      "prompt": "Sample prompt for the reaction-diffusion move. The real prompt is Pro content.",
+      "parameters": []
+    },
+    {
+      "slug": "metaballs",
+      "prompt": "Sample prompt for the metaballs move. The real prompt is Pro content.",
+      "parameters": []
+    },
+    {
+      "slug": "ordered-dither",
+      "prompt": "Sample prompt for the ordered-dither move. The real prompt is Pro content.",
+      "parameters": []
+    },
+    {
+      "slug": "attractor-trails",
+      "prompt": "Sample prompt for the attractor-trails move. The real prompt is Pro content.",
+      "parameters": []
+    },
+    {
+      "slug": "infinite-fractal-zoom",
+      "prompt": "Sample prompt for the infinite-fractal-zoom move. The real prompt is Pro content.",
+      "parameters": []
+    },
+    {
+      "slug": "dolly-in",
+      "prompt": "Sample prompt for the dolly-in move. The real prompt is Pro content.",
+      "parameters": []
+    },
+    {
+      "slug": "breathing-push",
+      "prompt": "Sample prompt for the breathing-push move. The real prompt is Pro content.",
+      "parameters": []
+    },
+    {
+      "slug": "camera-punch-in",
+      "prompt": "Sample prompt for the camera-punch-in move. The real prompt is Pro content.",
+      "parameters": []
+    },
+    {
+      "slug": "crash-zoom",
+      "prompt": "Sample prompt for the crash-zoom move. The real prompt is Pro content.",
+      "parameters": []
+    },
+    {
+      "slug": "pull-back-reveal",
+      "prompt": "Sample prompt for the pull-back-reveal move. The real prompt is Pro content.",
+      "parameters": []
+    },
+    {
+      "slug": "parallax-layers",
+      "prompt": "Sample prompt for the parallax-layers move. The real prompt is Pro content.",
+      "parameters": []
+    },
+    {
+      "slug": "camera-orbit",
+      "prompt": "Sample prompt for the camera-orbit move. The real prompt is Pro content.",
+      "parameters": []
+    },
+    {
+      "slug": "rack-focus",
+      "prompt": "Sample prompt for the rack-focus move. The real prompt is Pro content.",
+      "parameters": []
+    },
+    {
+      "slug": "camera-shake",
+      "prompt": "Sample prompt for the camera-shake move. The real prompt is Pro content.",
+      "parameters": []
+    },
+    {
+      "slug": "dolly-zoom",
+      "prompt": "Sample prompt for the dolly-zoom move. The real prompt is Pro content.",
+      "parameters": []
+    },
+    {
+      "slug": "camera-projection-2-5d",
+      "prompt": "Sample prompt for the camera-projection-2-5d move. The real prompt is Pro content.",
+      "parameters": []
+    },
+    {
+      "slug": "overhead-fly-over",
+      "prompt": "Sample prompt for the overhead-fly-over move. The real prompt is Pro content.",
+      "parameters": []
+    },
+    {
+      "slug": "film-grain",
+      "prompt": "Sample prompt for the film-grain move. The real prompt is Pro content.",
+      "parameters": []
+    },
+    {
+      "slug": "chromatic-aberration",
+      "prompt": "Sample prompt for the chromatic-aberration move. The real prompt is Pro content.",
+      "parameters": []
+    },
+    {
+      "slug": "halftone",
+      "prompt": "Sample prompt for the halftone move. The real prompt is Pro content.",
+      "parameters": []
+    },
+    {
+      "slug": "glow-and-bloom",
+      "prompt": "Sample prompt for the glow-and-bloom move. The real prompt is Pro content.",
+      "parameters": []
+    },
+    {
+      "slug": "paper-texture",
+      "prompt": "Sample prompt for the paper-texture move. The real prompt is Pro content.",
+      "parameters": []
+    },
+    {
+      "slug": "crt-scanlines",
+      "prompt": "Sample prompt for the crt-scanlines move. The real prompt is Pro content.",
+      "parameters": []
+    },
+    {
+      "slug": "mesh-gradient",
+      "prompt": "Sample prompt for the mesh-gradient move. The real prompt is Pro content.",
+      "parameters": []
+    },
+    {
+      "slug": "risograph-print",
+      "prompt": "Sample prompt for the risograph-print move. The real prompt is Pro content.",
+      "parameters": []
+    },
+    {
+      "slug": "light-sweep",
+      "prompt": "Sample prompt for the light-sweep move. The real prompt is Pro content.",
+      "parameters": []
+    },
+    {
+      "slug": "motion-blur",
+      "prompt": "Sample prompt for the motion-blur move. The real prompt is Pro content.",
+      "parameters": []
+    },
+    {
+      "slug": "ink-bleed",
+      "prompt": "Sample prompt for the ink-bleed move. The real prompt is Pro content.",
+      "parameters": []
+    },
+    {
+      "slug": "grainy-gradient",
+      "prompt": "Sample prompt for the grainy-gradient move. The real prompt is Pro content.",
+      "parameters": []
+    },
+    {
+      "slug": "bar-chart-race",
+      "prompt": "Sample prompt for the bar-chart-race move. The real prompt is Pro content.",
+      "parameters": []
+    },
+    {
+      "slug": "line-chart-draw",
+      "prompt": "Sample prompt for the line-chart-draw move. The real prompt is Pro content.",
+      "parameters": []
+    },
+    {
+      "slug": "counter-roll-up",
+      "prompt": "Sample prompt for the counter-roll-up move. The real prompt is Pro content.",
+      "parameters": []
+    },
+    {
+      "slug": "donut-chart-sweep",
+      "prompt": "Sample prompt for the donut-chart-sweep move. The real prompt is Pro content.",
+      "parameters": []
+    },
+    {
+      "slug": "map-route-draw",
+      "prompt": "Sample prompt for the map-route-draw move. The real prompt is Pro content.",
+      "parameters": []
+    },
+    {
+      "slug": "dot-swarm-chart",
+      "prompt": "Sample prompt for the dot-swarm-chart move. The real prompt is Pro content.",
+      "parameters": []
+    },
+    {
+      "slug": "highlight-one-bar",
+      "prompt": "Sample prompt for the highlight-one-bar move. The real prompt is Pro content.",
+      "parameters": []
+    },
+    {
+      "slug": "axis-and-grid-reveal",
+      "prompt": "Sample prompt for the axis-and-grid-reveal move. The real prompt is Pro content.",
+      "parameters": []
+    },
+    {
+      "slug": "stacked-area-grow",
+      "prompt": "Sample prompt for the stacked-area-grow move. The real prompt is Pro content.",
+      "parameters": []
+    },
+    {
+      "slug": "annotation-callout",
+      "prompt": "Sample prompt for the annotation-callout move. The real prompt is Pro content.",
+      "parameters": []
+    },
+    {
+      "slug": "sankey-flow",
+      "prompt": "Sample prompt for the sankey-flow move. The real prompt is Pro content.",
+      "parameters": []
+    },
+    {
+      "slug": "before-after-split",
+      "prompt": "Sample prompt for the before-after-split move. The real prompt is Pro content.",
+      "parameters": []
+    },
+    {
+      "slug": "beat-synced-cuts",
+      "prompt": "Sample prompt for the beat-synced-cuts move. The real prompt is Pro content.",
+      "parameters": []
+    },
+    {
+      "slug": "bpm-grid-timing",
+      "prompt": "Sample prompt for the bpm-grid-timing move. The real prompt is Pro content.",
+      "parameters": []
+    },
+    {
+      "slug": "kick-pulse",
+      "prompt": "Sample prompt for the kick-pulse move. The real prompt is Pro content.",
+      "parameters": []
+    },
+    {
+      "slug": "waveform-visualizer",
+      "prompt": "Sample prompt for the waveform-visualizer move. The real prompt is Pro content.",
+      "parameters": []
+    },
+    {
+      "slug": "frequency-bars",
+      "prompt": "Sample prompt for the frequency-bars move. The real prompt is Pro content.",
+      "parameters": []
+    },
+    {
+      "slug": "lyric-sync",
+      "prompt": "Sample prompt for the lyric-sync move. The real prompt is Pro content.",
+      "parameters": []
+    },
+    {
+      "slug": "sound-reactive-particles",
+      "prompt": "Sample prompt for the sound-reactive-particles move. The real prompt is Pro content.",
+      "parameters": []
+    },
+    {
+      "slug": "transient-hit-frames",
+      "prompt": "Sample prompt for the transient-hit-frames move. The real prompt is Pro content.",
+      "parameters": []
+    },
+    {
+      "slug": "silence-hold",
+      "prompt": "Sample prompt for the silence-hold move. The real prompt is Pro content.",
+      "parameters": []
+    },
+    {
+      "slug": "riser-build",
+      "prompt": "Sample prompt for the riser-build move. The real prompt is Pro content.",
+      "parameters": []
+    },
+    {
+      "slug": "sidechain-pump",
+      "prompt": "Sample prompt for the sidechain-pump move. The real prompt is Pro content.",
+      "parameters": []
+    },
+    {
+      "slug": "stinger-sync",
+      "prompt": "Sample prompt for the stinger-sync move. The real prompt is Pro content.",
+      "parameters": []
+    }
+  ]
+}

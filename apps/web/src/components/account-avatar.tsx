@@ -19,7 +19,6 @@ import { useKeyboardShortcuts } from "@/components/keyboard-shortcuts";
 import { LocalizedLink as Link } from "@/components/localized-link";
 import { SectionIcon } from "@/components/section-icon";
 import { useSignInDialog } from "@/components/sign-in-dialog";
-import { buttonVariants } from "@/components/ui/button";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -47,6 +46,7 @@ import {
 } from "@/lib/theme";
 import type { ThemeMode } from "@/lib/theme";
 import { cn } from "@/lib/utils";
+import { buttonVariants } from "@/registry/ui/button";
 
 // The hover zoom lives on the inner span: the menu positions against the
 // trigger's box, and scaling the trigger itself made the open menu jump when

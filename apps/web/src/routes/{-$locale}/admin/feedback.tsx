@@ -6,11 +6,11 @@ import {
 import { useState } from "react";
 
 import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { ROUTES } from "@/constants/routes";
 import { useLocalizedNavigate as useNavigate } from "@/hooks/use-localized-navigate";
 import { FEEDBACK_MOOD_LABELS } from "@/lib/feedback";
+import { Button } from "@/registry/ui/button";
 import type { FeedbackItem } from "@/server/feedback-functions";
 import { listFeedback, resolveFeedback } from "@/server/feedback-functions";
 

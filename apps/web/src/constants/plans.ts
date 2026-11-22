@@ -75,15 +75,41 @@ export interface PlanAccess {
 }
 
 /**
- * What a visitor's country gets off at checkout through Dodo's purchasing
- * power parity, read from a checkout preview; null when nothing applies.
+ * What a visitor's country pays, read from Dodo checkout previews: the
+ * currency Adaptive Currency charges it in and each plan's price in it,
+ * before tax. Dodo's purchasing power parity is already in these amounts, so
+ * the cards match checkout; /pro carries null when Dodo has no price for the
+ * country, and the cards then show the USD list prices.
  */
-export interface ParityOffer {
+export interface LocalPrices {
   /** ISO 3166-1 alpha-2 code of the visitor's country, from their IP. */
   country: string;
-  /** Whole percent off the list price (Dodo allows up to 70). */
-  percentOff: number;
+  /** ISO 4217 code of the currency Dodo prices the country in. */
+  currency: string;
+  /** Minor units per plan and billing, like PLAN_PRICE_CENTS. */
+  cents: Record<Plan, Partial<Record<PlanBilling, number>>>;
+  /**
+   * Whether Dodo's purchasing power parity lowers these prices: then they're
+   * regional even when the currency is still USD, and a sale skips them.
+   */
+  parity: boolean;
 }
+
+/**
+ * What a plan costs for a visitor: the price Dodo charges their country when
+ * it has one, else the USD list price. `cents` are in `currency`'s minor
+ * units; format them with `formatPrice` (src/constants/pricing.ts).
+ */
+export const planPrice = (
+  prices: Pick<LocalPrices, "currency" | "cents"> | null | undefined,
+  plan: Plan,
+  billing: PlanBilling
+): { cents: number; currency: string } => {
+  const cents = prices?.cents[plan][billing];
+  return prices && cents !== undefined
+    ? { cents, currency: prices.currency }
+    : { cents: PLAN_PRICE_CENTS[plan][billing] ?? 0, currency: "USD" };
+};
 
 export const NO_ACCESS: PlanAccess = {
   plan: null,

@@ -9,7 +9,7 @@ import { MotionPreview } from "@/components/motion-video";
 import { HeroHeader, PageMain, SectionHeader } from "@/components/page";
 import {
   BillingToggle,
-  ParityBanner,
+  LocalPriceNote,
   PlanCards,
   SaleNote,
 } from "@/components/pricing";
@@ -22,10 +22,11 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import type { LocaleHeadContext } from "@/constants/locales";
+import { localeParam } from "@/constants/locales";
 import { MCP_RESOURCE } from "@/constants/oauth";
-import { PLAN_BILLINGS } from "@/constants/plans";
-import type { PlanBilling } from "@/constants/plans";
+import { BUSINESS_SEATS, PLAN_BILLINGS, planPrice } from "@/constants/plans";
+import type { Plan, PlanBilling } from "@/constants/plans";
+import { formatPrice } from "@/constants/pricing";
 import { ROUTES } from "@/constants/routes";
 import { SITE } from "@/constants/site";
 import { SKILL } from "@/constants/skill";
@@ -36,8 +37,8 @@ import { createMetadata } from "@/seo/metadata";
 import { getLandingData, getSessionFlag } from "@/server/functions";
 import { getMoveCards } from "@/server/move-functions";
 import {
+  getLocalPrices,
   getMyPlan,
-  getParityOffer,
   getSaleOffer,
 } from "@/server/plan-functions";
 
@@ -127,7 +128,7 @@ const FaqItem = ({ value, question, children }: FaqItemProps) => (
 const Pro = () => {
   const content = useIntlayer("pricing-page");
   const landing = useIntlayer("landing");
-  const { signedIn, access, cards, parity, sale } = routeApi.useLoaderData();
+  const { signedIn, access, cards, prices, sale } = routeApi.useLoaderData();
   const { billing = "monthly" } = routeApi.useSearch();
   const previews = Object.values(cards).slice(0, PREVIEW_COUNT);
 
@@ -149,7 +150,7 @@ const Pro = () => {
             </div>
           }
         />
-        {/* Toggle, cards and the parity note below them share one gap. */}
+        {/* Toggle, cards and the notes below them share one gap. */}
         <section
           aria-label={content.plans.value}
           className="flex w-full max-w-5xl flex-col items-center gap-6"
@@ -160,10 +161,13 @@ const Pro = () => {
             access={access}
             signedIn={signedIn}
             sale={sale}
-            parity={parity}
+            prices={prices}
           />
           {sale && <SaleNote sale={sale} />}
-          {parity && <ParityBanner offer={parity} />}
+          {/* Parity prices can still be in USD; they're regional all the same. */}
+          {prices && (prices.parity || prices.currency !== "USD") && (
+            <LocalPriceNote prices={prices} />
+          )}
         </section>
         <SocialProof />
         <section
@@ -312,21 +316,31 @@ export const Route = createFileRoute("/{-$locale}/pro")({
     return { billing: billing === "monthly" ? undefined : billing };
   },
   loader: async () => {
-    const [landing, access, cards, parity, sale, signedIn] = await Promise.all([
+    const [landing, access, cards, prices, sale, signedIn] = await Promise.all([
       getLandingData(),
       getMyPlan(),
       getMoveCards(),
-      getParityOffer(),
+      getLocalPrices(),
       getSaleOffer(),
       getSessionFlag(),
     ]);
-    return { ...landing, access, cards, parity, sale, signedIn };
+    return { ...landing, access, cards, prices, sale, signedIn };
   },
-  head: ({ params }: LocaleHeadContext) => ({
-    ...createMetadata({
-      title: `${SITE.NAME} Pro`,
-      description: `${SITE.NAME} Pro and Business: the full Moves library with every prompt, every prompt template with its customizer, the Pro agent skill and every update. Pro from $9 a month, $79 a year or $149 once; Business with 3 seats from $29 a month.`,
-    }),
-    scripts: planJsonLd(params.locale),
-  }),
+  head: ({ params, loaderData }) => {
+    const prices = loaderData?.prices;
+    const locale = localeParam(params.locale);
+    // The plans' own prices, in the visitor's currency, so the snippet and
+    // social cards quote what the cards show.
+    const amount = (plan: Plan, billing: PlanBilling) => {
+      const { cents, currency } = planPrice(prices, plan, billing);
+      return formatPrice(cents, currency, locale);
+    };
+    return {
+      ...createMetadata({
+        title: `${SITE.NAME} Pro`,
+        description: `${SITE.NAME} Pro and Business: the full Moves library with every prompt, every prompt template with its customizer, the Pro agent skill and every update. Pro from ${amount("pro", "monthly")} a month, ${amount("pro", "annual")} a year or ${amount("pro", "lifetime")} once; Business with ${BUSINESS_SEATS} seats from ${amount("business", "monthly")} a month.`,
+      }),
+      scripts: planJsonLd(params.locale, prices),
+    };
+  },
 });

@@ -1,14 +1,12 @@
 import { createFileRoute, notFound } from "@tanstack/react-router";
+import { use, useRef } from "react";
 import { useIntlayer, useLocale } from "react-intlayer";
-import { ArrowLeft } from "reicon-react/icons/ArrowLeft";
 
+import { ArticleLayout } from "@/components/article-layout";
 import { BlogContent } from "@/components/blog-content";
-import { LocalizedLink as Link } from "@/components/localized-link";
-import { PageMain } from "@/components/page";
+import { DocsActions } from "@/components/docs/docs-actions";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
-import { buttonVariants } from "@/components/ui/button";
-import { ROUTES } from "@/constants/routes";
 import catalog from "@/data/motion-catalog.json";
 import {
   BLOG_FEEDS,
@@ -16,13 +14,16 @@ import {
   findBlogPost,
   formatPostDate,
 } from "@/lib/blog";
-import { cn } from "@/lib/utils";
 import { pickVideos } from "@/lib/video-picks";
 import { blogPostingJsonLd } from "@/seo/json-ld";
 import { createMetadata } from "@/seo/metadata";
+import { blogPostMarkdown } from "@/server/blog-markdown";
+import { markdownResponse } from "@/server/docs-markdown";
 
 const BlogPostPage = () => {
   const { slug, videos } = Route.useLoaderData();
+  const { locale: pathLocale } = Route.useParams();
+  const body = useRef<HTMLDivElement>(null);
   const content = useIntlayer("blog");
   const { locale } = useLocale();
   // The loader already threw notFound() for unknown slugs.
@@ -30,23 +31,30 @@ const BlogPostPage = () => {
   if (!post) {
     return null;
   }
-  const others = BLOG_POSTS.filter((entry) => entry.url !== post.url);
+  const { toc } = use(post.data.load());
   return (
     <>
       <SiteHeader />
-      <PageMain layout="document" width="narrow">
+      <ArticleLayout
+        entries={BLOG_POSTS}
+        currentUrl={post.url}
+        navigationLabel={content.back.value}
+        toc={toc}
+        renderActions={(inline) => (
+          <DocsActions
+            variant="article"
+            title={post.data.title}
+            description={post.data.description}
+            url={pathLocale ? `/${pathLocale}${post.url}` : post.url}
+            markdownUrl={`${post.url}.md`}
+            lang="en"
+            getArticle={() => body.current}
+            inline={inline}
+          />
+        )}
+      >
         <article className="flex flex-col gap-8">
           <header className="flex flex-col gap-4">
-            <Link
-              to={ROUTES.BLOG}
-              className={cn(
-                buttonVariants({ variant: "subtle", size: "sm" }),
-                "-ml-2.5 self-start"
-              )}
-            >
-              <ArrowLeft data-icon="inline-start" />
-              {content.back}
-            </Link>
             <h1 className="text-4xl font-semibold tracking-tight text-balance">
               {post.data.title}
             </h1>
@@ -60,39 +68,31 @@ const BlogPostPage = () => {
               {formatPostDate(post.data.date, locale)}
             </time>
           </header>
-          <BlogContent Body={post.data.body} videos={videos} />
+          <div ref={body}>
+            <BlogContent Body={post.data.body} videos={videos} />
+          </div>
         </article>
-        <nav
-          aria-label={content.morePosts.value}
-          className="flex flex-col gap-3 border-t border-dashed pt-8"
-        >
-          <h2 className="text-sm font-medium">{content.morePosts}</h2>
-          <ul className="flex flex-col gap-4">
-            {others.map((entry) => (
-              <li key={entry.url}>
-                <Link
-                  to={ROUTES.BLOG_POST}
-                  params={{ slug: entry.slugs.join("/") }}
-                  className="group flex flex-col gap-0.5"
-                >
-                  <span className="font-medium group-hover:underline group-hover:underline-offset-4">
-                    {entry.data.title}
-                  </span>
-                  <span className="text-muted-foreground line-clamp-2 text-sm">
-                    {entry.data.description}
-                  </span>
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </nav>
-      </PageMain>
+      </ArticleLayout>
       <SiteFooter />
     </>
   );
 };
 
 export const Route = createFileRoute("/{-$locale}/blog/$slug")({
+  // The optional-locale article route also matches the English Markdown URL.
+  server: {
+    handlers: {
+      GET: async ({ params, next }) => {
+        if (params.locale !== undefined || !params.slug.endsWith(".md")) {
+          return next();
+        }
+        const post = findBlogPost(params.slug.slice(0, -3));
+        return post
+          ? markdownResponse(await blogPostMarkdown(post))
+          : new Response("Not found", { status: 404 });
+      },
+    },
+  },
   component: BlogPostPage,
   // Bodies load lazily (`async` in src/lib/blog.ts); fetch this one before
   // rendering so the page never suspends. Only the poster-card fields of the

@@ -5,7 +5,6 @@ import { useIntlayer } from "react-intlayer";
 import { Bookmark } from "reicon-react/icons/Bookmark";
 
 import { useSignInDialog } from "@/components/sign-in-dialog";
-import { buttonVariants } from "@/components/ui/button";
 import {
   Tooltip,
   TooltipContent,
@@ -19,6 +18,7 @@ import { bookmarkKey } from "@/lib/bookmark-items";
 import type { BookmarkKind } from "@/lib/bookmark-items";
 import { toggleBookmark, useBookmarks } from "@/lib/bookmarks";
 import { cn } from "@/lib/utils";
+import { buttonVariants } from "@/registry/ui/button";
 
 type ButtonVariants = VariantProps<typeof buttonVariants>;
 

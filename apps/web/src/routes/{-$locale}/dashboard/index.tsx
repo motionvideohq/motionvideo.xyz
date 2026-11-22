@@ -8,7 +8,6 @@ import { LocalizedLink as Link } from "@/components/localized-link";
 import { AccountPageHeader, PageMain } from "@/components/page";
 import { SectionIcon } from "@/components/section-icon";
 import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
 import {
   DEFAULT_LOCALE,
   isLocale,
@@ -20,6 +19,7 @@ import { ROUTES } from "@/constants/routes";
 import { useLocalizedNavigate as useNavigate } from "@/hooks/use-localized-navigate";
 import { authClient } from "@/lib/auth-client";
 import { localizedRedirect } from "@/lib/localized-redirect";
+import { Button } from "@/registry/ui/button";
 import { createMetadata } from "@/seo/metadata";
 import { getAccount } from "@/server/functions";
 

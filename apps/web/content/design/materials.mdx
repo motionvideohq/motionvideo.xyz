@@ -1,0 +1,59 @@
+---
+title: Materials
+description: Quiet surfaces, hairline edges, and purposeful depth built from shared tokens.
+---
+
+## Surfaces and depth
+
+Use a border for a structural division, `shadow-outline` for a contained surface, and `shadow-popover` for something floating above the page. Outline and popover share the same theme-aware edge; popover adds `surface-lift`. Do not stack arbitrary shadows to make a surface louder.
+
+<MaterialsGallery />
+
+| Material | Utility | Behavior |
+| --- | --- | --- |
+| Border | `border-border` | A structural edge that participates in the box model |
+| Outline | `shadow-outline` | A hairline edge drawn with shadows, without changing layout |
+| Popover | `shadow-popover` | The shared outline plus a soft, elevated shadow |
+
+```css title="Shared material tokens"
+.surface {
+  background: var(--card);
+  color: var(--card-foreground);
+  box-shadow: var(--surface-outline);
+}
+.floating-surface {
+  box-shadow: var(--surface-outline), var(--surface-lift);
+}
+```
+
+## Corner radius
+
+The base radius is `--radius` (0.45rem). Derived radii scale from that base, so compact controls and larger panels stay related. Use `rounded-full` only when the shape is intentionally a pill or circle.
+
+<RadiusScale />
+
+| Utility       | Token          | Relationship |
+| ------------- | -------------- | ------------ |
+| `rounded-sm`  | `--radius-sm`  | 0.6 × base   |
+| `rounded-lg`  | `--radius-lg`  | 1 × base     |
+| `rounded-xl`  | `--radius-xl`  | 1.4 × base   |
+| `rounded-2xl` | `--radius-2xl` | 1.8 × base   |
+
+## Spacing
+
+Spacing uses Tailwind’s shared `--spacing` unit. Use smaller steps inside a control, medium steps within a surface, and larger steps between sections. The bars below use `calc(var(--spacing) * step)`, not a second spacing scale. The illustrated steps are 1, 2, 4, 6, 8, 12, and 16 times the shared unit.
+
+<SpacingScale />
+
+```tsx title="Surface composition"
+<section className="space-y-6 rounded-xl bg-card p-6 text-card-foreground shadow-outline">
+  <header className="space-y-2">
+    <h2>Project settings</h2>
+    <p>Choose how your video will be rendered.</p>
+  </header>
+  <div className="grid gap-4">
+    <label htmlFor="project-name">Project name</label>
+    <input id="project-name" name="projectName" />
+  </div>
+</section>
+```

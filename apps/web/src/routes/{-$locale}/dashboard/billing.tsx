@@ -13,7 +13,6 @@ import { GitHubIcon } from "@/components/icons";
 import { LocalizedLink as Link } from "@/components/localized-link";
 import { AccountPageHeader, PageMain } from "@/components/page";
 import { Badge } from "@/components/ui/badge";
-import { Button, buttonVariants } from "@/components/ui/button";
 import {
   Card,
   CardContent,
@@ -29,6 +28,7 @@ import { ROUTES } from "@/constants/routes";
 import { GTA_SKILL, SKILL } from "@/constants/skill";
 import { useTransientStatus } from "@/hooks/use-transient-status";
 import { localizedRedirect } from "@/lib/localized-redirect";
+import { Button, buttonVariants } from "@/registry/ui/button";
 import { createMetadata } from "@/seo/metadata";
 import {
   getMyPlan,

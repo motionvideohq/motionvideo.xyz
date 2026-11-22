@@ -4,7 +4,6 @@ import { Undo } from "reicon-react/icons/Undo";
 import { z } from "zod";
 
 import { CopyPromptButton } from "@/components/copy-prompt-button";
-import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import {
   Field,
@@ -41,6 +40,7 @@ import type {
 } from "@/lib/prompt-customizer";
 import type { PromptTemplate } from "@/lib/prompt-templates";
 import { cn } from "@/lib/utils";
+import { Button } from "@/registry/ui/button";
 
 // What the reader typed (generic details and template fields, by key), plus
 // the dials: one object in localStorage shared by every prompt, so a palette

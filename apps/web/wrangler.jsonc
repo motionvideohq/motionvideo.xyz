@@ -23,8 +23,9 @@
     "run_worker_first": [
       "/about",
       "/brand",
-      "/changelog",
       "/contact",
+      "/design",
+      "/design/*",
       "/privacy",
       "/refunds",
       "/terms",

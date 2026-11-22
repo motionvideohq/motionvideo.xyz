@@ -1,5 +1,6 @@
 import { createFileRoute, notFound } from "@tanstack/react-router";
 import { useIntlayer, useLocale } from "react-intlayer";
+import { ArrowLeft } from "reicon-react/icons/ArrowLeft";
 
 import { LocalizedLink as Link } from "@/components/localized-link";
 import { PageMain } from "@/components/page";
@@ -8,6 +9,7 @@ import { ROUTES } from "@/constants/routes";
 import catalog from "@/data/motion-catalog.json";
 import type { MotionVideo } from "@/lib/motion-catalog";
 import { promptFor } from "@/lib/prompt-translations";
+import { buttonVariants } from "@/registry/ui/button";
 import { createMetadata } from "@/seo/metadata";
 
 const videos: MotionVideo[] = catalog.videos;
@@ -18,6 +20,7 @@ const CustomizeVideo = () => {
   const content = useIntlayer("customize-page");
   const { locale } = useLocale();
   const { video } = Route.useLoaderData();
+  const { category } = Route.useSearch();
   // Start from the prompt as the video's detail view shows it: English
   // visitors get the translation of a Chinese or Japanese prompt.
   const prompt = promptFor(video, locale)?.text ?? "";
@@ -27,9 +30,11 @@ const CustomizeVideo = () => {
     <PageMain layout="app" width="full" className="gap-8">
       <Link
         to={ROUTES.CUSTOMIZE}
-        className="text-muted-foreground hover:text-foreground w-fit text-sm underline-offset-4 transition-colors hover:underline"
+        search={{ category }}
+        className={buttonVariants({ variant: "ghost", className: "w-fit" })}
       >
-        ← {content.allPrompts}
+        <ArrowLeft data-icon="inline-start" />
+        {content.allPrompts}
       </Link>
 
       <header className="flex flex-col gap-4 sm:flex-row sm:items-center">

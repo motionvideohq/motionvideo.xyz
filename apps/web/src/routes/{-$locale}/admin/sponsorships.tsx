@@ -7,9 +7,9 @@ import { useState } from "react";
 import { ArrowRightUp } from "reicon-react/icons/ArrowRightUp";
 
 import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { cn } from "@/lib/utils";
+import { Button } from "@/registry/ui/button";
 import type { AdminSponsorship } from "@/server/sponsorship-functions";
 import {
   listSponsorships,

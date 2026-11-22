@@ -225,17 +225,31 @@ const pricing = {
         ru: "Открыть галерею",
       }),
     },
-    /** `{percent}` and `{country}` are filled in from Dodo's checkout preview. */
-    parity: t({
-      en: "We’ll apply a {percent}% parity discount in {country} at checkout",
-      es: "Aplicaremos un descuento de paridad del {percent}% en {country} al pagar",
-      fr: "Nous appliquerons une remise de parité de {percent} % pour {country} au paiement",
-      zh: "结账时我们将为{country}提供 {percent}% 的购买力平价折扣",
-      ko: "결제 시 {country}에 {percent}% 구매력 평가 할인을 적용해 드립니다",
-      ja: "{country}からのご購入には、チェックアウト時に購買力平価割引 {percent}% を適用します",
-      de: "Für {country} ziehen wir an der Kasse {percent} % Kaufkraft-Rabatt ab",
-      pt: "Aplicamos um desconto de paridade de {percent}% em {country} no checkout",
-      ru: "При оформлении заказа из страны «{country}» мы применим скидку по паритету покупательной способности {percent}%",
+    /**
+     * Under the plans when they price the visitor's country: its flag and
+     * name, then the tax line. `{country}` is its name in the page's language.
+     */
+    regionalPricing: t({
+      en: "Regional pricing for {country}",
+      es: "Precio regional para {country}",
+      fr: "Tarification régionale pour {country}",
+      zh: "{country}的地区价格",
+      ko: "{country} 지역 가격",
+      ja: "{country}の地域価格",
+      de: "Regionale Preise für {country}",
+      pt: "Preços regionais para {country}",
+      ru: "Региональные цены для страны «{country}»",
+    }),
+    taxesAtCheckout: t({
+      en: "Taxes are added at checkout where they apply.",
+      es: "Los impuestos se añaden al pagar donde correspondan.",
+      fr: "Les taxes sont ajoutées au paiement lorsqu’elles s’appliquent.",
+      zh: "结账时将在适用地区加收税费。",
+      ko: "세금은 해당되는 경우 결제 시 추가됩니다.",
+      ja: "税金は該当する場合チェックアウト時に加算されます。",
+      de: "Steuern kommen an der Kasse hinzu, wo sie anfallen.",
+      pt: "Os impostos são acrescentados no checkout quando se aplicam.",
+      ru: "Налоги добавляются при оформлении заказа там, где они применяются.",
     }),
     /**
      * Under the plans while a sale runs (src/lib/offers.ts); `{name}` stays

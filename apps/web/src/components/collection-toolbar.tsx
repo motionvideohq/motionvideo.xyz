@@ -1,8 +1,8 @@
 import type { ReactNode } from "react";
 
 import { LocalizedLink as Link } from "@/components/localized-link";
-import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+import { buttonVariants } from "@/registry/ui/button";
 
 /**
  * Sticky filter bar shell shared by the gallery and the resource directories.

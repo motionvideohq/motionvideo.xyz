@@ -4,7 +4,6 @@ import { useIntlayer, useLocale } from "react-intlayer";
 import { Check } from "reicon-react/icons/Check";
 
 import { AuthCard } from "@/components/login-form";
-import { Button } from "@/components/ui/button";
 import { FieldDescription } from "@/components/ui/field";
 import { localizedPath } from "@/constants/locales";
 import {
@@ -14,6 +13,7 @@ import {
 import { ROUTES } from "@/constants/routes";
 import { useSession } from "@/lib/auth-client";
 import { useHydrated } from "@/lib/use-hydrated";
+import { Button } from "@/registry/ui/button";
 import { createMetadata } from "@/seo/metadata";
 
 // The OAuth authorization server sends people here with the signed authorize

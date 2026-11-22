@@ -2,8 +2,9 @@ import { getIntlayer } from "intlayer";
 
 import { LINK, xProfileUrl } from "@/constants/links";
 import { DEFAULT_LOCALE, isLocale, localizedPath } from "@/constants/locales";
-import { PLAN_PRICE_CENTS, PLANS, planOffers } from "@/constants/plans";
-import type { Plan, PlanBilling } from "@/constants/plans";
+import { PLANS, planOffers, planPrice } from "@/constants/plans";
+import type { LocalPrices, Plan, PlanBilling } from "@/constants/plans";
+import { decimalPrice } from "@/constants/pricing";
 import { ROUTES, videoPath } from "@/constants/routes";
 import { SITE } from "@/constants/site";
 import { absoluteUrl } from "@/constants/url";
@@ -49,7 +50,7 @@ const organization = {
     name: SITE.AUTHOR.NAME,
     url: LINK.AUTHOR_WEBSITE,
   },
-  logo: absoluteUrl("/brand/motionvideo-app-icon-512.png"),
+  logo: absoluteUrl("/brand/motionvideo-app-icon.png"),
   name: SITE.NAME,
   sameAs: [LINK.GITHUB, LINK.X],
   url: SITE.URL,
@@ -88,8 +89,10 @@ const BILLING_DURATION: Partial<Record<PlanBilling, string>> = {
   monthly: "P1M",
 };
 
-// One Product per plan, with an Offer per billing option, for /pro.
-export const planJsonLd = (locale?: string) => {
+// One Product per plan, with an Offer per billing option, for /pro. `prices`
+// are the visitor's own, so the markup matches the cards; without them (Dodo
+// has no local price, or a crawler from nowhere), the USD list prices.
+export const planJsonLd = (locale?: string, prices?: LocalPrices | null) => {
   const proUrl = absoluteUrl(localizedPath(ROUTES.PRO, resolveLocale(locale)));
   return PLANS.map((plan) =>
     jsonLdScript({
@@ -100,20 +103,21 @@ export const planJsonLd = (locale?: string) => {
       name: PLAN_NAME[plan],
       url: proUrl,
       offers: planOffers(plan).map((billing) => {
-        const price = ((PLAN_PRICE_CENTS[plan][billing] ?? 0) / 100).toFixed(2);
+        const { cents, currency } = planPrice(prices, plan, billing);
+        const price = decimalPrice(cents, currency);
         const duration = BILLING_DURATION[billing];
         return {
           "@type": "Offer",
           availability: "https://schema.org/InStock",
           price,
-          priceCurrency: "USD",
+          priceCurrency: currency,
           url: `${proUrl}?billing=${billing}`,
           ...(duration && {
             priceSpecification: {
               "@type": "UnitPriceSpecification",
               billingDuration: duration,
               price,
-              priceCurrency: "USD",
+              priceCurrency: currency,
             },
           }),
         };
@@ -171,6 +175,7 @@ export type BreadcrumbItem = { path: string } & (
         | "brand"
         | "changelog"
         | "contact"
+        | "design"
         | "privacy"
         | "refunds"
         | "terms"

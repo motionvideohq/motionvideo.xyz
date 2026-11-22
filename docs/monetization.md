@@ -12,7 +12,7 @@ Ideas for monthly recurring revenue on MotionVideo, ranked by fit with what alre
 
 ## Founding sponsors
 
-[Shadcn Labs](https://www.shadcn-labs.com), [Kobra](https://kobra.systems/), [beUI](https://beui.dev/), and [Illos](https://illos.dev/) are credited on `/sponsor`. Founding sponsors do not occupy paid seats; they fill the sponsored grid card while no Diamond sponsor is live.
+[Rare UI](https://www.rareui.com/), [Kobra](https://kobra.systems/), [beUI](https://beui.dev/), and [Illos](https://illos.dev/) are credited on `/sponsor`. Founding sponsors do not occupy paid seats; they fill the sponsored grid card while no Diamond sponsor is live.
 
 ## Opportunities
 

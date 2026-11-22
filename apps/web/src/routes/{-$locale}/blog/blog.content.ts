@@ -39,17 +39,6 @@ export default {
       pt: "Todos os artigos",
       ru: "Все статьи",
     }),
-    morePosts: t({
-      en: "More from the blog",
-      es: "Más del blog",
-      fr: "Plus d’articles",
-      zh: "更多博客文章",
-      ko: "블로그의 다른 글",
-      ja: "ブログのその他の記事",
-      de: "Mehr aus dem Blog",
-      pt: "Mais do blog",
-      ru: "Ещё из блога",
-    }),
     by: t({
       en: "by",
       es: "de",

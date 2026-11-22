@@ -6,11 +6,10 @@ import { useIntlayer, useLocale } from "react-intlayer";
 import { z } from "zod";
 
 import { ChoiceCard } from "@/components/choice-card";
-import { ImageDropzone } from "@/components/image-dropzone";
+import { ImageUpload } from "@/components/image-upload";
 import { OrderSummary } from "@/components/order-summary";
 import { FormSection, HeroHeader, PageMain } from "@/components/page";
 import { PlanDetails } from "@/components/plan-details";
-import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -40,6 +39,7 @@ import {
   jobPostSchema,
 } from "@/lib/jobs";
 import { localizedRedirect } from "@/lib/localized-redirect";
+import { Button } from "@/registry/ui/button";
 import { createMetadata } from "@/seo/metadata";
 import {
   getMyJobPosts,
@@ -303,7 +303,7 @@ const PostJob = () => {
             </div>
             <div className={fieldClass}>
               <span className="text-sm font-medium">{content.logo}</span>
-              <ImageDropzone
+              <ImageUpload
                 purpose="logo"
                 value={fields.logo}
                 onChange={(logo) => update({ logo })}

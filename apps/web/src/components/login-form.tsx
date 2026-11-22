@@ -7,7 +7,6 @@ import { GoogleIcon } from "@/components/icons";
 import { LocaleSwitcher } from "@/components/locale-switcher";
 import { Logomark } from "@/components/logo";
 import { Turnstile } from "@/components/turnstile";
-import { Button } from "@/components/ui/button";
 import {
   Field,
   FieldDescription,
@@ -29,6 +28,7 @@ import { SITE } from "@/constants/site";
 import { track } from "@/lib/analytics";
 import { authClient } from "@/lib/auth-client";
 import { cn } from "@/lib/utils";
+import { Button } from "@/registry/ui/button";
 
 const CODE_LENGTH = 6;
 const textButtonClass =

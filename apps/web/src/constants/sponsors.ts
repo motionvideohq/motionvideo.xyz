@@ -1,4 +1,4 @@
-import { ASSETS_URL, LINK } from "@/constants/links";
+import { ASSETS_URL } from "@/constants/links";
 
 export const SPONSOR_TIERS = ["diamond", "gold", "silver"] as const;
 
@@ -46,11 +46,11 @@ export type FoundingSponsor = Pick<
 // seat; until a Diamond sponsor is live they fill the sponsored grid card.
 export const FOUNDING_SPONSORS: readonly FoundingSponsor[] = [
   {
-    name: "Shadcn Labs",
-    url: LINK.SHADCN_LABS,
-    logo: "/sponsors/shadcn-labs.svg",
-    cover: `${ASSETS_URL}/sponsors/shadcn-537fcb5230.png`,
-    darkInvert: true,
+    name: "Rare UI",
+    url: "https://www.rareui.com/",
+    logo: "https://raw.githubusercontent.com/swamimalode07/rare-ui/HEAD/public/logos/Rareui.svg",
+    cover:
+      "https://raw.githubusercontent.com/swamimalode07/rare-ui/HEAD/public/ogimage.webp",
   },
   {
     name: "Kobra",

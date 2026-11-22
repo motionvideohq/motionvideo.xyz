@@ -10,7 +10,6 @@ import { z } from "zod";
 
 import { ConfettiSideCannons } from "@/components/confetti";
 import { AuthCard, LoginForm } from "@/components/login-form";
-import { Button } from "@/components/ui/button";
 import {
   DEFAULT_LOCALE,
   isLocale,
@@ -20,6 +19,7 @@ import {
 import { ROUTES } from "@/constants/routes";
 import { SITE } from "@/constants/site";
 import { localizedRedirect } from "@/lib/localized-redirect";
+import { Button } from "@/registry/ui/button";
 import { createMetadata } from "@/seo/metadata";
 import { getCheckoutResult } from "@/server/functions";
 

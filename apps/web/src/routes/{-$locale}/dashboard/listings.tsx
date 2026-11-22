@@ -10,7 +10,6 @@ import { LocalizedLink as Link } from "@/components/localized-link";
 import { AccountPageHeader, PageMain } from "@/components/page";
 import { SectionIcon } from "@/components/section-icon";
 import { Badge } from "@/components/ui/badge";
-import { Button, buttonVariants } from "@/components/ui/button";
 import {
   Empty,
   EmptyContent,
@@ -23,6 +22,7 @@ import { DEFAULT_LOCALE, isLocale } from "@/constants/locales";
 import type { LocaleHeadContext } from "@/constants/locales";
 import { ROUTES } from "@/constants/routes";
 import { localizedRedirect } from "@/lib/localized-redirect";
+import { Button, buttonVariants } from "@/registry/ui/button";
 import { createMetadata } from "@/seo/metadata";
 import { getMyJobPosts, startJobCheckout } from "@/server/job-functions";
 import type { MyJobPost } from "@/server/job-functions";

@@ -1,0 +1,44 @@
+---
+title: Colors
+description: Semantic colors that keep surfaces, content, and actions in balance across light and dark themes.
+---
+
+## Semantic colors
+
+Choose a token by its role, not its appearance. These swatches and their computed values follow the active theme; use the theme control to compare light and dark. Values are read directly from the stylesheet, not a separate palette.
+
+<ColorTokens />
+
+| Role                          | Tokens                              |
+| ----------------------------- | ----------------------------------- |
+| Page                          | `background`, `foreground`          |
+| Contained surface             | `card`, `card-foreground`           |
+| Floating surface              | `popover`, `popover-foreground`     |
+| Primary action                | `primary`, `primary-foreground`     |
+| Secondary surface             | `secondary`, `secondary-foreground` |
+| Supporting content            | `muted`, `muted-foreground`         |
+| Highlighted surface           | `accent`, `accent-foreground`       |
+| Errors and removal            | `destructive`                       |
+| Structural edges and controls | `border`, `input`                   |
+| Keyboard focus                | `ring`                              |
+
+## Pair surfaces with content
+
+Foreground tokens belong to their matching surface. A foreground is not interchangeable with muted text; preserve the pair when placing a surface inside another surface.
+
+<ColorPairs />
+
+Use `bg-card text-card-foreground` for cards, `bg-secondary text-secondary-foreground` for secondary surfaces, `bg-primary text-primary-foreground` for the primary action, and `bg-accent text-accent-foreground` for highlighted surfaces.
+
+For an error, use `text-destructive` on `bg-destructive/10`. Always describe the error in text, not color alone: “An upload could not be completed.”
+
+## Using color
+
+Keep most of the interface neutral. Reserve the yellow primary color for emphasis and the main action. Use destructive for removal and errors, not decoration. Borders separate content; ring marks keyboard focus.
+
+```tsx title="Semantic utilities"
+<div className="bg-card text-card-foreground shadow-outline">
+  <p className="text-muted-foreground">Supporting information</p>
+  <Button>Export video</Button>
+</div>
+```

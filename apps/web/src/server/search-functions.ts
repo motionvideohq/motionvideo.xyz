@@ -4,6 +4,7 @@ import { z } from "zod";
 import { DEFAULT_LOCALE, isLocale } from "@/constants/locales";
 import { BLOG_POSTS } from "@/lib/blog";
 import { CHANGELOG_ENTRIES } from "@/lib/changelog";
+import { designSource } from "@/lib/design";
 import type { MoveFamily } from "@/lib/move-families";
 import { MOVES } from "@/lib/moves";
 import { PROMPT_TEMPLATES } from "@/lib/prompt-templates";
@@ -43,8 +44,9 @@ export interface SearchDocsHeading {
 }
 
 export interface SearchDocsPage {
-  /** `/docs/<slugs>`; empty for the docs index. */
+  /** Source-relative slugs; empty for the section index. */
   slugs: string[];
+  url: string;
   title: string;
   description: string;
   headings: SearchDocsHeading[];
@@ -56,6 +58,7 @@ export interface SearchIndex {
   blog: SearchArticle[];
   changelog: SearchArticle[];
   docs: SearchDocsPage[];
+  design: SearchDocsPage[];
 }
 
 const article = (page: {
@@ -84,11 +87,11 @@ const STATIC_INDEX = {
   })),
   blog: BLOG_POSTS.map(article),
   changelog: CHANGELOG_ENTRIES.map(article),
-} satisfies Omit<SearchIndex, "docs">;
+} satisfies Omit<SearchIndex, "docs" | "design">;
 
 /**
- * The palette's content index. Docs pages come in the requested locale where
- * translated (English otherwise), with their headings for deep links.
+ * The palette's public content index. Docs use the requested locale where
+ * translated; design articles stay English. Both include heading deep links.
  */
 export const getSearchIndex = createServerFn({ method: "GET" })
   .validator(z.string())
@@ -104,6 +107,7 @@ export const getSearchIndex = createServerFn({ method: "GET" })
             : await page.data.structuredData();
         return {
           slugs: page.slugs,
+          url: page.url,
           // OpenAPI operations without a summary have no title.
           title: page.data.title ?? page.url,
           description: page.data.description ?? "",
@@ -114,5 +118,20 @@ export const getSearchIndex = createServerFn({ method: "GET" })
         };
       })
     );
-    return { ...STATIC_INDEX, docs };
+    const design = await Promise.all(
+      designSource.getPages().map(async (page): Promise<SearchDocsPage> => {
+        const { headings } = await page.data.structuredData();
+        return {
+          slugs: page.slugs,
+          url: page.url,
+          title: page.data.title,
+          description: page.data.description,
+          headings: headings.map((heading) => ({
+            id: heading.id,
+            title: heading.content,
+          })),
+        };
+      })
+    );
+    return { ...STATIC_INDEX, docs, design };
   });

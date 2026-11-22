@@ -2,7 +2,6 @@ import { useIntlayer, useLocale } from "react-intlayer";
 import { ChevronDown } from "reicon-react/icons/ChevronDown";
 import { Global } from "reicon-react/icons/Global";
 
-import { buttonVariants } from "@/components/ui/button";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -11,6 +10,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { LOCALE_NAMES, LOCALES } from "@/constants/locales";
+import { buttonVariants } from "@/registry/ui/button";
 
 export const LocaleSwitcher = () => {
   const { locale, setLocale } = useLocale();

@@ -8,7 +8,6 @@ import { Send } from "reicon-react/icons/Send";
 
 import { PageHeader } from "@/components/page";
 import { SendShortcut } from "@/components/send-shortcut";
-import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import {
@@ -28,6 +27,7 @@ import { useSession } from "@/lib/auth-client";
 import { publicUrlSchema } from "@/lib/community";
 import { INQUIRY_TYPES, contactSchema } from "@/lib/contact";
 import type { ContactInput } from "@/lib/contact";
+import { Button } from "@/registry/ui/button";
 import { breadcrumbJsonLd } from "@/seo/json-ld";
 import { createMetadata } from "@/seo/metadata";
 import { sendContactMessage } from "@/server/functions";

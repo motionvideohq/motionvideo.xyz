@@ -2,12 +2,13 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useIntlayer } from "react-intlayer";
 import { ArrowRight } from "reicon-react/icons/ArrowRight";
 
+import { CollectionIntro } from "@/components/collection-intro";
+import { ListingGrid } from "@/components/listing-grid";
 import { LocalizedLink as Link } from "@/components/localized-link";
-import { PageHeader, PageMain } from "@/components/page";
-import { buttonVariants } from "@/components/ui/button";
 import { ROUTES } from "@/constants/routes";
 import { PROMPT_TEMPLATES } from "@/lib/prompt-templates";
 import type { PromptTemplate } from "@/lib/prompt-templates";
+import { buttonVariants } from "@/registry/ui/button";
 import { breadcrumbJsonLd } from "@/seo/json-ld";
 import { createMetadata } from "@/seo/metadata";
 import { getTemplateCovers } from "@/server/template-functions";
@@ -23,13 +24,13 @@ const TemplateCard = ({
 }) => {
   const content = useIntlayer("templates-page");
   return (
-    <li>
+    <li className="h-full">
       <Link
         to={ROUTES.TEMPLATE}
         params={{ templateId: template.id }}
-        className="group bg-card shadow-outline hover:bg-muted/60 flex flex-col gap-4 overflow-hidden rounded-xl p-3 transition-colors sm:flex-row"
+        className="group bg-card shadow-outline hover:bg-muted/60 flex h-full flex-col gap-4 overflow-hidden rounded-xl p-3 transition-colors"
       >
-        <span className="bg-muted aspect-video w-full shrink-0 overflow-hidden rounded-lg sm:w-56">
+        <span className="bg-muted aspect-video w-full shrink-0 overflow-hidden rounded-lg">
           {cover && (
             <img
               src={cover.poster}
@@ -41,10 +42,10 @@ const TemplateCard = ({
             />
           )}
         </span>
-        <span className="flex min-w-0 flex-col gap-2 py-1 sm:pr-2">
-          <span className="text-lg font-semibold tracking-tight">
+        <span className="flex min-w-0 flex-1 flex-col gap-2 py-1">
+          <h2 className="text-lg font-semibold tracking-tight">
             {template.name}
-          </span>
+          </h2>
           <span className="text-muted-foreground text-sm text-pretty">
             {template.summary}
           </span>
@@ -67,38 +68,43 @@ const Templates = () => {
   const locked = useIntlayer("locked-prompt");
   const { covers } = Route.useLoaderData();
   return (
-    <PageMain layout="document" width="narrow">
-      <div className="flex flex-col gap-5">
-        <PageHeader title={sections.templates.value} intro={content.intro} />
-        <div className="flex flex-wrap gap-3">
-          <Link
-            to={ROUTES.PRO}
-            data-track="templates_unlock"
-            data-track-template="list"
-            className={buttonVariants({ variant: "gradient", size: "lg" })}
-          >
-            {locked.unlock}
-          </Link>
-          {/* ROUTES.DOCS_TEMPLATES, through the docs' catch-all route. */}
-          <Link
-            to={ROUTES.DOCS_PAGE}
-            params={{ _splat: "templates" }}
-            className={buttonVariants({ variant: "outline", size: "lg" })}
-          >
-            {content.howToUse}
-          </Link>
-        </div>
-      </div>
-      <ul className="flex flex-col gap-4">
-        {PROMPT_TEMPLATES.map((template) => (
-          <TemplateCard
-            key={template.id}
-            template={template}
-            cover={covers[template.id]}
-          />
-        ))}
-      </ul>
-    </PageMain>
+    <ListingGrid
+      intro={
+        <CollectionIntro
+          titleId="templates-intro-title"
+          title={sections.templates.value}
+          description={content.intro}
+          actions={
+            <>
+              <Link
+                to={ROUTES.PRO}
+                data-track="templates_unlock"
+                data-track-template="list"
+                className={buttonVariants({ variant: "gradient", size: "lg" })}
+              >
+                {locked.unlock}
+              </Link>
+              {/* ROUTES.DOCS_TEMPLATES, through the docs' catch-all route. */}
+              <Link
+                to={ROUTES.DOCS_PAGE}
+                params={{ _splat: "templates" }}
+                className={buttonVariants({ variant: "outline", size: "lg" })}
+              >
+                {content.howToUse}
+              </Link>
+            </>
+          }
+        />
+      }
+    >
+      {PROMPT_TEMPLATES.map((template) => (
+        <TemplateCard
+          key={template.id}
+          template={template}
+          cover={covers[template.id]}
+        />
+      ))}
+    </ListingGrid>
   );
 };
 

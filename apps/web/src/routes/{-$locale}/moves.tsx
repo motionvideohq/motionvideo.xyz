@@ -19,13 +19,14 @@ import { LocalizedLink as Link } from "@/components/localized-link";
 import { MoveCard, MovesGridContext } from "@/components/moves";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
-import { buttonVariants } from "@/components/ui/button";
-import type { MasonryItem } from "@/components/virtual-masonry";
 import { ROUTES } from "@/constants/routes";
 import { MOVE_FAMILIES, findMoveFamily } from "@/lib/move-families";
 import { movesIn } from "@/lib/moves";
+import type { MasonryItem } from "@/registry/components/virtual-masonry";
+import { buttonVariants } from "@/registry/ui/button";
 import { getLandingData, getSessionFlag } from "@/server/functions";
 import { getMoveCards } from "@/server/move-functions";
+import { getLocalPrices } from "@/server/plan-functions";
 
 const routeApi = getRouteApi("/{-$locale}/moves");
 
@@ -136,11 +137,14 @@ const Moves = () => {
 export const Route = createFileRoute("/{-$locale}/moves")({
   component: Moves,
   loader: async () => {
+    // Prices only fill the locked prompts' price line, so they stream in
+    // after the page (LockedPrompt) instead of holding it up.
+    const prices = getLocalPrices();
     const [landing, cards, signedIn] = await Promise.all([
       getLandingData(),
       getMoveCards(),
       getSessionFlag(),
     ]);
-    return { ...landing, cards, signedIn };
+    return { ...landing, cards, prices, signedIn };
   },
 });

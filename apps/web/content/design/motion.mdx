@@ -1,0 +1,38 @@
+---
+title: Motion
+description: Responsive feedback that starts quickly, settles naturally, and respects reduced motion.
+---
+
+## Try the motion
+
+Motion should explain a state change, not delay it. Replay the same movement with two shared easing curves. Hover or focus the surface below for a smaller feedback example. Reduced-motion preferences remove interpolation while keeping every control functional.
+
+<MotionTracks />
+
+Both tracks travel the same distance using `--tabs-duration` (250ms). The `--ease-out` curve settles quickly; `--ease-in-out` moves between states. Replay moves the tracks forward or backward and announces their current position. A small lift, using `--raise-duration` (200ms), acknowledges attention on hover or keyboard focus. Activating the lift control also replays the tracks.
+
+## Timing and easing
+
+| Token | Value | Purpose |
+| --- | --- | --- |
+| `--ease-out` | `cubic-bezier(0.23, 1, 0.32, 1)` | Immediate response, gentle arrival |
+| `--ease-in-out` | `cubic-bezier(0.77, 0, 0.175, 1)` | Movement within the interface |
+| `--ease-exit` | `cubic-bezier(0.4, 0, 0.6, 1)` | Departure from the interface |
+| `--push-press` | `110ms` | Button press |
+| `--push-release` | `190ms` | Button release |
+| `--raise-duration` | `200ms` | Surface lift |
+| `--toggle-dur` | `220ms` | Toggle movement |
+| `--tabs-duration` | `250ms` | Tab indicator movement |
+
+These are existing component tokens, not a new universal timing scale. Reuse the matching interaction’s duration and the shared easing utilities. Prefer transform and opacity over animating layout; never add a waiting period before an action takes effect.
+
+## Reduced motion
+
+Make movement optional, not information. Apply animation only with `motion-safe`, and use `motion-reduce` to remove transitions. State, focus, and labels must remain visible without motion. The live tracks above jump directly to their destination when reduced motion is enabled.
+
+```tsx title="Accessible transition"
+<div
+  className="motion-safe:transition-transform motion-safe:duration-(--tabs-duration) ease-out motion-reduce:transition-none"
+  style={{ transform: active ? "translateX(100%)" : "translateX(0)" }}
+/>
+```

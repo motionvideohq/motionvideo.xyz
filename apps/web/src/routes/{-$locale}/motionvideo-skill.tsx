@@ -16,11 +16,11 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import { buttonVariants } from "@/components/ui/button";
 import { DEFAULT_LOCALE, isLocale } from "@/constants/locales";
 import { ROUTES } from "@/constants/routes";
 import { SKILL } from "@/constants/skill";
 import { VIDEOS } from "@/constants/videos";
+import { buttonVariants } from "@/registry/ui/button";
 import { faqJsonLd } from "@/seo/json-ld";
 import { createMetadata } from "@/seo/metadata";
 import { getLandingData } from "@/server/functions";
