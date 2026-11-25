@@ -25,6 +25,7 @@ import {
   createTooltipHandle,
 } from "@/components/ui/tooltip";
 import type { TooltipHandle } from "@/components/ui/tooltip";
+import { LAUNCH_VIDEOS_LIVE } from "@/constants/launch-videos";
 import { LINK } from "@/constants/links";
 import { OTHER_PRODUCTS, SHADCN_LABS_PROJECTS } from "@/constants/products";
 import { ROUTES } from "@/constants/routes";
@@ -150,6 +151,9 @@ export const SiteFooter = () => {
   const nav = useIntlayer("site-header");
   const product = [
     [ROUTES.MOVES, nav.moves],
+    ...(LAUNCH_VIDEOS_LIVE
+      ? ([[ROUTES.LAUNCH_VIDEOS, nav.launchVideos]] as const)
+      : []),
     [ROUTES.TEMPLATES, nav.templates],
   ] as const;
   const ai = [

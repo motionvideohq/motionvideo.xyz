@@ -62,6 +62,9 @@ export const ROUTES = {
   HOME: "/",
   JOBS: "/jobs",
   JOBS_TYPE: "/jobs/$type",
+  LAUNCH_VIDEOS: "/launch-videos",
+  LAUNCH_VIDEO_FILM: "/launch-videos/$film",
+  LAUNCH_VIDEOS_COMPOSE: "/launch-videos/compose",
   MODEL: "/model/$model",
   MOTIONVIDEO_MCP: "/motionvideo-mcp",
   MOTIONVIDEO_SKILL: "/motionvideo-skill",
@@ -161,3 +164,6 @@ export const modelPath = (model: string) => `/model/${model}`;
 export const typePath = (type: string) => `/type/${type}`;
 export const colorPath = (color: string) => `/color/${color}`;
 export const creatorPath = (handle: string) => `/creators/${handle}`;
+/** A launch film's page; `scene` (a scene slug) opens it on that chapter. */
+export const launchFilmPath = (film: string, scene?: string) =>
+  `/launch-videos/${film}${scene ? `?scene=${encodeURIComponent(scene)}` : ""}`;

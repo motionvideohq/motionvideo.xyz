@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 
 import { CACHE_CONTROL } from "@/constants/cache-control";
+import { LAUNCH_VIDEOS_LIVE } from "@/constants/launch-videos";
 import { DEFAULT_LOCALE, localizedPath } from "@/constants/locales";
 import { ROUTES, STATIC_PAGES, docsMarkdownPath } from "@/constants/routes";
 import { SITE } from "@/constants/site";
@@ -27,7 +28,11 @@ const body = (docsPages: DocsPage[]) => `# ${SITE.NAME}
 - [skill.md](${absoluteUrl(ROUTES.SKILL_MD)}): A skill a coding agent can read to set itself up with ${SITE.NAME}.
 - [MotionVideo MCP](${pageUrl(ROUTES.MOTIONVIDEO_MCP)}): The free MCP server: search the gallery and pull prompts from Claude, ChatGPT, Cursor and other MCP clients. Setup reference: ${pageUrl(ROUTES.DOCS_MCP)}
 - [MotionVideo Skill](${pageUrl(ROUTES.MOTIONVIDEO_SKILL)}): The motion design skill pack included in Pro and Business. Install reference: ${pageUrl(ROUTES.DOCS_SKILL)}
-- [Moves](${pageUrl(ROUTES.MOVES)}): Named motion design techniques with gallery examples; each move's copy-ready prompt is in Pro.
+- [Moves](${pageUrl(ROUTES.MOVES)}): Named motion design techniques with gallery examples; each move's copy-ready prompt is in Pro.${
+  LAUNCH_VIDEOS_LIVE
+    ? `\n- [Launch Videos](${pageUrl(ROUTES.LAUNCH_VIDEOS)}): Launch films broken into scenes (role, creative device, timing, credits). The prompts that recreate a film exactly or adapt it to another brand, for Remotion, HyperFrames, Editframe or fframes, and the storyboard composer that mixes scenes from several films, are in Pro.`
+    : ""
+}
 - [Templates](${pageUrl(ROUTES.TEMPLATES)}): Prompt templates with fill-in fields (concept, palette, length, size); each template's full prompt is in Pro.
 - [MotionVideo Pro](${pageUrl(ROUTES.PRO)}): Pro and Business plans: what they include and what they cost. As Markdown: ${absoluteUrl(ROUTES.PRICING_MD)}
 - [Tools](${pageUrl(ROUTES.TOOLS)}): Agent tools and plugins for motion design, by category.

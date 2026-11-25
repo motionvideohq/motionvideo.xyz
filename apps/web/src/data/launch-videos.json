@@ -1,0 +1,351 @@
+{
+  "films": [
+    {
+      "slug": "motionvideo-launch",
+      "title": "MotionVideo launch film",
+      "brand": "MotionVideo",
+      "summary": "MotionVideo's 29-second launch film: kinetic type states the problem, a gallery stack collapses into the logo on the music's drop, and real screen recordings show the gallery, prompts and search before a 3D card rail and a lockup that cuts to yellow.",
+      "kind": "product",
+      "categories": ["product-launch", "developer-tools", "directory"],
+      "colors": ["#0a0a0b", "#ffbe25", "#ffdd73", "#fafafa", "#fbfaf7"],
+      "styles": ["kinetic-type", "ui-motion", "mixed-graphics", "3d"],
+      "source": {
+        "url": "https://motionvideo.xyz",
+        "label": "motionvideo.xyz"
+      },
+      "credits": [
+        {
+          "role": "Studio",
+          "name": "MotionVideo",
+          "url": "https://motionvideo.xyz"
+        },
+        {
+          "role": "Music: \"What About Action?\" (Mixkit Stock Music Free License)",
+          "name": "Diego Nava",
+          "url": "https://mixkit.co/free-stock-music/tag/corporate/"
+        },
+        {
+          "role": "Sound effects: Earshot (MIT)",
+          "name": "Leon Lin",
+          "url": "https://github.com/Leonxlnx/earshot"
+        }
+      ],
+      "width": 1920,
+      "height": 1080,
+      "fpsNum": 30,
+      "fpsDen": 1,
+      "frameCount": 884,
+      "poster": "https://assets.motionvideo.xyz/launch-videos/motionvideo-launch/poster.jpg",
+      "video": "https://assets.motionvideo.xyz/videos/motionvideo-launch-4ccff6ecea.mp4",
+      "preview": "https://assets.motionvideo.xyz/launch-videos/motionvideo-launch/preview.mp4",
+      "sceneIds": [
+        "motionvideo-launch/problem",
+        "motionvideo-launch/logo",
+        "motionvideo-launch/positioning",
+        "motionvideo-launch/gallery",
+        "motionvideo-launch/prompt",
+        "motionvideo-launch/search",
+        "motionvideo-launch/directory",
+        "motionvideo-launch/lockup"
+      ],
+      "publishedAt": "2026-10-20",
+      "featured": 1
+    },
+    {
+      "slug": "motionvideo-cinematic",
+      "title": "MotionVideo cinematic film",
+      "brand": "MotionVideo",
+      "summary": "A 30-second cinematic tour of motionvideo.xyz: the real site UI on a tilted slab with optical depth of field, cut between macro and wide shots of search, a prompt and the Copy button, ending on a line and the logo.",
+      "kind": "product",
+      "categories": ["product-launch", "developer-tools", "directory"],
+      "colors": ["#e5e2dd", "#0a0a0a", "#ffffff"],
+      "styles": ["3d", "ui-motion", "kinetic-type"],
+      "source": {
+        "url": "https://motionvideo.xyz",
+        "label": "motionvideo.xyz"
+      },
+      "credits": [
+        {
+          "role": "Studio",
+          "name": "MotionVideo",
+          "url": "https://motionvideo.xyz"
+        },
+        {
+          "role": "Sound effects: Earshot (MIT)",
+          "name": "Leon Lin",
+          "url": "https://github.com/Leonxlnx/earshot"
+        }
+      ],
+      "width": 1920,
+      "height": 1080,
+      "fpsNum": 60,
+      "fpsDen": 1,
+      "frameCount": 1800,
+      "poster": "https://assets.motionvideo.xyz/launch-videos/motionvideo-cinematic/poster.jpg",
+      "video": "https://assets.motionvideo.xyz/launch-videos/motionvideo-cinematic/film.mp4",
+      "preview": "https://assets.motionvideo.xyz/launch-videos/motionvideo-cinematic/preview.mp4",
+      "sceneIds": [
+        "motionvideo-cinematic/gallery",
+        "motionvideo-cinematic/chip",
+        "motionvideo-cinematic/search",
+        "motionvideo-cinematic/prompt",
+        "motionvideo-cinematic/copy",
+        "motionvideo-cinematic/wide",
+        "motionvideo-cinematic/outro-copy",
+        "motionvideo-cinematic/outro-logo"
+      ],
+      "publishedAt": "2026-11-05",
+      "featured": 2
+    }
+  ],
+  "scenes": [
+    {
+      "id": "motionvideo-launch/problem",
+      "slug": "problem",
+      "filmSlug": "motionvideo-launch",
+      "title": "Problem: the buried prompt",
+      "device": "Two small centred lines state the problem, then a giant two-word payoff slams in from the edge.",
+      "description": "A cold open on the night stage. The first line types on with a hot accent-coloured leading edge, the second replaces it word by word, and the third line arrives at almost three times the size to flip the problem into the promise. The music sits in its breakdown under this, two bars before the drop, so the payoff reads in near silence.",
+      "startFrame": 0,
+      "endFrame": 97,
+      "role": "hook",
+      "secondaryRoles": ["problem"],
+      "style": "kinetic-type",
+      "moves": [
+        "typewriter-text",
+        "word-by-word-reveal",
+        "scale-punch-headline"
+      ],
+      "poster": "https://assets.motionvideo.xyz/launch-videos/motionvideo-launch/scenes/problem.jpg"
+    },
+    {
+      "id": "motionvideo-launch/logo",
+      "slug": "logo",
+      "filmSlug": "motionvideo-launch",
+      "title": "Logo collapse",
+      "device": "A stack of gallery stills cuts down in size, collapses into the logomark on the music's drop, and the wordmark lands beside it.",
+      "description": "Hard cut from the payoff into six real gallery stills flashing at 1–5 frame holds, each one smaller than the last, so the eye funnels to the centre. The stack runs out exactly on the drop downbeat, where the mark lands with a weighted pop, steps aside and the wordmark appears. Two accent squares ping in to bracket the lockup.",
+      "startFrame": 97,
+      "endFrame": 163,
+      "role": "reveal",
+      "secondaryRoles": ["hook"],
+      "style": "mixed-graphics",
+      "moves": ["card-stack", "shard-assemble-logo", "transient-hit-frames"],
+      "poster": "https://assets.motionvideo.xyz/launch-videos/motionvideo-launch/scenes/logo.jpg"
+    },
+    {
+      "id": "motionvideo-launch/positioning",
+      "slug": "positioning",
+      "filmSlug": "motionvideo-launch",
+      "title": "Positioning rewrite",
+      "device": "A line is typed, selected like text in an editor, its opening words erased and the sentence rewritten in place after a punch-in.",
+      "description": "Reads like someone editing their own headline. The small line lands word by word, a hard 1.6× punch-in and an accent selection drag make it feel like a cursor caught it, then the start is wiped away and the rest rewritten so the claim lands as a correction, not a slogan.",
+      "startFrame": 163,
+      "endFrame": 267,
+      "role": "bridge",
+      "secondaryRoles": ["reveal"],
+      "style": "kinetic-type",
+      "moves": ["word-by-word-reveal", "camera-punch-in", "wipe-transition"],
+      "poster": "https://assets.motionvideo.xyz/launch-videos/motionvideo-launch/scenes/positioning.jpg"
+    },
+    {
+      "id": "motionvideo-launch/gallery",
+      "slug": "gallery",
+      "filmSlug": "motionvideo-launch",
+      "title": "Gallery capture",
+      "device": "A captioned screen recording of the gallery rises into a rounded window while the camera eases in.",
+      "description": "The first look at the product is the real site, not a mockup. The caption lands a word at a time and its key phrase gets a marker so the shot has one idea; a slow 1.12× push keeps the scrolling grid alive.",
+      "startFrame": 267,
+      "endFrame": 329,
+      "role": "demo",
+      "secondaryRoles": ["proof"],
+      "style": "ui-motion",
+      "moves": ["word-by-word-reveal", "device-frame-reveal", "breathing-push"],
+      "poster": "https://assets.motionvideo.xyz/launch-videos/motionvideo-launch/scenes/gallery.jpg"
+    },
+    {
+      "id": "motionvideo-launch/prompt",
+      "slug": "prompt",
+      "filmSlug": "motionvideo-launch",
+      "title": "Prompt behind every video",
+      "device": "Recording of opening a video and copying its prompt, with a camera push onto the prompt panel.",
+      "description": "Same window grammar as the gallery shot so the cut reads as continuous. A click opens a video, the camera zooms 1.6× onto the prompt panel, and a second click on Copy prompt is the beat the whole film is about. Both clicks get foley on the capture's real press frames.",
+      "startFrame": 329,
+      "endFrame": 490,
+      "role": "demo",
+      "secondaryRoles": ["feature"],
+      "style": "ui-motion",
+      "moves": ["auto-zoom-on-click", "cursor-led-demo", "word-by-word-reveal"],
+      "poster": "https://assets.motionvideo.xyz/launch-videos/motionvideo-launch/scenes/prompt.jpg"
+    },
+    {
+      "id": "motionvideo-launch/search",
+      "slug": "search",
+      "filmSlug": "motionvideo-launch",
+      "title": "Search",
+      "device": "Recording of typing a query into search, every keystroke ticked on its own frame, with a push onto the field.",
+      "description": "Search is shown being used: the camera leans 1.45× into the field while a query is typed, and each key gets a sound on the exact frame its character appears, so the shot feels hands-on.",
+      "startFrame": 490,
+      "endFrame": 591,
+      "role": "demo",
+      "secondaryRoles": ["feature"],
+      "style": "ui-motion",
+      "moves": ["typewriter-text", "camera-punch-in", "word-by-word-reveal"],
+      "poster": "https://assets.motionvideo.xyz/launch-videos/motionvideo-launch/scenes/search.jpg"
+    },
+    {
+      "id": "motionvideo-launch/directory",
+      "slug": "directory",
+      "filmSlug": "motionvideo-launch",
+      "title": "Directory card rail",
+      "device": "Five section cards on a tilted 3D rail flick past under a heading, three momentum flicks in a row.",
+      "description": "Widens the offer beyond the gallery. The rail is a surface pushed by hand: each flick follows a measured momentum curve, eases out with slight overshoot, and the next starts before the last has settled. The whoosh sits on the second flick, the first being hidden under the slide in.",
+      "startFrame": 591,
+      "endFrame": 734,
+      "role": "proof",
+      "secondaryRoles": ["feature"],
+      "style": "3d",
+      "moves": ["parallax-layers", "staggered-timing", "whip-pan-transition"],
+      "poster": "https://assets.motionvideo.xyz/launch-videos/motionvideo-launch/scenes/directory.jpg"
+    },
+    {
+      "id": "motionvideo-launch/lockup",
+      "slug": "lockup",
+      "filmSlug": "motionvideo-launch",
+      "title": "Lockup and yellow field",
+      "device": "The lockup builds on a faint construction grid, then hard-cuts to a full-frame accent gradient on the music's last downbeat.",
+      "description": "The wordmark slides out from behind the mark over a barely-visible grid, holds long enough to read, then the frame cuts to a warm vertical gradient on the button note of the music, ending the film on the brand colour rather than black.",
+      "startFrame": 734,
+      "endFrame": 884,
+      "role": "brand-outro",
+      "secondaryRoles": ["cta"],
+      "style": "mixed-graphics",
+      "moves": [
+        "line-mask-text-reveal",
+        "color-flood-transition",
+        "stinger-sync"
+      ],
+      "poster": "https://assets.motionvideo.xyz/launch-videos/motionvideo-launch/scenes/lockup.jpg"
+    },
+    {
+      "id": "motionvideo-cinematic/gallery",
+      "slug": "gallery",
+      "filmSlug": "motionvideo-cinematic",
+      "title": "Gallery under a tilted lens",
+      "device": "The real gallery UI on a tilted slab with shallow depth of field, the camera drifting over the hero line.",
+      "description": "Opens on the product itself treated like a product photograph: a tilted plane, a razor focal band on the hero copy and everything else falling off into blur. The slow drift and roll make a static page feel shot, not screen-recorded.",
+      "startFrame": 0,
+      "endFrame": 240,
+      "role": "hook",
+      "secondaryRoles": ["demo"],
+      "style": "3d",
+      "moves": ["camera-projection-2-5d", "rack-focus", "breathing-push"],
+      "poster": "https://assets.motionvideo.xyz/launch-videos/motionvideo-cinematic/scenes/gallery.jpg"
+    },
+    {
+      "id": "motionvideo-cinematic/chip",
+      "slug": "chip",
+      "filmSlug": "motionvideo-cinematic",
+      "title": "Category chip macro",
+      "device": "An extreme 5.5× macro on a filter chip that gets pressed.",
+      "description": "A hard cut to an extreme close-up gives the film its rhythm. The chip is selected on camera, so the filtering is shown rather than told, and the soft click lands on the press.",
+      "startFrame": 240,
+      "endFrame": 390,
+      "role": "feature",
+      "secondaryRoles": ["demo"],
+      "style": "3d",
+      "moves": ["camera-projection-2-5d", "click-ripple", "rack-focus"],
+      "poster": "https://assets.motionvideo.xyz/launch-videos/motionvideo-cinematic/scenes/chip.jpg"
+    },
+    {
+      "id": "motionvideo-cinematic/search",
+      "slug": "search",
+      "filmSlug": "motionvideo-cinematic",
+      "title": "Typed search",
+      "device": "Macro on the command palette while a query types itself, then a rack focus to the chosen result.",
+      "description": "Each typed character gets its own key tick at 12.5 characters a second. Once the list settles the highlight steps onto the hero result and the focus racks down to it, handing the eye to the next shot.",
+      "startFrame": 390,
+      "endFrame": 720,
+      "role": "demo",
+      "secondaryRoles": ["feature"],
+      "style": "3d",
+      "moves": ["typewriter-text", "rack-focus", "camera-projection-2-5d"],
+      "poster": "https://assets.motionvideo.xyz/launch-videos/motionvideo-cinematic/scenes/search.jpg"
+    },
+    {
+      "id": "motionvideo-cinematic/prompt",
+      "slug": "prompt",
+      "filmSlug": "motionvideo-cinematic",
+      "title": "The prompt",
+      "device": "Medium shot on the video overlay, racking from title to the prompt text, which expands.",
+      "description": "Shows what makes the site different: the prompt sits beside every video. The focus moves off the title onto the prompt's opening words, and pressing Show all expands it under the camera.",
+      "startFrame": 720,
+      "endFrame": 990,
+      "role": "demo",
+      "secondaryRoles": ["proof"],
+      "style": "3d",
+      "moves": ["rack-focus", "camera-projection-2-5d", "dolly-in"],
+      "poster": "https://assets.motionvideo.xyz/launch-videos/motionvideo-cinematic/scenes/prompt.jpg"
+    },
+    {
+      "id": "motionvideo-cinematic/copy",
+      "slug": "copy",
+      "filmSlug": "motionvideo-cinematic",
+      "title": "Copy",
+      "device": "A 6.2× macro on the Copy button as it is pressed and confirms.",
+      "description": "The film's verb. The tightest shot in the film puts the button edge to edge; the click and a soft pop 0.12 s later sell the copied state.",
+      "startFrame": 990,
+      "endFrame": 1140,
+      "role": "feature",
+      "secondaryRoles": ["cta"],
+      "style": "3d",
+      "moves": ["click-ripple", "camera-punch-in", "camera-projection-2-5d"],
+      "poster": "https://assets.motionvideo.xyz/launch-videos/motionvideo-cinematic/scenes/copy.jpg"
+    },
+    {
+      "id": "motionvideo-cinematic/wide",
+      "slug": "wide",
+      "filmSlug": "motionvideo-cinematic",
+      "title": "Wide scroll",
+      "device": "Pull back to the whole page nearly flat, scrolling at reading speed, then blur out into the ground.",
+      "description": "After four tight shots the wide gives scale: the full gallery, barely tilted, scrolling as a visitor would. The last 0.4 s blurs and fades into the ground colour, a soft hand-off to the outro.",
+      "startFrame": 1140,
+      "endFrame": 1416,
+      "role": "proof",
+      "secondaryRoles": ["bridge"],
+      "style": "3d",
+      "moves": ["pull-back-reveal", "scroll-through-screen", "motion-blur"],
+      "poster": "https://assets.motionvideo.xyz/launch-videos/motionvideo-cinematic/scenes/wide.jpg"
+    },
+    {
+      "id": "motionvideo-cinematic/outro-copy",
+      "slug": "outro-copy",
+      "filmSlug": "motionvideo-cinematic",
+      "title": "Outro line",
+      "device": "One line focuses in out of blur on the plain ground.",
+      "description": "A single statement on the empty ground: it eases in from a 16px blur over 0.8 s and holds for reading.",
+      "startFrame": 1416,
+      "endFrame": 1596,
+      "role": "bridge",
+      "secondaryRoles": ["brand-outro"],
+      "style": "kinetic-type",
+      "moves": ["ease-out-entrance", "rack-focus"],
+      "poster": "https://assets.motionvideo.xyz/launch-videos/motionvideo-cinematic/scenes/outro-copy.jpg"
+    },
+    {
+      "id": "motionvideo-cinematic/outro-logo",
+      "slug": "outro-logo",
+      "filmSlug": "motionvideo-cinematic",
+      "title": "Logo end card",
+      "device": "Hard cut from the line to the logo lockup, held to the end.",
+      "description": "The lockup replaces the line on a hard cut with no motion at all, which reads as a full stop.",
+      "startFrame": 1596,
+      "endFrame": 1800,
+      "role": "brand-outro",
+      "secondaryRoles": [],
+      "style": "kinetic-type",
+      "moves": ["match-cut", "moving-hold"],
+      "poster": "https://assets.motionvideo.xyz/launch-videos/motionvideo-cinematic/scenes/outro-logo.jpg"
+    }
+  ]
+}

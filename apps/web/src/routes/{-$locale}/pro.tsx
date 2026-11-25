@@ -22,6 +22,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import { LAUNCH_VIDEOS_LIVE } from "@/constants/launch-videos";
 import { localeParam } from "@/constants/locales";
 import { MCP_RESOURCE } from "@/constants/oauth";
 import { BUSINESS_SEATS, PLAN_BILLINGS, planPrice } from "@/constants/plans";
@@ -66,6 +67,21 @@ const PREVIEW_COUNT = 4;
 
 // The Pro MCP tools a Pro or Business sign-in unlocks (see /docs/mcp).
 const PRO_MCP_TOOLS = ["search-moves", "get-move-prompt"] as const;
+
+// The Launch Videos MCP tools, included with every Pro and Business plan.
+const LAUNCH_MCP_TOOLS = [
+  "search-launch-scenes",
+  "get-launch-prompt",
+  "compose-launch-prompt",
+] as const;
+
+// What a launch prompt can be: the copy modes, the renderers it targets, and
+// the default storyboard (src/lib/launch-videos.ts).
+const LAUNCH_SNIPPET = [
+  ["mode", "adapt | exact"],
+  ["renderer", "remotion | hyperframes | editframe | fframes"],
+  ["storyboard", "hook → reveal → demo → cta"],
+] as const;
 
 const featureLinkClass =
   "text-foreground inline-flex items-center gap-1 text-sm font-medium hover:underline";
@@ -215,6 +231,30 @@ const Pro = () => {
               className="lg:col-span-2"
             />
             <Tile
+              title={content.launchTitle}
+              body={content.launchBody}
+              link={
+                // The section 404s until its release flag is on.
+                LAUNCH_VIDEOS_LIVE && (
+                  <Link to={ROUTES.LAUNCH_VIDEOS} className={featureLinkClass}>
+                    {content.browseLaunch}
+                    <ArrowRight aria-hidden="true" className="size-3.5" />
+                  </Link>
+                )
+              }
+              horizontal
+              className="lg:col-span-6"
+            >
+              <dl aria-hidden="true" className={snippetClass}>
+                {LAUNCH_SNIPPET.map(([key, value]) => (
+                  <div key={key} className="flex gap-2 truncate">
+                    <dt className="text-primary">{key}:</dt>
+                    <dd className="text-muted-foreground truncate">{value}</dd>
+                  </div>
+                ))}
+              </dl>
+            </Tile>
+            <Tile
               title={content.mcpTitle}
               body={content.mcpBody}
               link={
@@ -242,6 +282,20 @@ const Pro = () => {
                     </li>
                   ))}
                 </ul>
+                {LAUNCH_VIDEOS_LIVE && (
+                  <div className="flex flex-col gap-1">
+                    <p className="text-foreground truncate">
+                      {content.launchToolsLabel}
+                    </p>
+                    <ul className="text-muted-foreground flex flex-col gap-1">
+                      {LAUNCH_MCP_TOOLS.map((tool) => (
+                        <li key={tool} className="truncate">
+                          <span className="text-primary">✓</span> {tool}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
               </div>
             </Tile>
             <Tile
@@ -335,10 +389,13 @@ export const Route = createFileRoute("/{-$locale}/pro")({
       const { cents, currency } = planPrice(prices, plan, billing);
       return formatPrice(cents, currency, locale);
     };
+    const launch = LAUNCH_VIDEOS_LIVE
+      ? "Launch Videos (scene, full-film and storyboard prompts), "
+      : "";
     return {
       ...createMetadata({
         title: `${SITE.NAME} Pro`,
-        description: `${SITE.NAME} Pro and Business: the full Moves library with every prompt, every prompt template with its customizer, the Pro agent skill and every update. Pro from ${amount("pro", "monthly")} a month, ${amount("pro", "annual")} a year or ${amount("pro", "lifetime")} once; Business with ${BUSINESS_SEATS} seats from ${amount("business", "monthly")} a month.`,
+        description: `${SITE.NAME} Pro and Business: the full Moves library with every prompt, ${launch}every prompt template with its customizer, the Pro agent skill and every update. Pro from ${amount("pro", "monthly")} a month, ${amount("pro", "annual")} a year or ${amount("pro", "lifetime")} once; Business with ${BUSINESS_SEATS} seats from ${amount("business", "monthly")} a month.`,
       }),
       scripts: planJsonLd(params.locale, prices),
     };
