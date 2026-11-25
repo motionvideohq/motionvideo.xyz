@@ -64,6 +64,7 @@ export const MOTION_MODELS = [
   "GPT-6 Astra",
   "Gemini 4 Argon",
   "Gemini 4 Carbon",
+  "Gemini 4 Hydrogen",
   "Gemini 4 Neon",
 ] as const;
 export type MotionModel = (typeof MOTION_MODELS)[number];
@@ -79,6 +80,7 @@ export const MOTION_MODEL_NAMES: Record<MotionModel, string> = {
   "GPT-6 Astra": "GPT-6 Astra",
   "Gemini 4 Argon": "Gemini 4 Argon",
   "Gemini 4 Carbon": "Gemini 4 Carbon",
+  "Gemini 4 Hydrogen": "Gemini 4 Hydrogen",
   "Gemini 4 Neon": "Gemini 4 Neon",
 };
 // Model families, named like the models (Claude, GPT, Gemini) rather than the
@@ -96,6 +98,7 @@ export const MOTION_MODEL_FAMILY: Record<MotionModel, MotionModelFamily> = {
   "GPT-6 Astra": "GPT",
   "Gemini 4 Argon": "Gemini",
   "Gemini 4 Carbon": "Gemini",
+  "Gemini 4 Hydrogen": "Gemini",
   "Gemini 4 Neon": "Gemini",
 };
 export const motionModelSlug = (model: string) =>
