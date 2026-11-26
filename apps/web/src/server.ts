@@ -12,7 +12,7 @@ import {
   localizedPath,
   withoutDefaultLocale,
 } from "@/constants/locales";
-import { PRERENDER_HEADER, STATIC_PAGES } from "@/constants/routes";
+import { PRERENDER_HEADER, ROUTES, STATIC_PAGES } from "@/constants/routes";
 import { SITE } from "@/constants/site";
 import { currentOffer } from "@/lib/offers";
 import { UPLOAD_PATH_PREFIX } from "@/lib/uploads";
@@ -95,6 +95,38 @@ const localeRedirect = (request: Request): Response | null => {
   });
 };
 
+/**
+ * Short URLs kept in docs and agent configs for the two product pages. Applied
+ * before locale negotiation so `/fr/mcp` lands on the translated page instead
+ * of a 404 under the old name.
+ */
+const PAGE_ALIASES = {
+  "/mcp": ROUTES.MOTIONVIDEO_MCP,
+  "/skill": ROUTES.MOTIONVIDEO_SKILL,
+} as const;
+
+/** Permanently move an alias (and its localized form) to the canonical page. */
+const aliasRedirect = (request: Request): Response | null => {
+  if (request.method !== "GET" && request.method !== "HEAD") {
+    return null;
+  }
+  const url = new URL(request.url);
+  const [, first, ...rest] = url.pathname.split("/");
+  const locale = isLocale(first) ? first : undefined;
+  const path = (locale ? `/${rest.join("/")}` : url.pathname).replace(
+    /\/+$/u,
+    ""
+  );
+  const target = Object.entries(PAGE_ALIASES).find(
+    ([alias]) => alias === path
+  )?.[1];
+  if (!target) {
+    return null;
+  }
+  url.pathname = locale ? localizedPath(target, locale) : target;
+  return Response.redirect(url.toString(), 301);
+};
+
 // Sent with every page and API response (not the presence WebSocket). Framing
 // is denied (clickjacking), MIME sniffing is off, and HTTPS is pinned.
 const SECURITY_HEADERS = {
@@ -160,6 +192,10 @@ const route = async (request: Request): Promise<Response> => {
   if (url.hostname === `www.${SITE.DOMAIN}`) {
     url.hostname = SITE.DOMAIN;
     return Response.redirect(url.toString(), 301);
+  }
+  const aliased = aliasRedirect(request);
+  if (aliased) {
+    return aliased;
   }
   // One URL per page: `/fr/tools/` (and `/fr/`) move permanently to the
   // slashless form the router renders, rather than through the router's own
