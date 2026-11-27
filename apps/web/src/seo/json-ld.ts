@@ -52,7 +52,18 @@ const organization = {
   },
   logo: absoluteUrl("/brand/motionvideo-app-icon.png"),
   name: SITE.NAME,
-  sameAs: [LINK.GITHUB, LINK.X],
+  // Profile URLs (not follow intents), so search engines tie each account to
+  // the organization.
+  sameAs: [
+    LINK.GITHUB,
+    LINK.X,
+    LINK.YOUTUBE,
+    LINK.THREADS,
+    LINK.INSTAGRAM,
+    LINK.PINTEREST,
+    LINK.LINKEDIN,
+    LINK.FACEBOOK,
+  ],
   url: SITE.URL,
 };
 

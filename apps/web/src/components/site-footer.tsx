@@ -5,7 +5,16 @@ import { ChevronDown } from "reicon-react/icons/ChevronDown";
 
 import { Brand } from "@/components/brand";
 import { FooterWordmark } from "@/components/footer-wordmark";
-import { GitHubIcon, XIcon } from "@/components/icons";
+import {
+  FacebookIcon,
+  GitHubIcon,
+  InstagramIcon,
+  LinkedInIcon,
+  PinterestIcon,
+  ThreadsIcon,
+  XIcon,
+  YouTubeIcon,
+} from "@/components/icons";
 import { LocaleSwitcher } from "@/components/locale-switcher";
 import { LocalizedLink as Link } from "@/components/localized-link";
 import { SoundSwitch } from "@/components/sound-switch";
@@ -25,7 +34,7 @@ import {
   createTooltipHandle,
 } from "@/components/ui/tooltip";
 import type { TooltipHandle } from "@/components/ui/tooltip";
-import { LINK } from "@/constants/links";
+import { LINK, SOCIAL_HANDLE } from "@/constants/links";
 import { OTHER_PRODUCTS, SHADCN_LABS_PROJECTS } from "@/constants/products";
 import { ROUTES } from "@/constants/routes";
 import { SITE } from "@/constants/site";
@@ -65,6 +74,11 @@ const IconLink = ({
 
 // The footer's icon button groups each share one tooltip that slides and
 // morphs between their buttons.
+//
+// Social marks are sized optically, not by box: each size gives roughly the
+// same silhouette (convex hull) area as X at 14px. Full squares (LinkedIn)
+// shrink, circles sit at 15px, and wide or padded marks (YouTube, Threads,
+// Instagram, whose viewBox has ~13% padding per side) grow.
 
 const Socials = () => {
   const content = useIntlayer("site-footer");
@@ -77,7 +91,7 @@ const Socials = () => {
         hint={content.starGithub}
         tooltip={tooltip}
       >
-        <GitHubIcon className="size-4" />
+        <GitHubIcon className="size-3.75" />
       </IconLink>
       <IconLink
         href={LINK.X_FOLLOW}
@@ -86,6 +100,54 @@ const Socials = () => {
         tooltip={tooltip}
       >
         <XIcon className="size-3.5" />
+      </IconLink>
+      <IconLink
+        href={LINK.PINTEREST}
+        label={`${content.followPinterest.value}: @${SOCIAL_HANDLE}`}
+        hint={content.followPinterest}
+        tooltip={tooltip}
+      >
+        <PinterestIcon className="size-3.75" />
+      </IconLink>
+      <IconLink
+        href={LINK.LINKEDIN}
+        label={`${content.followLinkedin.value}: @${SOCIAL_HANDLE}`}
+        hint={content.followLinkedin}
+        tooltip={tooltip}
+      >
+        <LinkedInIcon className="size-[13.5px]" />
+      </IconLink>
+      <IconLink
+        href={LINK.YOUTUBE_SUBSCRIBE}
+        label={`${content.followYoutube.value}: @${SOCIAL_HANDLE}`}
+        hint={content.followYoutube}
+        tooltip={tooltip}
+      >
+        <YouTubeIcon className="size-4" />
+      </IconLink>
+      <IconLink
+        href={LINK.INSTAGRAM}
+        label={`${content.followInstagram.value}: @${SOCIAL_HANDLE}`}
+        hint={content.followInstagram}
+        tooltip={tooltip}
+      >
+        <InstagramIcon className="size-4.5" />
+      </IconLink>
+      <IconLink
+        href={LINK.THREADS_FOLLOW}
+        label={`${content.followThreads.value}: @${SOCIAL_HANDLE}`}
+        hint={content.followThreads}
+        tooltip={tooltip}
+      >
+        <ThreadsIcon className="size-4" />
+      </IconLink>
+      <IconLink
+        href={LINK.FACEBOOK}
+        label={`${content.followFacebook.value}: @${SOCIAL_HANDLE}`}
+        hint={content.followFacebook}
+        tooltip={tooltip}
+      >
+        <FacebookIcon className="size-3.75" />
       </IconLink>
       <SharedTooltip handle={tooltip} />
     </TooltipProvider>
@@ -193,7 +255,7 @@ export const SiteFooter = () => {
           <p className="text-muted-foreground text-pretty">
             {content.description}
           </p>
-          <div className="-ml-2 flex items-center">
+          <div className="-ml-2 flex flex-wrap items-center">
             <Socials />
           </div>
         </div>
