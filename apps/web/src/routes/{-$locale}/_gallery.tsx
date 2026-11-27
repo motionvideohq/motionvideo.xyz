@@ -33,7 +33,11 @@ import { JobsWidget } from "@/components/jobs-widget";
 import { MotionVideoCard, setMorphCard } from "@/components/motion-video";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
-import { SponsoredCard, sponsoredTileIndex } from "@/components/sponsored-card";
+import {
+  SponsoredCard,
+  sponsoredTileIndex,
+  useHasSponsorCard,
+} from "@/components/sponsored-card";
 import { ButtonGroup } from "@/components/ui/button-group";
 import {
   DropdownMenu,
@@ -553,6 +557,52 @@ const GalleryIntro = ({
   );
 };
 
+/**
+ * Place the paid sponsored tile and, when open roles exist, the jobs tile in
+ * a gallery grid. The sponsored tile is left out entirely until a sponsor is
+ * live, so no empty card (and no gap) is rendered. Kept out of Gallery to
+ * keep that component's branching simple.
+ */
+const withSponsoredTiles = ({
+  cards,
+  introNode,
+  lanes,
+  hasSponsor,
+  jobsNode,
+}: {
+  cards: MasonryItem[];
+  introNode: ReactNode;
+  lanes: number;
+  hasSponsor: boolean;
+  jobsNode: ReactNode;
+}): MasonryItem[] => {
+  const items: MasonryItem[] = [{ key: "intro", node: introNode }, ...cards];
+  const sponsoredIndex = sponsoredTileIndex(lanes, cards.length);
+  if (hasSponsor) {
+    items.splice(sponsoredIndex, 0, {
+      key: "sponsored",
+      aspectRatio: 16 / 9,
+      node: <SponsoredCard placement="feed" />,
+    });
+  }
+  if (!jobsNode) {
+    return items;
+  }
+  // Open roles right after the sponsored card (or in its slot while there is
+  // none): in the same lane on desktop, next in the single column on phones.
+  const jobsIndex = sponsoredIndex + (hasSponsor ? 1 : 0);
+  if (lanes >= 3 && sponsoredIndex === lanes - 1) {
+    items.splice(jobsIndex, 0, {
+      key: "jobs",
+      lane: lanes - 1,
+      node: jobsNode,
+    });
+  } else if (lanes < 2) {
+    items.splice(jobsIndex, 0, { key: "jobs", node: jobsNode });
+  }
+  return items;
+};
+
 const Gallery = () => {
   const content = useIntlayer("motion-gallery");
   const creatorContent = useIntlayer("motion-creator");
@@ -592,6 +642,7 @@ const Gallery = () => {
   // Previews pause while a video's overlay covers the grid.
   const previewsPaused = Boolean(openSlug);
   const lanes = useLaneCount();
+  const hasSponsor = useHasSponsorCard();
 
   // Type, model, colour and sort stay search params on whichever page is
   // showing, except a colour, model or type page's own filter (see
@@ -687,29 +738,14 @@ const Gallery = () => {
       ),
     });
   }
-  const items: MasonryItem[] = [{ key: "intro", node: intro }, ...cards];
-  const sponsoredIndex = sponsoredTileIndex(lanes, cards.length);
-  items.splice(sponsoredIndex, 0, {
-    key: "sponsored",
-    aspectRatio: 16 / 9,
-    node: <SponsoredCard placement="feed" />,
+  const items = withSponsoredTiles({
+    cards,
+    introNode: intro,
+    lanes,
+    hasSponsor,
+    // Only when there are open roles; the header's Jobs link covers the rest.
+    jobsNode: jobs.length > 0 ? <JobsWidget jobs={jobs} /> : null,
   });
-  // Open roles right after the sponsored card: in the same lane on desktop,
-  // next in the single column on phones. Only when there are open roles; the
-  // header's Jobs link covers the rest.
-  const hasJobs = jobs.length > 0;
-  if (hasJobs && lanes >= 3 && sponsoredIndex === lanes - 1) {
-    items.splice(sponsoredIndex + 1, 0, {
-      key: "jobs",
-      lane: lanes - 1,
-      node: <JobsWidget jobs={jobs} />,
-    });
-  } else if (hasJobs && lanes < 2) {
-    items.splice(sponsoredIndex + 1, 0, {
-      key: "jobs",
-      node: <JobsWidget jobs={jobs} />,
-    });
-  }
 
   return (
     <>

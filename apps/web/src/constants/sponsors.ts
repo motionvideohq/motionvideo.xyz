@@ -33,17 +33,17 @@ export interface Sponsor {
 }
 
 /**
- * A founding sponsor: credited on /sponsor, and shown in the sponsored grid
- * card only while no Diamond sponsor is live. Never in the live slots or
- * sidebar; the /sponsor placement previews show them there as examples.
+ * A founding sponsor: credited on /sponsor and used as an example in that
+ * page's placement previews. Never in a live card, slot or sidebar — those
+ * show paid sponsors only.
  */
 export type FoundingSponsor = Pick<
   Sponsor,
   "name" | "url" | "logo" | "cover" | "tagline" | "darkInvert"
 >;
 
-// Partners from the start. They are thanked on /sponsor and take no Diamond
-// seat; until a Diamond sponsor is live they fill the sponsored grid card.
+// Partners from the start. They are thanked on /sponsor and take no paid
+// seat; live placements stay empty until an actual sponsor goes live.
 export const FOUNDING_SPONSORS: readonly FoundingSponsor[] = [
   {
     name: "Rare UI",

@@ -11,7 +11,11 @@ import { JobCard, NoJobsCard } from "@/components/job-card";
 import { LocalizedLink as Link } from "@/components/localized-link";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
-import { SponsoredCard, sponsoredTileIndex } from "@/components/sponsored-card";
+import {
+  SponsoredCard,
+  sponsoredTileIndex,
+  useHasSponsorCard,
+} from "@/components/sponsored-card";
 import { JOB_TYPES } from "@/constants/jobs";
 import type { JobType } from "@/constants/jobs";
 import { ROUTES } from "@/constants/routes";
@@ -32,6 +36,7 @@ export const JobsBoard = ({
 }) => {
   const content = useIntlayer("jobs-page");
   const lanes = useLaneCount();
+  const hasSponsor = useHasSponsorCard();
   const filtered = type ? jobs.filter((job) => job.type === type) : jobs;
 
   const intro = (
@@ -71,11 +76,15 @@ export const JobsBoard = ({
   ];
   const items: MasonryItem[] = [{ key: "intro", node: intro }, ...cards];
   const sponsoredIndex = sponsoredTileIndex(lanes, cards.length);
-  items.splice(sponsoredIndex, 0, {
-    key: "sponsored",
-    aspectRatio: DIRECTORY_COVER_RATIO,
-    node: <SponsoredCard placement="feed" />,
-  });
+  // No paid sponsor: no tile (and no empty gap). The placement stays ready
+  // for the first real sponsor.
+  if (hasSponsor) {
+    items.splice(sponsoredIndex, 0, {
+      key: "sponsored",
+      aspectRatio: DIRECTORY_COVER_RATIO,
+      node: <SponsoredCard placement="feed" />,
+    });
+  }
 
   return (
     <>

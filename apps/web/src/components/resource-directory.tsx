@@ -45,7 +45,11 @@ import {
   DIRECTORY_COVER_RATIO,
   DirectoryCard,
 } from "@/components/directory-card";
-import { SponsoredCard, sponsoredTileIndex } from "@/components/sponsored-card";
+import {
+  SponsoredCard,
+  sponsoredTileIndex,
+  useHasSponsorCard,
+} from "@/components/sponsored-card";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -349,12 +353,17 @@ export const ResourceDirectory = ({
   });
   const items: MasonryItem[] = [{ key: "intro", node: intro }, ...cards];
   const lanes = useLaneCount();
+  const hasSponsor = useHasSponsorCard();
   const sponsoredIndex = sponsoredTileIndex(lanes, cards.length);
-  items.splice(sponsoredIndex, 0, {
-    key: "sponsored",
-    aspectRatio: DIRECTORY_COVER_RATIO,
-    node: <SponsoredCard placement="feed" />,
-  });
+  // No paid sponsor: leave the tile out entirely, so no empty card sits in
+  // the grid. The logic and UI stay in place for when a sponsor goes live.
+  if (hasSponsor) {
+    items.splice(sponsoredIndex, 0, {
+      key: "sponsored",
+      aspectRatio: DIRECTORY_COVER_RATIO,
+      node: <SponsoredCard placement="feed" />,
+    });
+  }
 
   return (
     <>

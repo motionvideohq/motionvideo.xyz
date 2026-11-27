@@ -19,12 +19,13 @@ const TRACKING = {
 } as const;
 
 /**
- * A sponsored placement: every Diamond sponsor first (or, while there is
- * none, the founding sponsors), then Gold and Silver in the feed, as a cover
- * card that fades to the next on a timer with a progress hairline along its
- * bottom edge. No tier is tied to a category page. The detail sidebar shows
- * only live Diamond sponsors, as the "Sponsored by" row of its details list
- * (render it inside that `<dl>`), and nothing while there is none.
+ * A paid sponsor placement: every Diamond sponsor first, then Gold and Silver
+ * in the feed, as a cover card that fades to the next on a timer with a
+ * progress hairline along its bottom edge. No tier is tied to a category page.
+ * The detail sidebar shows only live Diamond sponsors, as the "Sponsored by"
+ * row of its details list (render it inside that `<dl>`). Both placements
+ * render nothing until a sponsor is live. Founding sponsors are credited on
+ * /sponsor and only stand in as examples in that page's `demo` previews.
  */
 export const SponsoredCard = ({
   placement,
@@ -34,8 +35,9 @@ export const SponsoredCard = ({
   /** The video grid feed, or a detail view's sidebar. */
   placement: keyof typeof TRACKING;
   /**
-   * The /sponsor placement previews: the sidebar falls back to the founding
-   * sponsors too, so the preview is never empty. Clicks track as "preview".
+   * The /sponsor placement previews: founding sponsors stand in as examples
+   * while no paid sponsor is live, so the preview is never empty. Clicks
+   * track as "preview".
    */
   demo?: boolean;
   /** Sidebar only: spacing/type overrides for the row (compact previews). */
@@ -46,14 +48,13 @@ export const SponsoredCard = ({
   const diamond = live.filter((entry) => entry.tier === "diamond");
   const gold = live.filter((entry) => entry.tier === "gold");
   const silver = live.filter((entry) => entry.tier === "silver");
-  const fallback = diamond.length > 0 ? diamond : FOUNDING_SPONSORS;
-  // Founding sponsors fill the feed card on the live site; the sidebar only
-  // borrows them in the /sponsor preview.
-  const sidebar = demo ? fallback : diamond;
+  // Live pages show paid sponsors only — no card until one goes live. Only
+  // the /sponsor previews borrow the founding sponsors as examples.
+  const featured = demo && diamond.length === 0 ? FOUNDING_SPONSORS : diamond;
   const sponsors =
     placement === "sidebar"
-      ? [...sidebar]
-      : [...fallback, ...gold, ...silver].flatMap((entry) =>
+      ? [...featured]
+      : [...featured, ...gold, ...silver].flatMap((entry) =>
           entry.cover ? [{ ...entry, cover: entry.cover }] : []
         );
   const track = demo ? "preview" : TRACKING[placement].track;
@@ -187,6 +188,14 @@ export const SponsoredCard = ({
     </a>
   );
 };
+
+/**
+ * Whether a live sponsor has a cover, i.e. whether the feed card will render.
+ * Masonry pages call this before inserting the tile so no empty card (and no
+ * gap) is left in the grid; the card itself still renders nothing on its own.
+ */
+export const useHasSponsorCard = (): boolean =>
+  useSponsors().some((sponsor) => Boolean(sponsor.cover));
 
 /** One-lane phones: the sponsored tile comes after the intro and this many. */
 const PHONE_OFFSET = 3;

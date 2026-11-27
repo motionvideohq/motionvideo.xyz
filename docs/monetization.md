@@ -12,7 +12,7 @@ Ideas for monthly recurring revenue on MotionVideo, ranked by fit with what alre
 
 ## Founding sponsors
 
-[Rare UI](https://www.rareui.com/), [Kobra](https://kobra.systems/), [beUI](https://beui.dev/), and [Illos](https://illos.dev/) are credited on `/sponsor`. Founding sponsors do not occupy paid seats; they fill the sponsored grid card while no Diamond sponsor is live.
+[Rare UI](https://www.rareui.com/), [Kobra](https://kobra.systems/), [beUI](https://beui.dev/), and [Illos](https://illos.dev/) are credited on `/sponsor`. Founding sponsors do not occupy paid seats and do not fill live placements; they only appear as examples in `/sponsor`'s placement previews. Live cards, slots and the sidebar stay empty until an actual sponsor goes live.
 
 ## Opportunities
 
